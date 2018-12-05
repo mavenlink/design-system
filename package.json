@@ -40,5 +40,8 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/setup-tests.js"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2"
   }
 }
