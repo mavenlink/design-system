@@ -1,5 +1,5 @@
 {
-  "extends": "mavenlint",
+  "extends": "mavenlint-react",
   "env": {
     "jest": true
   }
