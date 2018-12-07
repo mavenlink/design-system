@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`passing props through 1`] = `
+<input
+  className="hi"
+  id="hi"
+  required={true}
+/>
+`;
+
+exports[`rendering 1`] = `
+<input
+  className="input"
+  id="hi"
+/>
+`;

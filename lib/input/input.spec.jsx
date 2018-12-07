@@ -1,18 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import TestRenderer from 'react-test-renderer';
 import Input from './input';
 
 function render(props) {
-  return shallow(<Input {...props} id="hi" />);
+  return TestRenderer.create(<Input {...props} id="hi" />);
 }
 
 test('rendering', () => {
-  const wrapper = render();
-  expect(wrapper.type()).toEqual('input');
+  const tree = render();
+  expect(tree).toMatchSnapshot();
 });
 
 test('passing props through', () => {
-  const wrapper = render({ className: 'hi', required: true });
-  expect(wrapper.prop('className')).toEqual('hi');
-  expect(wrapper.prop('required')).toEqual(true);
+  const tree = render({ className: 'hi', required: true });
+  expect(tree).toMatchSnapshot();
 });
