@@ -1,0 +1,23 @@
+@import "../colors.css";
+@import "../typography.css";
+
+.input {
+  border: 1px solid var(--palette-neutral-mid-light);
+  border-radius: 3px;
+  font-family: var(--mavenlink-type-font-family);
+  height: 32px;
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.input:hover {
+  border-color: var(--palette-neutral-base);
+}
+
+.input::placeholder {
+  font-family: var(--mavenlink-type-font-family);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--palette-neutral-mid-dark);
+}
