@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint 'lib/**/*.js?(x)'",
+    "storybook": "start-storybook -p 6060 -c .storybook",
     "test": "jest"
   },
   "repository": {
@@ -29,9 +30,12 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^4.0.12",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.0.0",
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^1.1.1",
     "eslint-plugin-import": "^2.14.0",
@@ -40,7 +44,9 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "react": "^16.6.3",
-    "react-test-renderer": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-test-renderer": "^16.6.3",
+    "style-loader": "^0.23.1"
   },
   "dependencies": {
     "prop-types": "^15.6.2"
