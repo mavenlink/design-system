@@ -9,7 +9,7 @@ export function findByType(wrapper, type) {
 }
 
 /**
- *
+ * Get a specific prop from a rendered test component.
  * @param {object} instance - an instance returned by `findByType`
  * @param {string} prop - name of the prop to extract
  */
