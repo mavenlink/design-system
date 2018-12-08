@@ -4,7 +4,7 @@
   "description": "Mavenlink React Components",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "eslint 'lib/**/*.js?(x)'",
+    "lint": "eslint '**/*.js?(x)'",
     "storybook": "start-storybook -p 6060 -c .storybook",
     "test": "jest"
   },
