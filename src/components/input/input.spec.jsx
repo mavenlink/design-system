@@ -1,10 +1,9 @@
 import React from 'react';
-import TestRenderer from 'react-test-renderer';
 import Input from './input';
-import { findByType, getProp } from '../../test-utils';
+import { createWrapper, findByType, getProp } from '../../test-utils';
 
 function render(props) {
-  return TestRenderer.create(<Input {...props} id="hi" />);
+  return createWrapper(<Input {...props} id="hi" />);
 }
 
 test('rendering', () => {

@@ -1,3 +1,13 @@
+import TestRenderer from 'react-test-renderer';
+
+/**
+ * Create a wrapper object from which nodes can be found and assertions can be made.
+ * @param {object} element - React element to create a rendered instance for.
+ */
+export function createWrapper(element) {
+  return TestRenderer.create(element);
+}
+
 /**
  * Find a single descendant with the provided type. Throws an error if more than one descendants
  * match.
