@@ -1,5 +1,5 @@
-@import "../colors.css";
-@import "../typography.css";
+@import "../../styles/colors.css";
+@import "../../styles/typography.css";
 
 .input {
   border: 1px solid var(--palette-neutral-mid-light);
