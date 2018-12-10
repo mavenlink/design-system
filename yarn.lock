@@ -2910,19 +2910,21 @@ eslint-config-airbnb@15.1.0:
   dependencies:
     eslint-config-airbnb-base "^11.3.0"
 
-eslint-config-mavenlint-react@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-mavenlint-react/-/eslint-config-mavenlint-react-1.1.1.tgz#343fd8364401c2387c2747570c03277f12cd207a"
+eslint-config-mavenlint-react@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-mavenlint-react/-/eslint-config-mavenlint-react-2.0.0.tgz#24194e161651a0e358da58227aae47de5b8e1da1"
   dependencies:
-    eslint-config-mavenlint "^3.1.2"
+    eslint-config-mavenlint "^4.0.0"
+    eslint-plugin-jsx-a11y "^5.1.1"
     eslint-plugin-mavenlint "^0.4.1"
+    eslint-plugin-react "^7.11.1"
 
-eslint-config-mavenlint@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-mavenlint/-/eslint-config-mavenlint-3.1.2.tgz#dd46e42124a155abfbd10a9f4346b0259d310c69"
+eslint-config-mavenlint@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-mavenlint/-/eslint-config-mavenlint-4.0.0.tgz#17a6534014372d6eedf9b8d48334cae7e62700a2"
   dependencies:
     eslint-config-airbnb "15.1.0"
-    eslint-plugin-jasmine "^2.9.3"
+    eslint-plugin-import "^2.14.0"
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
@@ -2952,10 +2954,6 @@ eslint-plugin-import@^2.14.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
     resolve "^1.6.0"
-
-eslint-plugin-jasmine@^2.9.3:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jasmine/-/eslint-plugin-jasmine-2.10.1.tgz#5733b709e751f4bc40e31e1c16989bd2cdfbec97"
 
 eslint-plugin-jsx-a11y@^5.1.1:
   version "5.1.1"
