@@ -10,7 +10,7 @@ const stories = storiesOf('Input', module);
 stories.addDecorator(checkA11y);
 stories.addDecorator(withKnobs);
 
-stories.add('with label', () => (
+stories.add('Default', () => (
   <div>
     <label className={styles.label} htmlFor="greeting">Greeting</label>
     <Input id="greeting" placeholder={text('placeholder', 'hello world')} />
