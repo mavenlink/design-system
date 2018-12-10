@@ -7,7 +7,7 @@ import styles from './input.css';
 const stories = storiesOf('Input', module);
 
 stories.addDecorator(checkA11y);
-stories.add('Normal', () => (
+stories.add('with label', () => (
   <div>
     <label className={styles.label} htmlFor="greeting">Greeting</label>
     <Input id="greeting" placeholder="hello world" />
