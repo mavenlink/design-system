@@ -2,5 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Input from '../src/components/input';
 
-storiesOf('Input', module)
-  .add('Normal', () => <Input id="hello" />);
+const stories = storiesOf('Input', module);
+
+stories.add('Normal', () => <Input id="hello" />);
