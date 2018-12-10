@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint '**/*.js?(x)'",
-    "storybook": "start-storybook -p 6060 -c .storybook",
+    "start": "start-storybook -p 6060 -c .storybook",
     "test": "jest"
   },
   "repository": {
