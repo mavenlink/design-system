@@ -2,9 +2,7 @@ import { withInfo } from '@storybook/addon-info';
 import { withOptions } from '@storybook/addon-options';
 import { addDecorator, configure } from '@storybook/react';
 
-addDecorator(withInfo({
-  inline: true,
-}));
+addDecorator(withInfo);
 
 addDecorator(withOptions({
   name: 'Mavenlink Design System',
