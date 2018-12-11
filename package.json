@@ -4,6 +4,8 @@
   "description": "Mavenlink React Components",
   "main": "lib/index.js",
   "scripts": {
+    "build": "build-storybook -s ./public -c .storybook -o ./build",
+    "deploy-storybook": "build && storybook-to-ghpages -e ./build",
     "lint": "eslint '**/*.js?(x)'",
     "start": "start-storybook -p 6060 -s ./public -c .storybook",
     "test": "jest"
@@ -34,6 +36,7 @@
     "@storybook/addon-knobs": "^4.0.12",
     "@storybook/addon-options": "^4.0.12",
     "@storybook/react": "^4.0.12",
+    "@storybook/storybook-deployer": "^2.8.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
