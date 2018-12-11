@@ -23,3 +23,9 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
     return <Input id="hello!" />;
   }
   ```
+
+## Contributing
+
+We encourage you to contribute to the Mavenlink Design System! Please check out the Contributing documentation for guidelines about how to proceed.
+
+Everyone interacting this codebase, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](./CODE_OF_CONDUCT.md).
