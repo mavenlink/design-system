@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "build-storybook -s ./public -c .storybook -o ./build",
-    "deploy-storybook": "build && storybook-to-ghpages -e ./build",
+    "deploy-storybook": "yarn run build && storybook-to-ghpages -e ./build",
     "lint": "eslint '**/*.js?(x)'",
     "start": "start-storybook -p 6060 -s ./public -c .storybook",
     "test": "jest"
