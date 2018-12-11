@@ -6,7 +6,7 @@ addDecorator(withInfo);
 
 addDecorator(withOptions({
   name: 'Mavenlink Design System',
-  url: 'https://mavenlink.design',
+  url: 'https://github.com/mavenlink/design-system',
 }));
 
 function loadStories() {
