@@ -7,6 +7,9 @@ Thank you for contributing to the Mavenlink Design System! We want to make contr
 - Submitting a fix
 - Proposing new features
 
+## Code of Conduct
+Mavenlink has adopted a Code of Conduct that we expect project participants to adhere to. [Please read the full text](./CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
 ## Submitting Changes
 Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
