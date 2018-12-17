@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
+import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from '../src/components/table';
 
 storiesOf('Table', module)
   .add('Default', () => (
