@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './table.css';
 
-export default function TableCell({ children, className, header }) {
+export default function TableCell({ children, className, header, ...rest }) {
   const Element = header ? 'th' : 'td';
 
   return (
-    <Element className={className}>
+    <Element className={className} {...rest}>
       {children}
     </Element>
   );

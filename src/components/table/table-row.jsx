@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './table.css';
 
-export default function TableRow({ children, className }) {
+export default function TableRow({ children, className, ...rest }) {
   return (
-    <tr className={className}>
+    <tr className={className} {...rest}>
       {children}
     </tr>
   );
