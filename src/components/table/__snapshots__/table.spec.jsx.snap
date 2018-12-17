@@ -8,10 +8,14 @@ exports[`rendering 1`] = `
     className="head"
   >
     <tr>
-      <th>
+      <th
+        className="cell"
+      >
         id
       </th>
-      <th>
+      <th
+        className="cell"
+      >
         name
       </th>
     </tr>
@@ -22,20 +26,28 @@ exports[`rendering 1`] = `
     <tr
       className="row"
     >
-      <td>
+      <td
+        className="cell"
+      >
         1
       </td>
-      <td>
+      <td
+        className="cell"
+      >
         Bob Ross
       </td>
     </tr>
     <tr
       className="row"
     >
-      <td>
+      <td
+        className="cell"
+      >
         2
       </td>
-      <td>
+      <td
+        className="cell"
+      >
         Bob Marley
       </td>
     </tr>

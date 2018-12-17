@@ -19,6 +19,6 @@ TableCell.propTypes = {
 };
 
 TableCell.defaultProps = {
-  className: undefined,
+  className: styles.cell,
   header: false,
 };
