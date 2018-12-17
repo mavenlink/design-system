@@ -1,8 +1,8 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mavenlink React Components",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "files": [
     "/src"
   ],

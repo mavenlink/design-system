@@ -6,6 +6,9 @@
   </summary>
 </details>
 
+## 0.1.1 (December 17, 2018)
+- Fixed package configuration
+
 ## 0.1.0 (December 17, 2018)
 - Added initial Input component
 - Added initial Table component
