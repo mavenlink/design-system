@@ -1,0 +1,30 @@
+@import "../../styles/colors.css";
+@import "../../styles/typography.css";
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
+  font-family: var(--mavenlink-type-font-family);
+  text-align: left;
+  width: 100%;
+}
+
+.table * {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  background: var(--palette-neutral-xx-light);
+  border-bottom: 1px solid var(--palette-neutral-light);
+  border-top: 1px solid var(--palette-neutral-light);
+}
+
+.row {
+  border-bottom: 1px solid var(--palette-neutral-light);
+}
+
+.cell {
+  line-height: 1.8;
+}
