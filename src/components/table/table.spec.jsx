@@ -1,13 +1,13 @@
 import React from 'react';
-import { Table, TableHead, TableBody, TableRow, TableCell } from './index';
+import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
 import { createWrapper } from '../../test-utils';
 
 function render() {
   return createWrapper(
     <Table>
       <TableHead>
-        <TableCell>id</TableCell>
-        <TableCell>name</TableCell>
+        <TableHeaderCell>id</TableHeaderCell>
+        <TableHeaderCell>name</TableHeaderCell>
       </TableHead>
       <TableBody>
         <TableRow>

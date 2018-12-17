@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Table, TableHead, TableBody, TableRow, TableCell } from './index';
+import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
 
 storiesOf('Table', module)
   .add('Default', () => (
     <Table>
       <TableHead>
-        <TableCell>id</TableCell>
-        <TableCell>name</TableCell>
-        <TableCell>instrument</TableCell>
+        <TableHeaderCell>id</TableHeaderCell>
+        <TableHeaderCell>name</TableHeaderCell>
+        <TableHeaderCell>instrument</TableHeaderCell>
       </TableHead>
       <TableBody>
         <TableRow>

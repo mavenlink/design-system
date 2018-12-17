@@ -2,19 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './table.css';
 
-export default function TableCell({ children, className, ...rest }) {
+export default function TableHeaderCell({ children, className, ...rest }) {
   return (
-    <td className={className} {...rest}>
+    <th className={className} {...rest}>
       {children}
-    </td>
+    </th>
   );
 }
 
-TableCell.propTypes = {
+TableHeaderCell.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
-TableCell.defaultProps = {
+TableHeaderCell.defaultProps = {
   className: styles.cell,
 };

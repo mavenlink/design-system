@@ -6,9 +6,7 @@ export default function TableHead({ children, className, cssRow, ...rest }) {
   return (
     <thead className={className} {...rest}>
       <tr className={cssRow}>
-        {React.Children.map(children, (child) => {
-          return React.cloneElement(child, { header: true });
-        })}
+        {children}
       </tr>
     </thead>
   );
