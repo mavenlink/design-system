@@ -1,1 +1,2 @@
-export { default as Input } from './components/input'; // eslint-disable-line import/prefer-default-export
+export { default as Input } from './components/input';
+export { Table, TableHead, TableBody, TableRow, TableCell } from './components/table';
