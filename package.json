@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Mavenlink React Components",
   "main": "lib/index.js",
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "build": "build-storybook -s ./public -c .storybook -o ./build",
     "deploy-storybook": "yarn run build && storybook-to-ghpages -e ./build",
