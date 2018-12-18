@@ -4,7 +4,7 @@
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "files": [
-    "/src"
+    "src/**/!(*.spec).*"
   ],
   "scripts": {
     "deploy-storybook": "storybook-to-ghpages",
