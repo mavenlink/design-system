@@ -6,6 +6,9 @@
   </summary>
 </details>
 
+## 0.1.2 (December 17, 2018)
+- Adjusted package configuration to prevent unnecessary files from being published
+
 ## 0.1.1 (December 17, 2018)
 - Fixed package configuration
 
