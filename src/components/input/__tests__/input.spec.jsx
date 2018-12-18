@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../input';
-import { createWrapper, findByType, getProp } from '../../../test-utils';
+import { createWrapper, findByType, getProp } from '../../../../lib/test-utils';
 
 function render(props) {
   return createWrapper(<Input {...props} id="hi" />);
