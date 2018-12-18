@@ -4,8 +4,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  - Tweaked styling of tables
 </details>
+
+## 0.1.3 (December 18, 2018)
+- Tweaked styling of tables
 
 ## 0.1.2 (December 17, 2018)
 - Adjusted package configuration to prevent unnecessary files from being published
