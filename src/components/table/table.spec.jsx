@@ -1,14 +1,14 @@
 import React from 'react';
 import { createWrapper } from 'lib/test-utils';
-import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
+import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
 
 function render() {
   return createWrapper(
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableHeaderCell>id</TableHeaderCell>
         <TableHeaderCell>name</TableHeaderCell>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell>1</TableCell>

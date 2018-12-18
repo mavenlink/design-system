@@ -1,15 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from '../src/components/table';
+import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from '../src/components/table';
 
 storiesOf('Table', module)
   .add('Default', () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableHeaderCell>id</TableHeaderCell>
         <TableHeaderCell>name</TableHeaderCell>
         <TableHeaderCell>instrument</TableHeaderCell>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell>1</TableCell>
