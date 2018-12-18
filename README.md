@@ -14,6 +14,25 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   yarn add @mavenlink/design-system
   ```
 
+- Setup [CSS modules](https://github.com/css-modules/css-modules) using [css-loader](https://github.com/webpack-contrib/css-loader#modules)
+
+  ```js
+  // Webpack configuration
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          loader: 'css-loader',
+          options: {
+            modules: true,
+          },
+        },
+      ],
+    },
+  };
+  ```
+
 - Use in your project
 
   ```jsx
