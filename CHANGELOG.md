@@ -4,6 +4,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  - Add TableHeaderCell component
 </details>
 
 ## 0.1.3 (December 18, 2018)
