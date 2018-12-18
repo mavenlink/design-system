@@ -2,5 +2,12 @@
   "extends": "mavenlint-react",
   "env": {
     "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["."]
+      }
+    }
   }
 }
