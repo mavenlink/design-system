@@ -9,12 +9,12 @@ exports[`rendering 1`] = `
   >
     <tr>
       <th
-        className="cell"
+        className="headerCell"
       >
         id
       </th>
       <th
-        className="cell"
+        className="headerCell"
       >
         name
       </th>

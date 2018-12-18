@@ -28,4 +28,10 @@
 .cell {
   font-weight: normal;
   line-height: 1.8;
+  padding-left: 0.625em;
+}
+
+.headerCell {
+  composes: cell;
+  border-right: 1px solid var(--palette-neutral-light)
 }

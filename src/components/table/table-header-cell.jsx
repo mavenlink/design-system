@@ -16,5 +16,5 @@ TableHeaderCell.propTypes = {
 };
 
 TableHeaderCell.defaultProps = {
-  className: styles.cell,
+  className: styles.headerCell,
 };

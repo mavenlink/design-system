@@ -4,6 +4,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  - Tweaked styling of tables
 </details>
 
 ## 0.1.2 (December 17, 2018)
