@@ -1,6 +1,6 @@
 import React from 'react';
-import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from '../index';
-import { createWrapper } from '../../../../lib/test-utils';
+import { Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
+import { createWrapper } from '../../../lib/test-utils';
 
 function render() {
   return createWrapper(
