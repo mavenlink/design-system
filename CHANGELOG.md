@@ -4,6 +4,8 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  - Fallback to the system-ui font if Open Sans isn't present
 </details>
 
 ## 0.2.1 (December 19, 2018)

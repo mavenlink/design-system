@@ -1,8 +1,8 @@
 @import './colors.css';
 
 :root {
-  --mavenlink-type-font-family:  'Open Sans', sans-serif;
-  --mavenlink-type-font-headings: 'Open Sans', sans-serif;
+  --mavenlink-type-font-family:  'Open Sans', system-ui, sans-serif;
+  --mavenlink-type-font-headings: 'Open Sans', system-ui, sans-serif;
   --mavenlink-type-font-accent: 'Merriweather', serif;
   --mavenlink-type-font-weight-light: 300;
   --mavenlink-type-font-weight: 400;
