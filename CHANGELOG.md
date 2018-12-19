@@ -4,6 +4,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
   - Remove unnecessary right border from last table header cell
   - Remove the requirement for table cells to have children
 </details>
