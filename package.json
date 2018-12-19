@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "lint": "eslint '**/*.js?(x)'",
+    "start": "styleguidist server",
     "test": "jest"
   },
   "repository": {
@@ -44,6 +45,9 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "^2.1.1",
+    "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.6.3"
   },
   "dependencies": {
