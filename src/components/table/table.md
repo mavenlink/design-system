@@ -1,0 +1,33 @@
+```jsx
+const { TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } = require('./index.js');
+
+<Table>
+  <TableHeader>
+    <TableHeaderCell>id</TableHeaderCell>
+    <TableHeaderCell>name</TableHeaderCell>
+    <TableHeaderCell>instrument</TableHeaderCell>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>1</TableCell>
+      <TableCell>Lars</TableCell>
+      <TableCell>Drums</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>2</TableCell>
+      <TableCell>James</TableCell>
+      <TableCell>Guitar</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>3</TableCell>
+      <TableCell>Kirk</TableCell>
+      <TableCell>Guitar</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>4</TableCell>
+      <TableCell>Robert</TableCell>
+      <TableCell>Bass</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
