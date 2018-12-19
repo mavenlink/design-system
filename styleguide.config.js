@@ -1,4 +1,5 @@
 module.exports = { // eslint-disable-line import/no-commonjs
+  exampleMode: 'expand',
   // Override the default function for finding example files. The default has some unfortunate
   // interplay between the presence of an index.js and a FolderName.md file. It thinks that the
   // FolderName.md file is intended to coincide with the index.js, instead of FolderName.js.
@@ -10,4 +11,6 @@ module.exports = { // eslint-disable-line import/no-commonjs
   },
   pagePerSection: true,
   skipComponentsWithoutExample: true,
+  title: 'Mavenlink Design System',
+  usageMode: 'expand',
 };
