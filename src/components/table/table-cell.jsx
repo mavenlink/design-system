@@ -11,10 +11,11 @@ export default function TableCell({ children, className, ...rest }) {
 }
 
 TableCell.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 
 TableCell.defaultProps = {
+  children: null,
   className: styles.cell,
 };

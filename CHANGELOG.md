@@ -5,6 +5,7 @@
     Click to see more.
   </summary>
   - Remove unnecessary right border from last table header cell
+  - Remove the requirement for table cells to have children
 </details>
 
 ## 0.2.0 (December 18, 2018)

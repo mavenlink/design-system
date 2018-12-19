@@ -11,10 +11,11 @@ export default function TableHeaderCell({ children, className, ...rest }) {
 }
 
 TableHeaderCell.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 
 TableHeaderCell.defaultProps = {
+  children: null,
   className: styles.headerCell,
 };
