@@ -35,3 +35,7 @@
   composes: cell;
   border-right: 1px solid var(--palette-neutral-light)
 }
+
+.headerCell:last-child {
+  border-right: none;
+}
