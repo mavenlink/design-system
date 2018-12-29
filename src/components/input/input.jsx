@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './input.css';
+import styles from './input.module.css';
 import labelPropType from './label-prop-type';
 
 /**

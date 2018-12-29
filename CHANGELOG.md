@@ -5,6 +5,7 @@
     Click to see more.
   </summary>
 
+  - Rename stylesheets to match *.module.css, so that react-scripts will process them as CSS modules
   - Fallback to the system-ui font if Open Sans isn't present
 </details>
 

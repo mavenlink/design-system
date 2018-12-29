@@ -7,9 +7,13 @@
     "src/**/!(*.spec).*"
   ],
   "scripts": {
-    "deploy-storybook": "storybook-to-ghpages",
+    "build": "styleguidist build",
+    "cleanup": "rm -rf build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint '**/*.js?(x)'",
-    "start": "start-storybook -p 6060 -c .storybook",
+    "postdeploy": "yarn run cleanup",
+    "predeploy": "yarn run build",
+    "start": "styleguidist server",
     "test": "jest"
   },
   "repository": {
@@ -24,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/mavenlink/design-system/issues"
   },
-  "homepage": "https://github.com/mavenlink/design-system#readme",
+  "homepage": "https://mavenlink.github.io/design-system",
   "jest": {
     "moduleDirectories": [
       "node_modules",
@@ -38,24 +42,19 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-info": "^4.0.12",
-    "@storybook/addon-knobs": "^4.0.12",
-    "@storybook/addon-options": "^4.0.12",
-    "@storybook/react": "^4.0.12",
-    "@storybook/storybook-deployer": "^2.8.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^2.0.0",
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-test-renderer": "^16.6.3",
-    "style-loader": "^0.23.1"
+    "react-scripts": "^2.1.1",
+    "react-styleguidist": "^8.0.6",
+    "react-test-renderer": "^16.6.3"
   },
   "dependencies": {
     "prop-types": "^15.6.2"
