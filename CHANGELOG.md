@@ -5,9 +5,11 @@
     Click to see more.
   </summary>
 
-  - Rename stylesheets to match *.module.css, so that react-scripts will process them as CSS modules
-  - Fallback to the system-ui font if Open Sans isn't present
 </details>
+
+## 0.3.0 (December 29, 2018)
+- Rename stylesheets to match *.module.css, so that react-scripts will process them as CSS modules
+- Fallback to the system-ui font if Open Sans isn't present
 
 ## 0.2.1 (December 19, 2018)
 - Remove unnecessary right border from last table header cell
