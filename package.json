@@ -7,7 +7,10 @@
     "src/**/!(*.spec).*"
   ],
   "scripts": {
+    "build": "styleguidist build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint '**/*.js?(x)'",
+    "predeploy": "yarn run build",
     "start": "styleguidist server",
     "test": "jest"
   },
@@ -23,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/mavenlink/design-system/issues"
   },
-  "homepage": "https://github.com/mavenlink/design-system#readme",
+  "homepage": "https://mavenlink.github.io/design-system",
   "jest": {
     "moduleDirectories": [
       "node_modules",
@@ -42,6 +45,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "react": "^16.6.3",

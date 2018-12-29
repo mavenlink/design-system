@@ -11,6 +11,7 @@ module.exports = { // eslint-disable-line import/no-commonjs
   },
   pagePerSection: true,
   skipComponentsWithoutExample: true,
+  styleguideDir: 'build',
   title: 'Mavenlink Design System',
   usageMode: 'expand',
 };
