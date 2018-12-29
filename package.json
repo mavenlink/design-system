@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "build": "styleguidist build",
+    "cleanup": "rm -rf build",
     "deploy": "gh-pages -d build",
     "lint": "eslint '**/*.js?(x)'",
+    "postdeploy": "yarn run cleanup",
     "predeploy": "yarn run build",
     "start": "styleguidist server",
     "test": "jest"
