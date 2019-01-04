@@ -1,0 +1,9 @@
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.svg {
+  height: 50px;
+  width: 50px;
+}

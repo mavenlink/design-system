@@ -1,0 +1,25 @@
+@import "../../../src/styles/colors.css";
+
+.root {
+  background-color: white;
+  margin-top: 65px;
+  padding-left: 200px;
+}
+
+.content {
+  max-width: 1000px;
+  padding: 16px 32px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  background-color: white;
+  border: solid var(--palette-neutral-light);
+  border-width: 1px 1px 0 0;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  overflow: auto;
+}

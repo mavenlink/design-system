@@ -1,4 +1,8 @@
-module.exports = { // eslint-disable-line import/no-commonjs
+/* eslint-disable import/no-commonjs */
+
+const path = require('path');
+
+module.exports = {
   exampleMode: 'expand',
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
@@ -11,7 +15,15 @@ module.exports = { // eslint-disable-line import/no-commonjs
   },
   pagePerSection: true,
   skipComponentsWithoutExample: true,
+  styleguideComponents: {
+    StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
+  },
   styleguideDir: 'build',
+  theme: {
+    color: {
+      sidebarBackground: 'white',
+    },
+  },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
   webpackConfig: {

@@ -1,0 +1,32 @@
+@import "../../../src/styles/colors.css";
+@import "../../../src/styles/typography.css";
+
+.header {
+  background-color: var(--palette-neutral-xx-light);
+  border-bottom: 1px solid var(--palette-neutral-light);
+  display: flex;
+  font-family: var(--mavenlink-type-font-headings);
+  height: 65px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 16px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 666;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 65px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.end {
+  color: var(--palette-neutral-mid-dark);
+}
+
+.section {
+  display: flex;
+}
