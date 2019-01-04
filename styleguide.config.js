@@ -18,6 +18,7 @@ module.exports = {
   styleguideComponents: {
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
+    TabButton: path.join(__dirname, 'styleguide/components/tab-button'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
