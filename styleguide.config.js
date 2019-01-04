@@ -16,6 +16,7 @@ module.exports = {
   pagePerSection: true,
   skipComponentsWithoutExample: true,
   styleguideComponents: {
+    PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },

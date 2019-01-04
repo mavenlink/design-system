@@ -1,0 +1,32 @@
+@import "../../../src/styles/colors.css";
+
+.container {
+  margin-bottom: 32px;
+  border: 1px solid var(--palette-neutral-light);
+  border-radius: 3px;
+}
+
+.preview {
+  --previewPadding: 16px;
+
+  padding: var(--previewPadding);
+  position: relative;
+  z-index: 3;
+
+  /* The next 2 lines are required to contain floated components. */
+  width: calc(100% - #{2 * var(--previewPadding)});
+  display: inline-block;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar {
+  margin-left: auto;
+}
+
+.code {
+  border-top: 1px solid #e8e8e8;
+}
