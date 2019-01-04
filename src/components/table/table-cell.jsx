@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './table.module.css';
+import styles from './table.css';
 
 export default function TableCell({ children, className, ...rest }) {
   return (

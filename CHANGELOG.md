@@ -5,6 +5,7 @@
     Click to see more.
   </summary>
 
+  - Implement our own Webpack configuration for the styleguide, the result of which is all stylesheets have had `.module` removed from the filenames.
 </details>
 
 ## 0.3.0 (December 29, 2018)
