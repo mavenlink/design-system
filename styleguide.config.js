@@ -17,6 +17,7 @@ module.exports = {
   skipComponentsWithoutExample: true,
   styleguideComponents: {
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
+    TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
   theme: {
