@@ -6,7 +6,6 @@ export default function Playground({
   name,
   preview,
   previewProps,
-  tabButtons,
   tabBody,
   toolbar,
 }) {
@@ -16,7 +15,6 @@ export default function Playground({
         {preview}
       </div>
       <div className={styles.controls}>
-        <div className={styles.tabs}>{tabButtons}</div>
         <div className={styles.toolbar}>{toolbar}</div>
       </div>
       <div className={styles.code}>{tabBody}</div>
@@ -28,7 +26,6 @@ Playground.propTypes = {
   name: PropTypes.string.isRequired,
   preview: PropTypes.node.isRequired,
   previewProps: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  tabButtons: PropTypes.node.isRequired,
   tabBody: PropTypes.node.isRequired,
   toolbar: PropTypes.node.isRequired,
 };
