@@ -1,20 +1,18 @@
 import React from 'react';
-import { createWrapper, findByType, getProp } from 'lib/test-utils';
+import { shallow } from 'enzyme';
 import Input from './input';
 
 function render(props) {
-  return createWrapper(<Input {...props} id="hi" />);
+  return shallow(<Input {...props} id="hi" />);
 }
 
 test('rendering', () => {
   const wrapper = render();
-  const component = findByType(wrapper, 'input');
-  expect(getProp(component, 'id')).toEqual('hi');
+  expect(wrapper.find('input').prop('id')).toEqual('hi');
 });
 
 test('passing props through', () => {
   const wrapper = render({ className: 'hello', required: true });
-  const component = findByType(wrapper, 'input');
-  expect(getProp(component, 'className')).toEqual('hello');
-  expect(getProp(component, 'required')).toEqual(true);
+  expect(wrapper.find('input').prop('className')).toEqual('hello');
+  expect(wrapper.find('input').prop('required')).toEqual(true);
 });

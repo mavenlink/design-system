@@ -1,9 +1,9 @@
 import React from 'react';
-import { createWrapper } from 'lib/test-utils';
+import { mount } from 'enzyme';
 import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
 
 function render() {
-  return createWrapper(
+  return mount(
     <Table>
       <TableHeader>
         <TableHeaderCell>id</TableHeaderCell>
@@ -25,5 +25,13 @@ function render() {
 
 test('rendering', () => {
   const wrapper = render();
-  expect(wrapper).toMatchSnapshot();
+
+  const headers = wrapper.find('th');
+  expect(headers.map(el => el.text())).toEqual(['id', 'name']);
+
+  const rows = wrapper.find('tbody tr');
+  expect(rows.length).toEqual(2);
+
+  const cells = wrapper.find('td');
+  expect(cells.map(el => el.text())).toEqual(['1', 'Bob Ross', '2', 'Bob Marley']);
 });
