@@ -17,6 +17,7 @@ module.exports = {
   skipComponentsWithoutExample: true,
   styleguideComponents: {
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
+    ReactComponentRenderer: path.join(__dirname, 'styleguide/components/react-component'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
     TabButton: path.join(__dirname, 'styleguide/components/tab-button'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
