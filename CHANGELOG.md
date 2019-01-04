@@ -7,6 +7,9 @@
 
 </details>
 
+## 0.4.0 (January 4, 2019)
+- Implement our own Webpack configuration for the styleguide, the result of which is all stylesheets have had `.module` removed from the filenames.
+
 ## 0.3.0 (December 29, 2018)
 - Rename stylesheets to match *.module.css, so that react-scripts will process them as CSS modules
 - Fallback to the system-ui font if Open Sans isn't present
