@@ -14,7 +14,11 @@ export default function Table({ columns, rows, getRowKey }) {
   return (
     <OurTable className={styles.table}>
       <TableHeader>
-        {columns.map(({ caption }) => <TableHeaderCell key={caption}>{caption}</TableHeaderCell>)}
+        {columns.map(({ caption }) => (
+          <TableHeaderCell className={styles.header} key={caption}>
+            {caption}
+          </TableHeaderCell>
+        ))}
       </TableHeader>
       <TableBody>
         {rows.map(row => (

@@ -4,3 +4,8 @@
   composes: table from '../../../src/components/table/table.css';
   border: 1px solid var(--palette-neutral-light);
 }
+
+.header {
+  composes: headerCell from '../../../src/components/table/table.css';
+  min-width: 100px;
+}
