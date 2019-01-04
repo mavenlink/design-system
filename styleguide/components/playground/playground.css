@@ -12,10 +12,6 @@
   padding: var(--previewPadding);
   position: relative;
   z-index: 3;
-
-  /* The next 2 lines are required to contain floated components. */
-  width: calc(100% - #{2 * var(--previewPadding)});
-  display: inline-block;
 }
 
 .controls {
