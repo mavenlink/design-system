@@ -30,10 +30,6 @@
   },
   "homepage": "https://mavenlink.github.io/design-system",
   "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "<rootDir>"
-    ],
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
     },
