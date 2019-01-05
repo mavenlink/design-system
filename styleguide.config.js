@@ -42,6 +42,9 @@ module.exports = {
     fontFamily: {
       base: '"Open Sans", system-ui, sans-serif',
     },
+    fontSize: {
+      base: 16,
+    },
   },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
