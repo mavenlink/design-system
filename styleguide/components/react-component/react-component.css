@@ -1,0 +1,26 @@
+@import "../../../src/styles/colors.css";
+
+.root,
+.docs,
+.tabButtons,
+.header {
+  font-size: 0.875rem;
+  color: var(--palette-neutral-x-dark);
+}
+
+.root {
+  margin-bottom: 48px;
+}
+
+.tabs,
+.header {
+  margin-bottom: 24px;
+}
+
+.tabButtons {
+  margin-bottom: 16px;
+}
+
+.examples {
+  margin-top: 32px;
+}
