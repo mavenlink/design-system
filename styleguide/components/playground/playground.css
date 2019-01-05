@@ -7,9 +7,7 @@
 }
 
 .preview {
-  --previewPadding: 16px;
-
-  padding: var(--previewPadding);
+  padding: 16px;
   position: relative;
   z-index: 3;
 }
