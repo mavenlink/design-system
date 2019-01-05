@@ -26,10 +26,21 @@ module.exports = {
   styleguideDir: 'build',
   template: {
     favicon: 'favicon.ico',
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css?family=Open+Sans',
+        },
+      ],
+    },
   },
   theme: {
     color: {
       sidebarBackground: 'white',
+    },
+    fontFamily: {
+      base: '"Open Sans", system-ui, sans-serif',
     },
   },
   title: 'Mavenlink Design System',
