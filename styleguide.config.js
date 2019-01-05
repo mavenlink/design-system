@@ -3,6 +3,7 @@
 const path = require('path');
 
 module.exports = {
+  assetsDir: 'styleguide/assets',
   exampleMode: 'expand',
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
@@ -23,6 +24,9 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
+  template: {
+    favicon: 'favicon.ico',
+  },
   theme: {
     color: {
       sidebarBackground: 'white',
