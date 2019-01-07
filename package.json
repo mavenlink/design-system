@@ -10,6 +10,7 @@
     "build": "styleguidist build",
     "cleanup": "rm -rf build",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "deploy": "gh-pages -d build",
     "lint": "eslint '**/*.js?(x)'",
     "postdeploy": "yarn run cleanup",
