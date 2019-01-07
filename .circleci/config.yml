@@ -34,7 +34,8 @@ jobs:
       - run: yarn test
 
       # Boot up the server for integration tests
-      - run: yarn start
+      - run: Start server
+          command: yarn start
           background: true
 
       # Run the integration tests once the server is available
