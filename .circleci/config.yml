@@ -32,3 +32,10 @@ jobs:
 
       # run tests!
       - run: yarn test
+
+      # Boot up the server for integration tests
+      - run: yarn start
+        background: true
+
+      # Run the integration tests once the server is available
+      - run: wait-on http://localhost:6060 && yarn cypress run
