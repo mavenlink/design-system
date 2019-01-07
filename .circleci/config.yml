@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11
+      - image: cypress/base:8
 
     working_directory: ~/repo
 
@@ -16,19 +16,27 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v2-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - v2-dependencies-
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: v2-dependencies-{{ checksum "package.json" }}
 
       # lint!
       - run: yarn lint
 
       # run tests!
       - run: yarn test
+
+      # Boot up the server for integration tests
+      - run:
+          command: yarn start
+          background: true
+
+      # Run the integration tests once the server is available
+      - run: yarn run wait-on http://localhost:6060 && yarn cypress run
