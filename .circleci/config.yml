@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.11
 
     working_directory: ~/repo
 
@@ -26,6 +26,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      # lint!
+      - run: yarn lint
 
       # run tests!
       - run: yarn test
