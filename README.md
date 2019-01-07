@@ -48,3 +48,8 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 We encourage you to contribute to the Mavenlink Design System! Please check out the [Contributing documentation](./docs/contributing.md) for guidelines about how to proceed.
 
 Everyone interacting this codebase, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](./docs/code_of_conduct.md).
+
+## Maintainers
+
+- When making architectural decisions, [review the decision log](./docs/decisions.md) first. Update as needed.
+- When publishing releases, please follow the steps outlined [in the "releases" documentation](./docs/releases.md).
