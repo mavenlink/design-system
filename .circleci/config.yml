@@ -39,4 +39,4 @@ jobs:
           background: true
 
       # Run the integration tests once the server is available
-      - run: wait-on http://localhost:6060 && yarn cypress run
+      - run: yarn run wait-on http://localhost:6060 && yarn cypress run
