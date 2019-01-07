@@ -43,6 +43,15 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   }
   ```
 
+## Documentation
+
+- [Code of conduct](./docs/code_of_conduct.md)
+- [Contributing](./docs/contributing.md)
+- [Decision Log](./docs/decisions.md)
+- [Component Design Principles](./docs/principles.md)
+- [Making a New Release](./docs/releases.md)
+- [Testing Philosophy](./docs/testing.md)
+
 ## Contributing
 
 We encourage you to contribute to the Mavenlink Design System! Please check out the [Contributing documentation](./docs/contributing.md) for guidelines about how to proceed.
