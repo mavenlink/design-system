@@ -14,7 +14,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   yarn add @mavenlink/design-system
   ```
 
-- Setup [CSS modules](https://github.com/css-modules/css-modules) using [css-loader](https://github.com/webpack-contrib/css-loader#modules)
+- Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [css-loader for Webpack](https://github.com/webpack-contrib/css-loader#modules)
 
   ```js
   // Webpack configuration
