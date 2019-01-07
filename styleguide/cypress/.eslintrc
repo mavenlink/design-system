@@ -1,0 +1,9 @@
+{
+  "extends": "mavenlint-react",
+  "plugins": [
+    "cypress"
+  ],
+  "env": {
+    "cypress/globals": true
+  }
+}
