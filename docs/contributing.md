@@ -21,6 +21,16 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 5. Ensure the linter passes by running `yarn lint`
 6. Make a pull request
 
+## Running the app locally
+
+See the main README for how to install via NPM or Yarn. Once you've done that, simply run:
+
+```
+yarn start
+```
+
+and visit localhost:6060 in your browser.
+
 ## MIT Software License
 In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
