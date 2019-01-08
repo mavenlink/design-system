@@ -5,5 +5,5 @@
   "pluginsFile": false,
   "screenshotsFolder": "styleguide/cypress/screenshots",
   "supportFile": false,
-  "video": false,
+  "video": false
 }
