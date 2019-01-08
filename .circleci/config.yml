@@ -5,6 +5,10 @@
 version: 2
 jobs:
   build:
+    branches:
+      ignore:
+        - gh-pages
+
     docker:
       - image: cypress/base:8
 
