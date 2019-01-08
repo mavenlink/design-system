@@ -7,13 +7,13 @@ module.exports = function (api) { // eslint-disable-line import/no-commonjs
       [
         '@babel/preset-env',
         {
-          targets: {
-            node: true,
-          },
-          include: [
-            // Cypress uses Electron to run tests headlessly on CI. Unfortunately, Electron does
-            // not understand object rest spread, which is why we explicitly transform it here.
-            'proposal-object-rest-spread',
+          targets: [
+            'IE 11',
+            'last 5 Chrome versions',
+            'last 5 Edge versions',
+            'last 5 Firefox versions',
+            'last 5 Opera versions',
+            'last 5 Safari versions',
           ],
         },
       ],
