@@ -16,14 +16,18 @@ yarn test
 
 Integration tests use [Cypress](https://www.cypress.io/), and serve to give us confidence that our design system site is working properly and is not broken. It's **_not_** intended to test the individual components.
 
-Run these in the browser with:
+Run these in the browser with by first starting the development server:
 
 ```
+yarn start
+```
+
+And then in another tab, either:
+
+```
+# To run in the browser
 yarn cypress:open
-```
 
-Or headlessly with:
-
-```
+# To run headlessly
 yarn cypress:run
 ```
