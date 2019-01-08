@@ -47,7 +47,7 @@ jobs:
           command: yarn run wait-on http://localhost:6060 && yarn cypress run
           environment:
             CYPRESS_VIDEO: 'true'
-            CYPRESS_VIDEO_UPLOAD_ON_PASSES: false
+            CYPRESS_VIDEO_UPLOAD_ON_PASSES: 'false'
             CYPRESS_VIDEOS_FOLDER: /tmp/artifacts
 
       # Capture any videos saved by the integration tests
