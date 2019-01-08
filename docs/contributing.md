@@ -23,8 +23,6 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ## Running the app locally
 
-See the main README for how to install via NPM or Yarn. Once you've done that, simply run:
-
 ```
 yarn start
 ```
