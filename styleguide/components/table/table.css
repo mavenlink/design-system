@@ -8,4 +8,7 @@
 .header {
   composes: headerCell from '../../../src/components/table/table.css';
   min-width: 100px;
+
+  /* For IE11 */
+  text-align: left;
 }
