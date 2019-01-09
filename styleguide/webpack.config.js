@@ -1,7 +1,7 @@
 /* eslint-disable import/no-commonjs */
 
-const postCssCustomProperties = require('postcss-custom-properties');
 const postCssImport = require('postcss-import');
+const postCssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
   module: {
@@ -28,7 +28,12 @@ module.exports = {
               ident: 'postcss',
               plugins: () => [
                 postCssImport,
-                postCssCustomProperties,
+                postCssPresetEnv({
+                  stage: false,
+                  features: {
+                    'custom-properties': true,
+                  },
+                }),
               ],
             },
           },
