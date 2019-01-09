@@ -1,6 +1,5 @@
 /* eslint-disable import/no-commonjs */
 
-const path = require('path');
 const postCssCustomProperties = require('postcss-custom-properties');
 const postCssImport = require('postcss-import');
 
