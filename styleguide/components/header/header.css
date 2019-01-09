@@ -1,12 +1,16 @@
 @import "../../../src/styles/colors.css";
 @import "../../../src/styles/typography.css";
 
+:root {
+  --headerHeight: 65px;
+}
+
 .header {
   background-color: var(--palette-neutral-xx-light);
   border-bottom: 1px solid var(--palette-neutral-light);
   display: flex;
   font-family: var(--mavenlink-type-font-headings);
-  height: 65px;
+  height: var(--headerHeight);
   justify-content: space-between;
   left: 0;
   padding: 0 16px;
@@ -29,4 +33,16 @@
 
 .section {
   display: flex;
+}
+
+.github {
+  color: var(--mavenlink-type-font-color);
+  line-height: var(--headerHeight);
+  padding: 0 0.5em;
+  text-decoration: none;
+  transition: background-color 150ms linear;
+}
+
+.github:hover {
+  background-color: var(--palette-neutral-light);
 }
