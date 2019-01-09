@@ -73,7 +73,12 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: () => [
-                  postCssCustomProperties({}),
+                  postCssCustomProperties({
+                    importFrom: [
+                      path.join(__dirname, 'src/styles/colors.css'),
+                      path.join(__dirname, 'src/styles/typography.css'),
+                    ],
+                  }),
                 ],
               },
             },
