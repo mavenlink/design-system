@@ -1,8 +1,12 @@
 :root {
   --palette-primary: #448fea;
+  --palette-primary-hover: #447bc6;
   --palette-action: #33ae10;
+  --palette-action-hover: #328a15;
   --palette-highlight: #ff8400;
+  --palette-highlight-hover: #ffa800;
   --palette-caution: #e85342;
+  --palette-caution-hover: #e53e2b;
   --palette-warning: #ffdf8d;
   --palette-neutral-xx-dark: #282624;
   --palette-neutral-x-dark: #333333;
