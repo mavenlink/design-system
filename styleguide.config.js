@@ -1,7 +1,7 @@
 /* eslint-disable import/no-commonjs */
 
 const path = require('path');
-const postCssCustomPropertiesPlugin = require('postcss-custom-properties');
+const postCssCustomProperties = require('postcss-custom-properties');
 
 module.exports = {
   assetsDir: 'styleguide/assets',
@@ -67,11 +67,14 @@ module.exports = {
           exclude: /node_modules/,
           use: [
             { loader: 'style-loader' },
-            { loader: 'css-loader', options: { modules: true } },
+            { loader: 'css-loader', options: { importLoaders: 1, modules: true } },
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [postCssCustomPropertiesPlugin],
+                ident: 'postcss',
+                plugins: () => [
+                  postCssCustomProperties({}),
+                ],
               },
             },
           ],
