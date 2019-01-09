@@ -4,8 +4,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
 </details>
+
+## 0.5.0 (January 9, 2019)
+- Adds the hover colors to color.css
 
 ## 0.4.0 (January 4, 2019)
 - Implement our own Webpack configuration for the styleguide, the result of which is all stylesheets have had `.module` removed from the filenames.
