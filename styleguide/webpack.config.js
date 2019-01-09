@@ -1,6 +1,6 @@
 /* eslint-disable import/no-commonjs */
 
-const postCssImport = require('postcss-import');
+const path = require('path');
 const postCssPresetEnv = require('postcss-preset-env');
 
 module.exports = {
@@ -21,17 +21,21 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', options: { import: false, importLoaders: 1, modules: true } },
+          { loader: 'css-loader', options: { importLoaders: 1, modules: true } },
           {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
               plugins: () => [
-                postCssImport,
                 postCssPresetEnv({
                   stage: false,
                   features: {
-                    'custom-properties': true,
+                    'custom-properties': {
+                      importFrom: [
+                        path.join(__dirname, '../src/styles/colors.css'),
+                        path.join(__dirname, '../src/styles/typography.css'),
+                      ],
+                    },
                   },
                 }),
               ],

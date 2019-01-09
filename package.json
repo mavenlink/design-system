@@ -55,7 +55,6 @@
     "gh-pages": "^2.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
-    "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
     "react": "^16.7.0",
