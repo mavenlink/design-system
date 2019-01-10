@@ -59,6 +59,12 @@ module.exports = {
     },
     fontSize: {
       base: 16,
+      h1: 30,
+      h2: 24,
+      h3: 18,
+      h4: 16,
+      h5: 14,
+      h6: 14,
     },
   },
   title: 'Mavenlink Design System',
