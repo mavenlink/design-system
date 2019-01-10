@@ -1,5 +1,5 @@
-@import '../../src/styles/colors.css';
-@import '../../src/styles/typography.css';
+@import '../../../src/styles/colors.css';
+@import '../../../src/styles/typography.css';
 
 :global(.prologue-title) {
   font-family: var(--mavenlink-type-font-accent);

@@ -22,7 +22,7 @@ module.exports = {
   sections: [
     {
       name: 'Overview',
-      content: './styleguide/content/overview.md',
+      content: './styleguide/content/overview/overview.md',
     },
     {
       name: 'Components',
