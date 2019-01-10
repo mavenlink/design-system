@@ -3,9 +3,9 @@
   <span class="prologue-separator"></span>
   Our components and styles are pre-architected and rigorously tested, allowing you to focus your efforts on creating purpose-built solutions and workflows for your users. Spend your time solving the hard problems, not building the pieces.
 </div>
-<div class="prologue-svg prologue-svg-library"></div>
+<img alt="" class="prologue-svg prologue-svg-library" src="svgs/library.svg" />
 <div class="clearall"></div>
-<div class="prologue-svg prologue-svg-reuse"></div>
+<img alt="" class="prologue-svg prologue-svg-reuse" src="svgs/reuse.svg" />
 <div class="prologue-para prologue-para-reuse">
   <span class="prologue-title">Build once. Use Everywhere.</span>
   <span class="prologue-separator"></span>
@@ -16,4 +16,4 @@
   <span class="prologue-separator"></span>
   Since the styleguide is synchronized, changes propagate and cascade across the entire application, ensuring that your implementations maintain consistency.  You can feel confident in delivering features and functionality without causing regressions or technical debt.
 </div>
-<div class="prologue-svg prologue-svg-deploy"></div>
+<img alt="" class="prologue-svg prologue-svg-deploy" src="svgs/deploy.svg" />
