@@ -1,3 +1,4 @@
-import Styleguide from './styleguide';
+import Styleguide from './styleguide-container';
 
 export default Styleguide;
+

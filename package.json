@@ -65,6 +65,7 @@
     "webpack": "^4.28.3"
   },
   "dependencies": {
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react-ga": "^2.5.6"
   }
 }

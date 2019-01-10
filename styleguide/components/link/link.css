@@ -1,0 +1,16 @@
+@import "../../../src/styles/colors.css";
+
+.link {
+  &:link,
+  &:visited {
+    font-size: inherit;
+    color: var(--palette-primary);
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:active {
+    color: var(--palette-neutral-mid-dark);
+    cursor: pointer;
+  }
+}

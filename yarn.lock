@@ -6890,6 +6890,10 @@ react-error-overlay@^5.1.0:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.2.tgz#888957b884d4b25b083a82ad550f7aad96585394"
 
+react-ga@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.6.tgz#5a2e2fa78ae298e5b0a4498210eeec631ef1b562"
+
 react-group@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-group/-/react-group-1.0.6.tgz#8dd7c00c3b35d05ce164021458bb07d580e3001a"
