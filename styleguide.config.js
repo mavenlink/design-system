@@ -16,6 +16,20 @@ module.exports = {
     return componentPath.replace(/\.jsx?$/, '.md');
   },
   pagePerSection: true,
+  require: [
+    './styleguide/content/content.css',
+  ],
+  sections: [
+    {
+      name: 'Overview',
+      content: './styleguide/content/overview.md',
+    },
+    {
+      name: 'Components',
+      components: './src/components/**/*.jsx',
+      sectionDepth: 2,
+    },
+  ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),

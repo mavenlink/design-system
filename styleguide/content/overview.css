@@ -1,0 +1,59 @@
+@import '../../src/styles/colors.css';
+@import '../../src/styles/typography.css';
+
+:global(.prologue-title) {
+  font-family: var(--mavenlink-type-font-accent);
+  font-weight: bold;
+  font-size: 26px;
+}
+
+:global(.prologue-svg) {
+  display: inline-block;
+  position: relative;
+}
+
+:global(.prologue-svg-library) {
+  top: -36px;
+  width: 145px;
+  height: 136px;
+  background-image: url('/svgs/library.svg');
+}
+
+:global(.prologue-svg-reuse) {
+  top: -27px;
+  width: 143px;
+  height: 138px;
+  background-image: url('/svgs/reuse.svg');
+}
+
+:global(.prologue-svg-deploy) {
+  top: -22px;
+  width: 190px;
+  height: 130px;
+  background-image: url('/svgs/deploy.svg');
+}
+
+:global(.prologue-separator) {
+  display: block;
+  width: 45px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--palette-neutral-dark);
+}
+
+:global(.prologue-para) {
+  display: inline-block;
+  width: 500px;
+  margin-bottom: 70px;
+  font-size: 16px;
+  line-height: 2;
+  font-weight: 300;
+}
+
+:global(.prologue-para-deploy),
+:global(.prologue-para-library) {
+  margin-right: 100px;
+}
+
+:global(.prologue-para-reuse) {
+  margin-left: 100px;
+}
