@@ -45,7 +45,7 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Open+Sans',
+          href: 'https://fonts.googleapis.com/css?family=Merriweather|Open+Sans',
         },
       ],
     },
