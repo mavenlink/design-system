@@ -13,21 +13,18 @@
 }
 
 :global(.prologue-svg-library) {
-  top: -36px;
   width: 145px;
   height: 136px;
   background-image: url('/svgs/library.svg');
 }
 
 :global(.prologue-svg-reuse) {
-  top: -27px;
   width: 143px;
   height: 138px;
   background-image: url('/svgs/reuse.svg');
 }
 
 :global(.prologue-svg-deploy) {
-  top: -22px;
   width: 190px;
   height: 130px;
   background-image: url('/svgs/deploy.svg');
