@@ -1,7 +1,6 @@
 {
   "extends": "mavenlint-react",
   "env": {
-    "browser": true,
     "jest": true
   },
   "settings": {
