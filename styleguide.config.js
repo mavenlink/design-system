@@ -16,6 +16,20 @@ module.exports = {
     return componentPath.replace(/\.jsx?$/, '.md');
   },
   pagePerSection: true,
+  require: [
+    './styleguide/content/content.css',
+  ],
+  sections: [
+    {
+      name: 'Overview',
+      content: './styleguide/content/overview/overview.md',
+    },
+    {
+      name: 'Components',
+      components: './src/components/**/*.jsx',
+      sectionDepth: 2,
+    },
+  ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
@@ -31,7 +45,7 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Open+Sans',
+          href: 'https://fonts.googleapis.com/css?family=Merriweather|Open+Sans',
         },
       ],
     },
@@ -45,6 +59,12 @@ module.exports = {
     },
     fontSize: {
       base: 16,
+      h1: 30,
+      h2: 24,
+      h3: 18,
+      h4: 16,
+      h5: 14,
+      h6: 14,
     },
   },
   title: 'Mavenlink Design System',
