@@ -1,5 +1,4 @@
 {
-  "extends": "mavenlint-react",
   "plugins": [
     "cypress"
   ],
