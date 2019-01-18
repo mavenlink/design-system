@@ -4,7 +4,7 @@ import Link from './link';
 import pageView from '../../content/utils/page-view';
 
 export default class LinkContainer extends React.Component {
-  onClick() {
+  onClick = () => {
     pageView(this.props.href);
   }
 

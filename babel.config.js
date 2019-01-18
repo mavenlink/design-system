@@ -2,6 +2,9 @@ module.exports = function (api) { // eslint-disable-line import/no-commonjs
   api.cache(true);
 
   return {
+    plugins: [
+      '@babel/plugin-proposal-class-properties',
+    ],
     presets: [
       '@babel/preset-react',
       [
