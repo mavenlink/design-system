@@ -29,6 +29,28 @@ module.exports = {
       components: './src/components/**/*.jsx',
       sectionDepth: 2,
     },
+    {
+      name: 'Guidelines',
+      sections: [
+        {
+          name: 'Accessibility',
+          content: './styleguide/content/guidelines/accessibility.md',
+        },
+        {
+          name: 'Contribute',
+          content: './docs/contributing.md',
+        },
+      ],
+    },
+    {
+      name: 'Soul',
+      sections: [
+        {
+          name: 'Typography',
+          content: './styleguide/content/soul/typography.md',
+        },
+      ],
+    },
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
