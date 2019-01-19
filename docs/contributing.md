@@ -23,9 +23,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ## Running the app locally
 
-```
-yarn start
-```
+```yarn start```
 
 and visit localhost:6060 in your browser.
 
