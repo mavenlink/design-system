@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './stars.scss';
+import styles from './stars.css';
 
 const particles = [];
 const twinkles = [];

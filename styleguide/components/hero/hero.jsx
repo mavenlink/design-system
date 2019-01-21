@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Animations from '../hero/animations';
-// import styles from './hero.scss';
+import Animations from '../hero/animations';
+import styles from './hero.css';
 
 export default class Hero extends React.Component {
   static propTypes = {
@@ -16,16 +16,16 @@ export default class Hero extends React.Component {
   state = { heroLoaded: false };
 
   componentDidMount() {
-    // const heroURL = this.getHeroImageURL();
-    // this.setHeroLoaded(heroURL);
+    const heroURL = this.getHeroImageURL();
+    this.setHeroLoaded(heroURL);
   }
 
-  // getHeroClasses = (slug) => {
-  //   if (slug === '') {
-  //     return styles.home;
-  //   }
-  //   return styles[slug];
-  // }
+  getHeroClasses = (slug) => {
+    if (slug === '') {
+      return styles.home;
+    }
+    return styles[slug];
+  }
 
   getHeroImageURL = () => {
     const heroCSSUrl = window.getComputedStyle(this.heroRef.current).getPropertyValue('background-image');
@@ -50,15 +50,12 @@ export default class Hero extends React.Component {
   }
 
   render() {
-    // const heroKlasses = this.getHeroClasses(this.props.slug);
+    const heroKlasses = this.getHeroClasses(this.props.slug);
 
-    // return (
-    //   <div className={heroKlasses} ref={this.heroRef}>
-    //     {this.state.heroLoaded && <Animations slug={this.props.slug} />}
-    //   </div>
-    // );
     return (
-      <div className='hero-test' />
+      <div className={heroKlasses} ref={this.heroRef}>
+        {this.state.heroLoaded && <Animations slug={this.props.slug} />}
+      </div>
     );
   }
 }

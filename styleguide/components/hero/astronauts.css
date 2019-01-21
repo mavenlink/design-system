@@ -12,7 +12,7 @@
 }
 
 .astro-1 {
-  background-image: url('frontend/features/styleguide/components/hero/astro-1.svg');
+  background-image: url(astro-1.svg);
   width: 85px;
   height: 37px;
   left: 25%;
@@ -25,7 +25,7 @@
 }
 
 .astro-2 {
-  background-image: url('frontend/features/styleguide/components/hero/astro-2.svg');
+  background-image: url(astro-2.svg);
   width: 60px;
   height: 95px;
   left: 24%;
@@ -38,7 +38,7 @@
 }
 
 .astros-laptop {
-  background-image: url('frontend/features/styleguide/components/hero/astros-laptop.svg');
+  background-image: url(astros-laptop.svg);
   width: 123px;
   height: 45px;
   left: 60%;
@@ -51,7 +51,7 @@
 }
 
 .astros-browser {
-  background-image: url('frontend/features/styleguide/components/hero/astros-browser.svg');
+  background-image: url(astros-browser.svg);
   width: 486px;
   height: 274px;
   left: 20%;
@@ -64,7 +64,7 @@
 }
 
 .astro-with-browser2 {
-  background-image: url('frontend/features/styleguide/components/hero/astro-with-browser2.svg');
+  background-image: url(astro-with-browser2.svg);
   width: 150px;
   height: 139px;
   right: 25%;
@@ -77,7 +77,7 @@
 }
 
 .singer-flying {
-  background-image: url('frontend/features/styleguide/components/hero/singer-flying.svg');
+  background-image: url(singer-flying.svg);
   width: 148px;
   height: 94px;
   left: 18%;
@@ -90,7 +90,7 @@
 }
 
 .singer-dancers {
-  background-image: url('frontend/features/styleguide/components/hero/singer-dancers.svg');
+  background-image: url(singer-dancers.svg);
   width: 141px;
   height: 118px;
   left: 40%;
@@ -103,7 +103,7 @@
 }
 
 .singers {
-  background-image: url('frontend/features/styleguide/components/hero/singers.svg');
+  background-image: url(singers.svg);
   width: 150px;
   height: 181px;
   left: 50%;
@@ -116,7 +116,7 @@
 }
 
 .goth-dancer {
-  background-image: url('frontend/features/styleguide/components/hero/goth-dancer.svg');
+  background-image: url(goth-dancer.svg);
   width: 133px;
   height: 101px;
   right: 30%;

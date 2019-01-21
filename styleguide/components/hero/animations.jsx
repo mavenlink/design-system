@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import astroStyles from './astronauts.scss';
+import astroStyles from './astronauts.css';
 import Stars from './stars';
 
 function getTransition(klass, appearKlass, appearActiveKlass) {

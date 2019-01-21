@@ -17,6 +17,14 @@ module.exports = {
         },
       },
       {
+        test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2|ico)(\?(r=)?[\d-]+)?$/,
+        loader: 'url-loader?limit=10000',
+      },
+      {
+        test: /\.svg$/,
+        use: "file-loader",
+      },
+      {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [

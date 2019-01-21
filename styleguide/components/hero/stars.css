@@ -1,19 +1,21 @@
-$d: 4px;
-$numberOfStars: 20;
-$largeScreenBreakPoint: 1441px;
-$x-wideScreenBreakPoint: 1920px;
+:root {
+ --d: 4px;
+ --numberOfStars: 20;
+ --largeScreenBreakPoint: 1441px;
+ --x-wideScreenBreakPoint: 1920px;
+}
 
 .stars {
-  // ensure to right of left mountain
+  /* ensure to right of left mountain */
   left: 10%;
   width: 1000px;
   height: 350px;
 
-  @media (min-width: $largeScreenBreakPoint) {
+  @media (min-width: var(--largeScreenBreakPoint)) {
     width: 1200px;
   }
 
-  @media (min-width: $x-wideScreenBreakPoint) {
+  @media (min-width: var(--x-wideScreenBreakPoint)) {
     width: 1600px;
   }
 }
@@ -25,11 +27,12 @@ $x-wideScreenBreakPoint: 1920px;
 }
 
 .particle {
-  width: $d;
-  height: $d;
+  width: var(--d);
+  height: var(--d);
   animation-name: shoot, fade;
 
-  @for $i from 0 to $numberOfStars {
+  /* TODO: How to recreate this without sass loops??
+  @for $i from 0 to var(--numberOfStars) {
     $t: (1 + 0.01 * random(100)) * 25s;
 
     &:nth-child(#{$i + 1}) {
@@ -40,6 +43,7 @@ $x-wideScreenBreakPoint: 1920px;
       animation-delay: -0.01 * random(100) * $t;
     }
   }
+  */
 }
 
 @keyframes shoot {
@@ -49,7 +53,7 @@ $x-wideScreenBreakPoint: 1920px;
 @keyframes fade { to { opacity: 0; } }
 
 .mavenConstellation {
-  background-image: url('frontend/features/styleguide/components/hero/maven-constellation.svg');
+  background-image: url(maven-constellation.svg);
   position: absolute;
   width: 59px;
   height: 41px;
@@ -63,7 +67,7 @@ $x-wideScreenBreakPoint: 1920px;
 }
 
 .largeStar {
-  background-image: url('frontend/features/styleguide/components/hero/star-lg.svg');
+  background-image: url(star-lg.svg);
   position: absolute;
   width: 17px;
   height: 17px;
@@ -76,12 +80,13 @@ $x-wideScreenBreakPoint: 1920px;
 }
 
 .twinkle {
-  width: $d;
-  height: $d;
+  width: var(--d);
+  height: var(--d);
   animation-name: flicker;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 
+  /* TODO: How to recreate this without sass loops??
   @for $i from 0 to $numberOfStars {
     $leftCliffClearance: 80px;
     $t: (1 + 0.01 * random(100)) * 4s;
@@ -97,6 +102,7 @@ $x-wideScreenBreakPoint: 1920px;
       opacity: 1;
     }
   }
+  */
 }
 
 @keyframes flicker {
