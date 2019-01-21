@@ -1,0 +1,27 @@
+:root {
+  --heroHeightAndTopMargin: 530px;
+  --additionalTopMargin: 30px;
+  --largeScreenBreakpoint: 1441px;
+  --x-wideScreenBreakPoint: 1920px;
+  --navAndChrome: 215px;
+  --heroAspectRatio: 2.5;
+  --marginTop: var(--heroHeightAndTopMargin);
+}
+
+.root {
+  margin-top: var(--marginTop);
+  margin-bottom: 32px;
+
+  @media (min-width: var(--largeScreenBreakPoint)) {
+    margin-top: calc(100vw - var(--navAndChrome) / var(--heroAspectRatio) + var(--additionalTopMargin}));
+  }
+
+  @media (min-width: var(--x-wideScreenBreakPoint)) {
+    margin-top: var(--marginTop);
+  }
+}
+
+.root-no-hero {
+  composes: root;
+  margin-top: 0;
+}

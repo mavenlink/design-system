@@ -58,6 +58,7 @@ module.exports = {
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
     ReactComponentRenderer: path.join(__dirname, 'styleguide/components/react-component'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
+    SectionRenderer: path.join(__dirname, './styleguide/components/section'),
     TabButton: path.join(__dirname, 'styleguide/components/tab-button'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
