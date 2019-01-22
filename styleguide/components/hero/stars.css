@@ -1,6 +1,4 @@
 :root {
- --d: 4px;
- --numberOfStars: 20;
  --largeScreenBreakPoint: 1441px;
  --x-wideScreenBreakPoint: 1920px;
 }
@@ -18,36 +16,6 @@
   @media (min-width: var(--x-wideScreenBreakPoint)) {
     width: 1600px;
   }
-}
-
-.particle,
-.twinkle {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.particle {
-  width: var(--d);
-  height: var(--d);
-  animation-name: shoot, fade;
-
-  /* TODO: How to recreate this without sass loops??
-  @for $i from 0 to var(--numberOfStars) {
-    $t: (1 + 0.01 * random(100)) * 25s;
-
-    &:nth-child(#{$i + 1}) {
-      transform: translate(random(1000) * 1px, -0.01 * random(300) * 1px);
-      background: hsl(random(360), 100%, 65%);
-      animation-duration: $t;
-      opacity: 0.3;
-      animation-delay: -0.01 * random(100) * $t;
-    }
-  }
-  */
-}
-
-@keyframes shoot {
-  0% { transform: translate(50vw, 50vh); }
 }
 
 @keyframes fade { to { opacity: 0; } }
@@ -77,32 +45,6 @@
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
   animation-duration: 10s;
-}
-
-.twinkle {
-  width: var(--d);
-  height: var(--d);
-  animation-name: flicker;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-out;
-
-  /* TODO: How to recreate this without sass loops??
-  @for $i from 0 to $numberOfStars {
-    $leftCliffClearance: 80px;
-    $t: (1 + 0.01 * random(100)) * 4s;
-    $x: random(600) * 1px + $leftCliffClearance;
-    // We add 20px to ensure the stars aren't jammed up to top
-    $y: (random(300) * 1px) + 20px;
-
-    &:nth-child(#{$i + 1}) {
-      transform: translate($x, $y);
-      background: white;
-      animation-duration: $t;
-      animation-delay: -0.01 * random(100) * $t;
-      opacity: 1;
-    }
-  }
-  */
 }
 
 @keyframes flicker {
