@@ -1,0 +1,63 @@
+:root {
+  --heroWidth: 1225px;
+  --heroHeight: 500px;
+  --largeScreenBreakPoint: 1441px;
+  --x-wideScreenBreakPoint: 1920px;
+  --navAndChrome: 215px;
+  --heroAspectRatio: 2.5;
+}
+
+.hero {
+  position: absolute;
+  left: 200px;
+  top: 65px;
+  background-size: 100% 100%;
+  display: inline-block;
+  width: var(--heroWidth);
+  height: var(--heroHeight);
+}
+
+@media (min-width: var(--largeScreenBreakPoint)) {
+  .hero {
+    width: calc(100vw - var(--navAndChrome));
+    height: calc(100vw - var(--navAndChrome) / var(--heroAspectRatio));
+  }
+}
+
+@media (min-width: var(--x-wideScreenBreakPoint)) {
+  .hero {
+    /* This allows hero to center with inside content */
+    left: inherit;
+    width: var(--heroWidth);
+    height: var(--heroHeight);
+  }
+}
+
+.overview {
+  composes: hero;
+  background-image: url(mds-hero.jpeg);
+}
+
+.home {
+  composes: overview;
+}
+
+.components {
+  composes: hero;
+  background-image: url(mds-components.jpeg);
+}
+
+.soul {
+  composes: hero;
+  background-image: url(mds-soul.jpeg);
+}
+
+.guidelines {
+  composes: hero;
+  background-image: url(mds-guidelines.jpeg);
+}
+
+.hidden {
+  composes: hero;
+  display: none;
+}
