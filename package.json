@@ -53,6 +53,7 @@
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^2.0.0",
     "eslint-plugin-cypress": "^2.2.0",
+    "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
@@ -62,14 +63,13 @@
     "react-dom": "^16.7.0",
     "react-ga": "^2.5.6",
     "react-styleguidist": "^8.0.6",
+    "react-transition-group": "^2.5.3",
     "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "wait-on": "^3.2.0",
     "webpack": "^4.28.3"
   },
   "dependencies": {
-    "file-loader": "^3.0.1",
-    "prop-types": "^15.6.2",
-    "react-transition-group": "^2.5.3",
-    "url-loader": "^1.1.2"
+    "prop-types": "^15.6.2"
   }
 }
