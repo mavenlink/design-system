@@ -1,6 +1,6 @@
 :root {
  --largeScreenBreakPoint: 1441px;
- --x-wideScreenBreakPoint: 1920px;
+  --x-wideScreenBreakPoint: 1920px;
 }
 
 .stars {
