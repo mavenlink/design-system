@@ -8,12 +8,16 @@
   left: 10%;
   width: 1000px;
   height: 350px;
+}
 
-  @media (min-width: var(--largeScreenBreakPoint)) {
+@media (min-width: var(--largeScreenBreakPoint)) {
+  .stars {
     width: 1200px;
   }
+}
 
-  @media (min-width: var(--x-wideScreenBreakPoint)) {
+@media (min-width: var(--x-wideScreenBreakPoint)) {
+  .stars {
     width: 1600px;
   }
 }

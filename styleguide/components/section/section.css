@@ -11,12 +11,16 @@
 .root {
   margin-top: var(--marginTop);
   margin-bottom: 32px;
+}
 
-  @media (min-width: var(--largeScreenBreakPoint)) {
+@media (min-width: var(--largeScreenBreakPoint)) {
+  .root {
     margin-top: calc(100vw - var(--navAndChrome) / var(--heroAspectRatio) + var(--additionalTopMargin}));
   }
+}
 
-  @media (min-width: var(--x-wideScreenBreakPoint)) {
+@media (min-width: var(--x-wideScreenBreakPoint)) {
+  .root {
     margin-top: var(--marginTop);
   }
 }
