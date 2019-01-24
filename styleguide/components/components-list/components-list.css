@@ -1,0 +1,44 @@
+@import "../../../src/styles/colors.css";
+
+:root {
+  --fullLeftDistance: 6px;
+  --selectedBorderWidth: 3px;
+}
+
+.list {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.item {
+  color: var(--palette-neutral-x-dark);
+  display: block;
+  margin: 8px 0;
+  font-size: 16px;
+  list-style: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link {
+  composes: link from '../link/link.css';
+  display: inline-block;
+  padding-left: var(--fullLeftDistance);
+}
+
+.link:link,
+.link:visited {
+  color: var(--palette-neutral-mid-dark);
+}
+
+.current {
+  composes: link;
+  border-left: var(--selectedBorderWidth) solid var(--palette-primary);
+  font-weight: bold;
+  padding-left: 3px;
+}
+
+.current:link,
+.current:visited {
+  color: black;
+}

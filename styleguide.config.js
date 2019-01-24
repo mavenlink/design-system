@@ -54,6 +54,7 @@ module.exports = {
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {
+    ComponentsListRenderer: path.join(__dirname, 'styleguide/components/components-list'),
     LinkRenderer: path.join(__dirname, 'styleguide/components/link'),
     PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
     ReactComponentRenderer: path.join(__dirname, 'styleguide/components/react-component'),
