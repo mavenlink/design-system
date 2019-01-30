@@ -141,8 +141,12 @@
 * In cases where we need to "reach in" to the SVG we use fill: currentColor, and
 * that allows the SVG fill to inherit from the currect font color
 */
-.icon-fill-milestone,
-.icon-fill-time-entry,
+.icon-fill-milestone {
+  composes: icon-fill-primary;
+}
+.icon-fill-time-entry {
+  composes: icon-fill-primary;
+}
 .icon-fill-project {
   composes: icon-fill-primary;
 }
