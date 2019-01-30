@@ -174,6 +174,7 @@
   color: var(--palette-neutral-dark);
 }
 
+.icon-circle,
 .icon-circle-stroke {
   border-radius: 50%;
   width: 20px;
@@ -181,6 +182,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon-circle-stroke {
   border: 1px solid var(--palette-neutral-mid);
   background: transparent;
   background-color: transparent;
@@ -203,12 +207,6 @@
 }
 
 .icon-circle {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 1px solid var(--palette-neutral-mid-light);
   background: var(--palette-neutral-mid-light);
   background-color: var(--palette-neutral-mid-light);
