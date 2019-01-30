@@ -11,7 +11,15 @@
 }
 
 .icon-circle-stroke {
-  composes: icon-circle-base;
+  /*composes: icon-circle-base;*/
+
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 1px solid var(--palette-neutral-mid);
   background: transparent;
   background-color: transparent;
@@ -34,7 +42,15 @@
 }
 
 .icon-circle {
-  composes: icon-circle-base;
+  /*composes: icon-circle-base;*/
+
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 1px solid var(--palette-neutral-mid-light);
   background: var(--palette-neutral-mid-light);
   background-color: var(--palette-neutral-mid-light);
