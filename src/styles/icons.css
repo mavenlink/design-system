@@ -1,0 +1,57 @@
+@import './typography.css';
+@import './colors.css';
+
+.icon-circle-base {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle-stroke {
+  composes: icon-circle-base;
+  border: 1px solid var(--palette-neutral-mid);
+  background: transparent;
+  background-color: transparent;
+}
+
+.icon-circle-stroke:hover {
+  border: 1px solid var(--palette-neutral-mid-dark);
+}
+
+.icon-circle-stroke label {
+  font-family: var(--mavenlink-type-font-accent);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--palette-neutral-mid);
+  line-height: 15px;
+}
+
+.icon-circle-stroke:hover label {
+  color: var(--palette-neutral-mid-dark);
+}
+
+.icon-circle {
+  composes: icon-circle-base;
+  border: 1px solid var(--palette-neutral-mid-light);
+  background: var(--palette-neutral-mid-light);
+  background-color: var(--palette-neutral-mid-light);
+}
+
+.icon-circle:hover {
+  border: 1px solid var(--palette-neutral-mid);
+  background: var(--palette-neutral-mid);
+  background-color: var(--palette-neutral-mid);
+}
+
+.icon-circle label {
+  margin: 0;
+  padding: 0;
+  font-family: var(--mavenlink-type-font-accent);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--white);
+  line-height: 15px;
+}
