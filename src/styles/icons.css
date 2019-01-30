@@ -1,5 +1,187 @@
 @import './typography.css';
 @import './colors.css';
+@import './icon-vars.css';
+
+.icon-small {
+  height: var(--iconSizeSmall);
+  width: var(--iconSizeSmall);
+}
+
+.icon-large {
+  height: var(--iconSizeLarge);
+  width: var(--iconSizeLarge);
+}
+
+.icon-white {
+  fill: var(--white);
+}
+
+.icon-stroke-white {
+  fill: none;
+  stroke: var(--white);
+}
+
+.icon-black {
+  fill: none;
+  stroke: var(--black);
+}
+
+.icon-x-dark {
+  fill: var(--palette-neutral-x-dark);
+}
+
+.icon-x-dark a:hover,
+.icon-x-dark:hover {
+  fill: var(--palette-primary);
+}
+
+.icon-light {
+  fill: var(--palette-neutral-light);
+}
+
+.icon-stroke-light {
+  fill: none;
+  stroke: var(--palette-neutral-light);
+}
+
+.icon-mid-light {
+  fill: var(--palette-neutral-mid-light);
+}
+
+.icon-stroke-mid-light {
+  fill: none;
+  stroke: var(--palette-neutral-mid-light);
+}
+
+.icon-mid {
+  fill: var(--palette-neutral-mid);
+}
+
+.icon-stroke-mid {
+  fill: none;
+  stroke: var(--palette-neutral-mid);
+}
+
+.icon-mid-dark {
+  fill: var(--palette-neutral-mid-dark);
+}
+
+.icon-stroke-mid-dark {
+  fill: none;
+  stroke: var(--palette-neutral-mid-dark);
+}
+
+.icon-stroke-base {
+  fill: none;
+  stroke: var(--palette-neutral-base);
+}
+.icon-dark {
+  fill: var(--palette-neutral-dark);
+}
+
+.icon-stroke-dark {
+  fill: none;
+  stroke: var(--palette-neutral-dark);
+}
+
+.icon-primary {
+  fill: var(--palette-primary);
+}
+
+.icon-stroke-primary {
+  fill: none;
+  stroke: var(--palette-primary);
+}
+
+.icon-primary-dark {
+  fill: var(--palette-primary-hover);
+}
+
+.icon-caution {
+  fill: var(--palette-caution);
+}
+
+.icon-stroke-caution {
+  fill: none;
+  stroke: var(--palette-caution);
+}
+
+.icon-warning {
+  fill: var(--palette-warning);
+}
+
+.icon-stroke-warning {
+  fill: none;
+  stroke: var(--palette-warning);
+}
+
+.icon-highlight {
+  fill: var(--palette-highlight);
+}
+
+.icon-stroke-highlight {
+  fill: none;
+  stroke: var(--palette-highlight);
+}
+
+.icon-action {
+  fill: var(--palette-action);
+}
+
+.icon-stroke-action {
+  fill: none;
+  stroke: var(--palette-action);
+}
+
+.icon-fill-primary {
+  color: var(--palette-primary);
+}
+
+/* If you use .icon-action from above, it will fill the whole SVG with one color.
+* In cases where we need to "reach in" to the SVG we use fill: currentColor, and
+* that allows the SVG fill to inherit from the currect font color
+*/
+.icon-fill-milestone,
+.icon-fill-time-entry,
+.icon-fill-project {
+  composes: icon-fill-primary;
+}
+
+.icon-fill-action {
+  color: var(--palette-action);
+}
+
+.icon-fill-deliverable {
+  composes: icon-fill-action;
+}
+
+.icon-fill-action-light {
+  color: var(--statusLightGreen);
+}
+
+.icon-fill-caution {
+  color: var(--palette-caution);
+}
+
+.icon-fill-issue {
+  composes: icon-fill-caution;
+}
+
+.icon-fill-highlight {
+  color: var(--palette-highlight);
+}
+
+.icon-fill-task {
+  composes: icon-fill-highlight;
+}
+
+.icon-fill-neutral {
+  color: var(--palette-neutral-mid-light);
+}
+
+.icon-fill-dark {
+  color: var(--palette-neutral-dark);
+}
 
 .icon-circle-base {
   border-radius: 50%;
@@ -11,15 +193,7 @@
 }
 
 .icon-circle-stroke {
-  /*composes: icon-circle-base;*/
-
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  composes: icon-circle-base;
   border: 1px solid var(--palette-neutral-mid);
   background: transparent;
   background-color: transparent;
@@ -42,15 +216,7 @@
 }
 
 .icon-circle {
-  /*composes: icon-circle-base;*/
-
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  composes: icon-circle-base;
   border: 1px solid var(--palette-neutral-mid-light);
   background: var(--palette-neutral-mid-light);
   background-color: var(--palette-neutral-mid-light);
