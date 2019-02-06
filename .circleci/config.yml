@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
@@ -17,11 +13,9 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v2-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
           - v2-dependencies-
 
       - run: yarn install --frozen-lockfile
@@ -31,16 +25,12 @@ jobs:
             - ~/.cache
           key: v2-dependencies-{{ checksum "package.json" }}
 
-      # lint!
       - run: yarn lint
 
-      # run tests!
       - run: yarn test
 
-      # Boot up the server for integration tests
       - run:
           command: yarn start
           background: true
 
-      # Run the integration tests once the server is available
       - run: yarn run wait-on http://localhost:6060 && yarn cypress run
