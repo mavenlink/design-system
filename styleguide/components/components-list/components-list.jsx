@@ -13,12 +13,6 @@ export default function ComponentsList({ current, items }) {
   return (
     <ul className={styles.list}>
       {filteredItems.map(({ name, href, content }) => {
-        if (current === name) {
-          console.log(`current: ${current}`);
-          console.log(`content: ${content}`);
-          console.log(`href: ${href}`);
-          console.log(`name: ${name}`);
-        }
         return (
           <li
             className={styles.item}
