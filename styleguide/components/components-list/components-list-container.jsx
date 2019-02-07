@@ -9,7 +9,7 @@ function sortBy(key) {
 export default function ComponentsListContainer(props) {
   const location = window.location.hash.replace(/\W/g, '') || 'Overview';
   const shouldAlphabetize = !props.items.some(item => item.heading);
-  const items = shouldAlphabetize ? props.items.concat().sort(sortBy('name')) : props.items;
+  const items = shouldAlphabetize ? props.items.sort(sortBy('name')) : props.items;
 
   return <ComponentsList {...props} items={items} current={location} />;
 }
