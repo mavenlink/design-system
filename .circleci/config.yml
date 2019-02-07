@@ -15,15 +15,16 @@ jobs:
 
       - restore_cache:
           keys:
-          - v2-dependencies-1-{{ checksum "package.json" }}
-          - v2-dependencies-1-
+          - v2-dependencies-2-{{ checksum "package.json" }}
+          - v2-dependencies-2-
 
       - run: yarn install --frozen-lockfile
 
       - save_cache:
           paths:
+            - ~/.cache
             - node_modules
-          key: v2-dependencies-1-{{ checksum "package.json" }}
+          key: v2-dependencies-2-{{ checksum "package.json" }}
 
       - run: yarn lint
 
