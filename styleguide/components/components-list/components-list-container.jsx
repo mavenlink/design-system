@@ -2,14 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ComponentsList from './components-list';
 
-function sortBy(key) {
-  return (a, b) => (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);
+function sortByName(a, b) {
+  if (a.name > b.name) return 1;
+  if (a.name < b.name) return -1;
+  return 0;
 }
 
 export default function ComponentsListContainer(props) {
   const location = window.location.hash.replace(/\W/g, '') || 'Overview';
   const shouldAlphabetize = !props.items.some(item => item.heading);
-  const items = shouldAlphabetize ? props.items.sort(sortBy('name')) : props.items;
+  const items = shouldAlphabetize ? props.items.sort(sortByName) : props.items;
 
   return <ComponentsList {...props} items={items} current={location} />;
 }
