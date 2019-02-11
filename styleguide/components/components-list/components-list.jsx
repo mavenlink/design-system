@@ -12,28 +12,20 @@ export default function ComponentsList({ current, items }) {
 
   return (
     <ul className={styles.list}>
-      {filteredItems.map(({ name, href, content }) => {
-        if (current === name) {
-          console.log(`current: ${current}`);
-          console.log(`content: ${content}`);
-          console.log(`href: ${href}`);
-          console.log(`name: ${name}`);
-        }
-        return (
-          <li
-            className={styles.item}
-            key={name}
+      {filteredItems.map(({ name, href, content }) => (
+        <li
+          className={styles.item}
+          key={name}
+        >
+          <Link
+            className={current === name ? styles.current : styles.link}
+            href={href}
           >
-            <Link
-              className={current === name ? styles.current : styles.link}
-              href={href}
-            >
-              {name}
-            </Link>
-            {content}
-          </li>
-        );
-      })}
+            {name}
+          </Link>
+          {content}
+        </li>
+      ))}
     </ul>
   );
 }
