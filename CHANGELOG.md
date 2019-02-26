@@ -3,6 +3,9 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
+    - GA added
+    - Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
+    - Spacing definitions added
   </summary>
 </details>
 
