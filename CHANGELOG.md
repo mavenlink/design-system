@@ -3,11 +3,13 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
-    - GA added
-    - Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
-    - Spacing definitions added
   </summary>
 </details>
+
+## 0.6.0 (February 26, 2019)
+- GA added
+- Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
+- Spacing definitions added
 
 ## 0.5.0 (January 9, 2019)
 - Adds the hover colors to color.css
