@@ -7,7 +7,7 @@
 </details>
 
 ## 0.6.0 (February 26, 2019)
-- GA added
+- Google Analytics added
 - Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
 - Spacing definitions added
 
