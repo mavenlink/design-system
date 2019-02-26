@@ -6,6 +6,11 @@
   </summary>
 </details>
 
+## 0.6.0 (February 26, 2019)
+- Google Analytics added
+- Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
+- Spacing definitions added
+
 ## 0.5.0 (January 9, 2019)
 - Adds the hover colors to color.css
 
