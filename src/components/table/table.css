@@ -6,6 +6,7 @@
   border-collapse: collapse;
   border-spacing: 0;
   border: 0;
+  box-sizing: border-box;
   font-family: var(--mavenlink-type-font-family);
   text-align: left;
   width: 100%;
@@ -20,13 +21,16 @@
   background: var(--palette-neutral-xx-light);
   border-bottom: 1px solid var(--palette-neutral-light);
   border-top: 1px solid var(--palette-neutral-light);
+  box-sizing: border-box;
 }
 
 .row {
   border-bottom: 1px solid var(--palette-neutral-light);
+  box-sizing: border-box;
 }
 
 .cell {
+  box-sizing: border-box;
   font-weight: normal;
   line-height: 1.8;
   padding-left: var(--spacing-medium);
