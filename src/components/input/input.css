@@ -5,6 +5,7 @@
 .input {
   border: 1px solid var(--palette-neutral-mid-light);
   border-radius: 3px;
+  box-sizing: border-box;
   font-family: var(--mavenlink-type-font-family);
   height: 32px;
   margin: 0;
