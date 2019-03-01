@@ -34,7 +34,7 @@
 
 .headerCell {
   composes: cell;
-  border-right: 1px solid var(--palette-neutral-light)
+  border-right: 1px solid var(--palette-neutral-light);
 }
 
 .headerCell:last-child {
