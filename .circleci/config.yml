@@ -61,4 +61,7 @@ jobs:
       - run: |
           git config user.email "ci-deployment@mavenlink"
           git config user.name "CI Deployment"
+      - add_ssh_keys:
+          fingerprints:
+            - "ca:d5:ac:60:67:ae:21:f9:8e:e7:7d:1b:3c:aa:78:c3"
       - run: yarn deploy
