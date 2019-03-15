@@ -1,14 +1,16 @@
 @import "../../styles/colors.css";
+@import "../../styles/spacing.css";
 @import "../../styles/typography.css";
 
 .input {
   border: 1px solid var(--palette-neutral-mid-light);
   border-radius: 3px;
+  box-sizing: border-box;
   font-family: var(--mavenlink-type-font-family);
   height: 32px;
   margin: 0;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
 }
 
 .input:hover {
