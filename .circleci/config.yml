@@ -31,9 +31,7 @@ commands:
           paths:
             - ~/.cache
             - node_modules
-          keys:
-            - yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
-            - yarn-<< parameters.image >>-<< parameters.version >>
+          key: yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
 
 jobs:
   build_and_test:
