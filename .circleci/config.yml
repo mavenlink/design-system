@@ -10,6 +10,21 @@ workflows:
               ignore:
                 - gh-pages
 
+commands:
+  install_dependencies:
+    description: "Install dependencies with smart caching"
+    steps:
+      - restore_cache:
+          keys:
+          - v2-dependencies-2-{{ checksum "package.json" }}
+          - v2-dependencies-2-
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - ~/.cache
+            - node_modules
+          key: v2-dependencies-2-{{ checksum "package.json" }}
+
 jobs:
   build_and_test:
     docker:
@@ -20,18 +35,7 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-          - v2-dependencies-2-{{ checksum "package.json" }}
-          - v2-dependencies-2-
-
-      - run: yarn install --frozen-lockfile
-
-      - save_cache:
-          paths:
-            - ~/.cache
-            - node_modules
-          key: v2-dependencies-2-{{ checksum "package.json" }}
+      - install_dependencies
 
       - run: yarn lint
 
