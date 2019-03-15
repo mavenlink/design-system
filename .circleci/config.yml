@@ -63,5 +63,5 @@ jobs:
           git config user.name "CI Deployment"
       - add_ssh_keys:
           fingerprints:
-            - "ca:d5:ac:60:67:ae:21:f9:8e:e7:7d:1b:3c:aa:78:c3"
+            - "79:26:19:57:4e:1a:59:64:ec:bb:b7:76:e2:5f:7c:ad"
       - run: yarn deploy
