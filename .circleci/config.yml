@@ -60,4 +60,7 @@ jobs:
       - install_dependencies:
           image: "node"
           version: "1"
+      - run: |
+          git config user.email "ci-deployment@mavenlink"
+          git config user.name "CI Deployment"
       - run: yarn deploy
