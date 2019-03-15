@@ -19,7 +19,6 @@ commands:
     parameters:
       image:
         type: string
-        default: "node"
       version:
         type: string
     steps:
@@ -57,5 +56,6 @@ jobs:
     steps:
       - checkout
       - install_dependencies:
+          image: "node"
           version: "3"
       - run: echo Hello world
