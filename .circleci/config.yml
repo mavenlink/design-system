@@ -58,4 +58,4 @@ jobs:
       - install_dependencies:
           image: "node"
           version: "1"
-      - run: echo Hello world
+      - run: yarn deploy
