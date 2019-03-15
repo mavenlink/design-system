@@ -9,6 +9,9 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+      - deploy:
+          requires:
+            - build_and_test
 
 commands:
   install_dependencies:
@@ -39,3 +42,8 @@ jobs:
           command: yarn start
           background: true
       - run: yarn run wait-on http://localhost:6060 && yarn cypress run
+  deploy:
+    steps:
+      - checkout
+      - install_dependencies
+      - run: echo Hello world
