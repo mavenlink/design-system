@@ -1,37 +1,71 @@
-version: 2
-jobs:
-  build:
-    branches:
-      ignore:
-        - gh-pages
+version: 2.1
 
-    docker:
-      - image: cypress/base:8
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - build_and_test
 
-    working_directory: ~/repo
-
+commands:
+  install_dependencies:
+    description: "Install dependencies with smart caching"
+    parameters:
+      image:
+        type: string
+      version:
+        type: string
     steps:
-      - checkout
-
       - restore_cache:
           keys:
-          - v2-dependencies-2-{{ checksum "package.json" }}
-          - v2-dependencies-2-
-
+            - &yarn_key yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
+            - yarn-<< parameters.image >>-<< parameters.version >>
       - run: yarn install --frozen-lockfile
-
       - save_cache:
           paths:
             - ~/.cache
             - node_modules
-          key: v2-dependencies-2-{{ checksum "package.json" }}
+          key: *yarn_key
 
+jobs:
+  build_and_test:
+    docker:
+      - image: cypress/base:8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - install_dependencies:
+          image: "cypress"
+          version: "1"
       - run: yarn lint
-
       - run: yarn test
-
       - run:
           command: yarn start
           background: true
-
       - run: yarn run wait-on http://localhost:6060 && yarn cypress run
+  deploy:
+    docker:
+      - image: circleci/node:8.11.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - install_dependencies:
+          image: "node"
+          version: "1"
+      - run: |
+          git config user.email "ci-deployment@mavenlink"
+          git config user.name "CI Deployment"
+      - add_ssh_keys:
+          fingerprints:
+            - "79:26:19:57:4e:1a:59:64:ec:bb:b7:76:e2:5f:7c:ad"
+      - run: yarn deploy
