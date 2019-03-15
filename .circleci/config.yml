@@ -24,14 +24,14 @@ commands:
     steps:
       - restore_cache:
           keys:
-          - v2-dependencies-2-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
-          - v2-dependencies-2-<< parameters.image >>-<< parameters.version >>
+          - yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
+          - yarn-<< parameters.image >>-<< parameters.version >>
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - ~/.cache
             - node_modules
-          key: v2-dependencies-2-{{ checksum "package.json" }}
+          key: yarn-{{ checksum "package.json" }}
 
 jobs:
   build_and_test:
@@ -42,7 +42,7 @@ jobs:
       - checkout
       - install_dependencies:
           image: "cypress"
-          version: "3"
+          version: "1"
       - run: yarn lint
       - run: yarn test
       - run:
@@ -57,5 +57,5 @@ jobs:
       - checkout
       - install_dependencies:
           image: "node"
-          version: "3"
+          version: "1"
       - run: echo Hello world
