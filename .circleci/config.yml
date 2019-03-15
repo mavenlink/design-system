@@ -20,11 +20,13 @@ commands:
       image:
         type: string
         default: "node"
+      version:
+        type: string
     steps:
       - restore_cache:
           keys:
-          - v2-dependencies-2-<< parameters.image >>-{{ checksum "package.json" }}
-          - v2-dependencies-2-<< parameters.image >>
+          - v2-dependencies-2-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
+          - v2-dependencies-2-<< parameters.image >>-<< parameters.version >>
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
@@ -41,6 +43,7 @@ jobs:
       - checkout
       - install_dependencies:
           image: "cypress"
+          version: "3"
       - run: yarn lint
       - run: yarn test
       - run:
@@ -53,5 +56,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - install_dependencies
+      - install_dependencies:
+          version: "3"
       - run: echo Hello world
