@@ -6,6 +6,10 @@
   </summary>
 </details>
 
+## 0.7.0 (March 15, 2019)
+- Backfill spacing variable into Input and Table components
+- Continuous Github pages deployment
+
 ## 0.6.0 (February 26, 2019)
 - Google Analytics added
 - Adds Hero Illustrations to Overview, Components, Guidelines, and Soul
