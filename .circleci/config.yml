@@ -24,14 +24,14 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
+            - &yarn_key yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
             - yarn-<< parameters.image >>-<< parameters.version >>
       - run: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - ~/.cache
             - node_modules
-          key: yarn-<< parameters.image >>-<< parameters.version >>-{{ checksum "package.json" }}
+          key: *yarn_key
 
 jobs:
   build_and_test:
