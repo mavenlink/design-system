@@ -16,7 +16,8 @@
     "postdeploy": "yarn run cleanup",
     "predeploy": "yarn run build",
     "start": "styleguidist server",
-    "test": "jest"
+    "test": "node node_modules/.bin/jest",
+    "test:update": "node node_modules/.bin/jest --updateSnapshot"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,9 @@
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js",
+    "testRegex": "./.*(jest|spec).js(x)?$",
+    "testPathIgnorePatterns" : ["<rootDir>/node_modules/", "<rootDir>/styleguide/cypress/integration/" ]
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
