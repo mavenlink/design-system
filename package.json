@@ -16,8 +16,8 @@
     "postdeploy": "yarn run cleanup",
     "predeploy": "yarn run build",
     "start": "styleguidist server",
-    "test": "node node_modules/.bin/jest",
-    "test:update": "node node_modules/.bin/jest --updateSnapshot"
+    "test": "jest",
+    "test:update": "jest --updateSnapshot"
   },
   "repository": {
     "type": "git",
