@@ -20,6 +20,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 4. Ensure the test suite passes by running `yarn test`
 5. Ensure the linter passes by running `yarn lint`
 6. Make a pull request
+7. Verify the Github Page is working appropriate. The URL is of the form `https://mavenlink.github.io/design-system/$BRANCH` where `$BRANCH` is the branch name.
 
 ## Running the app locally
 
