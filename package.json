@@ -38,7 +38,10 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js",
     "testRegex": "./.*(jest|spec).js(x)?$",
-    "testPathIgnorePatterns" : ["<rootDir>/node_modules/", "<rootDir>/styleguide/cypress/integration/" ]
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/styleguide/cypress/integration/"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
