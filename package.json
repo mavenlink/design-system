@@ -11,7 +11,7 @@
     "cleanup": "rm -rf build",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "deploy": "gh-pages -d build",
+    "deploy": "echo \"Deploy has been deprecated in favor of continuous deployment from CircleCI. Just push a branch and make a PR!\"",
     "lint": "eslint '**/*.js?(x)'",
     "postdeploy": "yarn run cleanup",
     "predeploy": "yarn run build",
