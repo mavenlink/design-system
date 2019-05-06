@@ -12,8 +12,8 @@ workflows:
       - deploy:
           filters:
             branches:
-              only:
-                - master
+              ignore:
+                - gh-pages
           requires:
             - build_and_test
 
@@ -68,4 +68,15 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "79:26:19:57:4e:1a:59:64:ec:bb:b7:76:e2:5f:7c:ad"
-      - run: yarn deploy
+      - run:
+          name: Compile and deploy Github pages
+          command: |
+            yarn build
+            git checkout gh-pages
+            rm -rf $CIRCLE_BRANCH
+            mv build $CIRCLE_BRANCH
+            git add .
+            git diff-index --quiet HEAD || git commit -m 'Update Github pages for $CIRCLE_BRANCH'
+            git push origin gh-pages
+      - run: echo https://mavenlink.github.io/design-system/$CIRCLE_BRANCH/
+      - run: ls $CIRCLE_BRANCH
