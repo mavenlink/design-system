@@ -24,9 +24,16 @@ export default function Button(props) {
 
 Button.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+  ]),
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['button', 'reset', 'submit'])
+  type: PropTypes.oneOf([
+    'button',
+    'reset',
+    'submit',
+  ]),
 };
 
 Button.defaultProps = {
