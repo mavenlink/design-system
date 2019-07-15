@@ -2,14 +2,22 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.button {
+.interactivity {
   cursor: pointer;
-  border-width: 1px;
-  border-radius: 3px;
-  border-style: solid;
+}
+
+.typography {
   font-family: var(--mavenlink-type-font-family);
   font-size: var(--mavenlink-type-button-font-size);
   line-height: var(--spacing-x-large);
+}
+
+.button {
+  composes: typography;
+  composes: interactivity;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
   padding-bottom: 0;
   padding-left: var(--spacing-x-large);
   padding-right: var(--spacing-x-large);
@@ -18,6 +26,18 @@
 
 .button:hover {
   opacity: .7;
+}
+
+.blank {
+  composes: typography;
+  composes: interactivity;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--palette-neutral-base);
+}
+
+.blank:hover {
+  text-decoration: underline;
 }
 
 .primary {

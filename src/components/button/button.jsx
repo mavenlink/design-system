@@ -25,6 +25,7 @@ export default function Button(props) {
 Button.propTypes = {
   className: PropTypes.string,
   color: PropTypes.oneOf([
+    'blank',
     'primary',
     'secondary',
   ]),
