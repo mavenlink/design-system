@@ -37,7 +37,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  className: styles.primary,
+  className: undefined,
   color: 'primary',
   type: undefined,
 };

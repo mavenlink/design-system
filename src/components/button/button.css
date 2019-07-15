@@ -1,1 +1,35 @@
+@import '../../styles/colors.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
 
+.button {
+  cursor: pointer;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-button-font-size);
+  line-height: var(--spacing-x-large);
+  padding-bottom: 0;
+  padding-left: var(--spacing-x-large);
+  padding-right: var(--spacing-x-large);
+  padding-top: 0;
+}
+
+.button:hover {
+  opacity: .7;
+}
+
+.primary {
+  composes: button;
+  background-color: var(--palette-primary);
+  border-color: var(--palette-primary);
+  color: var(--white);
+}
+
+.secondary {
+  composes: button;
+  background-color: var(--white);
+  border-color: var(--palette-primary);
+  color: var(--palette-primary);
+}
