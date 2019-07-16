@@ -28,6 +28,18 @@
   opacity: .7;
 }
 
+.button[disabled] {
+  background: #eee;
+  border-color: #ddd;
+  text-shadow: 0 1px 1px var(--white);
+  color: #ccc;
+  cursor: default !important;
+}
+
+.button[disabled]:hover {
+  opacity: 1;
+}
+
 .blank {
   composes: typography;
   composes: interactivity;
