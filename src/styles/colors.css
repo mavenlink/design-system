@@ -1,11 +1,16 @@
 :root {
   /* Action */
   --palette-action: #33ae10;
+  --palette-action-dark: #000;
   --palette-action-hover: #328a15;
 
   /* Caution */
   --palette-caution: #e85342;
+  --palette-caution-active: #000;
+  --palette-caution-base: #000;
+  --palette-caution-dark: #000;
   --palette-caution-hover: #e53e2b;
+  --palette-caution-light: #000;
 
   /* Highlight */
   --palette-highlight: #ff8400;
@@ -22,10 +27,13 @@
   --palette-neutral-light: #e1e1dd;
   --palette-neutral-x-light: #f5f5f2;
   --palette-neutral-xx-light: #fbfaf6;
+  --palette-neutral-hover: #000;
 
   /* Primary */
   --palette-primary: #448fea;
+  --palette-primary-base: #000;
   --palette-primary-hover: #447bc6;
+  --palette-primary-light: #000;
 
   /* Primitives */
   --white: #fff;
@@ -33,4 +41,29 @@
 
   /* Warning */
   --palette-warning: #ffdf8d;
+  --palette-warning-dark: #000;
+  --palette-warning-hover: #000;
+
+  /* Unknown -- possibly bogus */
+  --palette-brand-light: #000;
+  --palette-brand-base: #000;
+  --palette-brand-dark: #000;
+  --palette-brand-neutral: #000;
+  --palette-product-alcatraz: #000;
+  --palette-product-blue-dragon: #000;
+  --palette-product-chartreuse: #000;
+  --palette-product-chocolate: #000;
+  --palette-product-clown-fish: #000;
+  --palette-product-cough-drop: #000;
+  --palette-product-genie: #000;
+  --palette-product-grape-koolaid: #000;
+  --palette-product-grass: #000;
+  --palette-product-jelly-donut: #000;
+  --palette-product-lapis-lazuli: #000;
+  --palette-product-light-blue: #000;
+  --palette-product-pizaazz-orange: #000;
+  --palette-product-purple-martin: #000;
+  --palette-product-steel: #000;
+  --palette-product-sunflower: #000;
+  --palette-product-swimming-pool: #000;
 }
