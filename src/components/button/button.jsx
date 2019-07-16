@@ -7,14 +7,14 @@ export default function Button(props) {
     children,
     className,
     color,
+    disabled,
     type,
-    ...buttonElemProps
   } = props;
 
   return (
     <button
-      {...buttonElemProps}
       className={className || styles[color]}
+      disabled={disabled}
       type={type}
     >
       {children}
@@ -30,6 +30,7 @@ Button.propTypes = {
     'secondary',
   ]),
   children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
   type: PropTypes.oneOf([
     'button',
     'reset',
@@ -40,5 +41,6 @@ Button.propTypes = {
 Button.defaultProps = {
   className: undefined,
   color: 'primary',
+  disabled: undefined,
   type: undefined,
 };
