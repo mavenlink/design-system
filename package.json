@@ -35,7 +35,6 @@
       "\\.css$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js",
-    "testRegex": "./.*(jest|spec).js(x)?$",
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/styleguide/cypress/integration/"
