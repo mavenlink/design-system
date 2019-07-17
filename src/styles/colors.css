@@ -72,4 +72,7 @@
   --palette-product-steel: #7e8993;
   --palette-product-sunflower: #f5d700;
   --palette-product-swimming-pool: #19beb9;
+
+  /* Hidden colors behind deprecated palette */
+  --palette-link: #448fea;
 }
