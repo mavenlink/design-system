@@ -2,6 +2,7 @@
   /* Action */
   --palette-action: #33ae10;
   --palette-action-dark: #000;
+  --palette-action-light: #000;
   --palette-action-hover: #328a15;
 
   /* Caution */
@@ -15,6 +16,8 @@
   /* Highlight */
   --palette-highlight: #ff8400;
   --palette-highlight-hover: #ffa800;
+  --palette-highlight-dark: #000;
+  --palette-highlight-light: #000;
 
   /* Neutral */
   --palette-neutral-xx-dark: #282624;
@@ -35,6 +38,7 @@
   --palette-primary-base: #000;
   --palette-primary-hover: #447bc6;
   --palette-primary-light: #000;
+  --palette-primary-dark: #000;
 
   /* Primitives */
   --white: #fff;
@@ -43,6 +47,7 @@
   /* Warning */
   --palette-warning: #ffdf8d;
   --palette-warning-dark: #000;
+  --palette-warning-light: #000;
   --palette-warning-hover: #000;
 
   /* Unknown -- possibly bogus */
