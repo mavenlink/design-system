@@ -3,6 +3,7 @@
 exports[`Button has defaults 1`] = `
 <button
   className="primary"
+  onClick={[Function]}
 >
   Hello world!
 </button>

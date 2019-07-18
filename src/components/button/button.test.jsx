@@ -81,6 +81,19 @@ describe('Button', () => {
     });
   });
 
+  describe('onClick API', () => {
+    it('sets the onclick handler', () => {
+      const onClickSpy = jest.fn();
+      const tree = renderer.create((
+        <Button onClick={onClickSpy}>
+          Hello world!
+        </Button>
+      )).toJSON();
+      tree.props.onClick();
+      expect(onClickSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
   describe('type API', () => {
     it('can be "button"', () => {
       const tree = renderer.create((
