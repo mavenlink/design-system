@@ -61,13 +61,24 @@ describe('Button', () => {
     });
   });
 
-  it('can be disabled', () => {
-    const tree = renderer.create((
-      <Button disabled>
-        Hello world!
-      </Button>
-    )).toJSON();
-    expect(tree.props.disabled).toEqual(true);
+  describe('disabled API', () => {
+    it('can be disabled', () => {
+      const tree = renderer.create((
+        <Button disabled={true}>
+          Hello world!
+        </Button>
+      )).toJSON();
+      expect(tree.props.disabled).toEqual(true);
+    });
+
+    it('can be enabled', () => {
+      const tree = renderer.create((
+        <Button disabled={false}>
+          Hello world!
+        </Button>
+      )).toJSON();
+      expect(tree.props.disabled).toEqual(false);
+    });
   });
 
   describe('type API', () => {
