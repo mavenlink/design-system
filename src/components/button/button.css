@@ -54,14 +54,14 @@
 
 .primary {
   composes: button;
-  background-color: var(--palette-primary);
-  border-color: var(--palette-primary);
+  background-color: var(--palette-primary-base);
+  border-color: var(--palette-primary-base);
   color: var(--white);
 }
 
 .secondary {
   composes: button;
   background-color: var(--white);
-  border-color: var(--palette-primary);
-  color: var(--palette-primary);
+  border-color: var(--palette-primary-base);
+  color: var(--palette-primary-base);
 }
