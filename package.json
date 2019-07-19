@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.7.0-buttons-1",
+  "version": "0.8.0-buttons-1",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "files": [
