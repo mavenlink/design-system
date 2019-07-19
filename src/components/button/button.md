@@ -9,7 +9,3 @@
 ```jsx
 <Button color="secondary">Secondary Button</Button>
 ```
-
-```jsx
-<Button color="blank">Blank Button</Button>
-```
