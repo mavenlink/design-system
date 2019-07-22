@@ -1,5 +1,7 @@
 Type of work: bug / component / site / accessibility / other
+
 Deployment URL: https://mavenlink.gihub.io/design-system/$BRANCH
+
 (Optional for outside contributions) Tracked work in Mavenlink:
 
 ## Motivation
