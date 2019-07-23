@@ -33,15 +33,6 @@ describe('Button', () => {
   });
 
   describe('color API', () => {
-    it('can be "blank"', () => {
-      const tree = renderer.create((
-        <Button color="blank">
-          Hello world!
-        </Button>
-      )).toJSON();
-      expect(tree.props.className).toEqual('blank');
-    });
-
     it('can be "primary"', () => {
       const tree = renderer.create((
         <Button color="primary">
