@@ -17,6 +17,7 @@ module.exports = {
   },
   pagePerSection: true,
   require: [
+    '@babel/polyfill',
     './styleguide/content/content.css',
   ],
   sections: [
