@@ -3,7 +3,7 @@
 .link:link,
 .link:visited {
   font-size: inherit;
-  color: var(--palette-primary);
+  color: var(--palette-primary-base);
   text-decoration: none;
 }
 
