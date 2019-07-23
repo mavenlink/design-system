@@ -1,0 +1,86 @@
+@import "../../../src/styles/colors.css";
+
+/* TODO: Waiting to hear back from design on this so they'll likely change */
+:root {
+  --iconSizeSmall: 16px;
+  --iconSizeMedium: 20px;
+  --iconSizeLarge: 28px;
+}
+
+.icon-base {
+  height: var(--iconSizeMedium);
+  width: var(--iconSizeMedium);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fill-primary {
+  fill: var(--palette-primary-base);
+}
+
+.fill-action {
+  fill: var(--palette-action-base);
+}
+
+.fill-caution {
+  fill: var(--palette-caution-base);
+}
+
+.fill-highlight {
+  fill: var(--palette-highlight-base);
+}
+
+.fill-none {
+  fill: none;
+}
+
+.stroke-primary {
+  stroke: var(--palette-primary-base);
+}
+
+.stroke-action {
+  stroke: var(--palette-action-base);
+}
+
+.stroke-highlight {
+  stroke: var(--palette-highlight-base);
+}
+
+.stroke-caution {
+  stroke: var(--palette-caution-base);
+}
+
+.color-primary {
+  color: var(--palette-primary-base);
+}
+
+.color-action {
+  color: var(--palette-action-base);
+}
+
+.color-highlight {
+  color: var(--palette-highlight-base);
+}
+
+.color-caution {
+  color: var(--palette-caution-base);
+}
+
+.color-transparent {
+  color: transparent;
+}
+
+.size-small {
+  height: var(--iconSizeSmall);
+  width: var(--iconSizeSmall);
+}
+
+.size-medium {
+  height: var(--iconSizeMedium);
+  width: var(--iconSizeMedium);
+}
+
+.size-large {
+  height: var(--iconSizeLarge);
+  width: var(--iconSizeLarge);
+}
