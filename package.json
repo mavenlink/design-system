@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "files": [
@@ -12,7 +12,9 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "deploy": "echo \"Deploy has been deprecated in favor of continuous deployment from CircleCI. Just push a branch and make a PR!\"",
-    "lint": "eslint '**/*.js?(x)'",
+    "lint": "yarn lint:es && yarn lint:styles",
+    "lint:es": "eslint '**/*.js?(x)' --no-ignore .eslintrc.js",
+    "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
     "test": "jest",
     "test:update": "jest --updateSnapshot"
@@ -35,7 +37,6 @@
       "\\.css$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js",
-    "testRegex": "./.*(jest|spec).js(x)?$",
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/styleguide/cypress/integration/"
@@ -69,6 +70,10 @@
     "react-styleguidist": "^8.0.6",
     "react-transition-group": "^2.5.3",
     "style-loader": "^0.23.1",
+    "stylelint": "^10.1.0",
+    "stylelint-config-css-modules": "^1.4.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-css-modules": "^0.9.0",
     "url-loader": "^1.1.2",
     "wait-on": "^3.2.0",
     "webpack": "^4.28.3"

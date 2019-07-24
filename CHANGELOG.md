@@ -6,6 +6,13 @@
   </summary>
 </details>
 
+## 0.9.0 (July 24, 2019)
+- Implements <Button /> component. At the moment, we only introduce two kinds of buttons as a means of minimizing the breadth of our supported components.
+
+## 0.8.0 (July 18, 2019)
+- Deprecate color variables without `-base`
+- Add missing palette color variables
+
 ## 0.7.0 (March 15, 2019)
 - Backfill spacing variable into Input and Table components
 - Continuous Github pages deployment

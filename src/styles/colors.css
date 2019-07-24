@@ -35,12 +35,13 @@
   --palette-warning-dark: #ffd15a;
   --palette-warning-base: #ffdf8d;
   --palette-warning-light: #ffedc0;
+
   /* Warning interactions */
   --palette-warning-hover: #ffd874;
 
   /* Neutral */
   --palette-neutral-xx-dark: #282624;
-  --palette-neutral-x-dark: #333333;
+  --palette-neutral-x-dark: #333;
   --palette-neutral-dark: #4a4a4a;
   --palette-neutral-mid-dark: #737373;
   --palette-neutral-base: #9d9d9d;
@@ -49,6 +50,13 @@
   --palette-neutral-light: #e1e1dd;
   --palette-neutral-x-light: #f5f5f2;
   --palette-neutral-xx-light: #fbfaf6;
+
+  /* New Neutral */
+  --palette-grey-x-light: rgba(0, 0, 0, 0.03);
+  --palette-grey-light: rgba(0, 0, 0, 0.12);
+  --palette-grey-base: rgba(0, 0, 0, 0.38);
+  --palette-grey-dark: rgba(0, 0, 0, 0.54);
+  --palette-grey-x-dark: rgba(0, 0, 0, 0.87);
 
   /* Primitives */
   --white: #fff;
