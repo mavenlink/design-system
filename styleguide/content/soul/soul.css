@@ -38,9 +38,9 @@
   font-family: var(--mavenlink-type-font-accent);
 }
 
-.type-serif  h1,
-.type-serif  h2,
-.type-serif  h3 {
+.type-serif h1,
+.type-serif h2,
+.type-serif h3 {
   font-family: var(--mavenlink-type-font-accent);
 }
 
@@ -50,7 +50,7 @@
 }
 
 .type-abc .type-serif,
-.type-abc .type-sans  > div {
+.type-abc .type-sans > div {
   margin-bottom: 0;
 }
 
@@ -111,9 +111,8 @@
 .type-headings > span,
 .type-columns > div,
 .type-columns > span {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 
 .type-headings > div:nth-of-type(1),
 .type-headings > span:nth-of-type(1),

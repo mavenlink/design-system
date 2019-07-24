@@ -12,6 +12,7 @@ module.exports = {
   }, {
     files: [
       '.eslintrc.js',
+      '.stylintrc.js',
     ],
     rules: {
       'import/no-commonjs': 'off',
