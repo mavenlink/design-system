@@ -52,11 +52,11 @@
   --palette-neutral-xx-light: #fbfaf6;
 
   /* New Neutral */
-  --palette-03: rgba(0, 0, 0, 0.03);
-  --palette-12: rgba(0, 0, 0, 0.12);
-  --palette-38: rgba(0, 0, 0, 0.38);
-  --palette-54: rgba(0, 0, 0, 0.54);
-  --palette-87: rgba(0, 0, 0, 0.87);
+  --palette-grey-x-light: rgba(0, 0, 0, 0.03);
+  --palette-grey-light: rgba(0, 0, 0, 0.12);
+  --palette-grey-base: rgba(0, 0, 0, 0.38);
+  --palette-grey-dark: rgba(0, 0, 0, 0.54);
+  --palette-grey-x-dark: rgba(0, 0, 0, 0.87);
 
   /* Primitives */
   --white: #fff;

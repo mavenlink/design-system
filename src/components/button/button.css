@@ -44,8 +44,8 @@
 }
 
 .primary[disabled] {
-  background-color: var(--palette-12);
-  color: var(--palette-38);
+  background-color: var(--palette-grey-light);
+  color: var(--palette-grey-base);
 }
 
 .secondary {
@@ -53,12 +53,12 @@
   background-color: var(--white);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--palette-12);
-  color: var(--palette-54);
+  border-color: var(--palette-grey-light);
+  color: var(--palette-grey-dark);
 }
 
 .secondary[disabled] {
-  background-color: var(--palette-12);
+  background-color: var(--palette-grey-light);
   border: none;
-  color: var(--palette-38);
+  color: var(--palette-grey-base);
 }
