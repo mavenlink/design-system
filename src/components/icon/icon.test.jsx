@@ -9,4 +9,109 @@ describe('Icon', () => {
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  describe('Size API', () => {
+    it('renders small, medium, and large sizes', () => {
+      const sizes = ['small', 'medium', 'large'];
+      sizes.map(size => {
+        const tree = renderer.create((
+          <Icon name={'foobar'} size={size} />
+        )).toJSON();
+        expect(tree.props.className).toContain(`size-${size}`);
+      });
+    });
+  });
+
+  describe('focusable API', () => {
+    it('defaults false', () => {
+      const tree = renderer.create((
+        <Icon name={'foobar'} />
+      )).toJSON();
+      expect(tree.props.focusable).toEqual(false);
+    });
+
+    it('sets to true', () => {
+      const tree = renderer.create((
+        <Icon name={'foobar'} focusable={true} />
+      )).toJSON();
+      expect(tree.props.focusable).toEqual(true);
+    });
+  });
+
+  describe('className API', () => {
+    describe('fill', () => {
+      it('sets all fill colors', () => {
+        const colors = ['primary', 'action', 'highlight', 'caution'];
+        colors.map(color => {
+          const tree = renderer.create((
+            <Icon name={'foobar'} fill={color} />
+          )).toJSON();
+          expect(tree.props.className).toContain('icon-base');
+          expect(tree.props.className).toContain(`fill-${color}`);
+          expect(tree.props.className).not.toContain('stroke');
+          expect(tree.props.className).not.toContain('color');
+        });
+      });
+    });
+
+    describe('stroke', () => {
+      it('sets stroke colors turning off fills and color', () => {
+        const colors = ['primary', 'action', 'highlight', 'caution'];
+        colors.map(color => {
+          const tree = renderer.create((
+            <Icon name={'foobar'} stroke={color} />
+          )).toJSON();
+          expect(tree.props.className).toContain('icon-base');
+          expect(tree.props.className).toContain(`stroke-${color}`);
+          expect(tree.props.className).toContain('fill-none');
+          expect(tree.props.className).toContain('color-transparent');
+        });
+      });
+    });
+
+    describe('currentColor', () => {
+      it('sets all font colors', () => {
+        const colors = ['primary', 'action', 'highlight', 'caution'];
+        colors.map(color => {
+          const tree = renderer.create((
+            <Icon name={'foobar'} currentColor={color} />
+          )).toJSON();
+          expect(tree.props.className).toContain('icon-base');
+          expect(tree.props.className).toContain(`color-${color}`);
+        });
+      });
+    });
+
+    describe('combining colors', () => {
+      it('can combine fill, stroke, and currentColor', () => {
+        const colors = ['primary', 'action', 'highlight', 'caution'];
+        colors.map(color => {
+          const tree = renderer.create((
+            <Icon name={'foobar'} fill={color} stroke={color} currentColor={color} />
+          )).toJSON();
+          expect(tree.props.className).toContain('icon-base');
+          expect(tree.props.className).toContain(`fill-${color}`);
+          expect(tree.props.className).toContain(`color-${color}`);
+          expect(tree.props.className).toContain(`stroke-${color}`);
+        });
+      });
+    });
+  });
+
+  describe('title API', () => {
+    it('defaults to no title', () => {
+      const tree = renderer.create((
+        <Icon name={'foobar'} />
+      )).toJSON();
+      expect(tree.props.title).toEqual(undefined);
+    });
+
+    it('sets title', () => {
+      const expected = 'yoyoyo';
+      const tree = renderer.create((
+        <Icon name={'foobar'} title={expected} />
+      )).toJSON();
+      expect(tree.props.title).toEqual(expected);
+    });
+  });
 });
