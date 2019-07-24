@@ -1,0 +1,29 @@
+@import "../../../src/styles/colors.css";
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-name {
+  color: #333;
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: inherit;
+  display: inline-block;
+  min-width: 200px;
+  max-width: 200px;
+  margin-right: 20px;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: var(--palette-primary-base);
+}
+
+.fill-none {
+  fill: none;
+}
