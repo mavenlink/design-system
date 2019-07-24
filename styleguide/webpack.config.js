@@ -101,6 +101,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new SpriteLoaderPlugin()
-  ]
+    new SpriteLoaderPlugin(),
+  ],
 };
