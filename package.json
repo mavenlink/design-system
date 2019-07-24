@@ -12,7 +12,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "deploy": "echo \"Deploy has been deprecated in favor of continuous deployment from CircleCI. Just push a branch and make a PR!\"",
-    "lint": "eslint '**/*.js?(x)'",
+    "lint": "eslint '**/*.js?(x)' --no-ignore .eslintrc.js",
     "start": "styleguidist server",
     "test": "jest",
     "test:update": "jest --updateSnapshot"

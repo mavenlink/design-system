@@ -9,5 +9,12 @@ module.exports = {
     env: {
       jest: true,
     },
+  }, {
+    files: [
+      '.eslintrc.js',
+    ],
+    rules: {
+      'import/no-commonjs': 'off',
+    },
   }],
 };
