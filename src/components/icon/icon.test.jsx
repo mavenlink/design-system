@@ -13,7 +13,7 @@ describe('Icon', () => {
   describe('Size API', () => {
     it('renders small, medium, and large sizes', () => {
       const sizes = ['small', 'medium', 'large'];
-      sizes.map(size => {
+      sizes.forEach((size) => {
         const tree = renderer.create((
           <Icon name={'foobar'} size={size} />
         )).toJSON();
@@ -42,7 +42,7 @@ describe('Icon', () => {
     describe('fill', () => {
       it('sets all fill colors', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
-        colors.map(color => {
+        colors.forEach((color) => {
           const tree = renderer.create((
             <Icon name={'foobar'} fill={color} />
           )).toJSON();
@@ -57,7 +57,7 @@ describe('Icon', () => {
     describe('stroke', () => {
       it('sets stroke colors turning off fills and color', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
-        colors.map(color => {
+        colors.forEach((color) => {
           const tree = renderer.create((
             <Icon name={'foobar'} stroke={color} />
           )).toJSON();
@@ -72,7 +72,7 @@ describe('Icon', () => {
     describe('currentColor', () => {
       it('sets all font colors', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
-        colors.map(color => {
+        colors.forEach((color) => {
           const tree = renderer.create((
             <Icon name={'foobar'} currentColor={color} />
           )).toJSON();
@@ -85,7 +85,7 @@ describe('Icon', () => {
     describe('combining colors', () => {
       it('can combine fill, stroke, and currentColor', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
-        colors.map(color => {
+        colors.forEach((color) => {
           const tree = renderer.create((
             <Icon name={'foobar'} fill={color} stroke={color} currentColor={color} />
           )).toJSON();
