@@ -8,6 +8,7 @@ module.exports = {
   ],
   rules: {
     'css-modules/composed-class-names': true,
+    'css-modules/css-variables': true,
     'no-descending-specificity': null,
   },
 };
