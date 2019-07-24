@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon has defaults 1`] = `
+<svg
+  className="icon-base"
+  focusable={false}
+>
+  <use
+    xlinkHref="#foobar"
+  />
+</svg>
+`;

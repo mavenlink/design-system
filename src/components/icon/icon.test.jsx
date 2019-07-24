@@ -5,7 +5,7 @@ import Icon from './icon';
 describe('Icon', () => {
   it('has defaults', () => {
     const tree = renderer.create((
-      <Icon />
+      <Icon name={'foobar'} />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
