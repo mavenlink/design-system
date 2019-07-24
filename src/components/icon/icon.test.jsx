@@ -22,22 +22,6 @@ describe('Icon', () => {
     });
   });
 
-  describe('focusable API', () => {
-    it('defaults false', () => {
-      const tree = renderer.create((
-        <Icon name={'foobar'} />
-      )).toJSON();
-      expect(tree.props.focusable).toEqual(false);
-    });
-
-    it('sets to true', () => {
-      const tree = renderer.create((
-        <Icon name={'foobar'} focusable={true} />
-      )).toJSON();
-      expect(tree.props.focusable).toEqual(true);
-    });
-  });
-
   describe('className API', () => {
     describe('fill', () => {
       it('sets all fill colors', () => {
