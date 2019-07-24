@@ -1,23 +1,48 @@
 import React from 'react';
 import allIcons from '../../helpers/load-icons';
 import styles from './icon-all.css';
+import Icon from '../icon/icon';
 
 const icons = allIcons();
 
+// these have currentColor but no stroke
+const currentColorIcons = [
+  'icon-caution-fill',
+];
+
+// As we add more icons we'll need to assemble lists as we do
+// in bigmaven: `frontend/components/icon/icon-all/icon-all.jsx`
 const setupIcon = (iconName) => {
-  const defaultClasses = `${styles.icon}`;
-  // const defaultClasses = `${styles.icon} ${styles.large} ${styles.fill-primary}`;
+  let currentColor;
+  let stroke;
+  let fill;
+  const id = icons[iconName].id;
+
+  if (currentColorIcons.includes(iconName)) {
+    currentColor = 'primary';
+    if (iconName === 'icon-caution-fill') {
+      currentColor = 'caution';
+    }
+  } else {
+    fill = 'primary';
+  }
+
   return (
-    <svg className={defaultClasses}>
-      <use xlinkHref={`#${iconName}`} />
-    </svg>
+    <Icon
+      name={id}
+      size="large"
+      stroke={stroke}
+      fill={fill}
+      title={id}
+      currentColor={currentColor}
+    />
   );
 };
 
 /**
+ * Please do NOT use this as an individual component.
  * This is just a kitchen sink dump of mavenlink-js svg icons.
- * Please do NOT use this as an individual component. Also note,
- * we will be adding an `<Icon>` component soon.
+ * See `<Icon>` for how to use one of these icons instead.
  */
 export default function IconAll() {
   return (

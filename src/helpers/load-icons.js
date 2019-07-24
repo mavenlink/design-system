@@ -1,4 +1,4 @@
-const mljsIconsContext = require.context('mavenlink-js/src/svgs/', true, /svg$/);
+const allSvgsContext = require.context('../svgs/', true, /svg$/);
 
 const getIconsFromContext = (context) => {
   return context.keys().reduce((acc, file) => {
@@ -10,5 +10,5 @@ const getIconsFromContext = (context) => {
 };
 
 export default function frontendSvgs() {
-  return getIconsFromContext(mljsIconsContext);
+  return getIconsFromContext(allSvgsContext);
 }
