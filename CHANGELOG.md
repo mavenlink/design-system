@@ -6,6 +6,10 @@
   </summary>
 </details>
 
+## 0.8.0 (July 18, 2019)
+- Deprecate color variables without `-base`
+- Add missing palette color variables
+
 ## 0.7.0 (March 15, 2019)
 - Backfill spacing variable into Input and Table components
 - Continuous Github pages deployment
