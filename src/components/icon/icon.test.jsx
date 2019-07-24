@@ -10,7 +10,7 @@ describe('Icon', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('Size API', () => {
+  describe('size API', () => {
     it('renders small, medium, and large sizes', () => {
       const sizes = ['small', 'medium', 'large'];
       sizes.forEach((size) => {
