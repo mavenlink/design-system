@@ -15,7 +15,7 @@
 
 @media (min-width: var(--largeScreenBreakPoint)) {
   .root {
-    margin-top: calc(100vw - var(--navAndChrome) / var(--heroAspectRatio) + var(--additionalTopMargin}));
+    margin-top: calc(100vw - var(--navAndChrome) / var(--heroAspectRatio) + var(--additionalTopMargin));
   }
 }
 

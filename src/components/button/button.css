@@ -1,0 +1,64 @@
+@import '../../styles/colors.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
+
+.interactivity {
+  cursor: pointer;
+}
+
+.typography {
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-button-font-size);
+}
+
+.button {
+  composes: typography;
+  composes: interactivity;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  height: 32px;
+  padding-bottom: 0;
+  padding-left: var(--spacing-large);
+  padding-right: var(--spacing-large);
+  padding-top: 0;
+  white-space: nowrap;
+}
+
+.button:hover {
+  opacity: 0.7;
+}
+
+.button[disabled] {
+  cursor: default !important;
+}
+
+.button[disabled]:hover {
+  opacity: 1;
+}
+
+.primary {
+  composes: button;
+  background-color: var(--palette-primary-base);
+  color: var(--white);
+}
+
+.primary[disabled] {
+  background-color: var(--palette-grey-light);
+  color: var(--palette-grey-base);
+}
+
+.secondary {
+  composes: button;
+  background-color: var(--white);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--palette-grey-light);
+  color: var(--palette-grey-dark);
+}
+
+.secondary[disabled] {
+  background-color: var(--palette-grey-light);
+  border: none;
+  color: var(--palette-grey-base);
+}

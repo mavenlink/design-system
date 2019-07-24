@@ -1,7 +1,7 @@
 @import './colors.css';
 
 :root {
-  --mavenlink-type-font-family:  'Open Sans', system-ui, sans-serif;
+  --mavenlink-type-font-family: 'Open Sans', system-ui, sans-serif;
   --mavenlink-type-font-headings: 'Open Sans', system-ui, sans-serif;
   --mavenlink-type-font-accent: 'Merriweather', serif;
   --mavenlink-type-font-weight-light: 300;
@@ -12,6 +12,6 @@
   --mavenlink-type-button-font-size: 14px;
   --mavenlink-type-body-font-size: 12px;
   --mavenlink-type-text-rendering: optimizeLegibility;
-  --mavenlink-type-line-height: 1.5;;
+  --mavenlink-type-line-height: 1.5;
   --mavenlink-type-header-line-height: 1.2;
 }
