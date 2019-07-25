@@ -10,6 +10,7 @@ export default function Input(props) {
       className={props.className}
       id={props.id}
       onChange={props.onChange}
+      placeholder={props.placeholder}
       type="text"
       value={props.value}
     />

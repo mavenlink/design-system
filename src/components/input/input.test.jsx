@@ -40,6 +40,13 @@ describe('Input', () => {
     });
   });
 
+  describe('placeholder API', () => {
+    it('sets the placeholder attribute', () => {
+      const tree = renderer.create(<Input placeholder="test-placeholder" />).toJSON();
+      expect(tree.props.placeholder).toEqual('test-placeholder');
+    });
+  });
+
   describe('type API', () => {
     it('is set to "text"', () => {
       const tree = renderer.create(<Input type="checkbox" />).toJSON();
