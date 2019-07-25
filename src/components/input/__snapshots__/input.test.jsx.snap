@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input renders 1`] = `
+exports[`Input has defaults 1`] = `
 <input
-  className="klass"
+  className="input"
   id="foo"
-  required={true}
+  type="text"
 />
 `;

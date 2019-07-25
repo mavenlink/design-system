@@ -4,19 +4,14 @@ import styles from './input.css';
 import labelPropType from './label-prop-type';
 
 export default function Input(props) {
-  const {
-    'aria-labelledby': ariaLabelledBy,
-    className,
-    id,
-    ...rest
-  } = props;
-
   return (
     <input
-      {...rest}
-      aria-labelledby={ariaLabelledBy}
-      className={className}
-      id={id}
+      aria-labelledby={props['aria-labelledby']}
+      className={props.className}
+      id={props.id}
+      onChange={props.onChange}
+      type="text"
+      value={props.value}
     />
   );
 }
@@ -30,10 +25,16 @@ Input.propTypes = {
   className: PropTypes.string,
   /** ID used by a corresponding label element. Either this or 'aria-labelledby' must be present. */
   id: labelPropType,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
   'aria-labelledby': undefined,
   className: styles.input,
   id: undefined,
+  onChange: undefined,
+  placeholder: undefined,
+  value: undefined,
 };
