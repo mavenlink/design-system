@@ -17,13 +17,8 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
-  /**
-   * Reference to the ID of a labelling element. Useful for tables where the column header can serve as
-   * the label for the input. Either this or 'id' must be present.
-   */
   'aria-labelledby': labelPropType,
   className: PropTypes.string,
-  /** ID used by a corresponding label element. Either this or 'aria-labelledby' must be present. */
   id: labelPropType,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
