@@ -3,7 +3,14 @@ import React from 'react';
 import styles from './input.css';
 import labelPropType from './label-prop-type';
 
-export default function Input({ 'aria-labelledby': ariaLabelledBy, className, id, ...rest }) {
+export default function Input(props) {
+  const {
+    'aria-labelledby': ariaLabelledBy,
+    className,
+    id,
+    ...rest
+  } = props;
+
   return (
     <input
       {...rest}
