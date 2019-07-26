@@ -63,6 +63,10 @@
 }
 
 /* Grays */
+:global(.swatch-grey-x-dark) {
+  background-color: var(--palette-grey-x-dark);
+}
+
 :global(.swatch-grey-dark) {
   background-color: var(--palette-grey-dark);
 }
@@ -103,14 +107,20 @@
   color: salmon;
 }
 
-:global(.grays.color-container .rgba) {
+:global(.color-container .hex) {
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 85px;
 }
 
 :global(.grays.color-container .hex) {
   position: absolute;
   top: 20px;
+  left: 85px;
+}
+
+:global(.grays.color-container .rgba) {
+  position: absolute;
+  top: 0;
   left: 85px;
 }

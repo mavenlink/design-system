@@ -18,6 +18,10 @@ We provide color definitions which can be imported and used as follows:
   <div class="swatch-grey-dark">
     <span class="text">Dk Gray</span>
   </div>
+  <div class="rgba">`rgba(0, 0, 0, .87)`</div>
+  <div class="hex">`#000000`</div>
+</div>
+<div class="color-container grays">
   <div class="rgba">`rgba(0, 0, 0, .54)`</div>
   <div class="hex">`#757575`</div>
 </div>
