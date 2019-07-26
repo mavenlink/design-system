@@ -56,8 +56,6 @@ module.exports = {
         },
       ],
     },
-
-
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {

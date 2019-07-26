@@ -6,9 +6,9 @@ We provide color definitions which can be imported and used as follows:
   color: var(--palette-primary-base);
 }
 ```
-<h5>Black and Grays</h5>
+<h5 class="swatch-title">Black and Grays</h5>
 <div class="color-container grays">
-  <div class="grey-x-dark">
+  <div class="swatch-grey-x-dark">
     <span class="text">Black</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .87)`</div>
@@ -51,8 +51,8 @@ We provide color definitions which can be imported and used as follows:
 </div>
 <h5>Action Colors</h5>
 <div class="color-container">
-  <div class="swatch-brand">
-    <span class="text">Brand</span>
+  <div class="swatch-brand-dark">
+    <span class="text">Dk Brand</span>
   </div>
   <div class="hex">`#001c33`</div>
 </div>
@@ -85,28 +85,4 @@ We provide color definitions which can be imported and used as follows:
     <span class="text">Highlight</span>
   </div>
   <div class="hex">`#ff8400`</div>
-</div>
-
-<h5>Accessible Text Colors</h5>
-<div class="swatches">
-  <div>
-    <div class="swatch">Blue</div>
-    <div class="swatch-hex">#1973e1</div>
-  </div>
-  <div>
-    <div class="swatch">Green</div>
-    <div class="swatch-hex">#27870c</div>
-  </div>
-  <div>
-    <div class="swatch">Yellow</div>
-    <div class="swatch-hex">#ffdf8d</div>
-  </div>
-  <div>
-    <div class="swatch">Red</div>
-    <div class="swatch-hex">#cb4839</div>
-  </div>
-  <div>
-    <div class="swatch">Orange</div>
-    <div class="swatch-hex">#b55d00</div>
-  </div>
 </div>

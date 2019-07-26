@@ -22,13 +22,11 @@
   display: inline-block;
 }
 
-:global(.swatch-primary) {
-  background-color: var(--palette-primary-base);
+:global(.swatch-title) {
+  font-size: 24px;
 }
 
-:global(.swatch-brand) {
-  background-color: #001c33;
-}
+
 
 :global(.swatch-black),
 :global(.swatch-brand),
@@ -41,6 +39,9 @@
 }
 
 /* Actions */
+:global(.swatch-primary) {
+  background-color: var(--palette-primary-base);
+}
 :global(.swatch-action) {
   background-color: var(--palette-action-base);
 }
@@ -53,14 +54,11 @@
 :global(.swatch-caution) {
   background-color: var(--palette-caution-base);
 }
-:global(.swatch-caution) {
-  background-color: var(--palette-caution-base);
+:global(.swatch-brand-dark) {
+  background-color: var(--palette-brand-dark);
 }
 
 /* Grays */
-:global(.swatch-grey-x-dark) {
-  background-color: var(--palette-grey-x-dark);
-}
 
 :global(.swatch-grey-dark) {
   background-color: var(--palette-grey-dark);
