@@ -1,0 +1,80 @@
+@import "../../../src/styles/colors.css";
+@import "../../../src/styles/typography.css";
+
+:global(.swatches) {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+:global(.color-container) {
+  position: relative;
+  width: 150px;
+  margin-top: -4px;
+}
+
+[class^='swatch-'] {
+  height: 75px;
+  width: 75px;
+  display: inline-block;
+}
+
+:global(.swatch-primary) {
+  background-color: var(--palette-primary-base);
+}
+
+:global(.swatch-brand) {
+  background-color: #001c33;
+}
+
+:global(.swatch-black),
+:global(.swatch-brand),
+:global(.swatch-primary),
+:global(.swatch-action),
+:global(.swatch-caution),
+:global(.swatch-highlight),
+:global(.swatch-warning) {
+  position: relative;
+}
+
+:global(.swatch-black) {
+  background-color: var(--black);
+}
+:global(.swatch-action) {
+  background-color: var(--palette-action-base);
+}
+
+:global(.swatch-warning) {
+  background-color: var(--palette-warning-base);
+}
+
+:global(.swatch-highlight) {
+  background-color: var(--palette-highlight-base);
+}
+
+:global(.swatch-caution) {
+  background-color: var(--palette-caution-base);
+}
+
+
+:global(.rgba),
+:global(.hex),
+:global(.text) {
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+:global(.text) {
+  color: var(--white);
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+:global(.rgba),
+:global(.hex) {
+  color: salmon;
+  float: right;
+}
+

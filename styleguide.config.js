@@ -47,11 +47,17 @@ module.exports = {
       name: 'Soul',
       sections: [
         {
+          name: 'Colors',
+          content: './styleguide/content/soul/colors.md',
+        },
+        {
           name: 'Typography',
           content: './styleguide/content/soul/typography.md',
         },
       ],
     },
+
+
   ],
   skipComponentsWithoutExample: true,
   styleguideComponents: {

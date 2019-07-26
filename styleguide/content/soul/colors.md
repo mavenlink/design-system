@@ -1,0 +1,112 @@
+We provide color definitions which can be imported and used as follows:
+
+```css
+@import '@mavenlink/design-system/src/styles/colors.css';
+.example {
+  color: var(--palette-primary-base);
+}
+```
+<h5>Black and Grays</h5>
+<div class="color-container">
+  <div class="swatch-black">
+    <span class="text">Black</span>
+  </div>
+  <div class="rgba">`rgba(0, 0, 0, .87)`</div>
+  <div class="hex">`#000000`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-dk-gray">
+    <span class="text">Dk Gray</span>
+  </div>
+  <div class="rgba">`rgba(0, 0, 0, .54)`</div>
+  <div class="hex">`#757575`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-dk-gray">
+    <span class="text">Md Gray</span>
+  </div>
+  <div class="rgba">`rgba(0, 0, 0, .38)`</div>
+  <div class="hex">`#9e9e9e`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-dk-gray">
+    <span class="text">Lt Gray</span>
+  </div>
+  <div class="rgba">`rgba(0, 0, 0, .12)`</div>
+  <div class="hex">`#0e0e0e`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-dk-gray">
+    <span class="text">Bg Gray</span>
+  </div>
+  <div class="rgba">`rgba(0, 0, 0, .03)`</div>
+  <div class="hex">`#f7f7f7`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-dk-gray">
+    <span class="text">White</span>
+  </div>
+  <div class="rgba">`rgba(255, 255, 255, 1)`</div>
+  <div class="hex">`#ffffff`</div>
+</div>
+<h5>Action Colors</h5>
+<div class="color-container">
+  <div class="swatch-brand">
+    <span class="text">Brand</span>
+  </div>
+  <div class="hex">`#001c33`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-primary">
+    <span class="text">Primary</span>
+  </div>
+  <div class="hex">`#448fea`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-action">
+    <span class="text">Action</span>
+  </div>
+  <div class="hex">`#33ae10`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-warning">
+    <span class="text">Warning</span>
+  </div>
+  <div class="hex">`#ffdf8d`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-caution">
+    <span class="text">Caution</span>
+  </div>
+  <div class="hex">`#e85342`</div>
+</div>
+<div class="color-container">
+  <div class="swatch-highlight">
+    <span class="text">Highlight</span>
+  </div>
+  <div class="hex">`#ff8400`</div>
+</div>
+
+<h5>Accessible Text Colors</h5>
+<div class="swatches">
+  <div>
+    <div class="swatch">Blue</div>
+    <div class="swatch-hex">#1973e1</div>
+  </div>
+  <div>
+    <div class="swatch">Green</div>
+    <div class="swatch-hex">#27870c</div>
+  </div>
+  <div>
+    <div class="swatch">Yellow</div>
+    <div class="swatch-hex">#ffdf8d</div>
+  </div>
+  <div>
+    <div class="swatch">Red</div>
+    <div class="swatch-hex">#cb4839</div>
+  </div>
+  <div>
+    <div class="swatch">Orange</div>
+    <div class="swatch-hex">#b55d00</div>
+  </div>
+</div>
