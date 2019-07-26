@@ -8,4 +8,5 @@ module.exports = {
     'node_modules',
     'styleguide/cypress/integration',
   ],
+  verbose: true,
 };
