@@ -9,17 +9,17 @@
 
 :global(.color-container) {
   position: relative;
-  width: 150px;
+  width: 165px;
   margin-top: -4px;
 }
 
 :global(.grays.color-container) {
-  width: 250px;
+  width: 265px;
 }
 
 [class^='swatch-'] {
-  height: 75px;
-  width: 75px;
+  height: 85px;
+  width: 85px;
   display: inline-block;
 }
 
@@ -110,17 +110,17 @@
 :global(.color-container .hex) {
   position: absolute;
   top: 0px;
-  left: 85px;
+  left: 100px;
 }
 
 :global(.grays.color-container .hex) {
   position: absolute;
   top: 20px;
-  left: 85px;
+  left: 100px;
 }
 
 :global(.grays.color-container .rgba) {
   position: absolute;
   top: 0;
-  left: 85px;
+  left: 100px;
 }
