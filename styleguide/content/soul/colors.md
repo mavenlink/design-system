@@ -7,43 +7,43 @@ We provide color definitions which can be imported and used as follows:
 }
 ```
 <h5>Black and Grays</h5>
-<div class="color-container">
-  <div class="swatch-black">
+<div class="color-container grays">
+  <div class="grey-x-dark">
     <span class="text">Black</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .87)`</div>
   <div class="hex">`#000000`</div>
 </div>
-<div class="color-container">
-  <div class="swatch-dk-gray">
+<div class="color-container grays">
+  <div class="swatch-grey-dark">
     <span class="text">Dk Gray</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .54)`</div>
   <div class="hex">`#757575`</div>
 </div>
-<div class="color-container">
-  <div class="swatch-dk-gray">
+<div class="color-container grays">
+  <div class="swatch-grey-base">
     <span class="text">Md Gray</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .38)`</div>
   <div class="hex">`#9e9e9e`</div>
 </div>
-<div class="color-container">
-  <div class="swatch-dk-gray">
+<div class="color-container grays">
+  <div class="swatch-grey-light">
     <span class="text">Lt Gray</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .12)`</div>
   <div class="hex">`#0e0e0e`</div>
 </div>
-<div class="color-container">
-  <div class="swatch-dk-gray">
+<div class="color-container grays">
+  <div class="swatch-grey-x-light">
     <span class="text">Bg Gray</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .03)`</div>
   <div class="hex">`#f7f7f7`</div>
 </div>
-<div class="color-container">
-  <div class="swatch-dk-gray">
+<div class="color-container grays">
+  <div class="swatch-white">
     <span class="text">White</span>
   </div>
   <div class="rgba">`rgba(255, 255, 255, 1)`</div>
