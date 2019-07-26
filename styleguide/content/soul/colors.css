@@ -12,6 +12,7 @@
   width: 150px;
   margin-top: -4px;
 }
+
 :global(.grays.color-container) {
   width: 250px;
 }
@@ -25,8 +26,6 @@
 :global(.swatch-title) {
   font-size: 24px;
 }
-
-
 
 :global(.swatch-black),
 :global(.swatch-brand),
@@ -42,38 +41,46 @@
 :global(.swatch-primary) {
   background-color: var(--palette-primary-base);
 }
+
 :global(.swatch-action) {
   background-color: var(--palette-action-base);
 }
+
 :global(.swatch-warning) {
   background-color: var(--palette-warning-base);
 }
+
 :global(.swatch-highlight) {
   background-color: var(--palette-highlight-base);
 }
+
 :global(.swatch-caution) {
   background-color: var(--palette-caution-base);
 }
+
 :global(.swatch-brand-dark) {
   background-color: var(--palette-brand-dark);
 }
 
 /* Grays */
-
 :global(.swatch-grey-dark) {
   background-color: var(--palette-grey-dark);
 }
+
 :global(.swatch-grey-base) {
   background-color: var(--palette-grey-base);
 }
+
 :global(.swatch-grey-light) {
   background-color: var(--palette-grey-light);
 }
+
 :global(.swatch-grey-x-light) {
   background-color: var(--palette-grey-x-light);
 }
+
 :global(.swatch-white) {
-  background-color: var(--palette-white);
+  background-color: var(--white);
 }
 
 :global(.rgba),
@@ -94,15 +101,14 @@
 :global(.rgba),
 :global(.hex) {
   color: salmon;
-  /*float: right;*/
 }
-
 
 :global(.grays.color-container .rgba) {
   position: absolute;
   top: 0;
   left: 85px;
 }
+
 :global(.grays.color-container .hex) {
   position: absolute;
   top: 20px;
