@@ -13,6 +13,7 @@ module.exports = {
     files: [
       '.eslintrc.js',
       '.stylintrc.js',
+      'jest.config.js',
     ],
     rules: {
       'import/no-commonjs': 'off',
