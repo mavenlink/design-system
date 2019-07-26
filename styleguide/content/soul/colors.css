@@ -109,7 +109,7 @@
 
 :global(.color-container .hex) {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 100px;
 }
 
