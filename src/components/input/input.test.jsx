@@ -12,14 +12,14 @@ describe('Input', () => {
 
   describe('aria-labelledby API', () => {
     it('sets the aria-labelledby', () => {
-      const tree = renderer.create(<Input aria-labelledby="test-label" />).toJSON();
+      const tree = renderer.create(<Input id="bar" aria-labelledby="test-label" />).toJSON();
       expect(tree.props['aria-labelledby']).toEqual('test-label');
     });
   });
 
   describe('className API', () => {
     it('sets the className', () => {
-      const tree = renderer.create(<Input className="test-class" />).toJSON();
+      const tree = renderer.create(<Input id="bar" className="test-class" />).toJSON();
       expect(tree.props.className).toEqual('test-class');
     });
   });
@@ -34,7 +34,7 @@ describe('Input', () => {
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
-      const tree = renderer.create(<Input onChange={onChangeSpy} />).toJSON();
+      const tree = renderer.create(<Input id="bar" onChange={onChangeSpy} />).toJSON();
       tree.props.onChange();
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
@@ -42,21 +42,21 @@ describe('Input', () => {
 
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
-      const tree = renderer.create(<Input placeholder="test-placeholder" />).toJSON();
+      const tree = renderer.create(<Input id="bar" placeholder="test-placeholder" />).toJSON();
       expect(tree.props.placeholder).toEqual('test-placeholder');
     });
   });
 
   describe('type API', () => {
     it('is set to "text"', () => {
-      const tree = renderer.create(<Input type="checkbox" />).toJSON();
+      const tree = renderer.create(<Input id="bar" type="checkbox" />).toJSON();
       expect(tree.props.type).toEqual('text');
     });
   });
 
   describe('value API', () => {
     it('sets the value', () => {
-      const tree = renderer.create(<Input value="test-value" />).toJSON();
+      const tree = renderer.create(<Input id="bar" value="test-value" />).toJSON();
       expect(tree.props.value).toEqual('test-value');
     });
   });
