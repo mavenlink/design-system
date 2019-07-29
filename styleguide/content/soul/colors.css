@@ -1,10 +1,7 @@
 @import "../../../src/styles/colors.css";
-@import "../../../src/styles/typography.css";
 
 :global(.swatches) {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 :global(.color-container) {
@@ -13,8 +10,8 @@
   margin-top: -4px;
 }
 
-:global(.grays.color-container) {
-  width: 265px;
+:global(.greys.color-container) {
+  width: 300px;
 }
 
 [class^='swatch-'] {
@@ -62,7 +59,7 @@
   background-color: var(--palette-brand-dark);
 }
 
-/* Grays */
+/* greys */
 :global(.swatch-grey-x-dark) {
   background-color: var(--palette-grey-x-dark);
 }
@@ -113,13 +110,13 @@
   left: 100px;
 }
 
-:global(.grays.color-container .hex) {
+:global(.greys.color-container .hex) {
   position: absolute;
   top: 20px;
   left: 100px;
 }
 
-:global(.grays.color-container .rgba) {
+:global(.greys.color-container .rgba) {
   position: absolute;
   top: 0;
   left: 100px;
