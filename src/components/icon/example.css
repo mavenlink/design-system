@@ -1,0 +1,7 @@
+/* This file is just meant for the MDS Icon's layout within the design system */
+@import '../../styles/spacing.css';
+
+.icon-example {
+  display: inline-block;
+  margin-right: var(--spacing-medium);
+}

@@ -2,6 +2,7 @@
 
 const path = require('path');
 const postCssPresetEnv = require('postcss-preset-env');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
   module: {
@@ -22,7 +23,45 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: 'file-loader',
+        include: [
+          /src\/svgs\//,
+        ],
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                { removeTitle: true },
+                { removeNonInheritableGroupAttrs: true },
+                { removeUselessStrokeAndFill: false },
+                { collapseGroups: true },
+                { convertColors: { shorthex: false } },
+                { convertPathData: false },
+                {
+                  removeAttrs: {
+                    attrs: '(fill|stroke)',
+                    preserveCurrentColor: true,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        include: [
+          // Let file-loader pull the following in
+          /styleguide\/components\/hero\//,
+          /styleguide\/assets\/svgs\//,
+        ],
+        use: [
+          'file-loader',
+        ],
       },
       {
         test: /\.css$/,
@@ -61,4 +100,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new SpriteLoaderPlugin(),
+  ],
 };
