@@ -121,3 +121,9 @@
   top: 0;
   left: 100px;
 }
+:global(.swatch-grey-light .text),
+:global(.swatch-grey-x-light .text),
+:global(.swatch-white .text) {
+  color: var(--palette-grey-x-dark);
+}
+
