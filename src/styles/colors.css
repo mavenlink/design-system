@@ -39,6 +39,9 @@
   /* Warning interactions */
   --palette-warning-hover: #ffd874;
 
+  /* Brand */
+  --palette-brand-dark: #001c33;
+
   /* Neutral */
   --palette-neutral-xx-dark: #282624;
   --palette-neutral-x-dark: #333;
