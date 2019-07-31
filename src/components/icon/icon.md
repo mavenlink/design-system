@@ -1,6 +1,6 @@
 ```jsx
 const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="large" currentColor="caution" />
+<Icon name={icon.id} size="large" currentColor="caution" title="alert icon" />
 ```
 Sizes
 
