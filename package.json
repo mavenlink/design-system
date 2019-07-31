@@ -15,7 +15,7 @@
     "lint:es": "eslint '**/*.js?(x)' --no-ignore .eslintrc.js",
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
-    "test": "jest",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
