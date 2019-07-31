@@ -23,9 +23,9 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
     module: {
       rules: [{
         test: /\.jsx?$/,
-        use: {
+        use: [{
           loader: 'babel-loader',
-        },
+        }],
       }, {
         test: /\.css$/,
         use: [{
