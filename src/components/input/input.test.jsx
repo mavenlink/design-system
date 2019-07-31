@@ -15,16 +15,18 @@ describe('Input', () => {
   });
 
   describe('className API', () => {
-    it('sets the <input> className', () => {
+    it('always sets <input> className', () => {
       const tree = renderer.create((
         <Input
           id="foo"
-          label="I am a label for accessibility"
           className="test-class"
+          label="I am a label for accessibility"
+          invalid
         />
       )).root;
       expect(tree.findByType('input').props.className).toEqual('test-class');
     });
+
   });
 
   describe('id API', () => {
@@ -36,6 +38,30 @@ describe('Input', () => {
         />
       )).root;
       expect(tree.findByType('input').props.id).toEqual('test-id');
+    });
+  });
+
+  describe('invalid API', () => {
+    it('sets an invalid class', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          invalid
+        />
+      )).root;
+      expect(tree.findByType('input').props.className).toEqual('invalid');
+    });
+
+    it('inserts an invalid icon', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          invalid
+        />
+      )).root;
+      expect(tree.findByType('svg').props.className.split(' ')).toContain('invalid-icon');
     });
   });
 
