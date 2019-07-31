@@ -17,7 +17,6 @@
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
     "test": "jest",
-    "test:update": "jest --updateSnapshot"
   },
   "repository": {
     "type": "git",
