@@ -14,14 +14,19 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   yarn add @mavenlink/design-system
   ```
 
+- Setup [React JSX processing](https://reactjs.org/docs/jsx-in-depth.html). One way of doing that is with [`babel-loader` for Webpack](https://webpack.js.org/loaders/babel-loader/).
 - Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [css-loader for Webpack](https://github.com/webpack-contrib/css-loader#modules)
 
   ```js
   // Webpack configuration
   module.exports = {
     module: {
-      rules: [
-        {
+      rules: [{
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+        },
+      }, {
           test: /\.css$/,
           loader: 'css-loader',
           options: {
