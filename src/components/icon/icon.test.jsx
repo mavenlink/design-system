@@ -10,6 +10,13 @@ describe('Icon', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('has title', () => {
+    const tree = renderer.create((
+      <Icon name={'foobar'} title='yo' />
+    )).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   describe('size API', () => {
     it('renders small, medium, and large sizes', () => {
       const sizes = ['small', 'medium', 'large'];
@@ -79,23 +86,6 @@ describe('Icon', () => {
           expect(tree.props.className).toContain(`stroke-${color}`);
         });
       });
-    });
-  });
-
-  describe('title API', () => {
-    it('defaults to no title', () => {
-      const tree = renderer.create((
-        <Icon name={'foobar'} />
-      )).toJSON();
-      expect(tree.props.title).toEqual(undefined);
-    });
-
-    it('sets title', () => {
-      const expected = 'yoyoyo';
-      const tree = renderer.create((
-        <Icon name={'foobar'} title={expected} />
-      )).toJSON();
-      expect(tree.props.title).toEqual(expected);
     });
   });
 });
