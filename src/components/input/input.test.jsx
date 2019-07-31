@@ -26,7 +26,6 @@ describe('Input', () => {
       )).root;
       expect(tree.findByType('input').props.className).toEqual('test-class');
     });
-
   });
 
   describe('id API', () => {

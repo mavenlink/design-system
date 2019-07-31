@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
-import Icon from '../icon/icon.jsx';
+import Icon from '../icon/icon';
 import styles from './input.css';
 
 function getClassName(className, invalid) {
@@ -12,7 +12,7 @@ function getClassName(className, invalid) {
 export default function Input(props) {
   return (
     <div className={styles.container}>
-      <label for={props.id}>
+      <label htmlFor={props.id}>
         {props.label}
         {props.required && <span>(Required)</span>}
       </label>
