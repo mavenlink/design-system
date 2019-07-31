@@ -55,7 +55,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 - Use in your project
 
   ```jsx
-  import { Input } from '@mavenlink/design-system';
+  import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
   function App() {
     return <Input id="hello!" />;
