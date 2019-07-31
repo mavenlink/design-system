@@ -16,9 +16,12 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 - Setup [React JSX processing](https://reactjs.org/docs/jsx-in-depth.html). One way of doing that is with [`babel-loader` for Webpack](https://webpack.js.org/loaders/babel-loader/).
 - Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader).
+- Setup [SVG processing](https://svgontheweb.com/#spriting). One way of doing that is with [`svg-sprite-loader` for Webpack](https://github.com/kisenka/svg-sprite-loader).
 
   ```js
   // Webpack configuration
+  const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+
   module.exports = {
     module: {
       rules: [{
@@ -36,8 +39,16 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
             modules: true
           },
         }],
+      }, {
+        test: /\.svg$/,
+        use: [{
+          loader: 'svg-sprite-loader',
+        }],
       }],
     },
+    plugins: [
+      new SpriteLoaderPlugin(),
+    ],
   };
   ```
 
