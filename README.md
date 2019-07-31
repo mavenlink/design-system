@@ -15,7 +15,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   ```
 
 - Setup [React JSX processing](https://reactjs.org/docs/jsx-in-depth.html). One way of doing that is with [`babel-loader` for Webpack](https://webpack.js.org/loaders/babel-loader/).
-- Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader)
+- Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader).
 
   ```js
   // Webpack configuration
