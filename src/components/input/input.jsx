@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
-import Icon from '../icon/icon';
+import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
 function getClassName(className, invalid) {

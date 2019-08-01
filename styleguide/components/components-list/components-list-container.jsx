@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ComponentsList from './components-list';
+import ComponentsList from './components-list.jsx';
 
 function sortByName(a, b) {
   if (a.name > b.name) return 1;

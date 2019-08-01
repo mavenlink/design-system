@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import CSSTransition from 'react-transition-group/CSSTransition'; // eslint-disable-line import/extensions
 import astroStyles from './astronauts.css';
-import Stars from './stars';
+import Stars from './stars.jsx';
 
 function getTransition(klass, appearKlass, appearActiveKlass) {
   const baseClassName = klass;

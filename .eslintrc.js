@@ -1,6 +1,11 @@
 module.exports = {
   extends: 'mavenlint-react',
   parser: 'babel-eslint',
+  rules: {
+    'import/extensions': ['error', 'always', {
+      ignorePackages: true,
+    }],
+  },
   overrides: [{
     files: [
       '**/*.test.js',

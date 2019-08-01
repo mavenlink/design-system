@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Link from './link';
-import pageView from '../../content/utils/page-view';
+import Link from './link.jsx';
+import pageView from '../../content/utils/page-view.js';
 
 export default class LinkContainer extends React.Component {
   onClick = () => {

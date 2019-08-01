@@ -1,3 +1,3 @@
-import Styleguide from './styleguide-container';
+import Styleguide from './styleguide-container.jsx';
 
 export default Styleguide;

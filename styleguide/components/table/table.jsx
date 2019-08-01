@@ -7,7 +7,7 @@ import {
   TableRow,
   TableHeaderCell,
   TableCell,
-} from '../../../src/components/table';
+} from '../../../src/components/table/index.js';
 import styles from './table.css';
 
 export default function Table({ columns, rows, getRowKey }) {
