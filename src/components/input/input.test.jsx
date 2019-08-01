@@ -64,6 +64,19 @@ describe('Input', () => {
     });
   });
 
+  describe('name API', () => {
+    it('sets the name attribute', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          name="test-name"
+        />
+      )).root;
+      expect(tree.findByType('input').props.name).toEqual('test-name');
+    });
+  });
+
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();

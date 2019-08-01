@@ -19,6 +19,7 @@ export default function Input(props) {
       <input
         className={getClassName(props.className, props.invalid)}
         id={props.id}
+        name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder}
         required={props.required}
@@ -35,6 +36,7 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
@@ -44,6 +46,7 @@ Input.propTypes = {
 Input.defaultProps = {
   className: undefined,
   invalid: false,
+  name: undefined,
   onChange: undefined,
   placeholder: undefined,
   required: undefined,
