@@ -72,6 +72,17 @@ describe('Button', () => {
     });
   });
 
+  describe('name API', () => {
+    it('sets the name attribute', () => {
+      const tree = renderer.create((
+        <Button name="test-name">
+          Hello world!
+        </Button>
+      )).toJSON();
+      expect(tree.props.name).toEqual('test-name');
+    });
+  });
+
   describe('onClick API', () => {
     it('sets the onclick handler', () => {
       const onClickSpy = jest.fn();
@@ -111,6 +122,17 @@ describe('Button', () => {
         </Button>
       )).toJSON();
       expect(tree.props.type).toEqual('submit');
+    });
+  });
+
+  describe('value API', () => {
+    it('sets the value attribute', () => {
+      const tree = renderer.create((
+        <Button value="test-value">
+          Hello world!
+        </Button>
+      )).toJSON();
+      expect(tree.props.value).toEqual('test-value');
     });
   });
 });
