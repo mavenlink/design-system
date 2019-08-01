@@ -49,7 +49,7 @@ describe('Input', () => {
           invalid
         />
       )).root;
-      expect(tree.findByType('input').props.className).toEqual('invalid');
+      expect(tree.findByType('input').props.className).toEqual('invalid-input');
     });
 
     it('inserts an invalid icon', () => {
