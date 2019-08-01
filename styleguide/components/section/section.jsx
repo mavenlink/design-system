@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './section.css';
-import Hero from '../hero/hero';
+import Hero from '../hero/hero.jsx';
 
 function isHero(slug) {
   const heroes = ['overview', 'components', 'soul', 'guidelines'];

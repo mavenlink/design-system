@@ -1,3 +1,3 @@
-import TabButton from './tab-button';
+import TabButton from './tab-button.jsx';
 
 export default TabButton;

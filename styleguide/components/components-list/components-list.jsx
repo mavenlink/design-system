@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Link from '../link';
+import Link from '../link/index.js';
 import styles from './components-list.css';
 
 export default function ComponentsList({ current, items }) {

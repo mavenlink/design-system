@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Button from './button';
+import Button from './button.jsx';
 
 describe('Button', () => {
   it('has defaults', () => {

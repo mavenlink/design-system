@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Animations from '../hero/animations';
+import Animations from './animations.jsx';
 import styles from './hero.css';
 
 export default class Hero extends React.Component {

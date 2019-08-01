@@ -1,4 +1,4 @@
-import buildLocalLink from './build-local-link';
+import buildLocalLink from './build-local-link.js';
 
 test('empty pathnames', () => {
   expect(buildLocalLink('', '')).toEqual('/');

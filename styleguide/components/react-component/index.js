@@ -1,3 +1,3 @@
-import ReactComponent from './react-component';
+import ReactComponent from './react-component.jsx';
 
 export default ReactComponent;

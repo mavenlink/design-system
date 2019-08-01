@@ -12,6 +12,6 @@
 // /__________\/__________\
 // \__________/\__________/
 
-import Link from './link-container';
+import Link from './link-container.jsx';
 
 export default Link;
