@@ -12,7 +12,7 @@ function getClassName(className, invalid) {
 export default function Input(props) {
   return (
     <div className={styles.container}>
-      <label htmlFor={props.id} className={styles['label']}>
+      <label htmlFor={props.id} className={styles.label}>
         {props.label}
         {props.required && <span>(Required)</span>}
       </label>
