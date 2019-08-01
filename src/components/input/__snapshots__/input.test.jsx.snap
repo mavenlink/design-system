@@ -5,6 +5,7 @@ exports[`Input has defaults 1`] = `
   className="container"
 >
   <label
+    className="label"
     htmlFor="foo"
   >
     I am a label for accessibility
