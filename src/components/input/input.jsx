@@ -6,13 +6,13 @@ import styles from './input.css';
 
 function getClassName(className, invalid) {
   if (className) return className;
-  return invalid ? styles.invalid : styles.input;
+  return invalid ? styles['invalid-input'] : styles.input;
 }
 
 export default function Input(props) {
   return (
     <div className={styles.container}>
-      <label htmlFor={props.id}>
+      <label htmlFor={props.id} className={styles['label']}>
         {props.label}
         {props.required && <span>(Required)</span>}
       </label>

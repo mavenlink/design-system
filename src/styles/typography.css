@@ -8,8 +8,9 @@
   --mavenlink-type-font-weight: 400;
   --mavenlink-type-font-color: var(--palette-neutral-x-dark);
   --mavenlink-type-font-style: normal;
-  --mavenlink-type-base-size: 16px;
-  --mavenlink-type-button-font-size: 14px;
+  --mavenlink-type-base-size: 14px;
+  --mavenlink-type-small-size: 12px;
+  --mavenlink-type-button-font-size: var(--mavenlink-type-base-size);
   --mavenlink-type-body-font-size: 12px;
   --mavenlink-type-text-rendering: optimizeLegibility;
   --mavenlink-type-line-height: 1.5;

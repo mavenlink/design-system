@@ -7,26 +7,31 @@
   position: relative;
 }
 
+.label {
+  display: block;
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-small-size);
+  margin: 0 0 var(--spacing-small);
+  color: var(--palette-grey-dark);
+}
+
 .input {
-  border: 1px solid var(--palette-neutral-mid-light);
+  border: 1px solid var(--palette-grey-light);
   border-radius: 3px;
   box-sizing: border-box;
   font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-base-size);
   height: 32px;
   margin: 0;
-  padding-left: var(--spacing-medium);
-  padding-right: var(--spacing-medium);
+  padding: 6px var(--spacing-medium) 7px;
 }
 
 .input:hover {
-  border-color: var(--palette-neutral-base);
+  
 }
 
 .input::placeholder {
-  font-family: var(--mavenlink-type-font-family);
-  font-size: 13px;
-  font-style: italic;
-  color: var(--palette-neutral-mid-dark);
+  color: var(--palette-grey-dark);
 }
 
 .invalid-icon {
@@ -34,14 +39,16 @@
   height: 100%;
   pointer-events: none;
   position: absolute;
-  right: 0;
+  right: 0px;
+  top: 0px;
 }
 
-.invalid {
+.invalid-input {
   composes: input;
   border-color: var(--palette-caution-base);
+/*  background: url('../../svgs/icon-caution-fill.svg') no-repeat top 6px right 6px; */
 }
 
-.invalid:hover {
+.invalid-input:hover {
   border-color: var(--palette-caution-hover);
 }
