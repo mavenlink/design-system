@@ -106,17 +106,6 @@ describe('Input', () => {
   });
 
   describe('required API', () => {
-    it('adds pertinent information to the label', () => {
-      const tree = renderer.create((
-        <Input
-          id="foo"
-          label="I am a label for accessibility"
-          required
-        />
-      )).root;
-      expect(tree.findByType('label').findByType('span').props.children).toEqual('(Required)');
-    });
-
     it('sets the required attribute', () => {
       const tree = renderer.create((
         <Input

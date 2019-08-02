@@ -14,7 +14,6 @@ export default function Input(props) {
     <div className={styles.container}>
       <label htmlFor={props.id} className={styles.label}>
         {props.label}
-        {props.required && <span>(Required)</span>}
       </label>
       <input
         className={getClassName(props.className, props.invalid)}
