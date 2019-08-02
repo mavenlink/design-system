@@ -50,7 +50,6 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        exclude: /node_modules/,
         include: [
           // Let file-loader pull the following in
           /styleguide\/components\/hero\//,
