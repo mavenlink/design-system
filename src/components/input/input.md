@@ -3,9 +3,9 @@
 ```
 
 ```jsx
-<Input id="greeting" label="Greeting" required />
+<Input id="greeting" label="Greeting" invalid />
 ```
 
 ```jsx
-<Input id="greeting" label="Greeting" invalid />
+<Input id="greeting" label="Greeting" disabled />
 ```
