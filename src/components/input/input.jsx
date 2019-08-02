@@ -5,7 +5,7 @@ import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
 function getLabelClassName(className, invalid) {
-  if(className) return className;
+  if (className) return className;
   return invalid ? styles['invalid-label'] : styles.label;
 }
 
@@ -40,6 +40,8 @@ export default function Input(props) {
 
 Input.propTypes = {
   className: PropTypes.string,
+  cssLabel: PropTypes.string,
+  disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
@@ -52,6 +54,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   className: undefined,
+  cssLabel: undefined,
   disabled: undefined,
   invalid: false,
   name: undefined,
