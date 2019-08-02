@@ -1,19 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input has defaults 1`] = `
-<div
-  className="container"
->
+Array [
   <label
     className="label"
     htmlFor="foo"
   >
     I am a label for accessibility
-  </label>
-  <input
-    className="input"
-    id="foo"
-    type="text"
-  />
-</div>
+  </label>,
+  <div
+    className="container"
+  >
+    <input
+      className="input"
+      id="foo"
+      type="text"
+    />
+  </div>,
+]
 `;

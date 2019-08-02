@@ -16,7 +16,7 @@ function getClassName(className, invalid) {
 
 export default function Input(props) {
   return (
-    <div>
+    <React.Fragment>
       <label htmlFor={props.id} className={getLabelClassName(props.cssLabel, props.invalid)}>
         {props.label}
       </label>
@@ -34,7 +34,7 @@ export default function Input(props) {
         />
         {props.invalid && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
