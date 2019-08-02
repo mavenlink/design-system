@@ -30,6 +30,10 @@
   color: var(--palette-grey-dark);
 }
 
+.input:disabled {
+  background-color: var(--palette-grey-x-light);
+}
+
 .invalid-icon {
   box-sizing: border-box;
   pointer-events: none;

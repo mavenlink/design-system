@@ -23,6 +23,7 @@ export default function Input(props) {
       <div className={styles.container}>
         <input
           className={getClassName(props.className, props.invalid)}
+          disabled={props.disabled}
           id={props.id}
           name={props.name}
           onChange={props.onChange}
@@ -51,6 +52,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   className: undefined,
+  disabled: undefined,
   invalid: false,
   name: undefined,
   onChange: undefined,

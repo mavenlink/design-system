@@ -28,6 +28,19 @@ describe('Input', () => {
     });
   });
 
+  describe('disabled API', () => {
+    it('sets the disabled attribute', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          disabled
+          label="I am a label for accessibility"
+        />
+      )).root;
+      expect(tree.findByType('input').props.disabled).toEqual(true);
+    });
+  });
+
   describe('id API', () => {
     it('sets the ID', () => {
       const tree = renderer.create((
