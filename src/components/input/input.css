@@ -23,7 +23,7 @@
   font-size: var(--mavenlink-type-base-size);
   height: 32px;
   margin: 0;
-  padding: 6px var(--spacing-medium) 7px;
+  padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
 }
 
 .input::placeholder {
@@ -32,11 +32,10 @@
 
 .invalid-icon {
   box-sizing: border-box;
-  height: 100%;
   pointer-events: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 6px;
+  top: 6px;
 }
 
 .invalid-input {

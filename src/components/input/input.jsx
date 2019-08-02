@@ -11,21 +11,23 @@ function getClassName(className, invalid) {
 
 export default function Input(props) {
   return (
-    <div className={styles.container}>
+    <div>
       <label htmlFor={props.id} className={styles.label}>
         {props.label}
       </label>
-      <input
-        className={getClassName(props.className, props.invalid)}
-        id={props.id}
-        name={props.name}
-        onChange={props.onChange}
-        placeholder={props.placeholder}
-        required={props.required}
-        type="text"
-        value={props.value}
-      />
-      {props.invalid && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
+      <div className={styles.container}>
+        <input
+          className={getClassName(props.className, props.invalid)}
+          id={props.id}
+          name={props.name}
+          onChange={props.onChange}
+          placeholder={props.placeholder}
+          required={props.required}
+          type="text"
+          value={props.value}
+        />
+        {props.invalid && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
+      </div>
     </div>
   );
 }
