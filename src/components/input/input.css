@@ -38,6 +38,11 @@
   top: 6px;
 }
 
+.invalid-label {
+  composes: label;
+  color: var(--palette-caution-text);
+}
+
 .invalid-input {
   composes: input;
   border-color: var(--palette-caution-base);

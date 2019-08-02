@@ -4,6 +4,11 @@ import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
+function getLabelClassName(className, invalid) {
+  if(className) return className;
+  return invalid ? styles['invalid-label'] : styles.label;
+}
+
 function getClassName(className, invalid) {
   if (className) return className;
   return invalid ? styles['invalid-input'] : styles.input;
@@ -12,7 +17,7 @@ function getClassName(className, invalid) {
 export default function Input(props) {
   return (
     <div>
-      <label htmlFor={props.id} className={styles.label}>
+      <label htmlFor={props.id} className={getLabelClassName(props.cssLabel, props.invalid)}>
         {props.label}
       </label>
       <div className={styles.container}>
