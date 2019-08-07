@@ -1,0 +1,169 @@
+@import "../../../src/styles/colors.css";
+@import "../../../src/styles/typography.css";
+
+:global(.type-top) {
+  margin-top: 60px;
+}
+
+:global(.type-title) {
+  border-bottom: 1px solid var(--palette-neutral-light);
+}
+
+:global(.type-section-title) {
+  color: #716f67;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+:global(.type-left),
+:global(.type-right) {
+  flex: 1;
+}
+
+:global(.type-left) {
+  margin-right: 40px;
+}
+
+:global(.type-serif h3),
+:global(.type-sans h3) {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+:global(.type-serif) {
+  font-family: var(--mavenlink-type-font-accent);
+}
+
+:global(.type-serif h1),
+:global(.type-serif h2),
+:global(.type-serif h3) {
+  font-family: var(--mavenlink-type-font-accent);
+}
+
+:global(.type-abc) {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+:global(.type-abc .type-serif),
+:global(.type-abc .type-sans > div) {
+  margin-bottom: 0;
+}
+
+:global(.type-abc .type-serif h1) {
+  font-weight: normal;
+  font-size: 80px;
+  margin-bottom: 0;
+}
+
+:global(.type-abc .type-sans h1) {
+  font-size: 90px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+:global(.type-punctuation),
+:global(.type-characters) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+:global(.type-punctuation .type-serif span),
+:global(.type-characters .type-serif span) {
+  font-size: 17px;
+  font-weight: normal;
+}
+
+:global(.type-punctuation .type-sans span),
+:global(.type-characters .type-sans span) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+:global(.type-punctuation) {
+  margin-bottom: 50px;
+}
+
+:global(.type-merriweather h1),
+:global(.type-merriweather h2),
+:global(.type-merriweather h3),
+:global(.type-merriweather h4),
+:global(.type-merriweather h5),
+:global(.type-merriweather h6) {
+  font-family: var(--mavenlink-type-font-accent);
+}
+
+:global(.type-columns) {
+  margin-bottom: 0;
+  height: 75px;
+  align-items: center;
+  border-bottom: 1px solid var(--palette-neutral-light);
+}
+
+:global(.type-columns *) {
+  display: flex;
+}
+
+:global(.type-headings > div),
+:global(.type-headings > span),
+:global(.type-columns > div),
+:global(.type-columns > span) {
+  margin-bottom: 0;
+}
+
+:global(.type-headings > div:nth-of-type(1)),
+:global(.type-headings > span:nth-of-type(1)),
+:global(.type-columns > div:nth-of-type(1)),
+:global(.type-columns > span:nth-of-type(1)) {
+  flex-basis: 15%;
+  flex-grow: 1;
+}
+
+:global(.type-headings > div:nth-of-type(2)),
+:global(.type-headings > span:nth-of-type(2)),
+:global(.type-columns > div:nth-of-type(2)),
+:global(.type-columns > span:nth-of-type(2)) {
+  flex-basis: 15%;
+  flex-grow: 1;
+}
+
+:global(.type-headings > div:nth-of-type(3)),
+:global(.type-headings > span:nth-of-type(3)),
+:global(.type-columns > div:nth-of-type(3)),
+:global(.type-columns > span:nth-of-type(3)) {
+  flex-basis: 45%;
+  flex-grow: 1;
+}
+
+:global(.type-headings > div:nth-of-type(4)),
+:global(.type-headings > span:nth-of-type(4)),
+:global(.type-columns > div:nth-of-type(4)),
+:global(.type-columns > span:nth-of-type(4)) {
+  flex-basis: 25%;
+  flex-grow: 1;
+  color: #716f67;
+  font-size: 14px;
+}
+
+:global(.type-headings span:nth-of-type(4)) {
+  font-size: 11px;
+}
+
+:global(.type-headings) {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--palette-neutral-mid-dark);
+}
+
+:global(.type-headings span) {
+  color: #716f67;
+  text-transform: uppercase;
+  font-family: var(--mavenlink-type-font-family);
+  font-size: 11px;
+}
+
+:global(.type-text-level p) {
+  font-size: 12px;
+  width: 100%;
+}
