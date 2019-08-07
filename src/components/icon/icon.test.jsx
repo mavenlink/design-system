@@ -5,14 +5,14 @@ import Icon from './icon';
 describe('Icon', () => {
   it('has defaults', () => {
     const tree = renderer.create((
-      <Icon name={'foobar'} />
+      <Icon name="foobar" />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('has title', () => {
     const tree = renderer.create((
-      <Icon name={'foobar'} title='yo' />
+      <Icon name="foobar" title="yo" />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ describe('Icon', () => {
       const sizes = ['small', 'medium', 'large'];
       sizes.forEach((size) => {
         const tree = renderer.create((
-          <Icon name={'foobar'} size={size} />
+          <Icon name="foobar" size={size} />
         )).toJSON();
         expect(tree.props.className).toContain(`size-${size}`);
       });
@@ -35,7 +35,7 @@ describe('Icon', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
         colors.forEach((color) => {
           const tree = renderer.create((
-            <Icon name={'foobar'} fill={color} />
+            <Icon name="foobar" fill={color} />
           )).toJSON();
           expect(tree.props.className).toContain('icon-base');
           expect(tree.props.className).toContain(`fill-${color}`);
@@ -50,7 +50,7 @@ describe('Icon', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
         colors.forEach((color) => {
           const tree = renderer.create((
-            <Icon name={'foobar'} stroke={color} />
+            <Icon name="foobar" stroke={color} />
           )).toJSON();
           expect(tree.props.className).toContain('icon-base');
           expect(tree.props.className).toContain(`stroke-${color}`);
@@ -65,7 +65,7 @@ describe('Icon', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
         colors.forEach((color) => {
           const tree = renderer.create((
-            <Icon name={'foobar'} currentColor={color} />
+            <Icon name="foobar" currentColor={color} />
           )).toJSON();
           expect(tree.props.className).toContain('icon-base');
           expect(tree.props.className).toContain(`color-${color}`);
@@ -78,7 +78,7 @@ describe('Icon', () => {
         const colors = ['primary', 'action', 'highlight', 'caution'];
         colors.forEach((color) => {
           const tree = renderer.create((
-            <Icon name={'foobar'} fill={color} stroke={color} currentColor={color} />
+            <Icon name="foobar" fill={color} stroke={color} currentColor={color} />
           )).toJSON();
           expect(tree.props.className).toContain('icon-base');
           expect(tree.props.className).toContain(`fill-${color}`);
