@@ -37,3 +37,15 @@ const icon = require('../../svgs/icon-caution-fill.svg').default;
   </span>
 </div>
 ```
+
+Current Color Example
+
+Can be one of 'primary', 'action', 'highlight', or 'caution';
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+
+<div>
+  <Icon name={icon.id} size="large" currentColor="primary" />
+</div>
+```
