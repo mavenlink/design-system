@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title, focusable }) {
+export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
   const strokeOnly = stroke && !currentColor && !fill;
   const fillValue = strokeOnly ? 'none' : fill;
   const color = strokeOnly ? 'transparent' : currentColor;
@@ -15,9 +15,9 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
     color && styles[`color-${color}`],
     className,
   ].filter(Boolean);
-
   return (
-    <svg className={classes.join(' ')} focusable={focusable} title={title}>
+    <svg className={classes.join(' ')}>
+      { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
   );
@@ -32,7 +32,6 @@ Icon.propTypes = {
     'caution',
     'none',
   ]),
-  focusable: PropTypes.bool,
   currentColor: PropTypes.oneOf([
     'primary',
     'action',
@@ -57,7 +56,6 @@ Icon.propTypes = {
 Icon.defaultProps = {
   className: undefined,
   fill: undefined,
-  focusable: false,
   currentColor: undefined,
   size: undefined,
   stroke: undefined,
