@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef } from 'react';
 import styles from './file-picker.css';
-import labelPropType from '../input/label-prop-type';
 
 // TODOs
 //
