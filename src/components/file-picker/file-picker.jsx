@@ -24,10 +24,13 @@ const FilePicker = (props) => {
   const inputFile = useRef(null)
 
   const onLabelClick = (e) => {
-    inputFile.current.click();
+    // Label clicked (file input clicked is already handled natively)
+    if (e.target === e.currentTarget) {
+      inputFile.current.click();
+    }
   };
 
-  const onFileInput = (e) => {
+  const onFilesChanged = (e) => {
     const currentFiles = [];
     Array.from(e.currentTarget.files).map(file => currentFiles.push(file));
     setFiles(currentFiles);
@@ -41,7 +44,7 @@ const FilePicker = (props) => {
   return (
     <React.Fragment>
       <label onClick={onLabelClick} htmlFor={props.id} className={props.className}>{props.label}
-        <input onInput={(e) => onFileInput(e)} type='file' id='le-file'  className={styles.file} ref={inputFile} {...rest} />
+        <input onInput={(e) => onFilesChanged(e)} type='file' id='le-file'  className={styles.file} ref={inputFile} {...rest} />
       </label>
       {files.length && files.map(file =>
         <div className={styles.preview} onClick={e => onRemoveFile(file)} key={file.name}>{file.name}</div>
