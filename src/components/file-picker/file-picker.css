@@ -18,6 +18,7 @@
   background: var(--palette-neutral-x-light);
   min-height: 100px;
   vertical-align: middle;
+  border: 2px dashed var(--palette-grey-light);
 }
 
 .title,
