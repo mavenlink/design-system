@@ -1,3 +1,91 @@
-.label {}
-.file {}
-.preview {}
+@import "../../styles/colors.css";
+@import "../../styles/spacing.css";
+@import "../../styles/typography.css";
+
+.title,
+.label,
+.filename,
+.remove {
+  font-family: var(--mavenlink-type-font-family);
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  background: var(--palette-neutral-x-light);
+  min-height: 100px;
+  vertical-align: middle;
+}
+
+.title,
+.label {
+  display: block;
+  margin: 0 0 var(--spacing-small);
+  color: var(--palette-grey-dark);
+  cursor: pointer;
+}
+
+.filename,
+.label {
+  font-size: var(--mavenlink-type-base-size);
+}
+
+.label {
+  flex: 1;
+  line-height: 100px;
+}
+
+.title {
+  font-size: var(--mavenlink-type-small-size);
+}
+
+.file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.file:focus + .label {
+  outline: 1px dotted var(--palette-grey-dark);
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-list-button {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--palette-grey-light);
+  line-height: var(--spacing-x-large);
+}
+
+.icon {
+  color: green;
+  flex: 0 0 50px
+}
+
+.filename {
+  flex-grow: 1;
+  text-align: left;
+  color: var(--palette-grey-x-dark);
+}
+
+.remove {
+  flex: 0 0 50px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--palette-grey-base);
+  text-align: center;
+  font-size: 18px;
+}

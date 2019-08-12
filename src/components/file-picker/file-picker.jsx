@@ -14,8 +14,10 @@ import styles from './file-picker.css';
 const FilePicker = (props) => {
   const {
     className,
+    fileClasses,
+    fileListClasses,
     id,
-    label,
+    title,
     ...rest
   } = props;
 
@@ -35,29 +37,53 @@ const FilePicker = (props) => {
     setFiles(currentFiles);
   };
 
+  const getFilesList = () => {
+    if (files.length) {
+      return files.map(file => {
+        return (
+          <section className={styles['file-list-button']} key={file.name}>
+            <span className={styles.icon}>ICON</span>
+            <span className={styles.filename}>{file.name}</span>
+            <span onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</span>
+          </section>
+        );
+      });
+    }
+    return '';
+  }
+
   return (
     <React.Fragment>
-      <label htmlFor={props.id} className={props.className}>{props.label}
-        <input onInput={e => onFilesChanged(e)} type="file" id={props.id} className={styles.file} ref={inputFile} {...rest} />
-      </label>
-      {files.length && files.map(file => (
-        <button className={styles.preview} onClick={e => onRemoveFile(e, file)} key={file.name}>{file.name}</button>
-      ))}
+      <span className={styles.title}>{props.title}</span>
+      <section className={props.fileListClasses}>
+        {getFilesList()}
+      </section>
+      <section className={props.dropzoneClasses}>
+        <label htmlFor={props.id} className={props.labelClasses}>Upload Files
+          <input onInput={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
+        </label>
+      </section>
     </React.Fragment>
   );
 };
 
 FilePicker.propTypes = {
-  className: PropTypes.string,
+  dropzoneClasses: PropTypes.string,
+  labelClasses: PropTypes.string,
+  fileClasses: PropTypes.string,
+  fileListClasses: PropTypes.string,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   multiple: PropTypes.string,
 };
 
 FilePicker.defaultProps = {
-  className: styles.label,
+  dropzoneClasses: styles.dropzone,
+  labelClasses: styles.label,
+  fileClasses: styles.file,
+  fileListClasses: styles['file-list'],
   id: undefined,
-  label: undefined,
+  title: undefined,
   multiple: undefined,
 };
 
