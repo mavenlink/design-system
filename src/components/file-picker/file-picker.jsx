@@ -12,7 +12,7 @@ import styles from './file-picker.css';
 // v2 supports drag n drop?
 //
 const FilePicker = (props) => {
-  const  {
+  const {
     className,
     id,
     label,
@@ -20,8 +20,8 @@ const FilePicker = (props) => {
   } = props;
 
   const [files, setFiles] = useState([]);
-  const [uploading, setUploading] = useState(false);
-  const inputFile = useRef(null)
+  // const [uploading, setUploading] = useState(false);
+  const inputFile = useRef(null);
 
   const onLabelClick = (e) => {
     // Label clicked (file input clicked is already handled natively)
@@ -34,21 +34,23 @@ const FilePicker = (props) => {
     const currentFiles = [];
     Array.from(e.currentTarget.files).map(file => currentFiles.push(file));
     setFiles(currentFiles);
-  }
+  };
 
-  const onRemoveFile = (file) => {
+  const onRemoveFile = (e, file) => {
+    e.preventDefault();
     const currentFiles = files.filter(f => f.name !== file.name);
     setFiles(currentFiles);
   };
 
   return (
     <React.Fragment>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <label onClick={onLabelClick} htmlFor={props.id} className={props.className}>{props.label}
-        <input onInput={(e) => onFilesChanged(e)} type='file' id='le-file'  className={styles.file} ref={inputFile} {...rest} />
+        <input onInput={e => onFilesChanged(e)} type="file" id={props.id} className={styles.file} ref={inputFile} {...rest} />
       </label>
-      {files.length && files.map(file =>
-        <div className={styles.preview} onClick={e => onRemoveFile(file)} key={file.name}>{file.name}</div>
-      )}
+      {files.length && files.map(file => (
+        <button className={styles.preview} onClick={e => onRemoveFile(e, file)} key={file.name}>{file.name}</button>
+      ))}
     </React.Fragment>
   );
 };
