@@ -85,6 +85,8 @@
 .remove {
   flex: 0 0 50px;
   cursor: pointer;
+  background: transparent;
+  border: none;
   font-weight: bold;
   color: var(--palette-grey-base);
   text-align: center;
