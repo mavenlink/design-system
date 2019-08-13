@@ -9,7 +9,11 @@ import styles from './file-picker.css';
 //
 // How do we want to handle disabling as file(s) is uploading?
 //
+// Do we want to allow overriding of: onFilesChanged and onRemoveFile
+// Or, do we want to have onBeforeFilesChanged, onAfterFilesChanged?
+//
 // v2 supports drag n drop?
+// https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications#Selecting_files_using_drag_and_drop
 //
 const FilePicker = (props) => {
   const {
@@ -19,6 +23,7 @@ const FilePicker = (props) => {
     fileListClasses,
     id,
     title,
+    onBeforeFileRemoved,
     ...rest
   } = props;
 
@@ -38,6 +43,9 @@ const FilePicker = (props) => {
 
   const onRemoveFile = (e, file) => {
     e.preventDefault();
+    if (props.onBeforeFileRemoved) {
+      props.onBeforeFileRemoved.call(this, file);
+    }
     const currentFiles = files.filter(f => f.name !== file.name);
     setFiles(currentFiles);
   };
@@ -80,6 +88,7 @@ FilePicker.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   multiple: PropTypes.string,
+  onBeforeFileRemoved: PropTypes.func,
 };
 
 FilePicker.defaultProps = {
@@ -90,6 +99,7 @@ FilePicker.defaultProps = {
   id: undefined,
   title: undefined,
   multiple: undefined,
+  onBeforeFileRemoved: undefined,
 };
 
 export default FilePicker;
