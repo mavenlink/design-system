@@ -27,9 +27,13 @@ const FilePicker = (props) => {
   const inputFile = useRef(null);
 
   const onFilesChanged = (e) => {
-    const currentFiles = [];
-    Array.from(e.currentTarget.files).map(file => currentFiles.push(file));
-    setFiles(currentFiles);
+    const selectedFiles = e.currentTarget.files;
+    // User may have clicked 'Cancel' on the native file dialog
+    if (selectedFiles.length) {
+      const currentFiles = [];
+      Array.from(selectedFiles).map(file => currentFiles.push(file));
+      setFiles(currentFiles);
+    }
   };
 
   const onRemoveFile = (e, file) => {
@@ -61,7 +65,7 @@ const FilePicker = (props) => {
       </section>
       <section className={props.dropzoneClasses}>
         <label htmlFor={props.id} className={props.labelClasses}>Upload Files
-          <input onInput={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
+          <input onChange={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
         </label>
       </section>
     </React.Fragment>
