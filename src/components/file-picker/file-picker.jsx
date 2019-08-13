@@ -13,7 +13,8 @@ import styles from './file-picker.css';
 //
 const FilePicker = (props) => {
   const {
-    className,
+    dropzoneClasses,
+    labelClasses,
     fileClasses,
     fileListClasses,
     id,
@@ -39,18 +40,18 @@ const FilePicker = (props) => {
 
   const getFilesList = () => {
     if (files.length) {
-      return files.map(file => {
+      return files.map((file) => {
         return (
           <section className={styles['file-list-button']} key={file.name}>
             <span className={styles.icon}>ICON</span>
             <span className={styles.filename}>{file.name}</span>
-            <span onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</span>
+            <button onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</button>
           </section>
         );
       });
     }
     return '';
-  }
+  };
 
   return (
     <React.Fragment>
