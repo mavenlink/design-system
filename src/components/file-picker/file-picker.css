@@ -81,6 +81,11 @@
   vertical-align: middle;
 }
 
+.upload-icon {
+  margin-top: -1px;
+  margin-right: var(--spacing-small);
+}
+
 .filename {
   flex-grow: 1;
   text-align: left;

@@ -76,7 +76,7 @@ const FilePicker = (props) => {
       </section>
       <section className={props.dropzoneClasses}>
         <label htmlFor={props.id} className={props.labelClasses}>
-          <Icon name={iconUpload.id} size="medium" fill="grey-dark" stroke="none" title="Upload file icon" />
+          <Icon className={styles['upload-icon']} name={iconUpload.id} size="medium" fill="grey-dark" stroke="none" title="Upload file icon" />
           <span className={styles.upload}>Upload Files</span>
           <input onChange={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
         </label>
