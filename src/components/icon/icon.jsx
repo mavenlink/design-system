@@ -30,6 +30,11 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'grey-x-light',
+    'grey-light',
+    'grey-base',
+    'grey-dark',
+    'grey-x-dark',
     'none',
   ]),
   currentColor: PropTypes.oneOf([
@@ -49,6 +54,11 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'grey-x-light',
+    'grey-light',
+    'grey-base',
+    'grey-dark',
+    'grey-x-dark',
   ]),
   title: PropTypes.string,
 };

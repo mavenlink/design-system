@@ -29,6 +29,27 @@
   fill: var(--palette-highlight-base);
 }
 
+
+.fill-grey-x-light {
+  fill: var(--palette-grey-x-light);
+}
+
+.fill-grey-light {
+  fill: var(--palette-grey-light);
+}
+
+.fill-grey-base {
+  fill: var(--palette-grey-base);
+}
+
+.fill-grey-dark {
+  fill: var(--palette-grey-dark);
+}
+
+.fill-grey-x-dark {
+  fill: var(--palette-grey-x-dark);
+}
+
 .fill-none {
   fill: none;
 }
@@ -47,6 +68,26 @@
 
 .stroke-caution {
   stroke: var(--palette-caution-base);
+}
+
+.stroke-grey-x-light {
+  stroke: var(--palette-grey-x-light);
+}
+
+.stroke-grey-light {
+  stroke: var(--palette-grey-light);
+}
+
+.stroke-grey-base {
+  stroke: var(--palette-grey-base);
+}
+
+.stroke-grey-dark {
+  stroke: var(--palette-grey-dark);
+}
+
+.stroke-grey-x-dark {
+  stroke: var(--palette-grey-x-dark);
 }
 
 .color-primary {
