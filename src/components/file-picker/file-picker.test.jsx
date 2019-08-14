@@ -1,10 +1,38 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import FilePicker from './file-picker';
 import styles from './file-picker.css';
 
 describe('FilePicker', () => {
+  describe('functional tests', () => {
+    const uploadFile = (filename) => {
+      const {getByLabelText, getByText, queryByText} =
+        render(<FilePicker id="123" title="Upload Files" />);
+      const input = getByLabelText(/upload files/i);
+      const file = new File(['(⌐□_□)'], filename, {
+        type: 'image/png',
+      });
+      fireEvent.change(input, {target: {files: [file]}});
+      return {getByText, queryByText};
+    };
+
+    it('shows file name and remove × after user uploads', () => {
+      const {getByText} = uploadFile('brucelee.png')
+      expect(getByText(/brucelee\.png/)).toBeInstanceOf(HTMLElement);
+      expect(getByText(/×/)).toBeInstanceOf(HTMLElement);
+    });
+
+    it('removes file after clicking ×', () => {
+      const {queryByText, getByText} = uploadFile('jackiechan.png')
+      expect(getByText(/jackiechan\.png/)).toBeInstanceOf(HTMLElement);
+      const removeButton = getByText(/×/);
+      expect(removeButton).toBeInstanceOf(HTMLElement);
+      removeButton.click();
+      expect(queryByText(/jackiechan\.png/)).toBe(null);
+    });
+  });
+
   describe('API', () => {
     it('title', () => {
       const expected = 'Attach Le Files';
