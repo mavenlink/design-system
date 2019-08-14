@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef } from 'react';
+import Icon from '../icon/icon';
 import styles from './file-picker.css';
+import iconUpload from '../../svgs/icon-cloud-upload-negative.svg';
+import iconFileDefault from '../../svgs/icon-file-default.svg';
 
 // TODOs
 //
@@ -55,7 +58,7 @@ const FilePicker = (props) => {
       return files.map((file) => {
         return (
           <section className={styles['file-list-button']} key={file.name}>
-            <span className={styles.icon}>ICON</span>
+            <Icon className={styles.icon} name={iconFileDefault.id} size="medium" stroke="grey-base" fill="none" title="Upload file icon" />
             <span className={styles.filename}>{file.name}</span>
             <button onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</button>
           </section>
@@ -72,7 +75,9 @@ const FilePicker = (props) => {
         {getFilesList()}
       </section>
       <section className={props.dropzoneClasses}>
-        <label htmlFor={props.id} className={props.labelClasses}>Upload Files
+        <label htmlFor={props.id} className={props.labelClasses}>
+          <Icon name={iconUpload.id} size="medium" fill="grey-dark" stroke="none" title="Upload file icon" />
+          <span className={styles.upload}>Upload Files</span>
           <input onChange={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
         </label>
       </section>

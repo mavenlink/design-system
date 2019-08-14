@@ -72,8 +72,13 @@
 }
 
 .icon {
-  color: green;
-  flex: 0 0 50px;
+  align-self: center;
+  margin-right: var(--spacing-medium);
+}
+
+.upload {
+  color: var(--palette-grey-dark);
+  vertical-align: middle;
 }
 
 .filename {
