@@ -34,10 +34,11 @@ describe('FilePicker', () => {
     });
   });
 
-  describe('receiveFilesChangedUpdates API', function() {
+  describe('receiveFilesChangedUpdates API', () => {
     it('gets called on filelist change', () => {
-      const receiveFilesChangedUpdatesSpy  = jest.fn();
-      const { getByLabelText } = render(<FilePicker
+      const receiveFilesChangedUpdatesSpy = jest.fn();
+      const { getByLabelText } =
+        render(<FilePicker
           receiveFilesChangedUpdates={receiveFilesChangedUpdatesSpy}
           id="123"
           title="Upload Files"
