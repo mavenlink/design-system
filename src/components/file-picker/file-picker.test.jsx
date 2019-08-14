@@ -34,6 +34,26 @@ describe('FilePicker', () => {
     });
   });
 
+  describe('receiveFilesChangedUpdates API', function() {
+    it('gets called on filelist change', () => {
+      const receiveFilesChangedUpdatesSpy  = jest.fn();
+      const { getByLabelText } = render(<FilePicker
+          receiveFilesChangedUpdates={receiveFilesChangedUpdatesSpy}
+          id="123"
+          title="Upload Files"
+        />);
+      const input = getByLabelText(/upload files/i);
+      const filename = 'brucelee.png';
+      const file = new File(['(⌐□_□)'], filename, {
+        type: 'image/png',
+      });
+      fireEvent.change(input, { target: { files: [file] } });
+      expect(receiveFilesChangedUpdatesSpy.mock.calls.length).toEqual(1);
+      const filesArg = receiveFilesChangedUpdatesSpy.mock.calls[0][0];
+      expect(filesArg[0].name).toEqual(filename);
+    });
+  });
+
   describe('API', () => {
     it('title', () => {
       const expected = 'Attach Le Files';
