@@ -89,6 +89,10 @@
   stroke: var(--palette-grey-x-dark);
 }
 
+.stroke-none {
+  stroke: none;
+}
+
 .color-primary {
   color: var(--palette-primary-base);
 }

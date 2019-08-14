@@ -59,6 +59,7 @@ Icon.propTypes = {
     'grey-base',
     'grey-dark',
     'grey-x-dark',
+    'none',
   ]),
   title: PropTypes.string,
 };
