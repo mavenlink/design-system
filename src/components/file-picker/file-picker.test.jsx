@@ -34,12 +34,12 @@ describe('FilePicker', () => {
     });
   });
 
-  describe('receiveFilesChangedUpdates API', () => {
+  describe('receiveFilesChanged API', () => {
     it('gets called on filelist change', () => {
-      const receiveFilesChangedUpdatesSpy = jest.fn();
+      const receiveFilesChangedSpy = jest.fn();
       const { getByLabelText } =
         render(<FilePicker
-          receiveFilesChangedUpdates={receiveFilesChangedUpdatesSpy}
+          receiveFilesChanged={receiveFilesChangedSpy}
           id="123"
           title="Upload Files"
         />);
@@ -49,8 +49,8 @@ describe('FilePicker', () => {
         type: 'image/png',
       });
       fireEvent.change(input, { target: { files: [file] } });
-      expect(receiveFilesChangedUpdatesSpy.mock.calls.length).toEqual(1);
-      const filesArg = receiveFilesChangedUpdatesSpy.mock.calls[0][0];
+      expect(receiveFilesChangedSpy.mock.calls.length).toEqual(1);
+      const filesArg = receiveFilesChangedSpy.mock.calls[0][0];
       expect(filesArg[0].name).toEqual(filename);
     });
   });

@@ -9,10 +9,16 @@ Multiple
 <FilePicker id="le-picker-multi" title="Attach Multiple Files" multiple='multiple' />
 ```
 
-You will likely want to supply the `receiveFilesChangedUpdates` to receive
-notifications when the file list is changed.
+The `receiveFilesChanged` prop allows you to receive notifications when
+the _FileList_ has changed. (see
+[File API](https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API))
+You can then iteract with these files using the [File API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL)
+per file. For example, you may wish to do something like
+`FileReader.readAsDataURL(someFile)` before uploading to a server endpoint.
+
+Interact with the following example component and view the console output.
 
 ```jsx
-const callback = filelist => { alert(filelist.length) }
-<FilePicker receiveFilesChangedUpdates={callback}  id="le-picker-notify" title="Attach" multiple='multiple' />
+const callback = filelist => { console.log(`length of filelist: ${filelist.length}`); }
+<FilePicker receiveFilesChanged={callback}  id="le-picker-notify" title="Attach" multiple='multiple' />
 ```

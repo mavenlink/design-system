@@ -21,7 +21,7 @@ const FilePicker = (props) => {
     fileListClasses,
     id,
     title,
-    receiveFilesChangedUpdates,
+    receiveFilesChanged,
     ...rest
   } = props;
 
@@ -36,8 +36,8 @@ const FilePicker = (props) => {
       const currentFiles = [];
       Array.from(selectedFiles).map(file => currentFiles.push(file));
       setFiles(currentFiles);
-      if (props.receiveFilesChangedUpdates) {
-        props.receiveFilesChangedUpdates.call(this, currentFiles);
+      if (props.receiveFilesChanged) {
+        props.receiveFilesChanged.call(this, currentFiles);
       }
     }
   };
@@ -46,8 +46,8 @@ const FilePicker = (props) => {
     e.preventDefault();
     const currentFiles = files.filter(f => f.name !== file.name);
     setFiles(currentFiles);
-    if (props.receiveFilesChangedUpdates) {
-      props.receiveFilesChangedUpdates.call(this, currentFiles);
+    if (props.receiveFilesChanged) {
+      props.receiveFilesChanged.call(this, currentFiles);
     }
   };
 
@@ -91,7 +91,7 @@ FilePicker.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   multiple: PropTypes.string,
-  receiveFilesChangedUpdates: PropTypes.func,
+  receiveFilesChanged: PropTypes.func,
 };
 
 FilePicker.defaultProps = {
@@ -102,7 +102,7 @@ FilePicker.defaultProps = {
   id: undefined,
   title: undefined,
   multiple: undefined,
-  receiveFilesChangedUpdates: undefined,
+  receiveFilesChanged: undefined,
 };
 
 export default FilePicker;
