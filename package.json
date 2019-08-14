@@ -34,7 +34,7 @@
   "homepage": "https://mavenlink.github.io/design-system",
   "jest": {
     "moduleNameMapper": {
-      "\\.css$": "identity-obj-proxy"
+      "\\.(css|svg)$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setup-enzyme.js",
     "testPathIgnorePatterns": [
