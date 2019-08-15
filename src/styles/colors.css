@@ -42,6 +42,9 @@
   /* Brand */
   --palette-brand-dark: #001c33;
 
+  /* Accessible colors */
+  --palette-caution-text: #d82417;
+
   /* Neutral */
   --palette-neutral-xx-dark: #282624;
   --palette-neutral-x-dark: #333;
