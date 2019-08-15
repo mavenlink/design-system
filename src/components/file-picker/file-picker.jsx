@@ -4,6 +4,7 @@ import Icon from '../icon/icon';
 import styles from './file-picker.css';
 import iconUpload from '../../svgs/icon-cloud-upload-negative.svg';
 import iconFileDefault from '../../svgs/icon-file-default.svg';
+import iconCautionSvg from '../../svgs/icon-caution-fill.svg';
 
 // TODOs
 //
@@ -16,6 +17,7 @@ import iconFileDefault from '../../svgs/icon-file-default.svg';
 const FilePicker = (props) => {
   const {
     dropzoneClasses,
+    error,
     labelClasses,
     fileClasses,
     fileListClasses,
@@ -26,6 +28,7 @@ const FilePicker = (props) => {
   } = props;
 
   const [files, setFiles] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(error);
   // const [uploading, setUploading] = useState(false);
   const inputFile = useRef(null);
 
@@ -39,6 +42,8 @@ const FilePicker = (props) => {
       if (props.receiveFilesChanged) {
         props.receiveFilesChanged.call(this, currentFiles);
       }
+      // Clear error message once we've added another file
+      setErrorMessage('');
     }
   };
 
@@ -66,9 +71,19 @@ const FilePicker = (props) => {
     return '';
   };
 
+  const getError = () => {
+    const error = errorMessage;
+    if (error) {
+      return (
+        <span className={styles['error-message']}>{error} <Icon size="small" className={styles['error-icon']} currentColor="caution" name={iconCautionSvg.id} /></span>
+      );
+    }
+    return '';
+  };
+
   return (
     <React.Fragment>
-      <span className={styles.title}>{props.title}</span>
+      <span className={styles.title}>{props.title}</span>{getError()}
       <section className={props.fileListClasses}>
         {getFilesList()}
       </section>
@@ -85,10 +100,11 @@ const FilePicker = (props) => {
 
 FilePicker.propTypes = {
   dropzoneClasses: PropTypes.string,
-  labelClasses: PropTypes.string,
+  error: PropTypes.string,
   fileClasses: PropTypes.string,
   fileListClasses: PropTypes.string,
   id: PropTypes.string.isRequired,
+  labelClasses: PropTypes.string,
   title: PropTypes.string.isRequired,
   multiple: PropTypes.string,
   receiveFilesChanged: PropTypes.func,
@@ -96,10 +112,11 @@ FilePicker.propTypes = {
 
 FilePicker.defaultProps = {
   dropzoneClasses: styles.dropzone,
-  labelClasses: styles.label,
+  error: undefined,
   fileClasses: styles.file,
   fileListClasses: styles['file-list'],
   id: undefined,
+  labelClasses: styles.label,
   title: undefined,
   multiple: undefined,
   receiveFilesChanged: undefined,

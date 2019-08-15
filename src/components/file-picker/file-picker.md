@@ -22,3 +22,10 @@ Interact with the following example component and view the console output.
 const callback = filelist => { console.log(`length of filelist: ${filelist.length}`); }
 <FilePicker receiveFilesChanged={callback}  id="le-picker-notify" title="Attach" multiple='multiple' />
 ```
+
+Errors
+
+```jsx
+const error = 'An error occurred uploading your file';
+<FilePicker error={error} id="errors-example" title="Attach Files" />
+```

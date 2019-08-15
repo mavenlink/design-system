@@ -2,6 +2,7 @@
 @import "../../styles/spacing.css";
 @import "../../styles/typography.css";
 
+.error,
 .title,
 .label,
 .filename,
@@ -21,12 +22,17 @@
   border: 2px dashed var(--palette-grey-light);
 }
 
-.title,
-.label {
+.label-base {
   display: block;
+  flex: 1;
   margin: 0 0 var(--spacing-small);
   color: var(--palette-grey-dark);
   cursor: pointer;
+}
+
+.label {
+  composes: label-base;
+  line-height: 100px;
 }
 
 .filename,
@@ -34,12 +40,8 @@
   font-size: var(--mavenlink-type-base-size);
 }
 
-.label {
-  flex: 1;
-  line-height: 100px;
-}
-
 .title {
+  composes: label-base;
   font-size: var(--mavenlink-type-small-size);
 }
 
@@ -101,4 +103,19 @@
   color: var(--palette-grey-base);
   text-align: center;
   font-size: 18px;
+}
+
+.error-message {
+  composes: title;
+  position: relative;
+  display: inline-block;
+  font-size: var(--mavenlink-type-base-size);
+  color: var(--palette-caution-text);
+}
+
+.error-icon {
+  box-sizing: border-box;
+  pointer-events: none;
+  margin-left: 2px;
+  margin-top: -5px;
 }
