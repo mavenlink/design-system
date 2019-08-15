@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef } from 'react';
 import Icon from '../icon/icon';
+import useError from '../../hooks/useError';
 import styles from './file-picker.css';
 import iconUpload from '../../svgs/icon-cloud-upload-negative.svg';
 import iconFileDefault from '../../svgs/icon-file-default.svg';
-import iconCautionSvg from '../../svgs/icon-caution-fill.svg';
 
 // TODOs
 //
@@ -28,8 +28,7 @@ const FilePicker = (props) => {
   } = props;
 
   const [files, setFiles] = useState([]);
-  const [displayError, setDisplayError] = useState(errorMessage);
-  // const [uploading, setUploading] = useState(false);
+  const [getError, setError] = useError(errorMessage);
   const inputFile = useRef(null);
 
   const onFilesChanged = (e) => {
@@ -43,7 +42,7 @@ const FilePicker = (props) => {
         props.receiveFilesChanged.call(this, currentFiles);
       }
       // Clear error message once we've added another file
-      setDisplayError('');
+      setError('');
     }
   };
 
@@ -67,15 +66,6 @@ const FilePicker = (props) => {
           </section>
         );
       });
-    }
-    return '';
-  };
-
-  const getError = () => {
-    if (displayError) {
-      return (
-        <span className={styles['error-message']}>{displayError} <Icon size="small" className={styles['error-icon']} currentColor="caution" name={iconCautionSvg.id} /></span>
-      );
     }
     return '';
   };
