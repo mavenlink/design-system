@@ -19,7 +19,7 @@ per file. For example, you may wish to do something like
 Interact with the following example component and view the console output.
 
 ```jsx
-const callback = filelist => { console.log(`length of filelist: ${filelist.length}`); }
+const callback = filelist => { filelist.forEach(file => console.log('file: ', file)) }
 <FilePicker receiveFilesChanged={callback}  id="le-picker-notify" title="Attach" multiple='multiple' />
 ```
 
