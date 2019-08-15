@@ -27,5 +27,5 @@ Errors
 
 ```jsx
 const error = 'An error occurred uploading your file';
-<FilePicker error={error} id="errors-example" title="Attach Files" />
+<FilePicker errorMessage={error} id="errors-example" title="Attach Files" />
 ```

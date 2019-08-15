@@ -17,7 +17,7 @@ import iconCautionSvg from '../../svgs/icon-caution-fill.svg';
 const FilePicker = (props) => {
   const {
     dropzoneClasses,
-    error,
+    errorMessage,
     labelClasses,
     fileClasses,
     fileListClasses,
@@ -28,7 +28,7 @@ const FilePicker = (props) => {
   } = props;
 
   const [files, setFiles] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(error);
+  const [displayError, setDisplayError] = useState(errorMessage);
   // const [uploading, setUploading] = useState(false);
   const inputFile = useRef(null);
 
@@ -43,7 +43,7 @@ const FilePicker = (props) => {
         props.receiveFilesChanged.call(this, currentFiles);
       }
       // Clear error message once we've added another file
-      setErrorMessage('');
+      setDisplayError('');
     }
   };
 
@@ -72,10 +72,9 @@ const FilePicker = (props) => {
   };
 
   const getError = () => {
-    const error = errorMessage;
-    if (error) {
+    if (displayError) {
       return (
-        <span className={styles['error-message']}>{error} <Icon size="small" className={styles['error-icon']} currentColor="caution" name={iconCautionSvg.id} /></span>
+        <span className={styles['error-message']}>{displayError} <Icon size="small" className={styles['error-icon']} currentColor="caution" name={iconCautionSvg.id} /></span>
       );
     }
     return '';
@@ -100,7 +99,7 @@ const FilePicker = (props) => {
 
 FilePicker.propTypes = {
   dropzoneClasses: PropTypes.string,
-  error: PropTypes.string,
+  errorMessage: PropTypes.string,
   fileClasses: PropTypes.string,
   fileListClasses: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -112,7 +111,7 @@ FilePicker.propTypes = {
 
 FilePicker.defaultProps = {
   dropzoneClasses: styles.dropzone,
-  error: undefined,
+  errorMessage: undefined,
   fileClasses: styles.file,
   fileListClasses: styles['file-list'],
   id: undefined,
