@@ -70,6 +70,12 @@ describe('FilePicker', () => {
       expect(testInstance.findByType('input').props.multiple).toBe('multiple');
     });
 
+    it('error', () => {
+      const expected = 'some sort of error message';
+      const { getByText } = render(<FilePicker id="123" title="yo" error={expected} />);
+      expect(getByText(expected).textContent).toContain(expected);
+    });
+
     describe('class prop defaults', () => {
       let testInstance;
       let testRenderer;
