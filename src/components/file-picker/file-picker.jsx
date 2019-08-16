@@ -29,10 +29,15 @@ const FilePicker = (props) => {
 
   const [files, setFiles] = useState([]);
   const [getError, setError] = useError(errorMessage);
+  const [highlight, setHighlight] = useState(false);
   const inputFile = useRef(null);
 
   const onFilesChanged = (e) => {
     const selectedFiles = e.currentTarget.files;
+    setFilesChanged(selectedFiles);
+  };
+
+  const setFilesChanged = (selectedFiles) => {
     // User may have clicked 'Cancel' on the native file dialog
     if (selectedFiles.length) {
       const currentFiles = [];
@@ -62,6 +67,39 @@ const FilePicker = (props) => {
     }
   };
 
+  // This prevents the dropEffect going from "copy" to "none"
+  // (in chrome, cursor turns from a green plus to an arrow)
+  // https://github.com/react-dropzone/react-dropzone/blob/master/src/index.js#L533
+  const fixDropEffect = (e) => {
+    e.stopPropagation();
+    if (e.dataTransfer) {
+      console.log('In e.dataTransfer: ', e.dataTransfer)
+      try {
+        e.dataTransfer.dropEffect = 'copy'
+      } catch {} /* eslint-disable-line no-empty */
+    }
+  };
+
+  const onDragOver = (e) => {
+    console.log('onDragOver called...');
+    e.preventDefault();
+    fixDropEffect(e)
+  };
+
+  const onDragLeave = (e) => {
+    console.log('onDragLeave called...');
+    setHighlight(false);
+  };
+
+  const onDrop = (e) => {
+    console.log('onDrop called...');
+    e.preventDefault();
+    e.stopPropagation();
+    const files = e.dataTransfer.files;
+    setFilesChanged(files);
+    setHighlight(false);
+  };
+
   const getFilesList = () => {
     if (files.length) {
       return files.map((file) => {
@@ -83,7 +121,13 @@ const FilePicker = (props) => {
       <section className={props.fileListClasses}>
         {getFilesList()}
       </section>
-      <section className={props.dropzoneClasses}>
+      <section
+        className={`${props.dropzoneClasses} ${highlight ? styles['highlight-dropzone'] : ''}`}
+        draggable
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+      >
         <label onKeyDown={onLabelKeypress} htmlFor={props.id} className={props.labelClasses} tabIndex="0" role="button" aria-controls={props.id}>
           <Icon className={styles['upload-icon']} name={iconUpload.id} size="medium" fill="grey-dark" stroke="none" title="Upload file icon" />
           <span className={styles.upload}>Upload Files</span>

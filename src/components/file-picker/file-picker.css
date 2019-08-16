@@ -21,6 +21,11 @@
   border: 2px dashed var(--palette-grey-light);
 }
 
+.highlight-dropzone {
+  border: 2px solid var(--palette-grey-base);
+  opacity: 0.4;
+}
+
 .label-base {
   display: block;
   flex: 1;
