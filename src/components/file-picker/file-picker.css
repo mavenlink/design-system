@@ -54,12 +54,10 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-
-.file:focus + .label {
+.label:focus {
   outline: 1px dotted var(--palette-grey-dark);
   outline: -webkit-focus-ring-color auto 5px;
 }
-
 .file-list {
   display: flex;
   flex-direction: column;
