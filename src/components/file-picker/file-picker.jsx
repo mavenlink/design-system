@@ -32,11 +32,6 @@ const FilePicker = (props) => {
   const [highlight, setHighlight] = useState(false);
   const inputFile = useRef(null);
 
-  const onFilesChanged = (e) => {
-    const selectedFiles = e.currentTarget.files;
-    setFilesChanged(selectedFiles);
-  };
-
   const setFilesChanged = (selectedFiles) => {
     // User may have clicked 'Cancel' on the native file dialog
     if (selectedFiles.length) {
@@ -49,6 +44,11 @@ const FilePicker = (props) => {
       // Clear error message once we've added another file
       setError('');
     }
+  };
+
+  const onFilesChanged = (e) => {
+    const selectedFiles = e.currentTarget.files;
+    setFilesChanged(selectedFiles);
   };
 
   const onRemoveFile = (e, file) => {
@@ -73,30 +73,26 @@ const FilePicker = (props) => {
   const fixDropEffect = (e) => {
     e.stopPropagation();
     if (e.dataTransfer) {
-      console.log('In e.dataTransfer: ', e.dataTransfer)
       try {
-        e.dataTransfer.dropEffect = 'copy'
+        e.dataTransfer.dropEffect = 'copy';
       } catch {} /* eslint-disable-line no-empty */
     }
   };
 
   const onDragOver = (e) => {
-    console.log('onDragOver called...');
     e.preventDefault();
-    fixDropEffect(e)
+    fixDropEffect(e);
   };
 
-  const onDragLeave = (e) => {
-    console.log('onDragLeave called...');
+  const onDragLeave = () => {
     setHighlight(false);
   };
 
   const onDrop = (e) => {
-    console.log('onDrop called...');
     e.preventDefault();
     e.stopPropagation();
-    const files = e.dataTransfer.files;
-    setFilesChanged(files);
+    const droppedFiles = e.dataTransfer.files;
+    setFilesChanged(droppedFiles);
     setHighlight(false);
   };
 
@@ -115,6 +111,11 @@ const FilePicker = (props) => {
     return '';
   };
 
+  const getDropzoneClasses = () => {
+    const highlightClasses = highlight ? ` ${styles['highlight-dropzone']}` : '';
+    return `${props.dropzoneClasses}${highlightClasses}`;
+  };
+
   return (
     <React.Fragment>
       <span className={styles.title}>{props.title}</span>{getError()}
@@ -122,7 +123,7 @@ const FilePicker = (props) => {
         {getFilesList()}
       </section>
       <section
-        className={`${props.dropzoneClasses} ${highlight ? styles['highlight-dropzone'] : ''}`}
+        className={getDropzoneClasses()}
         draggable
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
