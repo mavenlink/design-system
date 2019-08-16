@@ -55,7 +55,7 @@ const FilePicker = (props) => {
     }
   };
 
-  const onLabelKeypress= (e) => {
+  const onLabelKeypress = (e) => {
     e.preventDefault();
     if (e.key === 'Enter') {
       e.currentTarget.click();
@@ -84,7 +84,7 @@ const FilePicker = (props) => {
         {getFilesList()}
       </section>
       <section className={props.dropzoneClasses}>
-        <label onKeyDown={onLabelKeypress} htmlFor={props.id} className={props.labelClasses} tabIndex="0" role="button" aria-controls={props.id} >
+        <label onKeyDown={onLabelKeypress} htmlFor={props.id} className={props.labelClasses} tabIndex="0" role="button" aria-controls={props.id}>
           <Icon className={styles['upload-icon']} name={iconUpload.id} size="medium" fill="grey-dark" stroke="none" title="Upload file icon" />
           <span className={styles.upload}>Upload Files</span>
           <input onChange={e => onFilesChanged(e)} type="file" id={props.id} className={props.fileClasses} ref={inputFile} {...rest} />
