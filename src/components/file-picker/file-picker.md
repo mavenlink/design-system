@@ -1,8 +1,12 @@
 Default usage
 
+_Note that you can either select files via the file dialog picker, or, drop
+the files onto the "dropzone"._
+
 ```jsx
 <FilePicker id="le-picker-single" title="Attach Files" />
 ```
+
 Multiple
 
 ```jsx
