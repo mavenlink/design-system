@@ -17,32 +17,36 @@ import iconFileDefault from '../../svgs/icon-file-default.svg';
 const FilePicker = (props) => {
   const {
     dropzoneClasses,
-    errorMessage,
     labelClasses,
     fileClasses,
     fileListClasses,
     id,
     title,
     receiveFilesChanged,
+    validator,
     ...rest
   } = props;
 
   const [files, setFiles] = useState([]);
-  const [getError, setError] = useError(errorMessage);
+  const [getError, setError, validate] = useError(validator);
   const [highlight, setHighlight] = useState(false);
   const inputFile = useRef(null);
 
   const setFilesChanged = (selectedFiles) => {
-    // User may have clicked 'Cancel' on the native file dialog
+    // Accounts for case where User's clicked 'Cancel' on native file dialog
     if (selectedFiles.length) {
       const currentFiles = [];
       Array.from(selectedFiles).map(file => currentFiles.push(file));
-      setFiles(currentFiles);
-      if (props.receiveFilesChanged) {
-        props.receiveFilesChanged.call(this, currentFiles);
+      const errMsg = validate(currentFiles);
+      if (errMsg.length) {
+        setError(errMsg);
+      } else {
+        setError('');
+        setFiles(currentFiles);
+        if (props.receiveFilesChanged) {
+          props.receiveFilesChanged.call(this, currentFiles);
+        }
       }
-      // Clear error message once we've added another file
-      setError('');
     }
   };
 
@@ -141,7 +145,6 @@ const FilePicker = (props) => {
 
 FilePicker.propTypes = {
   dropzoneClasses: PropTypes.string,
-  errorMessage: PropTypes.string,
   fileClasses: PropTypes.string,
   fileListClasses: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -149,11 +152,11 @@ FilePicker.propTypes = {
   title: PropTypes.string.isRequired,
   multiple: PropTypes.string,
   receiveFilesChanged: PropTypes.func,
+  validator: PropTypes.func,
 };
 
 FilePicker.defaultProps = {
   dropzoneClasses: styles.dropzone,
-  errorMessage: undefined,
   fileClasses: styles.file,
   fileListClasses: styles['file-list'],
   id: undefined,
@@ -161,6 +164,7 @@ FilePicker.defaultProps = {
   title: undefined,
   multiple: undefined,
   receiveFilesChanged: undefined,
+  validator: undefined,
 };
 
 export default FilePicker;

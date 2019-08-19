@@ -25,7 +25,21 @@ const callback = filelist => { filelist.forEach(file => console.log('file: ', fi
 
 Errors
 
+Pass a `validator` function that verifies each of the files and returns an
+error message. The component will then take care of displaying these returned
+errors properly. To see this, pick a file greater then 10MB:
+
 ```jsx
-const error = 'An error occurred uploading your file';
-<FilePicker errorMessage={error} id="errors-example" title="Attach Files" />
+const fileSizeError = 'The file size cannot exceed 10MB.';
+const validateFileSize = (files) => {
+  const max = 10240000;
+  const errors = files.reduce((acc, file) => {
+    if (file.size > max) {
+      acc.push(`${file.name} too big. ${fileSizeError}`);
+    }
+    return acc;
+  }, []);
+  return errors.join(' ');
+}
+<FilePicker validator={validateFileSize} id="validator-example" title="Attach Files" />
 ```

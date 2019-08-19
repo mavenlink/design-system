@@ -3,11 +3,13 @@ import Icon from '../components/icon/icon';
 import iconCautionSvg from '../svgs/icon-caution-fill.svg';
 import styles from './useError.css';
 
-const useError = (errorMessage) => {
-  const [displayError, setDisplayError] = useState(errorMessage);
+const useError = (validator) => {
+  const [displayError, setDisplayError] = useState('');
+
   const setError = (msg) => {
     setDisplayError(msg);
   };
+
   const getError = () => {
     if (displayError) {
       return (
@@ -16,9 +18,18 @@ const useError = (errorMessage) => {
     }
     return '';
   };
+
+  const validate = (files) => {
+    if (!validator) {
+      return '';
+    }
+    return validator.call(null, files);
+  };
+
   return [
     getError,
     setError,
+    validate,
   ];
 };
 

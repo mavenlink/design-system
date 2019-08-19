@@ -34,6 +34,27 @@ describe('FilePicker', () => {
     });
   });
 
+  describe('validator API', () => {
+    it('called when a file is uploaded', () => {
+      const validatorSpy = jest.fn(() => '');
+      const { getByLabelText } =
+        render(<FilePicker
+          validator={validatorSpy}
+          id="123"
+          title="Upload Files"
+        />);
+      const input = getByLabelText(/upload files/i);
+      const filename = 'brucelee.png';
+      const file = new File(['(⌐□_□)'], filename, {
+        type: 'image/png',
+      });
+      fireEvent.change(input, { target: { files: [file] } });
+      expect(validatorSpy.mock.calls.length).toEqual(1);
+      const filesArg = validatorSpy.mock.calls[0][0];
+      expect(filesArg[0].name).toEqual(filename);
+    });
+  });
+
   describe('receiveFilesChanged API', () => {
     it('gets called on filelist change', () => {
       const receiveFilesChangedSpy = jest.fn();
@@ -68,12 +89,6 @@ describe('FilePicker', () => {
       );
       const testInstance = testRenderer.root;
       expect(testInstance.findByType('input').props.multiple).toBe('multiple');
-    });
-
-    it('errorMessage', () => {
-      const expected = 'some sort of error message';
-      const { getByText } = render(<FilePicker id="123" title="yo" errorMessage={expected} />);
-      expect(getByText(expected).textContent).toContain(expected);
     });
 
     describe('class prop defaults', () => {
