@@ -6,14 +6,6 @@ import styles from './file-picker.css';
 import iconUpload from '../../svgs/icon-cloud-upload-negative.svg';
 import iconFileDefault from '../../svgs/icon-file-default.svg';
 
-// TODOs
-//
-// What file types will we support?
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers
-//
-// v2 supports drag n drop?
-// https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications#Selecting_files_using_drag_and_drop
-//
 const FilePicker = (props) => {
   const {
     dropzoneClasses,
