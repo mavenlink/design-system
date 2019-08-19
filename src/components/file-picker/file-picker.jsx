@@ -59,7 +59,7 @@ const FilePicker = (props) => {
   const onLabelKeypress = (e) => {
     e.preventDefault();
     if (e.key === 'Enter') {
-      e.currentTarget.click();
+      inputFile.current.click();
     }
   };
 
