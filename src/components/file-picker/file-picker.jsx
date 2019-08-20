@@ -77,6 +77,7 @@ const FilePicker = (props) => {
 
   const onDragOver = (e) => {
     e.preventDefault();
+    setHighlight(true);
     fixDropEffect(e);
   };
 
