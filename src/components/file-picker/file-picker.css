@@ -70,6 +70,11 @@
   flex-direction: column;
 }
 
+.file-ul {
+  margin: 0;
+  padding: 0;
+}
+
 .file-list-button {
   display: flex;
   flex-direction: row;

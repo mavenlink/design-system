@@ -95,15 +95,16 @@ const FilePicker = (props) => {
 
   const getFilesList = () => {
     if (files.length) {
-      return files.map((file) => {
-        return (
-          <section className={styles['file-list-button']} key={file.name}>
-            <Icon className={styles.icon} name={iconFileDefault.id} size="medium" stroke="grey-base" fill="none" title="Upload file icon" />
-            <span className={styles.filename}>{file.name}</span>
-            <button onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</button>
-          </section>
-        );
-      });
+      const listItems = files.map((file) =>
+        <li className={styles['file-list-button']} key={file.name}>
+          <Icon className={styles.icon} name={iconFileDefault.id} size="medium" stroke="grey-base" fill="none" title="Upload file icon" />
+          <span className={styles.filename}>{file.name}</span>
+          <button onClick={e => onRemoveFile(e, file)} className={styles.remove}>&times;</button>
+        </li>
+      );
+      return (
+        <ul className={styles['file-ul']}>{listItems}</ul>
+      );
     }
     return '';
   };
