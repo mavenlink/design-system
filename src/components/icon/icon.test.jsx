@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Icon from './icon';
+import Icon from './icon.jsx';
 
 describe('Icon', () => {
   it('has defaults', () => {

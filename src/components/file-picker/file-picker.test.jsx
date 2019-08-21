@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
-import FilePicker from './file-picker';
+import FilePicker from './file-picker.jsx';
 import styles from './file-picker.css';
 
 describe('FilePicker', () => {

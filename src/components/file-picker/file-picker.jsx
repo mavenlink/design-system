@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef } from 'react';
-import Icon from '../icon/icon';
-import useError from '../../hooks/useError';
+import Icon from '../icon/icon.jsx';
+import useError from '../../hooks/useError.jsx';
 import styles from './file-picker.css';
 import iconUpload from '../../svgs/icon-cloud-upload-negative.svg';
 import iconFileDefault from '../../svgs/icon-file-default.svg';
