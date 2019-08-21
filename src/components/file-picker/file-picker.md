@@ -1,6 +1,6 @@
 Default usage
 
-You can either select files via the file dialog picker, or, drop
+You may either select files via the file dialog picker, or, drop
 the files onto the "dropzone".
 
 ```jsx
