@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Icon from '../components/icon/icon';
+import Icon from '../components/icon/icon.jsx';
 import iconCautionSvg from '../svgs/icon-caution-fill.svg';
 import styles from './useError.css';
 
