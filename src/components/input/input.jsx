@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './input.css';
-import labelPropType from './label-prop-type';
+import labelPropType from './label-prop-type.js';
 
 /**
  * Base input component. Accepts any prop that an input can take.
