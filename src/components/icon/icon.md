@@ -1,17 +1,10 @@
-The `<Icon />` component's API is mostly self-evident and you can
-refer to the Props table at the bottom of this page. However, let's look
-at the color properties in more detail. While `fill`
-sets the color inside the object, and `stroke` sets
-color of the line drawn around the SVG, `currentColor` is used to,
-essentially, set the font `color` CSS property to the SVG icon. The
-reason it's called `currentColor` is that we utilize `currentColor`
-to allow an additional fill color to be applied by way of the fact that
-`currentColor` is a CSS value that tells the engine to use whatever CSS
-font `color` is inherited.
+The `<Icon />` component's API is mostly self-evident and you can refer to the props table at the bottom of this page.
+However, let's look at the color properties in more detail.
+We use three different properties to apply different colors to an SVG:
 
-The `currentColor` approach assumes the SVG _sub-elements_ of interest have
-something like `<path fill="currentColor" ...` defined within them. You
-can inspect the SVG itself to see this.
+- `fill` sets the fill color
+- `stroke` sets the stroke color
+- `currentColor` is an SVG trick to provide an additional `fill` and/or `stroke` color
 
 Basic Usage
 
