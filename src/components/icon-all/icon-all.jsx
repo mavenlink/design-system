@@ -1,42 +1,26 @@
 import React from 'react';
-import allIcons from '../../helpers/load-icons';
 import styles from './icon-all.css';
 import Icon from '../icon/icon';
 
-const icons = allIcons();
+const generateColors = (svgFilePath) => {
+  // These have currentColor, no stroke, no fill
+  const currentColorIcons = [
+    'icon-caution-fill',
+  ];
 
-// these have currentColor but no stroke
-const currentColorIcons = [
-  'icon-caution-fill',
-];
-
-// As we add more icons we'll need to assemble lists as we do
-// in bigmaven: `frontend/components/icon/icon-all/icon-all.jsx`
-const setupIcon = (iconName) => {
-  let currentColor;
-  let stroke;
-  let fill;
-  const id = icons[iconName].id;
+  const iconName = svgFilePath.slice(2, -4);
 
   if (currentColorIcons.includes(iconName)) {
-    currentColor = 'primary';
     if (iconName === 'icon-caution-fill') {
-      currentColor = 'caution';
+      // This is a one-off.
+      // We might want to not provide icon specific colors?
+      return { currentColor: 'caution' };
     }
-  } else {
-    fill = 'primary';
+
+    return { currentColor: 'primary' };
   }
 
-  return (
-    <Icon
-      name={id}
-      size="large"
-      stroke={stroke}
-      fill={fill}
-      title={id}
-      currentColor={currentColor}
-    />
-  );
+  return { fill: 'primary' };
 };
 
 /**
@@ -45,16 +29,25 @@ const setupIcon = (iconName) => {
  * See `<Icon>` for how to use one of these icons instead.
  */
 export default function IconAll() {
+  const allSvgsModules = require.context('../../svgs/', true, /svg$/);
+
   return (
     <ul className={styles.list}>
-      {Object.keys(icons).map((iconName) => {
-        return (
-          <li key={iconName}>
-            <span className={styles['icon-name']}>{iconName}</span>
-            <span className={styles['icon-render']}>{ setupIcon(iconName) }</span>
-          </li>
-        );
-      })}
+      {allSvgsModules.keys().map((svgFilePath) => (
+        <li key={svgFilePath}>
+          <span className={styles['icon-name']}>
+            {`@mavenlink/design-system/src/svgs/${svgFilePath.slice(2)}`}
+          </span>
+          <span>
+            {<Icon
+              name={allSvgsModules(svgFilePath).default.id}
+              size="large"
+              title={allSvgsModules(svgFilePath).default.id}
+              {...generateColors(svgFilePath)}
+            />}
+          </span>
+        </li>
+      ))}
     </ul>
   );
 }
