@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './icon-all.css';
-import Icon from '../icon/icon';
+import Icon from '../icon/icon.jsx';
 
 const generateColors = (svgFilePath) => {
   // These have currentColor, no stroke, no fill
