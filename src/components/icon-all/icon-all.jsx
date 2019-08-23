@@ -28,7 +28,7 @@ export default function IconAll() {
 
   return (
     <ul className={styles.list}>
-      {allSvgsModules.keys().map((svgFilePath) => (
+      {allSvgsModules.keys().map(svgFilePath => (
         <li key={svgFilePath}>
           <span className={styles['icon-name']}>
             {`@mavenlink/design-system/src/svgs/${svgFilePath.slice(2)}`}
