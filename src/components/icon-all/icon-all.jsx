@@ -23,11 +23,6 @@ const generateColors = (svgFilePath) => {
   return { fill: 'primary' };
 };
 
-/**
- * Please do NOT use this as an individual component.
- * This is just a kitchen sink dump of mavenlink-js svg icons.
- * See `<Icon>` for how to use one of these icons instead.
- */
 export default function IconAll() {
   const allSvgsModules = require.context('../../svgs/', true, /svg$/);
 
