@@ -1,2 +1,22 @@
 @import './overview/overview.css';
 @import './soul/soul.css';
+
+body {
+  /* Overrides the css reset upstream which sets to 12px */
+  font-size: 16px;
+}
+
+:global(.clearall) {
+  width: 100%;
+  display: block;
+}
+
+:global(.flex-wrap) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+:global(.flex-wrap.centered) {
+  flex-direction: row;
+  justify-content: space-between;
+}

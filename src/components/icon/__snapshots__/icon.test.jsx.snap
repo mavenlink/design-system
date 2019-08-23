@@ -9,3 +9,16 @@ exports[`Icon has defaults 1`] = `
   />
 </svg>
 `;
+
+exports[`Icon has title 1`] = `
+<svg
+  className="icon-base"
+>
+  <title>
+    yo
+  </title>
+  <use
+    xlinkHref="#foobar"
+  />
+</svg>
+`;
