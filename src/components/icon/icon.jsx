@@ -15,9 +15,9 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
     color && styles[`color-${color}`],
     className,
   ].filter(Boolean);
-
   return (
-    <svg className={classes.join(' ')} title={title}>
+    <svg className={classes.join(' ')}>
+      { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
   );
