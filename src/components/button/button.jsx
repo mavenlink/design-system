@@ -7,6 +7,7 @@ export default function Button(props) {
     <button
       className={props.className || styles[props.color]}
       disabled={props.disabled}
+      id={props.id}
       onClick={props.onClick}
       type={props.type}
     >
@@ -23,6 +24,7 @@ Button.propTypes = {
   ]),
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
+  id: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.oneOf([
     'button',
@@ -35,6 +37,7 @@ Button.defaultProps = {
   className: undefined,
   color: 'primary',
   disabled: undefined,
+  id: undefined,
   onClick: () => {},
   type: undefined,
 };
