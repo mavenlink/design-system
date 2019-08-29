@@ -3,23 +3,14 @@ import React from 'react';
 import styles from './button.css';
 
 export default function Button(props) {
-  const {
-    children,
-    className,
-    color,
-    disabled,
-    onClick,
-    type,
-  } = props;
-
   return (
     <button
-      className={className || styles[color]}
-      disabled={disabled}
-      onClick={onClick}
-      type={type}
+      className={props.className || styles[props.color]}
+      disabled={props.disabled}
+      onClick={props.onClick}
+      type={props.type}
     >
-      {children}
+      {props.children}
     </button>
   );
 }
