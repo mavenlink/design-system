@@ -3,27 +3,17 @@ import React from 'react';
 import styles from './button.css';
 
 export default function Button(props) {
-  const {
-    children,
-    className,
-    color,
-    disabled,
-    name,
-    onClick,
-    type,
-    value,
-  } = props;
-
   return (
     <button
-      className={className || styles[color]}
-      disabled={disabled}
-      name={name}
-      onClick={onClick}
-      type={type}
-      value={value}
+      className={props.className || styles[props.color]}
+      disabled={props.disabled}
+      id={props.id}
+      name={props.name}
+      onClick={props.onClick}
+      type={props.type}
+      value={props.value}
     >
-      {children}
+      {props.children}
     </button>
   );
 }
@@ -36,6 +26,7 @@ Button.propTypes = {
   ]),
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
+  id: PropTypes.string,
   name: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.oneOf([
@@ -50,6 +41,7 @@ Button.defaultProps = {
   className: undefined,
   color: 'primary',
   disabled: undefined,
+  id: undefined,
   name: undefined,
   onClick: () => {},
   type: undefined,

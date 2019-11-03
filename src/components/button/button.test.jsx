@@ -83,6 +83,17 @@ describe('Button', () => {
     });
   });
 
+  describe('id API', () => {
+    it('sets the id attribute', () => {
+      const tree = renderer.create((
+        <Button id="test-id">
+          Hello world!
+        </Button>
+      )).toJSON();
+      expect(tree.props.id).toEqual('test-id');
+    });
+  });
+
   describe('onClick API', () => {
     it('sets the onclick handler', () => {
       const onClickSpy = jest.fn();
