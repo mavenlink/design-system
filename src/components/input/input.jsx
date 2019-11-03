@@ -25,6 +25,7 @@ export default function Input(props) {
           className={getClassName(props.className, props.invalid)}
           disabled={props.disabled}
           id={props.id}
+          maxLength={props.maxLength}
           name={props.name}
           onChange={props.onChange}
           placeholder={props.placeholder}
@@ -45,6 +46,7 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  maxLength: PropTypes.number,
   name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
@@ -62,6 +64,7 @@ Input.defaultProps = {
   cssLabel: undefined,
   disabled: undefined,
   invalid: false,
+  maxLength: undefined,
   name: undefined,
   onChange: undefined,
   placeholder: undefined,

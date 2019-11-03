@@ -77,6 +77,19 @@ describe('Input', () => {
     });
   });
 
+  describe('maxLength API', () => {
+    it('sets the maxLength attribute', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          maxLength={100}
+        />
+      )).root;
+      expect(tree.findByType('input').props.maxLength).toEqual(100);
+    });
+  });
+
   describe('name API', () => {
     it('sets the name attribute', () => {
       const tree = renderer.create((
