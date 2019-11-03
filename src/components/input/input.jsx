@@ -29,7 +29,7 @@ export default function Input(props) {
           onChange={props.onChange}
           placeholder={props.placeholder}
           required={props.required}
-          type="text"
+          type={props.type}
           value={props.value}
         />
         {props.invalid && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
@@ -49,6 +49,11 @@ Input.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.oneOf([
+    'email',
+    'password',
+    'text',
+  ]),
   value: PropTypes.string,
 };
 
@@ -61,5 +66,6 @@ Input.defaultProps = {
   onChange: undefined,
   placeholder: undefined,
   required: undefined,
+  type: 'text',
   value: undefined,
 };

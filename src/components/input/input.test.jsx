@@ -132,12 +132,34 @@ describe('Input', () => {
   });
 
   describe('type API', () => {
-    it('is set to "text"', () => {
+    it('is set to "email"', () => {
       const tree = renderer.create((
         <Input
           id="foo"
           label="I am a label for accessibility"
-          type="checkbox"
+          type="email"
+        />
+      )).root;
+      expect(tree.findByType('input').props.type).toEqual('email');
+    });
+
+    it('is set to "password"', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          type="password"
+        />
+      )).root;
+      expect(tree.findByType('input').props.type).toEqual('password');
+    });
+
+    it('is be set to "text"', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          type="text"
         />
       )).root;
       expect(tree.findByType('input').props.type).toEqual('text');
