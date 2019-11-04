@@ -27,8 +27,13 @@ export default function Input(props) {
           id={props.id}
           maxLength={props.maxLength}
           name={props.name}
+          onBlur={props.onBlur}
           onChange={props.onChange}
+          onFocus={props.onFocus}
+          onInput={props.onInput}
+          onKeyDown={props.onKeyDown}
           placeholder={props.placeholder}
+          readOnly={props.readOnly}
           required={props.required}
           type={props.type}
           value={props.value}
@@ -48,8 +53,13 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   name: PropTypes.string,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onInput: PropTypes.func,
+  onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.oneOf([
     'email',
@@ -66,8 +76,13 @@ Input.defaultProps = {
   invalid: false,
   maxLength: undefined,
   name: undefined,
+  onBlur: undefined,
   onChange: undefined,
+  onFocus: undefined,
+  onInput: undefined,
+  onKeyDown: undefined,
   placeholder: undefined,
+  readOnly: undefined,
   required: undefined,
   type: 'text',
   value: undefined,

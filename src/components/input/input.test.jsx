@@ -103,6 +103,21 @@ describe('Input', () => {
     });
   });
 
+  describe('onBlur API', () => {
+    it('sets the onblur handler', () => {
+      const onBlurSpy = jest.fn();
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          onBlur={onBlurSpy}
+        />
+      )).root;
+      tree.findByType('input').props.onBlur();
+      expect(onBlurSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
@@ -118,6 +133,51 @@ describe('Input', () => {
     });
   });
 
+  describe('onFocus API', () => {
+    it('sets the onFocus handler', () => {
+      const onFocusSpy = jest.fn();
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          onFocus={onFocusSpy}
+        />
+      )).root;
+      tree.findByType('input').props.onFocus();
+      expect(onFocusSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('onInput API', () => {
+    it('sets the onInput handler', () => {
+      const onInputSpy = jest.fn();
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          onInput={onInputSpy}
+        />
+      )).root;
+      tree.findByType('input').props.onInput();
+      expect(onInputSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('onKeyDown API', () => {
+    it('sets the onKeyDown handler', () => {
+      const onKeyDownSpy = jest.fn();
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          onKeyDown={onKeyDownSpy}
+        />
+      )).root;
+      tree.findByType('input').props.onKeyDown();
+      expect(onKeyDownSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
       const tree = renderer.create((
@@ -128,6 +188,19 @@ describe('Input', () => {
         />
       )).root;
       expect(tree.findByType('input').props.placeholder).toEqual('test-placeholder');
+    });
+  });
+
+  describe('readOnly API', () => {
+    it('sets the readOnly attribute', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          readOnly
+        />
+      )).root;
+      expect(tree.findByType('input').props.readOnly).toEqual(true);
     });
   });
 
