@@ -60,7 +60,6 @@ describe('Input', () => {
     });
   });
 
-
   describe('disabled API', () => {
     it('sets the disabled attribute', () => {
       const tree = renderer.create((
