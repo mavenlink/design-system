@@ -28,6 +28,39 @@ describe('Input', () => {
     });
   });
 
+  describe('cssContainer API', () => {
+    it('always sets input container className', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          cssContainer="test-class"
+          label="I am a label for accessibility"
+          invalid
+        />
+      )).root;
+
+      const containerNode = tree.findByProps({ className: 'test-class' });
+
+      expect(containerNode.type).toEqual('div');
+      expect(containerNode.children.map(child => child.type.name || child.type)).toEqual(['input', 'Icon']);
+    });
+  });
+
+  describe('cssLabel API', () => {
+    it('always sets <label> className', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          cssLabel="test-class"
+          label="I am a label for accessibility"
+          invalid
+        />
+      )).root;
+      expect(tree.findByType('label').props.className).toEqual('test-class');
+    });
+  });
+
+
   describe('disabled API', () => {
     it('sets the disabled attribute', () => {
       const tree = renderer.create((
