@@ -20,7 +20,7 @@ export default function Input(props) {
       <label htmlFor={props.id} className={getLabelClassName(props.cssLabel, props.invalid)}>
         {props.label}
       </label>
-      <div className={styles.container}>
+      <div className={props.cssContainer}>
         <input
           className={getClassName(props.className, props.invalid)}
           disabled={props.disabled}
@@ -46,6 +46,7 @@ export default function Input(props) {
 
 Input.propTypes = {
   className: PropTypes.string,
+  cssContainer: PropTypes.string,
   cssLabel: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
@@ -71,6 +72,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   className: undefined,
+  cssContainer: styles.container,
   cssLabel: undefined,
   disabled: undefined,
   invalid: false,

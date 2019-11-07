@@ -3,7 +3,6 @@
 @import "../../styles/typography.css";
 
 .container {
-  display: inline-block;
   position: relative;
 }
 
@@ -24,6 +23,7 @@
   height: 32px;
   margin: 0;
   padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
+  width: 100%;
 }
 
 .input::placeholder {
