@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Header from '../header';
+import Header from '../header/index.js';
 import styles from './styleguide.css';
 
 export default function Styleguide({ children, hasSidebar, toc }) {

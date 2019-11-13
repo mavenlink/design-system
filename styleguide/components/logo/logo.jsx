@@ -1,5 +1,5 @@
 import React from 'react';
-import buildLocalLink from '../../utils/build-local-link';
+import buildLocalLink from '../../utils/build-local-link.js';
 import styles from './logo.css';
 
 const rootLink = buildLocalLink('/');

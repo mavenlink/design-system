@@ -1,3 +1,3 @@
-import SectionContainer from './section-container';
+import SectionContainer from './section-container.jsx';
 
 export default SectionContainer;

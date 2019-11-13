@@ -14,29 +14,48 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   yarn add @mavenlink/design-system
   ```
 
-- Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [css-loader for Webpack](https://github.com/webpack-contrib/css-loader#modules)
+- Setup [React JSX processing](https://reactjs.org/docs/jsx-in-depth.html). One way of doing that is with [`babel-loader` for Webpack](https://webpack.js.org/loaders/babel-loader/).
+- Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader).
+- Setup [SVG processing](https://svgontheweb.com/#spriting). One way of doing that is with [`svg-sprite-loader` for Webpack](https://github.com/kisenka/svg-sprite-loader).
 
   ```js
   // Webpack configuration
+  const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+
   module.exports = {
     module: {
-      rules: [
-        {
-          test: /\.css$/,
+      rules: [{
+        test: /\.jsx?$/,
+        use: [{
+          loader: 'babel-loader',
+        }],
+      }, {
+        test: /\.css$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
           loader: 'css-loader',
           options: {
-            modules: true,
+            modules: true
           },
-        },
-      ],
+        }],
+      }, {
+        test: /\.svg$/,
+        use: [{
+          loader: 'svg-sprite-loader',
+        }],
+      }],
     },
+    plugins: [
+      new SpriteLoaderPlugin(),
+    ],
   };
   ```
 
 - Use in your project
 
   ```jsx
-  import { Input } from '@mavenlink/design-system';
+  import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
   function App() {
     return <Input id="hello!" />;
@@ -54,9 +73,10 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 ## Contributing
 
-We encourage you to contribute to the Mavenlink Design System! Please check out the [Contributing documentation](./docs/contributing.md) for guidelines about how to proceed.
+We encourage you to contribute to the Mavenlink Design System!
+Please check out the [Contributing documentation](./docs/contributing.md) for guidelines about how to proceed.
 
-Everyone interacting this codebase, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](./docs/code_of_conduct.md).
+Everyone interacting with the codebase, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](./docs/code_of_conduct.md).
 
 ## Maintainers
 

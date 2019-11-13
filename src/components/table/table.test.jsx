@@ -1,6 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from './index';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+} from './index.js';
 
 function render() {
   return mount(

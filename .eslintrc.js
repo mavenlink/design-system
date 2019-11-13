@@ -1,6 +1,11 @@
 module.exports = {
   extends: 'mavenlint-react',
   parser: 'babel-eslint',
+  rules: {
+    'import/extensions': ['error', 'always', {
+      ignorePackages: true,
+    }],
+  },
   overrides: [{
     files: [
       '**/*.test.js',
@@ -13,6 +18,7 @@ module.exports = {
     files: [
       '.eslintrc.js',
       '.stylintrc.js',
+      'jest.config.js',
     ],
     rules: {
       'import/no-commonjs': 'off',

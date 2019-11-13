@@ -12,9 +12,6 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            babelrc: true,
-          },
         },
       },
       {
@@ -53,7 +50,6 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        exclude: /node_modules/,
         include: [
           // Let file-loader pull the following in
           /styleguide\/components\/hero\//,

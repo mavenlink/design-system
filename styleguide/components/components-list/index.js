@@ -1,3 +1,3 @@
-import ComponentsListContainer from './components-list-container';
+import ComponentsListContainer from './components-list-container.jsx';
 
 export default ComponentsListContainer;
