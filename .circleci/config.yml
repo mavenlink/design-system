@@ -74,7 +74,8 @@ jobs:
             yarn build
             git checkout gh-pages
             rm -rf $CIRCLE_BRANCH
-            mv build $CIRCLE_BRANCH
+            mkdir -p $CIRCLE_BRANCH
+            mv -v dist/* $CIRCLE_BRANCH
             git add .
             git diff-index --quiet HEAD || git commit -m 'Update Github pages for $CIRCLE_BRANCH'
             git push origin gh-pages
