@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomFieldInputText has defaults 1`] = `
+<div
+  className="custom-field-input-text"
+>
+  <div
+    className="heading-container"
+  >
+    <label
+      className="label"
+    >
+      Input Descriptor
+    </label>
+    <span
+      className="additional-information-icon"
+    >
+      ?
+    </span>
+  </div>
+  <div
+    className="input-container"
+  >
+    <input
+      disabled={false}
+      onClick={[Function]}
+      type="text"
+    />
+  </div>
+  <span
+    className="help"
+  />
+</div>
+`;
