@@ -9,9 +9,7 @@
   cursor: pointer;
   display: inline-block;
   height: var(--spacing-large);
-  left: var(--spacing-medium);
-  padding-left: 1px;
-  position: relative;
+  margin-left: var(--spacing-medium);
   text-align: center;
   width: var(--spacing-large);
 }

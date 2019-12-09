@@ -6,17 +6,15 @@ import Icon from '../icon/icon.jsx';
 import styles from './custom-field-input-text.css';
 
 function getRootClassName(className, error, disabled) {
-  const resolvedClassName = className || styles['custom-field-input-text'];
-
   if (disabled) {
-    return `${resolvedClassName} ${styles.disabled}`;
+    return `${className} ${styles.disabled}`;
   }
 
   if (error) {
-    return `${resolvedClassName} ${styles.error}`;
+    return `${className} ${styles.error}`;
   }
 
-  return resolvedClassName;
+  return className;
 }
 
 export default function CustomFieldInputText(props) {
@@ -54,7 +52,7 @@ CustomFieldInputText.propTypes = {
 };
 
 CustomFieldInputText.defaultProps = {
-  className: undefined,
+  className: styles['custom-field-input-text'],
   disabled: false,
   error: false,
   helpText: undefined,
