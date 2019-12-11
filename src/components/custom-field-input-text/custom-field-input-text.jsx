@@ -25,7 +25,7 @@ export default function CustomFieldInputText(props) {
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
-        <input className={styles.input} type="text" id={props.id} name={props.name} placeholder={props.placeholder} value={props.value} onClick={props.onClick} disabled={props.disabled} />
+        <input className={styles.input} disabled={props.disabled} type="text" id={props.id} name={props.name} placeholder={props.placeholder} value={props.value} onClick={props.onClick} />
         {props.error &&
           <div className={styles['input-icon-container']}>
             <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />

@@ -24,14 +24,16 @@ describe('CustomFieldInputText', () => {
       const tree = renderer.create((
         <CustomFieldInputText disabled={true} />
       )).root;
-      expect(tree.findByProps({ disabled: true })).toBeTruthy();
+      expect(tree.findByProps({ className: 'custom-field-input-text' }).findByProps({ disabled: true }));
+      expect(tree.findByType('input').findByProps({ disabled: true }));
     });
 
     it('can be enabled', () => {
       const tree = renderer.create((
         <CustomFieldInputText disabled={false} />
       )).root;
-      expect(tree.findByProps({ disabled: false })).toBeTruthy();
+      expect(tree.findByProps({ className: 'custom-field-input-text' }).findByProps({ disabled: false }));
+      expect(tree.findByType('input').findByProps({ disabled: false }));
     });
   });
 
@@ -40,7 +42,7 @@ describe('CustomFieldInputText', () => {
       const tree = renderer.create((
         <CustomFieldInputText name="test-name" />
       )).root;
-      expect(tree.findByProps({ name: 'test-name' })).toBeTruthy();
+      expect(tree.findByType('input').findByProps({ name: 'test-name' }));
     });
   });
 
@@ -49,7 +51,7 @@ describe('CustomFieldInputText', () => {
       const tree = renderer.create((
         <CustomFieldInputText id="test-id" />
       )).root;
-      expect(tree.findByProps({ id: 'test-id' })).toBeTruthy();
+      expect(tree.findByType('input').findByProps({ id: 'test-id' }));
     });
   });
 
@@ -69,7 +71,7 @@ describe('CustomFieldInputText', () => {
       const tree = renderer.create((
         <CustomFieldInputText value="test-value" />
       )).root;
-      expect(tree.findByProps({ value: 'test-value' })).toBeTruthy();
+      expect(tree.findByType('input').findByProps({ value: 'test-value' }));
     });
   });
 });
