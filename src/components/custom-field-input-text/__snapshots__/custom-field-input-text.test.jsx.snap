@@ -12,11 +12,6 @@ exports[`CustomFieldInputText has defaults 1`] = `
     >
       Input Descriptor
     </label>
-    <span
-      className="additional-information-icon"
-    >
-      ?
-    </span>
   </div>
   <div
     className="input-container"
