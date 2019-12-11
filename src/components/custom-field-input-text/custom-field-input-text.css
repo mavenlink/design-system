@@ -41,7 +41,7 @@
   margin: var(--spacing-small) 0;
 }
 
-.input-container input {
+input {
   border: 1px solid var(--palette-grey-light);
   border-radius: var(--spacing-x-small);
   color: var(--palette-grey-x-dark);
@@ -54,11 +54,11 @@
   color: var(--palette-grey-dark);
 }
 
-.disabled .input-container input {
+.disabled input {
   background-color: var(--palette-grey-light);
 }
 
-.error .input-container input {
+.error input {
   border-color: var(--palette-caution-base);
 }
 
