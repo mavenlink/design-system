@@ -17,6 +17,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
     className="input-container"
   >
     <input
+      className="input"
       disabled={false}
       onClick={[Function]}
       type="text"

@@ -24,12 +24,7 @@
   color: var(--palette-caution-base);
 }
 
-.input-container {
-  height: 34px;
-  margin: var(--spacing-small) 0;
-}
-
-input {
+.input {
   border: 1px solid var(--palette-grey-light);
   border-radius: var(--spacing-x-small);
   color: var(--palette-grey-x-dark);
@@ -37,17 +32,22 @@ input {
   padding: var(--spacing-medium);
 }
 
-.input-container input::placeholder {
-  color: var(--palette-grey-dark);
-}
-
-.disabled input {
+.disabled .input {
   background-color: var(--palette-grey-light);
 }
 
-.error input {
+.error .input {
   border-color: var(--palette-caution-base);
   padding-right: var(--spacing-x-large);
+}
+
+.input-container {
+  height: 34px;
+  margin: var(--spacing-small) 0;
+}
+
+.input-container input::placeholder {
+  color: var(--palette-grey-dark);
 }
 
 .input-icon-container {
