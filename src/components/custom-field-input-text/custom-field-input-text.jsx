@@ -23,7 +23,6 @@ export default function CustomFieldInputText(props) {
       <div className={styles['heading-container']}>
         <label className={styles.label} htmlFor={props.id}>Input Descriptor</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
-        <span className={styles['additional-information-icon']}>?</span>
       </div>
       <div className={styles['input-container']}>
         <input type="text" id={props.id} name={props.name} placeholder={props.placeholder} value={props.value} onClick={props.onClick} disabled={props.disabled} />

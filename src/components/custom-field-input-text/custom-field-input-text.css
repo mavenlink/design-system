@@ -2,18 +2,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.additional-information-icon {
-  border: 1px solid var(--palette-grey-light);
-  border-radius: 50%;
-  color: var(--palette-grey-dark);
-  cursor: pointer;
-  display: inline-block;
-  height: var(--spacing-large);
-  margin-left: var(--spacing-medium);
-  text-align: center;
-  width: var(--spacing-large);
-}
-
 .custom-field-input-text {
   font-family: var(--mavenlink-type-font-family);
 }
