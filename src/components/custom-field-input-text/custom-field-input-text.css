@@ -47,6 +47,7 @@
   color: var(--palette-grey-x-dark);
   font-size: var(--mavenlink-type-base-size);
   padding: var(--spacing-medium);
+  padding-right: var(--spacing-x-large);
 }
 
 .input-container input::placeholder {
