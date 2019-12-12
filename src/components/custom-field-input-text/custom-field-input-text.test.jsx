@@ -67,6 +67,27 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('help text API', () => {
+    it('can have help text', () => {
+      const helpText = 'Oh wow big helpful yes!';
+      const r = renderer.create((
+        <CustomFieldInputText helpText={helpText} />
+      ));
+      const root = r.root;
+
+      expect(root.findByProps({ className: 'help' }).children).toContain(helpText);
+    });
+
+    it('can have empty help text', () => {
+      const r = renderer.create((
+        <CustomFieldInputText />
+      ));
+      const root = r.root;
+
+      expect(root.findByProps({ className: 'help' }).children).toEqual([]);
+    });
+  });
+
   describe('name API', () => {
     it('sets the name attribute', () => {
       const tree = renderer.create((
