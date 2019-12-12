@@ -118,6 +118,26 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('required API', () => {
+    it('can have a required indicator', () => {
+      const r = renderer.create((
+        <CustomFieldInputText required={true} />
+      ));
+      const root = r.root;
+
+      expect(root.findByProps({ className: 'optional' }));
+    });
+
+    it('can have no required indicator', () => {
+      const r = renderer.create((
+        <CustomFieldInputText />
+      ));
+      const root = r.root;
+
+      expect(root.findByProps({ className: 'input-container' }).children.length).toEqual(1);
+    });
+  });
+
   describe('id API', () => {
     it('sets the id attribute', () => {
       const tree = renderer.create((
