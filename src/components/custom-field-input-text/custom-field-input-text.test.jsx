@@ -97,6 +97,27 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('placeholder API', () => {
+    it('can have placeholder for input', () => {
+      const placeholder = 'This is placeholder input';
+      const r = renderer.create((
+        <CustomFieldInputText placeholder={placeholder} />
+      ));
+      const root = r.root;
+
+      expect(root.findByType('input').props.placeholder).toEqual(placeholder);
+    });
+
+    it('can have no placeholder for input', () => {
+      const r = renderer.create((
+        <CustomFieldInputText />
+      ));
+      const root = r.root;
+
+      expect(root.findByType('input').props.placeholder).toBeUndefined();
+    });
+  });
+
   describe('id API', () => {
     it('sets the id attribute', () => {
       const tree = renderer.create((
