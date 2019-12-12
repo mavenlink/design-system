@@ -21,19 +21,49 @@ describe('CustomFieldInputText', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const tree = renderer.create((
+      const r = renderer.create((
         <CustomFieldInputText disabled={true} />
-      )).root;
-      expect(tree.findByProps({ className: 'custom-field-input-text' }).findByProps({ disabled: true }));
-      expect(tree.findByType('input').findByProps({ disabled: true }));
+      ));
+      const tree = r.toJSON();
+      const root = r.root;
+
+      expect(tree.props.className).toContain('disabled');
+      expect(root.findByType('input').findByProps({ disabled: true }));
     });
 
     it('can be enabled', () => {
-      const tree = renderer.create((
+      const r = renderer.create((
         <CustomFieldInputText disabled={false} />
-      )).root;
-      expect(tree.findByProps({ className: 'custom-field-input-text' }).findByProps({ disabled: false }));
-      expect(tree.findByType('input').findByProps({ disabled: false }));
+      ));
+      const tree = r.toJSON();
+      const root = r.root;
+
+      expect(tree.props.className).not.toContain('disabled');
+      expect(root.findByType('input').findByProps({ disabled: false }));
+    });
+  });
+
+  describe('error API', () => {
+    it('can have an error state', () => {
+      const r = renderer.create((
+        <CustomFieldInputText error={true} />
+      ));
+      const tree = r.toJSON();
+      const root = r.root;
+
+      expect(tree.props.className).toContain('error');
+      expect(root.findByProps({ currentColor: 'caution' }));
+    });
+
+    it('can have no error state', () => {
+      const r = renderer.create((
+        <CustomFieldInputText error={false} />
+      ));
+      const tree = r.toJSON();
+      const root = r.root;
+
+      expect(tree.props.className).not.toContain('error');
+      expect(root.findByProps({ className: 'input-container' }).children.length).toEqual(1);
     });
   });
 
