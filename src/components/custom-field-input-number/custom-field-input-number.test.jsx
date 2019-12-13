@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import CustomFieldInputText from './custom-field-input-text.jsx';
+import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
-// TODO: write test for onChange
-describe('CustomFieldInputText', () => {
+// TODO: Update these tests to actually test the Number input specific props and traits
+describe('CustomFieldInputNumber', () => {
   it('has defaults', () => {
     const tree = renderer.create((
-      <CustomFieldInputText />
+      <CustomFieldInputNumber />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -14,7 +14,7 @@ describe('CustomFieldInputText', () => {
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const tree = renderer.create((
-        <CustomFieldInputText className="prioritize-me" />
+        <CustomFieldInputNumber className="prioritize-me" />
       )).toJSON();
       expect(tree.props.className).toEqual('prioritize-me');
     });
@@ -23,7 +23,7 @@ describe('CustomFieldInputText', () => {
   describe('disabled API', () => {
     it('can be disabled', () => {
       const r = renderer.create((
-        <CustomFieldInputText disabled={true} />
+        <CustomFieldInputNumber disabled={true} />
       ));
       const tree = r.toJSON();
       const root = r.root;
@@ -34,7 +34,7 @@ describe('CustomFieldInputText', () => {
 
     it('can be enabled', () => {
       const r = renderer.create((
-        <CustomFieldInputText disabled={false} />
+        <CustomFieldInputNumber disabled={false} />
       ));
       const tree = r.toJSON();
       const root = r.root;
@@ -47,7 +47,7 @@ describe('CustomFieldInputText', () => {
   describe('error API', () => {
     it('can have an error state', () => {
       const r = renderer.create((
-        <CustomFieldInputText error={true} />
+        <CustomFieldInputNumber error={true} />
       ));
       const tree = r.toJSON();
       const root = r.root;
@@ -58,7 +58,7 @@ describe('CustomFieldInputText', () => {
 
     it('can have no error state', () => {
       const r = renderer.create((
-        <CustomFieldInputText error={false} />
+        <CustomFieldInputNumber error={false} />
       ));
       const tree = r.toJSON();
       const root = r.root;
@@ -72,7 +72,7 @@ describe('CustomFieldInputText', () => {
     it('can have help text', () => {
       const helpText = 'Oh wow big helpful yes!';
       const r = renderer.create((
-        <CustomFieldInputText helpText={helpText} />
+        <CustomFieldInputNumber helpText={helpText} />
       ));
       const root = r.root;
 
@@ -81,7 +81,7 @@ describe('CustomFieldInputText', () => {
 
     it('can have empty help text', () => {
       const r = renderer.create((
-        <CustomFieldInputText />
+        <CustomFieldInputNumber />
       ));
       const root = r.root;
 
@@ -92,7 +92,7 @@ describe('CustomFieldInputText', () => {
   describe('name API', () => {
     it('sets the name attribute', () => {
       const tree = renderer.create((
-        <CustomFieldInputText name="test-name" />
+        <CustomFieldInputNumber name="test-name" />
       )).root;
       expect(tree.findByType('input').findByProps({ name: 'test-name' }));
     });
@@ -102,7 +102,7 @@ describe('CustomFieldInputText', () => {
     it('can have placeholder for input', () => {
       const placeholder = 'This is placeholder input';
       const r = renderer.create((
-        <CustomFieldInputText placeholder={placeholder} />
+        <CustomFieldInputNumber placeholder={placeholder} />
       ));
       const root = r.root;
 
@@ -111,7 +111,7 @@ describe('CustomFieldInputText', () => {
 
     it('can have no placeholder for input', () => {
       const r = renderer.create((
-        <CustomFieldInputText />
+        <CustomFieldInputNumber />
       ));
       const root = r.root;
 
@@ -122,7 +122,7 @@ describe('CustomFieldInputText', () => {
   describe('required API', () => {
     it('can have a required indicator', () => {
       const r = renderer.create((
-        <CustomFieldInputText required={true} />
+        <CustomFieldInputNumber required={true} />
       ));
       const root = r.root;
 
@@ -131,7 +131,7 @@ describe('CustomFieldInputText', () => {
 
     it('can have no required indicator', () => {
       const r = renderer.create((
-        <CustomFieldInputText />
+        <CustomFieldInputNumber />
       ));
       const root = r.root;
 
@@ -142,7 +142,7 @@ describe('CustomFieldInputText', () => {
   describe('id API', () => {
     it('sets the id attribute', () => {
       const tree = renderer.create((
-        <CustomFieldInputText id="test-id" />
+        <CustomFieldInputNumber id="test-id" />
       )).root;
       expect(tree.findByType('input').findByProps({ id: 'test-id' }));
     });
@@ -152,7 +152,7 @@ describe('CustomFieldInputText', () => {
     it('sets the onclick handler', () => {
       const onClickSpy = jest.fn();
       const tree = renderer.create((
-        <CustomFieldInputText onClick={onClickSpy} />
+        <CustomFieldInputNumber onClick={onClickSpy} />
       )).root;
       tree.findByType('input').props.onClick();
       expect(onClickSpy.mock.calls.length).toEqual(1);
@@ -162,7 +162,7 @@ describe('CustomFieldInputText', () => {
   describe('value API', () => {
     it('sets the value attribute', () => {
       const tree = renderer.create((
-        <CustomFieldInputText value="test-value" />
+        <CustomFieldInputNumber value="test-value" />
       )).root;
       expect(tree.findByType('input').findByProps({ value: 'test-value' }));
     });
