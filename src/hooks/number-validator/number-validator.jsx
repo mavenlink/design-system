@@ -1,6 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const numberRegex = RegExp(/^-?(0|[1-9]\d*)?(\.\d+)?(?<=\d)$/);
+
+// This exists to satisfy Styleguidist, don't use it!
+export function NumberValidator() {
+  return (
+    <div />
+  );
+}
 
 export default function useNumberValidator(input) {
   const [valid, setValid] = useState(true);
