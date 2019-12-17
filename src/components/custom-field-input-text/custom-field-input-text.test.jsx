@@ -1,4 +1,5 @@
 import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
@@ -148,8 +149,30 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('type API', () => {
+    it('sets the type attribute', () => {
+      const tree = renderer.create((
+        <CustomFieldInputText type="button" />
+      )).root;
+      expect(tree.findByType('input').findByProps({ type: 'button' }));
+    });
+  });
+
+  describe('onChange API', () => {
+    it('sets and fires the onchange handler', () => {
+      const onChangeSpy = jest.fn();
+      const { getByRole } = render(
+        <CustomFieldInputText onChange={onChangeSpy} />,
+      );
+
+      fireEvent.change(getByRole('textbox'), { target: { value: 'this is text' } });
+
+      expect(onChangeSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
   describe('onClick API', () => {
-    it('sets the onclick handler', () => {
+    it('sets and fires the onclick handler', () => {
       const onClickSpy = jest.fn();
       const tree = renderer.create((
         <CustomFieldInputText onClick={onClickSpy} />

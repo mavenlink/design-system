@@ -19,13 +19,23 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputText(props) {
   return (
-    <div className={getRootClassName(props.className, props.error, props.disabled)}>
+    <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
         <label className={styles.label} htmlFor={props.id}>Input Descriptor</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
-        <input className={styles.input} disabled={props.disabled} type="text" id={props.id} name={props.name} placeholder={props.placeholder} value={props.value} onChange={props.onChange} onClick={props.onClick} />
+        <input
+          className={styles.input}
+          disabled={props.disabled}
+          type={props.type}
+          id={props.id}
+          name={props.name}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+          onClick={props.onClick}
+        />
         {props.error &&
           <div className={styles['input-icon-container']}>
             <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />
@@ -48,6 +58,7 @@ CustomFieldInputText.propTypes = {
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -62,5 +73,6 @@ CustomFieldInputText.defaultProps = {
   onClick: () => {},
   placeholder: undefined,
   required: false,
+  type: 'text',
   value: undefined,
 };

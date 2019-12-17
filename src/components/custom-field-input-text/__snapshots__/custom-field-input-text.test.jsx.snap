@@ -3,6 +3,7 @@
 exports[`CustomFieldInputText has defaults 1`] = `
 <div
   className="custom-field-input-text"
+  data-testid="custom-field-input"
 >
   <div
     className="heading-container"

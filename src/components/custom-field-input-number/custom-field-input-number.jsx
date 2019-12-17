@@ -18,8 +18,13 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputNumber(props) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(props.value);
   const valid = props.useValidator(input);
+
+  function handleOnChange(event) {
+    setInput(event.target.value);
+    props.onChange(event);
+  }
 
   return (
     <CustomFieldInputText
@@ -29,10 +34,11 @@ export default function CustomFieldInputNumber(props) {
       helpText={props.helpText}
       id={props.id}
       name={props.name}
-      onChange={event => setInput(event.target.value)}
+      onChange={event => handleOnChange(event)}
       onClick={props.onClick}
       placeholder={props.placeholder}
       required={props.required}
+      type={props.type}
       value={props.value}
     />
   );
@@ -45,9 +51,11 @@ CustomFieldInputNumber.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
+  onChange: PropTypes.func,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.string,
   useValidator: PropTypes.func,
   value: PropTypes.string,
 };
@@ -59,9 +67,11 @@ CustomFieldInputNumber.defaultProps = {
   helpText: undefined,
   id: undefined,
   name: undefined,
+  onChange: () => {},
   onClick: () => {},
   placeholder: undefined,
   required: false,
+  type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
   useValidator: useNumberValidator,
   value: undefined,
 };
