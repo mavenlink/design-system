@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
-// TODO: write test for onChange
 describe('CustomFieldInputText', () => {
   it('has defaults', () => {
     const tree = renderer.create((
