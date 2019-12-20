@@ -80,7 +80,7 @@ describe('useNumberValidator', () => {
     expect(result.current).toBe(false);
   });
 
-  it('fails validation for incomplete decmals', () => {
+  it('fails validation for incomplete decimals', () => {
     const { result } = renderHook(() => useNumberValidator('1.'));
 
     expect(result.current).toBe(false);
