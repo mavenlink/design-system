@@ -36,7 +36,7 @@ export default function CustomFieldInputText(props) {
           onChange={props.onChange}
           onClick={props.onClick}
         />
-        {props.error &&
+        {(props.error && !props.disabled) &&
           <div className={styles['input-icon-container']}>
             <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />
           </div>
