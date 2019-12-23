@@ -11,8 +11,7 @@
   --mavenlink-type-base-size: 14px;
   --mavenlink-type-small-size: 12px;
   --mavenlink-type-button-font-size: var(--mavenlink-type-base-size);
-  --mavenlink-type-body-font-size: 12px;
   --mavenlink-type-text-rendering: optimizeLegibility;
-  --mavenlink-type-line-height: 1.5;
+  --mavenlink-type-line-height: 1;
   --mavenlink-type-header-line-height: 1.2;
 }

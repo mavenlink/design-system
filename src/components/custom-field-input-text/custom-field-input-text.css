@@ -8,7 +8,7 @@
 
 .heading-container {
   color: var(--palette-grey-dark);
-  font-size: var(--mavenlink-type-body-font-size);
+  font-size: var(--mavenlink-type-small-size);
 }
 
 .error .heading-container {

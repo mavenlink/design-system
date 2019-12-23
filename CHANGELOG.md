@@ -4,6 +4,8 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  - Implement a text input field designed for custom forms
 </details>
 
 ## 0.9.0 (July 24, 2019)
