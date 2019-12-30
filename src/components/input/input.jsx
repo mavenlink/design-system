@@ -34,6 +34,7 @@ export default function Input(props) {
           onKeyDown={props.onKeyDown}
           placeholder={props.placeholder}
           readOnly={props.readOnly}
+          ref={props.inputRef}
           required={props.required}
           type={props.type}
           value={props.value}
@@ -50,6 +51,10 @@ Input.propTypes = {
   cssLabel: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
+  ]),
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
@@ -76,6 +81,7 @@ Input.defaultProps = {
   cssLabel: undefined,
   disabled: undefined,
   invalid: false,
+  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: undefined,

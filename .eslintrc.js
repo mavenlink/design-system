@@ -6,6 +6,9 @@ module.exports = {
       ignorePackages: true,
     }],
   },
+  env: {
+    browser: true,
+  },
   overrides: [{
     files: [
       '**/*.test.js',

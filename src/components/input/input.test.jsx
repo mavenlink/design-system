@@ -1,4 +1,5 @@
 import React from 'react';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Input from './input.jsx';
 
@@ -294,6 +295,22 @@ describe('Input', () => {
         />
       )).root;
       expect(tree.findByType('input').props.value).toEqual('test-value');
+    });
+  });
+
+  describe('ref API', () => {
+    it('is set to the inputRef property', () => {
+      const inputRef = React.createRef();
+      const tree = mount(
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          inputRef={inputRef}
+          onChange={() => {}}
+          value="test-value"
+        />,
+      );
+      expect(tree.find('input').props().value).toEqual(inputRef.current.value);
     });
   });
 });
