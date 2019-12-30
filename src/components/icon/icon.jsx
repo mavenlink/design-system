@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import styles from './icon.css';
 
 export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
-  const strokeOnly = stroke && !currentColor && !fill;
-  const fillValue = strokeOnly ? 'none' : fill;
-  const color = strokeOnly ? 'transparent' : currentColor;
-
   const classes = [
     styles['icon-base'],
     size && styles[`size-${size}`],
-    fillValue && styles[`fill-${fillValue}`],
+    styles[`fill-${fill}`],
     stroke && styles[`stroke-${stroke}`],
-    color && styles[`color-${color}`],
+    styles[`color-${currentColor}`],
     className,
   ].filter(Boolean);
+
   return (
     <svg className={classes.join(' ')} role="img">
       { title && <title>{title}</title> }
@@ -37,6 +34,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'transparent',
   ]),
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
@@ -55,8 +53,8 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   className: undefined,
-  fill: undefined,
-  currentColor: undefined,
+  fill: 'none',
+  currentColor: 'transparent',
   size: undefined,
   stroke: undefined,
   title: undefined,

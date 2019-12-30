@@ -40,7 +40,6 @@ describe('Icon', () => {
           expect(tree.props.className).toContain('icon-base');
           expect(tree.props.className).toContain(`fill-${color}`);
           expect(tree.props.className).not.toContain('stroke');
-          expect(tree.props.className).not.toContain('color');
         });
       });
     });

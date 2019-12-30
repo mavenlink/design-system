@@ -2,7 +2,7 @@
 
 exports[`Icon has defaults 1`] = `
 <svg
-  className="icon-base"
+  className="icon-base fill-none color-transparent"
   role="img"
 >
   <use
