@@ -13,8 +13,8 @@ describe('Icon', () => {
   it('has title', () => {
     const tree = renderer.create((
       <Icon name="foobar" title="yo" />
-    )).toJSON();
-    expect(tree).toMatchSnapshot();
+    )).root;
+    expect(tree.findByType('title').props.children).toBe('yo');
   });
 
   describe('size API', () => {
