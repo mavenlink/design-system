@@ -7,7 +7,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
     styles['icon-base'],
     styles[`size-${size}`],
     styles[`fill-${fill}`],
-    stroke && styles[`stroke-${stroke}`],
+    styles[`stroke-${stroke}`],
     styles[`color-${currentColor}`],
     className,
   ].filter(Boolean);
@@ -47,6 +47,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'none',
   ]),
   title: PropTypes.string,
 };
@@ -56,6 +57,6 @@ Icon.defaultProps = {
   fill: 'none',
   currentColor: 'transparent',
   size: 'medium',
-  stroke: undefined,
+  stroke: 'none',
   title: undefined,
 };

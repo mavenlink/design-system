@@ -49,6 +49,10 @@
   stroke: var(--palette-caution-base);
 }
 
+.stroke-none {
+  stroke: none;
+}
+
 .color-primary {
   color: var(--palette-primary-base);
 }
