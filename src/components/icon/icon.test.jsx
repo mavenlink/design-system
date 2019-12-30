@@ -15,7 +15,7 @@ describe('Icon', () => {
     render((
       <Icon name="foobar" title="yo" />
     ));
-    expect(screen.getByRole('img')).toContainHTML('<title>yo</title>');
+    expect(screen.getByTitle('yo')).toBeDefined();
   });
 
   describe('size API', () => {
