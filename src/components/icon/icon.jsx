@@ -5,7 +5,7 @@ import styles from './icon.css';
 export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
   const classes = [
     styles['icon-base'],
-    size && styles[`size-${size}`],
+    styles[`size-${size}`],
     styles[`fill-${fill}`],
     stroke && styles[`stroke-${stroke}`],
     styles[`color-${currentColor}`],
@@ -55,7 +55,7 @@ Icon.defaultProps = {
   className: undefined,
   fill: 'none',
   currentColor: 'transparent',
-  size: undefined,
+  size: 'medium',
   stroke: undefined,
   title: undefined,
 };
