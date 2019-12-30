@@ -51,10 +51,7 @@ Input.propTypes = {
   cssLabel: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
-  ]),
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
