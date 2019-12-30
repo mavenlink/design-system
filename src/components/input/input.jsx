@@ -22,6 +22,7 @@ export default function Input(props) {
       </label>
       <div className={props.cssContainer}>
         <input
+          autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           className={getClassName(props.className, props.invalid)}
           disabled={props.disabled}
           id={props.id}
@@ -46,6 +47,7 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
   cssLabel: PropTypes.string,
@@ -73,6 +75,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  autoFocus: undefined,
   className: undefined,
   cssContainer: styles.container,
   cssLabel: undefined,

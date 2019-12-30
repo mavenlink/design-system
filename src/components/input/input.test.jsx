@@ -313,4 +313,17 @@ describe('Input', () => {
       expect(tree.find('input').props().value).toEqual(inputRef.current.value);
     });
   });
+
+  describe('autoFocus API', () => {
+    it('sets the autoFocus attribute', () => {
+      const tree = renderer.create((
+        <Input
+          id="foo"
+          label="I am a label for accessibility"
+          autoFocus
+        />
+      )).root;
+      expect(tree.findByType('input').props.autoFocus).toEqual(true);
+    });
+  });
 });
