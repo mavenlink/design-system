@@ -22,6 +22,7 @@ export default function Input(props) {
       </label>
       <div className={props.cssContainer}>
         <input
+          autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           className={getClassName(props.className, props.invalid)}
           disabled={props.disabled}
           id={props.id}
@@ -34,6 +35,7 @@ export default function Input(props) {
           onKeyDown={props.onKeyDown}
           placeholder={props.placeholder}
           readOnly={props.readOnly}
+          ref={props.inputRef}
           required={props.required}
           type={props.type}
           value={props.value}
@@ -45,11 +47,13 @@ export default function Input(props) {
 }
 
 Input.propTypes = {
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
   cssLabel: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
@@ -71,11 +75,13 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  autoFocus: undefined,
   className: undefined,
   cssContainer: styles.container,
   cssLabel: undefined,
   disabled: undefined,
   invalid: false,
+  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: undefined,
