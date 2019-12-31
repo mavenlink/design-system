@@ -33,3 +33,7 @@ In short, when you submit code changes, your submissions are understood to be un
 
 ## Reporting Bugs
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/mavenlink/design-system/issues/new). Please provide details, background, and sample code if possible.
+
+## Tips
+
+- `yarn test -o` runs only changed test files
