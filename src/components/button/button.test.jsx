@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Button from './button.jsx';
 
 describe('Button', () => {
@@ -14,136 +15,136 @@ describe('Button', () => {
 
   describe('className API', () => {
     it('prioritizes className prop', () => {
-      const tree = renderer.create((
+      render((
         <Button className="prioritize-me" color="primary">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.className).toEqual('prioritize-me');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveClass('prioritize-me');
     });
 
     it('has a fallback to color prop', () => {
-      const tree = renderer.create((
+      render((
         <Button color="primary">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.className).toEqual('primary');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveClass('primary');
     });
   });
 
   describe('color API', () => {
     it('can be "primary"', () => {
-      const tree = renderer.create((
+      render((
         <Button color="primary">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.className).toEqual('primary');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveClass('primary');
     });
 
     it('can be "secondary"', () => {
-      const tree = renderer.create((
+      render((
         <Button color="secondary">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.className).toEqual('secondary');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveClass('secondary');
     });
   });
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const tree = renderer.create((
+      render((
         <Button disabled={true}>
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.disabled).toEqual(true);
+      ));
+      expect(screen.getByText('Hello world!')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      const tree = renderer.create((
+      render((
         <Button disabled={false}>
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.disabled).toEqual(false);
+      ));
+      expect(screen.getByText('Hello world!')).toBeEnabled();
     });
   });
 
   describe('name API', () => {
     it('sets the name attribute', () => {
-      const tree = renderer.create((
+      render((
         <Button name="test-name">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.name).toEqual('test-name');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('name', 'test-name');
     });
   });
 
   describe('id API', () => {
     it('sets the id attribute', () => {
-      const tree = renderer.create((
+      render((
         <Button id="test-id">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.id).toEqual('test-id');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('id', 'test-id');
     });
   });
 
   describe('onClick API', () => {
     it('sets the onclick handler', () => {
       const onClickSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Button onClick={onClickSpy}>
           Hello world!
         </Button>
-      )).toJSON();
-      tree.props.onClick();
+      ));
+      fireEvent.click(screen.getByText('Hello world!'));
       expect(onClickSpy.mock.calls.length).toEqual(1);
     });
   });
 
   describe('type API', () => {
     it('can be "button"', () => {
-      const tree = renderer.create((
+      render((
         <Button type="button">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.type).toEqual('button');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('type', 'button');
     });
 
     it('can be "reset"', () => {
-      const tree = renderer.create((
+      render((
         <Button type="reset">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.type).toEqual('reset');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('type', 'reset');
     });
 
     it('can be "submit"', () => {
-      const tree = renderer.create((
+      render((
         <Button type="submit">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.type).toEqual('submit');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('type', 'submit');
     });
   });
 
   describe('value API', () => {
     it('sets the value attribute', () => {
-      const tree = renderer.create((
+      render((
         <Button value="test-value">
           Hello world!
         </Button>
-      )).toJSON();
-      expect(tree.props.value).toEqual('test-value');
+      ));
+      expect(screen.getByText('Hello world!')).toHaveAttribute('value', 'test-value');
     });
   });
 });
