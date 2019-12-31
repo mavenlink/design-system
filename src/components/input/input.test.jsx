@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Input from './input.jsx';
 
 describe('Input', () => {
@@ -16,137 +16,133 @@ describe('Input', () => {
   });
 
   describe('className API', () => {
-    it('always sets <input> className', () => {
-      const tree = renderer.create((
+    it('sets <input> className', () => {
+      render((
         <Input
           id="foo"
           className="test-class"
-          label="I am a label for accessibility"
+          label="the label"
           invalid
         />
-      )).root;
-      expect(tree.findByType('input').props.className).toEqual('test-class');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveClass('test-class');
     });
   });
 
   describe('cssContainer API', () => {
-    it('always sets input container className', () => {
-      const tree = renderer.create((
+    it('sets input container className', () => {
+      render((
         <Input
           id="foo"
           cssContainer="test-class"
-          label="I am a label for accessibility"
+          label="the label"
           invalid
         />
-      )).root;
-
-      const containerNode = tree.findByProps({ className: 'test-class' });
-
-      expect(containerNode.type).toEqual('div');
-      expect(containerNode.children.map(child => child.type.name || child.type)).toEqual(['input', 'Icon']);
+      ));
+      expect(screen.getByLabelText('the label').parentElement).toHaveClass('test-class');
     });
   });
 
   describe('cssLabel API', () => {
-    it('always sets <label> className', () => {
-      const tree = renderer.create((
+    it('sets <label> className', () => {
+      render((
         <Input
           id="foo"
           cssLabel="test-class"
-          label="I am a label for accessibility"
+          label="the label"
           invalid
         />
-      )).root;
-      expect(tree.findByType('label').props.className).toEqual('test-class');
+      ));
+      expect(screen.getByText('the label')).toHaveClass('test-class');
     });
   });
 
   describe('disabled API', () => {
     it('sets the disabled attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
           disabled
-          label="I am a label for accessibility"
+          label="the label"
         />
-      )).root;
-      expect(tree.findByType('input').props.disabled).toEqual(true);
+      ));
+      expect(screen.getByLabelText('the label')).toBeDisabled();
     });
   });
 
   describe('id API', () => {
     it('sets the ID', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="test-id"
-          label="I am a label for accessibility"
+          label="the label"
         />
-      )).root;
-      expect(tree.findByType('input').props.id).toEqual('test-id');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('id', 'test-id');
     });
   });
 
   describe('invalid API', () => {
     it('sets an invalid class', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           invalid
         />
-      )).root;
-      expect(tree.findByType('input').props.className).toEqual('invalid-input');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveClass('invalid-input');
     });
 
     it('inserts an invalid icon', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           invalid
         />
-      )).root;
-      expect(tree.findByType('svg').props.className.split(' ')).toContain('invalid-icon');
+      ));
+      expect(screen.getByRole('img')).toHaveClass('invalid-icon');
     });
   });
 
   describe('maxLength API', () => {
     it('sets the maxLength attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           maxLength={100}
         />
-      )).root;
-      expect(tree.findByType('input').props.maxLength).toEqual(100);
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('maxlength', '100');
     });
   });
 
   describe('name API', () => {
     it('sets the name attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           name="test-name"
         />
-      )).root;
-      expect(tree.findByType('input').props.name).toEqual('test-name');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('name', 'test-name');
     });
   });
 
   describe('onBlur API', () => {
     it('sets the onblur handler', () => {
       const onBlurSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           onBlur={onBlurSpy}
         />
-      )).root;
-      tree.findByType('input').props.onBlur();
+      ));
+      fireEvent.blur(screen.getByLabelText('the label'));
       expect(onBlurSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -154,14 +150,14 @@ describe('Input', () => {
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           onChange={onChangeSpy}
         />
-      )).root;
-      tree.findByType('input').props.onChange();
+      ));
+      fireEvent.change(screen.getByLabelText('the label'), { target: { value: 'new value' } });
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -169,14 +165,14 @@ describe('Input', () => {
   describe('onFocus API', () => {
     it('sets the onFocus handler', () => {
       const onFocusSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           onFocus={onFocusSpy}
         />
-      )).root;
-      tree.findByType('input').props.onFocus();
+      ));
+      fireEvent.focus(screen.getByLabelText('the label'));
       expect(onFocusSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -184,14 +180,14 @@ describe('Input', () => {
   describe('onInput API', () => {
     it('sets the onInput handler', () => {
       const onInputSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           onInput={onInputSpy}
         />
-      )).root;
-      tree.findByType('input').props.onInput();
+      ));
+      fireEvent.input(screen.getByLabelText('the label'));
       expect(onInputSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -199,131 +195,132 @@ describe('Input', () => {
   describe('onKeyDown API', () => {
     it('sets the onKeyDown handler', () => {
       const onKeyDownSpy = jest.fn();
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           onKeyDown={onKeyDownSpy}
         />
-      )).root;
-      tree.findByType('input').props.onKeyDown();
+      ));
+      fireEvent.keyDown(screen.getByLabelText('the label'));
       expect(onKeyDownSpy.mock.calls.length).toEqual(1);
     });
   });
 
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           placeholder="test-placeholder"
         />
-      )).root;
-      expect(tree.findByType('input').props.placeholder).toEqual('test-placeholder');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('placeholder', 'test-placeholder');
     });
   });
 
   describe('readOnly API', () => {
     it('sets the readOnly attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           readOnly
         />
-      )).root;
-      expect(tree.findByType('input').props.readOnly).toEqual(true);
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('readonly');
     });
   });
 
   describe('required API', () => {
     it('sets the required attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           required
         />
-      )).root;
-      expect(tree.findByType('input').props.required).toEqual(true);
+      ));
+      expect(screen.getByLabelText('the label')).toBeRequired();
     });
   });
 
   describe('type API', () => {
     it('is set to "email"', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           type="email"
         />
-      )).root;
-      expect(tree.findByType('input').props.type).toEqual('email');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'email');
     });
 
     it('is set to "password"', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           type="password"
         />
-      )).root;
-      expect(tree.findByType('input').props.type).toEqual('password');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'password');
     });
 
     it('is be set to "text"', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           type="text"
         />
-      )).root;
-      expect(tree.findByType('input').props.type).toEqual('text');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'text');
     });
   });
 
   describe('value API', () => {
     it('sets the value', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
+          onChange={() => {}}
           value="test-value"
         />
-      )).root;
-      expect(tree.findByType('input').props.value).toEqual('test-value');
+      ));
+      expect(screen.getByLabelText('the label')).toHaveValue('test-value');
     });
   });
 
   describe('ref API', () => {
     it('is set to the inputRef property', () => {
       const inputRef = React.createRef();
-      const tree = mount(
+      render(
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           inputRef={inputRef}
           onChange={() => {}}
           value="test-value"
         />,
       );
-      expect(tree.find('input').props().value).toEqual(inputRef.current.value);
+      expect(inputRef.current.value).toEqual('test-value');
     });
   });
 
   describe('autoFocus API', () => {
     it('sets the autoFocus attribute', () => {
-      const tree = renderer.create((
+      render((
         <Input
           id="foo"
-          label="I am a label for accessibility"
+          label="the label"
           autoFocus
         />
-      )).root;
-      expect(tree.findByType('input').props.autoFocus).toEqual(true);
+      ));
+      expect(screen.getByLabelText('the label')).toHaveFocus();
     });
   });
 });
