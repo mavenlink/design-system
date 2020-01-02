@@ -4,7 +4,7 @@ There are 2 different kinds of testing in this repo: unit and integration.
 
 ## Unit
 
-Unit tests use [Jest](https://jestjs.io/) and [Enzyme](https://airbnb.io/enzyme/) to test the individual components. They serve to give us confidence that the components exported by our package are working as intended, and are a great way to test all the nitty-gritty logic in our components.
+Unit tests use [Jest](https://jestjs.io/) and [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro) to test the individual components. They serve to give us confidence that the components exported by our package are working as intended, and are a great way to test all the nitty-gritty logic in our components.
 
 Run these with:
 
