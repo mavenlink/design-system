@@ -6,7 +6,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 - Install with NPM or Yarn
 
-  ```
+  ```bash
   npm install --save @mavenlink/design-system
 
   # or
