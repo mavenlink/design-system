@@ -31,3 +31,11 @@ yarn cypress:open
 # To run headlessly
 yarn cypress:run
 ```
+
+## Linting
+
+Linter rules are used to standardize patterns in the codebase. Run these with:
+
+```
+yarn lint
+```
