@@ -1,6 +1,10 @@
 # Testing Philosophy
 
-There are 2 different kinds of testing in this repo: unit and integration.
+There are 3 different kinds of testing in this repository: 
+
+- [Unit](#unit)
+- [Integration](#integration)
+- [Linting](#linting)
 
 ## Unit
 
@@ -43,7 +47,7 @@ yarn cypress:run
 
 ## Linting
 
-Linter rules are used to standardize patterns in the codebase. Run these with:
+Linting rules are used to standardize patterns in the codebase. Run these with:
 
 ```
 yarn lint
