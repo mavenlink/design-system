@@ -14,7 +14,7 @@ yarn test
 
 ### Patterns
 
-1. [Jest Snapshots](https://jestjs.io/docs/en/snapshot-testing) test the default DOM structure and DOM attributes of a component
+1. [Jest snapshots](https://jestjs.io/docs/en/snapshot-testing) test the default DOM structure and DOM attributes of a component
 2. Component API tests
     - [Jest matchers](https://jestjs.io/docs/en/expect) are the default set of test assertions
     - [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom#table-of-contents) are extra test assertions for DOM elements and accessibility
