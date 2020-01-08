@@ -15,7 +15,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 1. Fork the repo and create your branch from `master`.
 2. Make your changes. Be sure to look at [our component design principles](./principles.md)!
-2. Add or update tests if necessary
+2. Add or update tests if necessary. Be sure to look at [our testing philosophy](./testing.md)!
 3. If updating an exported component, add an entry in the "unreleased" section of the changelog. See [this example commit](https://github.com/mavenlink/design-system/commit/e0913fdbcb94b12df797a2d398d0d60e6d755b3d#diff-4ac32a78649ca5bdd8e0ba38b7006a1e).
 4. Ensure the test suite passes by running `yarn test`
 5. Ensure the linter passes by running `yarn lint`
@@ -33,3 +33,7 @@ In short, when you submit code changes, your submissions are understood to be un
 
 ## Reporting Bugs
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/mavenlink/design-system/issues/new). Please provide details, background, and sample code if possible.
+
+## Tips
+
+- `yarn test -o` runs only changed test files

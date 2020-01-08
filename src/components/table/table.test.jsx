@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import {
   Table,
   TableHeader,
@@ -10,7 +10,7 @@ import {
 } from './index.js';
 
 function render() {
-  return mount(
+  return renderer.create(
     <Table>
       <TableHeader>
         <TableHeaderCell>id</TableHeaderCell>
@@ -31,14 +31,6 @@ function render() {
 }
 
 test('rendering', () => {
-  const wrapper = render();
-
-  const headers = wrapper.find('th');
-  expect(headers.map(el => el.text())).toEqual(['id', 'name']);
-
-  const rows = wrapper.find('tbody tr');
-  expect(rows.length).toEqual(2);
-
-  const cells = wrapper.find('td');
-  expect(cells.map(el => el.text())).toEqual(['1', 'Bob Ross', '2', 'Bob Marley']);
+  const tree = render();
+  expect(tree.toJSON()).toMatchSnapshot();
 });

@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import styles from './icon.css';
 
 export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
-  const strokeOnly = stroke && !currentColor && !fill;
-  const fillValue = strokeOnly ? 'none' : fill;
-  const color = strokeOnly ? 'transparent' : currentColor;
-
   const classes = [
     styles['icon-base'],
-    size && styles[`size-${size}`],
-    fillValue && styles[`fill-${fillValue}`],
-    stroke && styles[`stroke-${stroke}`],
-    color && styles[`color-${color}`],
+    styles[`size-${size}`],
+    styles[`fill-${fill}`],
+    styles[`stroke-${stroke}`],
+    styles[`color-${currentColor}`],
     className,
   ].filter(Boolean);
+
   return (
-    <svg className={classes.join(' ')}>
+    <svg className={classes.join(' ')} role="img">
       { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
@@ -37,6 +34,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'transparent',
   ]),
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
@@ -49,15 +47,16 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'none',
   ]),
   title: PropTypes.string,
 };
 
 Icon.defaultProps = {
   className: undefined,
-  fill: undefined,
-  currentColor: undefined,
-  size: undefined,
-  stroke: undefined,
+  fill: 'none',
+  currentColor: 'transparent',
+  size: 'medium',
+  stroke: 'none',
   title: undefined,
 };

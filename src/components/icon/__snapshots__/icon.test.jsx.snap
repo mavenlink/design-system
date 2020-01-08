@@ -2,21 +2,9 @@
 
 exports[`Icon has defaults 1`] = `
 <svg
-  className="icon-base"
+  className="icon-base size-medium fill-none stroke-none color-transparent"
+  role="img"
 >
-  <use
-    xlinkHref="#foobar"
-  />
-</svg>
-`;
-
-exports[`Icon has title 1`] = `
-<svg
-  className="icon-base"
->
-  <title>
-    yo
-  </title>
   <use
     xlinkHref="#foobar"
   />
