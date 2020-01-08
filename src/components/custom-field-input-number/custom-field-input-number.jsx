@@ -68,7 +68,7 @@ CustomFieldInputNumber.defaultProps = {
   id: undefined,
   name: undefined,
   onChange: () => {},
-  onClick: () => {},
+  onClick: undefined,
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
