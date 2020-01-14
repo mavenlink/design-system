@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomFieldInputCurrency has defaults 1`] = `
+<div
+  className="custom-field-input-text"
+  data-testid="custom-field-input"
+>
+  <div
+    className="heading-container"
+  >
+    <label
+      className="label"
+    >
+      Input Descriptor
+    </label>
+  </div>
+  <div
+    className="input-container"
+  >
+    <input
+      className="input"
+      disabled={false}
+      onChange={[Function]}
+      onClick={[Function]}
+      type="text"
+    />
+  </div>
+  <span
+    className="help"
+  />
+</div>
+`;
