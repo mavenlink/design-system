@@ -81,5 +81,5 @@ CustomFieldInputCurrency.defaultProps = {
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
   useValidator: useCurrencyValidator,
-  value: undefined,
+  value: '',
 };

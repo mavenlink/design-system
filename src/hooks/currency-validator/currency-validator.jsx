@@ -13,7 +13,7 @@ export function CurrencyValidator() {
 }
 
 export default function useCurrencyValidator(input, currencySymbol) {
-  const currencyRegex = RegExp(`^${escapeRegex(currencySymbol)}[0-9]+((\\.|,)[0-9]{1,2})?$`);
+  const currencyRegex = RegExp(`^${escapeRegex(currencySymbol)}[0-9]*((\\.|,)[0-9]{1,2})?$`);
   const [valid, setValid] = useState(true);
 
   useEffect(() => {

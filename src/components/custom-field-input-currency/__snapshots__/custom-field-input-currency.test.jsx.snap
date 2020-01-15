@@ -23,6 +23,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       onChange={[Function]}
       onClick={[Function]}
       type="text"
+      value=""
     />
   </div>
   <span

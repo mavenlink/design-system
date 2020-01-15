@@ -56,7 +56,17 @@ describe('CustomFieldInputCurrency', () => {
         <CustomFieldInputCurrency />,
       );
 
-      fireEvent.change(getByRole('textbox'), { target: { value: '1234' } });
+      fireEvent.change(getByRole('textbox'), { target: { value: '$1234' } });
+
+      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+    });
+
+    it('correctly uses the currencySymbol attribute', () => {
+      const { getByRole, getByTestId } = render(
+        <CustomFieldInputCurrency currencySymbol="€" />,
+      );
+
+      fireEvent.change(getByRole('textbox'), { target: { value: '€1234' } });
 
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
     });
@@ -66,7 +76,7 @@ describe('CustomFieldInputCurrency', () => {
         <CustomFieldInputCurrency />,
       );
 
-      fireEvent.change(getByRole('textbox'), { target: { value: '--0.1.2' } });
+      fireEvent.change(getByRole('textbox'), { target: { value: '$--0.1.2' } });
 
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
