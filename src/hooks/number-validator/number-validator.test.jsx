@@ -50,6 +50,12 @@ describe('useNumberValidator', () => {
     expect(result.current).toBe(true);
   });
 
+  it('passes validation for incomplete decimals', () => {
+    const { result } = renderHook(() => useNumberValidator('1.'));
+
+    expect(result.current).toBe(true);
+  });
+
   it('fails validation for alpha characters', () => {
     const { result } = renderHook(() => useNumberValidator('a'));
 
@@ -76,12 +82,6 @@ describe('useNumberValidator', () => {
 
   it('fails validation for multiple . characters', () => {
     const { result } = renderHook(() => useNumberValidator('1.2.3'));
-
-    expect(result.current).toBe(false);
-  });
-
-  it('fails validation for incomplete decimals', () => {
-    const { result } = renderHook(() => useNumberValidator('1.'));
 
     expect(result.current).toBe(false);
   });
