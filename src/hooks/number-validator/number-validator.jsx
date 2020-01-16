@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const numberRegex = RegExp(/^-?(0|[1-9]\d*)?\.?(\d+)?$/);
+const numberRegex = RegExp(/^-?(0|[1-9]\d*)?[,.]?(\d+)?$/);
 
 // This exists to satisfy Styleguidist, don't use it!
 export function NumberValidator() {
