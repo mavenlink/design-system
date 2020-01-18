@@ -23,30 +23,30 @@ describe('CustomFieldInputNumber', () => {
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
         <CustomFieldInputNumber
-          className={'test'}
+          className={'test-class-name'}
           disabled={false}
           error={true}
-          helpText={'help'}
-          id={'id'}
-          name={'name'}
-          placeholder={'placeholder'}
+          helpText={'test-help-text'}
+          id={'test-id'}
+          name={'test-name'}
+          placeholder={'test-placeholder'}
           required={true}
-          type={'text'}
-          value={'value'}
+          type={'test-input-type'}
+          value={'test-value'}
         />
       )).toJSON();
       const stringTree = JSON.stringify(tree);
 
-      expect(tree.props.className).toContain('test error');
+      expect(tree.props.className).toContain('test-class-name error');
       expect(tree.props.className).not.toContain('disabled');
 
-      expect(stringTree).toContain('help');
-      expect(stringTree).toContain('id');
-      expect(stringTree).toContain('name');
-      expect(stringTree).toContain('placeholder');
+      expect(stringTree).toContain('test-help-text');
+      expect(stringTree).toContain('test-id');
+      expect(stringTree).toContain('test-name');
+      expect(stringTree).toContain('test-placeholder');
       expect(stringTree).toContain('Required');
-      expect(stringTree).toContain('type');
-      expect(stringTree).toContain('value');
+      expect(stringTree).toContain('test-input-type');
+      expect(stringTree).toContain('test-value');
     });
   });
 
