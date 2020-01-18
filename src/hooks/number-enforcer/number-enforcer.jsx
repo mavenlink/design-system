@@ -29,8 +29,6 @@ export default function useNumberEnforcer(input, locale = 'en-US') {
   const removeSeparator = sanitizedInput.replace(separatorRegex, '');
   let decimalConversion = removeSeparator.replace(decimalRegex, '.');
 
-  console.log(i18nOptions, separator, radix);
-
   useEffect(() => {
     setValid(false);
 
@@ -48,8 +46,6 @@ export default function useNumberEnforcer(input, locale = 'en-US') {
       if (enforcedNumber !== 'NaN') {
         setValid(true);
       }
-
-      console.log(input, sanitizedInput, removeSeparator, decimalConversion, enforcedNumber);
     }
   });
 
