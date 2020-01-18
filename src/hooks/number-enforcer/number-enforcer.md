@@ -9,12 +9,26 @@ import useNumberEnforcer from './number-enforcer.jsx';
 
 function TestComponent () {
   const [input, setInput] = useState('');
-  const [enforcedNumber, valid] = useNumberEnforcer(input);
+  const [target, setTarget] = useState({selectionStart: 0, selectionStart: 0, setSelectionRange: () => {}});
+  const [oldSelectionStart, setOldSelectionStart] = useState(0)
+  const [enforcedNumber, valid] = useNumberEnforcer(input, 'de-ID');
 
   return (
     <CustomFieldInputText
-      onChange={event => setInput(event.target.value)}
-      value={enforcedNumber}
+      onChange={(event) => {
+        setOldSelectionStart(event.target.selectionStart);
+        setTarget(event.target);
+
+        setInput(event.target.value)
+      }}
+      value={(() => {
+        let caretStart = oldSelectionStart;
+        let caretEnd = oldSelectionStart;
+
+        target.setSelectionRange(caretStart, caretEnd);
+
+        return enforcedNumber; 
+        })()}
       error={!valid}
     />
   )
