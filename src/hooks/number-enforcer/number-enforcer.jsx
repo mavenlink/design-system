@@ -15,8 +15,7 @@ export function NumberEnforcer() {
 export default function useNumberEnforcer(input, locale = 'en-US') {
   const [enforcedNumber, setEnforcedNumber] = useState('');
   const [valid, setValid] = useState(true);
-  const numberI18n = new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' });
-  const i18nOptions = numberI18n.resolvedOptions();
+  const numberI18n = new Intl.NumberFormat(locale);
 
   const separator = numberI18n.format(1234)[1];
   const radix = numberI18n.format(1.2)[1];
