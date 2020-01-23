@@ -31,7 +31,6 @@ describe('CustomFieldInputNumber', () => {
           name={'test-name'}
           placeholder={'test-placeholder'}
           required={true}
-          type={'test-input-type'}
           value={'test-value'}
         />
       )).toJSON();
@@ -45,7 +44,6 @@ describe('CustomFieldInputNumber', () => {
       expect(stringTree).toContain('test-name');
       expect(stringTree).toContain('test-placeholder');
       expect(stringTree).toContain('Required');
-      expect(stringTree).toContain('test-input-type');
       expect(stringTree).toContain('test-value');
     });
   });

@@ -38,7 +38,7 @@ export default function CustomFieldInputNumber(props) {
       onClick={props.onClick}
       placeholder={props.placeholder}
       required={props.required}
-      type={props.type}
+      type="number"
       value={props.value}
     />
   );
@@ -55,7 +55,6 @@ CustomFieldInputNumber.propTypes = {
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
   useValidator: PropTypes.func,
   value: PropTypes.string,
 };
@@ -71,7 +70,6 @@ CustomFieldInputNumber.defaultProps = {
   onClick: undefined,
   placeholder: undefined,
   required: false,
-  type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
   useValidator: useNumberValidator,
   value: undefined,
 };
