@@ -44,7 +44,7 @@ export default function CustomFieldInputNumber(props) {
       id={props.id}
       inputRef={inputEl}
       name={props.name}
-      onChange={event => handleOnChange(event)}
+      onChange={handleOnChange}
       onClick={props.onClick}
       placeholder={props.placeholder}
       required={props.required}
