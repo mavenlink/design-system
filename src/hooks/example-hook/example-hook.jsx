@@ -7,7 +7,7 @@ export function ExampleHook() {
   );
 }
 
-export default function useExampleHook(initialValue) {
+export default function useExampleHook(initialValue = '') {
   const [value, setValue] = useState(initialValue);
 
   return [value, setValue];
