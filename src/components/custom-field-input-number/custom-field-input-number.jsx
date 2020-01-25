@@ -40,7 +40,7 @@ export default function CustomFieldInputNumber(props) {
       className={getRootClassName(props.className, invalid, props.disabled)}
       disabled={props.disabled}
       error={invalid}
-      helpText={invalid && inputEl.current.validationMessage}
+      helpText={invalid ? inputEl.current.validationMessage : undefined}
       id={props.id}
       inputRef={inputEl}
       name={props.name}
