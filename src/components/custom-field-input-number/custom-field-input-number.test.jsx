@@ -18,7 +18,6 @@ describe('CustomFieldInputNumber', () => {
         <CustomFieldInputNumber
           className={'test-class-name'}
           disabled={false}
-          helpText={'test-help-text'}
           id={'test-id'}
           name={'test-name'}
           placeholder={'test-placeholder'}
@@ -31,7 +30,6 @@ describe('CustomFieldInputNumber', () => {
       expect(tree.props.className).toContain('test-class-name');
       expect(tree.props.className).not.toContain('disabled');
 
-      expect(stringTree).toContain('test-help-text');
       expect(stringTree).toContain('test-id');
       expect(stringTree).toContain('test-name');
       expect(stringTree).toContain('test-placeholder');
