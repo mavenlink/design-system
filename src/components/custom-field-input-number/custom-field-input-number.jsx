@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
+import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
-    return `${className} ${CustomFieldInputTextStyles.disabled}`;
+    return `${className} ${styles.disabled}`;
   }
 
   if (error) {
-    return `${className} ${CustomFieldInputTextStyles.error}`;
+    return `${className} ${styles.error}`;
   }
 
   return className;
@@ -67,7 +67,7 @@ CustomFieldInputNumber.propTypes = {
 };
 
 CustomFieldInputNumber.defaultProps = {
-  className: CustomFieldInputTextStyles['custom-field-input-text'],
+  className: styles['custom-field-input-text'],
   disabled: false,
   id: undefined,
   name: undefined,
