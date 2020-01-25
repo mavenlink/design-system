@@ -30,6 +30,7 @@ export default function CustomFieldInputText(props) {
           disabled={props.disabled}
           type={props.type}
           id={props.id}
+          ref={props.inputRef}
           name={props.name}
           placeholder={props.placeholder}
           value={props.value}
@@ -53,6 +54,7 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   name: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
@@ -68,6 +70,7 @@ CustomFieldInputText.defaultProps = {
   error: false,
   helpText: undefined,
   id: undefined,
+  inputRef: undefined,
   name: undefined,
   onChange: () => {},
   onClick: () => {},

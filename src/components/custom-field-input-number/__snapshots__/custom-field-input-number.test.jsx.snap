@@ -23,6 +23,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       onChange={[Function]}
       onClick={[Function]}
       type="number"
+      value=""
     />
   </div>
   <span
