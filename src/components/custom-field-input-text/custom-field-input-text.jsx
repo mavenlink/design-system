@@ -29,11 +29,11 @@ export default function CustomFieldInputText(props) {
           className={styles.input}
           disabled={props.disabled}
           defaultValue={props.value}
-          type="text"
           id={props.id}
           name={props.name}
-          placeholder={props.placeholder}
           onClick={props.onClick}
+          placeholder={props.placeholder}
+          type="text"
         />
         {props.error &&
           <div className={styles['input-icon-container']}>
