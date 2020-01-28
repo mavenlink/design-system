@@ -5,26 +5,21 @@ A valid number is either: a) positive whole number; b) negative whole number.
 Otherwise, it is an invalid number and the component is in an invalid state.
 
 ```jsx
-<CustomFieldInputNumber
-  placeholder="123"
-/>
+<CustomFieldInputNumber />
 ```
 ----
 ##### Disabled:
 ```jsx
 <CustomFieldInputNumber
-  disabled={true}
-  helpText="This input is disabled."
+  disabled
   id="test-id-2"
-  name="test-name-2"
-  value="123"
+  value="1337"
 />
 ```
 ----
 ##### Error:
 ```jsx
 <CustomFieldInputNumber
-  helpText="This input is bad."
   id="test-id-3"
   name="test-name-3"
   value="Text!"
