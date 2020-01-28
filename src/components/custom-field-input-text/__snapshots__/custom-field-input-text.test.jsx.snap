@@ -10,7 +10,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
     <label
       className="label"
     >
-      Input Descriptor
+      Test label
     </label>
   </div>
   <div

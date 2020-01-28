@@ -21,7 +21,7 @@ export default function CustomFieldInputText(props) {
   return (
     <div className={getRootClassName(props.className, props.error, props.disabled)}>
       <div className={styles['heading-container']}>
-        <label className={styles.label} htmlFor={props.id}>Input Descriptor</label>
+        <label className={styles.label} htmlFor={props.id}>{props.label}</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
@@ -52,6 +52,7 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
