@@ -135,7 +135,7 @@ describe('CustomFieldInputText', () => {
   describe('value API', () => {
     it('sets the value attribute', () => {
       const tree = renderer.create(<TestComponent value="test-value" />).root;
-      expect(tree.findByType('input').findByProps({ value: 'test-value' }));
+      expect(tree.findByType('input').findByProps({ defaultValue: 'test-value' }));
     });
   });
 });

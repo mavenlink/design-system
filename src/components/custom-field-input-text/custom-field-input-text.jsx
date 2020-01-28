@@ -28,11 +28,11 @@ export default function CustomFieldInputText(props) {
         <input
           className={styles.input}
           disabled={props.disabled}
+          defaultValue={props.value}
           type="text"
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
-          value={props.value}
           onClick={props.onClick}
         />
         {props.error &&
