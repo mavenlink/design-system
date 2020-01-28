@@ -5,14 +5,14 @@
   label="Example 1"
   name="test-name-1"
   placeholder="This is a placeholder value"
-  required={true}
+  required
 />
 ```
 ----
 ##### Disabled:
 ```jsx
 <CustomFieldInputText
-  disabled={true}
+  disabled
   helpText="This input is disabled."
   id="test-id-2"
   label="Example 2"
@@ -24,7 +24,7 @@
 ##### Error:
 ```jsx
 <CustomFieldInputText
-  error={true}
+  error
   helpText="This input is bad."
   id="test-id-3"
   label="Example 3"
