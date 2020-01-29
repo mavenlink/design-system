@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -31,7 +31,6 @@ export default function CustomFieldInputText(props) {
           defaultValue={props.value}
           id={props.id}
           name={props.name}
-          onClick={props.onClick}
           placeholder={props.placeholder}
           type="text"
         />
@@ -41,7 +40,7 @@ export default function CustomFieldInputText(props) {
           </div>
         }
       </div>
-      <span className={styles.help}>{props.helpText}</span>
+      {props.error && <span className={styles.help}>{props.helpText}</span>}
     </div>
   );
 }
@@ -51,10 +50,9 @@ CustomFieldInputText.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.string,
@@ -64,10 +62,8 @@ CustomFieldInputText.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
   error: false,
-  helpText: undefined,
-  id: undefined,
+  helpText: 'Input is invalid.',
   name: undefined,
-  onClick: () => {},
   placeholder: undefined,
   required: false,
   value: undefined,
