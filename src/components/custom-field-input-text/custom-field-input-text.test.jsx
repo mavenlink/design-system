@@ -33,7 +33,7 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  xdescribe('error API', () => {
+  describe('error API', () => {
     it('can have an error state', () => {
       const { container } = render(<TestComponent error />);
       expect(container.firstChild).toHaveClass('error');
@@ -49,7 +49,7 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  xdescribe('help text API', () => {
+  describe('help text API', () => {
     it('can have help text', () => {
       const helpText = 'Oh wow big helpful yes!';
       render(<TestComponent error helpText={helpText} />);

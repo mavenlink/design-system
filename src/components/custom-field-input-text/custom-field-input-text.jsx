@@ -18,6 +18,16 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    if (props.error) {
+      inputRef.current.setCustomValidity(props.helpText);
+    };
+  });
+
   return (
     <div className={getRootClassName(props.className, props.error, props.disabled)}>
       <div className={styles['heading-container']}>
@@ -33,6 +43,7 @@ export default function CustomFieldInputText(props) {
           name={props.name}
           placeholder={props.placeholder}
           required={props.required}
+          ref={inputRef}
           type="text"
         />
         {props.error &&
