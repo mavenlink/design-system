@@ -70,6 +70,13 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('label API', () => {
+    it('sets the label', () => {
+      render(<TestComponent label="Another label" />);
+      expect(screen.getByLabelText('Another label')).toBeDefined();
+    });
+  });
+
   describe('name API', () => {
     it('sets the name attribute', () => {
       render(<TestComponent name="test-name" />);
