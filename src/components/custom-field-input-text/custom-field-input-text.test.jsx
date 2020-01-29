@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -81,7 +81,7 @@ describe('CustomFieldInputText', () => {
   describe('required API', () => {
     it('can have a required indicator', () => {
       render(<TestComponent required={true} />);
-      expect(screen.getByLabelText('Test label')).toBeRequired()
+      expect(screen.getByLabelText('Test label')).toBeRequired();
     });
 
     it('can have no required indicator', () => {

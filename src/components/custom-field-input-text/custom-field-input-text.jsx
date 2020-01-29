@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -25,7 +25,7 @@ export default function CustomFieldInputText(props) {
 
     if (props.error) {
       inputRef.current.setCustomValidity(props.helpText);
-    };
+    }
   });
 
   return (
