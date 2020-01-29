@@ -63,6 +63,13 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('id API', () => {
+    it('sets the id attribute', () => {
+      render(<TestComponent id="test-id" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'test-id');
+    });
+  });
+
   describe('name API', () => {
     it('sets the name attribute', () => {
       render(<TestComponent name="test-name" />);
@@ -87,13 +94,6 @@ describe('CustomFieldInputText', () => {
     it('can have no required indicator', () => {
       render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
-    });
-  });
-
-  describe('id API', () => {
-    it('sets the id attribute', () => {
-      render(<TestComponent id="test-id" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'test-id');
     });
   });
 
