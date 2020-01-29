@@ -16,7 +16,7 @@
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
     "test": "jest",
-    "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand"
+    "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand --no-cache --watch"
   },
   "repository": {
     "type": "git",
