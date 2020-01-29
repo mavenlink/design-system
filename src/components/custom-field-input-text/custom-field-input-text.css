@@ -32,11 +32,11 @@
   padding: var(--spacing-medium);
 }
 
-.disabled .input {
+.input:disabled {
   background-color: var(--palette-grey-light);
 }
 
-.error .input {
+.input:invalid {
   border-color: var(--palette-caution-base);
   padding-right: var(--spacing-x-large);
 }
