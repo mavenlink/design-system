@@ -21,6 +21,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
       className="input"
       disabled={false}
       id="test-input"
+      required={false}
       type="text"
     />
   </div>

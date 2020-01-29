@@ -32,6 +32,7 @@ export default function CustomFieldInputText(props) {
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
+          required={props.required}
           type="text"
         />
         {props.error &&

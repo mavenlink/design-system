@@ -78,7 +78,7 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  xdescribe('required API', () => {
+  describe('required API', () => {
     it('can have a required indicator', () => {
       render(<TestComponent required={true} />);
       expect(screen.getByLabelText('Test label')).toBeRequired()
@@ -86,7 +86,7 @@ describe('CustomFieldInputText', () => {
 
     it('can have no required indicator', () => {
       render(<TestComponent />);
-      expect(screen.getByLabelText('Test label')).not.toBeUndefinedtoBeRequired()
+      expect(screen.getByLabelText('Test label')).not.toBeRequired();
     });
   });
 
