@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -18,32 +18,41 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    if (props.error) {
+      inputRef.current.setCustomValidity(props.helpText);
+    }
+  });
+
   return (
     <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
-        <label className={styles.label} htmlFor={props.id}>Input Descriptor</label>
+        <label className={styles.label} htmlFor={props.id}>{props.label}</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
         <input
           className={styles.input}
           disabled={props.disabled}
-          type={props.type}
+          defaultValue={props.value}
           id={props.id}
-          ref={props.inputRef}
           name={props.name}
           placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          onClick={props.onClick}
+          required={props.required}
+          ref={inputRef}
+          type="text"
         />
-        {(props.error && !props.disabled) &&
+        {props.error &&
           <div className={styles['input-icon-container']}>
             <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />
           </div>
         }
       </div>
-      <span className={styles.help}>{props.helpText}</span>
+      {props.error && <span className={styles.help}>{props.helpText}</span>}
     </div>
   );
 }
@@ -53,11 +62,9 @@ CustomFieldInputText.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
-  id: PropTypes.string,
-  inputRef: PropTypes.shape({ current: PropTypes.any }),
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string,
@@ -68,12 +75,8 @@ CustomFieldInputText.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
   error: false,
-  helpText: undefined,
-  id: undefined,
-  inputRef: undefined,
+  helpText: 'Input is invalid.',
   name: undefined,
-  onChange: () => {},
-  onClick: () => {},
   placeholder: undefined,
   required: false,
   type: 'text',

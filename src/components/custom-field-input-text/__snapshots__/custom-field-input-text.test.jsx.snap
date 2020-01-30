@@ -10,8 +10,9 @@ exports[`CustomFieldInputText has defaults 1`] = `
   >
     <label
       className="label"
+      htmlFor="test-input"
     >
-      Input Descriptor
+      Test label
     </label>
   </div>
   <div
@@ -20,13 +21,15 @@ exports[`CustomFieldInputText has defaults 1`] = `
     <input
       className="input"
       disabled={false}
+<<<<<<< HEAD
       onChange={[Function]}
       onClick={[Function]}
+=======
+      id="test-input"
+      required={false}
+>>>>>>> custom-field-text-improvements
       type="text"
     />
   </div>
-  <span
-    className="help"
-  />
 </div>
 `;
