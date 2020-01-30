@@ -4,9 +4,13 @@ import renderer from 'react-test-renderer';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
 describe('CustomFieldInputNumber', () => {
+  function TestComponent(props = {}) {
+    return <CustomFieldInputNumber id="test-input" label="Test label" {...props} />;
+  }
+
   it('has defaults', () => {
     const tree = renderer.create((
-      <CustomFieldInputNumber />
+      <TestComponent />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -14,7 +18,7 @@ describe('CustomFieldInputNumber', () => {
   describe('prop-forward API', () => {
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
-        <CustomFieldInputNumber
+        <TestComponent
           className={'test-class-name'}
           disabled={false}
           id={'test-id'}
@@ -39,22 +43,22 @@ describe('CustomFieldInputNumber', () => {
 
   describe('number validation', () => {
     it('is valid on a postive integer', () => {
-      render(<CustomFieldInputNumber value="1" />);
+      render(<TestComponent value="1" />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
     });
 
     it('is valid on zero', () => {
-      render(<CustomFieldInputNumber value="0" />);
+      render(<TestComponent value="0" />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
     });
 
     it('is valid on a negative integer', () => {
-      render(<CustomFieldInputNumber value="-1" />);
+      render(<TestComponent value="-1" />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
     });
 
     it('is valid on a decimal integer', () => {
-      render(<CustomFieldInputNumber value="1.00" />);
+      render(<TestComponent value="1.00" />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
     });
 
@@ -63,12 +67,12 @@ describe('CustomFieldInputNumber', () => {
       // If you type "1.01" then it is invalid.
       // If you set it via `value` then it is valid (until you type).
       // Reproduce this on a codepen and make an issue in React.
-      render(<CustomFieldInputNumber value="1.01" />);
+      render(<TestComponent value="1.01" />);
       expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
     });
 
     it('is invalid on a string of characters', () => {
-      render(<CustomFieldInputNumber value="not-a-number" />);
+      render(<TestComponent value="not-a-number" />);
       expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
     });
   });

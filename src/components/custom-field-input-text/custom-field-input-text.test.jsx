@@ -1,5 +1,4 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import CustomFieldInputText from './custom-field-input-text.jsx';

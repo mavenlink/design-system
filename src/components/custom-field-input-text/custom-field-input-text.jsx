@@ -63,11 +63,15 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
+  type: PropTypes.oneOf([
+    'number',
+    'text',
+  ]),
   value: PropTypes.string,
 };
 
@@ -76,6 +80,7 @@ CustomFieldInputText.defaultProps = {
   disabled: false,
   error: false,
   helpText: 'Input is invalid.',
+  inputRef: undefined,
   name: undefined,
   placeholder: undefined,
   required: false,

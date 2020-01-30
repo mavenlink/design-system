@@ -43,6 +43,7 @@ export default function CustomFieldInputNumber(props) {
       helpText={invalid ? inputEl.current.validationMessage : undefined}
       id={props.id}
       inputRef={inputEl}
+      label={props.label}
       name={props.name}
       onChange={handleOnChange}
       onClick={props.onClick}
@@ -57,7 +58,8 @@ export default function CustomFieldInputNumber(props) {
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
@@ -69,7 +71,6 @@ CustomFieldInputNumber.propTypes = {
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
-  id: undefined,
   name: undefined,
   onChange: () => {},
   onClick: undefined,
