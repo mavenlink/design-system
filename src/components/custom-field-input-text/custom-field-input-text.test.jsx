@@ -33,9 +33,18 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('error API', () => {
-    it('can have an error state', () => {
+  describe('error API and helpText API', () => {
+    xit('can have an error state through a native validation', () => {
+      // I am not sure what is the best way to represent this in a test.
+      // However, at the moment, there are end-to-end tests in the Number component tests.
       const { container } = render(<TestComponent error />);
+      expect(container.firstChild).toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    });
+
+    it('can have an error state through a custom validation', () => {
+      const { container } = render(<TestComponent error helpText="Custom validation message" />);
       expect(container.firstChild).toHaveClass('error');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
@@ -46,20 +55,6 @@ describe('CustomFieldInputText', () => {
       expect(container.firstChild).not.toHaveClass('error');
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(container.querySelector('[role="img"]')).toBeFalsy();
-    });
-  });
-
-  describe('help text API', () => {
-    it('can have help text', () => {
-      const helpText = 'Oh wow big helpful yes!';
-      render(<TestComponent error helpText={helpText} />);
-      expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByText(helpText)).toBeTruthy();
-    });
-
-    it('can have empty help text', () => {
-      render(<TestComponent error />);
-      expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
   });
 

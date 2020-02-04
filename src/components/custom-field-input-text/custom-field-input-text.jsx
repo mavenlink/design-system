@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -19,12 +19,22 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputText(props) {
   const inputRef = useRef(null);
+  const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
     if (!inputRef.current) return;
 
     if (props.error) {
-      inputRef.current.setCustomValidity(props.helpText);
+      if (props.helpText) {
+        inputRef.current.setCustomValidity(props.helpText);
+        setValidationMessage(inputRef.current.validationMessage);
+      } else {
+        inputRef.current.setCustomValidity('');
+        setValidationMessage(inputRef.current.validationMessage);
+      }
+    } else {
+      inputRef.current.setCustomValidity('');
+      setValidationMessage('');
     }
   });
 
@@ -37,13 +47,14 @@ export default function CustomFieldInputText(props) {
       <div className={styles['input-container']}>
         <input
           className={styles.input}
+          defaultValue={props.value}
           disabled={props.disabled}
           defaultValue={props.value}
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
-          required={props.required}
           ref={inputRef}
+          required={props.required}
           type="text"
         />
         {props.error &&
@@ -52,7 +63,7 @@ export default function CustomFieldInputText(props) {
           </div>
         }
       </div>
-      {props.error && <span className={styles.help}>{props.helpText}</span>}
+      {props.error && <span className={styles.help}>{validationMessage}</span>}
     </div>
   );
 }
@@ -74,7 +85,7 @@ CustomFieldInputText.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
   error: false,
-  helpText: 'Input is invalid.',
+  helpText: undefined,
   name: undefined,
   placeholder: undefined,
   required: false,
