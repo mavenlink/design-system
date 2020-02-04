@@ -18,7 +18,7 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
-  const inputRef = useRef(null);
+  const inputRef = props.inputRef || useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {

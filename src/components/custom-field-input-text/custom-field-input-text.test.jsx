@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import CustomFieldInputText from './custom-field-input-text.jsx';
@@ -62,6 +62,14 @@ describe('CustomFieldInputText', () => {
     it('sets the id attribute', () => {
       render(<TestComponent id="test-id" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'test-id');
+    });
+  });
+
+  describe('inputRef API', () => {
+    it('sets the ref on the input', () => {
+      const inputRef = createRef();
+      render(<TestComponent inputRef={inputRef} />);
+      expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
     });
   });
 
