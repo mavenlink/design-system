@@ -38,13 +38,14 @@ export default function CustomFieldInputNumber(props) {
       id={props.id}
       inputRef={inputRef}
       label={props.label}
-      max={Math.pow(2, 31)} // This value is sourced from the API
-      min={Math.pow(-2, 31)} // This value is sourced from the API
+      max={2 ** 31} // This value is sourced from the API
+      min={-(2 ** 31)} // This value is sourced from the API
       name={props.name}
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
+      required={props.required}
+      step={1}
       type="number"
-      step="1"
       value={props.value}
     />
   );
