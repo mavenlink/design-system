@@ -50,11 +50,15 @@ export default function CustomFieldInputText(props) {
           defaultValue={props.value}
           disabled={props.disabled}
           id={props.id}
+          max={props.max}
+          min={props.min}
           name={props.name}
+          onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
           ref={inputRef}
           required={props.required}
-          type="text"
+          step={props.step}
+          type={props.type}
         />
         {props.error &&
           <div className={styles['input-icon-container']}>
@@ -76,13 +80,17 @@ CustomFieldInputText.propTypes = {
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
+  onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.oneOf([
     'number',
     'text',
   ]),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 CustomFieldInputText.defaultProps = {
@@ -92,6 +100,7 @@ CustomFieldInputText.defaultProps = {
   helpText: undefined,
   inputRef: undefined,
   name: undefined,
+  onKeyDown: () => {},
   placeholder: undefined,
   required: false,
   type: 'text',

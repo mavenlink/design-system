@@ -26,6 +26,6 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 <CustomFieldInputNumber
   id="test-id-3"
   label="Example 3"
-  value="Text!"
+  value="-1.01"
 />
 ```

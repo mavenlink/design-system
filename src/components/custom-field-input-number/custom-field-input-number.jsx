@@ -17,40 +17,35 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputNumber(props) {
-  const inputEl = useRef(null);
-  const [input, setInput] = useState(props.value);
+  const inputRef = useRef(null);
   const [invalid, setInvalid] = useState(false);
 
-  function handleOnChange(event) {
-    setInput(event.target.value);
-    props.onChange(event);
+  function handleOnKeyUp(event) {
+    setInvalid(!event.target.checkValidity());
   }
 
   useEffect(() => {
-    if (!inputEl.current) return;
+    if (!inputRef.current) return;
 
-    const invalidPropValue = input !== inputEl.current.value;
-    const invalidInputEl = !inputEl.current.validity.valid;
-
-    setInvalid(invalidPropValue || invalidInputEl);
-  }, [input]);
+    setInvalid(!inputRef.current.validity.valid);
+  });
 
   return (
     <CustomFieldInputText
       className={getRootClassName(props.className, invalid, props.disabled)}
       disabled={props.disabled}
       error={invalid}
-      helpText={invalid ? inputEl.current.validationMessage : undefined}
       id={props.id}
-      inputRef={inputEl}
+      inputRef={inputRef}
       label={props.label}
+      max={Math.pow(2, 31)} // This value is sourced from the API
+      min={Math.pow(-2, 31)} // This value is sourced from the API
       name={props.name}
-      onChange={handleOnChange}
-      onClick={props.onClick}
+      onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
-      required={props.required}
       type="number"
-      value={input}
+      step="1"
+      value={props.value}
     />
   );
 }
@@ -61,20 +56,16 @@ CustomFieldInputNumber.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };
 
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
   name: undefined,
-  onChange: () => {},
-  onClick: undefined,
   placeholder: undefined,
   required: false,
-  value: '',
+  value: undefined,
 };
