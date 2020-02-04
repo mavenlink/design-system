@@ -49,7 +49,6 @@ export default function CustomFieldInputText(props) {
           className={styles.input}
           defaultValue={props.value}
           disabled={props.disabled}
-          defaultValue={props.value}
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
