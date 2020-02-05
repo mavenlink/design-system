@@ -37,14 +37,7 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
-  xdescribe('number validation', () => {
-    // These validations tests are failing very weirdly.
-    // The same set up on the actual MDS site works well
-    // but the tests seem to be applying a different
-    // native validation algorithm.
-    // As of this writing, it thinks the valid values
-    // have a step mismatch.
-
+  describe('number validation', () => {
     it('is valid on a postive integer', () => {
       render(<TestComponent value="1" />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
