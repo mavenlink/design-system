@@ -120,7 +120,7 @@ describe('CustomFieldInputText', () => {
 
   describe('required API', () => {
     it('can have a required indicator', () => {
-      render(<TestComponent required={true} />);
+      render(<TestComponent required />);
       expect(screen.getByLabelText('Test label')).toBeRequired();
     });
 
