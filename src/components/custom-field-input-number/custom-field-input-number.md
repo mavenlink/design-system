@@ -17,7 +17,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
   disabled
   id="test-id-2"
   label="Example 2"
-  value="1337"
+  value={1337}
 />
 ```
 ----
@@ -26,6 +26,6 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 <CustomFieldInputNumber
   id="test-id-3"
   label="Example 3"
-  value="-1.01"
+  value={-1.01}
 />
 ```
