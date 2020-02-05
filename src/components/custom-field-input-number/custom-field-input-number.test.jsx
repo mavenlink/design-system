@@ -13,31 +13,69 @@ describe('CustomFieldInputNumber', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('prop-forward API', () => {
-    it('renders all forwarded props except event handlers', () => {
-      const tree = renderer.create((
-        <TestComponent
-          className={'test-class-name'}
-          disabled={false}
-          id={'test-id'}
-          name={'test-name'}
-          placeholder={'test-placeholder'}
-          value={42}
-        />
-      )).toJSON();
-      const stringTree = JSON.stringify(tree);
-
-      expect(tree.props.className).toContain('test-class-name');
-      expect(tree.props.className).not.toContain('disabled');
-
-      expect(stringTree).toContain('test-id');
-      expect(stringTree).toContain('test-name');
-      expect(stringTree).toContain('test-placeholder');
-      expect(stringTree).toContain('42');
+  describe('className API', () => {
+    it('prioritizes className prop', () => {
+      const { container } = render(<TestComponent className="prioritize-me" />);
+      expect(container.firstChild).toHaveClass('prioritize-me');
     });
   });
 
-  describe('number validation', () => {
+  describe('disabled API', () => {
+    it('can be disabled', () => {
+      const { container } = render(<TestComponent disabled />);
+      expect(container.firstChild).toHaveClass('disabled');
+      expect(screen.getByLabelText('Test label')).toBeDisabled();
+    });
+
+    it('can be enabled', () => {
+      const { container } = render(<TestComponent />);
+      expect(container.firstChild).not.toHaveClass('disabled');
+      expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+    });
+  });
+
+  describe('id API', () => {
+    it('sets the id attribute', () => {
+      render(<TestComponent id="test-id" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'test-id');
+    });
+  });
+
+  describe('label API', () => {
+    it('sets the label', () => {
+      render(<TestComponent label="Another label" />);
+      expect(screen.getByLabelText('Another label')).toBeDefined();
+    });
+  });
+
+  describe('name API', () => {
+    it('sets the name attribute', () => {
+      render(<TestComponent name="test-name" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('name', 'test-name');
+    });
+  });
+
+  describe('placeholder API', () => {
+    it('sets the placeholder attribute', () => {
+      const placeholder = 'This is placeholder input';
+      render(<TestComponent placeholder={placeholder} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('placeholder', placeholder);
+    });
+  });
+
+  describe('required API', () => {
+    it('sets the required attribute', () => {
+      render(<TestComponent required />);
+      expect(screen.getByLabelText('Test label')).toBeRequired();
+    });
+
+    it('unsets the required attribute', () => {
+      render(<TestComponent />);
+      expect(screen.getByLabelText('Test label')).not.toBeRequired();
+    });
+  });
+
+  describe('value API', () => {
     it('is valid on a postive integer', () => {
       render(<TestComponent value={1} />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
