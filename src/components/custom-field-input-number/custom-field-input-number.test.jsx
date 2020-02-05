@@ -62,10 +62,5 @@ describe('CustomFieldInputNumber', () => {
       render(<TestComponent value="1.01" />);
       expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
     });
-
-    it('is invalid on a string of characters', () => {
-      render(<TestComponent value="not-a-number" />);
-      expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
-    });
   });
 });
