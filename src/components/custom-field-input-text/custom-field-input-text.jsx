@@ -85,11 +85,11 @@ CustomFieldInputText.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  step: PropTypes.number,
   type: PropTypes.oneOf([
     'number',
     'text',
   ]),
-  step: PropTypes.number,
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -108,7 +108,7 @@ CustomFieldInputText.defaultProps = {
   onKeyUp: () => {},
   placeholder: undefined,
   required: false,
-  type: 'text',
   step: undefined,
+  type: 'text',
   value: undefined,
 };
