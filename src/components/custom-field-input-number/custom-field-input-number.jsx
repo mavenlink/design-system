@@ -4,6 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
+const apiLimits = {
+  max: 2 ** 31,
+  min: -(2 ** 31),
+};
+
 function getRootClassName(className, error, disabled) {
   if (disabled) {
     return `${className} ${styles.disabled}`;
@@ -38,8 +43,8 @@ export default function CustomFieldInputNumber(props) {
       id={props.id}
       inputRef={inputRef}
       label={props.label}
-      max={2 ** 31} // This value is sourced from the API
-      min={-(2 ** 31)} // This value is sourced from the API
+      max={apiLimits.max}
+      min={apiLimits.min}
       name={props.name}
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
