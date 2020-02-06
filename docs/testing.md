@@ -1,6 +1,6 @@
 # Testing Philosophy
 
-There are 3 different kinds of testing in this repository: 
+There are 3 different kinds of testing in this repository:
 
 - [Unit](#unit)
 - [Integration](#integration)
@@ -15,6 +15,10 @@ Run these with:
 ```
 yarn test
 ```
+
+An important bit to note: our test fail if there is prop-types are violated.
+At the moment, this check is performed in the `jest.config.setup.files.after.env.js` file.
+During development, it might be worthwhile to comment out contents of the file while there are weird failures.
 
 ### Patterns
 
