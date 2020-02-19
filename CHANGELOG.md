@@ -4,9 +4,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-  - Implement a text input field designed for custom forms
 </details>
+
+## 0.13.0 (February 17, 2020)
+- Implement a text input field designed for custom forms
 
 ## 0.9.0 (July 24, 2019)
 - Implements <Button /> component. At the moment, we only introduce two kinds of buttons as a means of minimizing the breadth of our supported components.
