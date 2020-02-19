@@ -18,7 +18,7 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
-  const inputRef = useRef(null);
+  const inputRef = props.inputRef || useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function CustomFieldInputText(props) {
   });
 
   return (
-    <div className={getRootClassName(props.className, props.error, props.disabled)}>
+    <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
         <label className={styles.label} htmlFor={props.id}>{props.label}</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
@@ -50,11 +50,15 @@ export default function CustomFieldInputText(props) {
           defaultValue={props.value}
           disabled={props.disabled}
           id={props.id}
+          max={props.max}
+          min={props.min}
           name={props.name}
+          onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
           ref={inputRef}
           required={props.required}
-          type="text"
+          step={props.step}
+          type={props.type}
         />
         {props.error &&
           <div className={styles['input-icon-container']}>
@@ -73,11 +77,23 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
+  max: PropTypes.number,
+  min: PropTypes.number,
   name: PropTypes.string,
+  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.string,
+  step: PropTypes.number,
+  type: PropTypes.oneOf([
+    'number',
+    'text',
+  ]),
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 CustomFieldInputText.defaultProps = {
@@ -85,8 +101,14 @@ CustomFieldInputText.defaultProps = {
   disabled: false,
   error: false,
   helpText: undefined,
+  inputRef: undefined,
+  max: undefined,
+  min: undefined,
   name: undefined,
+  onKeyUp: () => {},
   placeholder: undefined,
   required: false,
+  step: undefined,
+  type: 'text',
   value: undefined,
 };

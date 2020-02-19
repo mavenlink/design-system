@@ -31,6 +31,11 @@ module.exports = {
       sectionDepth: 2,
     },
     {
+      name: 'Hooks',
+      components: './src/hooks/**/*.jsx',
+      sectionDepth: 1,
+    },
+    {
       name: 'Guidelines',
       sections: [
         {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CustomFieldInputText has defaults 1`] = `
+exports[`CustomFieldInputNumber has defaults 1`] = `
 <div
   className="custom-field-input-text"
   data-testid="custom-field-input"
@@ -22,9 +22,12 @@ exports[`CustomFieldInputText has defaults 1`] = `
       className="input"
       disabled={false}
       id="test-input"
+      max={2147483648}
+      min={-2147483648}
       onKeyUp={[Function]}
       required={false}
-      type="text"
+      step={1}
+      type="number"
     />
   </div>
 </div>

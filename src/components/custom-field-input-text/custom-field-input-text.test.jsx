@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -65,6 +65,14 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('inputRef API', () => {
+    it('sets the ref on the input', () => {
+      const inputRef = createRef();
+      render(<TestComponent inputRef={inputRef} />);
+      expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
+    });
+  });
+
   describe('label API', () => {
     it('sets the label', () => {
       render(<TestComponent label="Another label" />);
@@ -72,10 +80,33 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('max API', () => {
+    it('sets the max attribute', () => {
+      render(<TestComponent max={5} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('max', '5');
+    });
+  });
+
+  describe('min API', () => {
+    it('sets the min attribute', () => {
+      render(<TestComponent min={-5} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('min', '-5');
+    });
+  });
+
   describe('name API', () => {
     it('sets the name attribute', () => {
       render(<TestComponent name="test-name" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('name', 'test-name');
+    });
+  });
+
+  describe('onKeyUp', () => {
+    it('handles the key up event', () => {
+      const onKeyUpSpy = jest.fn();
+      render(<TestComponent onKeyUp={onKeyUpSpy} />);
+      fireEvent.keyUp(screen.getByLabelText('Test label'));
+      expect(onKeyUpSpy.mock.calls.length).toBe(1);
     });
   });
 
@@ -89,13 +120,32 @@ describe('CustomFieldInputText', () => {
 
   describe('required API', () => {
     it('can have a required indicator', () => {
-      render(<TestComponent required={true} />);
+      render(<TestComponent required />);
       expect(screen.getByLabelText('Test label')).toBeRequired();
     });
 
     it('can have no required indicator', () => {
       render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
+    });
+  });
+
+  describe('step API', () => {
+    it('sets the step attribute', () => {
+      render(<TestComponent step={2} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('step', '2');
+    });
+  });
+
+  describe('type API', () => {
+    it('can be set to `number`', () => {
+      render(<TestComponent type="number" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'number');
+    });
+
+    it('can be set to `text`', () => {
+      render(<TestComponent type="text" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
     });
   });
 
