@@ -6,6 +6,9 @@
   </summary>
 </details>
 
+## 0.14.0 (February 19, 2020)
+- Implements a custom field number component
+
 ## 0.13.0 (February 17, 2020)
 - Implement a text input field designed for custom forms
 
