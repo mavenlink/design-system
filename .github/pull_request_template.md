@@ -13,10 +13,14 @@
 <!-- This section is reserved for change log entry. We need to copy this to the CHANGELOG.md file before merging -->
 <!-- END CHANGE LOG ENTRY -->
 
-## PR Upkeep
+<details>
+<summary>PR upkeep checklist</summary>
+<br />
 
 - [ ] Label(s)
 - [ ] Assignee(s)
 - [ ] Deployment URL: https://mavenlink.github.io/design-system/$BRANCH
 - [ ] (Optional) Pivotal tracker URL: 
 - [ ] (When ready for review) Reviewer(s)
+
+</details>
