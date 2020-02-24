@@ -39,6 +39,7 @@ export default function CustomFieldInputCurrency(props) {
       error={!valid}
       helpText={props.helpText}
       id={props.id}
+      label={props.label}
       name={props.name}
       onChange={event => handleOnChange(event)}
       onClick={props.onClick}
@@ -57,6 +58,7 @@ CustomFieldInputCurrency.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,

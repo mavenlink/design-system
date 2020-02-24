@@ -10,8 +10,9 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   >
     <label
       className="label"
+      htmlFor="foo"
     >
-      Input Descriptor
+      cash money
     </label>
   </div>
   <div
@@ -19,15 +20,14 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   >
     <input
       className="input"
+      defaultValue=""
       disabled={false}
+      id="foo"
       onChange={[Function]}
-      onClick={[Function]}
+      onKeyUp={[Function]}
+      required={false}
       type="text"
-      value=""
     />
   </div>
-  <span
-    className="help"
-  />
 </div>
 `;

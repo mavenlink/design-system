@@ -22,6 +22,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
       className="input"
       disabled={false}
       id="test-input"
+      onChange={[Function]}
       onKeyUp={[Function]}
       required={false}
       type="text"

@@ -7,16 +7,19 @@ import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
 describe('CustomFieldInputCurrency', () => {
   it('has defaults', () => {
     const tree = renderer.create((
-      <CustomFieldInputCurrency />
+      <CustomFieldInputCurrency id="foo" label="cash money" />
     )).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
-      const numberProps = Object.keys(CustomFieldInputCurrency.propTypes);
-      Object.keys(CustomFieldInputText.propTypes).forEach((key) => {
-        expect(numberProps).toContain(key);
+      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step'];
+      const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
+      const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
+
+      inputTextProps.forEach((key) => {
+        expect(currencyProps).toContain(key);
       });
     });
 
@@ -25,13 +28,14 @@ describe('CustomFieldInputCurrency', () => {
         <CustomFieldInputCurrency
           className={'test'}
           disabled={false}
-          error={true}
           helpText={'help'}
           id={'id'}
+          label="cFa"
           name={'name'}
           placeholder={'placeholder'}
           required={true}
           type={'text'}
+          useValidator={() => false}
           value={'value'}
         />
       )).toJSON();
@@ -53,7 +57,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
       const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency />,
+        <CustomFieldInputCurrency id="moolah" label="kaching" />,
       );
 
       fireEvent.change(getByRole('textbox'), { target: { value: '$1234' } });
@@ -63,7 +67,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('correctly uses the currencySymbol attribute', () => {
       const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency currencySymbol="€" />,
+        <CustomFieldInputCurrency id="moolah" label="kaching" currencySymbol="€" />,
       );
 
       fireEvent.change(getByRole('textbox'), { target: { value: '€1234' } });
@@ -73,7 +77,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('has error state for invalid value', () => {
       const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency />,
+        <CustomFieldInputCurrency id="moolah" label="kaching" />,
       );
 
       fireEvent.change(getByRole('textbox'), { target: { value: '$--0.1.2' } });
