@@ -1,44 +1,56 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
-import useNumberValidator from '../../hooks/number-validator/number-validator.jsx';
+import styles from '../custom-field-input-text/custom-field-input-text.css';
+
+const apiLimits = {
+  max: 2 ** 31,
+  min: -(2 ** 31),
+};
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
-    return `${className} ${CustomFieldInputTextStyles.disabled}`;
+    return `${className} ${styles.disabled}`;
   }
 
   if (error) {
-    return `${className} ${CustomFieldInputTextStyles.error}`;
+    return `${className} ${styles.error}`;
   }
 
   return className;
 }
 
 export default function CustomFieldInputNumber(props) {
-  const [input, setInput] = useState(props.value);
-  const valid = props.useValidator(input);
+  const inputRef = useRef(null);
+  const [invalid, setInvalid] = useState(false);
 
-  function handleOnChange(event) {
-    setInput(event.target.value);
-    props.onChange(event);
+  function handleOnKeyUp(event) {
+    setInvalid(!event.target.checkValidity());
   }
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    setInvalid(!inputRef.current.validity.valid);
+  });
 
   return (
     <CustomFieldInputText
-      className={getRootClassName(props.className, props.error, props.disabled)}
+      className={getRootClassName(props.className, invalid, props.disabled)}
       disabled={props.disabled}
-      error={!valid}
-      helpText={props.helpText}
+      error={invalid}
       id={props.id}
+      inputRef={inputRef}
+      label={props.label}
+      max={apiLimits.max}
+      min={apiLimits.min}
       name={props.name}
-      onChange={event => handleOnChange(event)}
-      onClick={props.onClick}
+      onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
       required={props.required}
-      type={props.type}
+      step={1}
+      type="number"
       value={props.value}
     />
   );
@@ -47,31 +59,19 @@ export default function CustomFieldInputNumber(props) {
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  helpText: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
-  useValidator: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };
 
 CustomFieldInputNumber.defaultProps = {
-  className: CustomFieldInputTextStyles['custom-field-input-text'],
+  className: styles['custom-field-input-text'],
   disabled: false,
-  error: false,
-  helpText: undefined,
-  id: undefined,
   name: undefined,
-  onChange: () => {},
-  onClick: undefined,
   placeholder: undefined,
   required: false,
-  type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
-  useValidator: useNumberValidator,
   value: undefined,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.12.0",
+  "version": "0.14.0",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "files": [
@@ -12,11 +12,11 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "lint": "yarn lint:es && yarn lint:styles",
-    "lint:es": "eslint '**/*.js?(x)' --no-ignore .eslintrc.js",
+    "lint:es": "eslint '{,!(build)/**/}/*.js?(x)' --no-ignore .eslintrc.js",
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
     "test": "jest",
-    "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand"
+    "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand --no-cache --watch"
   },
   "repository": {
     "type": "git",
@@ -51,14 +51,14 @@
     "eslint-plugin-cypress": "^2.2.0",
     "file-loader": "^3.0.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.6.0",
+    "jest": "^25.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
     "react-ga": "^2.5.6",
-    "react-styleguidist": "^9.0.0",
-    "react-test-renderer": "^16.12.0",
+    "react-styleguidist": "^8.0.6",
+    "react-test-renderer": "16.8.0",
     "react-transition-group": "^2.5.3",
     "style-loader": "^0.23.1",
     "stylelint": "^10.1.0",

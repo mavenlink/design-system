@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -18,31 +18,55 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
+  const inputRef = props.inputRef || useRef(null);
+  const [validationMessage, setValidationMessage] = useState('');
+
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    if (props.error) {
+      if (props.helpText) {
+        inputRef.current.setCustomValidity(props.helpText);
+        setValidationMessage(inputRef.current.validationMessage);
+      } else {
+        inputRef.current.setCustomValidity('');
+        setValidationMessage(inputRef.current.validationMessage);
+      }
+    } else {
+      inputRef.current.setCustomValidity('');
+      setValidationMessage('');
+    }
+  });
+
   return (
     <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
-        <label className={styles.label} htmlFor={props.id}>Input Descriptor</label>
+        <label className={styles.label} htmlFor={props.id}>{props.label}</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
         <input
           className={styles.input}
+          defaultValue={props.value}
           disabled={props.disabled}
-          type={props.type}
           id={props.id}
+          max={props.max}
+          min={props.min}
           name={props.name}
+          onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          onClick={props.onClick}
+          ref={inputRef}
+          required={props.required}
+          step={props.step}
+          type={props.type}
         />
-        {(props.error && !props.disabled) &&
+        {props.error &&
           <div className={styles['input-icon-container']}>
             <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />
           </div>
         }
       </div>
-      <span className={styles.help}>{props.helpText}</span>
+      {props.error && <span className={styles.help}>{validationMessage}</span>}
     </div>
   );
 }
@@ -52,14 +76,24 @@ CustomFieldInputText.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
+  label: PropTypes.string.isRequired,
+  max: PropTypes.number,
+  min: PropTypes.number,
   name: PropTypes.string,
-  onChange: PropTypes.func,
-  onClick: PropTypes.func,
+  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
-  value: PropTypes.string,
+  step: PropTypes.number,
+  type: PropTypes.oneOf([
+    'number',
+    'text',
+  ]),
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 CustomFieldInputText.defaultProps = {
@@ -67,12 +101,14 @@ CustomFieldInputText.defaultProps = {
   disabled: false,
   error: false,
   helpText: undefined,
-  id: undefined,
+  inputRef: undefined,
+  max: undefined,
+  min: undefined,
   name: undefined,
-  onChange: () => {},
-  onClick: () => {},
+  onKeyUp: () => {},
   placeholder: undefined,
   required: false,
+  step: undefined,
   type: 'text',
   value: undefined,
 };
