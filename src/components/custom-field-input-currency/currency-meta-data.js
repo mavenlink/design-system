@@ -1,6 +1,6 @@
 import currencyData from './currencies.js';
 
-const currencySteps = {};
+const currencyMetaData = {};
 
 currencyData.ISO_4217.CcyTbl.CcyNtry.forEach((country) => {
   const countryData = {
@@ -14,7 +14,7 @@ currencyData.ISO_4217.CcyTbl.CcyNtry.forEach((country) => {
 
   countryData.step = 1 / (10 ** countryData.maximumFractionDigits);
 
-  currencySteps[country.Ccy] = countryData;
+  currencyMetaData[country.Ccy] = countryData;
 });
 
-export default currencySteps;
+export default currencyMetaData;
