@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
@@ -28,6 +28,7 @@ function getLocale() {
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
   const [isEditing, setIsEditing] = useState(false);
+  const numberRef = useRef(null);
 
   function handleOnChange(event) {
     setInput(parseInt(event.target.value));
@@ -41,6 +42,12 @@ export default function CustomFieldInputCurrency(props) {
   function handleOnFocus() {
     setIsEditing(true);
   }
+
+  useEffect(() => {
+    if (isEditing && numberRef.current) {
+      numberRef.current.focus();
+    }
+  });
 
   const sharedProps = {
     className: getRootClassName(props.className, props.error, props.disabled),
@@ -58,9 +65,10 @@ export default function CustomFieldInputCurrency(props) {
     return (
       <CustomFieldInputNumber
         {...sharedProps}
-        value={input}
         onBlur={() => handleOnBlur()}
         onChange={event => handleOnChange(event)}
+        inputRef={numberRef}
+        value={input}
       />
     );
   }
@@ -106,5 +114,5 @@ CustomFieldInputCurrency.defaultProps = {
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
-  value: undefined,
+  value: 0,
 };

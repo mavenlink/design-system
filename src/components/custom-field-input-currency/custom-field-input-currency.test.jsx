@@ -14,7 +14,7 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
-      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step'];
+      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus'];
       const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
       const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
 
@@ -34,7 +34,7 @@ describe('CustomFieldInputCurrency', () => {
           placeholder={'placeholder'}
           required={true}
           type={'text'}
-          value={'value'}
+          value={10}
         />
       )).toJSON();
       const stringTree = JSON.stringify(tree);
@@ -47,7 +47,7 @@ describe('CustomFieldInputCurrency', () => {
       expect(stringTree).toContain('placeholder');
       expect(stringTree).toContain('Required');
       expect(stringTree).toContain('type');
-      expect(stringTree).toContain('value');
+      expect(stringTree).toContain('10');
     });
   });
 
@@ -84,7 +84,7 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   describe('input', () => {
-    fit('edits correctly', () => {
+    it('edits correctly', () => {
       const { getByLabelText } = render(<CustomFieldInputCurrency label="cash money" id="cash-money" value={123} />);
       expect(getByLabelText('cash money')).toHaveValue('$123.00');
 

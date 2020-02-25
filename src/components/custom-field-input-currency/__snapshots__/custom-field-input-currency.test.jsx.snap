@@ -20,10 +20,12 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   >
     <input
       className="input"
-      defaultValue=""
+      defaultValue="$0.00"
       disabled={false}
       id="foo"
+      onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}
       type="text"
