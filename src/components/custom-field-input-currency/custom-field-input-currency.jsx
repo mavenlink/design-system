@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
+import CustomFieldInputNumber from "../custom-field-input-number/custom-field-input-number";
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -18,7 +19,7 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
-  // const valid = props.useValidator(input, props.currencySymbol);
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleOnChange(event) {
     let correctedInput = event.target.value;
@@ -31,20 +32,33 @@ export default function CustomFieldInputCurrency(props) {
     props.onChange(event);
   }
 
+  const sharedProps = {
+    className: getRootClassName(props.className, props.error, props.disabled),
+    helpText: props.helpText,
+    id: props.id,
+    label: props.label,
+    name: props.name,
+    onClick: props.onClick,
+    placeholder: props.placeholder,
+    required: props.required,
+    type: props.type,
+  };
+
+  if (isEditing) {
+    return (
+      <CustomFieldInputNumber
+        {...sharedProps}
+        value={input}
+        onChange={event => handleOnChange(event)}
+      />
+    );
+  }
+
   return (
     <CustomFieldInputText
-      className={getRootClassName(props.className, props.error, props.disabled)}
-      disabled={props.disabled}
-      helpText={props.helpText}
-      id={props.id}
-      label={props.label}
-      name={props.name}
-      onChange={event => handleOnChange(event)}
-      onClick={props.onClick}
-      placeholder={props.placeholder}
-      required={props.required}
-      type={props.type}
+      {...sharedProps}
       value={input}
+      onChange={event => handleOnChange(event)}
     />
   );
 }
