@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
+import CurrencyCodeType from './currency.js';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -87,7 +88,7 @@ export default function CustomFieldInputCurrency(props) {
 
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
-  currencyCode: PropTypes.string,
+  currencyCode: CurrencyCodeType,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
