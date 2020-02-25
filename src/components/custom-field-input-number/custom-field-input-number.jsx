@@ -52,7 +52,7 @@ export default function CustomFieldInputNumber(props) {
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
       required={props.required}
-      step={1}
+      step={props.step}
       type="number"
       value={props.value}
     />
@@ -71,6 +71,7 @@ CustomFieldInputNumber.propTypes = {
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  step: PropTypes.number,
   value: PropTypes.number,
 };
 
@@ -84,5 +85,6 @@ CustomFieldInputNumber.defaultProps = {
   onFocus: () => {},
   placeholder: undefined,
   required: false,
+  step: 1,
   value: undefined,
 };

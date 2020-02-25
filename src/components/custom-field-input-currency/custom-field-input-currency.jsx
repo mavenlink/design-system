@@ -31,7 +31,7 @@ export default function CustomFieldInputCurrency(props) {
   const numberRef = useRef(null);
 
   function handleOnChange(event) {
-    setInput(parseInt(event.target.value));
+    setInput(parseFloat(event.target.value));
     props.onChange(event);
   }
 
@@ -68,6 +68,7 @@ export default function CustomFieldInputCurrency(props) {
         onBlur={() => handleOnBlur()}
         onChange={event => handleOnChange(event)}
         inputRef={numberRef}
+        step={0.01}
         value={input}
       />
     );
