@@ -82,4 +82,17 @@ describe('CustomFieldInputCurrency', () => {
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
   });
+
+  describe('input', () => {
+    fit('edits correctly', () => {
+      const { getByLabelText } = render(<CustomFieldInputCurrency label="cash money" id="cash-money" value={123} />);
+      expect(getByLabelText('cash money')).toHaveValue('$123.00');
+
+      fireEvent.focus(getByLabelText('cash money'));
+      fireEvent.change(getByLabelText('cash money'), { target: { value: '456' } });
+      fireEvent.blur(getByLabelText('cash money'));
+
+      expect(getByLabelText('cash money')).toHaveValue('$456.00');
+    });
+  });
 });

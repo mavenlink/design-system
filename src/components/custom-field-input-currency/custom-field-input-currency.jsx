@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
-import CustomFieldInputNumber from "../custom-field-input-number/custom-field-input-number";
+import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -17,19 +17,29 @@ function getRootClassName(className, error, disabled) {
   return className;
 }
 
+function getLocale() {
+  if (navigator && navigator.languages) {
+    return navigator.languages[0];
+  }
+
+  return 'en-IN';
+}
+
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleOnChange(event) {
-    let correctedInput = event.target.value;
-
-    if (correctedInput !== '' && correctedInput.indexOf(props.currencySymbol) === -1) {
-      correctedInput = `${props.currencySymbol}${correctedInput}`;
-    }
-
-    setInput(correctedInput);
+    setInput(parseInt(event.target.value));
     props.onChange(event);
+  }
+
+  function handleOnBlur() {
+    setIsEditing(false);
+  }
+
+  function handleOnFocus() {
+    setIsEditing(true);
   }
 
   const sharedProps = {
@@ -49,23 +59,26 @@ export default function CustomFieldInputCurrency(props) {
       <CustomFieldInputNumber
         {...sharedProps}
         value={input}
+        onBlur={() => handleOnBlur()}
         onChange={event => handleOnChange(event)}
       />
     );
   }
 
+  const formattedNumber = new Intl.NumberFormat(getLocale(), { style: 'currency', currency: props.currencyCode }).format(input);
+
   return (
     <CustomFieldInputText
       {...sharedProps}
-      value={input}
-      onChange={event => handleOnChange(event)}
+      value={formattedNumber}
+      onFocus={() => handleOnFocus()}
     />
   );
 }
 
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
-  currencySymbol: PropTypes.string,
+  currencyCode: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
@@ -77,12 +90,12 @@ CustomFieldInputCurrency.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };
 
 CustomFieldInputCurrency.defaultProps = {
   className: CustomFieldInputTextStyles['custom-field-input-text'],
-  currencySymbol: '$',
+  currencyCode: 'USD',
   disabled: false,
   error: false,
   helpText: undefined,
@@ -93,5 +106,5 @@ CustomFieldInputCurrency.defaultProps = {
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
-  value: '',
+  value: undefined,
 };

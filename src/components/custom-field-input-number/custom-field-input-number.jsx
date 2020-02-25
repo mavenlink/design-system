@@ -47,6 +47,7 @@ export default function CustomFieldInputNumber(props) {
       min={apiLimits.min}
       name={props.name}
       onBlur={props.onBlur}
+      onChange={props.onChange}
       onFocus={props.onFocus}
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
@@ -65,6 +66,7 @@ CustomFieldInputNumber.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onBlur: PropTypes.func,
+  onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
@@ -76,6 +78,7 @@ CustomFieldInputNumber.defaultProps = {
   disabled: false,
   name: undefined,
   onBlur: () => {},
+  onChange: () => {},
   onFocus: () => {},
   placeholder: undefined,
   required: false,

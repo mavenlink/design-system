@@ -15,7 +15,7 @@ This component enters an error state if the input is invalid as a currency.
   helpText="This input is disabled."
   id="test-id-2"
   name="test-name-2"
-  value="123"
+  value={123}
   label="money"
 />
 ```
@@ -26,7 +26,7 @@ This component enters an error state if the input is invalid as a currency.
   helpText="This input is bad."
   id="test-id-3"
   name="test-name-3"
-  value="Text!"
+  value={12}
   label="money"
 />
 ```
