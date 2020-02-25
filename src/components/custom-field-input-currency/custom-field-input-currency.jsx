@@ -4,7 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
-import CurrencyCodeType from './currency.js';
+import CurrencyCodeType from './currency-code-type.js';
+import CurrencyStep from './currency-step.js';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -62,6 +63,14 @@ export default function CustomFieldInputCurrency(props) {
     type: props.type,
   };
 
+  const { step, maximumFractionDigits } = CurrencyStep[props.currencyCode];
+
+  const formattedNumber = new Intl.NumberFormat(getLocale(), {
+    style: 'currency',
+    currency: props.currencyCode,
+    maximumFractionDigits,
+  }).format(input);
+
   if (isEditing) {
     return (
       <CustomFieldInputNumber
@@ -69,13 +78,11 @@ export default function CustomFieldInputCurrency(props) {
         onBlur={() => handleOnBlur()}
         onChange={event => handleOnChange(event)}
         inputRef={numberRef}
-        step={0.01}
+        step={step}
         value={input}
       />
     );
   }
-
-  const formattedNumber = new Intl.NumberFormat(getLocale(), { style: 'currency', currency: props.currencyCode }).format(input);
 
   return (
     <CustomFieldInputText

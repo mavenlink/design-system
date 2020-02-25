@@ -95,4 +95,13 @@ describe('CustomFieldInputCurrency', () => {
       expect(getByLabelText('cash money')).toHaveValue('$456.00');
     });
   });
+
+  it('sets the correct step according to currency', () => {
+    const { getByLabelText } = render(<CustomFieldInputCurrency label="money" id="money" value={10.111} currencyCode="IQD" />);
+
+    // NOTE: This space is character code 160, non-breaking space. It did break my brain though
+    expect(getByLabelText('money')).toHaveValue('IQD 10.111');
+    fireEvent.focus(getByLabelText('money'));
+    expect(getByLabelText('money')).toHaveValue(10.111);
+  });
 });
