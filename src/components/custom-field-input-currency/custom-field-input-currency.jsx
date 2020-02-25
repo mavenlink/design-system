@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
-import useCurrencyValidator from '../../hooks/currency-validator/currency-validator.jsx';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -19,7 +18,7 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
-  const valid = props.useValidator(input, props.currencySymbol);
+  // const valid = props.useValidator(input, props.currencySymbol);
 
   function handleOnChange(event) {
     let correctedInput = event.target.value;
@@ -36,7 +35,6 @@ export default function CustomFieldInputCurrency(props) {
     <CustomFieldInputText
       className={getRootClassName(props.className, props.error, props.disabled)}
       disabled={props.disabled}
-      error={!valid}
       helpText={props.helpText}
       id={props.id}
       label={props.label}
@@ -65,7 +63,6 @@ CustomFieldInputCurrency.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string,
-  useValidator: PropTypes.func,
   value: PropTypes.string,
 };
 
@@ -82,6 +79,5 @@ CustomFieldInputCurrency.defaultProps = {
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
-  useValidator: useCurrencyValidator,
   value: '',
 };
