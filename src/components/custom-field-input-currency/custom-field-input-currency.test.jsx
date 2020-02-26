@@ -23,6 +23,16 @@ describe('CustomFieldInputCurrency', () => {
       });
     });
 
+    it('respects the disabled prop', () => {
+      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" disabled />);
+      expect(getByLabelText('foo')).toBeDisabled();
+    });
+
+    it('respects the enabled prop', () => {
+      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" disabled={false} />);
+      expect(getByLabelText('foo')).not.toBeDisabled();
+    });
+
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
         <CustomFieldInputCurrency
