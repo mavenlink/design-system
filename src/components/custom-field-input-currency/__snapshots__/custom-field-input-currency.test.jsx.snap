@@ -20,7 +20,6 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   >
     <input
       className="input"
-      defaultValue="$0.00"
       disabled={false}
       id="foo"
       onBlur={[Function]}
@@ -29,6 +28,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       onKeyUp={[Function]}
       required={false}
       type="text"
+      value="$0.00"
     />
   </div>
 </div>

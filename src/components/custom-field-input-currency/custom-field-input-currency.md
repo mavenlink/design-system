@@ -40,7 +40,7 @@ This component enters an error state if the input is invalid as a currency.
 <CustomFieldInputCurrency
   id="test-id-3"
   name="test-name-3"
-  value={500}
+  value={1.12}
   currencyCode="XAF"
   label="money"
 />

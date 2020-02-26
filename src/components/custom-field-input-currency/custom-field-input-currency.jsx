@@ -30,6 +30,7 @@ function getLocale() {
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
   const [isEditing, setIsEditing] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
   const metadata = currencyMetaData[props.currencyCode];
 
@@ -42,14 +43,30 @@ export default function CustomFieldInputCurrency(props) {
     if (numberRef.current && numberRef.current.validity.valid) {
       setIsEditing(false);
     }
+
+    setIsFocused(false);
   }
 
   function handleOnFocus() {
     setIsEditing(true);
+    setIsFocused(true);
   }
 
   useEffect(() => {
-    if (isEditing && numberRef.current) {
+    if (!numberRef.current) {
+      const string = props.value.toString().split('.');
+      if (string.length === 1) {
+        return;
+      }
+
+      if (string[1].length > metadata.maximumFractionDigits) {
+        setIsEditing(true);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isEditing && isFocused) {
       numberRef.current.focus();
     }
   });
