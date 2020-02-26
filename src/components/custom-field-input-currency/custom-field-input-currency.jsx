@@ -5,7 +5,7 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import CurrencyCodeType from './currency-code-type.js';
-import CurrencyMetaData from './currency-meta-data.js';
+import currencyMetaData from './currency-meta-data.js';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
@@ -31,6 +31,7 @@ export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
   const [isEditing, setIsEditing] = useState(false);
   const numberRef = useRef(null);
+  const metadata = currencyMetaData[props.currencyCode];
 
   function handleOnChange(event) {
     setInput(parseFloat(event.target.value));
@@ -65,12 +66,10 @@ export default function CustomFieldInputCurrency(props) {
     type: props.type,
   };
 
-  const { step, maximumFractionDigits } = CurrencyMetaData[props.currencyCode];
-
   const formattedNumber = new Intl.NumberFormat(getLocale(), {
     style: 'currency',
     currency: props.currencyCode,
-    maximumFractionDigits,
+    maximumFractionDigits: metadata.maximumFractionDigits,
   }).format(input);
 
   if (isEditing) {
@@ -80,7 +79,7 @@ export default function CustomFieldInputCurrency(props) {
         onBlur={() => handleOnBlur()}
         onChange={event => handleOnChange(event)}
         inputRef={numberRef}
-        step={step}
+        step={metadata.step}
         value={input}
       />
     );
