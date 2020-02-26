@@ -27,6 +27,15 @@ function getLocale() {
   return 'en-IN';
 }
 
+function initialInputValid(inputValue, maximumFractionDigits) {
+  const splitInputValue = inputValue.toString().split('.');
+  if (splitInputValue.length === 1) {
+    return true;
+  }
+
+  return splitInputValue[1].length <= maximumFractionDigits;
+}
+
 export default function CustomFieldInputCurrency(props) {
   const [input, setInput] = useState(props.value);
   const [isEditing, setIsEditing] = useState(false);
@@ -53,15 +62,8 @@ export default function CustomFieldInputCurrency(props) {
   }
 
   useEffect(() => {
-    if (!numberRef.current) {
-      const string = props.value.toString().split('.');
-      if (string.length === 1) {
-        return;
-      }
-
-      if (string[1].length > metadata.maximumFractionDigits) {
-        setIsEditing(true);
-      }
+    if (!numberRef.current && !initialInputValid(props.value, metadata.maximumFractionDigits)) {
+      setIsEditing(true);
     }
   }, []);
 
