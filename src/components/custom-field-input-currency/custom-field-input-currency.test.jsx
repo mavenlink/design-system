@@ -81,6 +81,16 @@ describe('CustomFieldInputCurrency', () => {
 
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
+
+    it('does not switch to view mode when its value is invalid', () => {
+      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" />);
+
+      fireEvent.focus(getByLabelText('foo'));
+      fireEvent.change(getByLabelText('foo', { target: { value: '12.111111' } }));
+      fireEvent.blur(getByLabelText('foo'));
+
+      expect(getByLabelText('foo')).not.toHaveAttribute('type', 'text');
+    });
   });
 
   describe('input', () => {
