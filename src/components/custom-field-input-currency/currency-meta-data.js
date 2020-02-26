@@ -4,7 +4,7 @@ const currencyMetaData = {};
 
 currencyData.ISO_4217.CcyTbl.CcyNtry.forEach((country) => {
   const countryData = {
-    maximumFractionDigits: parseInt(country.CcyMnrUnts),
+    maximumFractionDigits: parseInt(country.CcyMnrUnts, 10),
   };
 
   if (country.CcyMnrUnts === 0 || country.CcyMnrUnts === 'N/A') {
