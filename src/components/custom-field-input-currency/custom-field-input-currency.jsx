@@ -38,7 +38,9 @@ export default function CustomFieldInputCurrency(props) {
   }
 
   function handleOnBlur() {
-    setIsEditing(false);
+    if (numberRef.current && numberRef.current.validity.valid) {
+      setIsEditing(false);
+    }
   }
 
   function handleOnFocus() {
