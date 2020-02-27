@@ -96,7 +96,7 @@ describe('CustomFieldInputCurrency', () => {
       const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" />);
 
       fireEvent.focus(getByLabelText('foo'));
-      fireEvent.change(getByLabelText('foo', { target: { value: '12.111111' } }));
+      fireEvent.change(getByLabelText('foo'), { target: { value: 12.111111 } });
       fireEvent.blur(getByLabelText('foo'));
 
       expect(getByLabelText('foo')).not.toHaveAttribute('type', 'text');
@@ -104,9 +104,7 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   describe('input', () => {
-    // Pending upgrade of jsdom library in jest--this fails due to a precision error in jsdomv15 that is fixed in v16
-    // Jest needs to get jsdom upgraded before this test will pass
-    xit('edits correctly', () => {
+    it('edits correctly', () => {
       const { getByLabelText } = render(<CustomFieldInputCurrency label="cash money" id="cash-money" value={123} />);
       expect(getByLabelText('cash money')).toHaveValue('$123.00');
 
