@@ -1,5 +1,5 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import React, {createRef} from 'react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
@@ -99,6 +99,44 @@ describe('CustomFieldInputNumber', () => {
     it('is invalid on a decimal number', () => {
       render(<TestComponent value={1.01} />);
       expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
+    });
+  });
+
+  describe('events API', () => {
+    it('accepts an onBlur event', () => {
+      const onBlur = jest.fn();
+      const { getByLabelText } = render(<TestComponent label="foo" onBlur={onBlur} />);
+      fireEvent.blur(getByLabelText('foo'));
+      expect(onBlur.mock.calls.length).toEqual(1);
+    });
+
+    it('accepts an onFocus event', () => {
+      const onFocus = jest.fn();
+      const { getByLabelText } = render(<TestComponent label="foo" onFocus={onFocus} />);
+      fireEvent.focus(getByLabelText('foo'));
+      expect(onFocus.mock.calls.length).toEqual(1);
+    });
+
+    it('accepts an onChange event', () => {
+      const onChange = jest.fn();
+      const { getByLabelText } = render(<TestComponent label="foo" onChange={onChange} />);
+      fireEvent.change(getByLabelText('foo'), { target: { value: 1234 } });
+      expect(onChange.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('inputRef API', () => {
+    it('sets the ref on the input', () => {
+      const inputRef = createRef();
+      render(<TestComponent inputRef={inputRef} />);
+      expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
+    });
+  });
+
+  describe('step API', () => {
+    it('respects a provided step', () => {
+      const { getByLabelText } = render(<TestComponent label="foo" step={12} />);
+      expect(getByLabelText('foo')).toHaveAttribute('step', '12');
     });
   });
 });
