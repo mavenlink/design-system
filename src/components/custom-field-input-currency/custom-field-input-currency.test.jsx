@@ -63,7 +63,7 @@ describe('CustomFieldInputCurrency', () => {
       const { getByLabelText } = renderComponent({ onChange });
 
       fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: 12 }});
+      fireEvent.change(getByLabelText('currency'), { target: { value: 12 } });
       fireEvent.blur(getByLabelText('currency'));
 
       expect(onChange.mock.calls.length).toBe(1);
