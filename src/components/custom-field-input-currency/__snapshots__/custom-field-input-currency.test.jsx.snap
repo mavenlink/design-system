@@ -28,7 +28,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       onKeyUp={[Function]}
       required={false}
       type="text"
-      value="$0.00"
+      value=""
     />
   </div>
 </div>

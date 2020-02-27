@@ -28,12 +28,28 @@ function getLocale() {
 }
 
 function initialInputValid(inputValue, maximumFractionDigits) {
+  if (!inputValue) {
+    return true;
+  }
+
   const splitInputValue = inputValue.toString().split('.');
   if (splitInputValue.length === 1) {
     return true;
   }
 
   return splitInputValue[1].length <= maximumFractionDigits;
+}
+
+function formatValue(inputValue, currencyCode) {
+  if (!inputValue) {
+    return '';
+  }
+
+  return new Intl.NumberFormat(getLocale(), {
+    style: 'currency',
+    currency: currencyCode,
+    maximumFractionDigits: currencyMetaData[currencyCode].maximumFractionDigits,
+  }).format(inputValue);
 }
 
 export default function CustomFieldInputCurrency(props) {
@@ -84,11 +100,7 @@ export default function CustomFieldInputCurrency(props) {
     type: props.type,
   };
 
-  const formattedNumber = new Intl.NumberFormat(getLocale(), {
-    style: 'currency',
-    currency: props.currencyCode,
-    maximumFractionDigits: metadata.maximumFractionDigits,
-  }).format(input);
+  const formattedNumber = formatValue(input, props.currencyCode);
 
   if (isEditing) {
     return (
@@ -108,8 +120,9 @@ export default function CustomFieldInputCurrency(props) {
       {...sharedProps}
       error={props.error}
       helpText={props.helpText}
-      value={formattedNumber}
+      onChange={() => {}}
       onFocus={() => handleOnFocus()}
+      value={formattedNumber}
     />
   );
 }
@@ -141,5 +154,5 @@ CustomFieldInputCurrency.defaultProps = {
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
-  value: 0,
+  value: undefined,
 };

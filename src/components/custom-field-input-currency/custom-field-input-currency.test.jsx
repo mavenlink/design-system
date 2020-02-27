@@ -101,6 +101,11 @@ describe('CustomFieldInputCurrency', () => {
 
       expect(getByLabelText('foo')).not.toHaveAttribute('type', 'text');
     });
+
+    it('accepts an undefined value', () => {
+      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" value={undefined} />);
+      expect(getByLabelText('foo')).toHaveValue('');
+    });
   });
 
   describe('input', () => {
