@@ -58,15 +58,26 @@ describe('CustomFieldInputCurrency', () => {
       expect(presentedHelpText()).toContain(helpText);
     });
 
+    it('respects an onChange event handed to it', () => {
+      const onChange = jest.fn();
+      const { getByLabelText } = renderComponent({ onChange });
+
+      fireEvent.focus(getByLabelText('currency'));
+      fireEvent.change(getByLabelText('currency'), { target: { value: 12 }});
+      fireEvent.blur(getByLabelText('currency'));
+
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
         <CustomFieldInputCurrency
           className="test"
           disabled={false}
-          id="id"
-          label="cFa"
-          name="name"
-          placeholder="placeholder"
+          id="cFa-id"
+          label="cFa-label"
+          name="cFa-name"
+          placeholder="cFa-placeholder"
           required={true}
           value={10}
         />
@@ -76,9 +87,10 @@ describe('CustomFieldInputCurrency', () => {
       expect(tree.props.className).toContain('test');
       expect(tree.props.className).not.toContain('disabled');
 
-      expect(stringTree).toContain('id');
-      expect(stringTree).toContain('name');
-      expect(stringTree).toContain('placeholder');
+      expect(stringTree).toContain('cFa-label');
+      expect(stringTree).toContain('cFa-id');
+      expect(stringTree).toContain('cFa-name');
+      expect(stringTree).toContain('cFa-placeholder');
       expect(stringTree).toContain('Required');
       expect(stringTree).toContain('10');
     });
