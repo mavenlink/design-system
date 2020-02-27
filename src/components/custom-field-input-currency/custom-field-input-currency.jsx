@@ -97,7 +97,6 @@ export default function CustomFieldInputCurrency(props) {
     name: props.name,
     placeholder: props.placeholder,
     required: props.required,
-    type: props.type,
   };
 
   const formattedNumber = formatValue(input, props.currencyCode);
@@ -122,6 +121,7 @@ export default function CustomFieldInputCurrency(props) {
       helpText={props.helpText}
       onChange={() => {}}
       onFocus={() => handleOnFocus()}
+      type="text"
       value={formattedNumber}
     />
   );
@@ -139,7 +139,6 @@ CustomFieldInputCurrency.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string,
   value: PropTypes.number,
 };
 
@@ -153,6 +152,5 @@ CustomFieldInputCurrency.defaultProps = {
   onChange: () => {},
   placeholder: undefined,
   required: false,
-  type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
   value: undefined,
 };
