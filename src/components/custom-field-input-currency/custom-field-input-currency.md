@@ -1,11 +1,13 @@
-This component enters an error state if the input is invalid as a currency.
+This component may be used to express currency. Provide a numeric value to the component along with a currency code, and
+the component will present the monetary value automatically using the browser's locale. Focusing into the component
+allows the user to directly modify the numeric value of the currency, while the component's unfocused state presents
+the formatted currency value held within itself. 
 
 ```jsx
 <CustomFieldInputCurrency
-  placeholder="$123"
+  placeholder="$123.00"
   label="US Dollars"
   id="us-dollars"
-  value={15.22}
 />
 
 <CustomFieldInputCurrency
@@ -36,6 +38,10 @@ This component enters an error state if the input is invalid as a currency.
 ```
 ----
 ##### Error:
+
+Errors can be classified as technical or contextual. The first example below is a technical error--cFa cannot be
+separated below a single cFa. The second, on the other hand, is contextual--perhaps the backend denied the value
+presented to it, responding with a specific message for the context of that specific currency value.
 ```jsx
 <CustomFieldInputCurrency
   id="test-id-3"
@@ -43,5 +49,14 @@ This component enters an error state if the input is invalid as a currency.
   value={1.12}
   currencyCode="XAF"
   label="money"
+/>
+
+<CustomFieldInputCurrency
+  id="test-id-4"
+  name="test-name-4"
+  value={3.50}
+  currencyCode="USD"
+  error
+  helpText="What do you want from us monster!?"
 />
 ```
