@@ -1,4 +1,4 @@
-/* Downloaded XML file from https://www.currency-iso.org/en/home/tables/table-a1.html and converted to JSON */
+/* Downloaded XML file from https://www.currency-iso.org/en/home/tables/table-a1.html and converted to javascript */
 export default {
   ISO_4217: {
     Published: '2018-08-29',
