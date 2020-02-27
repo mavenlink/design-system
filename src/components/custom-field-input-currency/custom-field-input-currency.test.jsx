@@ -5,6 +5,8 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
 
 describe('CustomFieldInputCurrency', () => {
+  const renderComponent = (props = {}) => render(<CustomFieldInputCurrency id="currency" label="currency" {...props} />);
+
   it('has defaults', () => {
     const tree = renderer.create((
       <CustomFieldInputCurrency id="foo" label="cash money" />
@@ -24,23 +26,17 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('respects the disabled prop', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" disabled />);
-      expect(getByLabelText('foo')).toBeDisabled();
+      const { getByLabelText } = renderComponent({ disabled: true });
+      expect(getByLabelText('currency')).toBeDisabled();
     });
 
     it('respects the enabled prop', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" disabled={false} />);
-      expect(getByLabelText('foo')).not.toBeDisabled();
+      const { getByLabelText } = renderComponent({ disabled: false });
+      expect(getByLabelText('currency')).not.toBeDisabled();
     });
 
     it('presents contextual error state', () => {
-      const { getByTestId } = render(<CustomFieldInputCurrency
-        label="money"
-        id="money"
-        value={3.50}
-        helpText="What do you want from us monster!?"
-        error
-      />);
+      const { getByTestId } = renderComponent({ value: 3.50, helpText: 'What do you want from us monster!?', error: true });
 
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
@@ -55,7 +51,6 @@ describe('CustomFieldInputCurrency', () => {
           name="name"
           placeholder="placeholder"
           required={true}
-          type="text"
           value={10}
         />
       )).toJSON();
@@ -68,21 +63,18 @@ describe('CustomFieldInputCurrency', () => {
       expect(stringTree).toContain('name');
       expect(stringTree).toContain('placeholder');
       expect(stringTree).toContain('Required');
-      expect(stringTree).toContain('type');
       expect(stringTree).toContain('10');
     });
   });
 
   it('accepts a currency code', () => {
-    const { getByLabelText } = render(<CustomFieldInputCurrency label="cFa" id="cFa" currencyCode="XAF" value={5000} />);
-    expect(getByLabelText('cFa').value).toMatch(/FCFA/);
+    const { getByLabelText } = renderComponent({ value: 5000, currencyCode: 'XAF' });
+    expect(getByLabelText('currency').value).toMatch(/FCFA/);
   });
 
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
-      const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency id="moolah" label="kaching" />,
-      );
+      const { getByRole, getByTestId } = renderComponent();
 
       fireEvent.change(getByRole('textbox'), { target: { value: '$1234' } });
 
@@ -100,40 +92,40 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('does not switch to view mode when its value is invalid', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" />);
+      const { getByLabelText } = renderComponent();
 
-      fireEvent.focus(getByLabelText('foo'));
-      fireEvent.change(getByLabelText('foo'), { target: { value: 12.111111 } });
-      fireEvent.blur(getByLabelText('foo'));
+      fireEvent.focus(getByLabelText('currency'));
+      fireEvent.change(getByLabelText('currency'), { target: { value: 12.111111 } });
+      fireEvent.blur(getByLabelText('currency'));
 
-      expect(getByLabelText('foo')).not.toHaveAttribute('type', 'text');
+      expect(getByLabelText('currency')).not.toHaveAttribute('type', 'text');
     });
 
     it('accepts an undefined value', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency label="foo" id="foo" value={undefined} />);
-      expect(getByLabelText('foo')).toHaveValue('');
+      const { getByLabelText } = renderComponent({ value: undefined });
+      expect(getByLabelText('currency')).toHaveValue('');
     });
   });
 
   describe('input', () => {
     it('edits correctly', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency label="cash money" id="cash-money" value={123} />);
-      expect(getByLabelText('cash money')).toHaveValue('$123.00');
+      const { getByLabelText } = renderComponent({ value: 123 });
+      expect(getByLabelText('currency')).toHaveValue('$123.00');
 
-      fireEvent.focus(getByLabelText('cash money'));
-      fireEvent.change(getByLabelText('cash money'), { target: { value: '456' } });
-      fireEvent.blur(getByLabelText('cash money'));
+      fireEvent.focus(getByLabelText('currency'));
+      fireEvent.change(getByLabelText('currency'), { target: { value: '456' } });
+      fireEvent.blur(getByLabelText('currency'));
 
-      expect(getByLabelText('cash money')).toHaveValue('$456.00');
+      expect(getByLabelText('currency')).toHaveValue('$456.00');
     });
   });
 
   it('sets the correct step according to currency', () => {
-    const { getByLabelText } = render(<CustomFieldInputCurrency label="money" id="money" value={10.111} currencyCode="IQD" />);
+    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10.111 });
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
-    expect(getByLabelText('money')).toHaveValue('IQD 10.111');
-    fireEvent.focus(getByLabelText('money'));
-    expect(getByLabelText('money')).toHaveValue(10.111);
+    expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
+    fireEvent.focus(getByLabelText('currency'));
+    expect(getByLabelText('currency')).toHaveValue(10.111);
   });
 });
