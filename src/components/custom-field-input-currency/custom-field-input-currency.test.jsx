@@ -14,7 +14,7 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
-      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus'];
+      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus', 'type'];
       const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
       const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
 
@@ -33,23 +33,35 @@ describe('CustomFieldInputCurrency', () => {
       expect(getByLabelText('foo')).not.toBeDisabled();
     });
 
+    it('presents contextual error state', () => {
+      const { getByTestId } = render(<CustomFieldInputCurrency
+        label="money"
+        id="money"
+        value={3.50}
+        helpText="What do you want from us monster!?"
+        error
+      />);
+
+      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    });
+
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
         <CustomFieldInputCurrency
-          className={'test'}
+          className="test"
           disabled={false}
-          id={'id'}
+          id="id"
           label="cFa"
-          name={'name'}
-          placeholder={'placeholder'}
+          name="name"
+          placeholder="placeholder"
           required={true}
-          type={'text'}
+          type="text"
           value={10}
         />
       )).toJSON();
       const stringTree = JSON.stringify(tree);
 
-      // expect(tree.props.className).toContain('test error');
+      expect(tree.props.className).toContain('test');
       expect(tree.props.className).not.toContain('disabled');
 
       expect(stringTree).toContain('id');
@@ -59,6 +71,11 @@ describe('CustomFieldInputCurrency', () => {
       expect(stringTree).toContain('type');
       expect(stringTree).toContain('10');
     });
+  });
+
+  it('accepts a currency code', () => {
+    const { getByLabelText } = render(<CustomFieldInputCurrency label="cFa" id="cFa" currencyCode="XAF" value={5000} />);
+    expect(getByLabelText('cFa').value).toMatch(/FCFA/);
   });
 
   describe('input validation', () => {
@@ -80,16 +97,6 @@ describe('CustomFieldInputCurrency', () => {
       fireEvent.change(getByRole('textbox'), { target: { value: '€1234' } });
 
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-    });
-
-    xit('has error state for invalid value', () => {
-      const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency id="moolah" label="kaching" />,
-      );
-
-      fireEvent.change(getByRole('textbox'), { target: { value: '$--0.1.2' } });
-
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
 
     it('does not switch to view mode when its value is invalid', () => {

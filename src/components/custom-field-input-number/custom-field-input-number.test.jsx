@@ -76,7 +76,7 @@ describe('CustomFieldInputNumber', () => {
   });
 
   describe('value API', () => {
-    it('is valid on a postive integer', () => {
+    it('is valid on a positive integer', () => {
       render(<TestComponent value={1} />);
       expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
     });
