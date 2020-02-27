@@ -14,6 +14,20 @@ describe('CustomFieldInputCurrency', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('accepts a currency code', () => {
+    const { getByLabelText } = renderComponent({ value: 5000, currencyCode: 'XAF' });
+    expect(getByLabelText('currency').value).toMatch(/FCFA/);
+  });
+
+  it('sets the correct step according to the provided currency code', () => {
+    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10.111 });
+
+    // NOTE: This space is character code 160, non-breaking space. It did break my brain though
+    expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
+    fireEvent.focus(getByLabelText('currency'));
+    expect(getByLabelText('currency')).toHaveValue(10.111);
+  });
+
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
       const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus', 'type'];
@@ -36,9 +50,12 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('presents contextual error state', () => {
-      const { getByTestId } = renderComponent({ value: 3.50, helpText: 'What do you want from us monster!?', error: true });
+      const helpText = 'What do you want from us monster!?';
+      const { getByTestId } = renderComponent({ value: 3.50, helpText, error: true });
+      const presentedHelpText = () => getByTestId('custom-field-input').querySelector('.help').innerHTML;
 
       expect(getByTestId('custom-field-input')).toHaveClass('error');
+      expect(presentedHelpText()).toContain(helpText);
     });
 
     it('renders all forwarded props except event handlers', () => {
@@ -67,28 +84,16 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
-  it('accepts a currency code', () => {
-    const { getByLabelText } = renderComponent({ value: 5000, currencyCode: 'XAF' });
-    expect(getByLabelText('currency').value).toMatch(/FCFA/);
-  });
-
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
-      const { getByRole, getByTestId } = renderComponent();
+      const { getByTestId, getByLabelText } = renderComponent();
 
-      fireEvent.change(getByRole('textbox'), { target: { value: '$1234' } });
-
-      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-    });
-
-    it('correctly uses the currencySymbol attribute', () => {
-      const { getByRole, getByTestId } = render(
-        <CustomFieldInputCurrency id="moolah" label="kaching" currencySymbol="€" />,
-      );
-
-      fireEvent.change(getByRole('textbox'), { target: { value: '€1234' } });
+      fireEvent.focus(getByLabelText('currency'));
+      fireEvent.change(getByLabelText('currency'), { target: { value: 1234 } });
+      fireEvent.blur(getByLabelText('currency'));
 
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+      expect(getByLabelText('currency')).toHaveValue('$1,234.00');
     });
 
     it('does not switch to view mode when its value is invalid', () => {
@@ -98,34 +103,12 @@ describe('CustomFieldInputCurrency', () => {
       fireEvent.change(getByLabelText('currency'), { target: { value: 12.111111 } });
       fireEvent.blur(getByLabelText('currency'));
 
-      expect(getByLabelText('currency')).not.toHaveAttribute('type', 'text');
+      expect(getByLabelText('currency')).toHaveAttribute('type', 'number');
     });
 
     it('accepts an undefined value', () => {
       const { getByLabelText } = renderComponent({ value: undefined });
       expect(getByLabelText('currency')).toHaveValue('');
     });
-  });
-
-  describe('input', () => {
-    it('edits correctly', () => {
-      const { getByLabelText } = renderComponent({ value: 123 });
-      expect(getByLabelText('currency')).toHaveValue('$123.00');
-
-      fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: '456' } });
-      fireEvent.blur(getByLabelText('currency'));
-
-      expect(getByLabelText('currency')).toHaveValue('$456.00');
-    });
-  });
-
-  it('sets the correct step according to currency', () => {
-    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10.111 });
-
-    // NOTE: This space is character code 160, non-breaking space. It did break my brain though
-    expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
-    fireEvent.focus(getByLabelText('currency'));
-    expect(getByLabelText('currency')).toHaveValue(10.111);
   });
 });
