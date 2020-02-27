@@ -79,7 +79,6 @@ export default function CustomFieldInputCurrency(props) {
     id: props.id,
     label: props.label,
     name: props.name,
-    onClick: props.onClick,
     placeholder: props.placeholder,
     required: props.required,
     type: props.type,
@@ -125,7 +124,6 @@ CustomFieldInputCurrency.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  onClick: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string,
@@ -140,7 +138,6 @@ CustomFieldInputCurrency.defaultProps = {
   helpText: undefined,
   name: undefined,
   onChange: () => {},
-  onClick: undefined,
   placeholder: undefined,
   required: false,
   type: 'text', // Our validation can catch more issues than React/HTML with number input type, like --0.1.2
