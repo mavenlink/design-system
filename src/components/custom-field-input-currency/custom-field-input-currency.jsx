@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import CustomFieldInputTextStyles from '../custom-field-input-text/custom-field-input-text.css';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import CurrencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
+import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 function getRootClassName(className, error, disabled) {
   if (disabled) {
-    return `${className} ${CustomFieldInputTextStyles.disabled}`;
+    return `${className} ${styles.disabled}`;
   }
 
   if (error) {
-    return `${className} ${CustomFieldInputTextStyles.error}`;
+    return `${className} ${styles.error}`;
   }
 
   return className;
@@ -132,7 +132,7 @@ CustomFieldInputCurrency.propTypes = {
 };
 
 CustomFieldInputCurrency.defaultProps = {
-  className: CustomFieldInputTextStyles['custom-field-input-text'],
+  className: styles['custom-field-input-text'],
   currencyCode: 'USD',
   disabled: false,
   error: false,
