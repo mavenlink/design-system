@@ -76,7 +76,6 @@ export default function CustomFieldInputCurrency(props) {
   const sharedProps = {
     className: getRootClassName(props.className, props.error, props.disabled),
     disabled: props.disabled,
-    helpText: props.helpText,
     id: props.id,
     label: props.label,
     name: props.name,
@@ -108,6 +107,8 @@ export default function CustomFieldInputCurrency(props) {
   return (
     <CustomFieldInputText
       {...sharedProps}
+      error={props.error}
+      helpText={props.helpText}
       value={formattedNumber}
       onFocus={() => handleOnFocus()}
     />
