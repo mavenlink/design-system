@@ -35,8 +35,6 @@ export default function CustomFieldInputNumber(props) {
     setInvalid(!inputRef.current.validity.valid);
   });
 
-  const value = props.value || 0;
-
   return (
     <CustomFieldInputText
       className={getRootClassName(props.className, invalid, props.disabled)}
@@ -55,7 +53,7 @@ export default function CustomFieldInputNumber(props) {
       required={props.required}
       step={props.step}
       type="number"
-      value={value}
+      value={props.value}
     />
   );
 }
@@ -72,7 +70,10 @@ CustomFieldInputNumber.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   step: PropTypes.number,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf(['']),
+  ]),
 };
 
 CustomFieldInputNumber.defaultProps = {
@@ -85,5 +86,5 @@ CustomFieldInputNumber.defaultProps = {
   placeholder: undefined,
   required: false,
   step: 1,
-  value: undefined,
+  value: '',
 };
