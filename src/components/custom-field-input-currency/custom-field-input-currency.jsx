@@ -107,8 +107,8 @@ export default function CustomFieldInputCurrency(props) {
     return (
       <CustomFieldInputNumber
         {...sharedProps}
-        onBlur={() => handleOnBlur()}
-        onChange={event => handleOnChange(event)}
+        onBlur={handleOnBlur}
+        onChange={handleOnChange}
         inputRef={numberRef}
         step={metadata.step}
         value={input}
@@ -122,7 +122,7 @@ export default function CustomFieldInputCurrency(props) {
       error={props.error}
       helpText={props.helpText}
       onChange={() => {}}
-      onFocus={() => handleOnFocus()}
+      onFocus={handleOnFocus}
       type="text"
       value={formattedNumber}
     />
