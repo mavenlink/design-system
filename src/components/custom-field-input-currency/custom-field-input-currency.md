@@ -34,7 +34,7 @@ within itself.
   id="test-id-2"
   name="test-name-2"
   value={123}
-  label="money"
+  label="Disabled Currency"
 />
 ```
 ----
