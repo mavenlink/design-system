@@ -110,13 +110,6 @@ describe('CustomFieldInputNumber', () => {
       expect(onBlur.mock.calls.length).toEqual(1);
     });
 
-    it('accepts an onFocus event', () => {
-      const onFocus = jest.fn();
-      const { getByLabelText } = render(<TestComponent label="foo" onFocus={onFocus} />);
-      fireEvent.focus(getByLabelText('foo'));
-      expect(onFocus.mock.calls.length).toEqual(1);
-    });
-
     it('accepts an onChange event', () => {
       const onChange = jest.fn();
       const { getByLabelText } = render(<TestComponent label="foo" onChange={onChange} />);
