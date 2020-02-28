@@ -52,6 +52,7 @@ presented to it, responding with a specific message for the context of that spec
 />
 
 <CustomFieldInputCurrency
+  label="External Error State"
   id="test-id-4"
   name="test-name-4"
   value={3.50}
