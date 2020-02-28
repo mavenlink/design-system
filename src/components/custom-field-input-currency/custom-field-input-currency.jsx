@@ -59,7 +59,6 @@ export default function CustomFieldInputCurrency(props) {
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
-  const metadata = currencyMetaData[props.currencyCode];
 
   function handleOnChange(event) {
     setInput(parseFloat(event.target.value));
@@ -110,7 +109,7 @@ export default function CustomFieldInputCurrency(props) {
         onBlur={handleOnBlur}
         onChange={handleOnChange}
         inputRef={numberRef}
-        step={metadata.step}
+        step={currencyMetaData[props.currencyCode].step}
         value={input}
       />
     );
