@@ -35,6 +35,8 @@ export default function CustomFieldInputNumber(props) {
     setInvalid(!inputRef.current.validity.valid);
   });
 
+  const value = props.value || 0;
+
   return (
     <CustomFieldInputText
       className={getRootClassName(props.className, invalid, props.disabled)}
@@ -54,7 +56,7 @@ export default function CustomFieldInputNumber(props) {
       required={props.required}
       step={props.step}
       type="number"
-      value={props.value}
+      value={value}
     />
   );
 }

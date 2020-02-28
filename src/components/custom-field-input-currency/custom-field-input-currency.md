@@ -42,6 +42,7 @@ the formatted currency value held within itself.
 Errors can be classified as technical or contextual. The first example below is a technical error--cFa cannot be
 separated below a single cFa. The second, on the other hand, is contextual--perhaps the backend denied the value
 presented to it, responding with a specific message for the context of that specific currency value.
+
 ```jsx
 <CustomFieldInputCurrency
   id="test-id-3"
