@@ -27,7 +27,9 @@ function getLocale() {
   return 'en-IN';
 }
 
-function initialInputValid(inputValue, maximumFractionDigits) {
+function initialInputValid(inputValue, currencyCode) {
+  const maximumFractionDigits = currencyMetaData[currencyCode].maximumFractionDigits;
+
   if (!inputValue) {
     return true;
   }
@@ -78,7 +80,7 @@ export default function CustomFieldInputCurrency(props) {
   }
 
   useEffect(() => {
-    if (!numberRef.current && !initialInputValid(props.value, metadata.maximumFractionDigits)) {
+    if (!numberRef.current && !initialInputValid(props.value, props.currencyCode)) {
       setIsEditing(true);
     }
   }, []);
