@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
-import CurrencyCodeType from './currency-code-type.js';
+import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
@@ -131,7 +131,7 @@ export default function CustomFieldInputCurrency(props) {
 
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
-  currencyCode: CurrencyCodeType,
+  currencyCode: currencyCodeType,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
