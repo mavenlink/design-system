@@ -19,4 +19,16 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
     });
   });
+
+  describe('disabled API', () => {
+    it('permits itself to be disabled', () => {
+      const { getByLabelText } = renderComponent({ disabled: true });
+      expect(getByLabelText('Field Date')).toBeDisabled();
+    });
+
+    it('permits itself to be enabled', () => {
+      const { getByLabelText } = renderComponent({ disabled: false });
+      expect(getByLabelText('Field Date')).not.toBeDisabled();
+    });
+  });
 });
