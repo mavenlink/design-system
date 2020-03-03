@@ -147,6 +147,11 @@ describe('CustomFieldInputText', () => {
       render(<TestComponent type="text" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
     });
+
+    it('can be set to `date`', () => {
+      render(<TestComponent type="date" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+    });
   });
 
   describe('value API', () => {

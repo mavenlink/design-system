@@ -87,6 +87,7 @@ CustomFieldInputText.propTypes = {
   required: PropTypes.bool,
   step: PropTypes.number,
   type: PropTypes.oneOf([
+    'date',
     'number',
     'text',
   ]),
