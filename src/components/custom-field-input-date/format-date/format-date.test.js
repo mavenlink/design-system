@@ -25,15 +25,15 @@ describe('src/components/custom-field-input-date/format-date/format-date', () =>
 
   describe('#validDate', () => {
     it('returns true for a valid date format', () => {
-      expect(dateFormatHelpers.isValid('07-18-2016')).toBe(true);
-      expect(dateFormatHelpers.isValid('07/18/2016')).toBe(true);
-      expect(dateFormatHelpers.isValid('2016-07-18')).toBe(true);
+      expect(dateFormatHelpers.validDate('07-18-2016')).toBe(true);
+      expect(dateFormatHelpers.validDate('07/18/2016')).toBe(true);
+      expect(dateFormatHelpers.validDate('2016-07-18')).toBe(true);
     });
 
     it('returns false for an invalid date format', () => {
-      expect(dateFormatHelpers.isValid('2016-07-181')).toBe(false);
-      expect(dateFormatHelpers.isValid('201-07-18')).toBe(false);
-      expect(dateFormatHelpers.isValid('definitely not a date')).toBe(false);
+      expect(dateFormatHelpers.validDate('2016-07-181')).toBe(false);
+      expect(dateFormatHelpers.validDate('201-07-18')).toBe(false);
+      expect(dateFormatHelpers.validDate('definitely not a date')).toBe(false);
     });
   });
 

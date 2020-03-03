@@ -52,7 +52,7 @@ export function formatMatching(string) {
   }).filter(f => f)[0];
 }
 
-export function isValid(string) {
+export function validDate(string) {
   const format = formatMatching(string);
   return !!format;
 }
