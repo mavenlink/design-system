@@ -1,9 +1,12 @@
 export const validFormats = {
   'mm/dd/yyyy': {
-    matcher: /\d\d\/\d\d\/\d\d\d\d/,
+    matcher: /^\d\d\/\d\d\/\d\d\d\d$/,
+  },
+  'mm-dd-yyyy': {
+    matcher: /^\d\d-\d\d-\d\d\d\d$/,
   },
   'yyyy-mm-dd': {
-    matcher: /\d\d\d\d-\d\d-\d\d/,
+    matcher: /^\d\d\d\d-\d\d-\d\d$/,
   },
 };
 
@@ -17,4 +20,9 @@ export function formatMatching(string) {
 
     return null;
   }).filter(f => f)[0];
+}
+
+export function isValid(string) {
+  const format = formatMatching(string);
+  return !!format;
 }
