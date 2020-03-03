@@ -12,6 +12,11 @@ describe('src/components/custom-field-input-date/format-date/format-date', () =>
       expect(format).toEqual(dateFormatHelpers.validFormats['yyyy-mm-dd']);
     });
 
+    it('has a format for mm-dd-yyyy', () => {
+      const format = dateFormatHelpers.formatMatching('05-10-1992');
+      expect(format).toEqual(dateFormatHelpers.validFormats['mm-dd-yyyy']);
+    });
+
     it('returns something falsey when no format matches', () => {
       const format = dateFormatHelpers.formatMatching('this is invalid');
       expect(format).toBeUndefined();
@@ -29,6 +34,18 @@ describe('src/components/custom-field-input-date/format-date/format-date', () =>
       expect(dateFormatHelpers.isValid('2016-07-181')).toBe(false);
       expect(dateFormatHelpers.isValid('201-07-18')).toBe(false);
       expect(dateFormatHelpers.isValid('definitely not a date')).toBe(false);
+    });
+  });
+
+  describe('#convertToFormat', () => {
+    it('properly converts a valid format to another valid format', () => {
+      const formattedDate = dateFormatHelpers.convertToFormat('05-10-1992', 'yyyy-mm-dd');
+      expect(formattedDate).toEqual('1992-05-10');
+    });
+
+    it('returns undefined for an invalid string', () => {
+      const formattedDate = dateFormatHelpers.convertToFormat('nope', 'yyyy-mm-dd');
+      expect(formattedDate).toBeUndefined();
     });
   });
 });
