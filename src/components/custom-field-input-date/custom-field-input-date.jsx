@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import { convertToFormat } from './format-date/format-date.js';
+import { convertToFormat, validDate } from './format-date/format-date.js';
 
 export default function CustomFieldInputDate(props) {
-  const value = convertToFormat(props.value, 'yyyy-mm-dd');
+  const [isValid] = useState(validDate(props.value));
+  const value = isValid ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+
+  const helpText = () => {
+    if (!isValid && !validDate(props.value)) {
+      return `"${props.value}" is an invalid date`;
+    }
+
+    return '';
+  };
 
   return (<CustomFieldInputText
     disabled={props.disabled}
+    error={!isValid}
+    helpText={helpText()}
     label={props.label}
     id={props.id}
     type="date"

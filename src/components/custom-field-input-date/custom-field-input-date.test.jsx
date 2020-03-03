@@ -23,6 +23,11 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = renderComponent({ value: '07/18/2016' });
       expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
     });
+
+    it('accepts a string in format mm-dd-yyyy', () => {
+      const { getByLabelText } = renderComponent({ value: '07-18-2016' });
+      expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
+    });
   });
 
   describe('disabled API', () => {
@@ -34,6 +39,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('permits itself to be enabled', () => {
       const { getByLabelText } = renderComponent({ disabled: false });
       expect(getByLabelText('Field Date')).not.toBeDisabled();
+    });
+  });
+
+  describe('valid API', () => {
+    it('is invalid when given a date that is incorrectly formatted', () => {
+      const { getByTestId } = renderComponent({ value: 'not a date' });
+      expect(getByTestId('custom-field-input')).toHaveClass('error');
+      expect(getByTestId('custom-field-input').innerHTML).toContain('"not a date" is an invalid date');
     });
   });
 });
