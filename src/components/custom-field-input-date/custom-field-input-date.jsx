@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import { convertToFormat, validDate } from './format-date/format-date.js';
+import { convertToFormat, validDate } from './format/format-date.js';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {

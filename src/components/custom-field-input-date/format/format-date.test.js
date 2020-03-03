@@ -1,6 +1,6 @@
 import * as dateFormatHelpers from './format-date.js';
 
-describe('src/components/custom-field-input-date/format-date/format-date', () => {
+describe('src/components/custom-field-input-date/format/format-date', () => {
   describe('#formatMatching', () => {
     it('has a format for mm/dd/yyyy', () => {
       const format = dateFormatHelpers.formatMatching('05/10/1992');
