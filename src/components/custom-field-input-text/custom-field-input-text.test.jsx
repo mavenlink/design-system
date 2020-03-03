@@ -85,12 +85,22 @@ describe('CustomFieldInputText', () => {
       render(<TestComponent max={5} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('max', '5');
     });
+
+    it('allows a date string', () => {
+      render(<TestComponent max="2001-09-11" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('max', '2001-09-11');
+    });
   });
 
   describe('min API', () => {
     it('sets the min attribute', () => {
       render(<TestComponent min={-5} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('min', '-5');
+    });
+
+    it('allows a date string', () => {
+      render(<TestComponent min="2001-09-11" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('min', '2001-09-11');
     });
   });
 

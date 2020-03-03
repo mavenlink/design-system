@@ -79,8 +79,14 @@ CustomFieldInputText.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
-  max: PropTypes.number,
-  min: PropTypes.number,
+  max: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  min: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   name: PropTypes.string,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
