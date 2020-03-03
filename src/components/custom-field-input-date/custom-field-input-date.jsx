@@ -7,10 +7,16 @@ export default function CustomFieldInputDate(props) {
     label={props.label}
     type="date"
     id={props.id}
+    value={props.value}
   />);
 }
 
 CustomFieldInputDate.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+};
+
+CustomFieldInputDate.defaultProps = {
+  value: '',
 };
