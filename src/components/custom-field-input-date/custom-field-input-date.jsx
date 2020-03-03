@@ -32,6 +32,7 @@ export default function CustomFieldInputDate(props) {
   };
 
   return (<CustomFieldInputText
+    className={props.className}
     disabled={props.disabled}
     error={!isValid}
     helpText={helpText()}
@@ -44,6 +45,7 @@ export default function CustomFieldInputDate(props) {
 }
 
 CustomFieldInputDate.propTypes = {
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
@@ -54,6 +56,7 @@ CustomFieldInputDate.propTypes = {
 };
 
 CustomFieldInputDate.defaultProps = {
+  className: undefined,
   disabled: false,
   error: false,
   helpText: '',

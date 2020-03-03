@@ -13,6 +13,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     expect(tree).toMatchSnapshot();
   });
 
+  describe('className API', () => {
+    it('prioritizes className prop', () => {
+      const { container } = renderComponent({ className: 'prioritize-me' });
+      expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('value API', () => {
     it('accepts a string in format YYYY-MM-DD', () => {
       const { getByLabelText } = renderComponent({ value: '2016-07-16' });
