@@ -35,8 +35,9 @@ export default function CustomFieldInputDate(props) {
     disabled={props.disabled}
     error={!isValid}
     helpText={helpText()}
-    label={props.label}
     id={props.id}
+    label={props.label}
+    required={props.required}
     type="date"
     value={value}
   />);
@@ -48,6 +49,7 @@ CustomFieldInputDate.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  required: PropTypes.bool,
   value: PropTypes.string,
 };
 
@@ -55,5 +57,6 @@ CustomFieldInputDate.defaultProps = {
   disabled: false,
   error: false,
   helpText: '',
+  required: false,
   value: '',
 };

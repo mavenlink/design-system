@@ -80,4 +80,16 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       });
     });
   });
+
+  describe('required API', () => {
+    it('is required when told to be', () => {
+      const { getByLabelText } = renderComponent({ required: true });
+      expect(getByLabelText('Field Date')).toBeRequired();
+    });
+
+    it('is not required when told not to be', () => {
+      const { getByLabelText } = renderComponent({ required: false });
+      expect(getByLabelText('Field Date')).not.toBeRequired();
+    });
+  });
 });
