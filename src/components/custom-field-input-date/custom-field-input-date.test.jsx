@@ -14,8 +14,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   });
 
   describe('value API', () => {
-    it('accepts string in format YYYY-MM-DD', () => {
-      const { getByLabelText } = renderComponent({ value: '2016-07-18' });
+    it('accepts a string in format YYYY-MM-DD', () => {
+      const { getByLabelText } = renderComponent({ value: '2016-07-16' });
+      expect(getByLabelText('Field Date')).toHaveValue('2016-07-16');
+    });
+
+    it('accepts a string in format mm/dd/yyyy', () => {
+      const { getByLabelText } = renderComponent({ value: '07/18/2016' });
       expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
     });
   });
