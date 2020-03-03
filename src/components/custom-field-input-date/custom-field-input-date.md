@@ -27,8 +27,9 @@
 <CustomFieldInputDate
     id="not-my-birthday"
     label="Andre's Birthday" 
-    valid={false}
     helpText="This is not my birthday"
+    value="01/01/0001"
+    error
 />
 ```
 ----

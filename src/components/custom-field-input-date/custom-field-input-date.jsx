@@ -3,16 +3,32 @@ import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format-date/format-date.js';
 
+const isValidInput = (value) => {
+  if (value === '' || value === undefined) {
+    return true;
+  }
+
+  return validDate(value);
+};
+
 export default function CustomFieldInputDate(props) {
-  const [isValid] = useState(validDate(props.value));
+  const initialIsValid = () => {
+    if (props.error) {
+      return false;
+    }
+
+    return isValidInput(props.value);
+  };
+
+  const [isValid] = useState(initialIsValid());
   const value = isValid ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
   const helpText = () => {
-    if (!isValid && !validDate(props.value)) {
+    if (!isValid && !isValidInput(props.value)) {
       return `"${props.value}" is an invalid date`;
     }
 
-    return '';
+    return props.helpText;
   };
 
   return (<CustomFieldInputText
@@ -28,6 +44,8 @@ export default function CustomFieldInputDate(props) {
 
 CustomFieldInputDate.propTypes = {
   disabled: PropTypes.bool,
+  error: PropTypes.bool,
+  helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
@@ -35,5 +53,7 @@ CustomFieldInputDate.propTypes = {
 
 CustomFieldInputDate.defaultProps = {
   disabled: false,
+  error: false,
+  helpText: '',
   value: '',
 };

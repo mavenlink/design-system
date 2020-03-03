@@ -43,10 +43,37 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   });
 
   describe('valid API', () => {
-    it('is invalid when given a date that is incorrectly formatted', () => {
-      const { getByTestId } = renderComponent({ value: 'not a date' });
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
-      expect(getByTestId('custom-field-input').innerHTML).toContain('"not a date" is an invalid date');
+    describe('when the value is valid', () => {
+      it('does not show an error', () => {
+        const { getByTestId } = renderComponent({ value: '05/10/1992' });
+        expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+      });
+    });
+
+    describe('when the value is syntactically invalid', () => {
+      it('shows an error', () => {
+        const { getByTestId } = renderComponent({ value: 'not a date' });
+        expect(getByTestId('custom-field-input')).toHaveClass('error');
+      });
+
+      it('informs the user of an invalid value', () => {
+        const { getByTestId } = renderComponent({ value: 'not a date' });
+        expect(getByTestId('custom-field-input').innerHTML).toContain('"not a date" is an invalid date');
+      });
+    });
+
+    describe('when the value is semantically invalid', () => {
+      it('shows an error', () => {
+        const helpText = 'This should appear';
+        const { getByTestId } = renderComponent({ error: true, helpText });
+        expect(getByTestId('custom-field-input')).toHaveClass('error');
+      });
+
+      it('presents the provided help text', () => {
+        const helpText = 'This should appear';
+        const { getByTestId } = renderComponent({ error: true, helpText });
+        expect(getByTestId('custom-field-input').innerHTML).toContain(helpText);
+      });
     });
   });
 });
