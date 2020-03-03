@@ -21,7 +21,7 @@ export default function CustomFieldInputDate(props) {
   };
 
   const [isValid] = useState(initialIsValid());
-  const value = isValid ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+  const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
   const helpText = () => {
     if (!isValid && !isValidInput(props.value)) {

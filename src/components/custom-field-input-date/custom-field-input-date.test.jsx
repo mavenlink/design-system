@@ -64,8 +64,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
     describe('when the value is semantically invalid', () => {
       it('shows an error', () => {
-        const helpText = 'This should appear';
-        const { getByTestId } = renderComponent({ error: true, helpText });
+        const { getByTestId } = renderComponent({ error: true });
         expect(getByTestId('custom-field-input')).toHaveClass('error');
       });
 
@@ -73,6 +72,11 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         const helpText = 'This should appear';
         const { getByTestId } = renderComponent({ error: true, helpText });
         expect(getByTestId('custom-field-input').innerHTML).toContain(helpText);
+      });
+
+      it('still shows the provided value', () => {
+        const { getByLabelText } = renderComponent({ error: true, value: '05/10/1992' });
+        expect(getByLabelText('Field Date')).toHaveValue('1992-05-10');
       });
     });
   });
