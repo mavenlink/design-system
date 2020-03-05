@@ -99,4 +99,18 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).not.toBeRequired();
     });
   });
+
+  describe('min API', () => {
+    it('respects the min attribute', () => {
+      const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
+      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    });
+  });
+
+  describe('max API', () => {
+    it('respects the max attribute', () => {
+      const { getByTestId } = renderComponent({ max: '01-01-1990', value: '05-10-1992' });
+      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    });
+  });
 });

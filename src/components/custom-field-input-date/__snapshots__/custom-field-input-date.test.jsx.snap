@@ -2,7 +2,7 @@
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <div
-  className="custom-field-input-text"
+  className="custom-field-input-text error"
   data-testid="custom-field-input"
 >
   <div
@@ -25,8 +25,26 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       id="hello"
       onKeyUp={[Function]}
       required={false}
+      step={0}
       type="date"
     />
+    <div
+      className="input-icon-container"
+    >
+      <svg
+        className="icon-base size-medium fill-none stroke-none color-caution input-icon"
+        role="img"
+      >
+        <use
+          xlinkHref="#icon-caution-fill.svg"
+        />
+      </svg>
+    </div>
   </div>
+  <span
+    className="help"
+  >
+    
+  </span>
 </div>
 `;
