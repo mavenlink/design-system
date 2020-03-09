@@ -51,8 +51,8 @@ export default function CustomFieldInputDate(props) {
     id={props.id}
     inputRef={inputRef}
     label={props.label}
-    min={props.min}
-    max={props.max}
+    min={convertToFormat(props.min, 'yyyy-mm-dd')}
+    max={convertToFormat(props.max, 'yyyy-mm-dd')}
     required={props.required}
     step={0}
     type="date"
