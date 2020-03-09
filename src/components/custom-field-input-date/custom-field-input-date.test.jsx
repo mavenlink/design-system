@@ -52,7 +52,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('valid API', () => {
     describe('when the value is valid', () => {
       it('does not show an error', () => {
-        const { getByTestId } = renderComponent({ value: '05/10/1992' });
+        const { getByTestId } = render(<CustomFieldInputDate label="Field Date" id="field-date" value="05/10/1992" />);
         expect(getByTestId('custom-field-input')).not.toHaveClass('error');
       });
     });

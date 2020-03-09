@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jest-environment-jsdom-sixteen',
   moduleNameMapper: {
     css$: 'identity-obj-proxy',
   },
