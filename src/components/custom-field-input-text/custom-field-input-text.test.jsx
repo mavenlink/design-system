@@ -120,6 +120,15 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onChange', () => {
+    it('accepts an onChange listener', () => {
+      const onChange = jest.fn();
+      const { getByLabelText } = render(<TestComponent onChange={e => onChange(e)} />);
+      fireEvent.change(getByLabelText('Test label'), { target: { value: 'hey' } });
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('placeholder API', () => {
     it('can have placeholder for input', () => {
       const placeholder = 'This is placeholder input';
