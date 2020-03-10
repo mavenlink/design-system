@@ -42,7 +42,7 @@ export const validFormats = {
     },
   },
   'Month dd, yyyy': {
-    matcher: /^[A-Z][a-z]+ \d{2}, \d{4}$/,
+    matcher: /^[ADFJMNOS][a-z]+ \d{2}, \d{4}$/,
     combine: (dismantledDate) => {
       const monthIndex = parseInt(dismantledDate.month, 10) - 1;
       const month = months[monthIndex].charAt(0).toUpperCase() + months[monthIndex].slice(1);
