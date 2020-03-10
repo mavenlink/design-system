@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<g id="_x31_6px_border" display="none">
+	<rect x="0" display="inline" opacity="0.2" fill="#666666" width="17" height="17"/>
+</g>
+  <g id="live_icon" display="none">
+
+		<rect x="3.5" y="3.4" display="inline" fill="none" stroke="#666666" stroke-linejoin="round" stroke-miterlimit="10" width="10.1" height="12"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-linejoin="round" stroke-miterlimit="10" x1="3.5" y1="6.6" x2="13.6" y2="6.6"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-linejoin="round" stroke-miterlimit="10" x1="3.5" y1="9.6" x2="13.6" y2="9.6"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-width="0.9818" stroke-linejoin="round" stroke-miterlimit="10" x1="6.4" y1="6.1" x2="6.4" y2="15.8"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-width="0.9818" stroke-linejoin="round" stroke-miterlimit="10" x1="10.4" y1="6.1" x2="10.4" y2="15.8"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-linejoin="round" stroke-miterlimit="10" x1="3.5" y1="12.6" x2="13.6" y2="12.6"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-width="0.9818" stroke-linejoin="round" stroke-miterlimit="10" x1="5.1" y1="2.5" x2="7" y2="2.5"/>
+
+    <line display="inline" fill="none" stroke="#666666" stroke-width="0.9818" stroke-linejoin="round" stroke-miterlimit="10" x1="10.2" y1="2.5" x2="12" y2="2.5"/>
+</g>
+  <g id="booleaned">
+	<g>
+		<path fill="#666666" d="M12.5,1.9h-10C2.2,1.9,2,2.1,2,2.4v11.9c0,0.2,0.2,0.5,0.5,0.5h2.6H6h3h0.9h2.5c0.2,0,0.5-0.2,0.5-0.5V2.4
+			C12.9,2.1,12.7,1.9,12.5,1.9z M5.1,13.9H2.9v-2.1h2.2V13.9z M5.1,11.1H2.9V8.8h2.2V11.1z M5.1,8H2.9V5.9h2.2V8z M9,13.9H6v-2.1h3
+			V13.9z M9,11.1H6V8.8h3V11.1z M9,8H6V5.9h3V8z M12,13.9H9.9v-2.1H12V13.9z M12,11.1H9.9V8.8H12V11.1z M12,8H9.9V5.9H12V8z M12,5.1
+			H2.9V2.8H12V5.1z"/>
+    <rect x="4.1" y="1" fill="#666666" width="1.9" height="0.9"/>
+    <rect x="9.2" y="1" fill="#666666" width="1.8" height="0.9"/>
+	</g>
+</g>
+</svg>

@@ -1,6 +1,8 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
+import Icon from '../icon/icon.jsx';
+import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -177,6 +179,14 @@ describe('CustomFieldInputText', () => {
     it('sets the value attribute', () => {
       render(<TestComponent value="test-value" />);
       expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
+    });
+  });
+
+  describe('icon API', () => {
+    it('shows an icon when provided', () => {
+      const icon = <Icon name={calendarSvg.id} currentColor="action" />;
+      const { getByRole } = render(<TestComponent icon={icon} />);
+      expect(getByRole('img')).toBeDefined();
     });
   });
 });

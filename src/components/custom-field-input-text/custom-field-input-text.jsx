@@ -38,6 +38,27 @@ export default function CustomFieldInputText(props) {
     }
   });
 
+  const icon = () => {
+    if (props.error) {
+      return (<Icon
+        className={styles['input-icon']}
+        currentColor="caution"
+        name={cautionSvg.id}
+        size="medium"
+      />);
+    }
+
+    if (props.icon) {
+      return props.icon;
+    }
+
+    return undefined;
+  };
+
+  const showIcon = () => {
+    return props.error || !!props.icon;
+  };
+
   return (
     <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
@@ -61,9 +82,9 @@ export default function CustomFieldInputText(props) {
           step={props.step}
           type={props.type}
         />
-        {props.error &&
+        {showIcon() &&
           <div className={styles['input-icon-container']}>
-            <Icon className={styles['input-icon']} currentColor="caution" name={cautionSvg.id} size="medium" />
+            { icon() }
           </div>
         }
       </div>
@@ -77,6 +98,7 @@ CustomFieldInputText.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
+  icon: PropTypes.node,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -110,6 +132,7 @@ CustomFieldInputText.defaultProps = {
   disabled: false,
   error: false,
   helpText: undefined,
+  icon: undefined,
   inputRef: undefined,
   max: undefined,
   min: undefined,
