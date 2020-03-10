@@ -3,7 +3,7 @@ const months = ['january', 'february', 'march', 'april', 'may', 'june',
 
 export const validFormats = {
   'mm/dd/yyyy': {
-    matcher: /^\d\d\/\d\d\/\d\d\d\d$/,
+    matcher: /^\d{2}\/\d{2}\/\d{4}$/,
     combine: dismantledDate => `${dismantledDate.month}/${dismantledDate.day}/${dismantledDate.year}`,
     dismantle: (string) => {
       const pieces = string.split('/');
@@ -16,7 +16,7 @@ export const validFormats = {
     },
   },
   'mm-dd-yyyy': {
-    matcher: /^\d\d-\d\d-\d\d\d\d$/,
+    matcher: /^\d{2}-\d{2}-\d{4}$/,
     combine: dismantledDate => `${dismantledDate.month}-${dismantledDate.day}-${dismantledDate.year}`,
     dismantle: (string) => {
       const pieces = string.split('-');
