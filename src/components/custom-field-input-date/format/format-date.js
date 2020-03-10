@@ -1,3 +1,6 @@
+const months = ['january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december'];
+
 export const validFormats = {
   'mm/dd/yyyy': {
     matcher: /^\d\d\/\d\d\/\d\d\d\d$/,
@@ -35,6 +38,25 @@ export const validFormats = {
         day: pieces[2],
         month: pieces[1],
         year: pieces[0],
+      };
+    },
+  },
+  'Month dd, yyyy': {
+    matcher: /^[A-Z][a-z]+ \d{2}, \d{4}$/,
+    combine: (dismantledDate) => {
+      const monthIndex = parseInt(dismantledDate.month, 10) - 1;
+      const month = months[monthIndex].charAt(0).toUpperCase() + months[monthIndex].slice(1);
+
+      return `${month} ${dismantledDate.day}, ${dismantledDate.year}`;
+    },
+    dismantle: (string) => {
+      const pieces = string.replace(',', '').split(' ');
+      const month = (months.indexOf(pieces[0].toLowerCase()) + 1).toString(10);
+
+      return {
+        day: pieces[1].padStart(2, '0'),
+        month: month.padStart(2, '0'),
+        year: pieces[2],
       };
     },
   },
