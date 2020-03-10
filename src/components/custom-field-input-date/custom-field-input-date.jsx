@@ -35,6 +35,14 @@ export default function CustomFieldInputDate(props) {
     }
   });
 
+  const onChange = (event) => {
+    if (inputRef && inputRef.current) {
+      const isInputValid = inputRef.current.validity.valid;
+      const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
+      setIsValid(initialIsValid(isInputValid) && validDate(newDate));
+    }
+  };
+
   const helpText = () => {
     if (!isValid && !isValidInput(props.value)) {
       return `"${props.value}" is an invalid date`;
@@ -53,6 +61,7 @@ export default function CustomFieldInputDate(props) {
     label={props.label}
     min={convertToFormat(props.min, 'yyyy-mm-dd')}
     max={convertToFormat(props.max, 'yyyy-mm-dd')}
+    onChange={e => onChange(e)}
     required={props.required}
     step={0}
     type="date"

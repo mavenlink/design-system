@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import {render, cleanup, fireEvent} from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputDate from './custom-field-input-date.jsx';
 
@@ -103,6 +103,15 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('min API', () => {
     it('respects the min attribute', () => {
       const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
+      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    });
+
+    it('is respected after a change', () => {
+      const { getByTestId, getByLabelText } = renderComponent({ min: '01-01-2000', value: '05-10-2001' });
+      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+
+      fireEvent.change(getByLabelText('Field Date'), { target: { value: '1998-01-01' } });
+
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
   });

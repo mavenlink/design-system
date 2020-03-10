@@ -46,8 +46,8 @@ export default function CustomFieldInputText(props) {
       </div>
       <div className={styles['input-container']}>
         <input
-          className={styles.input}
           defaultValue={props.value}
+          className={styles.input}
           disabled={props.disabled}
           id={props.id}
           max={props.max}
