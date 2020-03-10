@@ -95,6 +95,27 @@ describe('src/components/custom-field-input-date/format/format-date', () => {
         expect(format.matcher.test('2020-03-15')).toBe(true);
       });
     });
+
+    describe('Month dd, yyyy', () => {
+      const format = dateFormatHelpers.validFormats['Month dd, yyyy'];
+
+      it('dismantles', () => {
+        const dismantledDate = format.dismantle('March 15, 2020');
+
+        expect(dismantledDate.day).toEqual('15');
+        expect(dismantledDate.month).toEqual('03');
+        expect(dismantledDate.year).toEqual('2020');
+      });
+
+      it('combines', () => {
+        const combinedDate = format.combine({ day: '15', month: '03', year: '2020' });
+        expect(combinedDate).toEqual('March 15, 2020');
+      });
+
+      it('matches correctly', () => {
+        expect(format.matcher.test('March 15, 2020')).toBe(true);
+      });
+    });
   });
 
   describe('#formatMatching', () => {
