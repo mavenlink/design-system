@@ -11,27 +11,27 @@ const isValidInput = (value) => {
   return validDate(value);
 };
 
+const isValueValid = (value, error, isInputValid = false) => {
+  if (error) {
+    return false;
+  }
+
+  if (!isInputValid) {
+    return false;
+  }
+
+  return isValidInput(value);
+};
+
 export default function CustomFieldInputDate(props) {
-  const initialIsValid = (isInputValid = false) => {
-    if (props.error) {
-      return false;
-    }
-
-    if (!isInputValid) {
-      return false;
-    }
-
-    return isValidInput(props.value);
-  };
-
   const inputRef = useRef(null);
-  const [isValid, setIsValid] = useState(initialIsValid());
+  const [isValid, setIsValid] = useState(isValueValid());
   const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
   useEffect(() => {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
-      setIsValid(initialIsValid(isInputValid));
+      setIsValid(isValueValid(props.value, props.error, isInputValid));
     }
   });
 
@@ -39,7 +39,7 @@ export default function CustomFieldInputDate(props) {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
-      setIsValid(initialIsValid(isInputValid) && validDate(newDate));
+      setIsValid(isValueValid(newDate, props.error, isInputValid) && validDate(newDate));
     }
   };
 
