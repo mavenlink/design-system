@@ -25,8 +25,8 @@ const isValueValid = (value, error, isInputValid = false) => {
 
 export default function CustomFieldInputDate(props) {
   const inputRef = useRef(null);
-  const [isValid, setIsValid] = useState(isValueValid());
-  const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+  const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (inputRef && inputRef.current) {
@@ -51,21 +51,36 @@ export default function CustomFieldInputDate(props) {
     return props.helpText;
   };
 
+  if (isFocused || !isValid) {
+    const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+
+    return (<CustomFieldInputText
+      className={props.className}
+      disabled={props.disabled}
+      error={!isValid}
+      helpText={helpText()}
+      id={props.id}
+      inputRef={inputRef}
+      label={props.label}
+      min={convertToFormat(props.min, 'yyyy-mm-dd')}
+      max={convertToFormat(props.max, 'yyyy-mm-dd')}
+      onChange={e => onChange(e)}
+      required={props.required}
+      step={0}
+      type="date"
+      value={value}
+    />);
+  }
+
   return (<CustomFieldInputText
     className={props.className}
     disabled={props.disabled}
-    error={!isValid}
     helpText={helpText()}
     id={props.id}
-    inputRef={inputRef}
     label={props.label}
-    min={convertToFormat(props.min, 'yyyy-mm-dd')}
-    max={convertToFormat(props.max, 'yyyy-mm-dd')}
-    onChange={e => onChange(e)}
     required={props.required}
-    step={0}
-    type="date"
-    value={value}
+    type="text"
+    value={convertToFormat(props.value, 'Month dd, yyyy')}
   />);
 }
 
