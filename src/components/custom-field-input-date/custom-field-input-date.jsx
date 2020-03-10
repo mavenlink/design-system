@@ -51,21 +51,25 @@ export default function CustomFieldInputDate(props) {
     return props.helpText;
   };
 
+  const sharedProps = {
+    className: props.className,
+    disabled: props.disabled,
+    label: props.label,
+    required: props.required,
+  };
+
   if (isFocused || !isValid) {
     const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
     return (<CustomFieldInputText
-      className={props.className}
-      disabled={props.disabled}
+      {...sharedProps}
       error={!isValid}
       helpText={helpText()}
       id={props.id}
       inputRef={inputRef}
-      label={props.label}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
       onChange={e => onChange(e)}
-      required={props.required}
       step={0}
       type="date"
       value={value}
@@ -73,12 +77,8 @@ export default function CustomFieldInputDate(props) {
   }
 
   return (<CustomFieldInputText
-    className={props.className}
-    disabled={props.disabled}
-    helpText={helpText()}
+    {...sharedProps}
     id={props.id}
-    label={props.label}
-    required={props.required}
     type="text"
     value={convertToFormat(props.value, 'Month dd, yyyy')}
   />);
