@@ -29,7 +29,7 @@ export const validFormats = {
     },
   },
   'yyyy-mm-dd': {
-    matcher: /^\d\d\d\d-\d\d-\d\d$/,
+    matcher: /^\d{4}-\d{2}-\d{2}$/,
     combine: dismantledDate => `${dismantledDate.year}-${dismantledDate.month}-${dismantledDate.day}`,
     dismantle: (string) => {
       const pieces = string.split('-');
