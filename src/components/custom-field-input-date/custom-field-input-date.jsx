@@ -32,11 +32,9 @@ export default function CustomFieldInputDate(props) {
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    if (inputRef && inputRef.current) {
-      const isInputValid = inputRef.current.validity.valid;
-      setIsValid(isValueValid(props.value, props.error, isInputValid));
-    }
-  });
+    const isInputValid = inputRef.current.validity.valid;
+    setIsValid(isValueValid(props.value, props.error, isInputValid));
+  }, [inputRef.current]);
 
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -76,10 +74,11 @@ export default function CustomFieldInputDate(props) {
       error={!isValid}
       helpText={helpText()}
       id={props.id}
+      key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
       onChange={e => handleOnChange(e)}
-      step={0}
+      step={1}
       type="date"
       value={value}
     />);
@@ -88,6 +87,7 @@ export default function CustomFieldInputDate(props) {
   return (<CustomFieldInputText
     {...sharedProps}
     id={props.id}
+    key={`${props.id}-readonly`}
     onFocus={handleOnFocus}
     type="text"
     value={convertToFormat(props.value, 'Month dd, yyyy')}
