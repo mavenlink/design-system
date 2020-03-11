@@ -20,15 +20,14 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   >
     <input
       className="input"
+      defaultValue=""
       disabled={false}
       id="foo"
       onBlur={[Function]}
-      onChange={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}
       type="text"
-      value=""
     />
   </div>
 </div>

@@ -23,7 +23,6 @@ exports[`CustomFieldInputText has defaults 1`] = `
       disabled={false}
       id="test-input"
       onBlur={[Function]}
-      onChange={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}

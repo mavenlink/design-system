@@ -109,13 +109,6 @@ describe('CustomFieldInputNumber', () => {
       fireEvent.blur(getByLabelText('foo'));
       expect(onBlur.mock.calls.length).toEqual(1);
     });
-
-    it('accepts an onChange event', () => {
-      const onChange = jest.fn();
-      const { getByLabelText } = render(<TestComponent label="foo" onChange={onChange} />);
-      fireEvent.change(getByLabelText('foo'), { target: { value: 1234 } });
-      expect(onChange.mock.calls.length).toEqual(1);
-    });
   });
 
   describe('inputRef API', () => {

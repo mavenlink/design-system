@@ -60,13 +60,9 @@ export default function CustomFieldInputCurrency(props) {
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
 
-  function handleOnChange(event) {
-    setInput(parseFloat(event.target.value));
-    props.onChange(event);
-  }
-
-  function handleOnBlur() {
-    if (numberRef.current && numberRef.current.validity.valid) {
+  function handleOnBlur(event) {
+    if (numberRef.current.validity.valid) {
+      setInput(parseFloat(event.target.value));
       setIsEditing(false);
     }
 
@@ -107,7 +103,6 @@ export default function CustomFieldInputCurrency(props) {
       <CustomFieldInputNumber
         {...sharedProps}
         onBlur={handleOnBlur}
-        onChange={handleOnChange}
         inputRef={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         value={input}
@@ -120,7 +115,6 @@ export default function CustomFieldInputCurrency(props) {
       {...sharedProps}
       error={props.error}
       helpText={props.helpText}
-      onChange={() => {}}
       onFocus={handleOnFocus}
       type="text"
       value={formattedNumber}
@@ -137,7 +131,7 @@ CustomFieldInputCurrency.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onChange: PropTypes.func,
+  // onChange: Do not expose an onChange handler. See commit for details.
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   value: PropTypes.number,
@@ -150,7 +144,6 @@ CustomFieldInputCurrency.defaultProps = {
   error: false,
   helpText: undefined,
   name: undefined,
-  onChange: () => {},
   placeholder: undefined,
   required: false,
   value: undefined,

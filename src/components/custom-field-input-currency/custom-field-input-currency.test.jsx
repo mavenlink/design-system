@@ -58,17 +58,6 @@ describe('CustomFieldInputCurrency', () => {
       expect(presentedHelpText()).toContain(helpText);
     });
 
-    it('respects an onChange event handed to it', () => {
-      const onChange = jest.fn();
-      const { getByLabelText } = renderComponent({ onChange });
-
-      fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: 12 } });
-      fireEvent.blur(getByLabelText('currency'));
-
-      expect(onChange.mock.calls.length).toBe(1);
-    });
-
     it('renders all forwarded props except event handlers', () => {
       const tree = renderer.create((
         <CustomFieldInputCurrency
@@ -108,7 +97,7 @@ describe('CustomFieldInputCurrency', () => {
       expect(getByLabelText('currency')).toHaveValue('$1,234.00');
     });
 
-    it('does not switch to view mode when its value is invalid', () => {
+    it('does not switch to view mode when its value is numerically invalid', () => {
       const { getByLabelText } = renderComponent();
 
       fireEvent.focus(getByLabelText('currency'));
@@ -116,6 +105,21 @@ describe('CustomFieldInputCurrency', () => {
       fireEvent.blur(getByLabelText('currency'));
 
       expect(getByLabelText('currency')).toHaveAttribute('type', 'number');
+      expect(getByLabelText('currency')).toHaveValue(12.111111);
+    });
+
+    xit('does not switch to view mode when its value is numerically invalid', () => {
+      // This test does not work because programmatically setting value
+      // on a number input does not reflect a user typing.
+      // See commit for more details.
+      const { getByLabelText } = renderComponent();
+
+      fireEvent.focus(getByLabelText('currency'));
+      fireEvent.change(getByLabelText('currency'), { target: { value: '12..' } });
+      fireEvent.blur(getByLabelText('currency'));
+
+      expect(getByLabelText('currency')).toHaveAttribute('type', 'number');
+      expect(getByLabelText('currency')).toHaveValue('12..');
     });
 
     it('accepts an undefined value', () => {

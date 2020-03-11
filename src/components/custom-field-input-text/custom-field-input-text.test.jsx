@@ -162,13 +162,6 @@ describe('CustomFieldInputText', () => {
       expect(onFocus.mock.calls.length).toEqual(1);
     });
 
-    it('accepts an onChange event', () => {
-      const onChange = jest.fn();
-      const { getByLabelText } = render(<TestComponent label="foo" onChange={onChange} />);
-      fireEvent.change(getByLabelText('foo'), { target: { value: 1234 } });
-      expect(onChange.mock.calls.length).toEqual(1);
-    });
-
     it('handles the key up event', () => {
       const onKeyUpSpy = jest.fn();
       render(<TestComponent onKeyUp={onKeyUpSpy} />);
