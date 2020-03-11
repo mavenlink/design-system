@@ -116,6 +116,16 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
       });
     });
+
+    describe('when blurred', () => {
+      it('switches over to the text input', () => {
+        const { getByLabelText } = renderComponent({ value: '07/18/2016' });
+        fireEvent.focus(getByLabelText('Field Date'));
+        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        fireEvent.blur(getByLabelText('Field Date'));
+        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+      });
+    });
   });
 
   xdescribe('min API', () => {

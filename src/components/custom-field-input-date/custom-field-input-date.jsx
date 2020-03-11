@@ -41,6 +41,11 @@ export default function CustomFieldInputDate(props) {
     setIsEditing(true);
   };
 
+  const handleOnBlur = () => {
+    setIsFocused(false);
+    setIsEditing(false);
+  };
+
   const handleOnChange = (event) => {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
@@ -77,6 +82,7 @@ export default function CustomFieldInputDate(props) {
       key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
+      onBlur={handleOnBlur}
       onChange={e => handleOnChange(e)}
       step={1}
       type="date"
