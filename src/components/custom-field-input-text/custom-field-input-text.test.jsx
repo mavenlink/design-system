@@ -113,6 +113,15 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onChange', () => {
+    it('accepts an onChange listener', () => {
+      const onChange = jest.fn();
+      const { getByLabelText } = render(<TestComponent onChange={e => onChange(e)} />);
+      fireEvent.change(getByLabelText('Test label'), { target: { value: 'hey' } });
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('onKeyUp', () => {
     it('handles the key up event', () => {
       const onKeyUpSpy = jest.fn();
@@ -122,12 +131,12 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('onChange', () => {
-    it('accepts an onChange listener', () => {
-      const onChange = jest.fn();
-      const { getByLabelText } = render(<TestComponent onChange={e => onChange(e)} />);
-      fireEvent.change(getByLabelText('Test label'), { target: { value: 'hey' } });
-      expect(onChange.mock.calls.length).toBe(1);
+  describe('onFocus', () => {
+    it('accepts an onFocus event', () => {
+      const onFocus = jest.fn();
+      const { getByLabelText } = render(<TestComponent onFocus={onFocus} />);
+      fireEvent.focus(getByLabelText('Test label'));
+      expect(onFocus.mock.calls.length).toBe(1);
     });
   });
 
