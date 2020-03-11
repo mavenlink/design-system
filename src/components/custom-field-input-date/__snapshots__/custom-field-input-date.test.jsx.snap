@@ -22,6 +22,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       className="input"
       disabled={false}
       id="hello"
+      onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}

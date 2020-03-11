@@ -140,6 +140,16 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onBlur', () => {
+    it('accepts an onBlur event', () => {
+      const onBlur = jest.fn();
+      const { getByLabelText } = render(<TestComponent onBlur={onBlur} />);
+      fireEvent.focus(getByLabelText('Test label'));
+      fireEvent.blur(getByLabelText('Test label'));
+      expect(onBlur.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('placeholder API', () => {
     it('can have placeholder for input', () => {
       const placeholder = 'This is placeholder input';
