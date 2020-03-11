@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import Icon from '../icon/icon.jsx';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 
@@ -54,6 +56,7 @@ export default function CustomFieldInputDate(props) {
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
+    icon: <Icon name={calendarSvg.id} title={props.label} stroke="primary" />,
     label: props.label,
     required: props.required,
   };

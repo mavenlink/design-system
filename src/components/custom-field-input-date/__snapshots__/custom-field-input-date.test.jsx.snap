@@ -27,6 +27,21 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       required={false}
       type="text"
     />
+    <div
+      className="input-icon-container"
+    >
+      <svg
+        className="icon-base size-medium fill-none stroke-primary color-transparent"
+        role="img"
+      >
+        <title>
+          Hello
+        </title>
+        <use
+          xlinkHref="#icon-calendar-fill.svg"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;
