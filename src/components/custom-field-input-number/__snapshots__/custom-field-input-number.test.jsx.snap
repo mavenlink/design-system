@@ -25,6 +25,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       max={2147483648}
       min={-2147483648}
       onChange={[Function]}
+      onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}
       step={1}

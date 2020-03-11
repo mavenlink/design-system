@@ -23,6 +23,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       disabled={false}
       id="hello"
       onChange={[Function]}
+      onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}
       type="text"

@@ -18,8 +18,10 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputText(props) {
-  const inputRef = props.inputRef || useRef(null);
+  const defaultRef = useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
+
+  const inputRef = props.inputRef || defaultRef;
 
   useEffect(() => {
     if (!inputRef.current) return;

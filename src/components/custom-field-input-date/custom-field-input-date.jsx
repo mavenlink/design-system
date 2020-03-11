@@ -27,8 +27,9 @@ const isValueValid = (value, error, isInputValid = false) => {
 
 export default function CustomFieldInputDate(props) {
   const inputRef = useRef(null);
+  const [isEditing, setIsEditing] = useState(false);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
-  const [isFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (inputRef && inputRef.current) {
@@ -37,7 +38,12 @@ export default function CustomFieldInputDate(props) {
     }
   });
 
-  const onChange = (event) => {
+  const handleOnFocus = () => {
+    setIsFocused(true);
+    setIsEditing(true);
+  };
+
+  const handleOnChange = (event) => {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
@@ -58,10 +64,11 @@ export default function CustomFieldInputDate(props) {
     disabled: props.disabled,
     icon: <Icon name={calendarSvg.id} title={props.label} stroke="primary" />,
     label: props.label,
+    inputRef,
     required: props.required,
   };
 
-  if (isFocused || !isValid) {
+  if (isEditing || !isValid) {
     const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
     return (<CustomFieldInputText
@@ -69,10 +76,9 @@ export default function CustomFieldInputDate(props) {
       error={!isValid}
       helpText={helpText()}
       id={props.id}
-      inputRef={inputRef}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
-      onChange={e => onChange(e)}
+      onChange={e => handleOnChange(e)}
       step={0}
       type="date"
       value={value}
@@ -82,6 +88,7 @@ export default function CustomFieldInputDate(props) {
   return (<CustomFieldInputText
     {...sharedProps}
     id={props.id}
+    onFocus={handleOnFocus}
     type="text"
     value={convertToFormat(props.value, 'Month dd, yyyy')}
   />);

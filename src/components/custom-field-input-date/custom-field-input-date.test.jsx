@@ -100,6 +100,15 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('interaction', () => {
+    it('switches to a date input when focused', () => {
+      const { getByLabelText } = renderComponent();
+      expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+      fireEvent.focus(getByLabelText('Field Date'));
+      expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+    });
+  });
+
   xdescribe('min API', () => {
     it('respects the min attribute', () => {
       const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
