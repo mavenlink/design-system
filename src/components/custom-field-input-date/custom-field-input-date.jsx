@@ -36,6 +36,12 @@ export default function CustomFieldInputDate(props) {
     setIsValid(isValueValid(props.value, props.error, isInputValid));
   }, [inputRef.current]);
 
+  useEffect(() => {
+    if (isEditing && isFocused) {
+      inputRef.current.focus();
+    }
+  }, [isEditing, isFocused]);
+
   const handleOnFocus = () => {
     setIsFocused(true);
     setIsEditing(true);
