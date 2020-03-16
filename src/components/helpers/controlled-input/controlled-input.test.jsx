@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { cleanup, render } from '@testing-library/react';
+import {cleanup, fireEvent, render} from '@testing-library/react';
 import ControlledInput from './controlled-input.jsx';
 
 describe('src/components/helpers/controlled-input/controlled-input', () => {
@@ -50,6 +50,29 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
         const { getByTestId } = renderComponent({ type });
         expect(getByTestId(testId)).toHaveAttribute('type', type);
       });
+    });
+  });
+
+  describe('interaction API', () => {
+    it('accepts onBlur', () => {
+      const onBlur = jest.fn();
+      const { getByTestId } = renderComponent({ onBlur });
+      fireEvent.blur(getByTestId(testId));
+      expect(onBlur.mock.calls.length).toBe(1);
+    });
+
+    it('accepts onChange', () => {
+      const onChange = jest.fn();
+      const { getByTestId } = renderComponent({ onChange });
+      fireEvent.change(getByTestId(testId), { target: { value: 'hello' } });
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+
+    it('accepts onFocus', () => {
+      const onFocus = jest.fn();
+      const { getByTestId } = renderComponent({ onFocus });
+      fireEvent.focus(getByTestId(testId));
+      expect(onFocus.mock.calls.length).toBe(1);
     });
   });
 });
