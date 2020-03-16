@@ -158,7 +158,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  xdescribe('max API', () => {
+  describe('max API', () => {
     it('respects the max attribute', () => {
       const { getByTestId } = renderComponent({ max: '01-01-1990', value: '05-10-1992' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
