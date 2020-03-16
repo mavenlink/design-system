@@ -15,6 +15,18 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
     });
   });
 
+  describe('disabled API', () => {
+    it('can be enabled', () => {
+      const { getByTestId } = renderComponent({ disabled: false });
+      expect(getByTestId(testId)).not.toBeDisabled();
+    });
+
+    it('can be disabled', () => {
+      const { getByTestId } = renderComponent({ disabled: true });
+      expect(getByTestId(testId)).toBeDisabled();
+    });
+  });
+
   describe('id API', () => {
     it('sets the ID attribute', () => {
       const { getByTestId } = renderComponent();
