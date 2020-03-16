@@ -5,6 +5,11 @@ import CustomFieldInputDate from './custom-field-input-date.jsx';
 
 describe('src/components/custom-field-input-date/custom-field-input-date', () => {
   const renderComponent = (props = {}) => render(<CustomFieldInputDate label="Field Date" id="field-date" {...props} />);
+  const changeValue = (getInputElement, value) => {
+    fireEvent.focus(getInputElement());
+    fireEvent.change(getInputElement(), { target: { value } });
+    fireEvent.blur(getInputElement());
+  };
 
   afterEach(cleanup);
 
@@ -148,12 +153,10 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
 
-    xit('is respected after a change', () => {
+    it('is respected after a change', () => {
       const { getByTestId, getByLabelText } = renderComponent({ min: '01-01-2000', value: '05-10-2001' });
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-
-      fireEvent.change(getByLabelText('Field Date'), { target: { value: '1998-01-01' } });
-
+      changeValue(() => getByLabelText('Field Date'), '1998-01-01');
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
   });
