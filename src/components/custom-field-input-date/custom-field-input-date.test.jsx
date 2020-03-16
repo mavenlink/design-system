@@ -142,7 +142,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  xdescribe('min API', () => {
+  describe('min API', () => {
     it('respects the min attribute', () => {
       const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');

@@ -27,13 +27,20 @@ const isValueValid = (value, error, isInputValid = false) => {
 
 export default function CustomFieldInputDate(props) {
   const inputRef = useRef(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     const isInputValid = inputRef.current.validity.valid;
-    setIsValid(isValueValid(props.value, props.error, isInputValid));
+    const valid = isValueValid(props.value, props.error, isInputValid);
+    setIsValid(valid);
+
+    if (!valid) {
+      setIsEditing(true);
+    } else {
+      setIsEditing(false);
+    }
   }, [inputRef.current]);
 
   useEffect(() => {
