@@ -53,6 +53,8 @@ export default function CustomFieldInputText(props) {
           max={props.max}
           min={props.min}
           name={props.name}
+          onBlur={props.onBlur}
+          onFocus={props.onFocus}
           onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
           ref={inputRef}
@@ -82,6 +84,8 @@ CustomFieldInputText.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   name: PropTypes.string,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
@@ -105,6 +109,8 @@ CustomFieldInputText.defaultProps = {
   max: undefined,
   min: undefined,
   name: undefined,
+  onBlur: () => {},
+  onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
   required: false,

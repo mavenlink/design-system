@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CustomFieldInputText has defaults 1`] = `
+exports[`CustomFieldInputCurrency has defaults 1`] = `
 <div
   className="custom-field-input-text"
   data-testid="custom-field-input"
@@ -10,9 +10,9 @@ exports[`CustomFieldInputText has defaults 1`] = `
   >
     <label
       className="label"
-      htmlFor="test-input"
+      htmlFor="foo"
     >
-      Test label
+      cash money
     </label>
   </div>
   <div
@@ -20,8 +20,9 @@ exports[`CustomFieldInputText has defaults 1`] = `
   >
     <input
       className="input"
+      defaultValue=""
       disabled={false}
-      id="test-input"
+      id="foo"
       onBlur={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}

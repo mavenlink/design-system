@@ -20,10 +20,13 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
   >
     <input
       className="input"
+      defaultValue=""
       disabled={false}
       id="test-input"
       max={2147483648}
       min={-2147483648}
+      onBlur={[Function]}
+      onFocus={[Function]}
       onKeyUp={[Function]}
       required={false}
       step={1}

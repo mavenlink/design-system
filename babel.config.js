@@ -11,7 +11,6 @@ module.exports = function (api) { // eslint-disable-line import/no-commonjs
         '@babel/preset-env',
         {
           targets: [
-            'IE 11',
             'last 5 Chrome versions',
             'last 5 Edge versions',
             'last 5 Firefox versions',
