@@ -203,20 +203,20 @@ describe('CustomFieldInputText', () => {
 
   describe('icon API', () => {
     it('shows an icon when provided', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action"/>;
-      const {getByRole} = render(<TestComponent icon={icon}/>);
+      const icon = <Icon name={calendarSvg.id} currentColor="action" />;
+      const { getByRole } = render(<TestComponent icon={icon} />);
       expect(getByRole('img')).toBeDefined();
     });
 
     it('gives preference to the error icon', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello"/>;
-      const {queryByTitle, getByRole} = render(<TestComponent icon={icon} error/>);
+      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
+      const { queryByTitle, getByRole } = render(<TestComponent icon={icon} error />);
       expect(queryByTitle('Hello')).toBeNull();
       expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });
 
     it('shows no icon by default', () => {
-      const {queryByRole} = render(<TestComponent/>);
+      const { queryByRole } = render(<TestComponent />);
       expect(queryByRole('img')).toBeNull();
     });
   });
