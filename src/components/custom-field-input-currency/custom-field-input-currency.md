@@ -1,8 +1,8 @@
-This component may be used to express currency. Provide a numeric value to the component along with an 
+This component may be used to express currency. Provide a numeric value to the component along with an
 [ISO 4217 standard currency code](https://www.currency-iso.org/en/home.html), and the component will present the
 monetary value automatically using the browser's locale. Focusing into the component allows the user to directly modify
 the numeric value of the currency, while the component's unfocused state presents the formatted currency value held
-within itself. 
+within itself.
 
 ```jsx
 <CustomFieldInputCurrency
@@ -30,11 +30,10 @@ within itself.
 ```jsx
 <CustomFieldInputCurrency
   disabled={true}
-  helpText="This input is disabled."
   id="test-id-2"
   name="test-name-2"
   value={123}
-  label="Disabled Currency"
+  label="Disabled Field"
 />
 ```
 ----
