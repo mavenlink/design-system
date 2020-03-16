@@ -168,8 +168,15 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  xdescribe('onChange API', () => {
-    it('changes from invalid to valid state', () => {
+  describe('onChange API', () => {
+    it('accepts an onChange listener', () => {
+      const onChange = jest.fn();
+      const { getByLabelText } = renderComponent({ value: '', onChange });
+      changeValue(() => getByLabelText('Field Date'), '2016-07-18');
+      expect(onChange.mock.calls.length).toBe(1);
+    });
+
+    xit('changes from invalid to valid state', () => {
       const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
       changeValue(() => getByLabelText('Field Date'), '2016-07-18')

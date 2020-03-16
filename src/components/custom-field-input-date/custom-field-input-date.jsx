@@ -65,6 +65,8 @@ export default function CustomFieldInputDate(props) {
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
       setIsValid(isValueValid(newDate, props.error, isInputValid) && validDate(newDate));
     }
+
+    props.onChange(event);
   };
 
   const helpText = () => {
@@ -122,6 +124,7 @@ CustomFieldInputDate.propTypes = {
   label: PropTypes.string.isRequired,
   min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,
 };
@@ -133,6 +136,7 @@ CustomFieldInputDate.defaultProps = {
   helpText: '',
   min: undefined,
   max: undefined,
+  onChange: () => {},
   required: false,
   value: '',
 };
