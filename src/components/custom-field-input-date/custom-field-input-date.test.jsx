@@ -179,7 +179,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     xit('changes from invalid to valid state', () => {
       const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
-      changeValue(() => getByLabelText('Field Date'), '2016-07-18')
+      changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
     });
   });
