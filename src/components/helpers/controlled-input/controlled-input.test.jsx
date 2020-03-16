@@ -41,4 +41,15 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
       expect(getByTestId(testId)).toBe(inputRef.current);
     });
   });
+
+  describe('type API', () => {
+    const types = ['text', 'date', 'number'];
+
+    types.forEach((type) => {
+      it(`accepts '${type}' as a valid type`, () => {
+        const { getByTestId } = renderComponent({ type });
+        expect(getByTestId(testId)).toHaveAttribute('type', type);
+      });
+    });
+  });
 });
