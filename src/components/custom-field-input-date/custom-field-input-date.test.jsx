@@ -176,10 +176,17 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(onChange.mock.calls.length).toBe(1);
     });
 
-    xit('changes from invalid to valid state', () => {
+    it('changes its value', () => {
+      const { getByLabelText } = renderComponent({ value: '1992-05-10' });
+      expect(getByLabelText('Field Date')).toHaveValue('May 10, 1992');
+      changeValue(() => getByLabelText('Field Date'), '2020-03-16');
+      expect(getByLabelText('Field Date')).toHaveValue('March 16, 2020');
+    });
+
+    it('changes from invalid to valid state', () => {
       const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
-      changeValue(() => getByLabelText('Field Date'), '2016-07-18')
+      changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
     });
   });
