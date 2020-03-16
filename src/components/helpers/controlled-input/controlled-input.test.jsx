@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { cleanup, render } from '@testing-library/react';
 import ControlledInput from './controlled-input.jsx';
 
@@ -31,6 +31,14 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
     it('sets the ID attribute', () => {
       const { getByTestId } = renderComponent();
       expect(getByTestId(testId)).toHaveAttribute('id', 'test-id');
+    });
+  });
+
+  describe('inputRef API', () => {
+    it('sets the ref on itself', () => {
+      const inputRef = createRef();
+      const { getByTestId } = renderComponent({ inputRef });
+      expect(getByTestId(testId)).toBe(inputRef.current);
     });
   });
 });
