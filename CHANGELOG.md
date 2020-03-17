@@ -6,6 +6,9 @@
   </summary>
 </details>
 
+## 0.15.0 (March 16, 2020)
+- Implements a custom field currency component
+
 ## 0.14.0 (February 19, 2020)
 - Implements a custom field number component
 
