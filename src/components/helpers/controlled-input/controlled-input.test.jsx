@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import {cleanup, fireEvent, render} from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import ControlledInput from './controlled-input.jsx';
 
 describe('src/components/helpers/controlled-input/controlled-input', () => {
@@ -73,6 +73,19 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
       const { getByTestId } = renderComponent({ onFocus });
       fireEvent.focus(getByTestId(testId));
       expect(onFocus.mock.calls.length).toBe(1);
+    });
+  });
+
+  describe('value', () => {
+    it('accepts a starting value', () => {
+      const { getByTestId } = renderComponent({ value: 'hello' });
+      expect(getByTestId(testId)).toHaveValue('hello');
+    });
+
+    it('changes with a change event', () => {
+      const { getByTestId } = renderComponent({ value: 'hello' });
+      fireEvent.change(getByTestId(testId), { target: { value: 'goodbye' } });
+      expect(getByTestId(testId)).toHaveValue('goodbye');
     });
   });
 });
