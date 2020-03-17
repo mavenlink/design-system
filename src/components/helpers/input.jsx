@@ -18,7 +18,7 @@ export default function Input(props) {
     return (<input data-testid="private-input" value={props.value} {...sharedProps} />);
   }
 
-  return (<input data-testid="private-input" {...sharedProps} />);
+  return (<input data-testid="private-input" defaultValue={props.value} {...sharedProps} />);
 }
 
 Input.propTypes = {

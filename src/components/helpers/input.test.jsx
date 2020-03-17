@@ -86,11 +86,18 @@ describe('src/components/helpers/input', () => {
   describe('when controlled', () => {
     describe('value API', () => {
       it('accepts a starting value', () => {
-        const { getByTestId } = renderComponent({ value: 'hello' });
+        const { getByTestId } = renderComponent({ value: 'hello', controlled: true });
         expect(getByTestId(testId)).toHaveValue('hello');
       });
     });
   });
 
-  // describe('when uncontrolled', () => {});
+  describe('when uncontrolled', () => {
+    describe('value API', () => {
+      it('accepts a starting value', () => {
+        const { getByTestId } = renderComponent({ value: 'hello', controlled: false });
+        expect(getByTestId(testId)).toHaveValue('hello');
+      });
+    });
+  });
 });
