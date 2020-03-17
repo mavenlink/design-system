@@ -74,6 +74,13 @@ describe('src/components/helpers/input', () => {
       fireEvent.focus(getByTestId(testId));
       expect(onFocus.mock.calls.length).toBe(1);
     });
+
+    it('accepts onKeyUp', () => {
+      const onKeyUp = jest.fn();
+      const { getByTestId } = renderComponent({ onKeyUp });
+      fireEvent.keyUp(getByTestId(testId));
+      expect(onKeyUp.mock.calls.length).toBe(1);
+    });
   });
 
   describe('placeholder API', () => {
