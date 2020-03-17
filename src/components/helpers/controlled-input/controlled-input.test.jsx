@@ -76,16 +76,24 @@ describe('src/components/helpers/controlled-input/controlled-input', () => {
     });
   });
 
-  describe('value', () => {
+  describe('value API', () => {
     it('accepts a starting value', () => {
       const { getByTestId } = renderComponent({ value: 'hello' });
       expect(getByTestId(testId)).toHaveValue('hello');
     });
 
+    // TODO: I think this should be removed, and the user of this component will need to maintain state
     it('changes with a change event', () => {
       const { getByTestId } = renderComponent({ value: 'hello' });
       fireEvent.change(getByTestId(testId), { target: { value: 'goodbye' } });
       expect(getByTestId(testId)).toHaveValue('goodbye');
+    });
+  });
+
+  describe('placeholder API', () => {
+    it('accepts a placeholder', () => {
+      const { getByTestId } = renderComponent({ placeholder: 'bar' });
+      expect(getByTestId(testId)).toHaveAttribute('placeholder', 'bar');
     });
   });
 });

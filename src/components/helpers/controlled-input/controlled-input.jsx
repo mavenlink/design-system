@@ -19,6 +19,7 @@ export default function ControlledInput(props) {
     onBlur={props.onBlur}
     onChange={handleOnChange}
     onFocus={props.onFocus}
+    placeholder={props.placeholder}
     ref={props.inputRef}
     type={props.type}
     value={value}
@@ -33,6 +34,7 @@ ControlledInput.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.string,
 };
@@ -44,6 +46,7 @@ ControlledInput.defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
+  placeholder: undefined,
   type: 'text',
   value: '',
 };

@@ -13,6 +13,7 @@ export default function UncontrolledInput(props) {
     onBlur={props.onBlur}
     onChange={props.onChange}
     onFocus={props.onFocus}
+    placeholder={props.placeholder}
     ref={props.inputRef}
     type={props.type}
   />);
@@ -28,6 +29,7 @@ UncontrolledInput.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.string,
 };
@@ -41,6 +43,7 @@ UncontrolledInput.defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
+  placeholder: undefined,
   type: 'text',
   value: '',
 };

@@ -114,4 +114,11 @@ describe('src/components/helpers/controlled-input/uncontrolled-input', () => {
       expect(getByTestId(testId)).toBeInvalid();
     });
   });
+
+  describe('placeholder API', () => {
+    it('accepts a placeholder', () => {
+      const { getByTestId } = renderComponent({ placeholder: 'bar' });
+      expect(getByTestId(testId)).toHaveAttribute('placeholder', 'bar');
+    });
+  });
 });
