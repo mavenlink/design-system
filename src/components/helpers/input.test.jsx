@@ -90,6 +90,18 @@ describe('src/components/helpers/input', () => {
     });
   });
 
+  describe('required API', () => {
+    it('reflects a required state', () => {
+      const { getByTestId } = renderComponent({ required: true });
+      expect(getByTestId(testId)).toBeRequired();
+    });
+
+    it('reflects a non-required state', () => {
+      const { getByTestId } = renderComponent({ required: false });
+      expect(getByTestId(testId)).not.toBeRequired();
+    });
+  });
+
   describe('when controlled', () => {
     describe('value API', () => {
       it('accepts a starting value', () => {

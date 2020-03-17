@@ -12,6 +12,7 @@ export default function Input(props) {
     onFocus: props.onFocus,
     placeholder: props.placeholder,
     ref: props.inputRef,
+    required: props.required,
     type: props.type,
   };
 
@@ -46,6 +47,7 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
+  required: PropTypes.bool,
   step: PropTypes.string,
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.string,
@@ -62,6 +64,7 @@ Input.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   placeholder: undefined,
+  required: false,
   step: undefined,
   type: 'text',
   value: '',
