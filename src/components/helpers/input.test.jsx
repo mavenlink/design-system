@@ -130,6 +130,11 @@ describe('src/components/helpers/input', () => {
         const { getByTestId } = renderComponent({ min: '123', type: 'number', value: '10', controlled: false });
         expect(getByTestId(testId)).toBeInvalid();
       });
+
+      it('accepts a number as a max', () => {
+        const { getByTestId } = renderComponent({ min: 123, type: 'number', controlled: false });
+        expect(getByTestId(testId)).toHaveAttribute('min', '123');
+      });
     });
 
     describe('max API', () => {
@@ -142,6 +147,11 @@ describe('src/components/helpers/input', () => {
       it('reflects validity according to max', () => {
         const { getByTestId } = renderComponent({ max: '123', type: 'number', value: '1000', controlled: false });
         expect(getByTestId(testId)).toBeInvalid();
+      });
+
+      it('accepts a number as a max', () => {
+        const { getByTestId } = renderComponent({ max: 123, type: 'number', controlled: false });
+        expect(getByTestId(testId)).toHaveAttribute('max', '123');
       });
     });
 
