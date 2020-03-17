@@ -101,4 +101,17 @@ describe('src/components/helpers/controlled-input/uncontrolled-input', () => {
       expect(getByTestId(testId)).toBeInvalid();
     });
   });
+
+  describe('max API', () => {
+    it('assigns the provided max value', () => {
+      const { getByTestId } = renderComponent({ max: '123', type: 'number', value: '1000' });
+      expect(getByTestId(testId).value).toEqual('1000');
+      expect(getByTestId(testId)).toHaveAttribute('max', '123');
+    });
+
+    it('reflects validity according to max', () => {
+      const { getByTestId } = renderComponent({ max: '123', type: 'number', value: '1000' });
+      expect(getByTestId(testId)).toBeInvalid();
+    });
+  });
 });
