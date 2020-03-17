@@ -8,6 +8,7 @@ export default function UncontrolledInput(props) {
     defaultValue={props.value}
     disabled={props.disabled}
     id={props.id}
+    min={props.min}
     onBlur={props.onBlur}
     onChange={props.onChange}
     onFocus={props.onFocus}
@@ -21,6 +22,7 @@ UncontrolledInput.propTypes = {
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
+  min: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -32,6 +34,7 @@ UncontrolledInput.defaultProps = {
   className: undefined,
   disabled: false,
   inputRef: undefined,
+  min: undefined,
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

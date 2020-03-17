@@ -88,4 +88,17 @@ describe('src/components/helpers/controlled-input/uncontrolled-input', () => {
       expect(getByTestId(testId)).toHaveValue('goodbye');
     });
   });
+
+  describe('min API', () => {
+    it('assigns the provided min value', () => {
+      const { getByTestId } = renderComponent({ min: '123', type: 'number', value: '10' });
+      expect(getByTestId(testId).value).toEqual('10');
+      expect(getByTestId(testId)).toHaveAttribute('min', '123');
+    });
+
+    it('reflects validity according to min', () => {
+      const { getByTestId } = renderComponent({ min: '123', type: 'number', value: '10' });
+      expect(getByTestId(testId)).toBeInvalid();
+    });
+  });
 });
