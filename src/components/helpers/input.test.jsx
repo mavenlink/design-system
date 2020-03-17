@@ -99,5 +99,31 @@ describe('src/components/helpers/input', () => {
         expect(getByTestId(testId)).toHaveValue('hello');
       });
     });
+
+    describe('min API', () => {
+      it('assigns the provided min value', () => {
+        const { getByTestId } = renderComponent({ min: '123', type: 'number', value: '10', controlled: false });
+        expect(getByTestId(testId).value).toEqual('10');
+        expect(getByTestId(testId)).toHaveAttribute('min', '123');
+      });
+
+      it('reflects validity according to min', () => {
+        const { getByTestId } = renderComponent({ min: '123', type: 'number', value: '10', controlled: false });
+        expect(getByTestId(testId)).toBeInvalid();
+      });
+    });
+
+    describe('max API', () => {
+      it('assigns the provided max value', () => {
+        const { getByTestId } = renderComponent({ max: '123', type: 'number', value: '1000', controlled: false });
+        expect(getByTestId(testId).value).toEqual('1000');
+        expect(getByTestId(testId)).toHaveAttribute('max', '123');
+      });
+
+      it('reflects validity according to max', () => {
+        const { getByTestId } = renderComponent({ max: '123', type: 'number', value: '1000', controlled: false });
+        expect(getByTestId(testId)).toBeInvalid();
+      });
+    });
   });
 });

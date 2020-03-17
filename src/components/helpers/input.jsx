@@ -15,10 +15,20 @@ export default function Input(props) {
   };
 
   if (props.controlled) {
-    return (<input data-testid="private-input" value={props.value} {...sharedProps} />);
+    return (<input
+      data-testid="private-input"
+      value={props.value}
+      {...sharedProps}
+    />);
   }
 
-  return (<input data-testid="private-input" defaultValue={props.value} {...sharedProps} />);
+  return (<input
+    data-testid="private-input"
+    defaultValue={props.value}
+    min={props.min}
+    max={props.max}
+    {...sharedProps}
+  />);
 }
 
 Input.propTypes = {
