@@ -125,5 +125,12 @@ describe('src/components/helpers/input', () => {
         expect(getByTestId(testId)).toBeInvalid();
       });
     });
+
+    describe('step API', () => {
+      it('is respected', () => {
+        const { getByTestId } = renderComponent({ step: '1', type: 'number', controlled: false });
+        expect(getByTestId(testId)).toHaveAttribute('step', '1');
+      });
+    });
   });
 });

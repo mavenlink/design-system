@@ -27,6 +27,7 @@ export default function Input(props) {
     defaultValue={props.value}
     min={props.min}
     max={props.max}
+    step={props.step}
     {...sharedProps}
   />);
 }
@@ -43,6 +44,7 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
+  step: PropTypes.string,
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.string,
 };
@@ -58,6 +60,7 @@ Input.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   placeholder: undefined,
+  step: undefined,
   type: 'text',
   value: '',
 };
