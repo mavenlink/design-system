@@ -3,7 +3,7 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import Input from './input.jsx';
 
 describe('src/components/helpers/input', () => {
-  const renderComponent = (props = {}) => render(<Input id="foo" {...props} />);
+  const renderComponent = (props = {}) => render(<Input id="foo" name="foo" {...props} />);
   const testId = 'private-input';
 
   afterEach(cleanup);
@@ -80,6 +80,13 @@ describe('src/components/helpers/input', () => {
     it('accepts a placeholder', () => {
       const { getByTestId } = renderComponent({ placeholder: 'bar' });
       expect(getByTestId(testId)).toHaveAttribute('placeholder', 'bar');
+    });
+  });
+
+  describe('name API', () => {
+    it('accepts the name handed to it', () => {
+      const { getByTestId } = renderComponent();
+      expect(getByTestId(testId)).toHaveAttribute('name', 'foo');
     });
   });
 
