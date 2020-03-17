@@ -48,7 +48,7 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  step: PropTypes.string,
+  step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.string,
 };

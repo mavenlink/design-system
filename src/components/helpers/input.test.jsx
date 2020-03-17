@@ -160,6 +160,11 @@ describe('src/components/helpers/input', () => {
         const { getByTestId } = renderComponent({ step: '1', type: 'number', controlled: false });
         expect(getByTestId(testId)).toHaveAttribute('step', '1');
       });
+
+      it('accepts a number', () => {
+        const { getByTestId } = renderComponent({ step: 1, type: 'number', controlled: false });
+        expect(getByTestId(testId)).toHaveAttribute('step', '1');
+      });
     });
   });
 });
