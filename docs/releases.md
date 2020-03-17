@@ -20,4 +20,6 @@
 
 5. __Tag a new release__
 
-   [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/). Copy over the items from the changelog corresponding to the version into the release's description.
+   [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/). 
+     - Copy over the changelog section title as the release title
+     - Copy over the changelog section items as the release body
