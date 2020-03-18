@@ -115,6 +115,11 @@ describe('src/components/helpers/input', () => {
         const { getByTestId } = renderComponent({ value: 'hello', controlled: true });
         expect(getByTestId(testId)).toHaveValue('hello');
       });
+
+      it('accepts a number', () => {
+        const { getByTestId } = renderComponent({ value: 2, controlled: true, type: 'number' });
+        expect(getByTestId(testId)).toHaveValue(2);
+      });
     });
   });
 
@@ -123,6 +128,11 @@ describe('src/components/helpers/input', () => {
       it('accepts a starting value', () => {
         const { getByTestId } = renderComponent({ value: 'hello', controlled: false });
         expect(getByTestId(testId)).toHaveValue('hello');
+      });
+
+      it('accepts a number', () => {
+        const { getByTestId } = renderComponent({ value: 2, controlled: false, type: 'number' });
+        expect(getByTestId(testId)).toHaveValue(2);
       });
     });
 

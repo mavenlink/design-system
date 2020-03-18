@@ -52,7 +52,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.oneOf(['date', 'number', 'text']),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Input.defaultProps = {
