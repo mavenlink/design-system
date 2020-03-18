@@ -20,6 +20,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   >
     <input
       className="input"
+      data-testid="private-input"
       defaultValue=""
       disabled={false}
       id="hello"

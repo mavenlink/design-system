@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import Icon from '../icon/icon.jsx';
+import Input from '../helpers/input.jsx';
 import styles from './custom-field-input-text.css';
 
 function getRootClassName(className, error, disabled) {
@@ -68,9 +69,9 @@ export default function CustomFieldInputText(props) {
         {props.required && <span className={styles.optional}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
-        <input
-          defaultValue={props.value}
+        <Input
           className={styles.input}
+          controlled={false}
           disabled={props.disabled}
           id={props.id}
           max={props.max}
@@ -81,10 +82,11 @@ export default function CustomFieldInputText(props) {
           onFocus={props.onFocus}
           onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
-          ref={inputRef}
+          inputRef={inputRef}
           required={props.required}
           step={props.step}
           type={props.type}
+          value={props.value}
         />
         {showIcon() &&
           <div className={styles['input-icon-container']}>

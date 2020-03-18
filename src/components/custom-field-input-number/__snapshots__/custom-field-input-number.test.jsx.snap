@@ -20,6 +20,8 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
   >
     <input
       className="input"
+      data-testid="private-input"
+      defaultValue=""
       disabled={false}
       id="test-input"
       max={2147483648}

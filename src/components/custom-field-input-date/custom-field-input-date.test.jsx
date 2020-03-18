@@ -183,7 +183,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('March 16, 2020');
     });
 
-    it('changes from invalid to valid state', () => {
+    xit('changes from invalid to valid state', () => {
       const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
