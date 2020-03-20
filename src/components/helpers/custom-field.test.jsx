@@ -145,4 +145,10 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toHaveAttribute('placeholder', placeholder);
     });
   });
+
+  describe('name API', () => {
+    const name = 'YOOOOO';
+    const { getByLabelText } = renderComponent({ name });
+    expect(getByLabelText('Custom Field')).toHaveAttribute('name', name);
+  });
 });

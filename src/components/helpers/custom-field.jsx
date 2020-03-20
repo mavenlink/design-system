@@ -45,6 +45,7 @@ export default function CustomField(props) {
         disabled={props.disabled}
         id={props.id}
         inputRef={props.inputRef}
+        name={props.name}
         onBlur={props.onBlur}
         onChange={props.onChange}
         onFocus={props.onFocus}
@@ -70,6 +71,7 @@ CustomField.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
+  name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -84,6 +86,7 @@ CustomField.defaultProps = {
   helpText: undefined,
   icon: undefined,
   inputRef: undefined,
+  name: undefined,
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
