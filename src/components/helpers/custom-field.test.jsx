@@ -86,4 +86,16 @@ describe('src/components/helpers/custom-field', () => {
       expect(queryByRole('img')).toBeNull();
     });
   });
+
+  describe('disabled API', () => {
+    it('can be disabled', () => {
+      const { getByLabelText } = renderComponent({ disabled: true });
+      expect(getByLabelText('Custom Field')).toBeDisabled();
+    });
+
+    it('can be enabled', () => {
+      const { getByLabelText } = renderComponent({ disabled: false });
+      expect(getByLabelText('Custom Field')).not.toBeDisabled();
+    });
+  });
 });

@@ -42,6 +42,7 @@ export default function CustomField(props) {
     <div className={styles['input-container']}>
       <Input
         className={styles.input}
+        disabled={props.disabled}
         id={props.id}
         inputRef={props.inputRef}
         required={props.required}
@@ -57,6 +58,7 @@ export default function CustomField(props) {
 }
 
 CustomField.propTypes = {
+  disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
   icon: PropTypes.node,
@@ -67,6 +69,7 @@ CustomField.propTypes = {
 };
 
 CustomField.defaultProps = {
+  disabled: false,
   error: false,
   helpText: undefined,
   icon: undefined,
