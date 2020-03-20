@@ -147,8 +147,19 @@ describe('src/components/helpers/custom-field', () => {
   });
 
   describe('name API', () => {
-    const name = 'YOOOOO';
-    const { getByLabelText } = renderComponent({ name });
-    expect(getByLabelText('Custom Field')).toHaveAttribute('name', name);
+    it('accepts a name', () => {
+      const name = 'YOOOOO';
+      const { getByLabelText } = renderComponent({ name });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('name', name);
+    });
+  });
+
+  describe('type API', () => {
+    ['number', 'date', 'text'].forEach((type) => {
+      it(`accepts the type \`${type}\``, () => {
+        const { getByLabelText } = renderComponent({ type });
+        expect(getByLabelText('Custom Field')).toHaveAttribute('type', type);
+      });
+    });
   });
 });

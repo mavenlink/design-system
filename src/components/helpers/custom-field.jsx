@@ -52,6 +52,7 @@ export default function CustomField(props) {
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         required={props.required}
+        type={props.type}
       />
       {showIcon() &&
       <div className={styles['input-icon-container']}>
@@ -78,8 +79,8 @@ CustomField.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.oneOf(['date', 'number', 'text']),
 };
-
 CustomField.defaultProps = {
   disabled: false,
   error: false,
@@ -93,4 +94,5 @@ CustomField.defaultProps = {
   onKeyUp: () => {},
   placeholder: undefined,
   required: false,
+  type: 'text',
 };
