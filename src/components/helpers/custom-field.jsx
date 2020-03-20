@@ -49,6 +49,7 @@ export default function CustomField(props) {
         onChange={props.onChange}
         onFocus={props.onFocus}
         onKeyUp={props.onKeyUp}
+        placeholder={props.placeholder}
         required={props.required}
       />
       {showIcon() &&
@@ -73,6 +74,7 @@ CustomField.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
+  placeholder: PropTypes.string,
   required: PropTypes.bool,
 };
 
@@ -86,5 +88,6 @@ CustomField.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onKeyUp: () => {},
+  placeholder: undefined,
   required: false,
 };

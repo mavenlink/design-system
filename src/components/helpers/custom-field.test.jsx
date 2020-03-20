@@ -137,4 +137,12 @@ describe('src/components/helpers/custom-field', () => {
       });
     });
   });
+
+  describe('placeholder API', () => {
+    it('can have placeholder for input', () => {
+      const placeholder = 'This is placeholder input';
+      const { getByLabelText } = renderComponent({ placeholder });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('placeholder', placeholder);
+    });
+  });
 });
