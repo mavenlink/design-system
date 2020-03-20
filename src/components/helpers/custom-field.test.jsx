@@ -175,6 +175,31 @@ describe('src/components/helpers/custom-field', () => {
       const { getByLabelText } = renderComponent({ type: 'number', value });
       expect(getByLabelText('Custom Field')).toHaveValue(value);
     });
+
+    // These specs are less of an assertion on behavior than examples of what behavior is
+    // expected. A controlled component will only change if its value prop is updated,
+    // while an uncontrolled component will change and maintain its own internal value.
+    // Use an uncontrolled component if you are going to rely on HTML5 validation, and
+    // a controlled component if you are going to handle your own sets of validation
+    describe('when controlled', () => {
+      it('does not change with an onChange event', () => {
+        const { getByLabelText } = renderComponent({ controlled: true, value: 'hello' });
+        expect(getByLabelText('Custom Field')).toHaveValue('hello');
+        fireEvent.change(getByLabelText('Custom Field'), { target: { value: 'goodbye' } });
+        expect(getByLabelText('Custom Field')).not.toHaveValue('goodbye');
+        expect(getByLabelText('Custom Field')).toHaveValue('hello');
+      });
+    });
+
+    describe('when uncontrolled', () => {
+      it('changes with an onChange event', () => {
+        const { getByLabelText } = renderComponent({ controlled: false, value: 'hello' });
+        expect(getByLabelText('Custom Field')).toHaveValue('hello');
+        fireEvent.change(getByLabelText('Custom Field'), { target: { value: 'goodbye' } });
+        expect(getByLabelText('Custom Field')).not.toHaveValue('hello');
+        expect(getByLabelText('Custom Field')).toHaveValue('goodbye');
+      });
+    });
   });
 
   describe('max API', () => {
