@@ -1,16 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/helpers/custom-field has defaults 1`] = `
-<div>
-  <div>
+<div
+  className=""
+>
+  <div
+    className="heading-container"
+  >
     <label
+      className="label"
       htmlFor="custom-field"
     >
       Custom Field
     </label>
   </div>
-  <div>
+  <div
+    className="input-container"
+  >
     <input
+      className="input"
       data-testid="private-input"
       disabled={false}
       id="custom-field"

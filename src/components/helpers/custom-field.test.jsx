@@ -49,4 +49,19 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toHaveAttribute('id', 'test-id');
     });
   });
+
+  describe('error API', () => {
+    it('can have no error state', () => {
+      const { container, getByLabelText } = renderComponent();
+      expect(container.firstChild).not.toHaveClass('error');
+      expect(getByLabelText('Custom Field')).toBeValid();
+      expect(container.querySelector('[role="img"]')).toBeFalsy();
+    });
+
+    it('can be semantically invalid', () => {
+      const { container, getByRole } = renderComponent({ error: true, helpText: 'YOOOOO' });
+      expect(container.firstChild).toHaveClass('error');
+      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    });
+  });
 });

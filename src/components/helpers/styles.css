@@ -1,0 +1,57 @@
+@import '../../styles/colors.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
+
+.heading-container {
+  color: var(--palette-grey-dark);
+  font-size: var(--mavenlink-type-small-size);
+}
+
+.error .heading-container {
+  color: var(--palette-caution-base);
+}
+
+.help {
+  color: var(--palette-grey-dark);
+  font-size: var(--mavenlink-type-base-size);
+}
+
+.error .help {
+  color: var(--palette-caution-base);
+}
+
+.input {
+  border: 1px solid var(--palette-grey-light);
+  border-radius: var(--spacing-x-small);
+  color: var(--palette-grey-x-dark);
+  font-size: var(--mavenlink-type-base-size);
+  padding: var(--spacing-medium);
+}
+
+.input:disabled {
+  background-color: var(--palette-grey-light);
+}
+
+.input:invalid {
+  border-color: var(--palette-caution-base);
+  padding-right: var(--spacing-x-large);
+}
+
+.input-container {
+  height: 34px;
+  margin: var(--spacing-small) 0;
+}
+
+.input-icon-container {
+  background-color: var(--white);
+  display: inline-block;
+  height: 20px;
+  position: absolute;
+  margin-left: -28px;
+  margin-top: var(--spacing-small);
+  width: 20px;
+}
+
+.label {
+  margin-right: var(--spacing-small);
+}
