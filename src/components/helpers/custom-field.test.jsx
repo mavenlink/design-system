@@ -22,4 +22,16 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toBeDefined();
     });
   });
+
+  describe('required API', () => {
+    it('can have a required indicator', () => {
+      const { getByLabelText } = renderComponent({ required: true });
+      expect(getByLabelText('Custom Field')).toBeRequired();
+    });
+
+    it('can have no required indicator', () => {
+      const { getByLabelText } = renderComponent({ required: false });
+      expect(getByLabelText('Custom Field')).not.toBeRequired();
+    });
+  });
 });
