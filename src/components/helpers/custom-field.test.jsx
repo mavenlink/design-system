@@ -176,4 +176,16 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toHaveValue(value);
     });
   });
+
+  describe('max API', () => {
+    it('accepts a max number', () => {
+      const { getByLabelText } = renderComponent({ type: 'number', max: 100 });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('max', '100');
+    });
+
+    it('accepts a max string', () => {
+      const { getByLabelText } = renderComponent({ type: 'date', max: '2001-09-11' });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('max', '2001-09-11');
+    });
+  });
 });
