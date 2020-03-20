@@ -11,6 +11,7 @@ export default function CustomField(props) {
     <div>
       <Input
         id={props.id}
+        inputRef={props.inputRef}
         required={props.required}
       />
     </div>
@@ -19,10 +20,12 @@ export default function CustomField(props) {
 
 CustomField.propTypes = {
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   required: PropTypes.bool,
 };
 
 CustomField.defaultProps = {
+  inputRef: undefined,
   required: false,
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { cleanup, render } from '@testing-library/react';
 import CustomField from './custom-field.jsx';
@@ -32,6 +32,21 @@ describe('src/components/helpers/custom-field', () => {
     it('can have no required indicator', () => {
       const { getByLabelText } = renderComponent({ required: false });
       expect(getByLabelText('Custom Field')).not.toBeRequired();
+    });
+  });
+
+  describe('inputRef API', () => {
+    it('sets the ref on the input', () => {
+      const inputRef = createRef();
+      const { getByLabelText } = renderComponent({ inputRef });
+      expect(getByLabelText('Custom Field')).toBe(inputRef.current);
+    });
+  });
+
+  describe('id API', () => {
+    it('sets the id attribute', () => {
+      const { getByLabelText } = renderComponent({ id: 'test-id' });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('id', 'test-id');
     });
   });
 });
