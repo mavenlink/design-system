@@ -23,11 +23,15 @@ export default function CustomField(props) {
       />);
     }
 
+    if (props.icon) {
+      return props.icon;
+    }
+
     return undefined;
   };
 
   const showIcon = () => {
-    return props.error;
+    return props.error || !!props.icon;
   };
 
   return (<div className={getRootClassName('', props.error)}>
@@ -55,6 +59,7 @@ export default function CustomField(props) {
 CustomField.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
+  icon: PropTypes.node,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -64,6 +69,7 @@ CustomField.propTypes = {
 CustomField.defaultProps = {
   error: false,
   helpText: undefined,
+  icon: undefined,
   inputRef: undefined,
   required: false,
 };

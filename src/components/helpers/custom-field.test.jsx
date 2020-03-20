@@ -1,6 +1,8 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { cleanup, render } from '@testing-library/react';
+import Icon from '../icon/icon.jsx';
+import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import CustomField from './custom-field.jsx';
 
 describe('src/components/helpers/custom-field', () => {
@@ -62,6 +64,26 @@ describe('src/components/helpers/custom-field', () => {
       const { container, getByRole } = renderComponent({ error: true, helpText: 'YOOOOO' });
       expect(container.firstChild).toHaveClass('error');
       expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    });
+  });
+
+  describe('icon API', () => {
+    it('shows an icon when provided', () => {
+      const icon = <Icon name={calendarSvg.id} currentColor="action" />;
+      const { getByRole } = renderComponent({ icon });
+      expect(getByRole('img')).toBeDefined();
+    });
+
+    it('gives preference to the error icon', () => {
+      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
+      const { queryByTitle, getByRole } = renderComponent({ icon, error: true });
+      expect(queryByTitle('Hello')).toBeNull();
+      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    });
+
+    it('shows no icon by default', () => {
+      const { queryByRole } = renderComponent();
+      expect(queryByRole('img')).toBeNull();
     });
   });
 });
