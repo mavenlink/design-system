@@ -34,7 +34,7 @@ export default function CustomField(props) {
     return props.error || !!props.icon;
   };
 
-  return (<div className={getRootClassName('', props.error)}>
+  return (<div className={getRootClassName(props.className, props.error)}>
     <div className={styles['heading-container']}>
       <label className={styles.label} htmlFor={props.id}>{props.label}</label>
       {props.required && <span>(Required)</span>}
@@ -55,6 +55,7 @@ export default function CustomField(props) {
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         required={props.required}
+        step={props.step}
         type={props.type}
         value={props.value}
       />
@@ -69,6 +70,7 @@ export default function CustomField(props) {
 }
 
 CustomField.propTypes = {
+  className: PropTypes.string,
   controlled: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
@@ -86,10 +88,12 @@ CustomField.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  step: PropTypes.number,
   type: PropTypes.oneOf(['date', 'number', 'text']),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 CustomField.defaultProps = {
+  className: undefined,
   controlled: false,
   disabled: false,
   error: false,
@@ -105,6 +109,7 @@ CustomField.defaultProps = {
   onKeyUp: () => {},
   placeholder: undefined,
   required: false,
+  step: undefined,
   type: 'text',
   value: undefined,
 };

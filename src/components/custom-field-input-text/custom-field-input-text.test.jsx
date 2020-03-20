@@ -1,8 +1,6 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Icon from '../icon/icon.jsx';
-import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -23,15 +21,13 @@ describe('CustomFieldInputText', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const { container } = render(<TestComponent disabled />);
-      expect(container.firstChild).toHaveClass('disabled');
-      expect(screen.getByLabelText('Test label')).toBeDisabled();
+      const { getByLabelText } = render(<TestComponent disabled />);
+      expect(getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('disabled');
-      expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+      const { getByLabelText } = render(<TestComponent />);
+      expect(getByLabelText('Test label')).not.toBeDisabled();
     });
   });
 
@@ -172,8 +168,8 @@ describe('CustomFieldInputText', () => {
 
   describe('step API', () => {
     it('sets the step attribute', () => {
-      render(<TestComponent step={2} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('step', '2');
+      const { getByLabelText } = render(<TestComponent step={2} />);
+      expect(getByLabelText('Test label')).toHaveAttribute('step', '2');
     });
   });
 
@@ -198,26 +194,6 @@ describe('CustomFieldInputText', () => {
     it('sets the value attribute', () => {
       render(<TestComponent value="test-value" />);
       expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
-    });
-  });
-
-  describe('icon API', () => {
-    it('shows an icon when provided', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" />;
-      const { getByRole } = render(<TestComponent icon={icon} />);
-      expect(getByRole('img')).toBeDefined();
-    });
-
-    it('gives preference to the error icon', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
-      const { queryByTitle, getByRole } = render(<TestComponent icon={icon} error />);
-      expect(queryByTitle('Hello')).toBeNull();
-      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
-    });
-
-    it('shows no icon by default', () => {
-      const { queryByRole } = render(<TestComponent />);
-      expect(queryByRole('img')).toBeNull();
     });
   });
 });
