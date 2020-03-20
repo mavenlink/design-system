@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import Icon from '../icon/icon.jsx';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import CustomField from './custom-field.jsx';
@@ -96,6 +96,45 @@ describe('src/components/helpers/custom-field', () => {
     it('can be enabled', () => {
       const { getByLabelText } = renderComponent({ disabled: false });
       expect(getByLabelText('Custom Field')).not.toBeDisabled();
+    });
+  });
+
+  describe('interaction API', () => {
+    describe('onChange', () => {
+      it('accepts an onChange listener', () => {
+        const onChange = jest.fn();
+        const { getByLabelText } = renderComponent({ onChange });
+        fireEvent.change(getByLabelText('Custom Field'), { target: { value: 'hey' } });
+        expect(onChange.mock.calls.length).toBe(1);
+      });
+    });
+
+    describe('onKeyUp', () => {
+      it('handles the key up event', () => {
+        const onKeyUp = jest.fn();
+        const { getByLabelText } = renderComponent({ onKeyUp });
+        fireEvent.keyUp(getByLabelText('Custom Field'));
+        expect(onKeyUp.mock.calls.length).toBe(1);
+      });
+    });
+
+    describe('onFocus', () => {
+      it('accepts an onFocus event', () => {
+        const onFocus = jest.fn();
+        const { getByLabelText } = renderComponent({ onFocus });
+        fireEvent.focus(getByLabelText('Custom Field'));
+        expect(onFocus.mock.calls.length).toBe(1);
+      });
+    });
+
+    describe('onBlur', () => {
+      it('accepts an onBlur event', () => {
+        const onBlur = jest.fn();
+        const { getByLabelText } = renderComponent({ onBlur });
+        fireEvent.focus(getByLabelText('Custom Field'));
+        fireEvent.blur(getByLabelText('Custom Field'));
+        expect(onBlur.mock.calls.length).toBe(1);
+      });
     });
   });
 });
