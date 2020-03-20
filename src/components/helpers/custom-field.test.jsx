@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState } from 'react';
 import renderer from 'react-test-renderer';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import Icon from '../icon/icon.jsx';
@@ -188,6 +188,25 @@ describe('src/components/helpers/custom-field', () => {
         fireEvent.change(getByLabelText('Custom Field'), { target: { value: 'goodbye' } });
         expect(getByLabelText('Custom Field')).not.toHaveValue('goodbye');
         expect(getByLabelText('Custom Field')).toHaveValue('hello');
+      });
+
+      it('changes with an external state change', () => {
+        function Component() {
+          const [value, setValue] = useState('hello');
+
+          const onChange = (event) => {
+            const newValue = event.target.value;
+            setValue(newValue);
+          };
+
+          return (<CustomField controlled id="foo" label="foo" value={value} onChange={onChange} />);
+        }
+
+        const { getByLabelText } = render(<Component />);
+        expect(getByLabelText('foo')).toHaveValue('hello');
+        fireEvent.change(getByLabelText('foo'), { target: { value: 'goodbye' } });
+        expect(getByLabelText('foo')).toHaveValue('goodbye');
+        expect(getByLabelText('foo')).not.toHaveValue('hello');
       });
     });
 
