@@ -42,6 +42,7 @@ export default function CustomField(props) {
     <div className={styles['input-container']}>
       <Input
         className={styles.input}
+        controlled={props.controlled}
         disabled={props.disabled}
         id={props.id}
         inputRef={props.inputRef}
@@ -53,6 +54,7 @@ export default function CustomField(props) {
         placeholder={props.placeholder}
         required={props.required}
         type={props.type}
+        value={props.value}
       />
       {showIcon() &&
       <div className={styles['input-icon-container']}>
@@ -65,6 +67,7 @@ export default function CustomField(props) {
 }
 
 CustomField.propTypes = {
+  controlled: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
@@ -80,8 +83,10 @@ CustomField.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.oneOf(['date', 'number', 'text']),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 CustomField.defaultProps = {
+  controlled: false,
   disabled: false,
   error: false,
   helpText: undefined,
@@ -95,4 +100,5 @@ CustomField.defaultProps = {
   placeholder: undefined,
   required: false,
   type: 'text',
+  value: undefined,
 };

@@ -162,4 +162,18 @@ describe('src/components/helpers/custom-field', () => {
       });
     });
   });
+
+  describe('value API', () => {
+    it('shows the provided value on render', () => {
+      const value = 'YOOOOOOOOO';
+      const { getByLabelText } = renderComponent({ value });
+      expect(getByLabelText('Custom Field')).toHaveValue(value);
+    });
+
+    it('accepts a number', () => {
+      const value = 12;
+      const { getByLabelText } = renderComponent({ type: 'number', value });
+      expect(getByLabelText('Custom Field')).toHaveValue(value);
+    });
+  });
 });
