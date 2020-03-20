@@ -188,4 +188,16 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toHaveAttribute('max', '2001-09-11');
     });
   });
+
+  describe('min API', () => {
+    it('accepts a min number', () => {
+      const { getByLabelText } = renderComponent({ type: 'number', min: 100 });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('min', '100');
+    });
+
+    it('accepts a min string', () => {
+      const { getByLabelText } = renderComponent({ type: 'date', min: '2001-09-11' });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('min', '2001-09-11');
+    });
+  });
 });
