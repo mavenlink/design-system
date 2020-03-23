@@ -33,7 +33,7 @@ We provide color definitions which can be imported and used as follows:
     <span class="text">Lt grey</span>
   </div>
   <div class="rgba">`rgba(0, 0, 0, .12)`</div>
-  <div class="hex">`#0e0e0e`</div>
+  <div class="hex">`#e0e0e0`</div>
 </div>
 <div class="color-container greys">
   <div class="swatch-grey-x-light">
