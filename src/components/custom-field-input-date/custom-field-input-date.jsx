@@ -65,6 +65,7 @@ export default function CustomFieldInputDate(props) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
       setIsValid(isValueValid(newDate, props.error, isInputValid));
+      setValue(event.target.value);
     }
 
     props.onChange(event);

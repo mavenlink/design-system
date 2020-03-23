@@ -46,7 +46,8 @@ export default function CustomFieldInputNumber(props) {
     max={apiLimits.max}
     min={apiLimits.min}
     name={props.name}
-    onBlur={props.onBlur}onKeyUp={handleOnKeyUp}
+    onBlur={props.onBlur}
+    onKeyUp={handleOnKeyUp}
     placeholder={props.placeholder}
     required={props.required}
     step={props.step}
