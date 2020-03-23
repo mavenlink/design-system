@@ -2,6 +2,7 @@
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <div
+  className="custom-field-root undefined"
   data-testid="custom-field-input"
 >
   <div

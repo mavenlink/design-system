@@ -2,6 +2,10 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
+.custom-field-root {
+  font-family: var(--mavenlink-type-font-family);
+}
+
 .heading-container {
   color: var(--palette-grey-dark);
   font-size: var(--mavenlink-type-small-size);

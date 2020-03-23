@@ -7,11 +7,13 @@ import styles from './styles.css';
 
 export default function CustomField(props) {
   const getRootClassName = (className, error) => {
+    const name = `${styles['custom-field-root']} ${className}`;
+
     if (error) {
-      return `${className} ${styles.error}`;
+      return `${name} ${styles.error}`;
     }
 
-    return className;
+    return name;
   };
 
   const icon = () => {

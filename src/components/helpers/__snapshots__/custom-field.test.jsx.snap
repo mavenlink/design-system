@@ -2,6 +2,7 @@
 
 exports[`src/components/helpers/custom-field has defaults 1`] = `
 <div
+  className="custom-field-root undefined"
   data-testid="custom-field-input"
 >
   <div
