@@ -48,7 +48,7 @@ export default function CustomFieldInputDate(props) {
     if (isEditing && isFocused) {
       inputRef.current.focus();
     }
-  }, [isEditing, isFocused]);
+  }, [inputRef.current, isEditing, isFocused]);
 
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -85,7 +85,7 @@ export default function CustomFieldInputDate(props) {
     icon: <Icon name={calendarSvg.id} title={props.label} stroke="primary" />,
     label: props.label,
     inputRef,
-    readOnly: true,
+    readOnly: props.readOnly,
     required: props.required,
   };
 
@@ -129,6 +129,7 @@ CustomFieldInputDate.propTypes = {
   min: PropTypes.string,
   max: PropTypes.string,
   onChange: PropTypes.func,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: PropTypes.string,
 };
@@ -141,6 +142,7 @@ CustomFieldInputDate.defaultProps = {
   min: undefined,
   max: undefined,
   onChange: () => {},
+  readOnly: false,
   required: false,
   value: '',
 };

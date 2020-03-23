@@ -18,6 +18,20 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     expect(tree).toMatchSnapshot();
   });
 
+  it('changes its value', () => {
+    const { getByLabelText } = renderComponent({ value: '1992-05-10' });
+    expect(getByLabelText('Field Date')).toHaveValue('May 10, 1992');
+    changeValue(() => getByLabelText('Field Date'), '2020-03-16');
+    expect(getByLabelText('Field Date')).toHaveValue('March 16, 2020');
+  });
+
+  xit('changing value changes valid/invalid state', () => {
+    const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
+    expect(getByTestId('custom-field-input')).toHaveClass('error');
+    changeValue(() => getByLabelText('Field Date'), '2016-07-18');
+    expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+  });
+
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const { container } = renderComponent({ className: 'prioritize-me' });
@@ -177,17 +191,15 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  it('changes its value', () => {
-    const { getByLabelText } = renderComponent({ value: '1992-05-10' });
-    expect(getByLabelText('Field Date')).toHaveValue('May 10, 1992');
-    changeValue(() => getByLabelText('Field Date'), '2020-03-16');
-    expect(getByLabelText('Field Date')).toHaveValue('March 16, 2020');
-  });
+  describe('readOnly API', () => {
+    it('respects the readOnly prop', () => {
+      const { getByLabelText } = renderComponent({ readOnly: true });
+      expect(getByLabelText('Field Date')).toHaveAttribute('readOnly');
+    });
 
-  xit('changing value changes valid/invalid state', () => {
-    const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
-    expect(getByTestId('custom-field-input')).toHaveClass('error');
-    changeValue(() => getByLabelText('Field Date'), '2016-07-18');
-    expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+    it('respects not having a readOnly prop', () => {
+      const { getByLabelText } = renderComponent({ readOnly: false });
+      expect(getByLabelText('Field Date')).not.toHaveAttribute('readOnly');
+    });
   });
 });
