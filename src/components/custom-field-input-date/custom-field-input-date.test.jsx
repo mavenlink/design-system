@@ -93,6 +93,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('helpText', () => {
+    it('shows on error', () => {
+      const { container } = renderComponent({ helpText: 'YOOO', error: true });
+      expect(container.innerHTML).toContain('YOOO');
+    });
+  });
+
   describe('required API', () => {
     it('is required when told to be', () => {
       const { getByLabelText } = renderComponent({ required: true });
@@ -174,6 +181,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = renderComponent({ value: '', onChange });
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(onChange.mock.calls.length).toBe(1);
+    });
+  });
+
+  describe('when the component is readOnly', () => {
+    it('displays the helpText on semantic error', () => {
+      const { getByTestId } = renderComponent({ readOnly: true, helpText: 'Foo', error: true });
+      expect(getByTestId('custom-field-input').innerHTML).toContain('Foo');
     });
   });
 

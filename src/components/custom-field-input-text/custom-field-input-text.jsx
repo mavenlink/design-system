@@ -29,9 +29,8 @@ export default function CustomFieldInputText(props) {
     if (props.error) {
       if (props.helpText) {
         inputRef.current.setCustomValidity(props.helpText);
-        setValidationMessage(inputRef.current.validationMessage);
+        setValidationMessage(props.helpText);
       } else {
-        inputRef.current.setCustomValidity('');
         setValidationMessage(inputRef.current.validationMessage);
       }
     } else {
