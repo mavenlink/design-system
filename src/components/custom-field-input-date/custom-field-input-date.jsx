@@ -88,7 +88,7 @@ export default function CustomFieldInputDate(props) {
       key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
-      onChange={e => handleOnChange(e)}
+      onChange={handleOnChange}
       step={1}
       type="date"
       value={value}

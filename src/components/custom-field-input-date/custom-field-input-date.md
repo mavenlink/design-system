@@ -38,24 +38,24 @@ text provided.
 
 ```jsx
 <CustomFieldInputDate
-    id="not-a-valid-date"
-    label="Greyson's Birthday"
-    value="definitely not a date"
+  id="not-a-valid-date"
+  label="Greyson's Birthday"
+  value="definitely not a date"
 />
 
 <CustomFieldInputDate
-    id="not-in-range"
-    label="Juanca's Birthday"
-    value="1990-03-03"
-    min="1992-05-10"
+  id="not-in-range"
+  label="Juanca's Birthday"
+  value="1990-03-03"
+  min="1992-05-10"
 />
 
 <CustomFieldInputDate
-    id="not-my-birthday"
-    label="Andre's Birthday" 
-    helpText="This is not my birthday"
-    value="01/01/0001"
-    error
+  id="not-my-birthday"
+  label="Andre's Birthday" 
+  helpText="This is not my birthday"
+  value="01/01/0001"
+  error
 />
 ```
 ----
