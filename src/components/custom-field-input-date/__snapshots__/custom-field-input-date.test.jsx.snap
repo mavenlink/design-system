@@ -2,7 +2,6 @@
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <div
-  className="custom-field-input-text"
   data-testid="custom-field-input"
 >
   <div
@@ -32,6 +31,21 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       step={1}
       type="date"
     />
+    <div
+      className="input-icon-container"
+    >
+      <svg
+        className="icon-base size-medium fill-none stroke-primary color-transparent"
+        role="img"
+      >
+        <title>
+          Hello
+        </title>
+        <use
+          xlinkHref="#icon-calendar-fill.svg"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;

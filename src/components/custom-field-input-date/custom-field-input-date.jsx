@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
+import CustomField from '../helpers/custom-field.jsx';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 
@@ -92,9 +93,9 @@ export default function CustomFieldInputDate(props) {
 
   if (isEditing || !isValid) {
     const displayValue = validDate(value) ? convertToFormat(value, 'yyyy-mm-dd') : value;
-
-    return (<CustomFieldInputText
+    return (<CustomField
       {...sharedProps}
+      controlled={false}
       error={!isValid}
       helpText={helpText()}
       id={props.id}
@@ -102,7 +103,7 @@ export default function CustomFieldInputDate(props) {
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
       onBlur={handleOnBlur}
-      onChange={e => handleOnChange(e)}
+      onChange={handleOnChange}
       step={1}
       type="date"
       value={displayValue}
