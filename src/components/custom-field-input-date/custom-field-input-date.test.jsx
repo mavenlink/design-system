@@ -54,7 +54,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  describe('valid API', () => {
+  describe('error API', () => {
     describe('when the value is valid', () => {
       it('does not show an error', () => {
         const { getByTestId } = render(<CustomFieldInputDate label="Field Date" id="field-date" value="05/10/1992" />);
