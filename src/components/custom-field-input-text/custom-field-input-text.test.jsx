@@ -243,4 +243,11 @@ describe('CustomFieldInputText', () => {
       expect(onKeyUpSpy.mock.calls.length).toBe(1);
     });
   });
+
+  describe('readonly API', () => {
+    it('can be set to readonly', () => {
+      const { getByLabelText } = render(<TestComponent readOnly />);
+      expect(getByLabelText('Test label')).toHaveAttribute('readOnly');
+    });
+  });
 });

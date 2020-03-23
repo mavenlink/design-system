@@ -48,7 +48,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toBeDisabled();
     });
 
-    xit('permits itself to be enabled', () => {
+    it('permits itself to be enabled', () => {
       const { getByLabelText } = renderComponent({ disabled: false });
       expect(getByLabelText('Field Date')).not.toBeDisabled();
     });
