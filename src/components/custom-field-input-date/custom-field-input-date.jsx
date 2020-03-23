@@ -41,7 +41,7 @@ export default function CustomFieldInputDate(props) {
     } else {
       setIsEditing(false);
     }
-  }, [inputRef.current]);
+  }, [inputRef.current, props.value, props.error]);
 
   useEffect(() => {
     if (isEditing && isFocused) {
