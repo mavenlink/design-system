@@ -54,6 +54,7 @@ export default function CustomField(props) {
         onFocus={props.onFocus}
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
+        readOnly={props.readOnly}
         required={props.required}
         step={props.step}
         type={props.type}
@@ -87,6 +88,7 @@ CustomField.propTypes = {
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
   type: PropTypes.oneOf(['date', 'number', 'text']),
@@ -108,6 +110,7 @@ CustomField.defaultProps = {
   onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
+  readOnly: false,
   required: false,
   step: undefined,
   type: 'text',

@@ -13,6 +13,7 @@ export default function Input(props) {
     onKeyUp: props.onKeyUp,
     placeholder: props.placeholder,
     ref: props.inputRef,
+    readOnly: props.readOnly,
     required: props.required,
     type: props.type,
   };
@@ -49,6 +50,7 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.oneOf(['date', 'number', 'text']),
@@ -68,6 +70,7 @@ Input.defaultProps = {
   onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
+  readOnly: false,
   required: false,
   step: undefined,
   type: 'text',

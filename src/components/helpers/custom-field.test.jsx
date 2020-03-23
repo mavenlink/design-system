@@ -244,4 +244,11 @@ describe('src/components/helpers/custom-field', () => {
       expect(getByLabelText('Custom Field')).toHaveAttribute('min', '2001-09-11');
     });
   });
+
+  describe('readonly API', () => {
+    it('can be set to readonly', () => {
+      const { getByLabelText } = renderComponent({ readOnly: true });
+      expect(getByLabelText('Custom Field')).toHaveAttribute('readOnly');
+    });
+  });
 });

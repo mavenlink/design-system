@@ -22,7 +22,7 @@ function getRootClassName(className, error, disabled) {
 }
 
 export default function CustomFieldInputNumber(props) {
-  const inputRef = useRef(null);
+  const inputRef = props.inputRef || useRef(null);
   const [invalid, setInvalid] = useState(false);
 
   function handleOnKeyUp(event) {
@@ -46,10 +46,10 @@ export default function CustomFieldInputNumber(props) {
     max={apiLimits.max}
     min={apiLimits.min}
     name={props.name}
-    onKeyUp={handleOnKeyUp}
+    onBlur={props.onBlur}onKeyUp={handleOnKeyUp}
     placeholder={props.placeholder}
     required={props.required}
-    step={1}
+    step={props.step}
     testid="custom-field-input"
     type="number"
     value={props.value}
@@ -60,18 +60,28 @@ CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
+  onBlur: PropTypes.func,
+  // onChange: Do not expose the onChange handler. See commit for details.
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  value: PropTypes.number,
+  step: PropTypes.number,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf(['']),
+  ]),
 };
 
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
+  inputRef: undefined,
   name: undefined,
+  onBlur: () => {},
   placeholder: undefined,
   required: false,
-  value: undefined,
+  step: 1,
+  value: '',
 };

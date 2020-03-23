@@ -42,7 +42,7 @@ export default function CustomFieldInputDate(props) {
     } else {
       setIsEditing(false);
     }
-  }, [inputRef.current]);
+  }, [inputRef.current, props.value, props.error]);
 
   useEffect(() => {
     if (isEditing && isFocused) {
@@ -56,18 +56,15 @@ export default function CustomFieldInputDate(props) {
   };
 
   const handleOnBlur = () => {
-    if (isValid) {
-      setValue(inputRef.current.value);
-      setIsFocused(false);
-      setIsEditing(false);
-    }
+    setIsFocused(false);
+    setIsEditing(false);
   };
 
   const handleOnChange = (event) => {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
-      setIsValid(isValueValid(newDate, props.error, isInputValid) && validDate(newDate));
+      setIsValid(isValueValid(newDate, props.error, isInputValid));
     }
 
     props.onChange(event);
@@ -87,6 +84,7 @@ export default function CustomFieldInputDate(props) {
     icon: <Icon name={calendarSvg.id} title={props.label} stroke="primary" />,
     label: props.label,
     inputRef,
+    readOnly: true,
     required: props.required,
   };
 
@@ -127,8 +125,8 @@ CustomFieldInputDate.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  min: PropTypes.string,
+  max: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,

@@ -1,4 +1,7 @@
 module.exports = {
+  env: {
+    browser: true,
+  },
   extends: 'mavenlint-react',
   parser: 'babel-eslint',
   rules: {
