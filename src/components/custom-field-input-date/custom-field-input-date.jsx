@@ -49,16 +49,6 @@ export default function CustomFieldInputDate(props) {
     }
   }, [isEditing, isFocused]);
 
-  const handleOnFocus = () => {
-    setIsFocused(true);
-    setIsEditing(true);
-  };
-
-  const handleOnBlur = () => {
-    setIsFocused(false);
-    setIsEditing(false);
-  };
-
   const handleOnChange = (event) => {
     if (inputRef && inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
@@ -83,6 +73,7 @@ export default function CustomFieldInputDate(props) {
     icon: <Icon name={calendarSvg.id} title={props.label} stroke="primary" />,
     label: props.label,
     inputRef,
+    readOnly: true,
     required: props.required,
   };
 
@@ -97,7 +88,6 @@ export default function CustomFieldInputDate(props) {
       key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
-      onBlur={handleOnBlur}
       onChange={e => handleOnChange(e)}
       step={1}
       type="date"
@@ -109,7 +99,6 @@ export default function CustomFieldInputDate(props) {
     {...sharedProps}
     id={props.id}
     key={`${props.id}-readonly`}
-    onFocus={handleOnFocus}
     type="text"
     value={convertToFormat(props.value, 'Month dd, yyyy')}
   />);
