@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
 import CustomField from '../helpers/custom-field.jsx';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 
 const isValidInput = (value) => {
@@ -110,8 +109,9 @@ export default function CustomFieldInputDate(props) {
     />);
   }
 
-  return (<CustomFieldInputText
+  return (<CustomField
     {...sharedProps}
+    controlled
     id={props.id}
     key={`${props.id}-readonly`}
     onFocus={handleOnFocus}

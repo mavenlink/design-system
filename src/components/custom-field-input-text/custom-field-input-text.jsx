@@ -35,8 +35,6 @@ export default function CustomFieldInputText(props) {
     id={props.id}
     inputRef={inputRef}
     label={props.label}
-    max={props.max}
-    min={props.min}
     name={props.name}
     onBlur={props.onBlur}
     onChange={props.onChange}
@@ -44,8 +42,7 @@ export default function CustomFieldInputText(props) {
     onKeyUp={props.onKeyUp}
     placeholder={props.placeholder}
     required={props.required}
-    step={props.step}
-    type={props.type} // TODO: replace with text, remove step min/max etc.
+    type="text"
     value={props.value}
   />);
 }
@@ -58,14 +55,6 @@ CustomFieldInputText.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
-  max: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  min: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
@@ -73,12 +62,6 @@ CustomFieldInputText.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  step: PropTypes.number,
-  type: PropTypes.oneOf([
-    'date',
-    'number',
-    'text',
-  ]),
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
