@@ -34,7 +34,7 @@ export default function CustomField(props) {
     return props.error || !!props.icon;
   };
 
-  return (<div className={getRootClassName(props.className, props.error)}>
+  return (<div className={getRootClassName(props.className, props.error)} data-testid="custom-field-input">
     <div className={styles['heading-container']}>
       <label className={styles.label} htmlFor={props.id}>{props.label}</label>
       {props.required && <span>(Required)</span>}

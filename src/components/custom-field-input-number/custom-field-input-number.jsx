@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import CustomField from '../helpers/custom-field.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 const apiLimits = {
@@ -35,25 +35,25 @@ export default function CustomFieldInputNumber(props) {
     setInvalid(!inputRef.current.validity.valid);
   });
 
-  return (
-    <CustomFieldInputText
-      className={getRootClassName(props.className, invalid, props.disabled)}
-      disabled={props.disabled}
-      error={invalid}
-      id={props.id}
-      inputRef={inputRef}
-      label={props.label}
-      max={apiLimits.max}
-      min={apiLimits.min}
-      name={props.name}
-      onKeyUp={handleOnKeyUp}
-      placeholder={props.placeholder}
-      required={props.required}
-      step={1}
-      type="number"
-      value={props.value}
-    />
-  );
+  return (<CustomField
+    className={getRootClassName(props.className, invalid, props.disabled)}
+    controlled={false}
+    disabled={props.disabled}
+    error={invalid}
+    id={props.id}
+    inputRef={inputRef}
+    label={props.label}
+    max={apiLimits.max}
+    min={apiLimits.min}
+    name={props.name}
+    onKeyUp={handleOnKeyUp}
+    placeholder={props.placeholder}
+    required={props.required}
+    step={1}
+    testid="custom-field-input"
+    type="number"
+    value={props.value}
+  />);
 }
 
 CustomFieldInputNumber.propTypes = {
