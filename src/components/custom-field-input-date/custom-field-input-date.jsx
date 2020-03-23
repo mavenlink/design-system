@@ -29,7 +29,7 @@ export default function CustomFieldInputDate(props) {
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused] = useState(false);
 
   useEffect(() => {
     const isInputValid = inputRef.current.validity.valid;
@@ -111,8 +111,8 @@ CustomFieldInputDate.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  min: PropTypes.string,
+  max: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,
