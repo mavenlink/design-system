@@ -163,12 +163,12 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
   describe('min API', () => {
     it('respects the min attribute', () => {
-      const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
+      const { getByTestId } = renderComponent({ min: '2000-01-01', value: '05-10-1992' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
 
     it('is respected after a change', () => {
-      const { getByTestId, getByLabelText } = renderComponent({ min: '01-01-2000', value: '05-10-2001' });
+      const { getByTestId, getByLabelText } = renderComponent({ min: '2000-01-01', value: '05-10-2001' });
       expect(getByTestId('custom-field-input')).not.toHaveClass('error');
       changeValue(() => getByLabelText('Field Date'), '1998-01-01');
       expect(getByTestId('custom-field-input')).toHaveClass('error');
@@ -177,7 +177,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
   describe('max API', () => {
     it('respects the max attribute', () => {
-      const { getByTestId } = renderComponent({ max: '01-01-1990', value: '05-10-1992' });
+      const { getByTestId } = renderComponent({ max: '1990-01-01', value: '05-10-1992' });
       expect(getByTestId('custom-field-input')).toHaveClass('error');
     });
   });

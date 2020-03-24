@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
 import CustomField from '../helpers/custom-field.jsx';
-import { convertToFormat, validDate } from './format/format-date.js';
+import { convertToFormat, validDate, validFormats } from './format/format-date.js';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
@@ -119,6 +119,16 @@ export default function CustomFieldInputDate(props) {
   />);
 }
 
+const dateStringProp = (props, propName, componentName) => {
+  const isPropValid = validFormats['yyyy-mm-dd'].matcher.test(props[propName]);
+
+  if (props[propName] && !isPropValid) {
+    return new Error(`Invalid prop \`${propName}\` supplied to ${componentName}. Validation failed`);
+  }
+
+  return undefined;
+};
+
 CustomFieldInputDate.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
@@ -126,8 +136,8 @@ CustomFieldInputDate.propTypes = {
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  min: PropTypes.string,
-  max: PropTypes.string,
+  min: dateStringProp,
+  max: dateStringProp,
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
