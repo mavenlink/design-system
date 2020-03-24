@@ -27,6 +27,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'gray',
     'none',
   ]),
   currentColor: PropTypes.oneOf([
@@ -34,6 +35,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'gray',
     'transparent',
   ]),
   name: PropTypes.string.isRequired,
@@ -47,6 +49,7 @@ Icon.propTypes = {
     'action',
     'highlight',
     'caution',
+    'gray',
     'none',
   ]),
   title: PropTypes.string,
