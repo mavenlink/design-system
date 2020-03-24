@@ -62,7 +62,7 @@ export const validFormats = {
   },
 };
 
-export function formatMatching(dateString) {
+function formatMatching(dateString) {
   return Object.keys(validFormats).map((formatKey) => {
     const format = validFormats[formatKey];
 

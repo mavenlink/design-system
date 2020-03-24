@@ -118,37 +118,6 @@ describe('src/components/custom-field-input-date/format/format-date', () => {
     });
   });
 
-  describe('#formatMatching', () => {
-    it('has a format for mm/dd/yyyy', () => {
-      const format = dateFormatHelpers.formatMatching('05/10/1992');
-      expect(format).toBeDefined();
-      expect(format).toEqual(dateFormatHelpers.validFormats['mm/dd/yyyy']);
-    });
-
-    it('has a format for yyyy-mm-dd', () => {
-      const format = dateFormatHelpers.formatMatching('1992-05-10');
-      expect(format).toBeDefined();
-      expect(format).toEqual(dateFormatHelpers.validFormats['yyyy-mm-dd']);
-    });
-
-    it('has a format for mm-dd-yyyy', () => {
-      const format = dateFormatHelpers.formatMatching('05-10-1992');
-      expect(format).toBeDefined();
-      expect(format).toEqual(dateFormatHelpers.validFormats['mm-dd-yyyy']);
-    });
-
-    it('has a format for Month dd, yyyy', () => {
-      const format = dateFormatHelpers.formatMatching('May 10, 1992');
-      expect(format).toBeDefined();
-      expect(format).toEqual(dateFormatHelpers.validFormats['Month dd, yyyy']);
-    });
-
-    it('returns something falsey when no format matches', () => {
-      const format = dateFormatHelpers.formatMatching('this is invalid');
-      expect(format).toBeUndefined();
-    });
-  });
-
   describe('#validDate', () => {
     it('returns true for a valid date format', () => {
       expect(dateFormatHelpers.validDate('07-18-2016')).toBe(true);

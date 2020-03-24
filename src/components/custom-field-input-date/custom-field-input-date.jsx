@@ -50,7 +50,7 @@ export default function CustomFieldInputDate(props) {
   }, [isEditing, isFocused]);
 
   const handleOnChange = (event) => {
-    if (inputRef && inputRef.current) {
+    if (inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
       setIsValid(isValueValid(newDate, props.error, isInputValid));
