@@ -33,7 +33,7 @@
 }
 
 .input:disabled {
-  background-color: var(--palette-grey-light);
+  background-color: var(--palette-grey-x-light);
 }
 
 .input:invalid {
