@@ -4,7 +4,7 @@
 
 1. __Create a Release Branch__
 
-   Create a new branch from master to contain your release changes, which should only include changelog and version change.
+   Create a new branch (format: `release-x.y.z`) from master to contain your release changes, which should only include changelog and version change.
 
 2. __Update the changelog__
 
