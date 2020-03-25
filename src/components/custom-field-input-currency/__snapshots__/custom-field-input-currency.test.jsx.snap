@@ -24,8 +24,10 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       disabled={false}
       id="foo"
       onBlur={[Function]}
+      onChange={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
+      readOnly={false}
       required={false}
       type="text"
     />
