@@ -6,6 +6,9 @@
   </summary>
 </details>
 
+## 0.16.0 (March 25, 2020)
+- Implements a readonly date component
+
 ## 0.15.0 (March 16, 2020)
 - Implements a custom field currency component
 
