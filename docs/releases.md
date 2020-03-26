@@ -4,7 +4,7 @@
 
 1. __Create a Release Branch__
 
-   Create a new branch from master to contain your release changes, which should only include changelog and version change.
+   Create a new branch (format: `release-x.y.z`) from master to contain your release changes, which should only include changelog and version change.
 
 2. __Update the changelog__
 
@@ -20,6 +20,6 @@
 
 5. __Tag a new release__
 
-   [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/). 
+   [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/).
      - Copy over the changelog section title as the release title
      - Copy over the changelog section items as the release body
