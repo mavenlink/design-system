@@ -57,6 +57,7 @@ export default function CustomFieldInputText(props) {
           onFocus={props.onFocus}
           onKeyUp={props.onKeyUp}
           placeholder={props.placeholder}
+          readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}
           step={props.step}
@@ -88,6 +89,7 @@ CustomFieldInputText.propTypes = {
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
   type: PropTypes.oneOf([
@@ -113,6 +115,7 @@ CustomFieldInputText.defaultProps = {
   onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
+  readOnly: false,
   required: false,
   step: undefined,
   type: 'text',

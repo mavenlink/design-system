@@ -109,6 +109,18 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('respects the readOnly prop', () => {
+      const { getByLabelText } = render(<TestComponent readOnly />);
+      expect(getByLabelText('Test label')).toHaveAttribute('readOnly', '');
+    });
+
+    it('is false by default', () => {
+      const { getByLabelText } = render(<TestComponent />);
+      expect(getByLabelText('Test label')).not.toHaveAttribute('readOnly', '');
+    })
+  });
+
   describe('required API', () => {
     it('can have a required indicator', () => {
       render(<TestComponent required />);
