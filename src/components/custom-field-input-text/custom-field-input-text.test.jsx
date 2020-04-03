@@ -118,7 +118,7 @@ describe('CustomFieldInputText', () => {
     it('is false by default', () => {
       const { getByLabelText } = render(<TestComponent />);
       expect(getByLabelText('Test label')).not.toHaveAttribute('readOnly', '');
-    })
+    });
   });
 
   describe('required API', () => {
