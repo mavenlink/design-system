@@ -29,6 +29,10 @@
   fill: var(--palette-highlight-base);
 }
 
+.fill-gray {
+  fill: var(--palette-grey-base);
+}
+
 .fill-none {
   fill: none;
 }
@@ -49,6 +53,10 @@
   stroke: var(--palette-caution-base);
 }
 
+.stroke-gray {
+  stroke: var(--palette-grey-base);
+}
+
 .stroke-none {
   stroke: none;
 }
@@ -67,6 +75,10 @@
 
 .color-caution {
   color: var(--palette-caution-base);
+}
+
+.color-gray {
+  color: var(--palette-grey-base);
 }
 
 .color-transparent {
