@@ -3,10 +3,11 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
-
-    - Add readonly prop for text and currency
   </summary>
 </details>
+
+## 0.17.0 (April 7, 2020)
+- Add readonly prop for text and currency
 
 ## 0.16.0 (March 25, 2020)
 - Implements a readonly date component
