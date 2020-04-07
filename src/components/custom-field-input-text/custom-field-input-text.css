@@ -36,6 +36,10 @@
   background-color: var(--palette-grey-x-light);
 }
 
+.input:read-only {
+  background-color: var(--palette-grey-x-light);
+}
+
 .input:invalid {
   border-color: var(--palette-caution-base);
   padding-right: var(--spacing-x-large);

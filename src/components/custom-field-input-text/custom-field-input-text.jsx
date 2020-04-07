@@ -60,8 +60,10 @@ export default function CustomFieldInputText(props) {
     return props.error || !!props.icon;
   };
 
+  const rootClassName = getRootClassName(props.className, props.error, props.disabled);
+
   return (
-    <div className={getRootClassName(props.className, props.error, props.disabled)} data-testid="custom-field-input" >
+    <div className={rootClassName} data-testid="custom-field-input" >
       <div className={styles['heading-container']}>
         <label className={styles.label} htmlFor={props.id}>{props.label}</label>
         {props.required && <span className={styles.optional}>(Required)</span>}
