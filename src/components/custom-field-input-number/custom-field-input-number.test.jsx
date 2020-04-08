@@ -119,6 +119,18 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('respects the readOnly prop', () => {
+      const { getByLabelText } = render(<TestComponent readOnly />);
+      expect(getByLabelText('Test label')).toHaveAttribute('readOnly', '');
+    });
+
+    it('is false by default', () => {
+      const { getByLabelText } = render(<TestComponent />);
+      expect(getByLabelText('Test label')).not.toHaveAttribute('readOnly', '');
+    });
+  });
+
   describe('step API', () => {
     it('respects a provided step', () => {
       const { getByLabelText } = render(<TestComponent label="foo" step={12} />);
