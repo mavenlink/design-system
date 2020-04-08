@@ -93,6 +93,7 @@ export default function CustomFieldInputCurrency(props) {
     label: props.label,
     name: props.name,
     placeholder: props.placeholder,
+    readOnly: props.readOnly,
     required: props.required,
   };
 
@@ -133,6 +134,7 @@ CustomFieldInputCurrency.propTypes = {
   name: PropTypes.string,
   // onChange: Do not expose an onChange handler. See commit for details.
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: PropTypes.number,
 };
@@ -145,6 +147,7 @@ CustomFieldInputCurrency.defaultProps = {
   helpText: undefined,
   name: undefined,
   placeholder: undefined,
+  readOnly: false,
   required: false,
   value: undefined,
 };
