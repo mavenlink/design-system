@@ -3,10 +3,11 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
-    
-    - Add readOnly prop to CustomFieldInputCurrency and CustomFieldInputNumber
   </summary>
 </details>
+
+## 0.18.0 (April 8, 2020)
+- Add readOnly prop to CustomFieldInputCurrency and CustomFieldInputNumber
 
 ## 0.17.0 (April 7, 2020)
 - Add readonly prop for text and currency
