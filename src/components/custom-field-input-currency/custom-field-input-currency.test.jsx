@@ -86,6 +86,18 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('respects the readOnly prop', () => {
+      const { getByLabelText } = renderComponent({ readOnly: true });
+      expect(getByLabelText('currency')).toHaveAttribute('readOnly', '');
+    });
+
+    it('is false by default', () => {
+      const { getByLabelText } = renderComponent();
+      expect(getByLabelText('currency')).not.toHaveAttribute('readOnly', '');
+    });
+  });
+
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
       const { getByTestId, getByLabelText } = renderComponent();
