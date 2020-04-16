@@ -25,6 +25,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('inputClassName API', () => {
+    it('prioritizes inputClassName prop', () => {
+      const { getByLabelText } = renderComponent({ inputClassName: 'prioritize-me' });
+      expect(getByLabelText('Field Date')).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('value API', () => {
     it('accepts a string in format YYYY-MM-DD', () => {
       const { getByLabelText } = renderComponent({ value: '2016-07-18' });

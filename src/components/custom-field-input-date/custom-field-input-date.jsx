@@ -4,6 +4,7 @@ import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
+import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
@@ -72,6 +73,7 @@ export default function CustomFieldInputDate(props) {
     disabled: props.disabled,
     icon: <Icon name={calendarSvg.id} title={props.label} stroke="gray" />,
     label: props.label,
+    inputClassName: props.inputClassName,
     inputRef,
     readOnly: true,
     required: props.required,
@@ -110,6 +112,7 @@ CustomFieldInputDate.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
   label: PropTypes.string.isRequired,
   min: PropTypes.string,
   max: PropTypes.string,
@@ -123,6 +126,7 @@ CustomFieldInputDate.defaultProps = {
   disabled: false,
   error: false,
   helpText: '',
+  inputClassName: styles.input,
   min: undefined,
   max: undefined,
   onChange: () => {},
