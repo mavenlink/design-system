@@ -41,6 +41,7 @@ export default function CustomFieldInputNumber(props) {
       disabled={props.disabled}
       error={invalid}
       id={props.id}
+      inputClassName={props.inputClassName}
       inputRef={inputRef}
       label={props.label}
       max={apiLimits.max}
@@ -62,6 +63,7 @@ CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -80,6 +82,7 @@ CustomFieldInputNumber.propTypes = {
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
+  inputClassName: styles.input,
   inputRef: undefined,
   name: undefined,
   onBlur: () => {},
