@@ -86,6 +86,13 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('inputClassName API', () => {
+    it('prioritizes inputClassName prop', () => {
+      const { getByLabelText } = renderComponent({ inputClassName: 'prioritize-me' });
+      expect(getByLabelText('currency')).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
       const { getByLabelText } = renderComponent({ readOnly: true });

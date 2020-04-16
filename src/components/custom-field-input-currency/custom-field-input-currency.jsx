@@ -90,6 +90,7 @@ export default function CustomFieldInputCurrency(props) {
     className: getRootClassName(props.className, props.error, props.disabled),
     disabled: props.disabled,
     id: props.id,
+    inputClassName: props.inputClassName,
     label: props.label,
     name: props.name,
     placeholder: props.placeholder,
@@ -130,6 +131,7 @@ CustomFieldInputCurrency.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   // onChange: Do not expose an onChange handler. See commit for details.
@@ -145,6 +147,7 @@ CustomFieldInputCurrency.defaultProps = {
   disabled: false,
   error: false,
   helpText: undefined,
+  inputClassName: styles.input,
   name: undefined,
   placeholder: undefined,
   readOnly: false,
