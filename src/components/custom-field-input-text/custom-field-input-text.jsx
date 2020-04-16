@@ -71,7 +71,7 @@ export default function CustomFieldInputText(props) {
       <div className={styles['input-container']}>
         <input
           defaultValue={props.value}
-          className={styles.input}
+          className={props.inputClassName}
           disabled={props.disabled}
           id={props.id}
           max={props.max}
@@ -106,6 +106,7 @@ CustomFieldInputText.propTypes = {
   helpText: PropTypes.string,
   icon: PropTypes.node,
   id: PropTypes.string.isRequired,
+  inputClassName: PropTypes.string,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   max: PropTypes.oneOfType([
@@ -142,6 +143,7 @@ CustomFieldInputText.defaultProps = {
   error: false,
   helpText: undefined,
   icon: undefined,
+  inputClassName: styles.input,
   inputRef: undefined,
   max: undefined,
   min: undefined,

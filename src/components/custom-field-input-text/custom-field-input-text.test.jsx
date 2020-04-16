@@ -21,6 +21,13 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('inputClassName API', () => {
+    it('prioritizes inputClassName prop', () => {
+      const { getByLabelText } = render(<TestComponent inputClassName="prioritize-me" />);
+      expect(getByLabelText('Test label')).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('disabled API', () => {
     it('can be disabled', () => {
       const { container } = render(<TestComponent disabled />);
