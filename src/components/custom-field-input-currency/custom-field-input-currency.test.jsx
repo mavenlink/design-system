@@ -20,7 +20,7 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   it('sets the correct step according to the provided currency code', () => {
-    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10.111 });
+    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10111 });
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
     expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
@@ -52,7 +52,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('presents contextual error state', () => {
       const helpText = 'What do you want from us monster!?';
-      const { getByTestId } = renderComponent({ value: 3.50, helpText, error: true });
+      const { getByTestId } = renderComponent({ value: 350, helpText, error: true });
       const presentedHelpText = () => getByTestId('custom-field-input').querySelector('.help').innerHTML;
 
       expect(getByTestId('custom-field-input')).toHaveClass('error');

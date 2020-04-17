@@ -4,6 +4,8 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  - Modify the CustomFieldInputCurrency value API to only accept subunit values of the currency
 </details>
 
 ## 0.18.0 (April 8, 2020)
