@@ -105,5 +105,4 @@ module.exports = {
   title: 'Mavenlink Design System',
   usageMode: 'expand',
   webpackConfig,
-  serverPort: 6061,
 };
