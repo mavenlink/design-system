@@ -3,7 +3,11 @@
   <summary>
     * Replace old calendar icon with new one provided by Design.
   </summary>
+
 </details>
+
+## 0.19.0 (April 20, 2020)
+- Modify the CustomFieldInputCurrency value API to only accept subunit values of the currency
 
 ## 0.18.0 (April 8, 2020)
 - Add readOnly prop to CustomFieldInputCurrency and CustomFieldInputNumber

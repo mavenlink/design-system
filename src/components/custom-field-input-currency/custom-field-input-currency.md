@@ -15,7 +15,7 @@ within itself.
   label="Iraqi Dinar"
   currencyCode="IQD"
   id="iraqi-dinar"
-  value={182.211}
+  value={182211}
 />
 
 <CustomFieldInputCurrency
@@ -47,7 +47,7 @@ presented to it, responding with a specific message for the context of that spec
 <CustomFieldInputCurrency
   id="test-id-3"
   name="test-name-3"
-  value={1.12}
+  value={112}
   currencyCode="XAF"
   label="Internal Error State"
 />
@@ -56,7 +56,7 @@ presented to it, responding with a specific message for the context of that spec
   label="External Error State"
   id="test-id-4"
   name="test-name-4"
-  value={3.50}
+  value={350}
   currencyCode="USD"
   error
   helpText="What do you want from us monster!?"
