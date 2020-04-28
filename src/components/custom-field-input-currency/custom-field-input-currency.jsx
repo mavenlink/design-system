@@ -27,35 +27,36 @@ function getLocale() {
   return 'en-IN';
 }
 
-function initialInputValid(inputValue, currencyCode) {
-  const maximumFractionDigits = currencyMetaData[currencyCode].maximumFractionDigits;
-
+function initialInputValid(inputValue) {
   if (!inputValue) {
     return true;
   }
 
-  const splitInputValue = inputValue.toString().split('.');
-  if (splitInputValue.length === 1) {
+  if (inputValue.toString().split('.').length === 1) {
     return true;
   }
 
-  return splitInputValue[1].length <= maximumFractionDigits;
+  return false;
 }
 
-function formatValue(inputValue, currencyCode) {
-  if (!inputValue) {
-    return '';
-  }
+function subunitToUnit(subunitValue, currencyCode) {
+  if (!subunitValue) return '';
+
+  return subunitValue / (10 ** currencyMetaData[currencyCode].maximumFractionDigits);
+}
+
+function formatValue(unitValue, currencyCode) {
+  if (!unitValue) return '';
 
   return new Intl.NumberFormat(getLocale(), {
     style: 'currency',
     currency: currencyCode,
     maximumFractionDigits: currencyMetaData[currencyCode].maximumFractionDigits,
-  }).format(inputValue);
+  }).format(unitValue);
 }
 
 export default function CustomFieldInputCurrency(props) {
-  const [input, setInput] = useState(props.value);
+  const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
@@ -75,7 +76,7 @@ export default function CustomFieldInputCurrency(props) {
   }
 
   useEffect(() => {
-    if (!numberRef.current && !initialInputValid(props.value, props.currencyCode)) {
+    if (!numberRef.current && !initialInputValid(props.value)) {
       setIsEditing(true);
     }
   }, []);
