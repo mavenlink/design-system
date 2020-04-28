@@ -40,16 +40,6 @@ describe('CustomFieldInputCurrency', () => {
       });
     });
 
-    it('respects the disabled prop', () => {
-      const { getByLabelText } = renderComponent({ disabled: true });
-      expect(getByLabelText('currency')).toBeDisabled();
-    });
-
-    it('respects the enabled prop', () => {
-      const { getByLabelText } = renderComponent({ disabled: false });
-      expect(getByLabelText('currency')).not.toBeDisabled();
-    });
-
     it('presents contextual error state', () => {
       const helpText = 'What do you want from us monster!?';
       const { getByTestId } = renderComponent({ value: 350, helpText, error: true });
@@ -86,10 +76,34 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('disabled API', () => {
+    it('respects the disabled prop', () => {
+      const { getByLabelText } = renderComponent({ disabled: true });
+      expect(getByLabelText('currency')).toBeDisabled();
+    });
+
+    it('does not enter edit mode on focus', () => {
+      const { getByLabelText } = renderComponent({ disabled: true });
+      fireEvent.focus(getByLabelText('currency'));
+      expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
+    });
+
+    it('respects the enabled prop', () => {
+      const { getByLabelText } = renderComponent({ disabled: false });
+      expect(getByLabelText('currency')).not.toBeDisabled();
+    });
+  });
+
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
       const { getByLabelText } = renderComponent({ readOnly: true });
       expect(getByLabelText('currency')).toHaveAttribute('readOnly', '');
+    });
+
+    it('does not enter edit mode on focus', () => {
+      const { getByLabelText } = renderComponent({ readOnly: true });
+      fireEvent.focus(getByLabelText('currency'));
+      expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
     it('is false by default', () => {
