@@ -70,7 +70,7 @@ export default function CustomFieldInputDate(props) {
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
-    icon: <Icon name={calendarSvg.id} title={props.label} stroke="gray" />,
+    icon: <Icon name={calendarSvg.id} title={props.label} stroke="gray" fill="gray" />,
     label: props.label,
     inputRef,
     readOnly: true,
