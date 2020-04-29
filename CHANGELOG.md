@@ -1,9 +1,10 @@
 ## [Unreleased]
 <details>
   <summary>
-    * Replace old calendar icon with new one provided by Design.
+    Changes that have landed in master but are not yet released.
   </summary>
-
+  
+  * Replace old calendar icon with new one provided by Design
 </details>
 
 ## 0.19.0 (April 20, 2020)
