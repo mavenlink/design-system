@@ -60,6 +60,7 @@
   position: absolute;
   margin-left: -28px;
   margin-top: var(--spacing-small);
+  pointer-events: none;
   width: 20px;
 }
 
