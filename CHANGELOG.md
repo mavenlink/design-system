@@ -1,8 +1,8 @@
 ## [Unreleased]
 <details>
   <summary>
-	Changes that have landed in master but are not yet released.
-	Click to see more.
+    Changes that have landed in master but are not yet released.
+    Click to see more.
   </summary>
 
   * Replace old calendar icon with new one provided by Design
