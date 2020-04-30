@@ -71,6 +71,8 @@ export default function CustomFieldInputCurrency(props) {
   }
 
   function handleOnFocus() {
+    if (props.disabled || props.readOnly) return;
+
     setIsEditing(true);
     setIsFocused(true);
   }
