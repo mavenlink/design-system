@@ -36,7 +36,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       className="input-icon-container"
     >
       <svg
-        className="icon-base size-medium fill-none stroke-gray color-transparent"
+        className="icon-base size-medium fill-gray stroke-gray color-transparent"
         role="img"
       >
         <title>
