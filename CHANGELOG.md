@@ -5,7 +5,9 @@
     Click to see more.
   </summary>
 
-  * Replace old calendar icon with new one provided by Design
+  - Patch: Replace old calendar icon with new one provided by Design
+  - Patch: Fix read-only currency component: do not enter edit mode on focus
+  - Patch: Fix disabled currency component: do not enter edit mode on focus
 </details>
 
 ## 0.19.0 (April 20, 2020)
