@@ -1,15 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
-<div>
-  <label
-    htmlFor="yo"
+<div
+  className="custom-field-input-text"
+  data-testid="custom-field-input"
+>
+  <div
+    className="heading-container"
   >
-    Foo
-  </label>
-  <input
-    id="yo"
-    required={false}
-  />
+    <label
+      className="label"
+      htmlFor="yo"
+    >
+      Foo
+    </label>
+  </div>
+  <div
+    className="input-container"
+  >
+    <input
+      className="input"
+      disabled={false}
+      id="yo"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyUp={[Function]}
+      readOnly={false}
+      required={false}
+      type="text"
+    />
+  </div>
 </div>
 `;
