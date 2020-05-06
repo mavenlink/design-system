@@ -11,10 +11,8 @@ export default function CustomFieldInputSingleChoice(props) {
 }
 
 CustomFieldInputSingleChoice.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 
-CustomFieldInputSingleChoice.defaultProps = {
-  label: '',
-};
+CustomFieldInputSingleChoice.defaultProps = {};
