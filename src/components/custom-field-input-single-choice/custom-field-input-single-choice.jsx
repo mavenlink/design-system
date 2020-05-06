@@ -7,7 +7,7 @@ export default function CustomFieldInputSingleChoice(props) {
     <CustomFieldInputText
       id={props.id}
       label={props.label}
-      reqired={props.required}
+      required={props.required}
       value={props.value}
     />
   );
