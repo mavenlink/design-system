@@ -5,7 +5,10 @@ export default function CustomFieldInputSingleChoice(props) {
   return (
     <div>
       <label htmlFor={props.id}>{props.label}</label>
-      <input id={props.id} name="selectmeplease" />
+      <input
+        id={props.id}
+        defaultValue={props.value}
+      />
     </div>
   );
 }
@@ -13,6 +16,9 @@ export default function CustomFieldInputSingleChoice(props) {
 CustomFieldInputSingleChoice.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
-CustomFieldInputSingleChoice.defaultProps = {};
+CustomFieldInputSingleChoice.defaultProps = {
+  value: undefined,
+};

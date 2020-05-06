@@ -26,4 +26,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(getByLabelText('Foo')).toHaveAttribute('id', 'this-is-an-id');
     });
   });
+
+  describe('value API', () => {
+    it('accepts a value', () => {
+      const { getByLabelText } = renderComponent({ value: 'Some selection' });
+      expect(getByLabelText('Foo')).toHaveValue('Some selection');
+    });
+  });
 });
