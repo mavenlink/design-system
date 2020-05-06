@@ -27,6 +27,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('placeholder API', () => {
+    it('accepts a placeholder', () => {
+      const { getByLabelText } = renderComponent({ placeholder: 'I am place' });
+      expect(getByLabelText('Foo')).toHaveAttribute('placeholder', 'I am place');
+    });
+  });
+
   describe('readOnly API', () => {
     it('sets the readonly attribute', () => {
       const { getByLabelText } = renderComponent({ readOnly: true });

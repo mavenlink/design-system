@@ -6,6 +6,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 <CustomFieldInputSingleChoice
   id="default-example-1"
   label="Default Example 1"
+  placeholder="This is a single choice field"
 />
 ```
 
