@@ -7,6 +7,7 @@ export default function CustomFieldInputSingleChoice(props) {
     <CustomFieldInputText
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
       required={props.required}
       value={props.value}
     />
@@ -16,11 +17,13 @@ export default function CustomFieldInputSingleChoice(props) {
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: PropTypes.string,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
+  readOnly: false,
   required: false,
   value: undefined,
 };

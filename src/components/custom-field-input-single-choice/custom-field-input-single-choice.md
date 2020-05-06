@@ -9,12 +9,12 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 />
 ```
 
-### Disabled Examples
+### Read-only examples
 
 ```jsx
 <CustomFieldInputSingleChoice
-  disabled
-  id="disabled-example-1"
-  label="Disabled Example 1"
+  id="read-only-example-1"
+  label="Read Only Example 1"
+  readOnly
 />
 ```

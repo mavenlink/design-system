@@ -34,6 +34,18 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('readOnly API', () => {
+    it('sets the readonly attribute', () => {
+      const { getByLabelText } = renderComponent({ readOnly: true });
+      expect(getByLabelText('Foo')).toHaveAttribute('readonly', '');
+    });
+
+    it('unsets the readonly attribute', () => {
+      const { getByLabelText } = renderComponent({ readOnly: false });
+      expect(getByLabelText('Foo')).not.toHaveAttribute('readonly', '');
+    });
+  });
+
   describe('required API', () => {
     it('sets the required attribute', () => {
       const { getByLabelText } = renderComponent({ required: true });
