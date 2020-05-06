@@ -2,16 +2,14 @@
 
 exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
 <div>
-  <div>
-    <label
-      htmlFor="selectmeplease"
-    >
-      
-    </label>
-    <select
-      id="selectmeplease"
-      name="selectmeplease"
-    />
-  </div>
+  <label
+    htmlFor="yo"
+  >
+    
+  </label>
+  <input
+    id="yo"
+    name="selectmeplease"
+  />
 </div>
 `;
