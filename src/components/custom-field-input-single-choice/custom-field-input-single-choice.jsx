@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
   return (
-    <div>
-      <label htmlFor={props.id}>{props.label}</label>
-      <input
-        id={props.id}
-        defaultValue={props.value}
-        required={props.required}
-      />
-    </div>
+    <CustomFieldInputText
+      id={props.id}
+      label={props.label}
+      reqired={props.required}
+      value={props.value}
+    />
   );
 }
 
