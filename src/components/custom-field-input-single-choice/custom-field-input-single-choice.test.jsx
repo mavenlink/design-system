@@ -13,17 +13,17 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     expect(tree).toMatchSnapshot();
   });
 
-  describe('label API', () => {
-    it('accepts a label', () => {
-      const { getByLabelText } = renderComponent({ label: 'Bar' });
-      expect(getByLabelText('Bar')).toBeDefined();
-    });
-  });
-
   describe('id API', () => {
     it('accepts an ID', () => {
       const { getByLabelText } = renderComponent({ id: 'this-is-an-id' });
       expect(getByLabelText('Foo')).toHaveAttribute('id', 'this-is-an-id');
+    });
+  });
+
+  describe('label API', () => {
+    it('accepts a label', () => {
+      const { getByLabelText } = renderComponent({ label: 'Bar' });
+      expect(getByLabelText('Bar')).toBeDefined();
     });
   });
 
