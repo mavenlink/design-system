@@ -1,6 +1,6 @@
 The `CustomFieldInputSingleChoice` component represents the UI for a custom field of type single choice from Mavenlink's API.
 
-# Default
+### Default Examples
 
 ```jsx
 <CustomFieldInputSingleChoice
@@ -9,7 +9,8 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 />
 ```
 
-# Disabled:
+### Disabled Examples
+
 ```jsx
 <CustomFieldInputSingleChoice
   disabled
