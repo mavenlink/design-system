@@ -6,9 +6,9 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
   const classes = [
     styles['icon-base'],
     styles[`size-${size}`],
-    styles[`fill-${fill}`],
-    styles[`stroke-${stroke}`],
-    styles[`color-${currentColor}`],
+    fill === 'skip' ? '' : styles[`fill-${fill}`],
+    stroke === 'skip' ? '' : styles[`stroke-${stroke}`],
+    currentColor === 'skip' ? '' : styles[`color-${currentColor}`],
     className,
   ].filter(Boolean);
 
@@ -29,6 +29,7 @@ Icon.propTypes = {
     'caution',
     'gray',
     'none',
+    'skip',
   ]),
   currentColor: PropTypes.oneOf([
     'primary',
@@ -37,6 +38,7 @@ Icon.propTypes = {
     'caution',
     'gray',
     'transparent',
+    'skip',
   ]),
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
@@ -51,6 +53,7 @@ Icon.propTypes = {
     'caution',
     'gray',
     'none',
+    'skip',
   ]),
   title: PropTypes.string,
 };
