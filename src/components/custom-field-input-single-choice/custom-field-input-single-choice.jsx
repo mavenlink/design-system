@@ -15,8 +15,8 @@ export default function CustomFieldInputSingleChoice(props) {
 }
 
 CustomFieldInputSingleChoice.propTypes = {
-  label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   required: PropTypes.bool,
   value: PropTypes.string,
 };
