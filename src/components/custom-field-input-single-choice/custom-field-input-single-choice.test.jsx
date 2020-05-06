@@ -12,4 +12,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     const tree = renderer.create(<CustomFieldInputSingleChoice />).toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  describe('label API', () => {
+    it('accepts a label', () => {
+      const { getByLabelText } = renderComponent({ label: 'Foo' });
+      expect(getByLabelText('Foo')).toBeDefined();
+    });
+  });
 });

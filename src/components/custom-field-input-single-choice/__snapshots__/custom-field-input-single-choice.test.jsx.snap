@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `<div />`;
+exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
+<div>
+  <div>
+    <label
+      htmlFor="selectmeplease"
+    >
+      
+    </label>
+    <select
+      id="selectmeplease"
+      name="selectmeplease"
+    />
+  </div>
+</div>
+`;
