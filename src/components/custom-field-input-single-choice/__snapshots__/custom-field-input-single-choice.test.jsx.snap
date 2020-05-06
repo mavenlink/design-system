@@ -9,6 +9,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
   </label>
   <input
     id="yo"
+    required={false}
   />
 </div>
 `;

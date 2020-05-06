@@ -33,4 +33,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(getByLabelText('Foo')).toHaveValue('Some selection');
     });
   });
+
+  describe('required API', () => {
+    it('sets the required attribute', () => {
+      const { getByLabelText } = renderComponent({ required: true });
+      expect(getByLabelText('Foo')).toBeRequired();
+    });
+
+    it('unsets the required attribute', () => {
+      const { getByLabelText } = renderComponent({ required: false });
+      expect(getByLabelText('Foo')).not.toBeRequired();
+    });
+  });
 });
