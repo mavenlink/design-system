@@ -30,7 +30,7 @@
   box-sizing: border-box;
   color: var(--palette-grey-x-dark);
   font-size: var(--mavenlink-type-base-size);
-  padding: var(--spacing-medium);
+  padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
   width: 100%;
 }
 
