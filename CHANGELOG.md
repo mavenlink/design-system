@@ -10,6 +10,9 @@
   - Patch: Custom field date input has a nicer calendar icon.
 </details>
 
+## 0.19.2 (May 7, 2020)
+  - Fix documentation for currency component to show internal error state
+
 ## 0.19.1 (May 4, 2020)
 - Patch: Replace old calendar icon with new one provided by Design
 - Patch: Fix read-only currency component: do not enter edit mode on focus
