@@ -4,12 +4,11 @@ import styles from './icon.css';
 
 export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
   const classes = [
-    styles['icon-base'],
+    className,
     styles[`size-${size}`],
     fill === 'skip' ? '' : styles[`fill-${fill}`],
     stroke === 'skip' ? '' : styles[`stroke-${stroke}`],
     currentColor === 'skip' ? '' : styles[`color-${currentColor}`],
-    className,
   ].filter(Boolean);
 
   return (
@@ -59,7 +58,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  className: undefined,
+  className: styles['icon-base'],
   fill: 'none',
   currentColor: 'transparent',
   size: 'medium',

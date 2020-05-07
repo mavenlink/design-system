@@ -27,9 +27,11 @@
 .input {
   border: 1px solid var(--palette-grey-light);
   border-radius: var(--spacing-x-small);
+  box-sizing: border-box;
   color: var(--palette-grey-x-dark);
   font-size: var(--mavenlink-type-base-size);
   padding: var(--spacing-medium);
+  width: 100%;
 }
 
 .input:disabled {
@@ -48,20 +50,20 @@
 .input-container {
   height: 34px;
   margin: var(--spacing-small) 0;
+  position: relative;
+  width: 100%;
 }
 
 .input-container input::placeholder {
   color: var(--palette-grey-dark);
 }
 
-.input-icon-container {
-  display: inline-block;
-  height: 20px;
-  position: absolute;
-  margin-left: -28px;
-  margin-top: var(--spacing-small);
+.input-icon {
+  composes: icon-base from '../icon/icon.css';
   pointer-events: none;
-  width: 20px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
 }
 
 .label {

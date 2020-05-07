@@ -42,6 +42,13 @@ describe('Icon', () => {
   });
 
   describe('className API', () => {
+    it('has a class name', () => {
+      render((
+        <Icon name="foobar" size="large" className="i-am-a-classname" />
+      ));
+      expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
+    });
+
     describe('fill', () => {
       it('can be "primary"', () => {
         render((
