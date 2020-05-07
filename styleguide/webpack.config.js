@@ -37,12 +37,6 @@ module.exports = {
                 { collapseGroups: true },
                 { convertColors: { shorthex: false } },
                 { convertPathData: false },
-                {
-                  removeAttrs: {
-                    attrs: '(fill|stroke)',
-                    preserveCurrentColor: true,
-                  },
-                },
               ],
             },
           },
