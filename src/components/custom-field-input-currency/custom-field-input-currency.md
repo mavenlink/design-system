@@ -47,7 +47,7 @@ presented to it, responding with a specific message for the context of that spec
 <CustomFieldInputCurrency
   id="test-id-3"
   name="test-name-3"
-  value={112}
+  value={112.5}
   currencyCode="XAF"
   label="Internal Error State"
 />
