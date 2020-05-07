@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import Icon from '../icon/icon.jsx';
+import iconCaretDown from '../../svgs/icon-caret-down.svg';
+import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 export default function CustomFieldInputSingleChoice(props) {
   return (
     <CustomFieldInputText
+      icon={<Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />}
       id={props.id}
       label={props.label}
       placeholder={props.placeholder}

@@ -30,6 +30,14 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       required={false}
       type="text"
     />
+    <svg
+      className="input-icon size-medium stroke-none color-transparent"
+      role="img"
+    >
+      <use
+        xlinkHref="#icon-caret-down.svg"
+      />
+    </svg>
   </div>
 </div>
 `;
