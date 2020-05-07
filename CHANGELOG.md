@@ -5,6 +5,9 @@
     Click to see more.
   </summary>
 
+  - Major: Icon component does not always apply `icon-base` to the SVGs -- please compose from its stylesheet.
+  - Patch: Custom field inputs expand to meet their layout container widths.
+  - Patch: Custom field date input has a nicer calendar icon.
 </details>
 
 ## 0.19.1 (May 4, 2020)
