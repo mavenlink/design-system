@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
-    <title>Icons/Zz Working/Caret/Down</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Icons/Zz-Working/Caret/Down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.38">
-        <path d="M15.9999914,17.1546376 L19.3310353,14.2567059 C19.7415453,13.8872468 20.3738351,13.9205252 20.7432941,14.3310353 C21.1127532,14.7415453 21.0794748,15.3738351 20.6689647,15.7432941 L16.6689647,19.2432941 C16.2886598,19.5855686 15.7113402,19.5855686 15.3310353,19.2432941 L11.3310353,15.7432941 C10.9205252,15.3738351 10.8872468,14.7415453 11.2567059,14.3310353 C11.6261649,13.9205252 12.2584547,13.8872468 12.6689647,14.2567059 L15.9999914,17.1546376 Z" id="line" fill="#000000" fill-rule="nonzero"></path>
-    </g>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Down Caret</title>
+  <g id="Down-Caret" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.38">
+    <path d="M10,10.1546462 L13.3310439,7.25671445 C13.7415539,6.88725543 14.3738437,6.92053385 14.7433027,7.33104387 C15.1127618,7.74155389 15.0794834,8.37384373 14.6689733,8.74330275 L10.6689733,12.2433027 C10.2886684,12.5855772 9.71134884,12.5855772 9.33104387,12.2433027 L5.33104387,8.74330275 C4.92053385,8.37384373 4.88725543,7.74155389 5.25671445,7.33104387 C5.62617347,6.92053385 6.25846331,6.88725543 6.66897333,7.25671445 L10,10.1546462 Z" id="line" fill="#000000" fill-rule="nonzero"></path>
+  </g>
 </svg>
