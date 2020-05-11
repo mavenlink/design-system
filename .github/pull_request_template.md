@@ -1,26 +1,21 @@
+<!-- 
+In order to reduce overhead in maintaing PRs, please follow these rules: 
+1. If there is a pivotal story, replace the motivation+AC sections and add the pivotal story URL
+2. If there is no pivotal story, fill in the motivation and AC sections
+3. Complete the PR checklist
+-->
+
+
 ## Motivation
 
-<!-- This section is reserved for reasoning and historical context on the proposed change set -->
-<!-- END MOTIVIATION-->
 
-## Acceptance Criteria
+## Acceptance Criteria 
 
-<!-- This section is reserved for documenting the qualifiers for accepting the PR (besides a green build) -->
-<!-- END ACCEPTANCE CRITERIA -->
 
-## Change log entry
+## PR upkeep checklist
 
-<!-- This section is reserved for change log entry. We need to copy this to the CHANGELOG.md file before merging -->
-<!-- END CHANGE LOG ENTRY -->
-
-<details>
-<summary>PR upkeep checklist</summary>
-<br />
-
+- [ ] Change log entry
 - [ ] Label(s)
 - [ ] Assignee(s)
 - [ ] Deployment URL: https://mavenlink.github.io/design-system/$BRANCH
-- [ ] (Optional) Pivotal tracker URL: 
 - [ ] (When ready for review) Reviewer(s)
-
-</details>
