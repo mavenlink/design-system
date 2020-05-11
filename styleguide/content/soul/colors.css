@@ -1,4 +1,5 @@
 @import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 :global(.swatches) {
   list-style: none;
