@@ -65,4 +65,74 @@
   /* Primitives */
   --white: #fff;
   --black: #000;
+
+  /* New brand colors */
+  --palette-new-brand-text: #004595;
+  --palette-new-brand-dark: #448fea;
+  --palette-new-brand-base: rgba(var(--palette-new-brand-dark), 0.54);
+  --palette-new-brand-light: rgba(var(--palette-new-brand-dark), 0.38);
+  --palette-new-brand-x-light: rgba(var(--palette-new-brand-dark), 0.12);
+
+  /* New grey colors */
+  --palette-new-grey-x-dark: rgba(var(--black), 0.87);
+  --palette-new-grey-dark: rgba(var(--black), 0.54);
+  --palette-new-grey-base: rgba(var(--black), 0.38);
+  --palette-new-grey-light: rgba(var(--black), 0.12);
+  --palette-new-grey-x-light: rgba(var(--black), 0.08);
+  --palette-new-grey--xx-light: rgba(var(--black), 0.03);
+
+  /* Caution colors */
+  --palette-new-caution-text: #b5200f;
+  --palette-new-caution-dark: #ee534c;
+  --palette-new-caution-base: rgba(var(--palette-new-caution-dark), 0.54);
+  --palette-new-caution-light: rgba(var(--palette-new-caution-dark), 0.38);
+  --palette-new-caution-x-light: rgba(var(--palette-new-caution-dark), 0.12);
+
+  /* Highlight colors */
+  --palette-new-highlight-dark: #f89048;
+  --palette-new-highlight-base: rgba(var(--palette-new-highlight-dark), 0.54);
+  --palette-new-highlight-light: rgba(var(--palette-new-highlight-dark), 0.38);
+  --palette-new-highlight-x-light: rgba(var(--palette-new-highlight-dark), 0.12);
+
+  /* Warning colors */
+  --palette-new-warning-dark: #f7d635;
+  --palette-new-warning-base: rgba(var(--palette-new-warning-dark), 0.54);
+  --palette-new-warning-light: rgba(var(--palette-new-warning-dark), 0.38);
+  --palette-new-warning-x-light: rgba(var(--palette-new-warning-dark), 0.12);
+
+  /* Lime colors--I don't know what else to call these */
+  --palette-new-lime-dark: #a7de26;
+  --palette-new-lime-base: rgba(var(--palette-new-lime-dark), 0.54);
+  --palette-new-lime-light: rgba(var(--palette-new-lime-dark), 0.38);
+  --palette-new-lime-x-light: rgba(var(--palette-new-lime-dark), 0.12);
+
+  /* Action colors */
+  --palette-new-action-dark: #44b76c;
+  --palette-new-action-base: rgba(var(--palette-new-action-dark), 0.54);
+  --palette-new-action-light: rgba(var(--palette-new-action-dark), 0.38);
+  --palette-new-action-x-light: rgba(var(--palette-new-action-dark), 0.12);
+
+  /* Cyan colors */
+  --palette-new-cyan-dark: #1cb1af;
+  --palette-new-cyan-base: rgba(var(--palette-new-cyan-dark), 0.54);
+  --palette-new-cyan-light: rgba(var(--palette-new-cyan-dark), 0.38);
+  --palette-new-cyan-x-light: rgba(var(--palette-new-cyan-dark), 0.12);
+
+  /* Blue colors */
+  --palette-new-blue-dark: #2d79fe;
+  --palette-new-blue-base: rgba(var(--palette-new-blue-dark), 0.54);
+  --palette-new-blue-light: rgba(var(--palette-new-blue-dark), 0.38);
+  --palette-new-blue-x-light: rgba(var(--palette-new-blue-dark), 0.12);
+
+  /* Indigo colors */
+  --palette-new-indigo-dark: #5356c8;
+  --palette-new-indigo-base: rgba(var(--palette-new-indigo-dark), 0.54);
+  --palette-new-indigo-light: rgba(var(--palette-new-indigo-dark), 0.38);
+  --palette-new-indigo-x-light: rgba(var(--palette-new-indigo-dark), 0.12);
+
+  /* Violet colors */
+  --palette-new-violet-dark: #b72982;
+  --palette-new-violet-base: rgba(var(--palette-new-violet-dark), 0.54);
+  --palette-new-violet-light: rgba(var(--palette-new-violet-dark), 0.38);
+  --palette-new-violet-x-light: rgba(var(--palette-new-violet-dark), 0.12);
 }
