@@ -9,6 +9,7 @@
   - Patch: Custom field inputs expand to meet their layout container widths.
   - Patch: Custom field date input has a nicer calendar icon.
   - Minor: Custom field input single-choice component is implemented
+  - Patch: Custom field input single-choice component's SVGs are updated
 </details>
 
 ## 0.19.2 (May 7, 2020)
