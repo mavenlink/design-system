@@ -1,5 +1,6 @@
-@import "../../../src/styles/colors.css";
 @import "../../../src/styles/colors-v2.css";
+@import "../../../src/styles/spacing.css";
+@import "../../../src/styles/typography.css";
 
 :global(.color-container) {
   display: flex;
