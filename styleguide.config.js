@@ -49,7 +49,7 @@ module.exports = {
       ],
     },
     {
-      name: 'Soul',
+      name: 'Brand Identity',
       sections: [
         {
           name: 'Colors',
