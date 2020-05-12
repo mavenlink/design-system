@@ -40,7 +40,7 @@ export default function Animations(props) {
         getTransition('astros-browser', 'astros-browser-appear', 'astros-browser-appear-active'),
         getTransition('astro-with-browser2', 'astro-with-browser2-appear', 'astro-with-browser2-appear-active'),
       ]}
-      {props.slug === 'soul' && [
+      {props.slug === 'brand-identity' && [
         getTransition('singer-dancers', 'singer-dancers-appear', 'singer-dancers-appear-active'),
         getTransition('singer-flying', 'singer-flying-appear', 'singer-flying-appear-active'),
         getTransition('singers', 'singers-appear', 'singers-appear-active'),
