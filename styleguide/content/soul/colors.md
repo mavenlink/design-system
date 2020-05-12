@@ -134,68 +134,22 @@ We use red, green, yellow, and orange to indicate status in several areas across
 
 Use Red 100, `--mds-red-100`
 
-<style>
-  .message {
-    border-top: 1px solid var(--mds-grey-38);
-    border-right: 1px solid var(--mds-grey-38);
-    border-bottom: 1px solid var(--mds-grey-38);
-    border-left: 3px solid var(--mds-red-100);
-    max-width: 300px;
-    height: 100px;
-  }
-  
-  .header-text {
-    margin-top: 4px;
-  }
-  
-  .message-body {
-    padding: var(--spacing-large);
-    color: var(--black);
-    font-size: var(--mavenlink-type-base-size);
-  }
-  
-  .message-header {
-    display: inline-flex;
-    margin-top: var(--spacing-small);
-    margin-left: var(--spacing-small);
-    width: 96%;
-    box-sizing: border-box;
-    justify-content: space-between;
-  }
-  
-  .header-info-container {
-    display: flex;
-  }
-  
-  .error-icon {
-    color: var(--mds-red-100);
-    height: var(--spacing-large);
-    margin-top: var(--spacing-small);
-    margin-right: var(--spacing-medium);
-    margin-bottom: var(--spacing-small);
-    margin-left: var(--spacing-small);
-    width: var(--spacing-large);
-  }
-  
-  .exit-icon {
-    height: var(--spacing-large);
-    stroke: var(--mds-grey-87);
-    width: var(--spacing-large);
-  }
-</style>
+<img alt="error message example" src="images/message-error.jpg" />
 
-<div class="message">
-  <div class="message-header">
-    <span class="header-info-container">
-      <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
-        <path fill="currentColor" d="M11.9 10.6c.1.3.1.6 0 .9-.2.3-.4.5-.7.5H1c-.3 0-.8-.2-.9-.5-.2-.3-.1-.9.1-1.2L5.3.5c.1-.3.4-.5.7-.5s.6.2.7.5l5.2 10.1zm-5-7.4v-.1C6.8 3 6.8 3 6.7 3H5.3c-.2 0-.2 0-.3.1v.2l.1 3.5c0 .2.2.2.3.2h1.2c.1 0 .2-.1.2-.2l.1-3.6zm.1 5c0-.1-.1-.2-.2-.2H5.2c-.1 0-.2.1-.2.2v1.5c0 .2.1.3.2.3h1.6c.1 0 .2-.1.2-.2V8.2z"/>
-      </svg>
-      <span class="header-text">CSV Failed to Upload</span>
-    </span>
-    <svg class="exit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
-      <line x1="0" y1="0" x2="12" y2="12" />
-      <line x1="12" y1="0" x2="0" y2="12" />
-    </svg>
-  </div>
-  <div class="message-body">Please check CSV file formatting and try again.</div>
-</div>
+* If red text is needed, use `--mds-red-text` to uphold accessibility requirements
+
+#### Success
+
+Use Green 100, `--mds-green-100`
+
+<img alt="success message example" src="images/message-success.jpg" />
+
+* If green text is needed, use `--mds-green-text` to uphold accessibility requirements
+
+#### Warning
+
+Use Yellow 100, `--mds-yellow-100`
+
+<img alt="warning message example" src="images/message-warning.jpg" />
+
+* Yellow text is not to be used to ensure accessibility. Use colored accents instead (icons, colored bars) and black font
