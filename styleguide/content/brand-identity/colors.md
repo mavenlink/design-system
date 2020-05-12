@@ -18,36 +18,6 @@ We manage a very small set of “base” colors, with related colors being trans
 }
 ```
 
-<style>
-  .color-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: var(--spacing-x-large);
-    margin-left: var(--spacing-small);
-    margin-right: var(--spacing-small);
-    max-height: 300px;
-    max-width: 300px;
-    width: 300px;
-  }
-  
-  .dark-contrast {
-    color: var(--white);
-    padding: var(--spacing-medium);
-    font-family: var(--mavenlink-type-font-family);
-  }
-  
-  .light-contrast {
-    color: var(--black);
-    padding: var(--spacing-medium);
-    font-family: var(--mavenlink-type-font-family);
-  }
-  
-  .other-colors {
-    display: flex;
-    flex-wrap: wrap;
-  }
-</style>
-
 <h3>Brand Colors</h3>
 <div class="color-container">
   <div class="dark-contrast" style="background-color: var(--mds-brand-text);">Brand Text</div>

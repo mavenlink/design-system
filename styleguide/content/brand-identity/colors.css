@@ -1,2 +1,30 @@
 @import "../../../src/styles/colors.css";
 @import "../../../src/styles/colors-v2.css";
+
+:global(.color-container) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-x-large);
+  margin-left: var(--spacing-small);
+  margin-right: var(--spacing-small);
+  max-height: 300px;
+  max-width: 300px;
+  width: 300px;
+}
+
+:global(.dark-contrast) {
+  color: var(--white);
+  padding: var(--spacing-medium);
+  font-family: var(--mavenlink-type-font-family);
+}
+
+:global(.light-contrast) {
+  color: var(--black);
+  padding: var(--spacing-medium);
+  font-family: var(--mavenlink-type-font-family);
+}
+
+:global(.other-colors) {
+  display: flex;
+  flex-wrap: wrap;
+}
