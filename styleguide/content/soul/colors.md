@@ -23,8 +23,11 @@ We manage a very small set of “base” colors, with related colors being trans
     display: flex;
     flex-direction: column;
     margin-bottom: var(--spacing-x-large);
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
     max-height: 300px;
     max-width: 300px;
+    width: 300px;
   }
   
   .dark-contrast {
@@ -39,6 +42,7 @@ We manage a very small set of “base” colors, with related colors being trans
   
   .other-colors {
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
 
@@ -64,54 +68,63 @@ We manage a very small set of “base” colors, with related colors being trans
 </div>
 
 <h3>Other Colors</h3>
-<div class="color-container">
-  <div class="dark-contrast" style="background-color: var(--mds-orange-100);">Orange 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-orange-54);">Orange 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-orange-38);">Orange 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-orange-12);">Orange 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-yellow-100);">Yellow 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-yellow-54);">Yellow 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-yellow-38);">Yellow 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-yellow-12);">Yellow 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-lime-100);">Lime 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-lime-54);">Lime 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-lime-38);">Lime 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-lime-12);">Lime 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-green-100);">Green 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-green-54);">Green 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-green-38);">Green 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-green-12);">Green 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-cyan-100);">Cyan 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-cyan-54);">Cyan 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-cyan-38);">Cyan 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-cyan-12);">Cyan 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-blue-100);">Blue 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-blue-54);">Blue 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-blue-38);">Blue 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-blue-12);">Blue 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-indigo-100);">Indigo 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-indigo-54);">Indigo 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-indigo-38);">Indigo 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-indigo-12);">Indigo 12</div>
-</div>
-<div class="color-container">
-  <div class="light-contrast" style="background-color: var(--mds-violet-100);">Violet 100</div>
-  <div class="light-contrast" style="background-color: var(--mds-violet-54);">Violet 54</div>
-  <div class="light-contrast" style="background-color: var(--mds-violet-38);">Violet 38</div>
-  <div class="light-contrast" style="background-color: var(--mds-violet-12);">Violet 12</div>
-</div>
+<span class="other-colors">
+  <div class="color-container">
+    <div class="dark-contrast" style="background-color: var(--mds-red-text);">Red Text</div>
+    <div class="dark-contrast" style="background-color: var(--mds-red-100);">Red 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-red-54);">Red 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-red-38);">Red 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-red-12);">Red 12</div>
+  </div>
+  <div class="color-container">
+    <div class="dark-contrast" style="background-color: var(--mds-orange-100);">Orange 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-orange-54);">Orange 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-orange-38);">Orange 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-orange-12);">Orange 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-yellow-100);">Yellow 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-yellow-54);">Yellow 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-yellow-38);">Yellow 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-yellow-12);">Yellow 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-lime-100);">Lime 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-lime-54);">Lime 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-lime-38);">Lime 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-lime-12);">Lime 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-green-100);">Green 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-green-54);">Green 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-green-38);">Green 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-green-12);">Green 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-cyan-100);">Cyan 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-cyan-54);">Cyan 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-cyan-38);">Cyan 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-cyan-12);">Cyan 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-blue-100);">Blue 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-blue-54);">Blue 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-blue-38);">Blue 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-blue-12);">Blue 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-indigo-100);">Indigo 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-indigo-54);">Indigo 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-indigo-38);">Indigo 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-indigo-12);">Indigo 12</div>
+  </div>
+  <div class="color-container">
+    <div class="light-contrast" style="background-color: var(--mds-violet-100);">Violet 100</div>
+    <div class="light-contrast" style="background-color: var(--mds-violet-54);">Violet 54</div>
+    <div class="light-contrast" style="background-color: var(--mds-violet-38);">Violet 38</div>
+    <div class="light-contrast" style="background-color: var(--mds-violet-12);">Violet 12</div>
+  </div>
+</span>
 
 ### Representing Status
 
