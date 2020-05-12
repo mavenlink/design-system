@@ -29,16 +29,6 @@ module.exports = {
           },
           {
             loader: 'svgo-loader',
-            options: {
-              plugins: [
-                { removeTitle: true },
-                { removeNonInheritableGroupAttrs: true },
-                { removeUselessStrokeAndFill: false },
-                { collapseGroups: true },
-                { convertColors: { shorthex: false } },
-                { convertPathData: false },
-              ],
-            },
           },
         ],
       },
