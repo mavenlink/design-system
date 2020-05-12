@@ -53,11 +53,11 @@ module.exports = {
       sections: [
         {
           name: 'Colors',
-          content: './styleguide/content/soul/colors.md',
+          content: './styleguide/content/brand-identity/colors.md',
         },
         {
           name: 'Typography',
-          content: './styleguide/content/soul/typography.md',
+          content: './styleguide/content/brand-identity/typography.md',
         },
       ],
     },
