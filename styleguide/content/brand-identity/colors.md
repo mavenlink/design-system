@@ -33,11 +33,13 @@ We manage a very small set of “base” colors, with related colors being trans
   .dark-contrast {
     color: var(--white);
     padding: var(--spacing-medium);
+    font-family: var(--mavenlink-type-font-family);
   }
   
   .light-contrast {
     color: var(--black);
     padding: var(--spacing-medium);
+    font-family: var(--mavenlink-type-font-family);
   }
   
   .other-colors {
