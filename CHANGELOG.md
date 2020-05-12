@@ -4,6 +4,9 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+  
+  - Major: Introduce new color palette in new color file
+  - Major: Update color documentation outlining proper color usage
 </details>
 
 ## 0.19.2 (May 7, 2020)
