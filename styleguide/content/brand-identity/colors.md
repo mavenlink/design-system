@@ -18,7 +18,7 @@ We manage a very small set of “base” colors, with related colors being trans
 }
 ```
 
-<h3>Brand Colors</h3>
+### Brand Colors
 <div class="color-container">
   <div class="dark-contrast" style="background-color: var(--mds-brand-text);">Brand Text</div>
   <div class="dark-contrast" style="background-color: var(--mds-brand-100);">Brand 100</div>
@@ -27,7 +27,7 @@ We manage a very small set of “base” colors, with related colors being trans
   <div class="light-contrast" style="background-color: var(--mds-brand-12);">Brand 12</div>
 </div>
 
-<h3>Base Colors</h3>
+### Base Colors
 <div class="color-container">
   <div class="light-contrast" style="background-color: var(--white)">White</div>
   <div class="dark-contrast" style="background-color: var(--black)">Black</div>
@@ -39,7 +39,7 @@ We manage a very small set of “base” colors, with related colors being trans
   <div class="light-contrast" style="background-color: var(--mds-grey-3);">Grey 3</div>
 </div>
 
-<h3>Other Colors</h3>
+### Other Colors
 <span class="other-colors">
   <div class="color-container">
     <div class="dark-contrast" style="background-color: var(--mds-red-text);">Red Text</div>
