@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: 'jest-environment-jsdom-sixteen',
   moduleNameMapper: {
-    css$: 'identity-obj-proxy',
+    '\\.css$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect.js',
