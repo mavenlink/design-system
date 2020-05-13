@@ -4,9 +4,12 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
+
   - This is a change log example item
 </details>
+
+## 0.20.1 (May 13, 2020)
+- Minor: Update color documentation to newest version
 
 ## 0.20.0 (May 13, 2020)
 - Major: Icon component does not always apply `icon-base` to the SVGs -- please compose from its stylesheet.
