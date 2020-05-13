@@ -7,8 +7,6 @@
 }
 
 .icon-base {
-  height: var(--iconSizeMedium);
-  width: var(--iconSizeMedium);
   display: inline-block;
   vertical-align: middle;
 }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
+exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
 <div
   className="custom-field-input-text"
   data-testid="custom-field-input"
@@ -10,9 +10,9 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   >
     <label
       className="label"
-      htmlFor="hello"
+      htmlFor="yo"
     >
-      Hello
+      Foo
     </label>
   </div>
   <div
@@ -20,27 +20,22 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   >
     <input
       className="input"
-      defaultValue=""
       disabled={false}
-      id="hello"
+      id="yo"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
-      readOnly={true}
+      readOnly={false}
       required={false}
-      step={1}
-      type="date"
+      type="text"
     />
     <svg
-      className="input-icon size-medium color-transparent"
+      className="input-icon size-medium stroke-none color-transparent"
       role="img"
     >
-      <title>
-        Hello
-      </title>
       <use
-        xlinkHref="#icon-calendar-fill.svg"
+        xlinkHref="#icon-caret-down.svg"
       />
     </svg>
   </div>

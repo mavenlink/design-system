@@ -88,11 +88,7 @@ export default function CustomFieldInputText(props) {
           step={props.step}
           type={props.type}
         />
-        {showIcon() &&
-          <div className={styles['input-icon-container']}>
-            { icon() }
-          </div>
-        }
+        {showIcon() && icon()}
       </div>
       {props.error && <span className={styles.help}>{validationMessage}</span>}
     </div>
