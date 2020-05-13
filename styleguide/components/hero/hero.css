@@ -47,7 +47,7 @@
   background-image: url(mds-components.jpeg);
 }
 
-.soul {
+.brand-identity {
   composes: hero;
   background-image: url(mds-soul.jpeg);
 }

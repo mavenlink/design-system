@@ -4,7 +4,7 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
+  
   - This is a change log example item
 </details>
 

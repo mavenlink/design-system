@@ -1,0 +1,75 @@
+:root {
+  /* Primitives */
+  --white: #fff;
+  --black: #000;
+
+  /* Brand colors */
+  --mds-brand-text: #004595;
+  --mds-brand-100: #448fea;
+  --mds-brand-54: #448fea36;
+  --mds-brand-38: #448fea26;
+  --mds-brand-12: #448fea0c;
+
+  /* Grey */
+  --mds-grey-87: #00000057;
+  --mds-grey-54: #00000036;
+  --mds-grey-38: #00000026;
+  --mds-grey-12: #0000000c;
+  --mds-grey-8: #00000008;
+  --mds-grey-3: #00000003;
+
+  /* Red colors */
+  --mds-red-text: #b5200f;
+  --mds-red-100: #ee534c;
+  --mds-red-54: #ee534c36;
+  --mds-red-38: #ee534c26;
+  --mds-red-12: #ee534c0c;
+
+  /* Orange colors */
+  --mds-orange-100: #f89048;
+  --mds-orange-54: #f8904836;
+  --mds-orange-38: #f8904826;
+  --mds-orange-12: #f890480c;
+
+  /* Yellow colors */
+  --mds-yellow-100: #f7d635;
+  --mds-yellow-54: #f7d63536;
+  --mds-yellow-38: #f7d63526;
+  --mds-yellow-12: #f7d6350c;
+
+  /* Lime colors */
+  --mds-lime-100: #a7de26;
+  --mds-lime-54: #a7de2636;
+  --mds-lime-38: #a7de2626;
+  --mds-lime-12: #a7de260c;
+
+  /* Action colors */
+  --mds-green-100: #44b76c;
+  --mds-green-54: #44b76c36;
+  --mds-green-38: #44b76c26;
+  --mds-green-12: #44b76c0c;
+
+  /* Cyan colors */
+  --mds-cyan-100: #1cb1af;
+  --mds-cyan-54: #1cb1af36;
+  --mds-cyan-38: #1cb1af26;
+  --mds-cyan-12: #1cb1af0c;
+
+  /* Blue colors */
+  --mds-blue-100: #2d79fe;
+  --mds-blue-54: #2d79fe36;
+  --mds-blue-38: #2d79fe26;
+  --mds-blue-12: #2d79fe0c;
+
+  /* Indigo colors */
+  --mds-indigo-100: #5356c8;
+  --mds-indigo-54: #5356c836;
+  --mds-indigo-38: #5356c826;
+  --mds-indigo-12: #5356c80c;
+
+  /* Violet colors */
+  --mds-violet-100: #b72982;
+  --mds-violet-54: #b7298236;
+  --mds-violet-38: #b7298226;
+  --mds-violet-12: #b729820c;
+}

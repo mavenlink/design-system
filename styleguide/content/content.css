@@ -1,5 +1,5 @@
 @import './overview/overview.css';
-@import './soul/soul.css';
+@import './brand-identity/brand-identity.css';
 
 body {
   /* Overrides the css reset upstream which sets to 12px */

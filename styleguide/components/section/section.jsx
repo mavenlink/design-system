@@ -4,7 +4,7 @@ import styles from './section.css';
 import Hero from '../hero/hero.jsx';
 
 function isHero(slug) {
-  const heroes = ['overview', 'components', 'soul', 'guidelines'];
+  const heroes = ['overview', 'components', 'brand-identity', 'guidelines'];
   return heroes.includes(slug);
 }
 
