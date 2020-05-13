@@ -24,28 +24,8 @@ module.exports = {
           /src\/svgs\//,
         ],
         use: [
-          {
-            loader: 'svg-sprite-loader',
-          },
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                { removeTitle: true },
-                { removeNonInheritableGroupAttrs: true },
-                { removeUselessStrokeAndFill: false },
-                { collapseGroups: true },
-                { convertColors: { shorthex: false } },
-                { convertPathData: false },
-                {
-                  removeAttrs: {
-                    attrs: '(fill|stroke)',
-                    preserveCurrentColor: true,
-                  },
-                },
-              ],
-            },
-          },
+          { loader: 'svg-sprite-loader' },
+          { loader: 'svgo-loader' },
         ],
       },
       {

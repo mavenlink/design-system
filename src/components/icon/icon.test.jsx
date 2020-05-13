@@ -42,6 +42,13 @@ describe('Icon', () => {
   });
 
   describe('className API', () => {
+    it('has a class name', () => {
+      render((
+        <Icon name="foobar" size="large" className="i-am-a-classname" />
+      ));
+      expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
+    });
+
     describe('fill', () => {
       it('can be "primary"', () => {
         render((
@@ -76,6 +83,19 @@ describe('Icon', () => {
           <Icon name="foobar" fill="none" />
         ));
         expect(screen.getByRole('img')).toHaveClass('fill-none');
+      });
+
+      it('can be "skip"', () => {
+        render((
+          <Icon name="foobar" fill="skip" />
+        ));
+
+        expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-action');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-none');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
       });
     });
 
@@ -114,6 +134,19 @@ describe('Icon', () => {
         ));
         expect(screen.getByRole('img')).toHaveClass('stroke-none');
       });
+
+      it('can be "skip"', () => {
+        render((
+          <Icon name="foobar" stroke="skip" />
+        ));
+
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
+      });
     });
 
     describe('currentColor', () => {
@@ -150,6 +183,19 @@ describe('Icon', () => {
           <Icon name="foobar" currentColor="transparent" />
         ));
         expect(screen.getByRole('img')).toHaveClass('color-transparent');
+      });
+
+      it('can be "skip"', () => {
+        render((
+          <Icon name="foobar" currentColor="skip" />
+        ));
+
+        expect(screen.getByRole('img')).not.toHaveClass('color-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('color-action');
+        expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('color-none');
+        expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
     });
   });
