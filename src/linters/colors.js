@@ -1,6 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import stylelint from 'stylelint';
+/* eslint-disable import/no-commonjs */
+
+const fs = require('fs');
+const path = require('path');
+const stylelint = require('stylelint');
 
 const stylesheet = fs.readFileSync(path.join(__dirname, '..', 'styles', 'colors-v2.css'), 'UTF-8');
 const cssVarRegex = /--[a-z0-9-]+/g;
