@@ -1,4 +1,5 @@
 @import "../../styles/colors.css";
+@import '../../styles/colors-v2.css';
 @import "../../styles/spacing.css";
 @import "../../styles/typography.css";
 
@@ -11,11 +12,11 @@
   font-family: var(--mavenlink-type-font-family);
   font-size: var(--mavenlink-type-small-size);
   margin: 0 0 var(--spacing-small);
-  color: var(--palette-grey-dark);
+  color: var(--mds-grey-54);
 }
 
 .input {
-  border: 1px solid var(--palette-grey-light);
+  border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
   box-sizing: border-box;
   font-family: var(--mavenlink-type-font-family);
@@ -27,11 +28,11 @@
 }
 
 .input::placeholder {
-  color: var(--palette-grey-dark);
+  color: var(--mds-grey-54);
 }
 
 .input:disabled {
-  background-color: var(--palette-grey-x-light);
+  background-color: var(--mds-grey-3);
 }
 
 .invalid-icon {
@@ -44,14 +45,14 @@
 
 .invalid-label {
   composes: label;
-  color: var(--palette-caution-text);
+  color: var(--mds-red-text);
 }
 
 .invalid-input {
   composes: input;
-  border-color: var(--palette-caution-base);
+  border-color: var(--mds-red-100);
 }
 
 .invalid-input:hover {
-  border-color: var(--palette-caution-hover);
+  border-color: var(--mds-red-100);
 }
