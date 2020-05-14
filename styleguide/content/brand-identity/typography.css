@@ -1,4 +1,5 @@
 @import "../../../src/styles/colors.css";
+@import '../../../src/styles/colors-v2.css';
 @import "../../../src/styles/typography.css";
 
 :global(.type-top) {
@@ -6,11 +7,11 @@
 }
 
 :global(.type-title) {
-  border-bottom: 1px solid var(--palette-neutral-light);
+  border-bottom: 1px solid var(--mds-grey-8);
 }
 
 :global(.type-section-title) {
-  color: #716f67;
+  color: #716f67; /* stylelint-disable-line */
   text-transform: uppercase;
   font-size: 12px;
   margin-top: 50px;
@@ -99,7 +100,7 @@
   margin-bottom: 0;
   height: 75px;
   align-items: center;
-  border-bottom: 1px solid var(--palette-neutral-light);
+  border-bottom: 1px solid var(--mds-grey-8);
 }
 
 :global(.type-columns *) {
@@ -153,11 +154,11 @@
 
 :global(.type-headings) {
   margin-bottom: 0;
-  border-bottom: 1px solid var(--palette-neutral-mid-dark);
+  border-bottom: 1px solid var(--mds-grey-87);
 }
 
 :global(.type-headings span) {
-  color: #716f67;
+  color: #716f67; /* stylelint-disable-line mds/colors */
   text-transform: uppercase;
   font-family: var(--mavenlink-type-font-family);
   font-size: 11px;
