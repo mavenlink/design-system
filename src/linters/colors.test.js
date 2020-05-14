@@ -14,15 +14,83 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
-  it('fails with hex colors', async () => {
+  it('fails on a CSS variable value', async () => {
+    const code = '.className { color: var(--palette-brand-text); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on named colors values', async () => {
+    const code = '.should-fail { color: aliceblue; }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on 3-digit hex values', async () => {
+    const code = '.should-fail { color: #ffa; }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on 6-digit hex values', async () => {
     const code = '.should-fail { color: #ffaabb; }';
 
-    await stylelint.lint(configuration({ code })).then((result) => {
-      expect(result.errored).toBe(true);
-      expect(result.results.length).toBe(1);
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
 
-      const message = result.results[0].warnings[0].text;
-      expect(message).toContain('Avoid using hex codes. Please use MDS variables instead. See https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors');
+  it('fails on 4-digit hex values', async () => {
+    const code = '.should-fail { color: #ffaa; }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on 8-digit hex values', async () => {
+    const code = '.should-fail { color: #ffaaffaa; }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on rgb values', async () => {
+    const code = '.should-fail { color: rgb(0, 0, 0); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on rgba values', async () => {
+    const code = '.should-fail { color: rgba(0, 0, 0, 0); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on hsl values', async () => {
+    const code = '.should-fail { color: hsl(0, 0, 0); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
+  it('fails on hsla values', async () => {
+    const code = '.should-fail { color: hsla(0, 0, 0, 0); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
     });
   });
 
