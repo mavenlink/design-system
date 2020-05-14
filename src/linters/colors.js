@@ -29,7 +29,6 @@ module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOptio
     root.walkDecls((declaration) => {
       const property = declaration.prop;
 
-
       if (properties.includes(property)) {
         const cssVariable = (declaration.value.match(/--[a-z0-9\-]+/g) || [])[0];
         const invalidColor = !validColors.includes(cssVariable);
