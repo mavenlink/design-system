@@ -9,20 +9,28 @@ const ruleName = 'mds/colors';
 const url = 'https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors';
 
 const messages = stylelint.utils.ruleMessages(ruleName, {
-  rejected: `Please use MDS variables instead. See ${url}`,
+  rejected: `Please use MDS color variables instead. See ${url}`,
 });
 
-const properties = [
-  'color', // no shorthand
-  'background-color', // background - we only care if value length is 1, maybe add logic about url
-  'border-color', // border - we only care about if value length is 3
-  'border-left-color', // border-left - we only care about if value length is 3
-  'border-top-color', // border-top - we only care about if value length is 3
-  'border-right-color', // border-right - we only care about if value length is 3
-  'border-bottom-color', // border-bottom - we only care about if value length is 3
-  'stroke',
-  'fill',
-];
+const valueTokenIndices = {
+  color: 0,
+  'background-color': 0,
+  'border-color': 0,
+  'border-left-color': 0,
+  'border-top-color': 0,
+  'border-right-color': 0,
+  'border-bottom-color': 0,
+  stroke: 0,
+  fill: 0,
+  background: 0,
+  border: 2,
+  'border-left': 2,
+  'border-top': 2,
+  'border-right': 2,
+  'border-bottom': 2,
+};
+
+const properties = Object.keys(valueTokenIndices);
 
 module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOption) => {
   return (root, result) => {
@@ -30,42 +38,16 @@ module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOptio
       const property = declaration.prop;
 
       if (properties.includes(property)) {
-        const cssVariable = (declaration.value.match(/--[a-z0-9\-]+/g) || [])[0];
+        if (declaration.value.indexOf('url(') !== -1) return;
+
+        const valueTokens = declaration.value.split(' ');
+
+        const cssVariable = (valueTokens[valueTokenIndices[property]].match(/--[a-z0-9\-]+/g) || [])[0];
         const invalidColor = !validColors.includes(cssVariable);
 
         if (invalidColor) {
           const violation = { ruleName, node: declaration, result };
           stylelint.utils.report({ ...violation, message: messages.rejected });
-        }
-      }
-
-      if (property === 'border') {
-        const valueTokens = declaration.value.split(' ');
-
-        if (valueTokens.length === 3) {
-          const cssVariable = (valueTokens[2].match(/--[a-z0-9\-]+/g) || [])[0];
-          const invalidColor = !validColors.includes(cssVariable);
-
-          if (invalidColor) {
-            const violation = { ruleName, node: declaration, result };
-            stylelint.utils.report({ ...violation, message: messages.rejected });
-          }
-        }
-      }
-
-      if (property === 'background') {
-        if (declaration.value.indexOf('url(') !== -1) return;
-
-        const valueTokens = declaration.value.split(' ');
-
-        if (valueTokens.length === 1) {
-          const cssVariable = (valueTokens[0].match(/--[a-z0-9\-]+/g) || [])[0];
-          const invalidColor = !validColors.includes(cssVariable);
-
-          if (invalidColor) {
-            const violation = { ruleName, node: declaration, result };
-            stylelint.utils.report({ ...violation, message: messages.rejected });
-          }
         }
       }
     });
