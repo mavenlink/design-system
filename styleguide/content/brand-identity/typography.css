@@ -154,7 +154,7 @@
 
 :global(.type-headings) {
   margin-bottom: 0;
-  border-bottom: 1px solid var(--mds-grey-87);
+  border-bottom: 1px solid var(--mds-grey-54);
 }
 
 :global(.type-headings span) {
