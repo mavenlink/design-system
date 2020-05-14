@@ -100,7 +100,7 @@
   margin-bottom: 0;
   height: 75px;
   align-items: center;
-  border-bottom: 1px solid var(--mds-grey-8);
+  border-bottom: 1px solid var(--mds-grey-12);
 }
 
 :global(.type-columns *) {
