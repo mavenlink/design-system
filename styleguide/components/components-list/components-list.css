@@ -1,4 +1,4 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 :root {
   --fullLeftDistance: 6px;
@@ -11,7 +11,7 @@
 }
 
 .item {
-  color: var(--palette-neutral-x-dark);
+  color: var(--mds-grey-87);
   display: block;
   margin: 8px 0;
   font-size: 16px;
@@ -28,17 +28,17 @@
 
 .link:link,
 .link:visited {
-  color: var(--palette-neutral-mid-dark);
+  color: var(--mds-grey-38);
 }
 
 .current {
   composes: link;
-  border-left: var(--selectedBorderWidth) solid var(--palette-primary-base);
+  border-left: var(--selectedBorderWidth) solid var(--mds-brand-100);
   font-weight: bold;
   padding-left: 3px;
 }
 
 .current:link,
 .current:visited {
-  color: black;
+  color: var(--black);
 }
