@@ -109,4 +109,12 @@ describe('src/linters/colors', () => {
       expect(data.errored).toBe(true);
     });
   });
+
+  it('fails on border short-hand', async () => {
+    const code = '.should-fail { border: 1px solid greysonblue; }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
 });
