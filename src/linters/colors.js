@@ -3,7 +3,7 @@ import path from 'path';
 import stylelint from 'stylelint';
 
 const stylesheet = fs.readFileSync(path.join(__dirname, '..', 'styles', 'colors-v2.css'), 'UTF-8');
-const validColors = stylesheet.match(/--[a-z0-9\-]+/g);
+const validColors = stylesheet.match(/--[a-z0-9-]+/g);
 
 const ruleName = 'mds/colors';
 const url = 'https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors';
@@ -32,7 +32,7 @@ const valueTokenIndices = {
 
 const properties = Object.keys(valueTokenIndices);
 
-module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOption) => {
+module.exports = stylelint.createPlugin(ruleName, () => {
   return (root, result) => {
     root.walkDecls((declaration) => {
       const property = declaration.prop;
@@ -42,7 +42,7 @@ module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOptio
 
         const valueTokens = declaration.value.split(' ');
 
-        const cssVariable = (valueTokens[valueTokenIndices[property]].match(/--[a-z0-9\-]+/g) || [])[0];
+        const cssVariable = (valueTokens[valueTokenIndices[property]].match(/--[a-z0-9-]+/g) || [])[0];
         const invalidColor = !validColors.includes(cssVariable);
 
         if (invalidColor) {
