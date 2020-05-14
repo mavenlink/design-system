@@ -14,6 +14,14 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
+  it('fails on a CSS variable value', async () => {
+    const code = '.className { color: var(--palette-brand-text); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
+    });
+  });
+
   it('fails on named colors values', async () => {
     const code = '.should-fail { color: aliceblue; }';
 
