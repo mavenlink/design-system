@@ -1,35 +1,33 @@
+import fs from 'fs';
+import path from 'path';
 import stylelint from 'stylelint';
-import cssColorMap from './data/css-colors.json';
+
+function processColors() {
+  const stylesheet = fs.readFileSync(path.join(__dirname, '..', 'styles', 'colors-v2.css'), 'UTF-8');
+
+  return stylesheet.match(/--[a-z0-9\-]+/g);
+}
+
+const validColors = processColors();
 
 const ruleName = 'mds/colors';
 const url = 'https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors';
-const solution = `Please use MDS variables instead. See ${url}`;
 
 const messages = stylelint.utils.ruleMessages(ruleName, {
-  noHex: `Avoid using hex codes. ${solution}`,
-  noCssColors: `Avoid using CSS colors. ${solution}`,
+  rejected: `Please use MDS variables instead. See ${url}`,
 });
 
 const properties = ['color', 'background-color'];
-const hasHex = value => value.match(/#[a-fA-F0-9]+/);
-const isCssColor = value => Object.keys(cssColorMap).includes(value);
 
 module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOption) => {
   return (root, result) => {
     root.walkDecls((declaration) => {
       const property = declaration.prop;
-      const invalidColor = hasHex(declaration.value) || isCssColor(declaration.value);
+      const invalidColor = !validColors.includes(declaration.value);
 
       if (properties.includes(property) && invalidColor) {
         const violation = { ruleName, node: declaration, result };
-
-        if (hasHex(declaration.value)) {
-          stylelint.utils.report({ ...violation, message: messages.noHex });
-        }
-
-        if (isCssColor(declaration.value)) {
-          stylelint.utils.report({ ...violation, message: messages.noCssColors });
-        }
+        stylelint.utils.report({ ...violation, message: messages.rejected });
       }
     });
   };
