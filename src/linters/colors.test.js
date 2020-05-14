@@ -14,7 +14,7 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
-  it('does a thing', async () => {
+  it('fails on hex values', async () => {
     const code = '.should-fail { color: #ffaabb; }';
 
     await stylelint.lint(configuration({ code })).then((result) => {
