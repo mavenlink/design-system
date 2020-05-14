@@ -1,4 +1,4 @@
-@import "../../styles/colors.css";
+@import "../../styles/colors-v2.css";
 @import "../../styles/spacing.css";
 @import "../../styles/typography.css";
 
@@ -18,13 +18,13 @@
 }
 
 .head {
-  background: var(--palette-grey-x-light);
-  border-bottom: 1px solid var(--palette-grey-light);
+  background: var(--mds-grey-3);
+  border-bottom: 1px solid var(--mds-grey-12);
   box-sizing: border-box;
 }
 
 .row {
-  border-bottom: 1px solid var(--palette-grey-light);
+  border-bottom: 1px solid var(--mds-grey-12);
   box-sizing: border-box;
 }
 
@@ -34,7 +34,7 @@
   padding: var(--spacing-medium);
   font-size: var(--mavenlink-type-base-size);
   vertical-align: top;
-  color: var(--palette-grey-x-dark);
+  color: var(--mds-grey-87);
 }
 
 .headerCell {
@@ -42,5 +42,5 @@
   font-size: var(--mavenlink-type-small-size);
   text-align: left;
   vertical-align: bottom;
-  color: var(--palette-grey-dark);
+  color: var(--mds-grey-54);
 }
