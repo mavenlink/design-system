@@ -17,8 +17,8 @@ describe('src/linters/colors', () => {
   it('fails on hex values', async () => {
     const code = '.should-fail { color: #ffaabb; }';
 
-    await stylelint.lint(configuration({ code })).then((result) => {
-      expect(result.errored).toBe(true);
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(true);
     });
   });
 });
