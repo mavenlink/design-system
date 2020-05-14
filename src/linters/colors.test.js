@@ -14,6 +14,22 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
+  it('passes on a short MDS variable value', async () => {
+    const code = '.className { color: var(--white); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(false);
+    });
+  });
+
+  it('passes on a long MDS variable value', async () => {
+    const code = '.className { color: var(--mds-brand-100); }';
+
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(false);
+    });
+  });
+
   it('fails on a CSS variable value', async () => {
     const code = '.className { color: var(--palette-brand-text); }';
 
