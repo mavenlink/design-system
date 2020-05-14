@@ -118,6 +118,13 @@ describe('src/linters/colors', () => {
     });
   });
 
+  it('succeeds on a border', async () => {
+    const code = '.yo { border: none; }';
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(false);
+    });
+  });
+
   describe('background declaraction', () => {
     it('disregards url(...) values', async () => {
       const code = '.should-fail { background: url(); }';

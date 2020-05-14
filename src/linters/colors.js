@@ -44,8 +44,13 @@ module.exports = stylelint.createPlugin(ruleName, () => {
         if (declaration.value.indexOf('url(') !== -1) return;
 
         const valueTokens = declaration.value.split(' ');
+        const propertyIndex = valueTokenIndices[property];
 
-        const cssVariable = (valueTokens[valueTokenIndices[property]].match(cssVarRegex) || [])[0];
+        if (!valueTokens[propertyIndex]) {
+          return;
+        }
+
+        const cssVariable = (valueTokens[propertyIndex].match(cssVarRegex) || [])[0];
         const invalidColor = !validColors.includes(cssVariable);
 
         if (invalidColor) {
