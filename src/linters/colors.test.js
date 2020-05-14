@@ -14,11 +14,15 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
-  it('does a thing', async () => {
+  it('fails with hex colors', async () => {
     const code = '.should-fail { color: #ffaabb; }';
 
     await stylelint.lint(configuration({ code })).then((result) => {
       expect(result.errored).toBe(true);
+      expect(result.results.length).toBe(1);
+
+      const message = result.results[0].warnings[0].text;
+      expect(message).toContain('Avoid using hex codes. Please use MDS variables instead. See https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors');
     });
   });
 });
