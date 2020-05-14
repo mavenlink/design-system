@@ -8,7 +8,7 @@
 
 .header {
   background-color: var(--mds-grey-3);
-  border-bottom: 1px solid var(--mds-grey-3);
+  border-bottom: 1px solid var(--mds-grey-12);
   display: flex;
   font-family: var(--mavenlink-type-font-headings);
   height: var(--headerHeight);
@@ -29,7 +29,7 @@
 }
 
 .end {
-  color: var(--mds-grey-38);
+  color: var(--mds-grey-54);
 }
 
 .section {
@@ -45,5 +45,5 @@
 }
 
 .github:hover {
-  background-color: var(--mds-grey-8);
+  background-color: var(--mds-grey-12);
 }

@@ -7,7 +7,7 @@
 }
 
 :global(.type-title) {
-  border-bottom: 1px solid var(--mds-grey-8);
+  border-bottom: 1px solid var(--mds-grey-12);
 }
 
 :global(.type-section-title) {
@@ -100,7 +100,7 @@
   margin-bottom: 0;
   height: 75px;
   align-items: center;
-  border-bottom: 1px solid var(--mds-grey-8);
+  border-bottom: 1px solid var(--mds-grey-12);
 }
 
 :global(.type-columns *) {
@@ -154,7 +154,7 @@
 
 :global(.type-headings) {
   margin-bottom: 0;
-  border-bottom: 1px solid var(--mds-grey-87);
+  border-bottom: 1px solid var(--mds-grey-54);
 }
 
 :global(.type-headings span) {
