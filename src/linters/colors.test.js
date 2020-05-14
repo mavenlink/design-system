@@ -125,7 +125,21 @@ describe('src/linters/colors', () => {
     });
   });
 
-  describe('background declaraction', () => {
+  it('succeeds for the word none', async () => {
+    const code = '.yo { fill: none; }';
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(false);
+    });
+  });
+
+  it('succeeds for the word transparent', async () => {
+    const code = '.yooooooo { color: transparent; }';
+    await stylelint.lint(configuration({ code })).then((data) => {
+      expect(data.errored).toBe(false);
+    });
+  });
+
+  describe('background declaration', () => {
     it('disregards url(...) values', async () => {
       const code = '.should-fail { background: url(); }';
 

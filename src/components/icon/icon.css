@@ -1,4 +1,4 @@
-@import "../../../src/styles/colors.css";
+@import '../../../src/styles/colors-v2.css';
 
 :root {
   --iconSizeSmall: 16px;
@@ -12,23 +12,23 @@
 }
 
 .fill-primary {
-  fill: var(--palette-primary-base);
+  fill: var(--mds-brand-100);
 }
 
 .fill-action {
-  fill: var(--palette-action-base);
+  fill: var(--mds-green-100);
 }
 
 .fill-caution {
-  fill: var(--palette-caution-base);
+  fill: var(--mds-red-100);
 }
 
 .fill-highlight {
-  fill: var(--palette-highlight-base);
+  fill: var(--mds-orange-100);
 }
 
 .fill-gray {
-  fill: var(--palette-grey-base);
+  fill: var(--mds-grey-38);
 }
 
 .fill-none {
@@ -36,23 +36,23 @@
 }
 
 .stroke-primary {
-  stroke: var(--palette-primary-base);
+  stroke: var(--mds-brand-100);
 }
 
 .stroke-action {
-  stroke: var(--palette-action-base);
+  stroke: var(--mds-green-100);
 }
 
 .stroke-highlight {
-  stroke: var(--palette-highlight-base);
+  stroke: var(--mds-orange-100);
 }
 
 .stroke-caution {
-  stroke: var(--palette-caution-base);
+  stroke: var(--mds-red-100);
 }
 
 .stroke-gray {
-  stroke: var(--palette-grey-base);
+  stroke: var(--mds-grey-38);
 }
 
 .stroke-none {
@@ -60,23 +60,23 @@
 }
 
 .color-primary {
-  color: var(--palette-primary-base);
+  color: var(--mds-brand-100);
 }
 
 .color-action {
-  color: var(--palette-action-base);
+  color: var(--mds-green-100);
 }
 
 .color-highlight {
-  color: var(--palette-highlight-base);
+  color: var(--mds-orange-100);
 }
 
 .color-caution {
-  color: var(--palette-caution-base);
+  color: var(--mds-red-100);
 }
 
 .color-gray {
-  color: var(--palette-grey-base);
+  color: var(--mds-grey-38);
 }
 
 .color-transparent {
