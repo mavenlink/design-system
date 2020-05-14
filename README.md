@@ -62,6 +62,29 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
   }
   ```
 
+### Style linter
+
+We periodically update and upgrade styles. We have also created linters to help with those changes! To use, do the following:
+
+ - Install [stylelint](https://stylelint.io/) into your project
+ - In your stylelint configuration file (`.stylelintrc.json, .stylelintrc, stylelint.config.js`) include the following:
+ 
+    ```js
+    module.exports = {
+      // ... stylelint configuration ...
+      plugins: [
+        // ...
+        './node_modules/@mavenlink/design-system/src/linters/colors.js',
+      ],
+      // ...
+      rules: [
+         // ...
+         'mds/colors': true,
+      ],
+    }
+    ```
+ - Run stylelint to see failures
+
 ## Documentation
 
 - [Code of conduct](./docs/code_of_conduct.md)
