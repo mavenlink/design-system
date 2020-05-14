@@ -53,6 +53,22 @@ module.exports = stylelint.createPlugin(ruleName, (primaryOption, secondaryOptio
           }
         }
       }
+
+      if (property === 'background') {
+        if (declaration.value.indexOf('url(') !== -1) return;
+
+        const valueTokens = declaration.value.split(' ');
+
+        if (valueTokens.length === 1) {
+          const cssVariable = (valueTokens[0].match(/--[a-z0-9\-]+/g) || [])[0];
+          const invalidColor = !validColors.includes(cssVariable);
+
+          if (invalidColor) {
+            const violation = { ruleName, node: declaration, result };
+            stylelint.utils.report({ ...violation, message: messages.rejected });
+          }
+        }
+      }
     });
   };
 });

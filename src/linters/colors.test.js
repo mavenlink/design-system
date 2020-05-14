@@ -117,4 +117,22 @@ describe('src/linters/colors', () => {
       expect(data.errored).toBe(true);
     });
   });
+
+  describe('background declaraction', () => {
+    it('disregards url(...) values', async () => {
+      const code = '.should-fail { background: url(); }';
+
+      await stylelint.lint(configuration({ code })).then((data) => {
+        expect(data.errored).toBe(false);
+      });
+    });
+
+    it('fails on non-MDS values', async () => {
+      const code = '.should-fail { background: blue; }';
+
+      await stylelint.lint(configuration({ code })).then((data) => {
+        expect(data.errored).toBe(true);
+      });
+    });
+  });
 });
