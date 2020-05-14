@@ -8,7 +8,7 @@
 
 .header {
   background-color: var(--mds-grey-3);
-  border-bottom: 1px solid var(--mds-grey-3);
+  border-bottom: 1px solid var(--mds-grey-12);
   display: flex;
   font-family: var(--mavenlink-type-font-headings);
   height: var(--headerHeight);
