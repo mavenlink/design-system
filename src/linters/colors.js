@@ -33,6 +33,7 @@ const valueTokenIndices = {
   'border-bottom': 2,
 };
 
+const whitelistedValues = ['none', 'transparent'];
 const properties = Object.keys(valueTokenIndices);
 
 module.exports = stylelint.createPlugin(ruleName, () => {
@@ -41,6 +42,7 @@ module.exports = stylelint.createPlugin(ruleName, () => {
       const property = declaration.prop;
 
       if (properties.includes(property)) {
+        if (whitelistedValues.includes(declaration.value)) return;
         if (declaration.value.indexOf('url(') !== -1) return;
 
         const valueTokens = declaration.value.split(' ');
