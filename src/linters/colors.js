@@ -2,13 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import stylelint from 'stylelint';
 
-function processColors() {
-  const stylesheet = fs.readFileSync(path.join(__dirname, '..', 'styles', 'colors-v2.css'), 'UTF-8');
-
-  return stylesheet.match(/--[a-z0-9\-]+/g);
-}
-
-const validColors = processColors();
+const stylesheet = fs.readFileSync(path.join(__dirname, '..', 'styles', 'colors-v2.css'), 'UTF-8');
+const validColors = stylesheet.match(/--[a-z0-9\-]+/g);
 
 const ruleName = 'mds/colors';
 const url = 'https://mavenlink.github.io/design-system/master/#/Brand%20Identity?id=colors';
