@@ -4,9 +4,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-  - Patch: Fix MDS colors with incorrect transparency
 </details>
+
+## 0.20.3 (May 15, 2020)
+- Patch: Fix MDS colors with incorrect transparency
 
 ## 0.20.2 (May 15, 2020)
 - Minor: Create linter for new MDS colors
