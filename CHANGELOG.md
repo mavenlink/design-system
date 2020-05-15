@@ -5,6 +5,7 @@
     Click to see more.
   </summary>
 
+  - Patch: Fix MDS colors with incorrect transparency
 </details>
 
 ## 0.20.2 (May 15, 2020)
