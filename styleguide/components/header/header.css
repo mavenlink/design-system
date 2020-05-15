@@ -7,7 +7,7 @@
 }
 
 .header {
-  background-color: var(--mds-grey-3);
+  background-color: #f8f8f8; /* stylelint-disable-line mds/colors */
   border-bottom: 1px solid var(--mds-grey-12);
   display: flex;
   font-family: var(--mavenlink-type-font-headings);
