@@ -1,10 +1,10 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 .root,
 .docs,
 .tabButtons,
 .header {
-  color: var(--palette-neutral-x-dark);
+  color: var(--mds-grey-87);
 }
 
 .root {

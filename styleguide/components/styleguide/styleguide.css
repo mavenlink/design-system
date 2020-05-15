@@ -1,7 +1,7 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 .root {
-  background-color: white;
+  background-color: var(--white);
   margin-top: 65px;
   padding-left: 200px;
 }
@@ -16,8 +16,8 @@
 }
 
 .sidebar {
-  background-color: white;
-  border: solid var(--palette-neutral-light);
+  background-color: var(--white);
+  border: solid var(--mds-grey-12);
   border-width: 1px 1px 0 0;
   position: fixed;
   top: 65px;

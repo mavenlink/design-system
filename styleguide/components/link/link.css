@@ -1,14 +1,14 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 .link:link,
 .link:visited {
   font-size: inherit;
-  color: var(--palette-primary-base);
+  color: var(--mds-brand-100);
   text-decoration: none;
 }
 
 .link:hover,
 .link:active {
-  color: var(--palette-neutral-mid-dark);
+  color: var(--mds-grey-54);
   cursor: pointer;
 }

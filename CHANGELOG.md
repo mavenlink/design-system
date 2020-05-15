@@ -5,7 +5,9 @@
     Click to see more.
   </summary>
 
-  - This is a change log example item
+  - Minor: Create linter for new MDS colors
+  - Minor: Update documentation concerning new linter
+  - Patch: Fix linter errors in MDS repo
 </details>
 
 ## 0.20.1 (May 13, 2020)

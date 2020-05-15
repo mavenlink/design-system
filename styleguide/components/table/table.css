@@ -1,8 +1,8 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 .table {
   composes: table from '../../../src/components/table/table.css';
-  border: 1px solid var(--palette-neutral-light);
+  border: 1px solid var(--mds-grey-12);
 }
 
 .header {

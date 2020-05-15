@@ -1,4 +1,4 @@
-@import '../../../src/styles/colors.css';
+@import '../../../src/styles/colors-v2.css';
 @import '../../../src/styles/typography.css';
 
 :global(.prologue-title) {
@@ -31,7 +31,7 @@
   display: block;
   width: 45px;
   margin-bottom: 20px;
-  border-bottom: 2px solid var(--palette-neutral-dark);
+  border-bottom: 2px solid var(--mds-grey-54);
 }
 
 :global(.prologue-para) {

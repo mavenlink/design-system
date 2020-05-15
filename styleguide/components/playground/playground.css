@@ -1,8 +1,8 @@
-@import "../../../src/styles/colors.css";
+@import "../../../src/styles/colors-v2.css";
 
 .container {
   margin-bottom: 32px;
-  border: 1px solid var(--palette-neutral-light);
+  border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
 }
 
@@ -22,5 +22,5 @@
 }
 
 .code {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--mds-grey-12);
 }
