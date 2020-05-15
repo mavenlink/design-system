@@ -5,10 +5,12 @@
     Click to see more.
   </summary>
 
-  - Minor: Create linter for new MDS colors
-  - Minor: Update documentation concerning new linter
-  - Patch: Fix linter errors in MDS repo
 </details>
+
+## 0.20.2 (May 15, 2020)
+- Minor: Create linter for new MDS colors
+- Minor: Update documentation concerning new linter
+- Patch: Fix linter errors in MDS repo
 
 ## 0.20.1 (May 13, 2020)
 - Minor: Update color documentation to newest version
