@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from './page-header.css';
 
 export default function PageHeader(props) {
   return (
-    <header>
-      <h1>{props.title}</h1>
-      {props.description && <p>{props.description}</p>}
+    <header className={styles.container}>
+      <h1 className={styles.heading}>{props.title}</h1>
+      {props.description && (
+        <p className={styles.description}>{props.description}</p>
+      )}
     </header>
   );
 }
