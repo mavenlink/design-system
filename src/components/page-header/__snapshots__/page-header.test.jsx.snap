@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageHeader has defaults 1`] = `
-<header>
-  <h1>
+<header
+  className="container"
+>
+  <h1
+    className="heading"
+  >
     Defaults
   </h1>
 </header>
