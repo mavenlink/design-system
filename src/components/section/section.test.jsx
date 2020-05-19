@@ -17,11 +17,6 @@ describe('Section', () => {
     expect(screen.getByText('Test Title').tagName).toEqual('H2');
   });
 
-  it('can have a className override', () => {
-    render(<Section className="override-class" title="Test Title" />);
-    expect(screen.getByText('Test Title').parentElement).toHaveClass('override-class');
-  });
-
   it('can have a description', () => {
     render(<Section title="Test Title" description="This is a test description." />);
     expect(screen.getByText('This is a test description.').tagName).toEqual('P');
