@@ -4,6 +4,8 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  Minor: Add Section component
 </details>
 
 ## 0.20.3 (May 15, 2020)
