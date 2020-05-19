@@ -21,6 +21,16 @@ Sections can contain child elements, like any other element:
     id="test-id-2"
     label="Project Direct Report"
   />
+  <div style={{display: 'flex', justifyContent: 'space-around'}}>
+    <CustomFieldInputText
+      id="test-id-3"
+      label="Project Sub Report 1"
+    />
+    <CustomFieldInputText
+      id="test-id-4"
+      label="Project Sub Report 2"
+    />
+  </div>
 </Section>
 ```
 
