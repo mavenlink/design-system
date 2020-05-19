@@ -6,6 +6,7 @@
   </summary>
 
   - Minor: Add Section component
+  - Minor: Add SectionRow component
 </details>
 
 ## 0.20.3 (May 15, 2020)
