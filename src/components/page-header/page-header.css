@@ -1,7 +1,7 @@
 @import '../../styles/spacing.css';
 
 .container {
-  margin: var(--spacing-large);
+  margin: var(--spacing-x-large);
 }
 
 .heading {
@@ -12,5 +12,5 @@
   margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-  margin-top: var(--spacing-medium);
+  margin-top: var(--spacing-large);
 }
