@@ -4,14 +4,14 @@
   margin: 0;
 }
 
+.subheading {
+  margin: 0;
+}
+
 .section {
   margin-bottom: var(--spacing-x-large);
 }
 
 .section > * {
   margin-bottom: var(--spacing-large);
-}
-
-.subheading {
-  margin: 0;
 }
