@@ -8,6 +8,7 @@
 .section {
   margin-bottom: var(--spacing-x-large);
 }
+
 .section > * {
   margin-bottom: var(--spacing-large);
 }

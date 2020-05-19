@@ -28,7 +28,7 @@ describe('Section', () => {
   });
 
   it('can have child elements', () => {
-    render(<Section title="Test Title" ><label>Test Label</label></Section>);
-    expect(screen.getByText('Test Label').tagName).toEqual('LABEL');
+    render(<Section title="Test Title" ><span>Test Label</span></Section>);
+    expect(screen.getByText('Test Label').tagName).toEqual('SPAN');
   });
 });

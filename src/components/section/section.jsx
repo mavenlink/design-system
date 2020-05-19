@@ -13,12 +13,14 @@ export default function Section(props) {
 }
 
 Section.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 Section.defaultProps = {
+  children: [],
   className: undefined,
   description: undefined,
 };
