@@ -10,6 +10,8 @@
 
 .section {
   margin-bottom: var(--spacing-x-large);
+  margin-left: var(--spacing-x-large);
+  margin-right: var(--spacing-x-large);
 }
 
 .section > * {
