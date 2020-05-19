@@ -20,7 +20,7 @@ Section.propTypes = {
 };
 
 Section.defaultProps = {
-  children: [],
+  children: undefined,
   className: undefined,
   description: undefined,
 };
