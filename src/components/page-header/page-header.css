@@ -9,8 +9,5 @@
 }
 
 .description {
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: var(--spacing-large);
+  margin: var(--spacing-large) 0 0;
 }
