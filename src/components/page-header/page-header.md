@@ -1,3 +1,9 @@
+Headings communicate the organization of the content on the page.
+Web browsers, plug-ins, and assistive technologies can use them to provide in-page navigation [[1]].
+The nesting of the heading elements dictate the outline of the document.
+The most important heading has the rank 1 (`<h1>`) which is implemented in this `PageHeader` component.
+For this reasion, only 1 instance of `PageHeader` should be visible at any given time.
+
 ```
 <PageHeader
   title="Page Title"
@@ -10,3 +16,5 @@
   title="Page Title  Without Description"
 />
 ```
+
+[1]: https://www.w3.org/WAI/tutorials/page-structure/headings/
