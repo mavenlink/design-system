@@ -13,14 +13,14 @@ Sections can contain child elements, like any other element:
   title="Project Details"
   description="These fields allow control of custom project fields."
 >
-<CustomFieldInputText
-  id="test-id-1"
-  label="Project Sub Name"
-/>
-<CustomFieldInputText
-  id="test-id-2"
-  label="Project Direct Report"
-/>
+  <CustomFieldInputText
+    id="test-id-1"
+    label="Project Sub Name"
+  />
+  <CustomFieldInputText
+    id="test-id-2"
+    label="Project Direct Report"
+  />
 </Section>
 ```
 
