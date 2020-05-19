@@ -2,7 +2,6 @@
 
 .description {
   margin: 0;
-  margin-bottom: var(--spacing-large);
 }
 
 .section {
@@ -15,5 +14,4 @@
 
 .subheading {
   margin: 0;
-  margin-bottom: var(--spacing-large);
 }
