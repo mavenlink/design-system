@@ -5,6 +5,7 @@
     Click to see more.
   </summary>
 
+  - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
 </details>
 
