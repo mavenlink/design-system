@@ -56,6 +56,10 @@ module.exports = {
           content: './styleguide/content/brand-identity/colors.md',
         },
         {
+          name: 'Page Patterns',
+          content: './styleguide/content/brand-identity/page-patterns.md',
+        },
+        {
           name: 'Typography',
           content: './styleguide/content/brand-identity/typography.md',
         },
