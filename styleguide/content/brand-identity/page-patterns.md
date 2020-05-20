@@ -81,3 +81,22 @@ We use a “t-shirt size” scale for specifying spacing/margins. The following 
         <span class="pattern-text">spacing-x-small: 2px</span>
     </div>
 </div>
+
+### Base Page Guidelines
+
+The following page spacing guidelines apply to any custom application that is embedded in a tab inside of Mavenlink, or exists on its own independent page.
+
+#### Base Page Margins
+
+Page top and left margins should always use `spacing-x-large`:
+
+<img alt="page margins example" src="images/page-margins-example.jpg"/>
+
+Page Title should be displayed against page top margin. If there is a page description, the space between Page Title and Page Description should use `spacing-large`:
+
+<img alt="page title margins example" src="images/page-title-margins.jpg" />
+
+If there is NOT a page description, the page between Page Title and Seciton header should use `spacing-x-large`:
+
+<img alt="page title no text example" src="images/page-title-no-text.jpg" />
+
