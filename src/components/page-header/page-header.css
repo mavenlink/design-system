@@ -1,0 +1,13 @@
+@import '../../styles/spacing.css';
+
+.container {
+  margin: var(--spacing-x-large);
+}
+
+.heading {
+  margin: 0;
+}
+
+.description {
+  margin: var(--spacing-large) 0 0;
+}
