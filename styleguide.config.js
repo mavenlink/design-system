@@ -69,7 +69,7 @@ module.exports = {
       name: 'Design Patterns',
       sections: [
         {
-          name: 'Basic Page Spacing',
+          name: 'Basic Page Patterns',
           content: './styleguide/content/design-patterns/basic-page-spacing.md',
         },
       ],
