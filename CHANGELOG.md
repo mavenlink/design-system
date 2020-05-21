@@ -8,6 +8,7 @@
   - Minor: Add Section component
   - Minor: Add SectionRow component
   - Minor: Implement PageHeader component
+  - Patch: Fix icon alignment bug on custom field inputs
 </details>
 
 ## 0.20.3 (May 15, 2020)
