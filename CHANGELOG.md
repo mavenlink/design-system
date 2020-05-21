@@ -5,6 +5,8 @@
     Click to see more.
   </summary>
 
+  - Minor: Add Section component
+  - Minor: Add SectionRow component
   - Minor: Implement PageHeader component
 </details>
 
