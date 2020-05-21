@@ -1,4 +1,6 @@
-Sections can be used to semantically group controls, information, and inputs. Sections get the `region` ARIA role by default, and the `title` prop is required to support accessibility with a contained heading. For now, the section component should only be used in Custom Apps, while the "page layout" spec is still in flux.
+`Section`s can be used to semantically group controls, information, and inputs. `Section`s get the `region` ARIA role by default, and the `title` prop is required to support accessibility with a contained heading. For now, the `Section` component should only be used in Custom Apps, while the "page layout" spec is still in flux.
+
+For rows that should contain more than one full-length component, a `SectionRow` should be used to wrap thse children.
 
 ```
 <Section
@@ -7,7 +9,7 @@ Sections can be used to semantically group controls, information, and inputs. Se
 />
 ```
 
-Sections can contain child elements, like any other element:
+`Section`s can contain child elements, like any other element:
 ```
 <Section
   title="Project Details"
@@ -21,7 +23,7 @@ Sections can contain child elements, like any other element:
     id="test-id-2"
     label="Project Direct Report"
   />
-  <div style={{display: 'flex', justifyContent: 'space-around'}}>
+  <SectionRow>
     <CustomFieldInputText
       id="test-id-3"
       label="Project Sub Report 1"
@@ -30,11 +32,11 @@ Sections can contain child elements, like any other element:
       id="test-id-4"
       label="Project Sub Report 2"
     />
-  </div>
+  </SectionRow>
 </Section>
 ```
 
-Sections can be siblings with proper spacing, and with things like form submission containers:
+`Section`s can be siblings with proper spacing, and with things like form submission containers:
 ```
 <Section
   title="Top Section"

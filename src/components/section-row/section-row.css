@@ -1,0 +1,10 @@
+@import '../../styles/spacing.css';
+
+.section-row {
+  display: flex;
+}
+
+.section-row > *:not(:last-child) {
+  margin: 0;
+  margin-right: var(--spacing-x-large);
+}
