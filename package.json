@@ -4,7 +4,8 @@
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "files": [
-    "src/**/!(*.spec).*"
+    "src/**/!(*.spec).*",
+    "styleguide/**/!(*.spec).*"
   ],
   "scripts": {
     "build": "styleguidist build",
