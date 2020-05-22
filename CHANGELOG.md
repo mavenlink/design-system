@@ -4,12 +4,13 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-
-  - Minor: Add Section component
-  - Minor: Add SectionRow component
-  - Minor: Implement PageHeader component
-  - Patch: Fix icon alignment bug on custom field inputs
 </details>
+
+## 0.21.0 (May 21, 2020)
+- Minor: Add Section component
+- Minor: Add SectionRow component
+- Minor: Implement PageHeader component
+- Patch: Fix icon alignment bug on custom field inputs
 
 ## 0.20.3 (May 15, 2020)
 - Patch: Fix MDS colors with incorrect transparency
