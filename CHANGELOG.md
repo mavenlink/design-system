@@ -4,9 +4,10 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
-  
-  - Minor: Publish site files with MDS module
 </details>
+
+## 0.22.0 (May 22, 2020)
+- Minor: Publish site files with MDS module
 
 ## 0.21.0 (May 21, 2020)
 - Minor: Add Section component
