@@ -8,6 +8,20 @@
   max-width: 225px;
 }
 
+:global(.image) {
+  border: 1px solid var(--mds-grey-12);
+  margin-bottom: var(--spacing-x-large);
+}
+
+:global(.image-top) {
+  border: 1px solid var(--mds-grey-12);
+  margin-bottom: var(--spacing-large);
+}
+
+:global(.header-four) {
+  font-weight: bold;
+}
+
 :global(.pattern-item) {
   align-items: center;
   display: flex;
