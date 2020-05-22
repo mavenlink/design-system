@@ -1,7 +1,6 @@
 The following page spacing guidelines apply to any custom application that is embedded in a tab inside of Mavenlink, or exists on its own independent page.
 
 <div class="header-four">Base Page Margins</div>
-
 Page top and left margins should always use `spacing-x-large`:
 
 <img class="image" alt="page margins example" src="images/page-margins-example.jpg"/>
