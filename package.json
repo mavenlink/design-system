@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "files": [
     "src/**/!(*.spec).*",
-    "styleguide/**/!(*.spec).*",
+    "styleguide/**/!(*.spec).*"
   ],
   "scripts": {
     "build": "styleguidist build",
