@@ -31,7 +31,7 @@
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size);
-  padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
   width: 100%;
 }
 
