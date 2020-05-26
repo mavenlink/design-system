@@ -12,7 +12,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
   ].filter(Boolean);
 
   return (
-    <svg className={classes.join(' ')} role="img">
+    <svg className={classes.join(' ')} role={props.role} >
       { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
@@ -61,6 +61,7 @@ Icon.defaultProps = {
   className: styles['icon-base'],
   fill: 'none',
   currentColor: 'transparent',
+  role: 'img',
   size: 'medium',
   stroke: 'none',
   title: undefined,

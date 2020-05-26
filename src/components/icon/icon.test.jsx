@@ -18,6 +18,15 @@ describe('Icon', () => {
     expect(screen.getByTitle('yo')).toBeDefined();
   });
 
+  describe('role API', () => {
+    it('can be button', () => {
+      render((
+        <Icon name="foobar" role="button" />
+      ));
+      expect(screen.getByRole('button')).toExist();
+    });
+  });
+
   describe('size API', () => {
     it('can be "small"', () => {
       render((
