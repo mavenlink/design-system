@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag renders a tag component 1`] = `
+<div
+  className="tag"
+  role="row"
+>
+  <span
+    className="title"
+    role="gridcell"
+  >
+    Test Title
+  </span>
+  <span
+    className="icon"
+    role="gridcell"
+  >
+    <svg
+      className="icon-base size-small"
+      role="img"
+    >
+      <use
+        xlinkHref="#icon-clear-small.svg"
+      />
+    </svg>
+  </span>
+</div>
+`;
