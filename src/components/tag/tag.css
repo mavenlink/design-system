@@ -1,0 +1,19 @@
+@import '../../styles/colors.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
+
+.tag {
+  align-items: center;
+  background-color: var(--mds-grey-12);
+  border-radius: var(--spacing-small);
+  display: inline-flex;
+  padding: calc(var(--spacing-x-small) + var(--spacing-small)) var(--spacing-small);
+}
+
+.title {
+  color: var(--mds-grey-87);
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-base-size);
+  line-height: var(--mavenlink-type-line-height);
+  margin-right: var(--spacing-medium);
+}
