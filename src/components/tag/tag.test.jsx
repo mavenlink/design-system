@@ -18,12 +18,17 @@ describe('Tag', () => {
   });
 
   describe('Focus Behavior', () => {
-    it('swaps focus on arrow key', () => {
+    it('moves focus with arrow key', () => {
       render(<Tag title="Test Title" />);
       expect(screen.getByText('Test Title')).toEqual(document.activeElement);
       expect(screen.getAllByRole('gridcell')[1]).not.toEqual(document.activeElement);
 
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+
+      expect(screen.getByText('Test Title')).not.toEqual(document.activeElement);
+      expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
 
       expect(screen.getByText('Test Title')).not.toEqual(document.activeElement);
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
@@ -36,6 +41,18 @@ describe('Tag', () => {
       fireEvent.click(screen.getAllByRole('gridcell')[1]);
 
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+    });
+  });
+
+  describe('onClear API', () => {
+    it('calls the onClear handler when the icon is clicked', () => {
+      const onClearSpy = jest.fn();
+
+      render(<Tag title="Test Title" onClear={onClearSpy} />);
+
+      fireEvent.click(screen.getAllByRole('gridcell')[1]);
+
+      expect(onClearSpy.mock.calls.length).toEqual(1);
     });
   });
 });

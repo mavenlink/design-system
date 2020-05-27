@@ -12,6 +12,11 @@ export default function Tag(props) {
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
+      case 'Enter':
+      case 'Space':
+        if (tabActiveStates[1]) {
+          props.onClear(keyEvent);
+        }
       case 'ArrowRight':
       case 'ArrowDown':
         setTabActiveStates([false, true]);
@@ -29,6 +34,10 @@ export default function Tag(props) {
     
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
+
+    if (gridIndex === 1) {
+      props.onClear(clickEvent);
+    }
   }
 
   useEffect(() => {
@@ -48,7 +57,10 @@ export default function Tag(props) {
 }
 
 Tag.propTypes = {
+  onClear: PropTypes.func,
   title: PropTypes.string.isRequired,
 };
 
-Tag.defaultProps = {};
+Tag.defaultProps = {
+  onClear: () => {},
+};
