@@ -13,12 +13,12 @@ export default function Tag(props) {
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
       case 'ArrowRight':
+      case 'ArrowDown':
+        setTabActiveStates([false, true]);
+        break;
       case 'ArrowLeft':
       case 'ArrowUp':
-      case 'ArrowDown':
-        const newTabActiveStates = tabActiveStates.map(activeState => !activeState);
-
-        setTabActiveStates(newTabActiveStates);
+        setTabActiveStates([true, false]);
         break;
       default:
     }   
@@ -35,7 +35,7 @@ export default function Tag(props) {
     const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
     
     refElements[activeTabIndex].current.focus();
-  }, [tabActiveStates]);
+  }, [...tabActiveStates]);
 
   return (
     <div className={styles.tag} role="row">
