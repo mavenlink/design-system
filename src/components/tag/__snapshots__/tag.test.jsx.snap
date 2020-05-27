@@ -7,17 +7,28 @@ exports[`Tag renders a tag component 1`] = `
 >
   <span
     className="title"
+    onClick={[Function]}
+    onKeyDown={[Function]}
     role="gridcell"
+    tabIndex="0"
   >
     Test Title
   </span>
-  <svg
-    className="icon-base size-small"
-    role="button"
+  <span
+    className="icon-wrapper"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="gridcell"
+    tabIndex="-1"
   >
-    <use
-      xlinkHref="#icon-clear-small.svg"
-    />
-  </svg>
+    <svg
+      className="icon-base size-small"
+      role="button"
+    >
+      <use
+        xlinkHref="#icon-clear-small.svg"
+      />
+    </svg>
+  </span>
 </div>
 `;

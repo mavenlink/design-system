@@ -1,7 +1,20 @@
 The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint. It works well inside of dropdowns and filters. It is used in the `CustomFieldInputMultiChoice` component through a `TagList`.
 
+```
+<Tag title="Test" />
+```
+
 If not using inside a `TagList`, be aware that for accessibility reasons tied to keyboard navigation functionality, tags must be contained in an element with the `role="grid"` attribute set.
 
+When using `Tag` components outside of the `TagList` component, ensure that focus is properly managed. The "tab" key should change focus between groups of elements, and the "arrow" keys should navigate internally in those lists. The native behavior shown here is incorrect, as the "tab" key moves between `Tag` components, and the "arrow" keys only navigate the internal `Tag` elements. Using `TagList` implements the correct behavior for you.
+
+This component's accessibility was built using the [WAI ARIA Examples](https://www.w3.org/TR/wai-aria-practices-1.1/examples/grid/LayoutGrids.html#ex2_label).
+
 ```
-<Tag title="test" />
+<div role="grid" style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+  <Tag title="Test 1" />
+  <Tag title="Test 2" />
+  <Tag title="Test 3" />
+  <Tag title="Test 4" />
+</div>
 ```
