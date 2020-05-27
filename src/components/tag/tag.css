@@ -2,12 +2,18 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
+.icon-wrapper {
+  display: inline-flex;
+}
+
 .tag {
   align-items: center;
   background-color: var(--mds-grey-12);
   border-radius: var(--spacing-small);
   display: inline-flex;
   padding: calc(var(--spacing-x-small) + var(--spacing-small)) var(--spacing-small);
+  white-space: nowrap;
+  width: min-content;
 }
 
 .title {
