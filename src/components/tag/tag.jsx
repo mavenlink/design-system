@@ -8,7 +8,7 @@ export default function Tag(props) {
   return (
     <div className={styles.tag} role="row">
       <span className={styles.title} role="gridcell">{props.title}</span>
-      <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
+      <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
     </div>
   );
 }

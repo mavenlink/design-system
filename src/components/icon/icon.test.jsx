@@ -23,7 +23,7 @@ describe('Icon', () => {
       render((
         <Icon name="foobar" role="button" />
       ));
-      expect(screen.getByRole('button')).toExist();
+      expect(screen.getByRole('button'));
     });
   });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title }) {
+export default function Icon({ className, name, size, stroke, fill, currentColor, title, role }) {
   const classes = [
     className,
     styles[`size-${size}`],
@@ -12,7 +12,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
   ].filter(Boolean);
 
   return (
-    <svg className={classes.join(' ')} role={props.role} >
+    <svg className={classes.join(' ')} role={role} >
       { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
@@ -40,6 +40,10 @@ Icon.propTypes = {
     'skip',
   ]),
   name: PropTypes.string.isRequired,
+  role: PropTypes.oneOf([
+    'button',
+    'img',
+  ]),
   size: PropTypes.oneOf([
     'small',
     'medium',
