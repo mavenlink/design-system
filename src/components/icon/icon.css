@@ -10,6 +10,9 @@
   display: inline-block;
   vertical-align: middle;
 }
+.icon-base[role="button"] {
+  cursor: pointer;
+}
 
 .fill-primary {
   fill: var(--mds-brand-100);
