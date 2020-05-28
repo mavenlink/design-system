@@ -1,10 +1,32 @@
 The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint. It works well inside of dropdowns and filters. It is used in the `CustomFieldInputMultiChoice` component through a `TagList`.
 
+### Basic examples
+
 ```
 <Tag>Test Title</Tag>
-<Tag>Test Title <span className="skill-level" style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>4</span></Tag>
-<Tag>Test Title <Icon name="icon-tick" size="small" stroke="skip" fill="skip" currentColor="skip" role="img" /></Tag>
+<br />
+<br />
+<Tag readOnly>Test Title</Tag>
 ```
+
+### Derivative examples
+
+```
+<Tag>
+  Test Title
+  <span style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>
+    4
+  </span>
+</Tag>
+<br />
+<br />
+<Tag>
+  Test Title
+  <Icon name="icon-tick" size="small" stroke="skip" fill="skip" currentColor="skip" role="img" />
+</Tag>
+```
+
+### Advanced usage
 
 If not using inside a `TagList`, be aware that for accessibility reasons tied to keyboard navigation functionality, tags must be contained in an element with the `role="grid"` attribute set.
 
