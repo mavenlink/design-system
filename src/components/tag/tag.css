@@ -10,7 +10,9 @@
   align-items: center;
   background-color: var(--mds-grey-12);
   border-radius: var(--spacing-small);
+  box-sizing: border-box;
   display: inline-flex;
+  max-width: 100%;
   padding: calc(var(--spacing-x-small) + var(--spacing-small)) var(--spacing-small);
   white-space: nowrap;
   width: min-content;
@@ -22,4 +24,6 @@
   font-size: var(--mavenlink-type-base-size);
   line-height: var(--mavenlink-type-line-height);
   margin-right: var(--spacing-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
