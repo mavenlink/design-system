@@ -1,0 +1,12 @@
+@import '../../styles/spacing.css';
+
+.row {
+  display: inline-flex;
+  align-items: center;
+}
+
+.level {
+  align-items: center;
+  display: inline-flex;
+  margin-left: var(--spacing-medium);
+}

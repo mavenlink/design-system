@@ -1,19 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TagSkill has default 1`] = `
-Array [
-  <span>
-    Skillet
-  </span>,
-  <span>
-     - 
-  </span>,
-  <span>
-    Egg
-  </span>,
-  <span>
-     - 
-  </span>,
-  <span />,
-]
+<div
+  className="tag"
+  role="row"
+>
+  <span
+    className="content"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="gridcell"
+    tabIndex="0"
+  >
+    <span
+      className="row"
+    >
+      Egg
+      <span
+        className="level"
+      >
+        <svg
+          className="icon-base size-small"
+          role="img"
+        >
+          <use
+            xlinkHref="#icon-tick.svg"
+          />
+        </svg>
+      </span>
+    </span>
+  </span>
+  <span
+    className="icon-wrapper"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    role="gridcell"
+    tabIndex="-1"
+  >
+    <svg
+      className="icon-base size-small"
+      role="button"
+    >
+      <use
+        xlinkHref="#icon-clear-small.svg"
+      />
+    </svg>
+  </span>
+</div>
 `;
