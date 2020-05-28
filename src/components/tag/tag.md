@@ -23,8 +23,12 @@ The `Tag` component is intended to represent a value, usually in a series with `
 const iconTick = require('../../svgs/icon-tick.svg');
 
 <Tag>
-  Test Title
-  <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
+  <span style={{display: 'inline-flex', alignItems: 'center'}}>
+    Test Title
+    <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
+      <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
+    </span>
+  </span>
 </Tag>
 ```
 
