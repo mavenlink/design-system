@@ -1,7 +1,9 @@
 The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint. It works well inside of dropdowns and filters. It is used in the `CustomFieldInputMultiChoice` component through a `TagList`.
 
 ```
-<Tag title="Test" />
+<Tag>Test Title</Tag>
+<Tag>Test Title <span className="skill-level" style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>4</span></Tag>
+<Tag>Test Title <Icon name="icon-tick" size="small" stroke="skip" fill="skip" currentColor="skip" role="img" /></Tag>
 ```
 
 If not using inside a `TagList`, be aware that for accessibility reasons tied to keyboard navigation functionality, tags must be contained in an element with the `role="grid"` attribute set.
@@ -12,9 +14,9 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ```
 <div role="grid" style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
-  <Tag title="Test 1" />
-  <Tag title="Test 2" />
-  <Tag title="Test 3" />
-  <Tag title="Test 4" />
+  <Tag title="Test 1">Test 1</Tag>
+  <Tag title="Test 1">Test 2</Tag>
+  <Tag title="Test 1">Test 3</Tag>
+  <Tag title="Test 1">Test 4</Tag>
 </div>
 ```

@@ -13,11 +13,12 @@ export default function Tag(props) {
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
+      case ' ':
       case 'Enter':
-      case 'Space':
         if (tabActiveStates[1]) {
           props.onClear(keyEvent);
         }
+        break;
       case 'ArrowRight':
       case 'ArrowDown':
         setInputHandled(false);
@@ -55,7 +56,15 @@ export default function Tag(props) {
 
   return (
     <div className={styles.tag} role="row">
-      <span className={styles.title} ref={titleElement} role="gridcell" tabIndex={tabActiveStates[0] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 0)} onKeyDown={handleGridCellKeyDown}>{props.title}</span>
+      <span 
+        className={styles.title} 
+        ref={titleElement} 
+        role="gridcell" 
+        tabIndex={tabActiveStates[0] ? "0" : "-1"} 
+        onClick={clickEvent => handleGridCellClick(clickEvent, 0)} 
+        onKeyDown={handleGridCellKeyDown}>
+          {props.children}
+      </span>
       {!props.readOnly && <span className={styles['icon-wrapper']} ref={iconElement} role="gridcell" tabIndex={tabActiveStates[1] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 1)} onKeyDown={handleGridCellKeyDown}>
         <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
       </span>}
@@ -64,9 +73,9 @@ export default function Tag(props) {
 }
 
 Tag.propTypes = {
+  children: PropTypes.oneOf([PropTypes.string, PropTypes.element]).isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
-  title: PropTypes.string.isRequired,
 };
 
 Tag.defaultProps = {

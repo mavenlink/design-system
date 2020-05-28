@@ -23,7 +23,8 @@
   color: var(--mds-grey-87);
   font-family: var(--mavenlink-type-font-family);
   font-size: var(--mavenlink-type-base-size);
-  line-height: var(--mavenlink-type-line-height);
+  height: 16px;
+  line-height: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
