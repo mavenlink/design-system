@@ -30,12 +30,12 @@ export default function Tag(props) {
         setTabActiveStates([true, false]);
         break;
       default:
-    }   
+    }
   }
 
   function handleGridCellClick(clickEvent, gridIndex) {
     const newTabActiveStates = [false, false];
-    
+
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
     setInputHandled(false);
@@ -48,7 +48,7 @@ export default function Tag(props) {
   useEffect(() => {
     if (!inputHandled) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
-    
+
       refElements[activeTabIndex].current.focus();
       setInputHandled(true);
     }
@@ -56,12 +56,12 @@ export default function Tag(props) {
 
   return (
     <div className={styles.tag} role="row">
-      <span 
-        className={styles.title} 
-        ref={titleElement} 
-        role="gridcell" 
-        tabIndex={tabActiveStates[0] ? "0" : "-1"} 
-        onClick={clickEvent => handleGridCellClick(clickEvent, 0)} 
+      <span
+        className={styles.title}
+        ref={titleElement}
+        role="gridcell"
+        tabIndex={tabActiveStates[0] ? "0" : "-1"}
+        onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}>
           {props.children}
       </span>
