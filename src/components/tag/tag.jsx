@@ -62,7 +62,8 @@ export default function Tag(props) {
         role="gridcell"
         tabIndex={tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
-        onKeyDown={handleGridCellKeyDown}>
+        onKeyDown={handleGridCellKeyDown}
+      >
           {props.children}
       </span>
       {!props.readOnly &&
