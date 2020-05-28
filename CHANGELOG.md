@@ -4,6 +4,9 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  - Minor: Create the page patterns page.
+  - Minor: Implement PageHeader component
 </details>
 
 ## 0.22.0 (May 22, 2020)

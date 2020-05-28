@@ -56,8 +56,21 @@ module.exports = {
           content: './styleguide/content/brand-identity/colors.md',
         },
         {
+          name: 'Spacing',
+          content: './styleguide/content/brand-identity/spacing.md',
+        },
+        {
           name: 'Typography',
           content: './styleguide/content/brand-identity/typography.md',
+        },
+      ],
+    },
+    {
+      name: 'Design Patterns',
+      sections: [
+        {
+          name: 'Basic Page Patterns',
+          content: './styleguide/content/design-patterns/basic-page-spacing.md',
         },
       ],
     },
