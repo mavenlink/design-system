@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import Tag from './tag.jsx';
 
 describe('Tag', () => {
@@ -20,10 +21,8 @@ describe('Tag', () => {
   describe('Focus Behavior', () => {
     it('moves focus with arrow key', () => {
       render(<Tag title="Test Title" />);
-      expect(screen.getByText('Test Title')).toEqual(document.activeElement);
-      expect(screen.getAllByRole('gridcell')[1]).not.toEqual(document.activeElement);
 
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+      fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
 
       expect(screen.getByText('Test Title')).not.toEqual(document.activeElement);
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
@@ -36,9 +35,8 @@ describe('Tag', () => {
 
     it('sets focus on click', () => {
       render(<Tag title="Test Title" />);
-      expect(screen.getByText('Test Title')).toEqual(document.activeElement);
 
-      fireEvent.click(screen.getAllByRole('gridcell')[1]);
+      userEvent.click(screen.getAllByRole('gridcell')[1]);
 
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
     });
@@ -50,9 +48,17 @@ describe('Tag', () => {
 
       render(<Tag title="Test Title" onClear={onClearSpy} />);
 
-      fireEvent.click(screen.getAllByRole('gridcell')[1]);
+      userEvent.click(screen.getAllByRole('gridcell')[1]);
 
       expect(onClearSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('readOnly API', () => {
+    it('does not render a clear button if readOnly is true', () => {
+      render(<Tag title="Test Title" readOnly={true} />);
+
+      expect(screen.getAllByRole('gridcell').length).toEqual(1);
     });
   });
 });

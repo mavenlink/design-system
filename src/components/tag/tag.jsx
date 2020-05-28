@@ -6,6 +6,7 @@ import Icon from '../icon/index.js';
 
 export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState([true, false]);
+  const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
   const titleElement = useRef(null);
   const refElements = [titleElement, iconElement];
@@ -19,10 +20,12 @@ export default function Tag(props) {
         }
       case 'ArrowRight':
       case 'ArrowDown':
+        setInputHandled(false);
         setTabActiveStates([false, true]);
         break;
       case 'ArrowLeft':
       case 'ArrowUp':
+        setInputHandled(false);
         setTabActiveStates([true, false]);
         break;
       default:
@@ -34,6 +37,7 @@ export default function Tag(props) {
     
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
+    setInputHandled(false);
 
     if (gridIndex === 1) {
       props.onClear(clickEvent);
@@ -41,26 +45,31 @@ export default function Tag(props) {
   }
 
   useEffect(() => {
-    const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
+    if (!inputHandled) {
+      const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
     
-    refElements[activeTabIndex].current.focus();
+      refElements[activeTabIndex].current.focus();
+      setInputHandled(true);
+    }
   }, [...tabActiveStates]);
 
   return (
     <div className={styles.tag} role="row">
       <span className={styles.title} ref={titleElement} role="gridcell" tabIndex={tabActiveStates[0] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 0)} onKeyDown={handleGridCellKeyDown}>{props.title}</span>
-      <span className={styles['icon-wrapper']} ref={iconElement} role="gridcell" tabIndex={tabActiveStates[1] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 1)} onKeyDown={handleGridCellKeyDown}>
+      {!props.readOnly && <span className={styles['icon-wrapper']} ref={iconElement} role="gridcell" tabIndex={tabActiveStates[1] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 1)} onKeyDown={handleGridCellKeyDown}>
         <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
-      </span>
+      </span>}
     </div>
   );
 }
 
 Tag.propTypes = {
   onClear: PropTypes.func,
+  readOnly: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
 Tag.defaultProps = {
   onClear: () => {},
+  readOnly: false,
 };
