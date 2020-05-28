@@ -18,11 +18,14 @@ The `Tag` component is intended to represent a value, usually in a series with `
     4
   </span>
 </Tag>
-<br />
-<br />
+```
+
+```
+const iconTick = require('../../svgs/icon-tick.svg');
+
 <Tag>
   Test Title
-  <Icon name="icon-tick" size="small" stroke="skip" fill="skip" currentColor="skip" role="img" />
+  <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="img" />
 </Tag>
 ```
 
