@@ -9,7 +9,7 @@ The `Tag` component is intended to represent a value, usually in a series with `
 <Tag readOnly>Test Title</Tag>
 ```
 
-### Derivative examples
+### Composition examples
 
 ```
 <Tag>
