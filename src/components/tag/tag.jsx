@@ -83,7 +83,10 @@ export default function Tag(props) {
 }
 
 Tag.propTypes = {
-  children: PropTypes.oneOf([PropTypes.string, PropTypes.element]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]).isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
