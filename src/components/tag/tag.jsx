@@ -64,7 +64,7 @@ export default function Tag(props) {
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
-          {props.children}
+        {props.children}
       </span>
       {!props.readOnly &&
         <span
