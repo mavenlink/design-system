@@ -30,21 +30,5 @@ exports[`TagSkill has default 1`] = `
       </span>
     </span>
   </span>
-  <span
-    className="icon-wrapper"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="gridcell"
-    tabIndex="-1"
-  >
-    <svg
-      className="icon-base size-small"
-      role="button"
-    >
-      <use
-        xlinkHref="#icon-clear-small.svg"
-      />
-    </svg>
-  </span>
 </div>
 `;

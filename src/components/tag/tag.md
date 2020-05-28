@@ -11,7 +11,7 @@ The `Tag` component is intended to represent a value, usually in a series with `
 ### Composition examples
 
 ```
-<Tag>
+<Tag readOnly>
   Test Title
   <span style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>
     4
@@ -22,7 +22,7 @@ The `Tag` component is intended to represent a value, usually in a series with `
 ```
 const iconTick = require('../../svgs/icon-tick.svg');
 
-<Tag>
+<Tag readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>

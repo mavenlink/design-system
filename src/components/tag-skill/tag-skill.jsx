@@ -7,7 +7,7 @@ import styles from './tag-skill.css';
 
 export default function TagSkill(props) {
   return (
-    <Tag>
+    <Tag readOnly>
       <span className={styles.row}>
         {props.name}
         <span className={styles.level}>
