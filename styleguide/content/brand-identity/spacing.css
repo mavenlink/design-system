@@ -18,14 +18,6 @@
   margin-bottom: var(--spacing-large);
 }
 
-:global(.header-four) {
-  color: var(--black);
-  font-size: var(--spacing-large);
-  font-family: "Open Sans", system-ui, sans-serif;
-  font-weight: bold;
-  margin-bottom: var(--spacing-small);
-}
-
 :global(.pattern-item) {
   align-items: center;
   display: flex;

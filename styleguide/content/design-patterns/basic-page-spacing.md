@@ -1,6 +1,6 @@
 The following page spacing guidelines apply to any custom application that is embedded in a tab inside of Mavenlink, or exists on its own independent page.
 
-<div class="header-four">Base Page Margins</div>
+### Base Page Margins
 
 Page top and left margins should always use `spacing-x-large`:
 
@@ -14,7 +14,7 @@ If there is NOT a page description, the page between Page Title and Seciton head
 
 <img class="image" alt="page title no text example" src="images/page-title-no-text.jpg" />
 
-<div class="header-four">Page Section Margins</div>
+### Page Section Margins
 
 A ‘Section’ consists of a subheader, a collection of components, and can also include action buttons (Save, Cancel). 
 
