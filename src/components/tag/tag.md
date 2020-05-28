@@ -4,7 +4,7 @@ The `Tag` component is intended to represent a value, usually in a series with `
 
 ```
 <Tag readOnly>Test Title</Tag>
-<span> </span>
+<div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />
 <Tag>Test Title</Tag>
 ```
 
@@ -41,10 +41,17 @@ When using `Tag` components outside of the `TagList` component, ensure that focu
 This component's accessibility was built using the [WAI ARIA Examples](https://www.w3.org/TR/wai-aria-practices-1.1/examples/grid/LayoutGrids.html#ex2_label).
 
 ```
-<div role="grid" style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+function Spacer() {
+  return (<div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />);
+}
+
+<div role="grid">
   <Tag title="Test 1">Test 1</Tag>
+  <Spacer />
   <Tag title="Test 1">Test 2</Tag>
+  <Spacer />
   <Tag title="Test 1">Test 3</Tag>
+  <Spacer />
   <Tag title="Test 1">Test 4</Tag>
 </div>
 ```
