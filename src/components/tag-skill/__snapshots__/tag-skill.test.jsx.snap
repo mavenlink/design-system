@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagSkill has default 1`] = `
+Array [
+  <span>
+    Skillet
+  </span>,
+  <span>
+     - 
+  </span>,
+  <span>
+    Egg
+  </span>,
+  <span>
+     - 
+  </span>,
+  <span />,
+]
+`;
