@@ -24,7 +24,7 @@ const iconTick = require('../../svgs/icon-tick.svg');
 
 <Tag>
   Test Title
-  <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="img" />
+  <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
 </Tag>
 ```
 
