@@ -60,12 +60,12 @@ export default function Tag(props) {
         className={styles.title}
         ref={titleElement}
         role="gridcell"
-        tabIndex={tabActiveStates[0] ? "0" : "-1"}
+        tabIndex={tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}>
           {props.children}
       </span>
-      {!props.readOnly && <span className={styles['icon-wrapper']} ref={iconElement} role="gridcell" tabIndex={tabActiveStates[1] ? "0" : "-1"} onClick={clickEvent => handleGridCellClick(clickEvent, 1)} onKeyDown={handleGridCellKeyDown}>
+      {!props.readOnly && <span className={styles['icon-wrapper']} ref={iconElement} role="gridcell" tabIndex={tabActiveStates[1] ? '0' : '-1'} onClick={clickEvent => handleGridCellClick(clickEvent, 1)} onKeyDown={handleGridCellKeyDown}>
         <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
       </span>}
     </div>
