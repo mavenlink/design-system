@@ -3,10 +3,9 @@ The `Tag` component is intended to represent a value, usually in a series with `
 ### Basic examples
 
 ```
-<Tag>Test Title</Tag>
-<br />
-<br />
 <Tag readOnly>Test Title</Tag>
+<span> </span>
+<Tag>Test Title</Tag>
 ```
 
 ### Composition examples
