@@ -6,7 +6,7 @@ exports[`Tag renders a tag component 1`] = `
   role="row"
 >
   <span
-    className="title"
+    className="content"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="gridcell"

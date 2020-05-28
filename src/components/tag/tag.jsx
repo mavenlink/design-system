@@ -57,7 +57,7 @@ export default function Tag(props) {
   return (
     <div className={styles.tag} role="row">
       <span
-        className={styles.title}
+        className={styles.content}
         ref={titleElement}
         role="gridcell"
         tabIndex={tabActiveStates[0] ? '0' : '-1'}
