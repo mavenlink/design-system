@@ -4,6 +4,8 @@
     Changes that have landed in master but are not yet released.
     Click to see more.
   </summary>
+
+  - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
 </details>
 
 ## 0.22.0 (May 22, 2020)
