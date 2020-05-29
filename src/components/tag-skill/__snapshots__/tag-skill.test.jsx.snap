@@ -2,7 +2,7 @@
 
 exports[`TagSkill has default 1`] = `
 <div
-  className="tag"
+  className="tag read-only"
   role="row"
 >
   <span
@@ -17,7 +17,7 @@ exports[`TagSkill has default 1`] = `
     >
       Egg
       <span
-        className="level"
+        className="level level-tick"
       >
         <svg
           className="icon-base size-small"
