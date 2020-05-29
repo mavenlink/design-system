@@ -8,6 +8,7 @@
   - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
   - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
+  - Minor: Add Tag and TagSkill components
 </details>
 
 ## 0.22.0 (May 22, 2020)
