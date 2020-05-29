@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle } from 'react';
 import styles from './tag.css';
 import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
+import { forwardRef } from 'react';
 
-export default function Tag(props) {
-  const [tabActiveStates, setTabActiveStates] = useState([true, false]);
+const Tag = forwardRef((props, ref) => {
+  let [tabActiveStates, setTabActiveStates] = useState([true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
   const titleElement = useRef(null);
@@ -54,6 +55,10 @@ export default function Tag(props) {
     }
   }, [...tabActiveStates]);
 
+  useImperativeHandle(ref, () => {
+    setTabActiveStates
+  });
+
   return (
     <div className={styles.tag} role="row">
       <span
@@ -80,7 +85,7 @@ export default function Tag(props) {
       }
     </div>
   );
-}
+});
 
 Tag.propTypes = {
   children: PropTypes.oneOfType([
@@ -95,3 +100,5 @@ Tag.defaultProps = {
   onClear: () => {},
   readOnly: false,
 };
+
+export default Tag;
