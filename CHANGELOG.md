@@ -6,6 +6,8 @@
   </summary>
 
   - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
+  - Minor: Create the page patterns page.
+  - Minor: Implement PageHeader component
 </details>
 
 ## 0.22.0 (May 22, 2020)
