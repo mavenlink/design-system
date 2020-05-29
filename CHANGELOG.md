@@ -9,6 +9,7 @@
   - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
   - Minor: Add Tag and TagSkill components
+  - Minor: Add ariaLabel to Icon props
 </details>
 
 ## 0.22.0 (May 22, 2020)

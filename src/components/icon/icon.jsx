@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title, role }) {
+export default function Icon({ className, name, size, stroke, fill, currentColor, title, role, ariaLabel }) {
   const classes = [
     className,
     styles[`size-${size}`],
@@ -12,7 +12,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
   ].filter(Boolean);
 
   return (
-    <svg className={classes.join(' ')} role={role} >
+    <svg aria-label={ariaLabel || name.split('-')[1]} className={classes.join(' ')} role={role} >
       { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
@@ -20,6 +20,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
 }
 
 Icon.propTypes = {
+  ariaLabel: PropTypes.string,
   className: PropTypes.string,
   fill: PropTypes.oneOf([
     'primary',
@@ -62,6 +63,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
+  ariaLabel: undefined,
   className: styles['icon-base'],
   fill: 'none',
   currentColor: 'transparent',
