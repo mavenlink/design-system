@@ -10,3 +10,7 @@
   display: inline-flex;
   margin-left: var(--spacing-medium);
 }
+
+.level-tick {
+  margin-right: -3px;
+}

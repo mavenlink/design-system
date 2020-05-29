@@ -55,7 +55,7 @@ export default function Tag(props) {
   }, [...tabActiveStates]);
 
   return (
-    <div className={styles.tag} role="row">
+    <div className={styles.tag + (props.readOnly ? ` ${styles['read-only']}` : '')} role="row">
       <span
         className={styles.content}
         ref={titleElement}
@@ -83,10 +83,7 @@ export default function Tag(props) {
 }
 
 Tag.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };

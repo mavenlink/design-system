@@ -4,7 +4,7 @@
 
 .icon-wrapper {
   display: inline-flex;
-  margin-left: var(--spacing-medium);
+  margin-left: var(--spacing-small);
 }
 
 .tag {
@@ -14,9 +14,13 @@
   box-sizing: border-box;
   display: inline-flex;
   max-width: 100%;
-  padding: calc(var(--spacing-x-small) + var(--spacing-small)) var(--spacing-small);
+  padding: var(--spacing-small) var(--spacing-x-small) var(--spacing-small) calc(var(--spacing-x-small) + var(--spacing-small));
   white-space: nowrap;
   width: min-content;
+}
+
+.tag.read-only {
+  padding-right: calc(var(--spacing-x-small) + var(--spacing-small));
 }
 
 .content {

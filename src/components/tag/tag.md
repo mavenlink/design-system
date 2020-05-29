@@ -46,12 +46,12 @@ function Spacer() {
 }
 
 <div role="grid">
-  <Tag title="Test 1">Test 1</Tag>
+  <Tag>Test 1</Tag>
   <Spacer />
-  <Tag title="Test 1">Test 2</Tag>
+  <Tag>Test 2</Tag>
   <Spacer />
-  <Tag title="Test 1">Test 3</Tag>
+  <Tag>Test 3</Tag>
   <Spacer />
-  <Tag title="Test 1">Test 4</Tag>
+  <Tag>Test 4</Tag>
 </div>
 ```
