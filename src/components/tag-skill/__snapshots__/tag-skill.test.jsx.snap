@@ -20,6 +20,7 @@ exports[`TagSkill has default 1`] = `
         className="level level-tick"
       >
         <svg
+          aria-label="tick.svg"
           className="icon-base size-small"
           role="img"
         >
