@@ -14,7 +14,8 @@ export default function Tag(props) {
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
       case ' ':
-          keyEvent.preventDefault();
+        keyEvent.preventDefault();
+        // falls through
       case 'Enter':
         if (tabActiveStates[1]) {
           props.onClear(keyEvent.nativeEvent);
@@ -22,12 +23,14 @@ export default function Tag(props) {
         break;
       case 'ArrowDown':
         keyEvent.preventDefault();
+        // falls through
       case 'ArrowRight':
         setInputHandled(false);
         setTabActiveStates([false, true]);
         break;
       case 'ArrowUp':
         keyEvent.preventDefault();
+        // falls through
       case 'ArrowLeft':
         setInputHandled(false);
         setTabActiveStates([true, false]);
