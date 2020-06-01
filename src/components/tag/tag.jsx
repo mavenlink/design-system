@@ -5,7 +5,7 @@ import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
 
 export default function Tag(props) {
-  const [tabActiveStates, setTabActiveStates] = useState([true, false]);
+  const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
   const titleElement = useRef(null);
@@ -26,21 +26,21 @@ export default function Tag(props) {
         // falls through
       case 'ArrowRight':
         setInputHandled(false);
-        setTabActiveStates([false, true]);
+        setTabActiveStates(props.readOnly ? [true] : [false, true]);
         break;
       case 'ArrowUp':
         keyEvent.preventDefault();
         // falls through
       case 'ArrowLeft':
         setInputHandled(false);
-        setTabActiveStates([true, false]);
+        setTabActiveStates(props.readOnly ? [true] : [true, false]);
         break;
       default:
     }
   }
 
   function handleGridCellClick(clickEvent, gridIndex) {
-    const newTabActiveStates = [false, false];
+    const newTabActiveStates = props.readOnly ? [false] : [false, false];
 
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
