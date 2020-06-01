@@ -32,6 +32,15 @@ const iconTick = require('../../svgs/icon-tick.svg');
 </Tag>
 ```
 
+### Functional API usage
+
+The `onClear` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature. The `event.nativeEvent` structure is provided to this callback, which may be either a `MouseEvent` or `KeyboardEvent`.
+
+
+```
+<Tag onClear={event => { console.log(event); window.alert(event.type); }}>Test Title</Tag>
+```
+
 ### Advanced usage
 
 If not using inside a `TagList`, be aware that for accessibility reasons tied to keyboard navigation functionality, tags must be contained in an element with the `role="grid"` attribute set.
