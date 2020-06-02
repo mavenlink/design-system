@@ -1,5 +1,23 @@
 The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint.
 
+### Accessibility
+
+This component's accessibility was built using the [WAI ARIA Examples](https://www.w3.org/TR/wai-aria-practices-1.1/examples/grid/LayoutGrids.html#ex2_label).
+
+#### Keyboard navigation
+
+| Key | State | Function |
+| --- | --- | --- |
+| Left arrow | | Moves focus to text content |
+| Right arrow | | Moves focus to the clear button |
+| Enter | Focused on clear button | Invokes `onClear` callback |
+| Space | Focused on clear button | Invokes `onClear` callback |
+
+#### Labels
+
+- The text content has its own label as "${text content}"
+- The clear button has a label of "Remove ${text content}"
+
 ### Basic examples
 
 ```
@@ -34,7 +52,7 @@ const iconTick = require('../../svgs/icon-tick.svg');
 
 ### Functional API usage
 
-The `onClear` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature. The `event.nativeEvent` structure is provided to this callback, which may be either a `MouseEvent` or `KeyboardEvent`.
+The `onClear` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature.
 
 
 ```
@@ -43,11 +61,9 @@ The `onClear` prop is used to register a handler for interaction with the tag's 
 
 ### Advanced usage
 
-If not using inside a `TagList`, be aware that for accessibility reasons tied to keyboard navigation functionality, tags must be contained in an element with the `role="grid"` attribute set.
+If not using inside a `TagList`, tags must be contained in an element with the `role="grid"` attribute set because each tag is a `row` containing two `gridcell`s.
 
 When using `Tag` components outside of the `TagList` component, ensure that focus is properly managed. The "tab" key should change focus between groups of elements, and the "arrow" keys should navigate internally in those lists. The native behavior shown here is incorrect, as the "tab" key moves between `Tag` components, and the "arrow" keys only navigate the internal `Tag` elements. Using `TagList` implements the correct behavior for you.
-
-This component's accessibility was built using the [WAI ARIA Examples](https://www.w3.org/TR/wai-aria-practices-1.1/examples/grid/LayoutGrids.html#ex2_label).
 
 ```
 function Spacer() {
