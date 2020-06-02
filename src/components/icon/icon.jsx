@@ -2,19 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title, role, ariaLabel, ariaLabelledBy, a11yKey }) {
+export default function Icon(props) {
   const classes = [
-    className,
-    styles[`size-${size}`],
-    fill === 'skip' ? '' : styles[`fill-${fill}`],
-    stroke === 'skip' ? '' : styles[`stroke-${stroke}`],
-    currentColor === 'skip' ? '' : styles[`color-${currentColor}`],
+    props.className,
+    styles[`size-${props.size}`],
+    props.fill === 'skip' ? '' : styles[`fill-${props.fill}`],
+    props.stroke === 'skip' ? '' : styles[`stroke-${props.stroke}`],
+    props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
   ].filter(Boolean);
 
   return (
-    <svg id={`${a11yKey}-icon`} aria-label={ariaLabel || name.split('-')[1]} className={classes.join(' ')} aria-labelledby={ariaLabelledBy} role={role} >
-      { title && <title>{title}</title> }
-      <use xlinkHref={`#${name}`} />
+    <svg
+      id={`${props.a11yKey}-icon`}
+      aria-label={props.ariaLabel || props.name.split('-')[1]}
+      className={classes.join(' ')}
+      aria-labelledby={props.ariaLabelledBy}
+      role={props.role}
+    >
+      { props.title && <title>{props.title}</title> }
+      <use xlinkHref={`#${props.name}`} />
     </svg>
   );
 }
