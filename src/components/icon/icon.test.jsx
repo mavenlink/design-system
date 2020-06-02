@@ -24,6 +24,15 @@ describe('Icon', () => {
     });
   });
 
+  describe('ariaLabelledBy API', () => {
+    it('can be set', () => {
+      render((
+        <Icon {...requiredProps} ariaLabelledBy="unique-id" />
+      ));
+      expect(screen.getByRole('img')).toHaveAttribute('aria-labelledby', 'unique-id');
+    });
+  });
+
   describe('id API', () => {
     it('can be set', () => {
       render((
