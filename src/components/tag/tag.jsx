@@ -82,7 +82,17 @@ export default function Tag(props) {
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
-          <Icon a11yKey={props.a11yKey} ariaLabel={`Remove`} ariaLabelledBy={`${props.a11yKey}-icon ${props.a11yKey}-content`} name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
+          <Icon
+            a11yKey={props.a11yKey}
+            ariaLabel={`Remove`}
+            ariaLabelledBy={`${props.a11yKey}-icon ${props.a11yKey}-content`}
+            name={clearIcon.id}
+            size="small"
+            stroke="skip"
+            fill="skip"
+            currentColor="skip"
+            role="button"
+          />
         </span>
       }
     </div>
