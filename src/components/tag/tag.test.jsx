@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import Tag from './tag.jsx';
 
@@ -40,12 +41,14 @@ describe('Tag', () => {
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
     });
 
-    it('sets focus on click', () => {
+    it('sets focus on click', async () => {
       render(<Tag {...requiredProps} />);
 
-      userEvent.click(screen.getAllByRole('gridcell')[1]);
+      userEvent.click(screen.getByRole('button'));
 
-      expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+      await waitFor(() =>
+        expect(screen.getByRole('button').parentElement).toEqual(document.activeElement)
+      );
     });
   });
 
