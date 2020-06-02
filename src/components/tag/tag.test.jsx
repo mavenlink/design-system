@@ -6,25 +6,28 @@ import Tag from './tag.jsx';
 
 describe('Tag', () => {
   const requiredProps = {
+    children: 'Test Title',
     id: 'test-id',
   };
 
   it('renders a tag component', () => {
     const tree = renderer
       .create((
-        <Tag {...requiredProps}>Test Title</Tag>
+        <Tag {...requiredProps} />
       )).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it('uses a title', () => {
-    render(<Tag {...requiredProps}>Test Title</Tag>);
-    expect(screen.getByText('Test Title').tagName).toEqual('SPAN');
+  describe('children API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps}>Unique children</Tag>);
+      expect(screen.getByText('Unique children').tagName).toEqual('SPAN');
+    });
   });
 
   describe('Focus Behavior', () => {
     it('moves focus with arrow key', () => {
-      render(<Tag {...requiredProps}>Test Title</Tag>);
+      render(<Tag {...requiredProps} />);
 
       fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
 
@@ -38,7 +41,7 @@ describe('Tag', () => {
     });
 
     it('sets focus on click', () => {
-      render(<Tag {...requiredProps}>Test Title</Tag>);
+      render(<Tag {...requiredProps} />);
 
       userEvent.click(screen.getAllByRole('gridcell')[1]);
 
@@ -50,7 +53,7 @@ describe('Tag', () => {
     it('calls the onClear handler when the icon is clicked', () => {
       const onClearSpy = jest.fn();
 
-      render(<Tag {...requiredProps} onClear={onClearSpy}>Test Title</Tag>);
+      render(<Tag {...requiredProps} onClear={onClearSpy} />);
 
       userEvent.click(screen.getAllByRole('gridcell')[1]);
 
@@ -60,7 +63,7 @@ describe('Tag', () => {
 
   describe('readOnly API', () => {
     it('does not render a clear button if readOnly is true', () => {
-      render(<Tag {...requiredProps} readOnly={true}>Test Title</Tag>);
+      render(<Tag {...requiredProps} readOnly={true} />);
 
       expect(screen.getAllByRole('gridcell').length).toEqual(1);
     });
