@@ -38,7 +38,7 @@ The `onClear` prop is used to register a handler for interaction with the tag's 
 
 
 ```
-<Tag onClear={event => { console.log(event); window.alert(event.type); }}>Test Title</Tag>
+<Tag id="on-clear-example" onClear={event => { console.log(event); window.alert(event.type); }}>Test Title</Tag>
 ```
 
 ### Advanced usage
