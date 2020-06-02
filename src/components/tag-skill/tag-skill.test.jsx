@@ -6,16 +6,17 @@ import TagSkill from './tag-skill.jsx';
 describe('TagSkill', () => {
   const requiredProps = {
     id: 'test-id',
+    name: 'Egg',
   };
 
   it('has default', () => {
-    expect(renderer.create(<TagSkill {...requiredProps} name="Egg" />).toJSON()).toMatchSnapshot();
+    expect(renderer.create(<TagSkill {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
   describe('id API', () => {
     it('can be set', () => {
-      render(<TagSkill {...requiredProps} id="unique-id" name="Bacon" />);
-      expect(screen.getByText('Bacon').parentElement.parentElement).toHaveAttribute('id', 'unique-id');
+      render(<TagSkill {...requiredProps} id="unique-id" />);
+      expect(screen.getByText('Egg').parentElement.parentElement).toHaveAttribute('id', 'unique-id');
     });
   });
 
@@ -28,7 +29,7 @@ describe('TagSkill', () => {
 
   describe('level API', () => {
     it('can be set', () => {
-      render(<TagSkill {...requiredProps} name="Avocado" level={1} />);
+      render(<TagSkill {...requiredProps} level={1} />);
       expect(screen.getByText('1')).toBeDefined();
     });
   });
