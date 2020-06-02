@@ -27,17 +27,21 @@ describe('Tag', () => {
   });
 
   describe('interactions', () => {
-    it('moves focus with arrow key', () => {
+    it('moves focus with arrow key', async () => {
       render(<Tag {...requiredProps} />);
 
       fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
 
-      expect(screen.getByText('Test Title')).not.toEqual(document.activeElement);
+      await waitFor(() =>
+        expect(screen.getByText('Test Title')).not.toEqual(document.activeElement)
+      );
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
 
-      expect(screen.getByText('Test Title')).not.toEqual(document.activeElement);
+      await waitFor(() =>
+        expect(screen.getByText('Test Title')).not.toEqual(document.activeElement)
+      );
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
     });
 
