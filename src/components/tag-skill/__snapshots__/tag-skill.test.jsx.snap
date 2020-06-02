@@ -2,7 +2,7 @@
 
 exports[`TagSkill has default 1`] = `
 <div
-  className="tag read-only"
+  className="read-only-tag"
   role="row"
 >
   <span

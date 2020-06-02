@@ -19,7 +19,8 @@
   width: min-content;
 }
 
-.tag.read-only {
+.read-only-tag {
+  composes: tag;
   padding-right: calc(var(--spacing-x-small) + var(--spacing-small));
 }
 

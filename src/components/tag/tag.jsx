@@ -63,7 +63,7 @@ export default function Tag(props) {
   }, [...tabActiveStates]);
 
   return (
-    <div className={styles.tag + (props.readOnly ? ` ${styles['read-only']}` : '')} role="row">
+    <div className={props.readOnly ? styles['read-only-tag'] : styles.tag} role="row">
       <span
         id={titleId}
         className={styles.content}
