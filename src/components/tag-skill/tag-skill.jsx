@@ -10,7 +10,7 @@ export default function TagSkill(props) {
     <Tag id={props.id} readOnly>
       <span className={styles.row}>
         {props.name}
-        <span className={styles.level + (props.level ? '' : ` ${styles['level-tick']}`)}>
+        <span className={props.level ? styles.level : styles['level-tick']}>
           {props.level ? (
             props.level
           ) : (

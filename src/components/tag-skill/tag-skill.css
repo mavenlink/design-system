@@ -12,5 +12,6 @@
 }
 
 .level-tick {
+  composes: level;
   margin-right: -3px;
 }

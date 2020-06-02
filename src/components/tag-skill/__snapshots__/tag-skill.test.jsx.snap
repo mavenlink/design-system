@@ -19,7 +19,7 @@ exports[`TagSkill has default 1`] = `
     >
       Egg
       <span
-        className="level level-tick"
+        className="level-tick"
       >
         <svg
           className="icon-base size-small"
