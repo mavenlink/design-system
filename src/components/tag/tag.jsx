@@ -7,11 +7,11 @@ import Icon from '../icon/index.js';
 export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
-  const iconElement = useRef(null);
+  const buttonRef = useRef(null);
   const buttonId = `${props.id}-button`;
-  const titleElement = useRef(null);
+  const contentRef = useRef(null);
   const contentId = `${props.id}-content`;
-  const refElements = [titleElement, iconElement];
+  const refElements = [contentRef, buttonRef];
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
@@ -49,7 +49,7 @@ export default function Tag(props) {
     setInputHandled(false);
 
     if (gridIndex === 1) {
-      props.onClear(clickEvent.nativeEvent);
+      props.onClear(clickEvent);
     }
   }
 
@@ -71,7 +71,7 @@ export default function Tag(props) {
       <span
         id={contentId}
         className={styles.content}
-        ref={titleElement}
+        ref={contentRef}
         role="gridcell"
         tabIndex={tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
@@ -82,7 +82,7 @@ export default function Tag(props) {
       {!props.readOnly &&
         <span
           className={styles['icon-wrapper']}
-          ref={iconElement}
+          ref={buttonRef}
           role="gridcell"
           tabIndex={tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
