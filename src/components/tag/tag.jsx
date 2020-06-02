@@ -8,9 +8,9 @@ export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
-  const iconId = `${props.id}-button`;
+  const buttonId = `${props.id}-button`;
   const titleElement = useRef(null);
-  const titleId = `${props.id}-content`;
+  const contentId = `${props.id}-content`;
   const refElements = [titleElement, iconElement];
 
   function handleGridCellKeyDown(keyEvent) {
@@ -69,7 +69,7 @@ export default function Tag(props) {
       role="row"
     >
       <span
-        id={titleId}
+        id={contentId}
         className={styles.content}
         ref={titleElement}
         role="gridcell"
@@ -90,8 +90,8 @@ export default function Tag(props) {
         >
           <Icon
             ariaLabel="Remove"
-            ariaLabelledBy={`${iconId} ${titleId}`}
-            id={iconId}
+            ariaLabelledBy={`${buttonId} ${contentId}`}
+            id={buttonId}
             name={clearIcon.id}
             size="small"
             stroke="skip"
