@@ -8,7 +8,7 @@
   - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
   - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
-  - Minor: Add Tag and TagSkill components
+  - Minor: Implement Tag and TagSkill components
   - Minor: Add ariaLabel to Icon props
   - Minor: Add ariaLabelledBy to Icon props
   - Minor: Add id to Icon props
