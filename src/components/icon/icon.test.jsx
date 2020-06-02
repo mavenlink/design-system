@@ -38,6 +38,15 @@ describe('Icon', () => {
     });
   });
 
+  describe('id API', () => {
+    it('can be set', () => {
+      render((
+        <Icon {...requiredProps} id="unique-id" />
+      ));
+      expect(screen.getByRole('img')).toHaveAttribute('id', 'unique-id');
+    });
+  });
+
   describe('role API', () => {
     it('can be button', () => {
       render((

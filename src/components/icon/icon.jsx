@@ -13,10 +13,10 @@ export default function Icon(props) {
 
   return (
     <svg
-      id={`${props.a11yKey}-icon`}
       aria-label={props.ariaLabel || props.name.split('-')[1]}
-      className={classes.join(' ')}
       aria-labelledby={props.ariaLabelledBy}
+      className={classes.join(' ')}
+      id={props.id}
       role={props.role}
     >
       { props.title && <title>{props.title}</title> }
@@ -26,7 +26,7 @@ export default function Icon(props) {
 }
 
 Icon.propTypes = {
-  a11yKey: PropTypes.string,
+  id: PropTypes.string,
   ariaLabel: PropTypes.string,
   ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
@@ -71,11 +71,11 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  a11yKey: undefined,
   ariaLabel: undefined,
   ariaLabelledBy: undefined,
   className: styles['icon-base'],
   fill: 'none',
+  id: undefined,
   currentColor: 'transparent',
   role: 'img',
   size: 'medium',

@@ -8,7 +8,9 @@ export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
+  const iconId = `${props.a11yKey}-icon`;
   const titleElement = useRef(null);
+  const titleId = `${props.a11yKey}-content`;
   const refElements = [titleElement, iconElement];
 
   function handleGridCellKeyDown(keyEvent) {
@@ -63,7 +65,7 @@ export default function Tag(props) {
   return (
     <div className={styles.tag + (props.readOnly ? ` ${styles['read-only']}` : '')} role="row">
       <span
-        id={`${props.a11yKey}-content`}
+        id={titleId}
         className={styles.content}
         ref={titleElement}
         role="gridcell"
@@ -83,9 +85,9 @@ export default function Tag(props) {
           onKeyDown={handleGridCellKeyDown}
         >
           <Icon
-            a11yKey={props.a11yKey}
             ariaLabel="Remove"
-            ariaLabelledBy={`${props.a11yKey}-icon ${props.a11yKey}-content`}
+            ariaLabelledBy={`${iconId} ${titleId}`}
+            id={iconId}
             name={clearIcon.id}
             size="small"
             stroke="skip"
