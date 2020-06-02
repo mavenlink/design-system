@@ -20,7 +20,7 @@ export default function Tag(props) {
         // falls through
       case 'Enter':
         if (tabActiveStates[1]) {
-          props.onClear(keyEvent.nativeEvent);
+          props.onClear(keyEvent);
         }
         break;
       case 'ArrowDown':
