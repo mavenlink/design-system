@@ -79,10 +79,16 @@ describe('Tag', () => {
   });
 
   describe('readOnly API', () => {
-    it('does not render a clear button if readOnly is true', () => {
+    it('does not render a clear button when readOnly', () => {
       render(<Tag {...requiredProps} readOnly={true} />);
 
-      expect(screen.getAllByRole('gridcell').length).toEqual(1);
+      expect(screen.queryAllByRole('button').length).toEqual(0);
+    });
+
+    it('render a clear button when not readOnly', () => {
+      render(<Tag {...requiredProps} readOnly={false} />);
+
+      expect(screen.getAllByRole('button').length).toEqual(1);
     });
   });
 });
