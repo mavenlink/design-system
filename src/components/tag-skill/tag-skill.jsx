@@ -7,7 +7,7 @@ import styles from './tag-skill.css';
 
 export default function TagSkill(props) {
   return (
-    <Tag readOnly>
+    <Tag id={props.id} readOnly>
       <span className={styles.row}>
         {props.name}
         <span className={styles.level + (props.level ? '' : ` ${styles['level-tick']}`)}>
@@ -23,6 +23,7 @@ export default function TagSkill(props) {
 }
 
 TagSkill.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   level: PropTypes.number,
 };

@@ -1,15 +1,15 @@
 This is a kind of tag used for Mavenlink skills.
 
 ```
-<TagSkill name="Egg" />
+<TagSkill id="egg" name="Egg" />
 <span> </span>
-<TagSkill name="Bacon" level={1} />
+<TagSkill id="bacon" name="Bacon" level={1} />
 <span> </span>
-<TagSkill name="Toast" level={2} />
+<TagSkill id="toast" name="Toast" level={2} />
 <span> </span>
-<TagSkill name="Bean" level={3} />
+<TagSkill id="bean" name="Bean" level={3} />
 <span> </span>
-<TagSkill name="Tomato" level={4} />
+<TagSkill id="tomato" name="Tomato" level={4} />
 <span> </span>
-<TagSkill name="Avocado" level={5} />
+<TagSkill id="avocado" name="Avocado" level={5} />
 ```

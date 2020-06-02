@@ -1,17 +1,17 @@
-The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint. It works well inside of dropdowns and filters. It is used in the `CustomFieldInputMultiChoice` component through a `TagList`.
+The `Tag` component is intended to represent a value, usually in a series with `TagList`, with a minimal footprint.
 
 ### Basic examples
 
 ```
-<Tag a11yKey="test-key-1" readOnly>Test Title</Tag>
+<Tag id="basic-example-1" readOnly>Test Title</Tag>
 <div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />
-<Tag a11yKey="test-key-2" >Test Title</Tag>
+<Tag id="basic-example-2" >Test Title</Tag>
 ```
 
 ### Composition examples
 
 ```
-<Tag readOnly>
+<Tag id="composition-example-1" readOnly>
   Test Title
   <span style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>
     4
@@ -22,7 +22,7 @@ The `Tag` component is intended to represent a value, usually in a series with `
 ```
 const iconTick = require('../../svgs/icon-tick.svg');
 
-<Tag readOnly>
+<Tag id="composition-example-2" readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
@@ -55,12 +55,12 @@ function Spacer() {
 }
 
 <div role="grid">
-  <Tag>Test 1</Tag>
+  <Tag id="adv-example-1">Test 1</Tag>
   <Spacer />
-  <Tag>Test 2</Tag>
+  <Tag id="adv-example-2">Test 2</Tag>
   <Spacer />
-  <Tag>Test 3</Tag>
+  <Tag id="adv-example-3">Test 3</Tag>
   <Spacer />
-  <Tag>Test 4</Tag>
+  <Tag id="adv-example-4">Test 4</Tag>
 </div>
 ```

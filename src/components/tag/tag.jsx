@@ -8,9 +8,9 @@ export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
-  const iconId = `${props.a11yKey}-icon`;
+  const iconId = `${props.id}-icon`;
   const titleElement = useRef(null);
-  const titleId = `${props.a11yKey}-content`;
+  const titleId = `${props.id}-content`;
   const refElements = [titleElement, iconElement];
 
   function handleGridCellKeyDown(keyEvent) {
@@ -103,7 +103,7 @@ export default function Tag(props) {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
-  a11yKey: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
