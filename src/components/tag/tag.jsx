@@ -84,7 +84,7 @@ export default function Tag(props) {
         >
           <Icon
             a11yKey={props.a11yKey}
-            ariaLabel={`Remove`}
+            ariaLabel="Remove"
             ariaLabelledBy={`${props.a11yKey}-icon ${props.a11yKey}-content`}
             name={clearIcon.id}
             size="small"
