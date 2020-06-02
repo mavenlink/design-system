@@ -49,6 +49,13 @@ describe('Icon', () => {
       ));
       expect(screen.getByRole('button'));
     });
+
+    it('can be img', () => {
+      render((
+        <Icon {...requiredProps} role="img" />
+      ));
+      expect(screen.getByRole('img'));
+    });
   });
 
   describe('size API', () => {
