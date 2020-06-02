@@ -63,6 +63,7 @@ export default function Tag(props) {
   return (
     <div className={styles.tag + (props.readOnly ? ` ${styles['read-only']}` : '')} role="row">
       <span
+        id={`${props.a11yKey}-content`}
         className={styles.content}
         ref={titleElement}
         role="gridcell"
@@ -81,7 +82,7 @@ export default function Tag(props) {
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
-          <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
+          <Icon a11yKey={props.a11yKey} ariaLabel={`Remove`} ariaLabelledBy={`${props.a11yKey}-icon ${props.a11yKey}-content`} name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
         </span>
       }
     </div>
@@ -90,6 +91,7 @@ export default function Tag(props) {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
+  a11yKey: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };

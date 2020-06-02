@@ -3,9 +3,9 @@ The `Tag` component is intended to represent a value, usually in a series with `
 ### Basic examples
 
 ```
-<Tag readOnly>Test Title</Tag>
+<Tag a11yKey="test-key-1" readOnly>Test Title</Tag>
 <div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />
-<Tag>Test Title</Tag>
+<Tag a11yKey="test-key-2" >Test Title</Tag>
 ```
 
 ### Composition examples

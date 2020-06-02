@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title, role, ariaLabel }) {
+export default function Icon({ className, name, size, stroke, fill, currentColor, title, role, ariaLabel, ariaLabelledBy, a11yKey }) {
   const classes = [
     className,
     styles[`size-${size}`],
@@ -12,7 +12,7 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
   ].filter(Boolean);
 
   return (
-    <svg aria-label={ariaLabel || name.split('-')[1]} className={classes.join(' ')} role={role} >
+    <svg id={`${a11yKey}-icon`} aria-label={ariaLabel || name.split('-')[1]} className={classes.join(' ')} aria-labelledby={ariaLabelledBy} role={role} >
       { title && <title>{title}</title> }
       <use xlinkHref={`#${name}`} />
     </svg>
@@ -20,7 +20,9 @@ export default function Icon({ className, name, size, stroke, fill, currentColor
 }
 
 Icon.propTypes = {
+  a11yKey: PropTypes.string,
   ariaLabel: PropTypes.string,
+  ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
   fill: PropTypes.oneOf([
     'primary',
@@ -63,7 +65,9 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
+  a11yKey: undefined,
   ariaLabel: undefined,
+  ariaLabelledBy: undefined,
   className: styles['icon-base'],
   fill: 'none',
   currentColor: 'transparent',
