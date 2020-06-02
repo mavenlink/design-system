@@ -31,7 +31,6 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       type="text"
     />
     <svg
-      aria-label="caret"
       className="input-icon size-medium stroke-none color-transparent"
       role="img"
     >

@@ -33,7 +33,6 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       type="date"
     />
     <svg
-      aria-label="calendar"
       className="input-icon size-medium color-transparent"
       role="img"
     >
