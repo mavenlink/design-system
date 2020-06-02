@@ -49,6 +49,23 @@ describe('Tag', () => {
     });
   });
 
+  describe('id API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps} id="unique-id" />);
+      expect(screen.getByText('Test Title').parentElement).toHaveAttribute('id', 'unique-id');
+    });
+
+    it('sets the content ID', () => {
+      render(<Tag {...requiredProps} id="unique-id" />);
+      expect(screen.getByText('Test Title')).toHaveAttribute('id', 'unique-id-content');
+    });
+
+    it('sets the clear button ID', () => {
+      render(<Tag {...requiredProps} id="unique-id" />);
+      expect(screen.getByRole('button')).toHaveAttribute('id', 'unique-id-button');
+    });
+  });
+
   describe('onClear API', () => {
     it('calls the onClear handler when the icon is clicked', () => {
       const onClearSpy = jest.fn();

@@ -3,6 +3,7 @@
 exports[`TagSkill has default 1`] = `
 <div
   className="read-only-tag"
+  id="test-id"
   role="row"
 >
   <span

@@ -8,7 +8,7 @@ export default function Tag(props) {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
   const iconElement = useRef(null);
-  const iconId = `${props.id}-icon`;
+  const iconId = `${props.id}-button`;
   const titleElement = useRef(null);
   const titleId = `${props.id}-content`;
   const refElements = [titleElement, iconElement];
@@ -63,7 +63,11 @@ export default function Tag(props) {
   }, [...tabActiveStates]);
 
   return (
-    <div className={props.readOnly ? styles['read-only-tag'] : styles.tag} role="row">
+    <div
+      className={props.readOnly ? styles['read-only-tag'] : styles.tag}
+      id={props.id}
+      role="row"
+    >
       <span
         id={titleId}
         className={styles.content}

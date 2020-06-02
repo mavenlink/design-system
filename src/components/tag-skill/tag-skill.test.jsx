@@ -12,6 +12,13 @@ describe('TagSkill', () => {
     expect(renderer.create(<TagSkill {...requiredProps} name="Egg" />).toJSON()).toMatchSnapshot();
   });
 
+  describe('id API', () => {
+    it('can be set', () => {
+      render(<TagSkill {...requiredProps} id="unique-id" name="Bacon" />);
+      expect(screen.getByText('Bacon').parentElement.parentElement).toHaveAttribute('id', 'unique-id');
+    });
+  });
+
   describe('name API', () => {
     it('can be set', () => {
       render(<TagSkill {...requiredProps} name="Bacon" />);

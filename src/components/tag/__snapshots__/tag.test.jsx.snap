@@ -3,6 +3,7 @@
 exports[`Tag renders a tag component 1`] = `
 <div
   className="tag"
+  id="test-id"
   role="row"
 >
   <span
@@ -24,9 +25,9 @@ exports[`Tag renders a tag component 1`] = `
   >
     <svg
       aria-label="Remove"
-      aria-labelledby="test-id-icon test-id-content"
+      aria-labelledby="test-id-button test-id-content"
       className="icon-base size-small"
-      id="test-id-icon"
+      id="test-id-button"
       role="button"
     >
       <use
