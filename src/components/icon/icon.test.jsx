@@ -15,13 +15,6 @@ describe('Icon', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('has title', () => {
-    render((
-      <Icon {...requiredProps} title="yo" />
-    ));
-    expect(screen.getByTitle('yo')).toBeDefined();
-  });
-
   describe('ariaLabel API', () => {
     it('can be set', () => {
       render((
@@ -69,6 +62,15 @@ describe('Icon', () => {
         <Icon {...requiredProps} size="large" />
       ));
       expect(screen.getByRole('img')).toHaveClass('size-large');
+    });
+  });
+
+  describe('title API', () => {
+    it('can be set', () => {
+      render((
+        <Icon {...requiredProps} title="yo" />
+      ));
+      expect(screen.getByTitle('yo')).toBeDefined();
     });
   });
 
