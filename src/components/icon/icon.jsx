@@ -13,7 +13,7 @@ export default function Icon(props) {
 
   return (
     <svg
-      aria-label={props.ariaLabel || props.name.split('-')[1]}
+      aria-label={props.ariaLabel}
       aria-labelledby={props.ariaLabelledBy}
       className={classes.join(' ')}
       id={props.id}

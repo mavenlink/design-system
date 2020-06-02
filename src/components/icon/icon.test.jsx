@@ -23,18 +23,11 @@ describe('Icon', () => {
   });
 
   describe('ariaLabel API', () => {
-    it('can be set in props', () => {
+    it('can be set', () => {
       render((
-        <Icon {...requiredProps} ariaLabel="clear" role="button" />
+        <Icon {...requiredProps} ariaLabel="clear" />
       ));
-      expect(screen.getByLabelText('clear'));
-    });
-
-    it('defaults as expected', () => {
-      render((
-        <Icon {...requiredProps} name="icon-clear" role="button" />
-      ));
-      expect(screen.getByLabelText('clear'));
+      expect(screen.getByLabelText('clear')).toBeDefined();
     });
   });
 
