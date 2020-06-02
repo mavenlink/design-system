@@ -1,4 +1,4 @@
-This is a kind of tag used for Mavenlink skills.
+`TagSkill` is the variant of `Tag` for Mavenlink skills.
 
 ```
 <TagSkill id="egg" name="Egg" />
