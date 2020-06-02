@@ -26,7 +26,7 @@ describe('Tag', () => {
     });
   });
 
-  describe('Focus Behavior', () => {
+  describe('interactions', () => {
     it('moves focus with arrow key', () => {
       render(<Tag {...requiredProps} />);
 
