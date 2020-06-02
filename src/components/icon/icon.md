@@ -59,6 +59,6 @@ const icon = require('../../svgs/icon-clear-small.svg').default;
 
 <React.Fragment>
   <span id="a11y-item">I am an item</span>
-  <Icon name={icon.id} id="a11y-id-icon" ariaLabel="Remove" ariaLabelledBy="a11y-icon a11y-item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
+  <Icon name={icon.id} id="a11y-icon" ariaLabel="Remove" ariaLabelledBy="a11y-icon a11y-item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
 </React.Fragment>
 ```
