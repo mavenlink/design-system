@@ -32,16 +32,12 @@ describe('Tag', () => {
 
       fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
 
-      await waitFor(() =>
-        expect(screen.getByText('Test Title')).not.toEqual(document.activeElement)
-      );
+      await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
 
-      await waitFor(() =>
-        expect(screen.getByText('Test Title')).not.toEqual(document.activeElement)
-      );
+      await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
       expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
     });
 
@@ -50,9 +46,7 @@ describe('Tag', () => {
 
       userEvent.click(screen.getByRole('button'));
 
-      await waitFor(() =>
-        expect(screen.getByRole('button').parentElement).toEqual(document.activeElement)
-      );
+      await waitFor(() => expect(screen.getByRole('button').parentElement).toEqual(document.activeElement));
     });
   });
 
