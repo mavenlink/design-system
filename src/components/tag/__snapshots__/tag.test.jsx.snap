@@ -3,10 +3,12 @@
 exports[`Tag renders a tag component 1`] = `
 <div
   className="tag"
+  id="test-id"
   role="row"
 >
   <span
     className="content"
+    id="test-id-content"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="gridcell"
@@ -22,7 +24,10 @@ exports[`Tag renders a tag component 1`] = `
     tabIndex="-1"
   >
     <svg
+      aria-label="Remove"
+      aria-labelledby="test-id-button test-id-content"
       className="icon-base size-small"
+      id="test-id-button"
       role="button"
     >
       <use

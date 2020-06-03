@@ -2,24 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon.css';
 
-export default function Icon({ className, name, size, stroke, fill, currentColor, title, role }) {
+export default function Icon(props) {
   const classes = [
-    className,
-    styles[`size-${size}`],
-    fill === 'skip' ? '' : styles[`fill-${fill}`],
-    stroke === 'skip' ? '' : styles[`stroke-${stroke}`],
-    currentColor === 'skip' ? '' : styles[`color-${currentColor}`],
+    props.className,
+    styles[`size-${props.size}`],
+    props.fill === 'skip' ? '' : styles[`fill-${props.fill}`],
+    props.stroke === 'skip' ? '' : styles[`stroke-${props.stroke}`],
+    props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
   ].filter(Boolean);
 
   return (
-    <svg className={classes.join(' ')} role={role} >
-      { title && <title>{title}</title> }
-      <use xlinkHref={`#${name}`} />
+    <svg
+      aria-label={props.ariaLabel}
+      aria-labelledby={props.ariaLabelledBy}
+      className={classes.join(' ')}
+      id={props.id}
+      role={props.role}
+    >
+      { props.title && <title>{props.title}</title> }
+      <use xlinkHref={`#${props.name}`} />
     </svg>
   );
 }
 
 Icon.propTypes = {
+  id: PropTypes.string,
+  ariaLabel: PropTypes.string,
+  ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
   fill: PropTypes.oneOf([
     'primary',
@@ -62,8 +71,11 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
+  ariaLabel: undefined,
+  ariaLabelledBy: undefined,
   className: styles['icon-base'],
   fill: 'none',
+  id: undefined,
   currentColor: 'transparent',
   role: 'img',
   size: 'medium',

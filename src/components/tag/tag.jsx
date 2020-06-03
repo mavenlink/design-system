@@ -6,36 +6,44 @@ import Icon from '../icon/index.js';
 import { forwardRef } from 'react';
 
 const Tag = forwardRef((props, ref) => {
-  let [tabActiveStates, setTabActiveStates] = useState([true, false]);
+  const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
-  const iconElement = useRef(null);
-  const titleElement = useRef(null);
-  const refElements = [titleElement, iconElement];
+  const buttonRef = useRef(null);
+  const buttonId = `${props.id}-button`;
+  const contentRef = useRef(null);
+  const contentId = `${props.id}-content`;
+  const refElements = [contentRef, buttonRef];
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
       case ' ':
+        keyEvent.preventDefault();
+        // falls through
       case 'Enter':
         if (tabActiveStates[1]) {
           props.onClear(keyEvent);
         }
         break;
-      case 'ArrowRight':
       case 'ArrowDown':
+        keyEvent.preventDefault();
+        // falls through
+      case 'ArrowRight':
         setInputHandled(false);
-        setTabActiveStates([false, true]);
+        setTabActiveStates(props.readOnly ? [true] : [false, true]);
         break;
-      case 'ArrowLeft':
       case 'ArrowUp':
+        keyEvent.preventDefault();
+        // falls through
+      case 'ArrowLeft':
         setInputHandled(false);
-        setTabActiveStates([true, false]);
+        setTabActiveStates(props.readOnly ? [true] : [true, false]);
         break;
       default:
     }
   }
 
   function handleGridCellClick(clickEvent, gridIndex) {
-    const newTabActiveStates = [false, false];
+    const newTabActiveStates = props.readOnly ? [false] : [false, false];
 
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
@@ -60,10 +68,15 @@ const Tag = forwardRef((props, ref) => {
   });
 
   return (
-    <div className={styles.tag} role="row">
+    <div
+      className={props.readOnly ? styles['read-only-tag'] : styles.tag}
+      id={props.id}
+      role="row"
+    >
       <span
+        id={contentId}
         className={styles.content}
-        ref={titleElement}
+        ref={contentRef}
         role="gridcell"
         tabIndex={tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
@@ -74,13 +87,23 @@ const Tag = forwardRef((props, ref) => {
       {!props.readOnly &&
         <span
           className={styles['icon-wrapper']}
-          ref={iconElement}
+          ref={buttonRef}
           role="gridcell"
           tabIndex={tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
-          <Icon name={clearIcon.id} size="small" stroke="skip" fill="skip" currentColor="skip" role="button" />
+          <Icon
+            ariaLabel="Remove"
+            ariaLabelledBy={`${buttonId} ${contentId}`}
+            id={buttonId}
+            name={clearIcon.id}
+            size="small"
+            stroke="skip"
+            fill="skip"
+            currentColor="skip"
+            role="button"
+          />
         </span>
       }
     </div>
@@ -88,10 +111,8 @@ const Tag = forwardRef((props, ref) => {
 });
 
 Tag.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };

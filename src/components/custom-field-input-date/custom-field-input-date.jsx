@@ -33,6 +33,8 @@ export default function CustomFieldInputDate(props) {
   const [isFocused] = useState(false);
 
   useEffect(() => {
+    if (!inputRef.current) return;
+
     const isInputValid = inputRef.current.validity.valid;
     const valid = isValueValid(props.value, props.error, isInputValid);
     setIsValid(valid);

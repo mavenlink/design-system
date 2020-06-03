@@ -2,11 +2,13 @@
 
 exports[`TagSkill has default 1`] = `
 <div
-  className="tag"
+  className="read-only-tag"
+  id="test-id"
   role="row"
 >
   <span
     className="content"
+    id="test-id-content"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="gridcell"
@@ -17,7 +19,7 @@ exports[`TagSkill has default 1`] = `
     >
       Egg
       <span
-        className="level"
+        className="level-tick"
       >
         <svg
           className="icon-base size-small"
@@ -29,22 +31,6 @@ exports[`TagSkill has default 1`] = `
         </svg>
       </span>
     </span>
-  </span>
-  <span
-    className="icon-wrapper"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="gridcell"
-    tabIndex="-1"
-  >
-    <svg
-      className="icon-base size-small"
-      role="button"
-    >
-      <use
-        xlinkHref="#icon-clear-small.svg"
-      />
-    </svg>
   </span>
 </div>
 `;
