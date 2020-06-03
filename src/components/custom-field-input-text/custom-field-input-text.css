@@ -60,7 +60,7 @@
 }
 
 .input-icon {
-  composes: icon-base from '../icon/icon.css';
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   pointer-events: none;
   position: absolute;
   right: 6px;

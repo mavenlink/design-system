@@ -1,44 +1,75 @@
-The `<Icon />` component's API is mostly self-evident and you can refer to the props table at the bottom of this page.
-However, let's look at the color properties in more detail.
-We use three different properties to apply different colors to an SVG:
+The `<Icon>` component represents our latest patterns with using SVGs.
+It is also designed to be accessible -- please read our accessibility section below!
 
-- `fill` sets the fill color
-- `stroke` sets the stroke color
-- `currentColor` is an SVG trick to provide an additional `fill` and/or `stroke` color
+Forward facing note:
 
-Basic Usage
+- `currentColor` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
+- `fill` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
+- `skip` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
+- *Self-contained are SVGs with all coloring styling applied in the SVG file
+
+### Accessibility
+
+#### Labeling
+
+The `Icon` component exposes a few configured properties to fine-tune the accessibility provided by the SVG.
+
+- `role` API expresses whether it is presentational (`img`) or interactive (`button`)
+- `ariaLabel` API expresses an a11y description for the SVG
+- `ariaLabelledBy` API expresses a complex a11y description based on IDs for the SVG
+- `title` API expresses an a11y description for the SVG -- this does the same thing as `ariaLabel`
+
+Whenever the `role="button"` is set, the Icon requires a label/title to express what the button does (e.g. "Remove item").
 
 ```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="large" currentColor="caution" title="alert icon" />
-```
-Sizes
-
-```jsx
-const styles = require('./example.css'); /* For example purposes only! */
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-
-<div>
-  <span className={styles['icon-example']}>
-    <Icon name={icon.id} size="small" currentColor="caution" />
-  </span>
-  <span className={styles['icon-example']}>
-    <Icon name={icon.id} size="medium" currentColor="caution" />
-  </span>
-  <span className={styles['icon-example']}>
-    <Icon name={icon.id} size="large" currentColor="caution" />
-  </span>
-</div>
+const icon = require('../../svgs/icon-clear-small.svg').default;
+<Icon name={icon.id} ariaLabel="Remove item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
 ```
 
-Current Color Example
+In the above example, the SVG expresses its behavior to the user.
+However, it can be improved by being more specific (i.e. what is "item" in this case?).
+The `ariaLabelledBy` can indicate the action and the item specifying the IDs (in a particular order) of the elements with friendly screen reader labels.
 
-Can be one of 'primary', 'action', 'highlight', or 'caution';
+```jsx
+const icon = require('../../svgs/icon-clear-small.svg').default;
+
+<React.Fragment>
+  <span id="a11y-item">I am an item</span>
+  <Icon name={icon.id} id="a11y-icon" ariaLabel="Remove" ariaLabelledBy="a11y-icon a11y-item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
+</React.Fragment>
+```
+
+#### Keyboard functionality
+
+| Key | State | Behavior |
+| --- | --- | --- |
+| Enter | role="button" | The button is activated |
+
+### Basic Usage
 
 ```jsx
 const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" title="alert icon" />
+```
 
-<div>
-  <Icon name={icon.id} size="large" currentColor="primary" />
-</div>
+### Sizes
+
+For the most part, the `size` API is the main configurable property.
+It is important to note that the `size` property should match the viewport of the SVG.
+If the SVG has a viewbox of `0 0 16 16` then it corresponds to a `size="small"`.
+Otherwise, the SVG scales to match the Icon size and has unintended visual consequences due to scaling strokes and embedded whitespace in the SVG.
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="small" currentColor="skip" fill="skip" stroke="skip" />
+```
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="medium" currentColor="skip" fill="skip" stroke="skip" />
+```
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" />
 ```

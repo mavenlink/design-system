@@ -6,9 +6,8 @@
   --iconSizeLarge: 28px;
 }
 
-.icon-base {
-  display: inline-block;
-  vertical-align: middle;
+.icon-base[role="button"] {
+  cursor: pointer;
 }
 
 .fill-primary {

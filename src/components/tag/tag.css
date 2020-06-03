@@ -1,0 +1,33 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
+
+.icon-wrapper {
+  display: inline-flex;
+  margin-left: var(--spacing-small);
+}
+
+.tag {
+  align-items: center;
+  background-color: var(--mds-grey-12);
+  border-radius: var(--spacing-small);
+  box-sizing: border-box;
+  display: inline-flex;
+  max-width: 100%;
+  padding: var(--spacing-small) var(--spacing-x-small) var(--spacing-small) calc(var(--spacing-x-small) + var(--spacing-small));
+  white-space: nowrap;
+  width: min-content;
+}
+
+.read-only-tag {
+  composes: tag;
+  padding-right: calc(var(--spacing-x-small) + var(--spacing-small));
+}
+
+.content {
+  color: var(--mds-grey-87);
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-base-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
