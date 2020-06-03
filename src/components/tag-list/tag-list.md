@@ -10,18 +10,36 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ## Basic example
 
-```
+```jsx
 const refs = Array(3).fill().map(() => React.createRef());
 
 <TagList refs={refs}>
-  <Tag ref={refs[0]}>
+  <Tag ref={refs[0]} defaultFocusable={true}>
     Eggs
   </Tag>
-  <Tag ref={refs[1]}>
+  <Tag ref={refs[1]} defaultFocusable={false}>
     Bacon
   </Tag>
-  <Tag ref={refs[2]}>
+  <Tag ref={refs[2]} defaultFocusable={false}>
     Avocado
   </Tag>
+</TagList>
+```
+
+## Real case
+
+```jsx
+const backendTagData = [
+  'Eggs',
+  'Bacon',
+  'Avocado',
+];
+
+const refs = backendTagData.map(() => React.createRef());
+
+<TagList refs={refs}>
+  {backendTagData.map((datum, i) => (
+    <Tag ref={refs[i]} defaultFocusable={i === 0}>{datum}</Tag>
+  ))}
 </TagList>
 ```

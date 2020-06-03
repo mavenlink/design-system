@@ -7,13 +7,18 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 
 export default function TagList(props) {
+  const [active, setActive] = useState(false);
   const [focusIndex, setFocusIndex] = useState(0);
 
   useEffect(() => {
-    props.refs.forEach((ref, index) => {
-      ref.current && ref.current.setIsFocused(focusIndex === index);
-    });
-  }, [...props.refs.map(ref => ref.current), focusIndex]);
+    if (active) {
+      props.refs.forEach((ref, index) => {
+        ref.current && ref.current.setIsParentActive(true);
+        ref.current && ref.current.setIsActive(focusIndex === index);
+      });
+    }
+
+  }, [active, ...props.refs.map(ref => ref.current), focusIndex]);
 
   function handleOnKeyDown(keyEvent) {
     switch (keyEvent.key) {
@@ -29,7 +34,12 @@ export default function TagList(props) {
   }
 
   return (
-    <div className={styles['tag-list']} onKeyDown={handleOnKeyDown}>
+    <div
+      className={styles['tag-list']}
+      onKeyDown={handleOnKeyDown}
+      onFocus={_ => setActive(true)}
+      // onBlur={_ => setActive(false)}
+    >
       {props.children}
     </div>
   );

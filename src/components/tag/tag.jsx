@@ -8,7 +8,8 @@ import { forwardRef } from 'react';
 const Tag = forwardRef((props, ref) => {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
-  const [isFocused, setIsFocused] = useState(true);
+  const [isActive, setIsActive] = useState(false);
+  const [isParentActive, setIsParentActive] = useState(false);
   const buttonRef = useRef(null);
   const buttonId = `${props.id}-button`;
   const contentRef = useRef(null);
@@ -62,20 +63,18 @@ const Tag = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
-    if (!inputHandled || isFocused) {
+    if (!inputHandled || isActive) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
 
       refElements[activeTabIndex].current.focus();
       setInputHandled(true);
-      console.log('useEffect for !inputHandled called', tabActiveStates);
-    } else {
-      console.log('called but not handled useEffect for !inputHandled');
     }
-  }, [...tabActiveStates, isFocused]);
+  }, [...tabActiveStates, isActive]);
 
-  useImperativeHandle(ref, () => {
-    setIsFocused
-  });
+  useImperativeHandle(ref, () => ({
+    setIsParentActive,
+    setIsActive,
+  }));
 
   return (
     <div
@@ -88,7 +87,7 @@ const Tag = forwardRef((props, ref) => {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={isFocused && tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={(isParentActive ? isActive : props.defaultFocusable) && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -99,7 +98,7 @@ const Tag = forwardRef((props, ref) => {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={isFocused && tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={(isParentActive ? isActive : props.defaultFocusable) && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -122,13 +121,17 @@ const Tag = forwardRef((props, ref) => {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
+  defaultFocusable: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
+  defaultFocusable: true,
   onClear: () => {},
+  focusable: true,
+  focused: false,
   readOnly: false,
 };
 
