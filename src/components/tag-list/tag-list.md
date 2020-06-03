@@ -5,7 +5,7 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 #### Keyboard navigation
 
 - Tags in the TagList can be navigated with _only_ the arrow keys
-- One first time render, the first tag can be focused
+- On first time render, the first tag can be focused
 - After navigating within a TagList, the last focused tag is the only focusable tag
 
 ## Basic example
