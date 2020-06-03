@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import styles from './tag-list.css';
 import { useRef } from 'react';
@@ -23,11 +25,20 @@ export default function TagList(props) {
   //   </div>
   // );
 
-  const lastFocusedTagIndex = 0;
+  const [lastFocusedIndex, setLastFocusedIndex] = useState(0);
+
+  function moveToNextTag() {
+    setLastFocusedIndex(lastFocusedIndex + 1)
+  }
+
+  function moveToPreviousTag() {
+    setLastFocusedIndex(lastFocusedIndex - 1)
+  }
+
 
   return (
     <div className={styles['tag-list']}>
-      {props.children(lastFocusedTagIndex)}
+      {props.children(lastFocusedIndex, moveToNextTag, moveToPreviousTag)}
     </div>
   );
 }

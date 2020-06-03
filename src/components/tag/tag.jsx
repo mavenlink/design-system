@@ -29,13 +29,29 @@ const Tag = forwardRef((props, ref) => {
         // falls through
       case 'ArrowRight':
         setInputHandled(false);
+
+        if (props.readOnly && tabActiveStates[0] === true) {
+          props.moveNext();
+        } else if (!props.readOnly && tabActiveStates[0] === false && tabActiveStates[1] === true) {
+          console.log('moveNext soon');
+          props.moveNext();
+        }
+
         setTabActiveStates(props.readOnly ? [true] : [false, true]);
+
         break;
       case 'ArrowUp':
         keyEvent.preventDefault();
         // falls through
       case 'ArrowLeft':
         setInputHandled(false);
+
+        if (props.readOnly && tabActiveStates[0] === true) {
+          props.movePrevious();
+        } else if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
+          props.movePrevious();
+        }
+
         setTabActiveStates(props.readOnly ? [true] : [true, false]);
         break;
       default:

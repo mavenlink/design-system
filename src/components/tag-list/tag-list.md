@@ -12,11 +12,29 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ```
 <TagList>
-  {(lastFocusedIndex) => (
+  {(lastFocusedIndex, moveNext, movePrevious) => (
     <React.Fragment>
-      <Tag lastFocused={lastFocusedIndex === 0}>Eggs</Tag>
-      <Tag lastFocused={lastFocusedIndex === 1}>Bacon</Tag>
-      <Tag lastFocused={lastFocusedIndex === 2}>Avocado</Tag>
+      <Tag
+        lastFocused={lastFocusedIndex === 0}
+        moveNext={moveNext}
+        movePrevious={movePrevious}
+      >
+        Eggs
+      </Tag>
+      <Tag
+        lastFocused={lastFocusedIndex === 1}
+        moveNext={moveNext}
+        movePrevious={movePrevious}
+      >
+        Bacon
+      </Tag>
+      <Tag
+        lastFocused={lastFocusedIndex === 2}
+        moveNext={moveNext}
+        movePrevious={movePrevious}
+      >
+        Avocado
+      </Tag>
     </React.Fragment>
   )}
 </TagList>
