@@ -8,8 +8,8 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 | Key | State | Function |
 | --- | --- | --- |
-| Left arrow | | Moves focus to text content |
-| Right arrow | | Moves focus to the clear button |
+| Left arrow/Up arrow | | Moves focus to text content |
+| Right arrow/Down arrow | | Moves focus to the clear button |
 | Enter | Focused on clear button | Invokes `onClear` callback |
 | Space | Focused on clear button | Invokes `onClear` callback |
 
