@@ -55,6 +55,9 @@ const icon = require('../../svgs/icon-caution-fill.svg').default;
 ### Sizes
 
 For the most part, the `size` API is the main configurable property.
+It is important to note that the `size` property should match the viewport of the SVG.
+If the SVG has a viewbox of `0 0 16 16` then it corresponds to a `size="small"`.
+Otherwise, the SVG scales to match the Icon size and has unintended visual consequences due to scaling strokes and embedded whitespace in the SVG.
 
 ```jsx
 const icon = require('../../svgs/icon-caution-fill.svg').default;
