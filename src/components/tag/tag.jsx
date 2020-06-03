@@ -8,6 +8,7 @@ import { forwardRef } from 'react';
 const Tag = forwardRef((props, ref) => {
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const [inputHandled, setInputHandled] = useState(true);
+  const [isFocused, setIsFocused] = useState(true);
   const buttonRef = useRef(null);
   const buttonId = `${props.id}-button`;
   const contentRef = useRef(null);
@@ -61,7 +62,7 @@ const Tag = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
-    if (!inputHandled || props.isFocused) {
+    if (!inputHandled || isFocused) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
 
       refElements[activeTabIndex].current.focus();
@@ -70,10 +71,10 @@ const Tag = forwardRef((props, ref) => {
     } else {
       console.log('called but not handled useEffect for !inputHandled');
     }
-  }, [...tabActiveStates, props.isFocused]);
+  }, [...tabActiveStates, isFocused]);
 
   useImperativeHandle(ref, () => {
-    setTabActiveStates
+    setIsFocused
   });
 
   return (
@@ -87,7 +88,7 @@ const Tag = forwardRef((props, ref) => {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={props.isFocused && tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={isFocused && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -98,7 +99,7 @@ const Tag = forwardRef((props, ref) => {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={props.isFocused && tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={isFocused && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -128,7 +129,6 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   onClear: () => {},
-  isFocused: true,
   readOnly: false,
 };
 

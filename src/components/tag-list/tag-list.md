@@ -12,20 +12,20 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ```
 <TagList>
-  {(focusIndex, moveNext, movePrevious) => (
+  {(refs) => (
     <React.Fragment>
       <Tag
-        isFocused={focusIndex === 0}
+        ref={refs[0]}
       >
         Eggs
       </Tag>
       <Tag
-        isFocused={focusIndex === 1}
+        ref={refs[1]}
       >
         Bacon
       </Tag>
       <Tag
-        isFocused={focusIndex === 2}
+        ref={refs[2]}
       >
         Avocado
       </Tag>
