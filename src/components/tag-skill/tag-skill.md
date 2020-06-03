@@ -1,4 +1,5 @@
 `TagSkill` is the variant of `Tag` for Mavenlink skills.
+Refer to the [Tag documentation](#/Components/Tag) for more information.
 
 ```
 <TagSkill id="egg" name="Egg" />
