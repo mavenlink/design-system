@@ -8,33 +8,9 @@ Forward facing note:
 - `skip` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
 - *Self-contained are SVGs with all coloring styling applied in the SVG file
 
-### Basic Usage
-
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" title="alert icon" />
-```
-
-### Sizes
-
-For the most part, the `size` API is the main configurable property.
-
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="small" currentColor="skip" fill="skip" stroke="skip" />
-```
-
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="medium" currentColor="skip" fill="skip" stroke="skip" />
-```
-
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
-<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" />
-```
-
 ### Accessibility
+
+#### Labeling
 
 The `Icon` component exposes a few configured properties to fine-tune the accessibility provided by the SVG.
 
@@ -61,4 +37,36 @@ const icon = require('../../svgs/icon-clear-small.svg').default;
   <span id="a11y-item">I am an item</span>
   <Icon name={icon.id} id="a11y-icon" ariaLabel="Remove" ariaLabelledBy="a11y-icon a11y-item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
 </React.Fragment>
+```
+
+#### Keyboard functionality
+
+| Key | State | Behavior |
+| --- | --- | --- |
+| Enter | role="button" | The button is activated |
+
+### Basic Usage
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" title="alert icon" />
+```
+
+### Sizes
+
+For the most part, the `size` API is the main configurable property.
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="small" currentColor="skip" fill="skip" stroke="skip" />
+```
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="medium" currentColor="skip" fill="skip" stroke="skip" />
+```
+
+```jsx
+const icon = require('../../svgs/icon-caution-fill.svg').default;
+<Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" />
 ```
