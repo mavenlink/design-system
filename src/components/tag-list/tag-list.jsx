@@ -4,22 +4,30 @@ import styles from './tag-list.css';
 import { useRef } from 'react';
 
 export default function TagList(props) {
-  const childRefs = props.children.map(child => {
-    console.log(child);
-    useRef(child);
-  });
+  // const childRefs = props.children.map(child => {
+  //   console.log(child);
+  //   useRef(child);
+  // });
 
-  childRefs.forEach(childRef => {
-    console.log(childRef);
-    if (childRef) {
-      childRef.current.setTabActiveState([false, false]);
-      console.log('called');
-    }
-  });
+  // childRefs.forEach(childRef => {
+  //   console.log(childRef);
+  //   if (childRef) {
+  //     childRef.current.setTabActiveState([false, false]);
+  //     console.log('called');
+  //   }
+  // });
+
+  // return (
+  //   <div className={styles['tag-list']}>
+  //     {props.children.map((child) => React.cloneElement(child, { tabIndex: '-1' }))}
+  //   </div>
+  // );
+
+  const lastFocusedTagIndex = 0;
 
   return (
     <div className={styles['tag-list']}>
-      {props.children}
+      {props.children(lastFocusedTagIndex)}
     </div>
   );
 }

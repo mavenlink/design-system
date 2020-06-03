@@ -12,9 +12,12 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ```
 <TagList>
-  <Tag>Eggs</Tag>
-  <Tag>Bacon</Tag>
-  <Tag>Avocado</Tag>
-  <TagSkill name="Bacon" level={1} />
+  {(lastFocusedIndex) => (
+    <React.Fragment>
+      <Tag lastFocused={lastFocusedIndex === 0}>Eggs</Tag>
+      <Tag lastFocused={lastFocusedIndex === 1}>Bacon</Tag>
+      <Tag lastFocused={lastFocusedIndex === 2}>Avocado</Tag>
+    </React.Fragment>
+  )}
 </TagList>
 ```

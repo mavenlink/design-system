@@ -78,7 +78,7 @@ const Tag = forwardRef((props, ref) => {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={props.lastFocused && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -89,7 +89,7 @@ const Tag = forwardRef((props, ref) => {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={props.lastFocused && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -119,6 +119,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   onClear: () => {},
+  lastFocused: true,
   readOnly: false,
 };
 
