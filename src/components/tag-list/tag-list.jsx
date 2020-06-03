@@ -7,16 +7,13 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 
 export default function TagList(props) {
-  const childRefs = React.Children.map(props.children, () => {
-    return useRef();
-  });
   const [focusIndex, setFocusIndex] = useState(0);
 
   useEffect(() => {
-    childRefs.forEach((ref, index) => {
-      ref.current.setIsFocused(focusIndex === index);
+    props.refs.forEach((ref, index) => {
+      ref.current && ref.current.setIsFocused(focusIndex === index);
     });
-  }, [...childRefs.map(ref => ref.current), focusIndex]);
+  }, [...props.refs.map(ref => ref.current), focusIndex]);
 
   function handleOnKeyDown(keyEvent) {
     switch (keyEvent.key) {
@@ -33,7 +30,7 @@ export default function TagList(props) {
 
   return (
     <div className={styles['tag-list']} onKeyDown={handleOnKeyDown}>
-      {props.children(childRefs)}
+      {props.children}
     </div>
   );
 }

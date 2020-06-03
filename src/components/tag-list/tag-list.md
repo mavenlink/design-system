@@ -11,25 +11,17 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 ## Basic example
 
 ```
-<TagList>
-  {(refs) => (
-    <React.Fragment>
-      <Tag
-        ref={refs[0]}
-      >
-        Eggs
-      </Tag>
-      <Tag
-        ref={refs[1]}
-      >
-        Bacon
-      </Tag>
-      <Tag
-        ref={refs[2]}
-      >
-        Avocado
-      </Tag>
-    </React.Fragment>
-  )}
+const refs = Array(3).fill().map(() => React.createRef());
+
+<TagList refs={refs}>
+  <Tag ref={refs[0]}>
+    Eggs
+  </Tag>
+  <Tag ref={refs[1]}>
+    Bacon
+  </Tag>
+  <Tag ref={refs[2]}>
+    Avocado
+  </Tag>
 </TagList>
 ```
