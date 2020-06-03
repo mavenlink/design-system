@@ -25,20 +25,24 @@ export default function TagList(props) {
   //   </div>
   // );
 
-  const [lastFocusedIndex, setLastFocusedIndex] = useState(0);
+  const [focusIndex, setFocusIndex] = useState(0);
 
-  function moveToNextTag() {
-    setLastFocusedIndex(lastFocusedIndex + 1)
+  function handleOnKeyDown(keyEvent) {
+    switch (keyEvent.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        setFocusIndex(focusIndex + 1);
+        break;
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        setFocusIndex(focusIndex - 1);
+        break;
+    }
   }
-
-  function moveToPreviousTag() {
-    setLastFocusedIndex(lastFocusedIndex - 1)
-  }
-
 
   return (
-    <div className={styles['tag-list']}>
-      {props.children(lastFocusedIndex, moveToNextTag, moveToPreviousTag)}
+    <div className={styles['tag-list']} onKeyDown={handleOnKeyDown}>
+      {props.children(focusIndex)}
     </div>
   );
 }

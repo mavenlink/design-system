@@ -28,31 +28,21 @@ const Tag = forwardRef((props, ref) => {
         keyEvent.preventDefault();
         // falls through
       case 'ArrowRight':
-        setInputHandled(false);
-
-        if (props.readOnly && tabActiveStates[0] === true) {
-          props.moveNext();
-        } else if (!props.readOnly && tabActiveStates[0] === false && tabActiveStates[1] === true) {
-          console.log('moveNext soon');
-          props.moveNext();
+        if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
+          setInputHandled(false);
+          keyEvent.stopPropagation();
+          setTabActiveStates([false, true]);
         }
-
-        setTabActiveStates(props.readOnly ? [true] : [false, true]);
-
         break;
       case 'ArrowUp':
         keyEvent.preventDefault();
         // falls through
       case 'ArrowLeft':
-        setInputHandled(false);
-
-        if (props.readOnly && tabActiveStates[0] === true) {
-          props.movePrevious();
-        } else if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
-          props.movePrevious();
+        if (!props.readOnly && tabActiveStates[0] === false && tabActiveStates[1] === true) {
+          setInputHandled(false);
+          setTabActiveStates([true, false]);
+          keyEvent.stopPropagation();
         }
-
-        setTabActiveStates(props.readOnly ? [true] : [true, false]);
         break;
       default:
     }
@@ -71,13 +61,16 @@ const Tag = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
-    if (!inputHandled) {
+    if (!inputHandled || props.isFocused) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
 
       refElements[activeTabIndex].current.focus();
       setInputHandled(true);
+      console.log('useEffect for !inputHandled called', tabActiveStates);
+    } else {
+      console.log('called but not handled useEffect for !inputHandled');
     }
-  }, [...tabActiveStates]);
+  }, [...tabActiveStates, props.isFocused]);
 
   useImperativeHandle(ref, () => {
     setTabActiveStates
@@ -94,7 +87,7 @@ const Tag = forwardRef((props, ref) => {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={props.lastFocused && tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={props.isFocused && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -105,7 +98,7 @@ const Tag = forwardRef((props, ref) => {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={props.lastFocused && tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={props.isFocused && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -135,7 +128,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   onClear: () => {},
-  lastFocused: true,
+  isFocused: true,
   readOnly: false,
 };
 
