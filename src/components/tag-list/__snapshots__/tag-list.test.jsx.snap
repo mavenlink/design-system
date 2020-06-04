@@ -4,6 +4,7 @@ exports[`TagList renders a TagList 1`] = `
 <div
   onFocus={[Function]}
   onKeyDown={[Function]}
+  role="presentation"
 >
   <span>
     Test Fake Tag

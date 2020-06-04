@@ -47,6 +47,7 @@ export default function TagList(props) {
     <div
       onFocus={onFocus}
       onKeyDown={onKeyDown}
+      role="presentation"
     >
       {props.children}
     </div>
