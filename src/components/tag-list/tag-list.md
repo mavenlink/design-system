@@ -1,5 +1,13 @@
 ```jsx
-<TagList>
-  <Tag id="test-tag-1">Test Tag</Tag>
+const data = [
+];
+const refs = data.map(() => React.createRef());
+
+<TagList refs={refs}>
+  {
+    data.map((datum, index) => (
+      <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+    ))
+  }
 </TagList>
 ```
