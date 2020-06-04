@@ -73,7 +73,7 @@ export default function Tag(props) {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={props.defaultActive && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -84,7 +84,7 @@ export default function Tag(props) {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={props.defaultActive && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -107,12 +107,14 @@ export default function Tag(props) {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
+  defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
+  defaultActive: true,
   onClear: () => {},
   readOnly: false,
 };

@@ -26,6 +26,20 @@ describe('Tag', () => {
     });
   });
 
+  describe('defaultActive API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps} defaultActive={true} />);
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+    });
+
+    it('can be unset', () => {
+      render(<Tag {...requiredProps} defaultActive={false} />);
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+    });
+  });
+
   describe('interactions', () => {
     it('moves focus with arrow key', async () => {
       render(<Tag {...requiredProps} />);
