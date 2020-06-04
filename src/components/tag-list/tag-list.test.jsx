@@ -69,5 +69,41 @@ describe('TagList', () => {
       fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowLeft' });
       await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
     });
+
+    it('activeIndex stays inside ref array upper bound', async () => {
+      const refs = [createRef(), createRef()];
+      render((
+        <TagList {...requiredProps} refs={refs}>
+          <span role="button" tabIndex={0} ref={refs[0]}>Test Child 1</span>
+          <span role="button" tabIndex={0} ref={refs[1]}>Test Child 2</span>
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('Test Child 1'));
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowRight' });
+      await waitFor(() => expect(screen.getByText('Test Child 2')).toHaveFocus());
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowRight' });
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowLeft' });
+      await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
+    });
+
+    it('activeIndex stays inside ref array lower bound', async () => {
+      const refs = [createRef(), createRef()];
+      render((
+        <TagList {...requiredProps} refs={refs}>
+          <span role="button" tabIndex={0} ref={refs[0]}>Test Child 1</span>
+          <span role="button" tabIndex={0} ref={refs[1]}>Test Child 2</span>
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('Test Child 1'));
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowLeft' });
+      await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowLeft' });
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowRight' });
+      await waitFor(() => expect(screen.getByText('Test Child 2')).toHaveFocus());
+    });
   });
 });

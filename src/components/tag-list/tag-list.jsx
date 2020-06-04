@@ -23,11 +23,15 @@ export default function TagList(props) {
     switch (keyEvent.key) {
       case 'ArrowLeft':
       case 'ArrowUp':
-        setActiveIndex(activeIndex - 1);
+        if (activeIndex > 0) {
+          setActiveIndex(activeIndex - 1);
+        }
         break;
       case 'ArrowRight':
       case 'ArrowDown':
-        setActiveIndex(activeIndex + 1);
+        if (activeIndex < props.refs.length - 1) {
+          setActiveIndex(activeIndex + 1);
+        }
         break;
       default:
     }
