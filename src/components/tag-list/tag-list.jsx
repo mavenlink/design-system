@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function TagList(props) {
   const [active, setActive] = useState(false);
-  const [activeIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     props.refs.forEach((ref, index) => {
@@ -15,13 +15,28 @@ export default function TagList(props) {
     });
   }, [active, activeIndex]);
 
-  function onFocusHandler() {
+  function onFocus() {
     setActive(true);
+  }
+
+  function onKeyDown(keyEvent) {
+    switch (keyEvent.key) {
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        setActiveIndex(activeIndex - 1);
+        break;
+      case 'ArrowRight':
+      case 'ArrowDown':
+        setActiveIndex(activeIndex + 1);
+        break;
+      default:
+    }
   }
 
   return (
     <div
-      onFocus={onFocusHandler}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
     >
       {props.children}
     </div>

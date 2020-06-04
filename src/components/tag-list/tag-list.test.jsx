@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { waitFor } from '@testing-library/dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TagList from './tag-list.jsx';
 
@@ -41,6 +41,33 @@ describe('TagList', () => {
       render(<TagList {...requiredProps} refs={refs}><span role="button" tabIndex={0} ref={refs[0]}>Test Child</span></TagList>);
 
       await waitFor(() => expect(screen.getByText('Test Child')).not.toHaveFocus());
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('moves focus on arrow keys', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <TagList {...requiredProps} refs={refs}>
+          <span role="button" tabIndex={0} ref={refs[0]}>Test Child 1</span>
+          <span role="button" tabIndex={0} ref={refs[1]}>Test Child 2</span>
+          <span role="button" tabIndex={0} ref={refs[2]}>Test Child 3</span>
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('Test Child 1')); // keyDown literally sends the keyDown event, no focusing happens, so we click first
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowRight' });
+      await waitFor(() => expect(screen.getByText('Test Child 2')).toHaveFocus());
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowDown' });
+      await waitFor(() => expect(screen.getByText('Test Child 3')).toHaveFocus());
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowUp' });
+      await waitFor(() => expect(screen.getByText('Test Child 2')).toHaveFocus());
+
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowLeft' });
+      await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
     });
   });
 });
