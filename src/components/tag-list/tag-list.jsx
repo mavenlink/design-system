@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function TagList(props) {
   const [active, setActive] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex] = useState(0);
 
   useEffect(() => {
     props.refs.forEach((ref, index) => {
@@ -15,8 +15,14 @@ export default function TagList(props) {
     });
   }, [active, activeIndex]);
 
+  function onFocusHandler() {
+    setActive(true);
+  }
+
   return (
-    <div>
+    <div
+      onFocus={onFocusHandler}
+    >
       {props.children}
     </div>
   );
@@ -24,7 +30,7 @@ export default function TagList(props) {
 
 TagList.propTypes = {
   children: PropTypes.node.isRequired,
-  refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })),
+  refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
 };
 
 TagList.defaultProps = {};

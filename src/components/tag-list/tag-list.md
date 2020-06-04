@@ -1,5 +1,7 @@
 ```jsx
 const data = [
+  'Molotov Solution',
+  'Band Name',
 ];
 const refs = data.map(() => React.createRef());
 
