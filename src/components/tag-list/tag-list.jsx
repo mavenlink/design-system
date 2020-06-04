@@ -33,6 +33,12 @@ export default function TagList(props) {
           setActiveIndex(activeIndex + 1);
         }
         break;
+      case 'End':
+        setActiveIndex(props.refs.length - 1);
+        break;
+      case 'Home':
+        setActiveIndex(0);
+        break;
       default:
     }
   }
