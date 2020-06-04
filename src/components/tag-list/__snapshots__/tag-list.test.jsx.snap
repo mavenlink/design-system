@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagList renders a TagList 1`] = `
+<div>
+  <span>
+    Test Fake Tag
+  </span>
+</div>
+`;
