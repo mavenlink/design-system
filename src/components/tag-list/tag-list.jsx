@@ -8,15 +8,13 @@ export default function TagList(props) {
   useEffect(() => {
     props.refs.forEach((ref, index) => {
       if (active) {
-        if (index === activeIndex) {
-          ref.current.focus();
-        }
+        ref.current.setIsActive(index === activeIndex);
       }
     });
   }, [active, activeIndex]);
 
   function onClick(clickEvent) {
-    setActiveIndex(props.refs.findIndex(ref => ref.current.isSameNode(clickEvent.target)));
+    setActiveIndex(props.refs.findIndex(ref => ref.current.contains(clickEvent.target)));
   }
 
   function onFocus() {
