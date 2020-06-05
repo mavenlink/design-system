@@ -72,7 +72,7 @@ const Tag = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setIsActive: (bool) => {
-      setFocusQueued(bool)
+      setFocusQueued(bool);
       setIsActive(bool);
     },
     contains: node => rootRef.current.contains(node),
