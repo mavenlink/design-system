@@ -4,7 +4,7 @@ import styles from './tag.css';
 import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
 
-const Tag = forwardRef((props, ref) => {
+const Tag = forwardRef(function Tag(props, ref) {
   const [focusQueued, setFocusQueued] = useState(false);
   const [isActive, setIsActive] = useState(props.defaultActive);
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
