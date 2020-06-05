@@ -5,7 +5,7 @@ import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
 
 const Tag = forwardRef((props, ref) => {
-  const [inputHandled, setInputHandled] = useState(true);
+  const [focusQueued, setFocusQueued] = useState(false);
   const [hasBeenActive, setHasBeenActive] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
@@ -32,7 +32,7 @@ const Tag = forwardRef((props, ref) => {
       case 'ArrowRight':
         if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
           keyEvent.stopPropagation();
-          setInputHandled(false);
+          setFocusQueued(true);
           setTabActiveStates([false, true]);
         }
         break;
@@ -42,7 +42,7 @@ const Tag = forwardRef((props, ref) => {
       case 'ArrowLeft':
         if (!props.readOnly && tabActiveStates[0] === false && tabActiveStates[1] === true) {
           keyEvent.stopPropagation();
-          setInputHandled(false);
+          setFocusQueued(true);
           setTabActiveStates([true, false]);
         }
         break;
@@ -55,7 +55,7 @@ const Tag = forwardRef((props, ref) => {
 
     newTabActiveStates[gridIndex] = true;
     setTabActiveStates(newTabActiveStates);
-    setInputHandled(false);
+    setFocusQueued(true);
 
     if (gridIndex === 1) {
       props.onClear(clickEvent);
@@ -63,17 +63,18 @@ const Tag = forwardRef((props, ref) => {
   }
 
   useEffect(() => {
-    if (!inputHandled || isActive) {
+    if (focusQueued) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
 
       refElements[activeTabIndex].current.focus();
-      setInputHandled(true);
+      setFocusQueued(false);
     }
   }, [isActive, ...tabActiveStates]);
 
   useImperativeHandle(ref, () => ({
     setIsActive: (bool) => {
       setHasBeenActive(true);
+      setFocusQueued(bool)
       setIsActive(bool);
     },
     contains: node => rootRef.current.contains(node),
