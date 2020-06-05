@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import Tag from './tag.jsx';
@@ -26,15 +26,15 @@ describe('Tag', () => {
     });
   });
 
-  describe('defaultActive API', () => {
+  describe('defaultFocusable API', () => {
     it('can be set', () => {
-      render(<Tag {...requiredProps} defaultActive={true} />);
+      render(<Tag {...requiredProps} defaultFocusable={true} />);
       expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
       expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
 
     it('can be unset', () => {
-      render(<Tag {...requiredProps} defaultActive={false} />);
+      render(<Tag {...requiredProps} defaultFocusable={false} />);
       expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
       expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
@@ -104,6 +104,26 @@ describe('Tag', () => {
       render(<Tag {...requiredProps} readOnly={false} />);
 
       expect(screen.getAllByRole('button').length).toEqual(1);
+    });
+  });
+
+  describe('ref API', () => {
+    it('exports DOM API with useImperativeHandle', () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+
+      expect(ref.current.setIsActive).toBeDefined();
+    });
+
+    it('sets focus when active without interaction', async () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} defaultFocusable={false} />);
+
+      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).not.toHaveFocus());
+
+      act(() => { ref.current.setIsActive(true); });
+
+      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).toHaveFocus());
     });
   });
 });

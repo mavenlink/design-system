@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react';
 import styles from './tag.css';
 import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
 
-export default function Tag(props) {
-  const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
+const Tag = forwardRef((props, ref) => {
   const [inputHandled, setInputHandled] = useState(true);
+  const [isActive, setIsActive] = useState(false);
+  const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const buttonRef = useRef(null);
   const buttonId = `${props.id}-button`;
   const contentRef = useRef(null);
@@ -54,13 +55,17 @@ export default function Tag(props) {
   }
 
   useEffect(() => {
-    if (!inputHandled) {
+    if (!inputHandled || isActive) {
       const activeTabIndex = tabActiveStates.findIndex(activeState => activeState);
 
       refElements[activeTabIndex].current.focus();
       setInputHandled(true);
     }
-  }, [...tabActiveStates]);
+  }, [isActive, ...tabActiveStates]);
+
+  useImperativeHandle(ref, () => ({
+    setIsActive,
+  }));
 
   return (
     <div
@@ -73,7 +78,7 @@ export default function Tag(props) {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={props.defaultActive && tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={props.defaultFocusable && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -84,7 +89,7 @@ export default function Tag(props) {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={props.defaultActive && tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={props.defaultFocusable && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >
@@ -103,18 +108,20 @@ export default function Tag(props) {
       }
     </div>
   );
-}
+});
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultActive: PropTypes.bool,
+  defaultFocusable: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
-  defaultActive: true,
+  defaultFocusable: true,
   onClear: () => {},
   readOnly: false,
 };
+
+export default Tag;
