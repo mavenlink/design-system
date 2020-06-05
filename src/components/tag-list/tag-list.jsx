@@ -15,6 +15,10 @@ export default function TagList(props) {
     });
   }, [active, activeIndex]);
 
+  function onClick(clickEvent) {
+    setActiveIndex(props.refs.findIndex(ref => ref.current.isSameNode(clickEvent.target)));
+  }
+
   function onFocus() {
     setActive(true);
   }
@@ -45,6 +49,7 @@ export default function TagList(props) {
 
   return (
     <div
+      onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="presentation"

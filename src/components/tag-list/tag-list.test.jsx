@@ -124,4 +124,22 @@ describe('TagList', () => {
       await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
     });
   });
+
+  describe('click focusing', () => {
+    it('sets the activeIndex and focuses the clicked child element', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <TagList {...requiredProps} refs={refs}>
+          <span role="button" tabIndex={0} ref={refs[0]}>Test Child 1</span>
+          <span role="button" tabIndex={0} ref={refs[1]}>Test Child 2</span>
+          <span role="button" tabIndex={0} ref={refs[2]}>Test Child 3</span>
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('Test Child 2'));
+      await waitFor(() => expect(screen.getByText('Test Child 2')).toHaveFocus());
+      fireEvent.keyDown(screen.getByText('Test Child 1'), { key: 'ArrowRight' });
+      await waitFor(() => expect(screen.getByText('Test Child 3')).toHaveFocus());
+    });
+  });
 });
