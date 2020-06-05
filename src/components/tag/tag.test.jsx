@@ -107,15 +107,8 @@ describe('Tag', () => {
     });
   });
 
-  describe('ref API', () => {
-    it('exports DOM API with useImperativeHandle', () => {
-      const ref = createRef();
-      render(<Tag {...requiredProps} ref={ref} />);
-
-      expect(ref.current.setIsActive).toBeDefined();
-    });
-
-    it('sets focus when active without interaction', async () => {
+  describe('setIsActive ref API', () => {
+    it('sets focus', async () => {
       const ref = createRef();
       render(<Tag {...requiredProps} ref={ref} defaultFocusable={false} />);
 
