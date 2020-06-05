@@ -68,7 +68,7 @@ const Tag = forwardRef((props, ref) => {
       refElements[activeTabIndex].current.focus();
       setFocusQueued(false);
     }
-  }, [isActive, ...tabActiveStates]);
+  }, [focusQueued, isActive, ...tabActiveStates]);
 
   useImperativeHandle(ref, () => ({
     setIsActive: (bool) => {
