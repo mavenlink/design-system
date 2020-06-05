@@ -6,7 +6,7 @@ import Icon from '../icon/index.js';
 
 const Tag = forwardRef((props, ref) => {
   const [focusQueued, setFocusQueued] = useState(false);
-  const [isActive, setIsActive] = useState(props.defaultFocusable);
+  const [isActive, setIsActive] = useState(props.defaultActive);
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const buttonRef = useRef(null);
   const buttonId = `${props.id}-button`;
@@ -124,14 +124,14 @@ const Tag = forwardRef((props, ref) => {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultFocusable: PropTypes.bool,
+  defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onClear: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
-  defaultFocusable: true,
+  defaultActive: true,
   onClear: () => {},
   readOnly: false,
 };

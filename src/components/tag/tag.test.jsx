@@ -26,15 +26,15 @@ describe('Tag', () => {
     });
   });
 
-  describe('defaultFocusable API', () => {
+  describe('defaultActive API', () => {
     it('can be set', () => {
-      render(<Tag {...requiredProps} defaultFocusable={true} />);
+      render(<Tag {...requiredProps} defaultActive={true} />);
       expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
       expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
 
     it('can be unset', () => {
-      render(<Tag {...requiredProps} defaultFocusable={false} />);
+      render(<Tag {...requiredProps} defaultActive={false} />);
       expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
       expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
@@ -110,7 +110,7 @@ describe('Tag', () => {
   describe('setIsActive ref API', () => {
     it('sets focus', async () => {
       const ref = createRef();
-      render(<Tag {...requiredProps} ref={ref} defaultFocusable={false} />);
+      render(<Tag {...requiredProps} ref={ref} />);
 
       await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).not.toHaveFocus());
 
