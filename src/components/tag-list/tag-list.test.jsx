@@ -4,7 +4,7 @@ import { waitFor } from '@testing-library/dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TagList from './tag-list.jsx';
-import Tag from '../Tag/tag.jsx';
+import Tag from '../tag/tag.jsx';
 
 describe('TagList', () => {
   const requiredProps = {
