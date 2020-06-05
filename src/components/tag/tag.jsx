@@ -6,6 +6,7 @@ import Icon from '../icon/index.js';
 
 const Tag = forwardRef((props, ref) => {
   const [inputHandled, setInputHandled] = useState(true);
+  const [hasBeenActive, setHasBeenActive] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
   const buttonRef = useRef(null);
@@ -71,7 +72,10 @@ const Tag = forwardRef((props, ref) => {
   }, [isActive, ...tabActiveStates]);
 
   useImperativeHandle(ref, () => ({
-    setIsActive,
+    setIsActive: (bool) => {
+      setHasBeenActive(true);
+      setIsActive(bool);
+    },
     contains: node => rootRef.current.contains(node),
   }));
 
@@ -87,7 +91,7 @@ const Tag = forwardRef((props, ref) => {
         className={styles.content}
         ref={contentRef}
         role="gridcell"
-        tabIndex={props.defaultFocusable && tabActiveStates[0] ? '0' : '-1'}
+        tabIndex={(hasBeenActive ? isActive : props.defaultFocusable) && tabActiveStates[0] ? '0' : '-1'}
         onClick={clickEvent => handleGridCellClick(clickEvent, 0)}
         onKeyDown={handleGridCellKeyDown}
       >
@@ -98,7 +102,7 @@ const Tag = forwardRef((props, ref) => {
           className={styles['icon-wrapper']}
           ref={buttonRef}
           role="gridcell"
-          tabIndex={props.defaultFocusable && tabActiveStates[1] ? '0' : '-1'}
+          tabIndex={(hasBeenActive ? isActive : props.defaultFocusable) && tabActiveStates[1] ? '0' : '-1'}
           onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
         >

@@ -119,4 +119,28 @@ describe('Tag', () => {
       await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).toHaveFocus());
     });
   });
+
+  describe('tab indices', () => {
+    it('has defaults', () => {
+      render(<Tag {...requiredProps} />);
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+    });
+
+    it('can be set', () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+      act(() => { ref.current.setIsActive(true); });
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+    });
+
+    it('can be unset', () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+      act(() => { ref.current.setIsActive(false); });
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+    });
+  });
 });
