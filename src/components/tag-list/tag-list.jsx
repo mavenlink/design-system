@@ -50,7 +50,7 @@ export default function TagList(props) {
       onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
-      role="presentation"
+      role="grid"
     >
       {props.children}
     </div>

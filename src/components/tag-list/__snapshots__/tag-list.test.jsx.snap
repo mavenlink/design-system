@@ -5,7 +5,7 @@ exports[`TagList renders a TagList 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  role="presentation"
+  role="grid"
 >
   <div
     className="tag"
