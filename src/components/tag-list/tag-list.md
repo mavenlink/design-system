@@ -55,3 +55,91 @@ const refs = data.map(() => React.createRef());
   }
 </TagList>
 ```
+
+### Wrapping example
+
+```jsx
+const data = [
+  'command (abstract role)',
+  'composite (abstract role)',
+  'input (abstract role)',
+  'landmark (abstract role)',
+  'range (abstract role)',
+  'roletype (abstract role)',
+  'section (abstract role)',
+  'sectionhead (abstract role)',
+  'select (abstract role)',
+  'structure (abstract role)',
+  'widget (abstract role)',
+  'window (abstract role)',
+  'alert (widget role)',
+  'alertdialog (widget role)',
+  'button (widget role)',
+  'checkbox (widget role)',
+  'dialog (widget role)',
+  'gridcell (widget role)',
+  'link (widget role)',
+  'log (widget role)',
+  'marquee (widget role)',
+  'menuitem (widget role)',
+  'menuitemcheckbox (widget role)',
+  'menuitemradio (widget role)',
+  'option (widget role)',
+  'progressbar (widget role)',
+  'radio (widget role)',
+  'scrollbar (widget role)',
+  'slider (widget role)',
+  'spinbutton (widget role)',
+  'status (widget role)',
+  'tab (widget role)',
+  'tabpanel (widget role)',
+  'textbox (widget role)',
+  'timer (widget role)',
+  'tooltip (widget role)',
+  'treeitem (widget role)',
+  'combobox (composite role)',
+  'grid (composite role)',
+  'listbox (composite role)',
+  'menu (composite role)',
+  'menubar (composite role)',
+  'radiogroup (composite role)',
+  'tablist (composite role)',
+  'tree (composite role)',
+  'treegrid (composite role)',
+  'article (structure role)',
+  'columnheader (structure role)',
+  'definition (structure role)',
+  'directory (structure role)',
+  'document (structure role)',
+  'group (structure role)',
+  'heading (structure role)',
+  'img (structure role)',
+  'list (structure role)',
+  'listitem (structure role)',
+  'math (structure role)',
+  'note (structure role)',
+  'presentation (structure role)',
+  'region (structure role)',
+  'row (structure role)',
+  'rowgroup (structure role)',
+  'rowheader (structure role)',
+  'separator (structure role)',
+  'toolbar (structure role)',
+  'application (landmark role)',
+  'banner (landmark role)',
+  'complementary (landmark role)',
+  'contentinfo (landmark role)',
+  'form (landmark role)',
+  'main (landmark role)',
+  'navigation (landmark role)',
+  'search (landmark role)',
+];
+
+const refs = data.map(() => React.createRef());
+
+<TagList refs={refs}>
+  {data.map((datum, index) => (
+    <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+  ))}
+</TagList>
+```
