@@ -2,10 +2,12 @@
 
 exports[`TagList renders a TagList 1`] = `
 <div
+  className="tag-list"
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   role="grid"
+  tabIndex="-1"
 >
   <div
     className="tag"
