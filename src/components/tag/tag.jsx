@@ -18,28 +18,25 @@ const Tag = forwardRef(function Tag(props, ref) {
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
       case ' ':
-        keyEvent.preventDefault();
-        // falls through
       case 'Enter':
         if (tabActiveStates[1]) {
+          keyEvent.preventDefault();
           props.onClear(keyEvent);
         }
         break;
       case 'ArrowDown':
-        keyEvent.preventDefault();
-        // falls through
       case 'ArrowRight':
         if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
+          keyEvent.preventDefault();
           keyEvent.stopPropagation();
           setFocusQueued(true);
           setTabActiveStates([false, true]);
         }
         break;
       case 'ArrowUp':
-        keyEvent.preventDefault();
-        // falls through
       case 'ArrowLeft':
         if (!props.readOnly && tabActiveStates[0] === false && tabActiveStates[1] === true) {
+          keyEvent.preventDefault();
           keyEvent.stopPropagation();
           setFocusQueued(true);
           setTabActiveStates([true, false]);

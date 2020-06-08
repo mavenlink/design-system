@@ -27,19 +27,23 @@ export default function TagList(props) {
       case 'ArrowLeft':
       case 'ArrowUp':
         if (activeIndex > 0) {
+          keyEvent.preventDefault();
           setActiveIndex(activeIndex - 1);
         }
         break;
       case 'ArrowRight':
       case 'ArrowDown':
         if (activeIndex < props.refs.length - 1) {
+          keyEvent.preventDefault();
           setActiveIndex(activeIndex + 1);
         }
         break;
       case 'End':
+        keyEvent.preventDefault();
         setActiveIndex(props.refs.length - 1);
         break;
       case 'Home':
+        keyEvent.preventDefault();
         setActiveIndex(0);
         break;
       default:
