@@ -50,6 +50,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
+            - ./
             - node_modules
       - run: yarn lint
       - run: yarn test
@@ -62,7 +63,6 @@ jobs:
       - image: circleci/node:10.18.0
     working_directory: ~/repo
     steps:
-      - checkout
       - attach_workspace:
           at: ~/repo
       - run: |
