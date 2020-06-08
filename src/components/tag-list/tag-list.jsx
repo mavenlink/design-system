@@ -53,6 +53,7 @@ export default function TagList(props) {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="grid"
+      tabIndex="-1"
     >
       {props.children}
     </div>
