@@ -47,6 +47,10 @@ jobs:
       - install_dependencies:
           image: "cypress"
           version: "10.18.0"
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - node_modules
       - run: yarn lint
       - run: yarn test
       - run:
@@ -59,9 +63,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - install_dependencies:
-          image: "node"
-          version: "10.18.0"
+      - attach_workspace:
+          at: ~/repo
       - run: |
           git config user.email "ci-deployment@mavenlink"
           git config user.name "CI Deployment"
