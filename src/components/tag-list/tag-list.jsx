@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import styles from './tag-list.css';
 
 export default function TagList(props) {
   const [active, setActive] = useState(false);
@@ -47,6 +48,7 @@ export default function TagList(props) {
 
   return (
     <div
+      className={styles['tag-list']}
       onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
