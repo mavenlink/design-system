@@ -14,6 +14,7 @@
   - Minor: Add id to Icon props
   - Minor: Add `defaultActive` prop to Tag
   - Minor: Implement TagList component
+  - Minor: Add classContainer to TagList component
 </details>
 
 ## 0.22.0 (May 22, 2020)

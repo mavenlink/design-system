@@ -159,4 +159,11 @@ describe('TagList', () => {
       expect(screen.getByText('Unique children')).toBeDefined();
     });
   });
+
+  describe('classContainer API', () => {
+    it('can be set', () => {
+      render(<TagList {...requiredProps} classContainer="unique-class-name" />);
+      expect(screen.getByRole('grid')).toHaveAttribute('class', 'unique-class-name');
+    });
+  });
 });
