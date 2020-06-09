@@ -152,5 +152,20 @@ describe('TagList', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
       await waitFor(() => expect(screen.getByText('Test Child 3')).toHaveFocus());
     });
+
+    it('keeps the activeIndex when not clicking a tag', async () => {
+      const refs = [createRef()];
+      render((
+        <TagList {...requiredProps} refs={refs}>
+          <Tag id="test-tag-1" ref={refs[0]}>Test Child 1</Tag>
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('Test Child 1'));
+      await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
+      userEvent.click(screen.getByText('Test Child 1').parentElement.parentElement);
+      await waitFor(() => expect(document.body).toHaveFocus());
+      expect(screen.getByText('Test Child 1')).toHaveAttribute('tabindex', '0');
+    });
   });
 });

@@ -15,7 +15,8 @@ export default function TagList(props) {
   }, [active, activeIndex]);
 
   function onClick(clickEvent) {
-    setActiveIndex(props.refs.findIndex(ref => ref.current.contains(clickEvent.target)));
+    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(clickEvent.target));
+    if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
   }
 
   function onFocus() {
@@ -51,13 +52,12 @@ export default function TagList(props) {
   }
 
   return (
-    <div
+    <div // eslint-disable-line jsx-a11y/interactive-supports-focus
       className={styles['tag-list']}
       onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="grid"
-      tabIndex="-1"
     >
       {props.children}
     </div>
