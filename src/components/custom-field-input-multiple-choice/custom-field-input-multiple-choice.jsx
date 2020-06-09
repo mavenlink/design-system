@@ -6,6 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
+import styles from './custom-field-input-multiple-choice.css';
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const refs = props.value.map(() => createRef());
@@ -14,7 +15,10 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   }));
 
   return (
-    <TagList refs={refs}>
+    <TagList
+      classContainer={styles.container}
+      refs={refs}
+    >
       {props.value.map((choice, index) => (
         <Tag
           id={`${props.id}-${choice.id}`}

@@ -1,0 +1,6 @@
+.container {
+  composes: tag-list from '../tag-list/tag-list.css';
+  composes: input from '../input/input.css';
+  height: auto;
+  padding: 0;
+}
