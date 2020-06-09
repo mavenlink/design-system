@@ -7,6 +7,5 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
   onFocus={[Function]}
   onKeyDown={[Function]}
   role="grid"
-  tabIndex="-1"
 />
 `;
