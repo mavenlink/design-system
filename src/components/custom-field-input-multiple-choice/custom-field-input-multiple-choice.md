@@ -4,6 +4,11 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 
 ```jsx
 <CustomFieldInputMultipleChoice
+  value={[
+    { id: '1', label: 'First Choice' },
+    { id: '2', label: 'Second Choice' },
+    { id: '3', label: 'Third Choice' },
+  ]}
 />
 ```
 
@@ -12,5 +17,10 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 ```jsx
 <CustomFieldInputMultipleChoice
   readOnly
+  value={[
+    { id: '1', label: 'First Choice' },
+    { id: '2', label: 'Second Choice' },
+    { id: '3', label: 'Third Choice' },
+  ]}
 />
 ```

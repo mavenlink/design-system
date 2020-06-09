@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-<div>
-  hello world!
-</div>
+<div
+  className="tag-list"
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  role="grid"
+  tabIndex="-1"
+/>
 `;
