@@ -13,8 +13,10 @@
   border-radius: var(--spacing-small);
   box-sizing: border-box;
   display: inline-flex;
+  height: 22px;
   max-width: 100%;
-  padding: var(--spacing-small) var(--spacing-x-small) var(--spacing-small) calc(var(--spacing-x-small) + var(--spacing-small));
+  padding-right: var(--spacing-x-small);
+  padding-left: calc(var(--spacing-x-small) + var(--spacing-small));
   white-space: nowrap;
   width: min-content;
 }
@@ -28,6 +30,7 @@
   color: var(--mds-grey-87);
   font-family: var(--mavenlink-type-font-family);
   font-size: var(--mavenlink-type-base-size);
+  line-height: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
