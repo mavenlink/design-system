@@ -143,6 +143,13 @@ describe('TagList', () => {
         await waitFor(() => expect(document.body).toHaveFocus());
         expect(screen.getByText('Test Child 1')).toHaveAttribute('tabindex', '0');
       });
+
+      it('child will not be focused when inactive', async () => {
+        const refs = [createRef()];
+        render(<TagList {...requiredProps} refs={refs}><Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag></TagList>);
+
+        await waitFor(() => expect(screen.getByText('Test Child')).not.toHaveFocus());
+      });
     });
   });
 
@@ -150,24 +157,6 @@ describe('TagList', () => {
     it('can be set', () => {
       render(<TagList {...requiredProps}>Unique children</TagList>);
       expect(screen.getByText('Unique children')).toBeDefined();
-    });
-  });
-
-  describe('active, focus useEffect', () => {
-    it('child can be focused when active', async () => {
-      const refs = [createRef()];
-      render(<TagList {...requiredProps} refs={refs}><Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag></TagList>);
-
-      userEvent.click(screen.getByText('Test Child'));
-
-      await waitFor(() => expect(screen.getByText('Test Child')).toHaveFocus());
-    });
-
-    it('child will not be focused when inactive', async () => {
-      const refs = [createRef()];
-      render(<TagList {...requiredProps} refs={refs}><Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag></TagList>);
-
-      await waitFor(() => expect(screen.getByText('Test Child')).not.toHaveFocus());
     });
   });
 });
