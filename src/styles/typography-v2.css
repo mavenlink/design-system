@@ -1,0 +1,9 @@
+:root {
+  --mds-type-font-family: 'Open Sans', system-ui, sans-serif;
+  --mds-type-page-title: 400 22px var(--mds-type-font-family);
+  --mds-type-subhead-1: 600 16px var(--mds-type-font-family);
+  --mds-type-subhead-2: 400 16px var(--mds-type-font-family);
+  --mds-type-subhead-3: 600 14px var(--mds-type-font-family);
+  --mds-type-subhead-4: 400 12px var(--mds-type-font-family);
+  --mds-type-content: 400 14px var(--mds-type-font-family);
+}
