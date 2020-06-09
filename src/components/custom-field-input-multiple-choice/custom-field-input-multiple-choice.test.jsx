@@ -34,6 +34,34 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('does not have the clear button on its tags', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        readOnly={true}
+        value={[{
+          id: '1',
+          label: 'Choice 1',
+        }]}
+      />));
+
+      expect(screen.queryByRole('button')).toBeNull();
+    });
+
+    it('has the clear button on its tags', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        readOnly={false}
+        value={[{
+          id: '1',
+          label: 'Choice 1',
+        }]}
+      />));
+
+      expect(screen.getByRole('button')).toBeDefined();
+    });
+  });
+
   describe('value API', () => {
     it('generates tags', () => {
       render((<CustomFieldInputMultipleChoice

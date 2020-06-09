@@ -19,6 +19,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
         <Tag
           id={`${props.id}-${choice.id}`}
           key={`${props.id}-${choice.id}`}
+          readOnly={props.readOnly}
           ref={refs[index]}
         >
           {choice.label}
@@ -30,6 +31,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
 
 CustomFieldInputMultipleChoice.propTypes = {
   id: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
@@ -37,6 +39,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
+  readOnly: false,
   value: [],
 };
 
