@@ -9,6 +9,7 @@ import Tag from '../tag/tag.jsx';
 describe('TagList', () => {
   const requiredProps = {
     children: <Tag id="test-tag-fake">Test Fake Tag</Tag>,
+    id: 'test-id',
     refs: [createRef()],
   };
 
@@ -164,6 +165,13 @@ describe('TagList', () => {
     it('can be set', () => {
       render(<TagList {...requiredProps} classContainer="unique-class-name" />);
       expect(screen.getByRole('grid')).toHaveAttribute('class', 'unique-class-name');
+    });
+  });
+
+  describe('id API', () => {
+    it('can be set', () => {
+      render(<TagList {...requiredProps} id="unique-id" />);
+      expect(screen.getByRole('grid')).toHaveAttribute('id', 'unique-id');
     });
   });
 });

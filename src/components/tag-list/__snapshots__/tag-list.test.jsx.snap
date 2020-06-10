@@ -3,6 +3,7 @@
 exports[`TagList renders a TagList 1`] = `
 <div
   className="tag-list"
+  id="test-id"
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}

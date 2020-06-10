@@ -47,7 +47,7 @@ const data = [
 ];
 const refs = data.map(() => React.createRef());
 
-<TagList refs={refs}>
+<TagList id="basic-example" refs={refs}>
   {data.map((datum, index) => (
     <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
   ))}
@@ -135,7 +135,7 @@ const data = [
 
 const refs = data.map(() => React.createRef());
 
-<TagList refs={refs}>
+<TagList id="wrapping-example" refs={refs}>
   {data.map((datum, index) => (
     <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
   ))}
