@@ -6,6 +6,7 @@
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
   height: auto;
+  min-height: 32px;
   padding-top: 0;
   padding-bottom: 0;
   position: relative;
