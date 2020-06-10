@@ -1,5 +1,11 @@
+.label {
+  composes: heading-container from '../custom-field-input-text/custom-field-input-text.css';
+  composes: label from '../custom-field-input-text/custom-field-input-text.css';
+}
+
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
+  composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
   height: auto;
   padding-top: 0;
   padding-bottom: 0;

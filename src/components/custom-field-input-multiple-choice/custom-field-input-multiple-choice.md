@@ -4,6 +4,7 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 
 ```jsx
 <CustomFieldInputMultipleChoice
+  label="This custom field has a lot of choices"
   value={[
     { id: '1', label: 'combobox (composite role)' },
     { id: '2', label: 'grid (composite role)' },
@@ -22,6 +23,7 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 
 ```jsx
 <CustomFieldInputMultipleChoice
+  label="This custom field is read-only"
   readOnly
   value={[
     { id: '1', label: 'First Choice' },

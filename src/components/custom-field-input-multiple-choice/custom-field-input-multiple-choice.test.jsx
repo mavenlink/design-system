@@ -9,6 +9,7 @@ import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
     id: 'test-id',
+    label: 'test label',
   };
 
   it('has defaults', () => {
@@ -31,6 +32,14 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.getByText('Choice 1').parentElement).toHaveAttribute('id', '123-1');
       expect(screen.getByText('Choice 2').parentElement).toHaveAttribute('id', '123-2');
+    });
+  });
+
+  describe('label API', () => {
+    it('can be set', () => {
+      render((<CustomFieldInputMultipleChoice {...requiredProps} label="Unique label" />));
+
+      expect(screen.getByLabelText('Unique label')).toBeDefined();
     });
   });
 

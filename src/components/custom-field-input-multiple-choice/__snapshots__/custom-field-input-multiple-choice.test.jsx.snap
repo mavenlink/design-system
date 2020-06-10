@@ -1,20 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-<div
-  className="read-write-container"
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  role="grid"
->
-  <svg
-    className="input-icon size-medium stroke-none color-transparent"
-    role="img"
+Array [
+  <label
+    className="label"
+    htmlFor="test-id"
   >
-    <use
-      xlinkHref="#icon-caret-down.svg"
-    />
-  </svg>
-</div>
+    test label
+  </label>,
+  <div
+    className="input-container"
+  >
+    <div
+      className="read-write-container"
+      id="test-id"
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="grid"
+    >
+      <svg
+        className="input-icon size-medium stroke-none color-transparent"
+        role="img"
+      >
+        <use
+          xlinkHref="#icon-caret-down.svg"
+        />
+      </svg>
+    </div>
+  </div>,
+]
 `;
