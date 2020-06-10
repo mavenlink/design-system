@@ -1,7 +1,9 @@
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   height: auto;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
 }
 
 .read-write-container {
@@ -12,4 +14,8 @@
 .read-only-container {
   composes: container;
   composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.input-icon {
+  composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
 }

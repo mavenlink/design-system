@@ -2,10 +2,19 @@
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 <div
-  className="container"
+  className="read-write-container"
   onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   role="grid"
-/>
+>
+  <svg
+    className="input-icon size-medium stroke-none color-transparent"
+    role="img"
+  >
+    <use
+      xlinkHref="#icon-caret-down.svg"
+    />
+  </svg>
+</div>
 `;
