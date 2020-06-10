@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-Array [
+<div>
   <label
     className="label"
     htmlFor="test-id"
   >
     test label
-  </label>,
+  </label>
   <div
     className="input-container"
   >
@@ -28,6 +28,6 @@ Array [
         />
       </svg>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;

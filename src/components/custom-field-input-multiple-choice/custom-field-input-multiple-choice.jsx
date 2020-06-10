@@ -16,7 +16,7 @@ function CustomFieldInputMultipleChoice(props) {
     styles['read-write-container'];
 
   return (
-    <React.Fragment>
+    <div>
       <label className={styles.label} htmlFor={props.id}>{props.label}</label>
       <div className={styles['input-container']}>
         <TagList
@@ -37,7 +37,7 @@ function CustomFieldInputMultipleChoice(props) {
           <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
         </TagList>
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 
