@@ -54,10 +54,8 @@
 }
 
 .input-container {
-  height: 34px;
   margin: var(--spacing-small) 0;
   position: relative;
-  width: 100%;
 }
 
 .input-container input::placeholder {
