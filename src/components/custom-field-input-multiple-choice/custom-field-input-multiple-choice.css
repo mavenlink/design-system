@@ -1,5 +1,4 @@
 .label {
-  composes: heading-container from '../custom-field-input-text/custom-field-input-text.css';
   composes: label from '../custom-field-input-text/custom-field-input-text.css';
 }
 

@@ -5,9 +5,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   className="custom-field-input-text"
   data-testid="custom-field-input"
 >
-  <div
-    className="heading-container"
-  >
+  <div>
     <label
       className="label"
       htmlFor="foo"

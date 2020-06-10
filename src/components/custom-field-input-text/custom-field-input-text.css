@@ -7,13 +7,26 @@
   font-family: var(--mavenlink-type-font-family);
 }
 
-.heading-container {
+.heading {
   color: var(--mds-grey-54);
   font-size: var(--mavenlink-type-small-size);
 }
 
-.error .heading-container {
+.error .heading {
   color: var(--mds-red-100);
+}
+
+.label {
+  composes: heading;
+  font-family: var(--mavenlink-type-font-family);
+  margin-right: var(--spacing-small);
+}
+
+.required {
+  composes: heading;
+  display: inline-block;
+  margin-right: var(--spacing-small);
+  min-width: 30px;
 }
 
 .help {
@@ -68,15 +81,4 @@
   position: absolute;
   right: 6px;
   top: 6px;
-}
-
-.label {
-  font-family: var(--mavenlink-type-font-family);
-  margin-right: var(--spacing-small);
-}
-
-.optional {
-  display: inline-block;
-  margin-right: var(--spacing-small);
-  min-width: 30px;
 }
