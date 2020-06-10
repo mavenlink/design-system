@@ -1,7 +1,5 @@
 import React, {
   createRef,
-  forwardRef,
-  useImperativeHandle,
 } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
@@ -11,14 +9,11 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
-const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
+function CustomFieldInputMultipleChoice(props) {
   const refs = props.value.map(() => createRef());
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
-
-  useImperativeHandle(ref, () => ({
-  }));
 
   return (
     <React.Fragment>
@@ -44,7 +39,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
       </div>
     </React.Fragment>
   );
-});
+}
 
 CustomFieldInputMultipleChoice.propTypes = {
   id: PropTypes.string.isRequired,
