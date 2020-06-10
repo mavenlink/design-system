@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagList renders a TagList 1`] = `
+<div
+  className="tag-list"
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  role="grid"
+>
+  <div
+    className="tag"
+    id="test-tag-fake"
+    role="row"
+  >
+    <span
+      className="content"
+      id="test-tag-fake-content"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="gridcell"
+      tabIndex="0"
+    >
+      Test Fake Tag
+    </span>
+    <span
+      className="icon-wrapper"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="gridcell"
+      tabIndex="-1"
+    >
+      <svg
+        aria-label="Remove"
+        aria-labelledby="test-tag-fake-button test-tag-fake-content"
+        className="icon-base size-small"
+        id="test-tag-fake-button"
+        role="button"
+      >
+        <use
+          xlinkHref="#icon-clear-small.svg"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;

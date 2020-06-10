@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import Tag from './tag.jsx';
@@ -19,6 +19,56 @@ describe('Tag', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  describe('accessibility', () => {
+    describe('focus interactions', () => {
+      it('moves focus with arrow key', async () => {
+        render(<Tag {...requiredProps} />);
+
+        fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
+
+        await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
+        expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+
+        await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
+        expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+      });
+
+      it('sets focus on click', async () => {
+        render(<Tag {...requiredProps} />);
+
+        userEvent.click(screen.getByRole('button'));
+
+        await waitFor(() => expect(screen.getByRole('button').parentElement).toEqual(document.activeElement));
+      });
+    });
+
+    describe('page tab sequence management', () => {
+      it('has defaults', () => {
+        render(<Tag {...requiredProps} />);
+        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+      });
+
+      it('can be set', () => {
+        const ref = createRef();
+        render(<Tag {...requiredProps} ref={ref} />);
+        act(() => { ref.current.setIsActive(true); });
+        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+      });
+
+      it('can be unset', () => {
+        const ref = createRef();
+        render(<Tag {...requiredProps} ref={ref} />);
+        act(() => { ref.current.setIsActive(false); });
+        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
+        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+      });
+    });
+  });
+
   describe('children API', () => {
     it('can be set', () => {
       render(<Tag {...requiredProps}>Unique children</Tag>);
@@ -26,27 +76,17 @@ describe('Tag', () => {
     });
   });
 
-  describe('interactions', () => {
-    it('moves focus with arrow key', async () => {
-      render(<Tag {...requiredProps} />);
-
-      fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
-
-      await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
-      expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
-
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-
-      await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
-      expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+  describe('defaultActive API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps} defaultActive={true} />);
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
 
-    it('sets focus on click', async () => {
-      render(<Tag {...requiredProps} />);
-
-      userEvent.click(screen.getByRole('button'));
-
-      await waitFor(() => expect(screen.getByRole('button').parentElement).toEqual(document.activeElement));
+    it('can be unset', () => {
+      render(<Tag {...requiredProps} defaultActive={false} />);
+      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
+      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
     });
   });
 
@@ -90,6 +130,19 @@ describe('Tag', () => {
       render(<Tag {...requiredProps} readOnly={false} />);
 
       expect(screen.getAllByRole('button').length).toEqual(1);
+    });
+  });
+
+  describe('setIsActive ref API', () => {
+    it('sets focus', async () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+
+      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).not.toHaveFocus());
+
+      act(() => { ref.current.setIsActive(true); });
+
+      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).toHaveFocus());
     });
   });
 });

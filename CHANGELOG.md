@@ -12,6 +12,8 @@
   - Minor: Add ariaLabel to Icon props
   - Minor: Add ariaLabelledBy to Icon props
   - Minor: Add id to Icon props
+  - Minor: Add `defaultActive` prop to Tag
+  - Minor: Implement TagList component
 </details>
 
 ## 0.22.0 (May 22, 2020)
