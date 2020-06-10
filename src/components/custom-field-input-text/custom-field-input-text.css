@@ -71,6 +71,7 @@
 }
 
 .label {
+  font-family: var(--mavenlink-type-font-family);
   margin-right: var(--spacing-small);
 }
 
