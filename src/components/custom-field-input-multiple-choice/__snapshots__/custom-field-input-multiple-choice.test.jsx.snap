@@ -9,25 +9,21 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
     test label
   </label>
   <div
-    className="input-container"
+    className="read-write-container"
+    id="test-id"
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    role="grid"
   >
-    <div
-      className="read-write-container"
-      id="test-id"
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      role="grid"
+    <svg
+      className="input-icon size-medium stroke-none color-transparent"
+      role="img"
     >
-      <svg
-        className="input-icon size-medium stroke-none color-transparent"
-        role="img"
-      >
-        <use
-          xlinkHref="#icon-caret-down.svg"
-        />
-      </svg>
-    </div>
+      <use
+        xlinkHref="#icon-caret-down.svg"
+      />
+    </svg>
   </div>
 </div>
 `;

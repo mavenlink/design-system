@@ -18,25 +18,23 @@ function CustomFieldInputMultipleChoice(props) {
   return (
     <div>
       <label className={styles.label} htmlFor={props.id}>{props.label}</label>
-      <div className={styles['input-container']}>
-        <TagList
-          classContainer={classContainer}
-          id={props.id}
-          refs={refs}
-        >
-          {props.value.map((choice, index) => (
-            <Tag
-              id={`${props.id}-${choice.id}`}
-              key={`${props.id}-${choice.id}`}
-              readOnly={props.readOnly}
-              ref={refs[index]}
-            >
-              {choice.label}
-            </Tag>
-          ))}
-          <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
-        </TagList>
-      </div>
+      <TagList
+        classContainer={classContainer}
+        id={props.id}
+        refs={refs}
+      >
+        {props.value.map((choice, index) => (
+          <Tag
+            id={`${props.id}-${choice.id}`}
+            key={`${props.id}-${choice.id}`}
+            readOnly={props.readOnly}
+            ref={refs[index]}
+          >
+            {choice.label}
+          </Tag>
+        ))}
+        <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
+      </TagList>
     </div>
   );
 }
