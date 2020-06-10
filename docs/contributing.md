@@ -37,3 +37,77 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 ## Tips
 
 - `yarn test -o` runs only changed test files
+
+## Gotchas
+### CircleCI fails to Compile Webpack Bundles
+#### Description
+If you're submitting a new component that isn't being used anywhere, Webpack may complain that you are submitting unused files and fail your circleci run ([example](https://app.circleci.com/pipelines/github/mavenlink/mavenlink/51485/workflows/8d766473-9002-4cc7-9313-16ccacc52e3c/jobs/1132802/steps)):
+```
+#!/bin/bash -eo pipefail 
+yarn compile 
+yarn run v1.17.3
+ .
+ .
+ .
+     ERROR in 
+     UnusedFilesWebpackPlugin found some unused files:
+     frontend/components/confirmation/confirmation.jsx
+     frontend/components/confirmation/i18n-wrapper/confirmation.jsx
+     frontend/components/confirmation/index.js
+     frontend/components/confirmation/styles.css
+     Child HtmlWebpackCompiler:
+         Entrypoint HtmlWebpackPlugin_0 = __child-HtmlWebpackPlugin_0
+     Child mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/emoji-mart/css/emoji-mart.css:
+        Entrypoint mini-css-extract-plugin = *
+
+```
+
+### Solution:
+1. Add your component to [config/helpers/configure-unused-file-plugin.js](https://github.com/mavenlink/mavenlink/blob/master/config/helpers/configure-unused-file-plugin.js).
+```js
+const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin');
+
+/**
+ * Newly added Maven Design System components should go here.
+ * - Include a TODO with a relevant pivotal story to track cleaning these up after they are used.
+ */
+const NEW_MAVEN_DESIGN_SYSTEM_COMPONENTS = [
+  // TODO(https://www.pivotaltracker.com/story/show/173184997): cleanup after DeleteTaskModal uses Confirmation
+  '!frontend/components/confirmation/**',
+];
+
+module.exports = function configureUnusedFilePlugin(opts = {}) {
+  return new UnusedFilesWebpackPlugin({
+    patterns: [
+      .
+      .
+      .
+      ...NEW_MAVEN_DESIGN_SYSTEM_COMPONENTS,
+    ],
+    ...opts,
+  });
+};
+```
+2. Create a task in your pivotal story to clean this whitelist up. It's your responsibility to clean it up.
+3. Test that `yarn compile` no longer throws an error for your component's files.
+
+    - Before (unhappy):
+
+    ```zsh
+    ~/workspace/mavenlink (mds-confirmation) $ yarn compile |& grep -e 'ERROR' -e 'frontend/components/confirmation'
+    ERROR in
+    frontend/components/confirmation/confirmation.jsx
+    frontend/components/confirmation/i18n-wrapper/confirmation.jsx
+    frontend/components/confirmation/index.js
+    frontend/components/confirmation/README.md
+    frontend/components/confirmation/styles.css
+    ```
+
+    - After (happy):
+
+    ```zsh
+    ~/workspace/mavenlink (mds-confirmation) $ yarn compile |& grep -e 'ERROR' -e 'frontend/components/confirmation'
+    ERROR in # Note: there are other erros included in this result but they aren't related to us.
+    ```
+
+4. When your component is actually used, go back and clean it up!
