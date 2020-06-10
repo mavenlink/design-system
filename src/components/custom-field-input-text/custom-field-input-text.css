@@ -43,6 +43,11 @@
   background-color: var(--mds-grey-3);
 }
 
+.read-only-input {
+  composes: input;
+  background-color: var(--mds-grey-3);
+}
+
 .input:invalid {
   border-color: var(--mds-red-100);
   padding-right: var(--spacing-x-large);

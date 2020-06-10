@@ -10,13 +10,16 @@ import styles from './custom-field-input-multiple-choice.css';
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const refs = props.value.map(() => createRef());
+  const classContainer = props.readOnly ?
+    styles['read-only-container'] :
+    styles['read-write-container'];
 
   useImperativeHandle(ref, () => ({
   }));
 
   return (
     <TagList
-      classContainer={styles.container}
+      classContainer={classContainer}
       refs={refs}
     >
       {props.value.map((choice, index) => (

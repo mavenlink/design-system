@@ -1,6 +1,15 @@
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
-  composes: input from '../input/input.css';
   height: auto;
   padding: 0;
+}
+
+.read-write-container {
+  composes: container;
+  composes: input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.read-only-container {
+  composes: container;
+  composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
 }
