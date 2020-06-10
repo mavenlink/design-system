@@ -17,6 +17,7 @@
   - Minor: Add classContainer to TagList component
   - Minor: Set tag heights to 22px instead of auto-fitting to content
   - Minor: Add id API to TagList component
+  - Minor: Implement CustomFieldInputMultipleChoice component
 </details>
 
 ## 0.22.0 (May 22, 2020)
