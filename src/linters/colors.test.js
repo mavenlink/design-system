@@ -15,7 +15,7 @@ const configuration = (options) => {
 
 describe('src/linters/colors', () => {
   it('exports the list of targeted properties', () => {
-    expect(colors.targetedProperties.length).toEqual(jasmine.any(Number));
+    expect(colors.targetedProperties.length).toEqual(expect.any(Number));
     expect(colors.targetedProperties.length).not.toEqual(0);
   });
 
