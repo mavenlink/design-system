@@ -15,16 +15,14 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: `Please use MDS typography variables instead. See ${url}`,
 });
 
-const valueTokenIndices = {
-  font: 0,
-  'font-family': 0,
-  'font-size': 0,
-  'font-style': 0,
-  'font-weight': 0,
-  'line-height': 0,
-};
-
-const properties = Object.keys(valueTokenIndices);
+const properties = [
+  'font',
+  'font-family',
+  'font-size',
+  'font-style',
+  'font-weight',
+  'line-height',
+];
 
 module.exports = stylelint.createPlugin(ruleName, () => {
   return (root, result) => {
@@ -33,14 +31,14 @@ module.exports = stylelint.createPlugin(ruleName, () => {
 
       if (properties.includes(property)) {
         const valueTokens = declaration.value.split(' ');
-        const propertyIndex = valueTokenIndices[property];
-
-        if (!valueTokens[propertyIndex]) {
-          return;
+        let invalidFontSetting = false;
+        
+        for (const token of valueTokens) {
+          if (!validFontSettings.find(validFontSetting => token.includes(validFontSetting))) {
+            invalidFontSetting = true;
+            break;
+          }
         }
-
-        const cssVariable = (valueTokens[propertyIndex].match(cssVarRegex) || [])[0];
-        const invalidFontSetting = !validFontSettings.includes(cssVariable);
 
         if (invalidFontSetting) {
           const violation = { ruleName, node: declaration, result };
