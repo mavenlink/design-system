@@ -14,6 +14,11 @@ const configuration = (options) => {
 };
 
 describe('src/linters/colors', () => {
+  it('exports the list of targeted properties', () => {
+    expect(colors.targetedProperties.length).toEqual(jasmine.any(Number));
+    expect(colors.targetedProperties.length).not.toEqual(0);
+  });
+
   it('passes on a short MDS variable value', async () => {
     const code = '.className { color: var(--white); }';
 
