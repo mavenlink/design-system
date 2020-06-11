@@ -31,14 +31,14 @@ module.exports = stylelint.createPlugin(ruleName, () => {
 
       if (properties.includes(property)) {
         const valueTokens = declaration.value.split(' ');
-        let invalidFontSetting = false;
-        
-        for (const token of valueTokens) {
+
+        const invalidFontSetting = valueTokens.find((token) => {
           if (!validFontSettings.find(validFontSetting => token.includes(validFontSetting))) {
-            invalidFontSetting = true;
-            break;
+            return true;
           }
-        }
+
+          return false;
+        });
 
         if (invalidFontSetting) {
           const violation = { ruleName, node: declaration, result };
