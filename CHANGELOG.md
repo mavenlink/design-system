@@ -13,6 +13,7 @@
   - Minor: Add ariaLabelledBy to Icon props
   - Minor: Add id to Icon props
   - Minor: Add typography-v2 CSS variables
+  - Minor: Add linter for Typography
 </details>
 
 ## 0.22.0 (May 22, 2020)
