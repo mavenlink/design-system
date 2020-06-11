@@ -33,11 +33,7 @@ module.exports = stylelint.createPlugin(ruleName, () => {
         const valueTokens = declaration.value.split(' ');
 
         const invalidFontSetting = valueTokens.find((token) => {
-          if (!validFontSettings.find(validFontSetting => token.includes(validFontSetting))) {
-            return true;
-          }
-
-          return false;
+          return !validFontSettings.find(validFontSetting => token.includes(validFontSetting));
         });
 
         if (invalidFontSetting) {
