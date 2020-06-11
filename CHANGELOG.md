@@ -14,6 +14,7 @@
   - Minor: Add id to Icon props
   - Minor: Add `defaultActive` prop to Tag
   - Minor: Implement TagList component
+  - Minor: Add typography-v2 CSS variables
 </details>
 
 ## 0.22.0 (May 22, 2020)
