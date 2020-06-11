@@ -5,6 +5,9 @@ module.exports = {
   extends: 'mavenlint-react',
   parser: 'babel-eslint',
   rules: {
+    'prefer-arrow-callback': ['error', {
+      allowNamedFunctions: true,
+    }],
     'import/extensions': ['error', 'always', {
       ignorePackages: true,
     }],
