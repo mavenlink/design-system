@@ -65,3 +65,5 @@ module.exports = stylelint.createPlugin(ruleName, () => {
 });
 
 module.exports.ruleName = ruleName;
+
+module.exports.targetedProperties = Object.keys(valueTokenIndices);
