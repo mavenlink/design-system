@@ -3,7 +3,7 @@
 
 body {
   /* Overrides the css reset upstream which sets to 12px */
-  font-size: 16px;
+  font-size: 16px; /* stylelint-disable-line mds/typography */
 }
 
 :global(.clearall) {
