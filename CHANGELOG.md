@@ -5,6 +5,12 @@
     Click to see more.
   </summary>
 
+  - Minor: Add linter for Typography
+
+  - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+</details>
+
+## 0.23.0 (June 11, 2020)
   - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
   - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
@@ -15,8 +21,6 @@
   - Minor: Add `defaultActive` prop to Tag
   - Minor: Implement TagList component
   - Minor: Add typography-v2 CSS variables
-  - Minor: Add linter for Typography
-</details>
 
 ## 0.22.0 (May 22, 2020)
 - Minor: Publish site files with MDS module
