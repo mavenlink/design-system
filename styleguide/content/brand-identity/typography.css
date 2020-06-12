@@ -13,7 +13,7 @@
 :global(.type-section-title) {
   color: #716f67; /* stylelint-disable-line */
   text-transform: uppercase;
-  font-size: 12px; /* stylelint-disable-line mds/typography */
+  font-size: 12px;
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -29,18 +29,18 @@
 
 :global(.type-serif h3),
 :global(.type-sans h3) {
-  font-size: 22px; /* stylelint-disable-line mds/typography */
-  font-weight: 300; /* stylelint-disable-line mds/typography */
+  font-size: 22px;
+  font-weight: 300;
 }
 
 :global(.type-serif) {
-  font-family: var(--mavenlink-type-font-accent); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-accent);
 }
 
 :global(.type-serif h1),
 :global(.type-serif h2),
 :global(.type-serif h3) {
-  font-family: var(--mavenlink-type-font-accent); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-accent);
 }
 
 :global(.type-abc) {
@@ -54,14 +54,14 @@
 }
 
 :global(.type-abc .type-serif h1) {
-  font-weight: normal; /* stylelint-disable-line mds/typography */
-  font-size: 80px; /* stylelint-disable-line mds/typography */
+  font-weight: normal;
+  font-size: 80px;
   margin-bottom: 0;
 }
 
 :global(.type-abc .type-sans h1) {
-  font-size: 90px; /* stylelint-disable-line mds/typography */
-  font-weight: normal; /* stylelint-disable-line mds/typography */
+  font-size: 90px;
+  font-weight: normal;
   margin-bottom: 0;
 }
 
@@ -73,14 +73,14 @@
 
 :global(.type-punctuation .type-serif span),
 :global(.type-characters .type-serif span) {
-  font-size: 17px; /* stylelint-disable-line mds/typography */
-  font-weight: normal; /* stylelint-disable-line mds/typography */
+  font-size: 17px;
+  font-weight: normal;
 }
 
 :global(.type-punctuation .type-sans span),
 :global(.type-characters .type-sans span) {
-  font-size: 18px; /* stylelint-disable-line mds/typography */
-  font-weight: normal; /* stylelint-disable-line mds/typography */
+  font-size: 18px;
+  font-weight: normal;
 }
 
 :global(.type-punctuation) {
@@ -93,7 +93,7 @@
 :global(.type-merriweather h4),
 :global(.type-merriweather h5),
 :global(.type-merriweather h6) {
-  font-family: var(--mavenlink-type-font-accent); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-accent);
 }
 
 :global(.type-columns) {
@@ -145,11 +145,11 @@
   flex-basis: 25%;
   flex-grow: 1;
   color: #716f67; /* stylelint-disable-line mds/colors */
-  font-size: 14px; /* stylelint-disable-line mds/typography */
+  font-size: 14px;
 }
 
 :global(.type-headings span:nth-of-type(4)) {
-  font-size: 11px; /* stylelint-disable-line mds/typography */
+  font-size: 11px;
 }
 
 :global(.type-headings) {
@@ -160,11 +160,11 @@
 :global(.type-headings span) {
   color: #716f67; /* stylelint-disable-line mds/colors */
   text-transform: uppercase;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: 11px; /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-family);
+  font-size: 11px;
 }
 
 :global(.type-text-level p) {
-  font-size: 12px; /* stylelint-disable-line mds/typography */
+  font-size: 12px;
   width: 100%;
 }

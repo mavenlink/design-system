@@ -27,8 +27,8 @@
 }
 
 :global(.pattern-text) {
-  font-weight: bold; /* stylelint-disable-line mds/typography */
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-weight: bold;
+  font-family: var(--mavenlink-type-font-family);
 }
 
 :global(.pattern) {

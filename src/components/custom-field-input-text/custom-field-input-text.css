@@ -4,12 +4,12 @@
 @import '../../styles/typography.css';
 
 .custom-field-input-text {
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-family);
 }
 
 .heading-container {
   color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-small-size);
 }
 
 .error .heading-container {
@@ -18,7 +18,7 @@
 
 .help {
   color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-base-size);
 }
 
 .error .help {
@@ -30,7 +30,7 @@
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-base-size);
   padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
   width: 100%;
 }

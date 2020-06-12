@@ -1,8 +1,8 @@
 @import "../../../src/styles/typography.css";
 
 .heading {
-  font-family: var(--mavenlink-type-font-headings); /* stylelint-disable-line mds/typography */
-  font-size: 24px; /* stylelint-disable-line mds/typography */
-  font-weight: 400; /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-headings);
+  font-size: 24px;
+  font-weight: 400;
   margin-top: 32px;
 }

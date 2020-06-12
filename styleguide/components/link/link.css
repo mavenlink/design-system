@@ -2,7 +2,7 @@
 
 .link:link,
 .link:visited {
-  font-size: inherit; /* stylelint-disable-line mds/typography */
+  font-size: inherit;
   color: var(--mds-brand-100);
   text-decoration: none;
 }

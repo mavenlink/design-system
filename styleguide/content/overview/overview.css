@@ -2,9 +2,9 @@
 @import '../../../src/styles/typography.css';
 
 :global(.prologue-title) {
-  font-family: var(--mavenlink-type-font-accent); /* stylelint-disable-line mds/typography */
-  font-weight: bold; /* stylelint-disable-line mds/typography */
-  font-size: 26px; /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-accent);
+  font-weight: bold;
+  font-size: 26px;
 }
 
 :global(.prologue-svg) {
@@ -38,9 +38,9 @@
   display: inline-block;
   width: 500px;
   margin-bottom: 70px;
-  font-size: 16px; /* stylelint-disable-line mds/typography */
-  line-height: 2; /* stylelint-disable-line mds/typography */
-  font-weight: 300; /* stylelint-disable-line mds/typography */
+  font-size: 16px;
+  line-height: 2;
+  font-weight: 300;
 }
 
 :global(.prologue-para-deploy),

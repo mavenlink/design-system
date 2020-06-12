@@ -1,0 +1,49 @@
+@import "../../../src/styles/colors.css";
+@import '../../../src/styles/colors-v2.css';
+@import "../../../src/styles/typography.css";
+
+:root {
+  --headerHeight: 65px;
+}
+
+.header {
+  background-color: #f8f8f8; /* stylelint-disable-line mds/colors */
+  border-bottom: 1px solid var(--mds-grey-12);
+  display: flex;
+  font-family: var(--mavenlink-type-font-headings);
+  height: var(--headerHeight);
+  justify-content: space-between;
+  left: 0;
+  padding: 0 16px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 666;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 65px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.end {
+  color: var(--mds-grey-54);
+}
+
+.section {
+  display: flex;
+}
+
+.github {
+  color: var(--mds-grey-87);
+  line-height: var(--headerHeight);
+  padding: 0 0.5em;
+  text-decoration: none;
+  transition: background-color 150ms linear;
+}
+
+.github:hover {
+  background-color: var(--mds-grey-12);
+}

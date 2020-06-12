@@ -7,7 +7,7 @@
   border-spacing: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-family);
   text-align: left;
   width: 100%;
 }
@@ -30,16 +30,16 @@
 
 .cell {
   box-sizing: border-box;
-  font-weight: normal; /* stylelint-disable-line mds/typography */
+  font-weight: normal;
   padding: var(--spacing-medium);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-base-size);
   vertical-align: top;
   color: var(--mds-grey-87);
 }
 
 .headerCell {
   composes: cell;
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-small-size);
   text-align: left;
   vertical-align: bottom;
   color: var(--mds-grey-54);

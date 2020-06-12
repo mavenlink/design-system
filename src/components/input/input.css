@@ -9,8 +9,8 @@
 
 .label {
   display: block;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-small-size);
   margin: 0 0 var(--spacing-small);
   color: var(--mds-grey-54);
 }
@@ -19,8 +19,8 @@
   border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
   box-sizing: border-box;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-base-size);
   height: 32px;
   margin: 0;
   padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
