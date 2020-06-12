@@ -5,7 +5,7 @@
     Click to see more.
   </summary>
 
-  -
+  - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 </details>
 
 ## 0.23.0 (June 11, 2020)
