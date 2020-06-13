@@ -5,7 +5,6 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
-
 function getClassName(className, invalid) {
   if (className) return className;
   return invalid ? styles['invalid-input'] : styles.input;
