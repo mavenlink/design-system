@@ -37,7 +37,7 @@ export default function FormControl(props) {
         </span>
       )}
     </div>
-  )
+  );
 }
 
 FormControl.propTypes = {
