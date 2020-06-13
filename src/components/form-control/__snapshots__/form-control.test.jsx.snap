@@ -9,7 +9,7 @@ exports[`<FormControl> has defaults 1`] = `
     Test label
   </label>
   <div
-    className="input-container"
+    className="control-container"
   >
     <input
       id="test-id"

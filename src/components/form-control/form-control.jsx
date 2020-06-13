@@ -28,7 +28,7 @@ export default function FormControl(props) {
           (Required)
         </span>
       )}
-      <div className={styles['input-container']}>
+      <div className={styles['control-container']}>
         {props.children}
       </div>
       {props.error && (

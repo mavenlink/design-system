@@ -23,7 +23,7 @@
   color: var(--mds-red-100);
 }
 
-.input-container {
+.control-container {
   margin-bottom: var(--spacing-small);
   margin-top: var(--spacing-small);
   position: relative;
