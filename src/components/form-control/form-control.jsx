@@ -16,7 +16,7 @@ function getRequiredClassName(error) {
 
 export default function FormControl(props) {
   return (
-    <div>
+    <div className={props.className}>
       <label
         className={getLabelClassName(props.error)}
         htmlFor={props.id}

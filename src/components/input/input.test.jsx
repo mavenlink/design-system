@@ -39,21 +39,7 @@ describe('Input', () => {
           invalid
         />
       ));
-      expect(screen.getByLabelText('the label').parentElement).toHaveClass('test-class');
-    });
-  });
-
-  describe('cssLabel API', () => {
-    it('sets <label> className', () => {
-      render((
-        <Input
-          id="foo"
-          cssLabel="test-class"
-          label="the label"
-          invalid
-        />
-      ));
-      expect(screen.getByText('the label')).toHaveClass('test-class');
+      expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
     });
   });
 

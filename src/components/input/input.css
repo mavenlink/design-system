@@ -1,19 +1,6 @@
-@import "../../styles/colors.css";
 @import '../../styles/colors-v2.css';
 @import "../../styles/spacing.css";
 @import "../../styles/typography.css";
-
-.container {
-  position: relative;
-}
-
-.label {
-  display: block;
-  font-family: var(--mavenlink-type-font-family);
-  font-size: var(--mavenlink-type-small-size);
-  margin: 0 0 var(--spacing-small);
-  color: var(--mds-grey-54);
-}
 
 .input {
   border: 1px solid var(--mds-grey-12);
@@ -41,11 +28,6 @@
   position: absolute;
   right: 6px;
   top: 6px;
-}
-
-.invalid-label {
-  composes: label;
-  color: var(--mds-red-text);
 }
 
 .invalid-input {
