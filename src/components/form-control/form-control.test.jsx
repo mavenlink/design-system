@@ -19,6 +19,13 @@ describe('<FormControl>', () => {
     expect(renderer.create(<FormControl {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
+  describe('className API', () => {
+    it('can be set', () => {
+      render(<FormControl {...requiredProps} className="unique-class" />);
+      expect(screen.getByLabelText('Test label').parentElement.parentElement).toHaveAttribute('class', 'unique-class');
+    });
+  });
+
   describe('children API', () => {
     it('can be set', () => {
       const inputRef = createRef();

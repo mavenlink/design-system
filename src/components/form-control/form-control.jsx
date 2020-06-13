@@ -41,6 +41,7 @@ export default function FormControl(props) {
 }
 
 FormControl.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   error: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -49,6 +50,7 @@ FormControl.propTypes = {
 };
 
 FormControl.defaultProps = {
+  className: undefined,
   error: '',
   required: false,
 };
