@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormControl> has defaults 1`] = `
+<div>
+  <label
+    className="label"
+    htmlFor="test-id"
+  >
+    Test label
+  </label>
+  <div
+    className="input-container"
+  >
+    <input
+      id="test-id"
+    />
+  </div>
+  
+</div>
+`;

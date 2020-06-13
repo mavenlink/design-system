@@ -1,0 +1,35 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/typography.css';
+
+.label {
+  color: var(--mds-grey-54);
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-small-size);
+}
+
+.invalid-label {
+  composes: label;
+  color: var(--mds-red-100);
+}
+
+.required {
+  composes: label;
+  margin-left: var(--spacing-small);
+}
+
+.invalid-required {
+  composes: required;
+  color: var(--mds-red-100);
+}
+
+.input-container {
+  margin-bottom: var(--spacing-small);
+  margin-top: var(--spacing-small);
+  position: relative;
+}
+
+.error-message {
+  color: var(--mds-red-100);
+  font-family: var(--mavenlink-type-font-family);
+  font-size: var(--mavenlink-type-base-size);
+}

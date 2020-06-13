@@ -6,6 +6,7 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+  - Minor: Implement `FormControl` component
 </details>
 
 ## 0.23.0 (June 11, 2020)
