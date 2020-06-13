@@ -3,28 +3,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.custom-field-input-text {
-  font-family: var(--mavenlink-type-font-family);
-}
-
-.heading-container {
-  color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-small-size);
-}
-
-.error .heading-container {
-  color: var(--mds-red-100);
-}
-
-.help {
-  color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-base-size);
-}
-
-.error .help {
-  color: var(--mds-red-100);
-}
-
 .input {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
@@ -65,14 +43,4 @@
   position: absolute;
   right: 6px;
   top: 6px;
-}
-
-.label {
-  margin-right: var(--spacing-small);
-}
-
-.optional {
-  display: inline-block;
-  margin-right: var(--spacing-small);
-  min-width: 30px;
 }

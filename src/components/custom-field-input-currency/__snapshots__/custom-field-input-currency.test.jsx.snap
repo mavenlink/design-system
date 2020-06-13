@@ -3,20 +3,15 @@
 exports[`CustomFieldInputCurrency has defaults 1`] = `
 <div
   className="custom-field-input-text"
-  data-testid="custom-field-input"
 >
-  <div
-    className="heading-container"
+  <label
+    className="label"
+    htmlFor="foo"
   >
-    <label
-      className="label"
-      htmlFor="foo"
-    >
-      cash money
-    </label>
-  </div>
+    cash money
+  </label>
   <div
-    className="input-container"
+    className="control-container"
   >
     <input
       className="input"
@@ -32,5 +27,6 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       type="text"
     />
   </div>
+  
 </div>
 `;

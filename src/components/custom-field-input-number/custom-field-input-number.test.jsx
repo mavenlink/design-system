@@ -78,27 +78,27 @@ describe('CustomFieldInputNumber', () => {
   describe('value API', () => {
     it('is valid on a positive integer', () => {
       render(<TestComponent value={1} />);
-      expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is valid on zero', () => {
       render(<TestComponent value={0} />);
-      expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is valid on a negative integer', () => {
       render(<TestComponent value={-1} />);
-      expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is valid on a decimal integer', () => {
       render(<TestComponent value={1.00} />);
-      expect(screen.getByTestId('custom-field-input')).not.toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is invalid on a decimal number', () => {
       render(<TestComponent value={1.01} />);
-      expect(screen.getByTestId('custom-field-input')).toHaveClass('error');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
   });
 

@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputDate from './custom-field-input-date.jsx';
 
@@ -57,8 +62,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('error API', () => {
     describe('when the value is valid', () => {
       it('does not show an error', () => {
-        const { getByTestId } = render(<CustomFieldInputDate label="Field Date" id="field-date" value="05/10/1992" />);
-        expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+        render(<CustomFieldInputDate label="Field Date" id="field-date" value="05/10/1992" />);
+        expect(screen.getByLabelText('Field Date')).toBeValid('error');
       });
     });
 
@@ -186,8 +191,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
   describe('when the component is readOnly', () => {
     it('displays the helpText on semantic error', () => {
-      const { getByTestId } = renderComponent({ readOnly: true, helpText: 'Foo', error: true });
-      expect(getByTestId('custom-field-input').innerHTML).toContain('Foo');
+      renderComponent({ readOnly: true, helpText: 'Foo', error: true });
+      expect(screen.getByText('Foo')).toBeInTheDocument();
     });
   });
 

@@ -23,14 +23,12 @@ describe('CustomFieldInputText', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const { container } = render(<TestComponent disabled />);
-      expect(container.firstChild).toHaveClass('disabled');
+      render(<TestComponent disabled />);
       expect(screen.getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('disabled');
+      render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
     });
   });
@@ -46,17 +44,15 @@ describe('CustomFieldInputText', () => {
     });
 
     it('can have an error state through a custom validation', () => {
-      const { container } = render(<TestComponent error helpText="Custom validation message" />);
-      expect(container.firstChild).toHaveClass('error');
+      render(<TestComponent error helpText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });
 
     it('can have no error state', () => {
-      const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('error');
+      render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(container.querySelector('[role="img"]')).toBeFalsy();
+      expect(screen.queryByRole('[role="img"]')).toBeFalsy();
     });
   });
 
