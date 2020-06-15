@@ -53,7 +53,7 @@ export default function TagList(props) {
 
   return (
     <div // eslint-disable-line jsx-a11y/interactive-supports-focus
-      className={props.classContainer}
+      className={props.className}
       id={props.id}
       onClick={onClick}
       onFocus={onFocus}
@@ -66,12 +66,12 @@ export default function TagList(props) {
 }
 
 TagList.propTypes = {
-  classContainer: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
 };
 
 TagList.defaultProps = {
-  classContainer: styles['tag-list'],
+  className: styles['tag-list'],
 };

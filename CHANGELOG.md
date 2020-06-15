@@ -6,7 +6,7 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-  - Minor: Add classContainer to TagList component
+  - Minor: Add className to TagList component
   - Minor: Set tag heights to 22px instead of auto-fitting to content
   - Minor: Add id API to TagList component
   - Minor: Implement CustomFieldInputMultipleChoice component

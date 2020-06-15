@@ -161,9 +161,9 @@ describe('TagList', () => {
     });
   });
 
-  describe('classContainer API', () => {
+  describe('className API', () => {
     it('can be set', () => {
-      render(<TagList {...requiredProps} classContainer="unique-class-name" />);
+      render(<TagList {...requiredProps} className="unique-class-name" />);
       expect(screen.getByRole('grid')).toHaveAttribute('class', 'unique-class-name');
     });
   });

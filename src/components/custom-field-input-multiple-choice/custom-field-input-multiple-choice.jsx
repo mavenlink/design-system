@@ -19,7 +19,7 @@ function CustomFieldInputMultipleChoice(props) {
     <div>
       <label className={styles.label} htmlFor={props.id}>{props.label}</label>
       <TagList
-        classContainer={classContainer}
+        className={classContainer}
         id={props.id}
         refs={refs}
       >
