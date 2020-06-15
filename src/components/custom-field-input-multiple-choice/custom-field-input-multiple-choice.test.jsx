@@ -39,7 +39,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('can be set', () => {
       render((<CustomFieldInputMultipleChoice {...requiredProps} label="Unique label" />));
 
-      expect(screen.getByLabelText('Unique label')).toBeDefined();
+      expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
     });
   });
 
@@ -67,7 +67,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         }]}
       />));
 
-      expect(screen.getByRole('button')).toBeDefined();
+      expect(screen.getByRole('button')).toBeInTheDocument();
     });
   });
 
@@ -84,8 +84,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         }]}
       />));
 
-      expect(screen.getByText('Choice 1')).toBeDefined();
-      expect(screen.getByText('Choice 2')).toBeDefined();
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      expect(screen.getByText('Choice 2')).toBeInTheDocument();
     });
   });
 });

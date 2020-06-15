@@ -1,5 +1,5 @@
 import React, {
-  createRef,
+  useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
@@ -10,7 +10,7 @@ import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
 function CustomFieldInputMultipleChoice(props) {
-  const refs = props.value.map(() => createRef());
+  const refs = props.value.map(() => useRef());
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
