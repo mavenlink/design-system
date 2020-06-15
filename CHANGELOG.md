@@ -5,6 +5,16 @@
     Click to see more.
   </summary>
 
+  - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+  - Minor: Add classContainer to TagList component
+  - Minor: Set tag heights to 22px instead of auto-fitting to content
+  - Minor: Add id API to TagList component
+  - Minor: Implement CustomFieldInputMultipleChoice component
+  - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
+  - Major: Add flex-basis on direct children of SectionRow component
+</details>
+
+## 0.23.0 (June 11, 2020)
   - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
   - Minor: Create the page patterns page.
   - Minor: Implement PageHeader component
@@ -14,13 +24,7 @@
   - Minor: Add id to Icon props
   - Minor: Add `defaultActive` prop to Tag
   - Minor: Implement TagList component
-  - Minor: Add classContainer to TagList component
-  - Minor: Set tag heights to 22px instead of auto-fitting to content
-  - Minor: Add id API to TagList component
-  - Minor: Implement CustomFieldInputMultipleChoice component
-  - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
-  - Major: Add flex-basis on direct children of SectionRow component
-</details>
+  - Minor: Add typography-v2 CSS variables
 
 ## 0.22.0 (May 22, 2020)
 - Minor: Publish site files with MDS module
