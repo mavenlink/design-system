@@ -1,0 +1,20 @@
+@import '../../styles/typography-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.container {
+  border: 1px solid var(--mds-grey-38);
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.container > * {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mds-type-font-family);
+  height: var(--spacing-x-large);
+  margin: 0 var(--spacing-medium);
+  width: -webkit-fill-available;
+  width: -moz-available;
+}

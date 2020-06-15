@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './listbox.css';
 
 export default function Listbox(props) {
-  return (<div>{ props.children }</div>);
+  return (
+    <div className={styles.container}>
+      { props.children }
+    </div>
+  );
 }
 
 Listbox.propTypes = {
