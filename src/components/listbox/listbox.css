@@ -17,8 +17,8 @@
   line-height: var(--spacing-x-large);
   overflow: hidden;
   padding: 0 var(--spacing-medium);
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .selection:hover {
