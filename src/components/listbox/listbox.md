@@ -2,9 +2,9 @@ Use `Listbox` to display an accessible list of options, with its children being 
 
 ```jsx
 <Listbox>
-  <ListOption>Yes</ListOption>
+  <ListOption selected>Yes</ListOption>
   <ListOption>No</ListOption>
-  <ListOption>Maybe</ListOption>
+  <ListOption selected>Maybe</ListOption>
   <ListOption>I don't know</ListOption>
   <ListOption title="Can you repeat the question?">Can you repeat the question?</ListOption>
 </Listbox>

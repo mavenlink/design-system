@@ -1,12 +1,11 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Listbox from './listbox.jsx';
+import ListOption from '../list-option/list-option.jsx';
 
 describe('src/components/listbox/listbox', () => {
   const renderComponent = (props = {}) => render(<Listbox {...props} />);
-
-  afterEach(cleanup);
 
   it('has defaults', () => {
     const tree = renderer.create(<Listbox />).toJSON();
@@ -14,11 +13,10 @@ describe('src/components/listbox/listbox', () => {
   });
 
   it('displays a list of things', () => {
-    const selections = ['Hello', 'Hey', 'How are you?'];
-    const { getByText } = renderComponent({ selections });
+    const children = [<ListOption key="yeah">Hello</ListOption>, <ListOption key="yeah2">Hey</ListOption>];
+    renderComponent({ children });
 
-    expect(getByText('Hello')).toBeTruthy();
-    expect(getByText('Hey')).toBeTruthy();
-    expect(getByText('How are you?')).toBeTruthy();
+    expect(screen.getByText('Hello')).toBeTruthy();
+    expect(screen.getByText('Hey')).toBeTruthy();
   });
 });
