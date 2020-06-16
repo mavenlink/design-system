@@ -3,8 +3,6 @@
 .container {
   border: 1px solid var(--mds-grey-38);
   border-radius: 3px;
-  display: flex;
-  flex-direction: column;
   margin: 0;
   padding: 0;
 }

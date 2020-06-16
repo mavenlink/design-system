@@ -12,12 +12,12 @@ describe('src/components/list-option/list-option', () => {
   describe('selected API', () => {
     it('is selected when selected is true', () => {
       render(<ListOption selected>SelectMe!</ListOption>);
-      expect(screen.getByText('SelectMe!').getAttribute('aria-selected')).toBe('true');
+      expect(screen.getByText('SelectMe!')).toHaveAttribute('aria-selected', 'true');
     });
 
     it('is not selected when selected is false', () => {
       render(<ListOption>SelectMe!</ListOption>);
-      expect(screen.getByText('SelectMe!').getAttribute('aria-selected')).toBe('false');
+      expect(screen.getByText('SelectMe!')).toHaveAttribute('aria-selected', 'false');
     });
   });
 
@@ -26,14 +26,14 @@ describe('src/components/list-option/list-option', () => {
       const title = "Hello. Is it me you're looking for?";
       render(<ListOption title={title} />);
 
-      expect(screen.getByRole('option').getAttribute('title')).toBe(title);
+      expect(screen.getByRole('option')).toHaveAttribute('title', title);
     });
   });
 
   describe('children API', () => {
     it('accepts a node as children', () => {
       render(<ListOption><div><span>Text is here!</span></div></ListOption>);
-      expect(screen.getByText('Text is here!')).toBeTruthy();
+      expect(screen.getByText('Text is here!')).toBeInTheDocument();
     });
   });
 });
