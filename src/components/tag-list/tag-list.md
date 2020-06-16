@@ -27,7 +27,7 @@ This ensures screen readers can know:
 | Left / Up Arrrow | --- | Moves the focus to the previous tag |
 | Right / Down Arrrow | --- | Moves the focus to the next tag |
 | Home | --- | Moves the focus to the first tag |
-| Last | --- | Moves the focus to the first tag |
+| End | --- | Moves the focus to the first tag |
 
 Notes:
 
