@@ -6,7 +6,7 @@ export default function Listbox(props) {
   const children = props.selections.map((s, index) => {
     const key = `${s}-${index}`;
 
-    return (<div className={styles.selection} key={key}>{s}</div>);
+    return (<div className={styles.selection} key={key} title={s}>{s}</div>);
   });
 
   return (

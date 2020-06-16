@@ -6,11 +6,11 @@ Here's a simple example:
 />
 ```
 
-If you want it to be in a smaller box, put it in a containing div and style the div:
+If you want it to be in a smaller box, put it in a containing `div` and style the `div`:
 
 ```jsx
 const container = {
-  width: '200px',
+  width: '150px',
   height: '150px',
 };
 

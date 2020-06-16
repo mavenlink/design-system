@@ -11,10 +11,16 @@
 .selection {
   align-items: center;
   cursor: pointer;
-  display: inline-flex;
   font-family: var(--mds-type-font-family);
+  font-size: 14px;
   height: var(--spacing-x-large);
-  margin: 0 var(--spacing-medium);
+  line-height: var(--spacing-x-large);
   overflow: hidden;
+  padding: 0 var(--spacing-medium);
   white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.selection:hover {
+  background-color: var(--mds-grey-12);
 }
