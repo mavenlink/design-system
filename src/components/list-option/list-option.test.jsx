@@ -20,4 +20,20 @@ describe('src/components/list-option/list-option', () => {
       expect(screen.getByText('SelectMe!').getAttribute('aria-selected')).toBe('false');
     });
   });
+
+  describe('title API', () => {
+    it('accepts a title', () => {
+      const title = "Hello. Is it me you're looking for?";
+      render(<ListOption title={title} />);
+
+      expect(screen.getByRole('option').getAttribute('title')).toBe(title);
+    });
+  });
+
+  describe('children API', () => {
+    it('accepts a node as children', () => {
+      render(<ListOption><div><span>Text is here!</span></div></ListOption>);
+      expect(screen.getByText('Text is here!')).toBeTruthy();
+    });
+  });
 });
