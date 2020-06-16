@@ -17,7 +17,7 @@ function CustomFieldInputMultipleChoice(props) {
 
   return (
     <div>
-      <label
+      <label // eslint-disable-line jsx-a11y/label-has-for
         className={styles.label}
         id={`${props.id}-label`}
       >

@@ -18,7 +18,7 @@
 
 .label {
   composes: heading;
-  font-family: var(--mavenlink-type-font-family);
+  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
   margin-right: var(--spacing-small);
 }
 
