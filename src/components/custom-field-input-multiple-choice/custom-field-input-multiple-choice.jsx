@@ -31,6 +31,7 @@ function CustomFieldInputMultipleChoice(props) {
       >
         {props.value.map((choice, index) => (
           <Tag
+            defaultActive={index === 0}
             id={`${props.id}-${choice.id}`}
             key={`${props.id}-${choice.id}`}
             readOnly={props.readOnly}

@@ -50,7 +50,14 @@ const tagListId = 'basic-example';
 
 <TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`${tagListId}-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag
+      defaultActive={index === 0 ? true : false}
+      id={`${tagListId}-${index}`}
+      key={`tag-${index}`}
+      ref={refs[index]}
+    >
+      {datum}
+    </Tag>
   ))}
 </TagList>
 ```
@@ -139,7 +146,14 @@ const tagListId = 'wrapping-example';
 
 <TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`${tagListId}-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag
+      defaultActive={index === 0 ? true : false}
+      id={`${tagListId}-${index}`}
+      key={`tag-${index}`}
+      ref={refs[index]}
+    >
+      {datum}
+    </Tag>
   ))}
 </TagList>
 ```
