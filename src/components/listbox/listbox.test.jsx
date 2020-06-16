@@ -16,7 +16,7 @@ describe('src/components/listbox/listbox', () => {
     const children = [<ListOption key="yeah">Hello</ListOption>, <ListOption key="yeah2">Hey</ListOption>];
     renderComponent({ children });
 
-    expect(screen.getByText('Hello')).toBeTruthy();
-    expect(screen.getByText('Hey')).toBeTruthy();
+    expect(screen.getByText('Hello')).toBeInTheDocument();
+    expect(screen.getByText('Hey')).toBeInTheDocument();
   });
 });

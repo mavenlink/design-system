@@ -6,10 +6,10 @@
   --selected-background: var(--mds-grey-12);
 
   cursor: pointer;
-  display: block;
   font: var(--mds-type-content);
   height: var(--spacing-x-large);
   line-height: var(--spacing-x-large); /* stylelint-disable-line mds/typography */
+  list-style-type: none;
   overflow: hidden;
   padding: 0 var(--spacing-medium);
   text-overflow: ellipsis;
