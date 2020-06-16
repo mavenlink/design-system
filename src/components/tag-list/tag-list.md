@@ -46,10 +46,11 @@ const data = [
   'Band Name',
 ];
 const refs = data.map(() => React.createRef());
+const tagListId = 'basic-example';
 
-<TagList id="basic-example" refs={refs}>
+<TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag key={`tag-${index}`} id={`${tagListId}-${index}`} ref={refs[index]}>{datum}</Tag>
   ))}
 </TagList>
 ```
@@ -134,10 +135,11 @@ const data = [
 ];
 
 const refs = data.map(() => React.createRef());
+const tagListId = 'wrapping-example';
 
-<TagList id="wrapping-example" refs={refs}>
+<TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag key={`tag-${index}`} id={`${tagListId}-${index}`} ref={refs[index]}>{datum}</Tag>
   ))}
 </TagList>
 ```
