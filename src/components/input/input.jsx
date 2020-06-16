@@ -5,9 +5,13 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
-function getClassName(className, invalid) {
+function getClassName(className, invalid, readOnly) {
   if (className) return className;
-  return invalid ? styles['invalid-input'] : styles.input;
+  return isInvalid(invalid, readOnly) ? styles['invalid-input'] : styles.input;
+}
+
+function isInvalid(invalid, readOnly) {
+  return invalid && !readOnly;
 }
 
 export default function Input(props) {
@@ -22,7 +26,7 @@ export default function Input(props) {
     >
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-        className={getClassName(props.className, props.invalid)}
+        className={getClassName(props.className, props.invalid, props.readOnly)}
         disabled={props.disabled}
         id={props.id}
         maxLength={props.maxLength}
@@ -39,7 +43,7 @@ export default function Input(props) {
         type={props.type}
         value={props.value}
       />
-      {props.invalid && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
+      {isInvalid(props.invalid, props.readOnly) && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
     </FormControl>
   );
 }

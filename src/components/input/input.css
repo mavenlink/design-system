@@ -22,6 +22,10 @@
   background-color: var(--mds-grey-3);
 }
 
+.input:read-only {
+  background-color: var(--mds-grey-3);
+}
+
 .invalid-icon {
   box-sizing: border-box;
   pointer-events: none;
