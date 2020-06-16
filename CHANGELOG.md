@@ -6,6 +6,8 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+  - Append new items to make git merging easier.
+  - Minor: Add linter for Typography
   - Minor: Add className to TagList component
   - Minor: Set tag heights to 22px instead of auto-fitting to content
   - Minor: Add id API to TagList component
