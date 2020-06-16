@@ -5,6 +5,8 @@
     Click to see more.
   </summary>
 
+  - Minor: Add linter for Typography
+
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 </details>
 
