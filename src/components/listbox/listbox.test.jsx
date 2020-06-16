@@ -14,8 +14,11 @@ describe('src/components/listbox/listbox', () => {
   });
 
   it('displays a list of things', () => {
-    const { getByText } = renderComponent({ children: <span>Hello</span> });
+    const selections = ['Hello', 'Hey', 'How are you?'];
+    const { getByText } = renderComponent({ selections });
 
     expect(getByText('Hello')).toBeTruthy();
+    expect(getByText('Hey')).toBeTruthy();
+    expect(getByText('How are you?')).toBeTruthy();
   });
 });

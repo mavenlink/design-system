@@ -3,17 +3,23 @@ import PropTypes from 'prop-types';
 import styles from './listbox.css';
 
 export default function Listbox(props) {
+  const children = props.selections.map((s, index) => {
+    const key = `${s}-${index}`;
+
+    return (<div className={styles.selection} key={key}>{s}</div>);
+  });
+
   return (
     <div className={styles.container}>
-      { props.children }
+      { children }
     </div>
   );
 }
 
 Listbox.propTypes = {
-  children: PropTypes.node,
+  selections: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
 
 Listbox.defaultProps = {
-  children: null,
+  selections: [],
 };

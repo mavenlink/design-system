@@ -6,15 +6,15 @@
   border: 1px solid var(--mds-grey-38);
   display: flex;
   flex-direction: column;
-  max-width: 200px;
 }
 
-.container > * {
-  display: inline-flex;
+.selection {
   align-items: center;
+  cursor: pointer;
+  display: inline-flex;
   font-family: var(--mds-type-font-family);
   height: var(--spacing-x-large);
   margin: 0 var(--spacing-medium);
-  width: -webkit-fill-available;
-  width: -moz-available;
+  overflow: hidden;
+  white-space: nowrap;
 }
