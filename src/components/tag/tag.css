@@ -26,8 +26,8 @@
 
 .content {
   color: var(--mds-grey-87);
-  font-family: var(--mavenlink-type-font-family);
-  font-size: var(--mavenlink-type-base-size);
+  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
   overflow: hidden;
   text-overflow: ellipsis;
 }

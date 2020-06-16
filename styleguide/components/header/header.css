@@ -10,7 +10,7 @@
   background-color: #f8f8f8; /* stylelint-disable-line mds/colors */
   border-bottom: 1px solid var(--mds-grey-12);
   display: flex;
-  font-family: var(--mavenlink-type-font-headings);
+  font-family: var(--mavenlink-type-font-headings); /* stylelint-disable-line mds/typography */
   height: var(--headerHeight);
   justify-content: space-between;
   left: 0;
@@ -22,8 +22,8 @@
 }
 
 .title {
-  font-size: 20px;
-  line-height: 65px;
+  font-size: 20px; /* stylelint-disable-line mds/typography */
+  line-height: 65px; /* stylelint-disable-line mds/typography */
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -38,7 +38,7 @@
 
 .github {
   color: var(--mds-grey-87);
-  line-height: var(--headerHeight);
+  line-height: var(--headerHeight); /* stylelint-disable-line mds/typography */
   padding: 0 0.5em;
   text-decoration: none;
   transition: background-color 150ms linear;
