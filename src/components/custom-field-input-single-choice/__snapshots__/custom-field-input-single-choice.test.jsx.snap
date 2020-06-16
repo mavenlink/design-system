@@ -32,6 +32,5 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       />
     </svg>
   </div>
-  
 </div>
 `;

@@ -24,6 +24,5 @@ exports[`CustomFieldInputText has defaults 1`] = `
       type="text"
     />
   </div>
-  
 </div>
 `;

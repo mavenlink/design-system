@@ -30,6 +30,5 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       type="number"
     />
   </div>
-  
 </div>
 `;

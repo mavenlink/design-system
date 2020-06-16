@@ -2,36 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './form-control.css';
 
-function getLabelClassName(error) {
-  if (error) return styles['invalid-label'];
+function getLabelClassName(error, readOnly) {
+  if (isInvalid(error, readOnly)) return styles['invalid-label'];
 
   return styles.label;
 }
 
-function getRequiredClassName(error) {
-  if (error) return styles['invalid-required'];
+function getRequiredClassName(error, readOnly) {
+  if (isInvalid(error, readOnly)) return styles['invalid-required'];
 
   return styles.required;
+}
+
+function isInvalid(error, readOnly) {
+  return !!error && !readOnly;
 }
 
 export default function FormControl(props) {
   return (
     <div className={props.className}>
       <label
-        className={getLabelClassName(props.error)}
+        className={getLabelClassName(props.error, props.readOnly)}
         htmlFor={props.id}
       >
         {props.label}
       </label>
       {props.required && (
-        <span className={getRequiredClassName(props.error)}>
+        <span className={getRequiredClassName(props.error, props.readOnly)}>
           (Required)
         </span>
       )}
       <div className={styles['control-container']}>
         {props.children}
       </div>
-      {props.error && (
+      {isInvalid(props.error, props.readOnly) && (
         <span className={styles['error-message']}>
           {props.error}
         </span>
@@ -46,11 +50,13 @@ FormControl.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
 };
 
 FormControl.defaultProps = {
   className: undefined,
   error: '',
+  readOnly: false,
   required: false,
 };

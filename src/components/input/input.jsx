@@ -17,6 +17,8 @@ export default function Input(props) {
       error={props.invalid ? 'Invalid value.' : ''}
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
+      required={props.required}
     >
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus

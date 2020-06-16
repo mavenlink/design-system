@@ -63,6 +63,18 @@ describe('<FormControl>', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('can be set and hides the error state', () => {
+      render(<FormControl {...requiredProps} readOnly={true} error="I am invalid" />);
+      expect(screen.queryByText('I am invalid')).not.toBeInTheDocument();
+    });
+
+    it('can be unset', () => {
+      render(<FormControl {...requiredProps} readOnly={false} error="I am invalid" />);
+      expect(screen.getByText('I am invalid')).toBeInTheDocument();
+    });
+  });
+
   describe('required API', () => {
     it('can be set', () => {
       render(<FormControl {...requiredProps} required={true} />);

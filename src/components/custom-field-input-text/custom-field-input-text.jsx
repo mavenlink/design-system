@@ -55,6 +55,7 @@ export default function CustomFieldInputText(props) {
       error={validationMessage}
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
       required={props.required}
     >
       <input

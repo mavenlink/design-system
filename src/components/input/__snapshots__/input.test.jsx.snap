@@ -19,6 +19,5 @@ exports[`Input has defaults 1`] = `
       type="text"
     />
   </div>
-  
 </div>
 `;
