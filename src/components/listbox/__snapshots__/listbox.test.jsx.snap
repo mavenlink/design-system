@@ -3,6 +3,7 @@
 exports[`src/components/listbox/listbox has defaults 1`] = `
 <ul
   className="container"
+  onFocus={[Function]}
   role="listbox"
 />
 `;
