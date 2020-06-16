@@ -17,10 +17,16 @@ function CustomFieldInputMultipleChoice(props) {
 
   return (
     <div>
-      <label className={styles.label} htmlFor={props.id}>{props.label}</label>
+      <label
+        className={styles.label}
+        id={`${props.id}-label`}
+      >
+        {props.label}
+      </label>
       <TagList
         className={classContainer}
         id={props.id}
+        labelledBy={`${props.id}-label`}
         refs={refs}
       >
         {props.value.map((choice, index) => (

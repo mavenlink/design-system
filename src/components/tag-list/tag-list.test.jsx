@@ -9,7 +9,7 @@ import Tag from '../tag/tag.jsx';
 describe('TagList', () => {
   const requiredProps = {
     children: <Tag id="test-tag-fake">Test Fake Tag</Tag>,
-    id: 'test-id',
+    labelledBy: 'test-label-id',
     refs: [createRef()],
   };
 
@@ -168,10 +168,10 @@ describe('TagList', () => {
     });
   });
 
-  describe('id API', () => {
+  describe('labelledBy API', () => {
     it('can be set', () => {
-      render(<TagList {...requiredProps} id="unique-id" />);
-      expect(screen.getByRole('grid')).toHaveAttribute('id', 'unique-id');
+      render(<TagList {...requiredProps} labelledBy="unique-id" />);
+      expect(screen.getByRole('grid')).toHaveAttribute('aria-labelledby', 'unique-id');
     });
   });
 });

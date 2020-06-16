@@ -4,13 +4,13 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 <div>
   <label
     className="label"
-    htmlFor="test-id"
+    id="test-id-label"
   >
     test label
   </label>
   <div
+    aria-labelledby="test-id-label"
     className="read-write-container"
-    id="test-id"
     onClick={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
