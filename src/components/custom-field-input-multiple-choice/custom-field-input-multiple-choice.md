@@ -1,4 +1,5 @@
 The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
+Its accessibility interactions are inherited from [`TagList`](#/Components/TagList) and [`Tag`](#/Components/Tag) components.
 
 ### Default examples
 
