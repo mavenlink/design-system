@@ -6,6 +6,10 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './custom-field-input-text.css';
 
+function isInvalid(error, readOnly) {
+  return error && !readOnly;
+}
+
 export default function CustomFieldInputText(props) {
   const defaultRef = useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
@@ -15,7 +19,7 @@ export default function CustomFieldInputText(props) {
   useEffect(() => {
     if (!inputRef.current) return;
 
-    if (props.error) {
+    if (isInvalid(props.error, props.readOnly)) {
       if (props.helpText) {
         inputRef.current.setCustomValidity(props.helpText);
         setValidationMessage(props.helpText);
@@ -29,7 +33,7 @@ export default function CustomFieldInputText(props) {
   });
 
   const icon = () => {
-    if (props.error) {
+    if (isInvalid(props.error, props.readOnly)) {
       return (<Icon
         className={styles['input-icon']}
         currentColor="caution"
@@ -46,7 +50,7 @@ export default function CustomFieldInputText(props) {
   };
 
   const showIcon = () => {
-    return props.error || !!props.icon;
+    return isInvalid(props.error, props.readOnly) || !!props.icon;
   };
 
   return (
