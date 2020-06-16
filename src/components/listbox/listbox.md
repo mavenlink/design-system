@@ -1,22 +1,28 @@
-Here's a simple example:
+Use `Listbox` to display an accessible list of options, with its children being `ListOption` components:
 
 ```jsx
-<Listbox
-  selections={['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?']}
-/>
+<Listbox>
+  <ListOption>Yes</ListOption>
+  <ListOption>No</ListOption>
+  <ListOption>Maybe</ListOption>
+  <ListOption>I don't know</ListOption>
+  <ListOption title="Can you repeat the question?">Can you repeat the question?</ListOption>
+</Listbox>
 ```
 
-If you want it to be in a smaller box, put it in a containing `div` and style the `div`:
+If the list needs to be a certain size or style, place the listbox into its own containing `div` and style that `div`:
 
 ```jsx
 const container = {
   width: '150px',
   height: '150px',
 };
-
+const selections = ['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?'];
+const children = selections.map((s, index) => <ListOption key={`${s}-${index}`} title={s}>{s}</ListOption>);
+ 
 <div style={container}>
-  <Listbox
-    selections={['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?']}
-  />
+  <Listbox>
+    { children }
+  </Listbox>
 </div>
 ```

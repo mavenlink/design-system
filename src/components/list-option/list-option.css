@@ -1,0 +1,20 @@
+@import '../../styles/typography-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.selection {
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--mds-type-font-family);
+  font-size: 14px;
+  height: var(--spacing-x-large);
+  line-height: var(--spacing-x-large);
+  overflow: hidden;
+  padding: 0 var(--spacing-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selection:hover {
+  background-color: var(--mds-grey-12);
+}
