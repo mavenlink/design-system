@@ -7,8 +7,8 @@
 }
 
 .typography {
-  font-family: var(--mavenlink-type-font-family);
-  font-size: var(--mavenlink-type-button-font-size);
+  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-button-font-size); /* stylelint-disable-line mds/typography */
 }
 
 .button {

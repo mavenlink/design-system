@@ -4,8 +4,8 @@
 
 .label {
   color: var(--mds-grey-54);
-  font-family: var(--mavenlink-type-font-family);
-  font-size: var(--mavenlink-type-small-size);
+  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
 }
 
 .invalid-label {
@@ -31,6 +31,6 @@
 
 .error-message {
   color: var(--mds-red-100);
-  font-family: var(--mavenlink-type-font-family);
-  font-size: var(--mavenlink-type-base-size);
+  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
 }
