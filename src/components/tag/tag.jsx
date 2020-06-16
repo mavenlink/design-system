@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { createRef, useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react';
 import styles from './tag.css';
 import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
@@ -13,7 +13,7 @@ const Tag = forwardRef(function Tag(props, ref) {
   const contentRef = useRef(null);
   const contentId = `${props.id}-content`;
   const refElements = [contentRef, buttonRef];
-  const rootRef = createRef();
+  const rootRef = useRef();
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {

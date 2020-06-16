@@ -27,7 +27,7 @@ This ensures screen readers can know:
 | Left / Up Arrrow | --- | Moves the focus to the previous tag |
 | Right / Down Arrrow | --- | Moves the focus to the next tag |
 | Home | --- | Moves the focus to the first tag |
-| Last | --- | Moves the focus to the first tag |
+| End | --- | Moves the focus to the first tag |
 
 Notes:
 
@@ -46,10 +46,18 @@ const data = [
   'Band Name',
 ];
 const refs = data.map(() => React.createRef());
+const tagListId = 'basic-example';
 
-<TagList refs={refs}>
+<TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag
+      defaultActive={index === 0 ? true : false}
+      id={`${tagListId}-${index}`}
+      key={`tag-${index}`}
+      ref={refs[index]}
+    >
+      {datum}
+    </Tag>
   ))}
 </TagList>
 ```
@@ -134,10 +142,18 @@ const data = [
 ];
 
 const refs = data.map(() => React.createRef());
+const tagListId = 'wrapping-example';
 
-<TagList refs={refs}>
+<TagList id={tagListId} refs={refs}>
   {data.map((datum, index) => (
-    <Tag key={`tag-${index}`} id={`tag-${index}`} ref={refs[index]}>{datum}</Tag>
+    <Tag
+      defaultActive={index === 0 ? true : false}
+      id={`${tagListId}-${index}`}
+      key={`tag-${index}`}
+      ref={refs[index]}
+    >
+      {datum}
+    </Tag>
   ))}
 </TagList>
 ```

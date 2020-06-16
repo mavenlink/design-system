@@ -21,16 +21,19 @@
   background-color: var(--mds-grey-3);
 }
 
+.read-only-input {
+  composes: input;
+  background-color: var(--mds-grey-3);
+}
+
 .input:invalid {
   border-color: var(--mds-red-100);
   padding-right: var(--spacing-x-large);
 }
 
 .input-container {
-  height: 34px;
   margin: var(--spacing-small) 0;
   position: relative;
-  width: 100%;
 }
 
 .input-container input::placeholder {

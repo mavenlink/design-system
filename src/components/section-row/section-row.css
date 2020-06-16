@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.section-row > * {
+  flex-basis: 200px;
+}
+
 .section-row > *:not(:last-child) {
   margin: 0;
   margin-right: var(--spacing-x-large);
