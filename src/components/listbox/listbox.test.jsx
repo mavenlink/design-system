@@ -42,5 +42,17 @@ describe('src/components/listbox/listbox', () => {
       userEvent.click(screen.getByText('Hello'));
       expect(screen.getByText('Hello')).toHaveFocus();
     });
+
+    it('does not steal focus on render', () => {
+      render((
+        <Listbox {...requiredProps}>
+          <ListOption key="yeah">Hello</ListOption>
+          <ListOption key="yeah2">Hey</ListOption>
+        </Listbox>
+      ));
+
+      expect(screen.getByText('Hello')).not.toHaveFocus();
+      expect(screen.getByText('Hey')).not.toHaveFocus();
+    });
   });
 });
