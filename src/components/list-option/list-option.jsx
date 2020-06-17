@@ -1,24 +1,40 @@
 import React, {
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useState,
+  useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import styles from './list-option.css';
 
 const ListOption = forwardRef(function ListOption(props, ref) {
   const [active, setActive] = useState(props.defaultActive);
+  const [focusQueued, setFocusQueued] = useState(false);
+  const rootRef = useRef();
   const className = props.selected ? styles.selected : styles.option;
 
   useImperativeHandle(ref, () => ({
-    setActive,
+    contains: (node) => {
+      return rootRef.current.contains(node);
+    },
+    setActive: (bool) => {
+      setFocusQueued(bool);
+      setActive(bool);
+    },
   }));
+
+  useEffect(() => {
+    if (focusQueued) {
+      rootRef.current.focus();
+    }
+  });
 
   return (<li
     aria-selected={props.selected}
     className={className}
     role="option"
-    ref={ref}
+    ref={rootRef}
     tabIndex={active ? '0' : '-1'}
     title={props.title}
   >

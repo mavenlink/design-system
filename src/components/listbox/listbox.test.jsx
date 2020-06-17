@@ -1,7 +1,12 @@
 import React, {
   createRef,
 } from 'react';
-import { render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import Listbox from './listbox.jsx';
@@ -61,14 +66,47 @@ describe('src/components/listbox/listbox', () => {
     it('only has the one option in the page tab sequence', () => {
       expect(document.body).toHaveFocus();
 
-      userEvent.tab();
+      act(() => userEvent.tab());
       expect(screen.getByText('Hello')).toHaveFocus();
 
-      userEvent.tab();
+
+      act(() => userEvent.tab());
       expect(screen.getByText('Hello')).not.toHaveFocus();
       expect(screen.getByText('Hey')).not.toHaveFocus();
 
-      userEvent.tab({ shift: true });
+      act(() => userEvent.tab({ shift: true }));
+      expect(screen.getByText('Hello')).toHaveFocus();
+    });
+
+    it('moves focus with arrows keys', () => {
+      expect(document.body).toHaveFocus();
+
+      act(() => userEvent.tab());
+      expect(screen.getByText('Hello')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(screen.getByText('Hey')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(screen.getByText('Hey')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      expect(screen.getByText('Hello')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      expect(screen.getByText('Hello')).toHaveFocus();
+    });
+
+    it('moves focus with Home and End keys', () => {
+      expect(document.body).toHaveFocus();
+
+      act(() => userEvent.tab());
+      expect(screen.getByText('Hello')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'End' });
+      expect(screen.getByText('Hey')).toHaveFocus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'Home' });
       expect(screen.getByText('Hello')).toHaveFocus();
     });
   });
