@@ -22,16 +22,18 @@ describe('src/components/listbox/listbox', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('displays a list of things', () => {
-    render((
-      <Listbox {...requiredProps}>
-        <ListOption>Hello</ListOption>
-        <ListOption>Hey</ListOption>
-      </Listbox>
-    ));
+  describe('children API', () => {
+    it('displays a list of things', () => {
+      render((
+        <Listbox {...requiredProps}>
+          <ListOption>Hello</ListOption>
+          <ListOption>Hey</ListOption>
+        </Listbox>
+      ));
 
-    expect(screen.getByText('Hello')).toBeInTheDocument();
-    expect(screen.getByText('Hey')).toBeInTheDocument();
+      expect(screen.getByText('Hello')).toBeInTheDocument();
+      expect(screen.getByText('Hey')).toBeInTheDocument();
+    });
   });
 
   describe('accessibility', () => {
