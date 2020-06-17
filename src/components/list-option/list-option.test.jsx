@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react';
+import {
+  act,
+  render,
+  screen,
+} from '@testing-library/react';
 import ListOption from './list-option.jsx';
 
 describe('src/components/list-option/list-option', () => {
@@ -41,6 +47,24 @@ describe('src/components/list-option/list-option', () => {
     it('is not selected when selected is false', () => {
       render(<ListOption {...requiredProps} selected={false} />);
       expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+    });
+  });
+
+  describe('ref API', () => {
+    describe('setActive', () => {
+      it('sets active', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setActive(true));
+        expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0');
+      });
+
+      it('unsets active', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setActive(false));
+        expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1');
+      });
     });
   });
 
