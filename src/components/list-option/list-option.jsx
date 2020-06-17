@@ -10,7 +10,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     className={className}
     role="option"
     ref={ref}
-    tabIndex={-1}
+    tabIndex={props.defaultActive ? '0' : '-1'}
     title={props.title}
   >
     {props.children}
@@ -19,12 +19,14 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 
 ListOption.propTypes = {
   children: PropTypes.node,
+  defaultActive: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
 };
 
 ListOption.defaultProps = {
   children: undefined,
+  defaultActive: true,
   selected: false,
   title: undefined,
 };

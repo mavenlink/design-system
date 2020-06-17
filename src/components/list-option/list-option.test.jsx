@@ -16,6 +16,18 @@ describe('src/components/list-option/list-option', () => {
     });
   });
 
+  describe('defaultActive API', () => {
+    it('can be set', () => {
+      render(<ListOption defaultActive={true} />);
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0');
+    });
+
+    it('can be unset', () => {
+      render(<ListOption defaultActive={false} />);
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '-1');
+    });
+  });
+
   describe('selected API', () => {
     it('is selected when selected is true', () => {
       render(<ListOption selected>SelectMe!</ListOption>);
