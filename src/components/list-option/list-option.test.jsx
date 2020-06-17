@@ -51,6 +51,24 @@ describe('src/components/list-option/list-option', () => {
   });
 
   describe('ref API', () => {
+    describe('contains', () => {
+      it('finds the container element', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        expect(ref.current.contains(screen.getByText('Test option'))).toBe(true);
+      });
+
+      it('finds a child element', () => {
+        const ref = createRef();
+        render((
+          <ListOption {...requiredProps} ref={ref}>
+            <div>Nested child</div>
+          </ListOption>
+        ));
+        expect(ref.current.contains(screen.getByText('Nested child'))).toBe(true);
+      });
+    });
+
     describe('setActive', () => {
       it('sets active', () => {
         const ref = createRef();
