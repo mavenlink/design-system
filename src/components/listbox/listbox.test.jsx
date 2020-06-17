@@ -20,8 +20,8 @@ describe('src/components/listbox/listbox', () => {
   it('displays a list of things', () => {
     render((
       <Listbox {...requiredProps}>
-        <ListOption key="yeah">Hello</ListOption>
-        <ListOption key="yeah2">Hey</ListOption>
+        <ListOption>Hello</ListOption>
+        <ListOption>Hey</ListOption>
       </Listbox>
     ));
 
