@@ -5,9 +5,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
   className="custom-field-input-text"
   data-testid="custom-field-input"
 >
-  <div
-    className="heading-container"
-  >
+  <div>
     <label
       className="label"
       htmlFor="yo"

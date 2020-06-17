@@ -64,9 +64,9 @@ export default function CustomFieldInputText(props) {
 
   return (
     <div className={rootClassName} data-testid="custom-field-input" >
-      <div className={styles['heading-container']}>
+      <div>
         <label className={styles.label} htmlFor={props.id}>{props.label}</label>
-        {props.required && <span className={styles.optional}>(Required)</span>}
+        {props.required && <span className={styles.required}>(Required)</span>}
       </div>
       <div className={styles['input-container']}>
         <input
