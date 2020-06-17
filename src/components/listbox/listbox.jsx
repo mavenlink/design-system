@@ -17,22 +17,16 @@ export default function Listbox(props) {
     }
   });
 
-  function onClick(event) {
+  function onFocus(event) {
+    setActive(true);
+
+    // Do not use `onClick` to manage `activeIndex`
+    // For some reason, it will focus the first item before focusing the clicked item
     const nextActiveIndex = props.refs.findIndex(ref => (
       ref.current.contains(event.target)
     ));
 
-    setActiveIndex(nextActiveIndex);
-  }
-
-  function onFocus() {
-    setActive(true);
-
-    // const nextActiveIndex = props.refs.findIndex(ref => (
-    //   ref.current.contains(event.target)
-    // ));
-
-    // if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
+    if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
   }
 
   function onKeyDown(keyEvent) {
@@ -66,7 +60,6 @@ export default function Listbox(props) {
   return (
     <ul
       className={styles.container}
-      onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
