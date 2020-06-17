@@ -18,14 +18,13 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 });
 
 ListOption.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
 };
 
 ListOption.defaultProps = {
-  children: undefined,
   defaultActive: true,
   selected: false,
   title: undefined,

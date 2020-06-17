@@ -6,5 +6,7 @@ exports[`src/components/list-option/list-option renders defaults 1`] = `
   className="option"
   role="option"
   tabIndex="0"
-/>
+>
+  Test option
+</li>
 `;
