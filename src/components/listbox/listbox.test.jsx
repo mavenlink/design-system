@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
@@ -28,14 +30,22 @@ describe('src/components/listbox/listbox', () => {
   });
 
   describe('accessibility', () => {
-    it('focuses on the item that is clicked', () => {
+    beforeEach(() => {
+      const refs = [createRef(), createRef()];
+
+      // TODO(Update @testing-library/user-event)
+      // - Update user-event lib when https://github.com/testing-library/user-event/issues/365 is merged
+      // - Remove random button in the following render
       render((
-        <Listbox {...requiredProps}>
-          <ListOption key="yeah">Hello</ListOption>
-          <ListOption key="yeah2">Hey</ListOption>
+        <Listbox {...requiredProps} refs={refs}>
+          <ListOption ref={refs[0]}>Hello</ListOption>
+          <ListOption ref={refs[1]}>Hey</ListOption>
+          <button />
         </Listbox>
       ));
+    });
 
+    it('focuses on the item that is clicked', () => {
       userEvent.click(screen.getByText('Hey'));
       expect(screen.getByText('Hey')).toHaveFocus();
 
@@ -44,27 +54,11 @@ describe('src/components/listbox/listbox', () => {
     });
 
     it('does not steal focus on render', () => {
-      render((
-        <Listbox {...requiredProps}>
-          <ListOption key="yeah">Hello</ListOption>
-          <ListOption key="yeah2">Hey</ListOption>
-        </Listbox>
-      ));
-
       expect(screen.getByText('Hello')).not.toHaveFocus();
       expect(screen.getByText('Hey')).not.toHaveFocus();
     });
 
-    it('only has the one option in the page tab sequence', async () => {
-      // TODO(@testing-library/user-event) Update user-event lib when https://github.com/testing-library/user-event/issues/365 is merged
-      render((
-        <Listbox {...requiredProps}>
-          <ListOption key="yeah" defaultActive={true}>Hello</ListOption>
-          <ListOption key="yeah2" defaultActive={false}>Hey</ListOption>
-          <button />
-        </Listbox>
-      ));
-
+    it('only has the one option in the page tab sequence', () => {
       expect(document.body).toHaveFocus();
 
       userEvent.tab();
