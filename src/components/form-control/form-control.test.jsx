@@ -19,6 +19,19 @@ describe('<FormControl>', () => {
     expect(renderer.create(<FormControl {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
+  it('requires either an id or a labelId', () => {
+    /* eslint-disable no-console */
+    const originalConsoleError = console.error;
+    console.error = jest.fn();
+
+    render(<FormControl {...requiredProps} id={undefined} labelId={undefined} />);
+    expect(console.error).toHaveBeenNthCalledWith(1, 'Warning: Failed prop type: Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.\n    in FormControl');
+    expect(console.error).toHaveBeenNthCalledWith(2, 'Warning: Failed prop type: Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.\n    in FormControl');
+
+    console.error = originalConsoleError;
+    /* eslint-enable no-console */
+  });
+
   describe('className API', () => {
     it('can be set', () => {
       render(<FormControl {...requiredProps} className="unique-class" />);
@@ -46,7 +59,7 @@ describe('<FormControl>', () => {
   });
 
   describe('id API', () => {
-    it('can be set', () => {
+    it('can be set without a labelId', () => {
       render((
         <FormControl {...requiredProps} id="unique-id">
           <input id="unique-id" />
@@ -60,6 +73,13 @@ describe('<FormControl>', () => {
     it('can be set', () => {
       render(<FormControl {...requiredProps} label="Unique label" />);
       expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
+    });
+  });
+
+  describe('labelId API', () => {
+    it('can be set without an id', () => {
+      render(<FormControl {...requiredProps} id={undefined} labelId="unique-label-id" />);
+      expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-label-id');
     });
   });
 

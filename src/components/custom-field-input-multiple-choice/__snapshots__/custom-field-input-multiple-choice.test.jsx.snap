@@ -9,21 +9,25 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
     test label
   </label>
   <div
-    aria-labelledby="test-id-label"
-    className="read-write-container"
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    role="grid"
+    className="control-container"
   >
-    <svg
-      className="input-icon size-medium stroke-none color-transparent"
-      role="img"
+    <div
+      aria-labelledby="test-id-label"
+      className="read-write-container"
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="grid"
     >
-      <use
-        xlinkHref="#icon-caret-down.svg"
-      />
-    </svg>
+      <svg
+        className="input-icon size-medium stroke-none color-transparent"
+        role="img"
+      >
+        <use
+          xlinkHref="#icon-caret-down.svg"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;

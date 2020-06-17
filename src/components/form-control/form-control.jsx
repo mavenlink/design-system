@@ -24,6 +24,7 @@ export default function FormControl(props) {
       <label
         className={getLabelClassName(props.error, props.readOnly)}
         htmlFor={props.id}
+        id={props.labelId}
       >
         {props.label}
       </label>
@@ -48,8 +49,29 @@ FormControl.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   error: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: (props) => {
+    if (props.id === undefined && props.labelId === undefined) {
+      return new Error('Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.');
+    }
+
+    if (typeof props.id !== 'string' && props.labelId === undefined) {
+      return new Error('Invalid prop `id` supplied to `FormControl`. `id` must be a string.');
+    }
+
+    return undefined;
+  },
   label: PropTypes.string.isRequired,
+  labelId: (props) => {
+    if (props.id === undefined && props.labelId === undefined) {
+      return new Error('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.');
+    }
+
+    if (props.id === undefined && typeof props.labelId !== 'string') {
+      return new Error('Invalid prop `labelId` supplied to `FormControl`. `labelId` must be a string.');
+    }
+
+    return undefined;
+  },
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
 };
@@ -57,6 +79,8 @@ FormControl.propTypes = {
 FormControl.defaultProps = {
   className: undefined,
   error: '',
+  id: undefined,
+  labelId: undefined,
   readOnly: false,
   required: false,
 };

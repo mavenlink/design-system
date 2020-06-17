@@ -16,6 +16,8 @@
   - Major: Add flex-basis on direct children of SectionRow component
   - Minor: Implement `FormControl` component
   - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
+  - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
+  - Minor: Add `labelId` API to `FormControl`
 </details>
 
 ## 0.23.0 (June 11, 2020)

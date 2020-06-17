@@ -1,7 +1,3 @@
-.label {
-  composes: label from '../form-control/form-control.css';
-}
-
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
