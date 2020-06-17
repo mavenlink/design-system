@@ -9,6 +9,13 @@ describe('src/components/list-option/list-option', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  describe('children API', () => {
+    it('accepts a node as children', () => {
+      render(<ListOption><div><span>Text is here!</span></div></ListOption>);
+      expect(screen.getByText('Text is here!')).toBeInTheDocument();
+    });
+  });
+
   describe('selected API', () => {
     it('is selected when selected is true', () => {
       render(<ListOption selected>SelectMe!</ListOption>);
@@ -27,13 +34,6 @@ describe('src/components/list-option/list-option', () => {
       render(<ListOption title={title} />);
 
       expect(screen.getByRole('option')).toHaveAttribute('title', title);
-    });
-  });
-
-  describe('children API', () => {
-    it('accepts a node as children', () => {
-      render(<ListOption><div><span>Text is here!</span></div></ListOption>);
-      expect(screen.getByText('Text is here!')).toBeInTheDocument();
     });
   });
 });
