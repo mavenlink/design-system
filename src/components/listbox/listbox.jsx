@@ -25,7 +25,7 @@ export default function Listbox(props) {
     setActiveIndex(nextActiveIndex);
   }
 
-  function onFocus(event) {
+  function onFocus() {
     setActive(true);
 
     // const nextActiveIndex = props.refs.findIndex(ref => (

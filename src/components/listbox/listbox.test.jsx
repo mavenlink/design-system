@@ -69,7 +69,6 @@ describe('src/components/listbox/listbox', () => {
       act(() => userEvent.tab());
       expect(screen.getByText('Hello')).toHaveFocus();
 
-
       act(() => userEvent.tab());
       expect(screen.getByText('Hello')).not.toHaveFocus();
       expect(screen.getByText('Hey')).not.toHaveFocus();
