@@ -59,6 +59,7 @@ export default function Listbox(props) {
 
   return (
     <ul
+      aria-labelledby={props.labelledBy}
       className={styles.container}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
@@ -71,6 +72,7 @@ export default function Listbox(props) {
 
 Listbox.propTypes = {
   children: PropTypes.node,
+  labelledBy: PropTypes.string.isRequired,
   refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
 };
 

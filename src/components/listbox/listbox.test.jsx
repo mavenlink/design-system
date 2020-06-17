@@ -14,6 +14,7 @@ import ListOption from '../list-option/list-option.jsx';
 
 describe('src/components/listbox/listbox', () => {
   const requiredProps = {
+    labelledBy: 'test-label-id',
     refs: [],
   };
 
@@ -33,6 +34,22 @@ describe('src/components/listbox/listbox', () => {
 
       expect(screen.getByText('Hello')).toBeInTheDocument();
       expect(screen.getByText('Hey')).toBeInTheDocument();
+    });
+  });
+
+  describe('labelledBy API', () => {
+    it('can be set', () => {
+      render((
+        <React.Fragment>
+          <label id="unique-label-id">Label</label>
+          <Listbox {...requiredProps} labelledBy="unique-label-id">
+            <ListOption>Hello</ListOption>
+            <ListOption>Hey</ListOption>
+          </Listbox>
+        </React.Fragment>
+      ));
+
+      expect(screen.getByLabelText('Label')).toBeInTheDocument();
     });
   });
 
