@@ -1,0 +1,23 @@
+.container {
+  composes: tag-list from '../tag-list/tag-list.css';
+  composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
+  height: auto;
+  min-height: 32px;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.read-write-container {
+  composes: container;
+  composes: input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.read-only-container {
+  composes: container;
+  composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.input-icon {
+  composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
+}

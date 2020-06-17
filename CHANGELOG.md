@@ -5,10 +5,21 @@
     Click to see more.
   </summary>
 
+  - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+  - Append new items to make git merging easier.
+  - Minor: Add linter for Typography
+  - Minor: Add className to TagList component
+  - Minor: Set tag heights to 22px instead of auto-fitting to content
+  - Minor: Add id API to TagList component
+  - Minor: Implement CustomFieldInputMultipleChoice component
+  - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
+  - Major: Add flex-basis on direct children of SectionRow component
+  - Minor: Implement `FormControl` component
+  - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
+  - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
+  - Minor: Add `labelId` API to `FormControl`
   - Minor: Create Listbox component
   - Minor: Create ListOption component
-  - Minor: Add linter for Typography
-  - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 </details>
 
 ## 0.23.0 (June 11, 2020)

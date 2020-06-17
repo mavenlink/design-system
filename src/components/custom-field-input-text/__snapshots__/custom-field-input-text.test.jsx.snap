@@ -1,22 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CustomFieldInputText has defaults 1`] = `
-<div
-  className="custom-field-input-text"
-  data-testid="custom-field-input"
->
-  <div
-    className="heading-container"
+<div>
+  <label
+    className="label"
+    htmlFor="test-input"
   >
-    <label
-      className="label"
-      htmlFor="test-input"
-    >
-      Test label
-    </label>
-  </div>
+    Test label
+  </label>
   <div
-    className="input-container"
+    className="control-container"
   >
     <input
       className="input"

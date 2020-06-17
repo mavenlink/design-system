@@ -1,19 +1,6 @@
-@import "../../styles/colors.css";
 @import '../../styles/colors-v2.css';
 @import "../../styles/spacing.css";
 @import "../../styles/typography.css";
-
-.container {
-  position: relative;
-}
-
-.label {
-  display: block;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
-  margin: 0 0 var(--spacing-small);
-  color: var(--mds-grey-54);
-}
 
 .input {
   border: 1px solid var(--mds-grey-12);
@@ -35,17 +22,16 @@
   background-color: var(--mds-grey-3);
 }
 
+.input:read-only {
+  background-color: var(--mds-grey-3);
+}
+
 .invalid-icon {
   box-sizing: border-box;
   pointer-events: none;
   position: absolute;
   right: 6px;
   top: 6px;
-}
-
-.invalid-label {
-  composes: label;
-  color: var(--mds-red-text);
 }
 
 .invalid-input {
