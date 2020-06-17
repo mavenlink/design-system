@@ -41,6 +41,7 @@ describe('src/components/listbox/listbox', () => {
     it('can be set', () => {
       render((
         <React.Fragment>
+          {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           <label id="unique-label-id">Label</label>
           <Listbox {...requiredProps} labelledBy="unique-label-id">
             <ListOption>Hello</ListOption>
