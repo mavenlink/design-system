@@ -1,5 +1,30 @@
 Use `Listbox` to display an accessible list of options, with its children being `ListOption` components:
 
+### Accessbility
+
+This component's accessibility was built using the [WAI ARIA example for a listbox](https://www.w3.org/TR/wai-aria-practices-1.1/examples/listbox/listbox-scrollable.html).
+
+#### Labels
+
+The `Listbox` is a listbox role where each `ListOption` is an option role.
+The `Listbox` has a label defined by its `labelledBy` prop API.
+Otherwise, the user does not know the context of the list.
+
+#### Interactions
+
+| Key | State | Interaction |
+| --- | --- | --- |
+| Up Arrrow | --- | Moves the focus to the previous list option |
+| Down Arrrow | --- | Moves the focus to the next list option |
+| Home | --- | Moves the focus to the first list option |
+| End | --- | Moves the focus to the last list option |
+
+1. The focus does not wrap around the listbox
+1. There is only 1 active list option in the page tab sequence
+1. Clicking on a list option will focus the list option.
+
+### Examples
+
 ```jsx
 const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
 
