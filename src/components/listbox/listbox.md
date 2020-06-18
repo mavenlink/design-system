@@ -1,4 +1,4 @@
-Use `Listbox` to display an accessible list of options, with its children being `ListOption` components:
+Use `Listbox` to display an accessible list of options, where each option is a [`ListOption` component](#/Components/ListOption).
 
 ### Accessbility
 
