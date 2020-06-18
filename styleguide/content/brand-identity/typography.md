@@ -1,5 +1,13 @@
 Typography in our application is important for establishing design consistency, as well as placing emphasis and hierarchical rules in the correct places in order to guide our users through the product. These are the type options which Product Design should be using in their mocks, and they are the type options Engineers should be using when building out new features or updating pages. 
 
+```css
+@import 'node_modules/@mavenlink/design-system/src/styles/typography-v2.css'
+
+.some-page-content {
+    font: var(--mds-type-content);
+}
+```
+
 #### Case
 
 While historically we have areas of our site where we use uppercase font styles, our new policy is to use title case for headers and titles, and sentence case for long text fields. If a team is rebuilding an existing page in Mavenlink, all fonts should use these updated case styles.
@@ -14,7 +22,6 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
 
 #### Variable Usage
 
-The following typography options are all variations of the OpenSans font:
 <style>
     /*
         This ensures that the usage table fills the page. This had to be included here to override styleguidist's
