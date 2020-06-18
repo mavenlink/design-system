@@ -132,3 +132,21 @@ The following typography options are all variations of the OpenSans font:
         </tr>
     </tbody>
 </table>
+
+#### Linter Usage
+
+We offer a linter for use with [stylelint](https://stylelint.io/) to enforce typography usage. To use it, simply install this library and add the following to your stylelint configure file:
+
+```json
+module.exports = {
+  /* ... */
+  plugins: [
+    /* ... */
+    './node_modules/@mavenlink/design-system/src/linters/typography.js'
+  ],
+  rules: {
+    /* ... */
+    'mds/typography': true,
+  },
+};
+```
