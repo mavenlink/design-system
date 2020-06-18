@@ -12,7 +12,7 @@ A big change to our font types involve deprecating the use of our serif font (Me
 
 To aid in our accessibility efforts and ensure that our users get a delightful experience using Mavenlink, we have deprecated any font sizes smaller than 12pt.
 
-#### Type Options
+#### Variable Usage
 
 The following typography options are all variations of the OpenSans font:
 <style>
