@@ -16,28 +16,12 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
 
 The following typography options are all variations of the OpenSans font:
 <style>
-    .page-title {
-        font: var(--mds-type-page-title);
-    }
-    
-    .subhead-1 {
-        font: var(--mds-type-subhead-1);
-    }
-    
-    .subhead-2 {
-        font: var(--mds-type-subhead-2);
-    }
-    
-    .subhead-3 {
-        font: var(--mds-type-subhead-3);
-    }
-    
-    .content {
-        font: var(--mds-type-content);
-    }
-    
-    .subtext {
-        font: var(--mds-type-subtext);
+    /*
+        This ensures that the usage table fills the page. This had to be included here to override styleguidist's
+        assigned styles--it won't work if it's included when included in the stylesheet.
+     */
+    .rsg--table-27 {
+        width: 100%;
     }
 </style>
 <table>
