@@ -150,3 +150,12 @@ module.exports = {
   },
 };
 ```
+
+If a violation of the linter exists, it will provide an error similar to the one below:
+
+```json
+your/faulty/stylesheet/file.css
+  16:3  ✖  Please use MDS typography variables instead. See MDS Typography Docs   mds/typography
+```
+
+To fix it, adjust your styles to use one of the font variables above, according to the specification of the feature and aesthetic preference.
