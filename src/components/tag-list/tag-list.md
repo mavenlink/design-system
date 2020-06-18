@@ -43,18 +43,23 @@ const data = [
 const refs = data.map(() => React.createRef());
 const tagListId = 'basic-example';
 
-<TagList id={tagListId} refs={refs}>
-  {data.map((datum, index) => (
-    <Tag
-      defaultActive={index === 0 ? true : false}
-      id={`${tagListId}-${index}`}
-      key={`tag-${index}`}
-      ref={refs[index]}
-    >
-      {datum}
-    </Tag>
-  ))}
-</TagList>
+<FormControl
+  label="Band names"
+  labelId="tag-list-example-1"
+>
+  <TagList id={tagListId} labelledBy="tag-list-example-1" refs={refs}>
+    {data.map((datum, index) => (
+      <Tag
+        defaultActive={index === 0 ? true : false}
+        id={`${tagListId}-${index}`}
+        key={`tag-${index}`}
+        ref={refs[index]}
+      >
+        {datum}
+      </Tag>
+    ))}
+  </TagList>
+</FormControl>
 ```
 
 ### Wrapping example
@@ -139,16 +144,21 @@ const data = [
 const refs = data.map(() => React.createRef());
 const tagListId = 'wrapping-example';
 
-<TagList id={tagListId} refs={refs}>
-  {data.map((datum, index) => (
-    <Tag
-      defaultActive={index === 0 ? true : false}
-      id={`${tagListId}-${index}`}
-      key={`tag-${index}`}
-      ref={refs[index]}
-    >
-      {datum}
-    </Tag>
-  ))}
-</TagList>
+<FormControl
+  label="ARIA roles"
+  labelId="tag-list-example-2"
+>
+  <TagList id={tagListId} labelledBy="tag-list-example-2" refs={refs}>
+    {data.map((datum, index) => (
+      <Tag
+        defaultActive={index === 0 ? true : false}
+        id={`${tagListId}-${index}`}
+        key={`tag-${index}`}
+        ref={refs[index]}
+      >
+        {datum}
+      </Tag>
+    ))}
+  </TagList>
+</FormControl>
 ```
