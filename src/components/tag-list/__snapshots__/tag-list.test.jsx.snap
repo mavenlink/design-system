@@ -2,6 +2,7 @@
 
 exports[`TagList renders a TagList 1`] = `
 <div
+  aria-labelledby="test-label-id"
   className="tag-list"
   onClick={[Function]}
   onFocus={[Function]}

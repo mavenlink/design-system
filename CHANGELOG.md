@@ -6,6 +6,14 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+  - Append new items to make git merging easier.
+  - Minor: Add linter for Typography
+  - Minor: Add className to TagList component
+  - Minor: Set tag heights to 22px instead of auto-fitting to content
+  - Minor: Add id API to TagList component
+  - Minor: Implement CustomFieldInputMultipleChoice component
+  - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
+  - Major: Add flex-basis on direct children of SectionRow component
 </details>
 
 ## 0.24.0 (June 16, 2020)

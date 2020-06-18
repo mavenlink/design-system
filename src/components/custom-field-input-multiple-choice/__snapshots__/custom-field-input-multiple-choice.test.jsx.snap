@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
+<div>
+  <label
+    className="label"
+    id="test-id-label"
+  >
+    test label
+  </label>
+  <div
+    aria-labelledby="test-id-label"
+    className="read-write-container"
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    role="grid"
+  >
+    <svg
+      className="input-icon size-medium stroke-none color-transparent"
+      role="img"
+    >
+      <use
+        xlinkHref="#icon-caret-down.svg"
+      />
+    </svg>
+  </div>
+</div>
+`;
