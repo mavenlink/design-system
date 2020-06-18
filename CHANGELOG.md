@@ -18,6 +18,8 @@
   - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
   - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
   - Minor: Add `labelId` API to `FormControl`
+  - Minor: Create Listbox component
+  - Minor: Create ListOption component
 </details>
 
 ## 0.23.0 (June 11, 2020)
