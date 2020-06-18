@@ -14,6 +14,7 @@
   - Minor: Implement CustomFieldInputMultipleChoice component
   - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
   - Major: Add flex-basis on direct children of SectionRow component
+  - Minor: Add full typography information from docs
 </details>
 
 ## 0.23.0 (June 11, 2020)
