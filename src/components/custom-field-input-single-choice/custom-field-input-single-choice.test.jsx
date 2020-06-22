@@ -36,7 +36,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
-    it('hides options when not focused', () => {
+    it('hides options when ESC is pressed', () => {
       /* NOTE: The inclusion of the button here is only due to a bug in userEvent. Juanca has submitted a PR
        * that has fixed this bug, making this test work with that solution. Adjust this test accordingly when
        * that PR gets merged through.
@@ -52,7 +52,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
 
-      userEvent.tab();
+      fireEvent.keyUp(document.activeElement, { key: 'Escape' });
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });

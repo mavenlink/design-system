@@ -28,10 +28,6 @@ export default function CustomFieldInputSingleChoice(props) {
     );
   };
 
-  function onBlur() {
-    setShowOptions(false);
-  }
-
   function onClick() {
     setShowOptions(true);
   }
@@ -39,6 +35,8 @@ export default function CustomFieldInputSingleChoice(props) {
   function onKeyUp(event) {
     if (event.key === 'Enter') {
       setShowOptions(true);
+    } else if (event.key === 'Escape') {
+      setShowOptions(false);
     }
   }
 
@@ -48,7 +46,6 @@ export default function CustomFieldInputSingleChoice(props) {
         icon={caretIcon}
         id={props.id}
         label={props.label}
-        onBlur={onBlur}
         onClick={onClick}
         onKeyUp={onKeyUp}
         placeholder={props.placeholder}
