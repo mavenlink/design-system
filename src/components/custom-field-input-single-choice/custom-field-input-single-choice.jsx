@@ -46,7 +46,7 @@ export default function CustomFieldInputSingleChoice(props) {
         <Listbox
           className={styles.dropdown}
           labelledBy={`${props.id}-label`}
-          refs={props.options.map(() => React.createRef())}
+          refs={props.options.map(() => React.useRef())}
         >
           { props.options.map(item => <ListOption key={item}>{item}</ListOption>) }
         </Listbox>
