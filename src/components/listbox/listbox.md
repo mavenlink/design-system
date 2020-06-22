@@ -32,7 +32,7 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
   label="Choose your answer"
   labelId="listbox-example-1"
 >
-  <Listbox id="listbox-example-1" labelledBy="listbox-example-1" refs={refs}>
+  <Listbox labelledBy="listbox-example-1" refs={refs}>
     <ListOption ref={refs[0]}>Yes</ListOption>
     <ListOption ref={refs[1]}>No</ListOption>
     <ListOption ref={refs[2]}>Maybe</ListOption>
@@ -58,7 +58,7 @@ const children = selections.map((s, index) => <ListOption key={`${s}-${index}`} 
     label="Dynamic answers"
     labelId="listbox-example-2"
   >
-    <Listbox id="listbox-example-2" labelledBy="listbox-example-2" refs={refs}>
+    <Listbox labelledBy="listbox-example-2" refs={refs}>
       { children }
     </Listbox>
   </FormControl>
