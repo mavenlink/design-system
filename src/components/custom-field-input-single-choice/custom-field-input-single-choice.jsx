@@ -17,17 +17,6 @@ export default function CustomFieldInputSingleChoice(props) {
     fill="skip"
   />);
 
-  const generateOptions = () => {
-    const refs = props.options.map(_ => React.createRef());
-    const children = props.options.map(item => <ListOption key={item}>{item}</ListOption>);
-
-    return (
-      <Listbox className={styles.dropdown} labelledBy={`${props.id}-label`} refs={refs}>
-        { children }
-      </Listbox>
-    );
-  };
-
   function onClick() {
     setShowOptions(true);
   }
@@ -53,14 +42,22 @@ export default function CustomFieldInputSingleChoice(props) {
         required={props.required}
         value={props.value}
       />
-      { showOptions && generateOptions() }
+      { showOptions && (
+        <Listbox
+          className={styles.dropdown}
+          labelledBy={`${props.id}-label`}
+          refs={props.options.map(() => React.createRef())}
+        >
+          { props.options.map(item => <ListOption key={item}>{item}</ListOption>) }
+        </Listbox>
+      ) }
     </div>
   );
 }
 
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string.isRequired),
+  options: PropTypes.arrayOf(PropTypes.string),
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,

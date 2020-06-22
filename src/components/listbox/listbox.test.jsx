@@ -123,7 +123,7 @@ describe('src/components/listbox/listbox', () => {
       ));
       expect(screen.getByRole('listbox')).toHaveClass('prioritize-me');
     });
-  })
+  });
 
   describe('labelledBy API', () => {
     it('can be set', () => {
