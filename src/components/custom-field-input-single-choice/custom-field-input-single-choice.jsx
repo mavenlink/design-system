@@ -7,9 +7,15 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 export default function CustomFieldInputSingleChoice(props) {
+  const caretIcon = (<Icon
+    className={styles['input-icon']}
+    name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
+    fill="skip"
+  />);
+
   return (
     <CustomFieldInputText
-      icon={<Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />}
+      icon={caretIcon}
       id={props.id}
       label={props.label}
       placeholder={props.placeholder}
