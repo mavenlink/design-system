@@ -7,6 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Implement `FormControl` component
+  - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
+  - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
+  - Minor: Add `labelId` API to `FormControl`
+  - Minor: Create Listbox component
+  - Minor: Create ListOption component
 </details>
 
 ## 0.25.0 (June, 18, 2020)

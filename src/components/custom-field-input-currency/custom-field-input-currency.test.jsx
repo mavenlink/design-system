@@ -1,5 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
@@ -42,11 +46,10 @@ describe('CustomFieldInputCurrency', () => {
 
     it('presents contextual error state', () => {
       const helpText = 'What do you want from us monster!?';
-      const { getByTestId } = renderComponent({ value: 350, helpText, error: true });
-      const presentedHelpText = () => getByTestId('custom-field-input').querySelector('.help').innerHTML;
+      renderComponent({ value: 350, helpText, error: true });
 
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
-      expect(presentedHelpText()).toContain(helpText);
+      expect(screen.getByLabelText('currency')).toBeInvalid();
+      expect(screen.getByText(helpText)).toBeInTheDocument();
     });
 
     it('renders all forwarded props except event handlers', () => {
@@ -114,14 +117,14 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
-      const { getByTestId, getByLabelText } = renderComponent();
+      renderComponent();
 
-      fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: 1234 } });
-      fireEvent.blur(getByLabelText('currency'));
+      fireEvent.focus(screen.getByLabelText('currency'));
+      fireEvent.change(screen.getByLabelText('currency'), { target: { value: 1234 } });
+      fireEvent.blur(screen.getByLabelText('currency'));
 
-      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-      expect(getByLabelText('currency')).toHaveValue('$1,234.00');
+      expect(screen.getByLabelText('currency')).toBeValid();
+      expect(screen.getByLabelText('currency')).toHaveValue('$1,234.00');
     });
 
     it('does not switch to view mode when its value is numerically invalid', () => {

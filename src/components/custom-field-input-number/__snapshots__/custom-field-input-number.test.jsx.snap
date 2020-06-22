@@ -3,18 +3,15 @@
 exports[`CustomFieldInputNumber has defaults 1`] = `
 <div
   className="custom-field-input-text"
-  data-testid="custom-field-input"
 >
-  <div>
-    <label
-      className="label"
-      htmlFor="test-input"
-    >
-      Test label
-    </label>
-  </div>
+  <label
+    className="label"
+    htmlFor="test-input"
+  >
+    Test label
+  </label>
   <div
-    className="input-container"
+    className="control-container"
   >
     <input
       className="input"

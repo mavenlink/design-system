@@ -2,6 +2,7 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
@@ -16,13 +17,11 @@ function CustomFieldInputMultipleChoice(props) {
     styles['read-write-container'];
 
   return (
-    <div>
-      <label // eslint-disable-line jsx-a11y/label-has-for
-        className={styles.label}
-        id={`${props.id}-label`}
-      >
-        {props.label}
-      </label>
+    <FormControl
+      label={props.label}
+      labelId={`${props.id}-label`}
+      readOnly={props.readOnly}
+    >
       <TagList
         className={classContainer}
         id={props.id}
@@ -42,7 +41,7 @@ function CustomFieldInputMultipleChoice(props) {
         ))}
         <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
       </TagList>
-    </div>
+    </FormControl>
   );
 }
 

@@ -3,41 +3,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.custom-field-input-text {
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-}
-
-.heading {
-  color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
-}
-
-.error .heading {
-  color: var(--mds-red-100);
-}
-
-.label {
-  composes: heading;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  margin-right: var(--spacing-small);
-}
-
-.required {
-  composes: heading;
-  display: inline-block;
-  margin-right: var(--spacing-small);
-  min-width: 30px;
-}
-
-.help {
-  color: var(--mds-grey-54);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-}
-
-.error .help {
-  color: var(--mds-red-100);
-}
-
 .input {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);

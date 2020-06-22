@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/list-option/list-option renders defaults 1`] = `
+<li
+  aria-selected={false}
+  className="option"
+  role="option"
+/>
+`;

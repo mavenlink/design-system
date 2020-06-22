@@ -1,20 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
-<div
-  className="custom-field-input-text"
-  data-testid="custom-field-input"
->
-  <div>
-    <label
-      className="label"
-      htmlFor="yo"
-    >
-      Foo
-    </label>
-  </div>
+<div>
+  <label
+    className="label"
+    htmlFor="yo"
+  >
+    Foo
+  </label>
   <div
-    className="input-container"
+    className="control-container"
   >
     <input
       className="input"
