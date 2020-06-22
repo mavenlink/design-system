@@ -18,7 +18,7 @@ export default function CustomFieldInputSingleChoice(props) {
   />);
 
   const generateOptions = () => {
-    const children = props.items.map(item => <ListOption key={item}>{item}</ListOption>);
+    const children = props.options.map(item => <ListOption key={item}>{item}</ListOption>);
 
     return (
       <Listbox>
@@ -31,12 +31,17 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
+  function onBlur() {
+    setShowOptions(false);
+  }
+
   return (
     <React.Fragment>
       <CustomFieldInputText
         icon={caretIcon}
         id={props.id}
         label={props.label}
+        onBlur={onBlur}
         onFocus={onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
@@ -50,7 +55,7 @@ export default function CustomFieldInputSingleChoice(props) {
 
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string.isRequired),
+  options: PropTypes.arrayOf(PropTypes.string.isRequired),
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -59,7 +64,7 @@ CustomFieldInputSingleChoice.propTypes = {
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
-  items: [],
+  options: [],
   placeholder: undefined,
   readOnly: false,
   required: false,

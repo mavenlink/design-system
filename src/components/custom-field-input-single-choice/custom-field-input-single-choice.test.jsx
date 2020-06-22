@@ -30,12 +30,33 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('options API', () => {
     it('shows options when focused', () => {
-      const items = ['foo', 'bar'];
-      const { getByLabelText, getByText } = renderComponent({ items });
+      const options = ['foo', 'bar'];
+      const { getByLabelText, getByText } = renderComponent({ options });
       userEvent.click(getByLabelText('Foo'));
 
       expect(getByText('foo')).toBeInTheDocument();
       expect(getByText('bar')).toBeInTheDocument();
+    });
+
+    it('hides options when not focused', () => {
+      /* NOTE: The inclusion of the button here is only due to a bug in userEvent. Juanca has submitted a PR
+       * that has fixed this bug, making this test work with that solution. Adjust this test accordingly when
+       * that PR gets merged through.
+       */
+      const options = ['foo', 'bar'];
+      const { getByText, queryByText } = render(
+        <React.Fragment>
+          <CustomFieldInputSingleChoice label="Foo" id="yooo" options={options}/>
+          <button />
+        </React.Fragment>,
+      );
+      userEvent.tab();
+      expect(getByText('foo')).toBeInTheDocument();
+      expect(getByText('bar')).toBeInTheDocument();
+
+      userEvent.tab();
+      expect(queryByText('foo')).not.toBeInTheDocument();
+      expect(queryByText('bar')).not.toBeInTheDocument();
     });
   });
 
