@@ -44,13 +44,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
        * that PR gets merged through.
        */
       const options = ['foo', 'bar'];
-      const { getByText, queryByText } = render(
+      const { getByLabelText, getByText, queryByText } = render(
         <React.Fragment>
           <CustomFieldInputSingleChoice label="Foo" id="yooo" options={options}/>
           <button />
         </React.Fragment>,
       );
-      userEvent.tab();
+      userEvent.click(getByLabelText('Foo'));
       expect(getByText('foo')).toBeInTheDocument();
       expect(getByText('bar')).toBeInTheDocument();
 

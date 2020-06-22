@@ -4,12 +4,12 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
-import styles from '../custom-field-input-text/custom-field-input-text.css';
+import styles from './styles.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
-  const [showOptions, setShowOptions] = useState(false);
+  const [showOptions, setShowOptions] = useState(true);
 
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -21,7 +21,7 @@ export default function CustomFieldInputSingleChoice(props) {
     const children = props.options.map(item => <ListOption key={item}>{item}</ListOption>);
 
     return (
-      <Listbox>
+      <Listbox className={styles.dropdown}>
         { children }
       </Listbox>
     );
