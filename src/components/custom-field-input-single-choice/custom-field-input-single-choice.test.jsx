@@ -13,9 +13,9 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('accessibility', () => {
-    it('shows options when clicked', () => {
-      const options = ['foo', 'bar'];
-      render(<CustomFieldInputSingleChoice label="Foo" id="bar" options={options} />);
+    it('shows choices when clicked', () => {
+      const choices = ['foo', 'bar'];
+      render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
 
       expect(screen.getByText('foo')).toBeInTheDocument();
@@ -23,8 +23,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('does not show option when focused, but shows when enter key is pressed', () => {
-      const options = ['foo', 'bar'];
-      render(<CustomFieldInputSingleChoice label="YOOOOOOOO" id="yo" options={options} />);
+      const choices = ['foo', 'bar'];
+      render(<CustomFieldInputSingleChoice label="YOOOOOOOO" id="yo" choices={choices} />);
       userEvent.tab();
 
       expect(screen.getByLabelText('YOOOOOOOO')).toHaveFocus();
@@ -36,15 +36,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
-    it('hides options when ESC is pressed', () => {
+    it('hides choices when ESC is pressed', () => {
       /* NOTE: The inclusion of the button here is only due to a bug in userEvent. Juanca has submitted a PR
        * that has fixed this bug, making this test work with that solution. Adjust this test accordingly when
        * that PR gets merged through.
        */
-      const options = ['foo', 'bar'];
+      const choices = ['foo', 'bar'];
       render(
         <React.Fragment>
-          <CustomFieldInputSingleChoice label="Foo" id="yooo" options={options} />
+          <CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />
           <button />
         </React.Fragment>,
       );

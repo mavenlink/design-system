@@ -36,11 +36,11 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ### Editable examples
 
 ```jsx
-const options = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'];
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'];
 
 <CustomFieldInputSingleChoice
   id="editable-example-1"
   label="Editable Example 1"
-  options={options}
+  choices={choices}
 />
 ```

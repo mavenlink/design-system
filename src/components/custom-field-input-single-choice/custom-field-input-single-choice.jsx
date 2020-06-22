@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import Icon from '../icon/icon.jsx';
@@ -11,6 +11,7 @@ import ListOption from '../list-option/list-option.jsx';
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
 
+  const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
@@ -46,9 +47,9 @@ export default function CustomFieldInputSingleChoice(props) {
         <Listbox
           className={styles.dropdown}
           labelledBy={`${props.id}-label`}
-          refs={props.options.map(() => React.useRef())}
+          refs={refs}
         >
-          { props.options.map(item => <ListOption key={item}>{item}</ListOption>) }
+          { props.choices.map(item => <ListOption key={item}>{item}</ListOption>) }
         </Listbox>
       ) }
     </div>
@@ -57,7 +58,7 @@ export default function CustomFieldInputSingleChoice(props) {
 
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string),
+  choices: PropTypes.arrayOf(PropTypes.string),
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -66,7 +67,7 @@ CustomFieldInputSingleChoice.propTypes = {
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
-  options: [],
+  choices: [],
   placeholder: undefined,
   readOnly: false,
   required: false,
