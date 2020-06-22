@@ -12,7 +12,7 @@ export default function Listbox(props) {
   useEffect(() => {
     if (active) {
       props.refs.forEach((ref, index) => {
-        ref.current.setActive(index === activeIndex);
+        if (ref.current) ref.current.setActive(index === activeIndex);
       });
     }
   });
@@ -23,7 +23,7 @@ export default function Listbox(props) {
     // Do not use `onClick` to manage `activeIndex`
     // For some reason, it will focus the first item before focusing the clicked item
     const nextActiveIndex = props.refs.findIndex(ref => (
-      ref.current.contains(event.target)
+      ref.current && ref.current.contains(event.target)
     ));
 
     if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);

@@ -23,37 +23,6 @@ describe('src/components/listbox/listbox', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  describe('children API', () => {
-    it('displays a list of things', () => {
-      render((
-        <Listbox {...requiredProps}>
-          <ListOption>Hello</ListOption>
-          <ListOption>Hey</ListOption>
-        </Listbox>
-      ));
-
-      expect(screen.getByText('Hello')).toBeInTheDocument();
-      expect(screen.getByText('Hey')).toBeInTheDocument();
-    });
-  });
-
-  describe('labelledBy API', () => {
-    it('can be set', () => {
-      render((
-        <React.Fragment>
-          {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-          <label id="unique-label-id">Label</label>
-          <Listbox {...requiredProps} labelledBy="unique-label-id">
-            <ListOption>Hello</ListOption>
-            <ListOption>Hey</ListOption>
-          </Listbox>
-        </React.Fragment>
-      ));
-
-      expect(screen.getByLabelText('Label')).toBeInTheDocument();
-    });
-  });
-
   describe('accessibility', () => {
     beforeEach(() => {
       const refs = [createRef(), createRef()];
@@ -130,6 +99,20 @@ describe('src/components/listbox/listbox', () => {
     });
   });
 
+  describe('children API', () => {
+    it('displays a list of things', () => {
+      render((
+        <Listbox {...requiredProps}>
+          <ListOption>Hello</ListOption>
+          <ListOption>Hey</ListOption>
+        </Listbox>
+      ));
+
+      expect(screen.getByText('Hello')).toBeInTheDocument();
+      expect(screen.getByText('Hey')).toBeInTheDocument();
+    });
+  });
+
   describe('className API', () => {
     it('allows setting the class name', () => {
       render((
@@ -141,4 +124,29 @@ describe('src/components/listbox/listbox', () => {
       expect(screen.getByRole('listbox')).toHaveClass('prioritize-me');
     });
   })
+
+  describe('labelledBy API', () => {
+    it('can be set', () => {
+      render((
+        <React.Fragment>
+          {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+          <label id="unique-label-id">Label</label>
+          <Listbox {...requiredProps} labelledBy="unique-label-id">
+            <ListOption>Hello</ListOption>
+            <ListOption>Hey</ListOption>
+          </Listbox>
+        </React.Fragment>
+      ));
+
+      expect(screen.getByLabelText('Label')).toBeInTheDocument();
+    });
+  });
+
+  describe('refs API', () => {
+    it('does not freak out when current is undefined', () => {
+      const refs = [{ current: undefined }];
+      render(<Listbox {...requiredProps} refs={refs}><span tabIndex={-1}>foo</span></Listbox>);
+      expect(() => userEvent.click(screen.getByText('foo'))).not.toThrow();
+    });
+  });
 });
