@@ -7,13 +7,6 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Add linter for Typography
-  - Minor: Add className to TagList component
-  - Minor: Set tag heights to 22px instead of auto-fitting to content
-  - Minor: Add id API to TagList component
-  - Minor: Implement CustomFieldInputMultipleChoice component
-  - Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
-  - Major: Add flex-basis on direct children of SectionRow component
   - Minor: Implement `FormControl` component
   - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
   - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
@@ -22,17 +15,28 @@
   - Minor: Create ListOption component
 </details>
 
+## 0.25.0 (June, 18, 2020)
+- Minor: Add className to TagList component
+- Minor: Set tag heights to 22px instead of auto-fitting to content
+- Minor: Add id API to TagList component
+- Minor: Implement CustomFieldInputMultipleChoice component
+- Patch: Remove unused ref API on CustomFieldInputMultipleChoice component
+- Major: Add flex-basis on direct children of SectionRow component
+
+## 0.24.0 (June 16, 2020)
+- Minor: Add linter for Typography
+
 ## 0.23.0 (June 11, 2020)
-  - Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
-  - Minor: Create the page patterns page.
-  - Minor: Implement PageHeader component
-  - Minor: Implement Tag and TagSkill components
-  - Minor: Add ariaLabel to Icon props
-  - Minor: Add ariaLabelledBy to Icon props
-  - Minor: Add id to Icon props
-  - Minor: Add `defaultActive` prop to Tag
-  - Minor: Implement TagList component
-  - Minor: Add typography-v2 CSS variables
+- Major: remove unnecessary styling (inline-block and vertical alignment) on Icon component
+- Minor: Create the page patterns page.
+- Minor: Implement PageHeader component
+- Minor: Implement Tag and TagSkill components
+- Minor: Add ariaLabel to Icon props
+- Minor: Add ariaLabelledBy to Icon props
+- Minor: Add id to Icon props
+- Minor: Add `defaultActive` prop to Tag
+- Minor: Implement TagList component
+- Minor: Add typography-v2 CSS variables
 
 ## 0.22.0 (May 22, 2020)
 - Minor: Publish site files with MDS module
