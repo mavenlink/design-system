@@ -5,6 +5,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   <label
     className="label"
     htmlFor="hello"
+    id="hello-label"
   >
     Hello
   </label>

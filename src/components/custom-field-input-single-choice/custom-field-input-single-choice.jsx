@@ -18,10 +18,11 @@ export default function CustomFieldInputSingleChoice(props) {
   />);
 
   const generateOptions = () => {
+    const refs = props.options.map(_ => React.createRef());
     const children = props.options.map(item => <ListOption key={item}>{item}</ListOption>);
 
     return (
-      <Listbox className={styles.dropdown}>
+      <Listbox className={styles.dropdown} labelledBy={`${props.id}-label`} refs={refs}>
         { children }
       </Listbox>
     );

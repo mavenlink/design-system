@@ -5,6 +5,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
   <label
     className="label"
     htmlFor="test-input"
+    id="test-input-label"
   >
     Test label
   </label>

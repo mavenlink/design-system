@@ -5,5 +5,8 @@ exports[`src/components/list-option/list-option renders defaults 1`] = `
   aria-selected={false}
   className="option"
   role="option"
-/>
+  tabIndex="0"
+>
+  Test option
+</li>
 `;
