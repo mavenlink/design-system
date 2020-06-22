@@ -10,7 +10,7 @@
 </details>
 
 ## 0.26.0 (June 22, 2020)
- - Minor: Implement `FormControl` component
+- Minor: Implement `FormControl` component
 - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
 - Major: Use `FormControl` for `CustomFieldInputMultipleChoice`
 - Minor: Add `labelId` API to `FormControl`
