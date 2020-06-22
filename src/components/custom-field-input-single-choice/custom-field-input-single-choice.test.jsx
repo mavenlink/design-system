@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
@@ -24,6 +25,17 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('accepts a label', () => {
       const { getByLabelText } = renderComponent({ label: 'Bar' });
       expect(getByLabelText('Bar')).toBeDefined();
+    });
+  });
+
+  describe('options API', () => {
+    it('shows options when focused', () => {
+      const items = ['foo', 'bar'];
+      const { getByLabelText, getByText } = renderComponent({ items });
+      userEvent.click(getByLabelText('Foo'));
+
+      expect(getByText('foo')).toBeInTheDocument();
+      expect(getByText('bar')).toBeInTheDocument();
     });
   });
 
