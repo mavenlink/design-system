@@ -20,6 +20,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       id="foo"
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       readOnly={false}

@@ -118,6 +118,15 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onClick', () => {
+    it('accepts an onClick listener', () => {
+      const onClick = jest.fn();
+      render(<TestComponent onClick={onClick} />);
+      fireEvent.click(screen.getByLabelText('Test label'));
+      expect(onClick.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('onKeyUp', () => {
     it('handles the key up event', () => {
       const onKeyUpSpy = jest.fn();

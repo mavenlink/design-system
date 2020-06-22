@@ -72,6 +72,7 @@ export default function CustomFieldInputText(props) {
         name={props.name}
         onBlur={props.onBlur}
         onChange={props.onChange}
+        onClick={props.onClick}
         onFocus={props.onFocus}
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
@@ -106,6 +107,7 @@ CustomFieldInputText.propTypes = {
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
@@ -135,6 +137,7 @@ CustomFieldInputText.defaultProps = {
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
+  onClick: () => {},
   onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,

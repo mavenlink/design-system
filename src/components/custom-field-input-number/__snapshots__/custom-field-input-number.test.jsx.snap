@@ -22,6 +22,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       min={-2147483648}
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       readOnly={false}
