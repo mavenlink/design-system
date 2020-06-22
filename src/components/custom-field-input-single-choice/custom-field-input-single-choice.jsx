@@ -42,7 +42,7 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       <CustomFieldInputText
         icon={caretIcon}
         id={props.id}
@@ -56,7 +56,7 @@ export default function CustomFieldInputSingleChoice(props) {
         value={props.value}
       />
       { showOptions && generateOptions() }
-    </React.Fragment>
+    </div>
   );
 }
 

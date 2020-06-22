@@ -1,11 +1,16 @@
 @import '../../styles/colors-v2.css';
 
+.container {
+  position: relative;
+}
+
 .input-icon {
   composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
 }
 
 .dropdown {
   composes: container from '../listbox/listbox.css';
+  box-sizing: border-box;
   background-color: var(--white);
   position: absolute;
   width: 100%;

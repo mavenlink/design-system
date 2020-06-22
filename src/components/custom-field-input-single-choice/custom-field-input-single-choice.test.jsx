@@ -12,21 +12,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     expect(tree).toMatchSnapshot();
   });
 
-  describe('id API', () => {
-    it('accepts an ID', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="this-is-an-id" />);
-      expect(screen.getByLabelText('Foo')).toHaveAttribute('id', 'this-is-an-id');
-    });
-  });
-
-  describe('label API', () => {
-    it('accepts a label', () => {
-      render(<CustomFieldInputSingleChoice label="Bar" id="bar" />);
-      expect(screen.getByLabelText('Bar')).toBeDefined();
-    });
-  });
-
-  describe('options API', () => {
+  describe('accessibility', () => {
     it('shows options when clicked', () => {
       const options = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="bar" options={options} />);
@@ -69,6 +55,20 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.tab();
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('id API', () => {
+    it('accepts an ID', () => {
+      render(<CustomFieldInputSingleChoice label="Foo" id="this-is-an-id" />);
+      expect(screen.getByLabelText('Foo')).toHaveAttribute('id', 'this-is-an-id');
+    });
+  });
+
+  describe('label API', () => {
+    it('accepts a label', () => {
+      render(<CustomFieldInputSingleChoice label="Bar" id="bar" />);
+      expect(screen.getByLabelText('Bar')).toBeDefined();
     });
   });
 
