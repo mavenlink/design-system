@@ -19,4 +19,11 @@ describe('src/components/listbox/listbox', () => {
     expect(screen.getByText('Hello')).toBeInTheDocument();
     expect(screen.getByText('Hey')).toBeInTheDocument();
   });
+
+  describe('className API', () => {
+    it('allows setting the class name', () => {
+      const { container } = renderComponent({ className: 'prioritize-me' });
+      expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  })
 });
