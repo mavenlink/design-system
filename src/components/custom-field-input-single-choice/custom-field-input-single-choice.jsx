@@ -9,7 +9,7 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
-  const [showOptions, setShowOptions] = useState(true);
+  const [showOptions, setShowOptions] = useState(false);
 
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -27,12 +27,18 @@ export default function CustomFieldInputSingleChoice(props) {
     );
   };
 
-  function onFocus() {
+  function onBlur() {
+    setShowOptions(false);
+  }
+
+  function onClick() {
     setShowOptions(true);
   }
 
-  function onBlur() {
-    setShowOptions(false);
+  function onKeyUp(event) {
+    if (event.key === 'Enter') {
+      setShowOptions(true);
+    }
   }
 
   return (
@@ -42,7 +48,8 @@ export default function CustomFieldInputSingleChoice(props) {
         id={props.id}
         label={props.label}
         onBlur={onBlur}
-        onFocus={onFocus}
+        onClick={onClick}
+        onKeyUp={onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}

@@ -1,42 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
-Array [
-  <div>
-    <label
-      className="label"
-      htmlFor="yo"
+<div>
+  <label
+    className="label"
+    htmlFor="yo"
+  >
+    Foo
+  </label>
+  <div
+    className="control-container"
+  >
+    <input
+      className="input"
+      disabled={false}
+      id="yo"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyUp={[Function]}
+      readOnly={false}
+      required={false}
+      type="text"
+    />
+    <svg
+      className="input-icon size-medium stroke-none color-transparent"
+      role="img"
     >
-      Foo
-    </label>
-    <div
-      className="control-container"
-    >
-      <input
-        className="input"
-        disabled={false}
-        id="yo"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyUp={[Function]}
-        readOnly={false}
-        required={false}
-        type="text"
+      <use
+        xlinkHref="#icon-caret-down.svg"
       />
-      <svg
-        className="input-icon size-medium stroke-none color-transparent"
-        role="img"
-      >
-        <use
-          xlinkHref="#icon-caret-down.svg"
-        />
-      </svg>
-    </div>
-  </div>,
-  <ul
-    className="dropdown"
-    role="listbox"
-  />,
-]
+    </svg>
+  </div>
+</div>
 `;

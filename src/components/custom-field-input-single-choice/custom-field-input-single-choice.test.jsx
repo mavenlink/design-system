@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
@@ -29,11 +29,25 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('options API', () => {
-    it('shows options when focused', () => {
+    it('shows options when clicked', () => {
       const options = ['foo', 'bar'];
       const { getByLabelText, getByText } = renderComponent({ options });
       userEvent.click(getByLabelText('Foo'));
 
+      expect(getByText('foo')).toBeInTheDocument();
+      expect(getByText('bar')).toBeInTheDocument();
+    });
+
+    it('does not show option when focused, but shows when enter key is pressed', () => {
+      const options = ['foo', 'bar'];
+      const { getByLabelText, queryByText, getByText } = renderComponent({ options, label: 'YOOOOOOOO' });
+      userEvent.tab();
+
+      expect(getByLabelText('YOOOOOOOO')).toHaveFocus();
+      expect(queryByText('foo')).not.toBeInTheDocument();
+      expect(queryByText('bar')).not.toBeInTheDocument();
+
+      fireEvent.keyUp(document.activeElement, { key: 'Enter' });
       expect(getByText('foo')).toBeInTheDocument();
       expect(getByText('bar')).toBeInTheDocument();
     });
