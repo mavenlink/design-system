@@ -4,7 +4,7 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
-import styles from './styles.css';
+import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
