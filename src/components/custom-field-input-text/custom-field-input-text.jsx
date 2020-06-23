@@ -67,6 +67,7 @@ export default function CustomFieldInputText(props) {
       <input
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
+        aria-haspopup={props.ariaProps.haspopup}
         defaultValue={props.value}
         className={styles.input}
         disabled={props.disabled}
@@ -94,6 +95,7 @@ export default function CustomFieldInputText(props) {
 CustomFieldInputText.propTypes = {
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
+    haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
   disabled: PropTypes.bool,
