@@ -3,7 +3,7 @@
 @import "../../../src/styles/typography-v2.css";
 
 .header {
-  background-color: white;
+  background-color: var(--white);
   position: sticky;
   left: 0;
   right: 0;

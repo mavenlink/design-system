@@ -1,5 +1,5 @@
 @import '../../../src/styles/spacing.css';
 
 .root-content {
-  padding: var(--spacing-large) var(--spacing-x-large)
+  padding: var(--spacing-large) var(--spacing-x-large);
 }
