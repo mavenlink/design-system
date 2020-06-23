@@ -8,10 +8,6 @@ function isHero(slug) {
   return heroes.includes(slug);
 }
 
-function getRootClasses(slug) {
-  return isHero(slug) ? styles.root : styles['root-no-hero'];
-}
-
 export default function Section(props) {
   const {
     components,
@@ -26,17 +22,19 @@ export default function Section(props) {
   } = props;
 
   return (
-    <section className={getRootClasses(slug)}>
+    <section>
       {isHero(slug) && <Hero slug={slug} />}
-      {name &&
-        <Heading depth={depth} id={slug} slotName="sectionToolbar" slotProps={props}>
-          {name}
-        </Heading>
-      }
-      {description && <Markdown text={description} />}
-      {content}
-      {sections}
-      {components}
+      <div className={styles['root-content']}>
+        {name &&
+          <Heading depth={depth} id={slug} slotName="sectionToolbar" slotProps={props}>
+            {name}
+          </Heading>
+        }
+        {description && <Markdown text={description} />}
+        {content}
+        {sections}
+        {components}
+      </div>
     </section>
   );
 }

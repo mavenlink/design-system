@@ -29,7 +29,7 @@ function getTransition(klass, appearKlass, appearActiveKlass) {
 
 export default function Animations(props) {
   return (
-    <div>
+    <React.Fragment>
       <Stars slug={props.slug} />
       {props.slug === 'overview' && [
         getTransition('astro-1', 'astro-1-appear', 'astro-1-appear-active'),
@@ -46,7 +46,7 @@ export default function Animations(props) {
         getTransition('singers', 'singers-appear', 'singers-appear-active'),
         getTransition('goth-dancer', 'goth-dancer-appear', 'goth-dancer-appear-active'),
       ]}
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -1,20 +1,14 @@
-.astro-1,
-.astro-2,
-.astros-browser,
-.astros-laptop,
-.astro-with-browser2,
-.goth-dancer,
-.singer-dancers,
-.singer-flying,
-.singers {
+.animated-image {
+  background-repeat: no-repeat;
   position: absolute;
   opacity: 0;
 }
 
 .astro-1 {
+  composes: animated-image;
   background-image: url(astro-1.svg);
-  width: 85px;
-  height: 37px;
+  width: 5%;
+  height: 10%;
   left: 25%;
   top: 43%;
 }
@@ -25,9 +19,10 @@
 }
 
 .astro-2 {
+  composes: animated-image;
   background-image: url(astro-2.svg);
-  width: 60px;
-  height: 95px;
+  width: 5%;
+  height: 20%;
   left: 24%;
   top: 45%;
 }
@@ -38,9 +33,10 @@
 }
 
 .astros-laptop {
+  composes: animated-image;
   background-image: url(astros-laptop.svg);
-  width: 123px;
-  height: 45px;
+  width: 10%;
+  height: 10%;
   left: 60%;
   top: 43%;
 }
@@ -51,11 +47,12 @@
 }
 
 .astros-browser {
+  composes: animated-image;
   background-image: url(astros-browser.svg);
-  width: 486px;
-  height: 274px;
+  height: 50%;
   left: 20%;
   top: 30%;
+  width: 25%;
 }
 
 .astros-browser-appear-active {
@@ -64,11 +61,12 @@
 }
 
 .astro-with-browser2 {
+  composes: animated-image;
   background-image: url(astro-with-browser2.svg);
-  width: 150px;
-  height: 139px;
+  height: 30%;
   right: 25%;
   top: 60%;
+  width: 15%;
 }
 
 .astro-with-browser2-appear-active {
@@ -77,9 +75,10 @@
 }
 
 .singer-flying {
+  composes: animated-image;
   background-image: url(singer-flying.svg);
-  width: 148px;
-  height: 94px;
+  width: 15%;
+  height: 20%;
   left: 18%;
   top: 41%;
 }
@@ -90,9 +89,10 @@
 }
 
 .singer-dancers {
+  composes: animated-image;
   background-image: url(singer-dancers.svg);
-  width: 141px;
-  height: 118px;
+  width: 12%;
+  height: 25%;
   left: 40%;
   top: 30%;
 }
@@ -103,9 +103,10 @@
 }
 
 .singers {
+  composes: animated-image;
   background-image: url(singers.svg);
-  width: 150px;
-  height: 181px;
+  width: 15%;
+  height: 25%;
   left: 50%;
   top: 49%;
 }
@@ -116,9 +117,10 @@
 }
 
 .goth-dancer {
+  composes: animated-image;
   background-image: url(goth-dancer.svg);
-  width: 133px;
-  height: 101px;
+  width: 15%;
+  height: 20%;
   right: 30%;
   top: 30%;
 }

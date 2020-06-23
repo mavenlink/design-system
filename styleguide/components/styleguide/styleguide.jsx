@@ -13,7 +13,7 @@ export default function Styleguide({ children, hasSidebar, toc }) {
             {toc}
           </nav>
         }
-        <main className={styles.content}>
+        <main className={styles.main}>
           {children}
         </main>
       </div>
