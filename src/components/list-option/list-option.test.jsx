@@ -85,19 +85,26 @@ describe('src/components/list-option/list-option', () => {
       });
     });
 
-    describe('setSelected', () => {
+    describe('toggleSelected', () => {
       it('sets selected', () => {
         const ref = createRef();
         render(<ListOption {...requiredProps} ref={ref} />);
-        act(() => ref.current.setSelected(true));
+        act(() => { ref.current.toggleSelected(); });
         expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true');
       });
 
       it('unsets selected', () => {
         const ref = createRef();
         render(<ListOption {...requiredProps} ref={ref} selected />);
-        act(() => ref.current.setSelected(false));
+        act(() => { ref.current.toggleSelected(); });
         expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+      });
+
+      it('returns whether or not the option is selected', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => { expect(ref.current.toggleSelected()).toBe(true); });
+        act(() => { expect(ref.current.toggleSelected()).toBe(false); });
       });
     });
   });

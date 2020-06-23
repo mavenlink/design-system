@@ -23,8 +23,10 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setFocusQueued(bool);
       setActive(bool);
     },
-    setSelected: (bool) => {
-      setSelected(bool);
+    toggleSelected: () => {
+      const isSelected = !selected;
+      setSelected(isSelected);
+      return isSelected;
     },
   }));
 
