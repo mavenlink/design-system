@@ -20,23 +20,18 @@ This ensures screen readers can know:
 1. Which tag has focus
 1. Which element in a tag has focus
 
-#### Keyboard interactions
+#### Interactions
 
 | Key | State | Interaction |
 | --- | --- | --- |
 | Left / Up Arrrow | --- | Moves the focus to the previous tag |
 | Right / Down Arrrow | --- | Moves the focus to the next tag |
 | Home | --- | Moves the focus to the first tag |
-| End | --- | Moves the focus to the first tag |
-
-Notes:
+| End | --- | Moves the focus to the last tag |
 
 1. The focus does not wrap around a tag list
 1. There is only 1 active tag in the page tab sequence
-
-#### Mouse interactions
-
-Clicking on a tag will focus the tag.
+1. Clicking on a tag will focus the tag
 
 ### Example
 
@@ -48,18 +43,23 @@ const data = [
 const refs = data.map(() => React.createRef());
 const tagListId = 'basic-example';
 
-<TagList id={tagListId} refs={refs}>
-  {data.map((datum, index) => (
-    <Tag
-      defaultActive={index === 0 ? true : false}
-      id={`${tagListId}-${index}`}
-      key={`tag-${index}`}
-      ref={refs[index]}
-    >
-      {datum}
-    </Tag>
-  ))}
-</TagList>
+<FormControl
+  label="Band names"
+  labelId="tag-list-example-1"
+>
+  <TagList id={tagListId} labelledBy="tag-list-example-1" refs={refs}>
+    {data.map((datum, index) => (
+      <Tag
+        defaultActive={index === 0 ? true : false}
+        id={`${tagListId}-${index}`}
+        key={`tag-${index}`}
+        ref={refs[index]}
+      >
+        {datum}
+      </Tag>
+    ))}
+  </TagList>
+</FormControl>
 ```
 
 ### Wrapping example
@@ -144,16 +144,21 @@ const data = [
 const refs = data.map(() => React.createRef());
 const tagListId = 'wrapping-example';
 
-<TagList id={tagListId} refs={refs}>
-  {data.map((datum, index) => (
-    <Tag
-      defaultActive={index === 0 ? true : false}
-      id={`${tagListId}-${index}`}
-      key={`tag-${index}`}
-      ref={refs[index]}
-    >
-      {datum}
-    </Tag>
-  ))}
-</TagList>
+<FormControl
+  label="ARIA roles"
+  labelId="tag-list-example-2"
+>
+  <TagList id={tagListId} labelledBy="tag-list-example-2" refs={refs}>
+    {data.map((datum, index) => (
+      <Tag
+        defaultActive={index === 0 ? true : false}
+        id={`${tagListId}-${index}`}
+        key={`tag-${index}`}
+        ref={refs[index]}
+      >
+        {datum}
+      </Tag>
+    ))}
+  </TagList>
+</FormControl>
 ```
