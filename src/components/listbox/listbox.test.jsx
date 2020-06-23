@@ -27,14 +27,10 @@ describe('src/components/listbox/listbox', () => {
     beforeEach(() => {
       const refs = [createRef(), createRef()];
 
-      // TODO(Update @testing-library/user-event)
-      // - Update user-event lib when https://github.com/testing-library/user-event/issues/365 is merged
-      // - Remove random button in the following render
       render((
         <Listbox {...requiredProps} refs={refs}>
           <ListOption ref={refs[0]}>Hello</ListOption>
           <ListOption ref={refs[1]}>Hey</ListOption>
-          <button />
         </Listbox>
       ));
     });

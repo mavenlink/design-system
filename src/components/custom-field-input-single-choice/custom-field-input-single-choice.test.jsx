@@ -37,17 +37,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('hides choices when ESC is pressed', () => {
-      /* NOTE: The inclusion of the button here is only due to a bug in userEvent. Juanca has submitted a PR
-       * that has fixed this bug, making this test work with that solution. Adjust this test accordingly when
-       * that PR gets merged through.
-       */
       const choices = ['foo', 'bar'];
-      render(
-        <React.Fragment>
-          <CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />
-          <button />
-        </React.Fragment>,
-      );
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
@@ -58,17 +49,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('focuses on the first choice with tab', () => {
-      /* NOTE: The inclusion of the button here is only due to a bug in userEvent. Juanca has submitted a PR
-       * that has fixed this bug, making this test work with that solution. Adjust this test accordingly when
-       * that PR gets merged through.
-       */
       const choices = ['foo', 'bar'];
-      render(
-        <React.Fragment>
-          <CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />
-          <button />
-        </React.Fragment>,
-      );
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
       userEvent.tab();
 
