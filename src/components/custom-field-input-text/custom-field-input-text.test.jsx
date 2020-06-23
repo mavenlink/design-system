@@ -14,6 +14,13 @@ describe('CustomFieldInputText', () => {
     expect(renderer.create(<TestComponent />).toJSON()).toMatchSnapshot();
   });
 
+  describe('aria props', () => {
+    it('sets the aria-controls to the form control label ID', () => {
+      render(<TestComponent />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-input-label');
+    });
+  });
+
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const { container } = render(<TestComponent className="prioritize-me" />);

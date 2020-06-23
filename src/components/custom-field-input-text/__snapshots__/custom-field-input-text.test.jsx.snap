@@ -13,6 +13,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
     className="control-container"
   >
     <input
+      aria-controls="test-input-label"
       className="input"
       disabled={false}
       id="test-input"

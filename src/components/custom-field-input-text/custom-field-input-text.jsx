@@ -15,6 +15,7 @@ export default function CustomFieldInputText(props) {
   const [validationMessage, setValidationMessage] = useState('');
 
   const inputRef = props.inputRef || defaultRef;
+  const labelId = `${props.id}-label`;
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -58,12 +59,13 @@ export default function CustomFieldInputText(props) {
       className={props.className}
       error={validationMessage}
       id={props.id}
-      labelId={`${props.id}-label`}
+      labelId={labelId}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
     >
       <input
+        aria-controls={labelId}
         defaultValue={props.value}
         className={styles.input}
         disabled={props.disabled}
