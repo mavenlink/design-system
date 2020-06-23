@@ -11,8 +11,9 @@ import styles from './list-option.css';
 const ListOption = forwardRef(function ListOption(props, ref) {
   const [active, setActive] = useState(props.defaultActive);
   const [focusQueued, setFocusQueued] = useState(false);
+  const [selected, setSelected] = useState(props.selected);
   const rootRef = useRef();
-  const className = props.selected ? styles.selected : styles.option;
+  const className = selected ? styles.selected : styles.option;
 
   useImperativeHandle(ref, () => ({
     contains: (node) => {
@@ -21,6 +22,9 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     setActive: (bool) => {
       setFocusQueued(bool);
       setActive(bool);
+    },
+    setSelected: (bool) => {
+      setSelected(bool);
     },
   }));
 
@@ -31,7 +35,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   });
 
   return (<li
-    aria-selected={props.selected}
+    aria-selected={selected}
     className={className}
     role="option"
     ref={rootRef}
