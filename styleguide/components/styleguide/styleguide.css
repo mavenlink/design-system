@@ -2,7 +2,6 @@
 
 .root {
   background-color: var(--white);
-  margin-top: 65px;
   padding-left: 200px;
 }
 
@@ -10,9 +9,6 @@
   max-width: 1000px;
   padding: 16px 32px;
   margin: 0 auto;
-
-  /* For IE11 */
-  display: block;
 }
 
 .sidebar {
@@ -20,7 +16,7 @@
   border: solid var(--mds-grey-12);
   border-width: 1px 1px 0 0;
   position: fixed;
-  top: 65px;
+  top: 50px;
   left: 0;
   bottom: 0;
   width: 200px;

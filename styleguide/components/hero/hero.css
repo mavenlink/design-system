@@ -10,7 +10,7 @@
 .hero {
   position: absolute;
   left: 200px;
-  top: 65px;
+  top: 50px;
   background-size: 100% 100%;
   display: inline-block;
   width: var(--heroWidth);

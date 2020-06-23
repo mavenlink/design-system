@@ -1,45 +1,44 @@
-@import "../../../src/styles/colors.css";
 @import '../../../src/styles/colors-v2.css';
-@import "../../../src/styles/typography.css";
-
-:root {
-  --headerHeight: 65px;
-}
+@import '../../../src/styles/spacing.css';
+@import "../../../src/styles/typography-v2.css";
 
 .header {
-  background-color: #f8f8f8; /* stylelint-disable-line mds/colors */
-  border-bottom: 1px solid var(--mds-grey-12);
-  display: flex;
-  font-family: var(--mavenlink-type-font-headings); /* stylelint-disable-line mds/typography */
-  height: var(--headerHeight);
-  justify-content: space-between;
-  left: 0;
-  padding: 0 16px;
-  position: fixed;
-  right: 0;
+  background-color: white;
+  position: sticky;
   top: 0;
-  z-index: 666;
+  z-index: 1;
 }
 
-.title {
-  font-size: 20px; /* stylelint-disable-line mds/typography */
-  line-height: 65px; /* stylelint-disable-line mds/typography */
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.end {
-  color: var(--mds-grey-54);
+.header-content {
+  border-bottom: 1px solid var(--mds-grey-12);
+  background-color: var(--mds-grey-3);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-large);
 }
 
 .section {
-  display: flex;
+  align-items: center;
+  display: inline-flex;
+}
+
+.title {
+  flex-shrink: 0;
+  font: var(--mds-type-page-title);
+  text-transform: uppercase;
+}
+
+.title2 {
+  composes: title;
+  color: var(--mds-grey-54);
 }
 
 .github {
+  composes: section;
   color: var(--mds-grey-87);
-  line-height: var(--headerHeight); /* stylelint-disable-line mds/typography */
-  padding: 0 0.5em;
+  font: var(--mds-type-subhead-2);
+  height: 100%;
+  padding: 0 var(--spacing-small);
   text-decoration: none;
   transition: background-color 150ms linear;
 }
