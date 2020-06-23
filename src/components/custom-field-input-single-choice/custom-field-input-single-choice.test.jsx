@@ -56,6 +56,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(document.activeElement.innerHTML).toBe('foo');
     });
+
+    it('focuses on the second choice with down arrow', () => {
+      const choices = ['foo', 'bar'];
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
+      userEvent.click(screen.getByLabelText('Foo'));
+      userEvent.tab();
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      expect(document.activeElement.innerHTML).toBe('bar');
+    });
   });
 
   describe('id API', () => {
