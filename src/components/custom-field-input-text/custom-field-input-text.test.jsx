@@ -15,8 +15,15 @@ describe('CustomFieldInputText', () => {
   });
 
   describe('aria props', () => {
+    const ariaProps = { autocomplete: 'listbox' };
+
+    it('sets autocomplete to what is provicded', () => {
+      render(<TestComponent ariaProps={ariaProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-autocomplete', 'listbox');
+    });
+
     it('sets the aria-controls to the form control label ID', () => {
-      render(<TestComponent />);
+      render(<TestComponent ariaProps={ariaProps} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-input-label');
     });
   });
