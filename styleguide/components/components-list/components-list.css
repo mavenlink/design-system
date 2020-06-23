@@ -30,15 +30,3 @@
 .link:visited {
   color: var(--mds-grey-87);
 }
-
-.current {
-  composes: link;
-  border-left: var(--selectedBorderWidth) solid var(--mds-brand-100);
-  font-weight: bold; /* stylelint-disable-line mds/typography */
-  padding-left: 3px;
-}
-
-.current:link,
-.current:visited {
-  color: var(--black);
-}
