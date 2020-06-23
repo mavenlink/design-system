@@ -1,5 +1,6 @@
 @import "../../../src/styles/colors-v2.css";
 @import "../../../src/styles/typography-v2.css";
+@import "../../../src/styles/spacing.css";
 
 :root {
   --fullLeftDistance: 6px;
@@ -14,7 +15,7 @@
 .item {
   color: var(--mds-grey-87);
   display: block;
-  margin: 8px 0;
+  margin: var(--spacing-medium) var(--spacing-small) var(--spacing-medium) 0;
   font: var(--mds-type-content);
   list-style: none;
   overflow: hidden;
