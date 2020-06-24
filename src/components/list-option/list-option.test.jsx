@@ -12,6 +12,7 @@ import ListOption from './list-option.jsx';
 describe('src/components/list-option/list-option', () => {
   const requiredProps = {
     children: 'Test option',
+    value: 'test-option',
   };
 
   it('renders defaults', () => {
@@ -21,7 +22,7 @@ describe('src/components/list-option/list-option', () => {
 
   describe('children API', () => {
     it('accepts a node as children', () => {
-      render(<ListOption><div><span>Text is here!</span></div></ListOption>);
+      render(<ListOption {...requiredProps}><div><span>Text is here!</span></div></ListOption>);
       expect(screen.getByText('Text is here!')).toBeInTheDocument();
     });
   });
@@ -105,6 +106,14 @@ describe('src/components/list-option/list-option', () => {
         render(<ListOption {...requiredProps} ref={ref} />);
         act(() => { expect(ref.current.toggleSelected()).toBe(true); });
         act(() => { expect(ref.current.toggleSelected()).toBe(false); });
+      });
+    });
+
+    describe('optionData', () => {
+      it('responds with value', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref}>Yo</ListOption>);
+        act(() => { expect(ref.current.optionData).toBe('test-option'); });
       });
     });
   });

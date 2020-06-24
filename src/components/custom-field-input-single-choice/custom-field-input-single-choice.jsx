@@ -52,7 +52,7 @@ export default function CustomFieldInputSingleChoice(props) {
           labelledBy={`${props.id}-label`}
           refs={refs}
         >
-          { props.choices.map((item, index) => <ListOption key={item} ref={refs[index]}>{item}</ListOption>) }
+          { props.choices.map((item, index) => <ListOption key={item} ref={refs[index]} value={item}>{item}</ListOption>) }
         </Listbox>
       ) }
     </div>

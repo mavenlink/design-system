@@ -19,6 +19,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     contains: (node) => {
       return rootRef.current.contains(node);
     },
+    optionData: props.value,
     setActive: (bool) => {
       setFocusQueued(bool);
       setActive(bool);
@@ -53,6 +54,7 @@ ListOption.propTypes = {
   defaultActive: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 ListOption.defaultProps = {
