@@ -23,12 +23,12 @@ export default function CustomFieldInputSingleChoice(props) {
   />);
 
   function onClick() {
-    setShowOptions(true);
+    setShowOptions(!props.readOnly);
   }
 
   function onKeyUp(event) {
     if (event.key === 'Enter') {
-      setShowOptions(true);
+      setShowOptions(!props.readOnly);
     } else if (event.key === 'Escape') {
       setShowOptions(false);
     }

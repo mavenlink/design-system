@@ -22,6 +22,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
+    it('does not show choices when readOnly is true', () => {
+      const choices = ['foo', 'bar'];
+      render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} readOnly />);
+      userEvent.click(screen.getByLabelText('Foo'));
+
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+      expect(screen.queryByText('bar')).not.toBeInTheDocument();
+    });
+
     it('does not show option when focused, but shows when enter key is pressed', () => {
       const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="YOOOOOOOO" id="yo" choices={choices} />);
