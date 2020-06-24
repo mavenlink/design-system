@@ -95,6 +95,11 @@ describe('src/components/listbox/listbox', () => {
     });
 
     describe('selection', () => {
+      it('selects the item that is clicked', () => {
+        userEvent.click(screen.getByText('Hey'));
+        expect(screen.getByText('Hey')).toHaveAttribute('aria-selected', 'true');
+      });
+
       it('select the item focused when the enter key is pressed', () => {
         act(() => userEvent.tab());
         act(() => { fireEvent.keyDown(document.activeElement, { key: 'Enter' }); });

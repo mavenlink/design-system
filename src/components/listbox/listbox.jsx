@@ -18,16 +18,36 @@ export default function Listbox(props) {
     }
   });
 
+  const refIndexOf = target => props.refs.findIndex(ref => ref.current && ref.current.contains(target));
+  const updateSelectedIndexes = (toggledRefIndex, isSelected) => {
+    let newSelectedIndexes = selectedIndexes.slice(0, selectedIndexes.length);
+
+    if (isSelected) {
+      newSelectedIndexes.push(toggledRefIndex);
+    } else {
+      const indexOfToggledRef = newSelectedIndexes.indexOf(toggledRefIndex);
+      newSelectedIndexes = newSelectedIndexes.splice(indexOfToggledRef, 1);
+    }
+
+    setSelectedIndexes(newSelectedIndexes);
+  };
+
   function onFocus(event) {
     setActive(true);
 
     // Do not use `onClick` to manage `activeIndex`
     // For some reason, it will focus the first item before focusing the clicked item
-    const nextActiveIndex = props.refs.findIndex(ref => (
-      ref.current && ref.current.contains(event.target)
-    ));
+    const nextActiveIndex = refIndexOf(event.target);
 
     if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
+  }
+
+  function onClick(event) {
+    const selectedRefIndex = refIndexOf(event.target);
+    if (selectedRefIndex === -1) return;
+
+    const isSelected = props.refs[selectedRefIndex].current.toggleSelected();
+    updateSelectedIndexes(selectedRefIndex, isSelected);
   }
 
   function onKeyDown(keyEvent) {
@@ -52,16 +72,8 @@ export default function Listbox(props) {
         break;
       case 'Enter': {
         keyEvent.preventDefault();
-        let newSelectedIndexes = selectedIndexes.slice(0, selectedIndexes.length);
-
-        if (props.refs[activeIndex].current.toggleSelected()) {
-          newSelectedIndexes.push(activeIndex);
-        } else {
-          const index = newSelectedIndexes.indexOf(activeIndex);
-          newSelectedIndexes = newSelectedIndexes.splice(index, 1);
-        }
-
-        setSelectedIndexes(newSelectedIndexes);
+        const isSelected = props.refs[activeIndex].current.toggleSelected();
+        updateSelectedIndexes(activeIndex, isSelected);
         break;
       }
       case 'Home':
@@ -76,6 +88,7 @@ export default function Listbox(props) {
     <ul
       aria-labelledby={props.labelledBy}
       className={props.className}
+      onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
