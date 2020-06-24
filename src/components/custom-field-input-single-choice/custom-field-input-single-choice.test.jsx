@@ -113,6 +113,17 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('selection', () => {
+    it('sets the value of the input', () => {
+      const choices = ['broke my heart', "now I'm aching for you"];
+      render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
+      userEvent.click(screen.getByLabelText('Oh La Mort'));
+      userEvent.click(screen.getByText('broke my heart'));
+
+      expect(screen.getByLabelText('Oh La Mort')).toHaveValue('broke my heart');
+    });
+  });
+
   describe('value API', () => {
     it('accepts a value', () => {
       render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={'Some selection'} />);

@@ -13,6 +13,7 @@ import ListOption from '../list-option/list-option.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
+  const [value, setValue] = useState(props.value);
 
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
@@ -33,6 +34,15 @@ export default function CustomFieldInputSingleChoice(props) {
     }
   }
 
+  const listOptions = props.choices.map((item, index) => (
+    <ListOption key={item} ref={refs[index]} value={item}>{item}</ListOption>
+  ));
+
+  function onSelectionChange(newValue) {
+    setValue(newValue);
+    setShowOptions(false);
+  }
+
   return (
     <div className={styles.container}>
       <CustomFieldInputText
@@ -44,15 +54,16 @@ export default function CustomFieldInputSingleChoice(props) {
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
-        value={props.value}
+        value={value}
       />
       { showOptions && (
         <Listbox
           className={styles.dropdown}
           labelledBy={`${props.id}-label`}
+          onSelectionChange={onSelectionChange}
           refs={refs}
         >
-          { props.choices.map((item, index) => <ListOption key={item} ref={refs[index]} value={item}>{item}</ListOption>) }
+          { listOptions }
         </Listbox>
       ) }
     </div>
