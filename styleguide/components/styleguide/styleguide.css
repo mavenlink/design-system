@@ -2,19 +2,23 @@
 @import "../../../src/styles/spacing.css";
 
 .root {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header "
+    "sidebar main "
+  ;
 }
 
 .sidebar {
   background: var(--white);
   border-right: 1px solid var(--mds-grey-12);
   display: inline-block;
-  position: sticky;
-  left: 0;
-  z-index: 99;
+  grid-area: sidebar;
 }
 
 .main {
   display: inline-block;
-  width: 750px;
+  grid-area: main;
 }

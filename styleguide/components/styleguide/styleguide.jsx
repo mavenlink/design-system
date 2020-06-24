@@ -5,18 +5,16 @@ import styles from './styleguide.css';
 
 export default function Styleguide({ children, hasSidebar, toc }) {
   return (
-    <div>
+    <div className={styles.root}>
       <Header />
-      <div className={styles.root}>
-        {hasSidebar &&
-          <nav className={styles.sidebar}>
-            {toc}
-          </nav>
-        }
-        <main className={styles.main}>
-          {children}
-        </main>
-      </div>
+      {hasSidebar &&
+        <nav className={styles.sidebar}>
+          {toc}
+        </nav>
+      }
+      <main className={styles.main}>
+        {children}
+      </main>
     </div>
   );
 }
