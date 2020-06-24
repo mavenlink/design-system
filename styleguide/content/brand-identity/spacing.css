@@ -1,6 +1,6 @@
 @import '../../../src/styles/colors-v2.css';
 @import '../../../src/styles/spacing.css';
-@import '../../../src/styles/typography.css';
+@import '../../../src/styles/typography-v2.css';
 
 :global(.patterns-list) {
   display: flex;

@@ -7,8 +7,7 @@
   grid-template-rows: auto;
   grid-template-areas:
     "header header "
-    "sidebar main "
-  ;
+    "sidebar main ";
 }
 
 .sidebar {
