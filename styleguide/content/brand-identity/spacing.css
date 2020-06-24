@@ -8,16 +8,6 @@
   max-width: 225px;
 }
 
-:global(.image) {
-  border: 1px solid var(--mds-grey-12);
-  margin-bottom: var(--spacing-x-large);
-}
-
-:global(.image-top) {
-  border: 1px solid var(--mds-grey-12);
-  margin-bottom: var(--spacing-large);
-}
-
 :global(.pattern-item) {
   align-items: center;
   display: flex;
@@ -27,8 +17,7 @@
 }
 
 :global(.pattern-text) {
-  font-weight: bold; /* stylelint-disable-line mds/typography */
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-content);
 }
 
 :global(.pattern) {
