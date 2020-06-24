@@ -19,7 +19,7 @@ export default function Listbox(props) {
   });
 
   const refIndexOf = target => props.refs.findIndex(ref => ref.current && ref.current.contains(target));
-  const updateSelectedIndexes = (toggledRefIndex, isSelected) => {
+  const optionsWasSelected = (toggledRefIndex, isSelected) => {
     let newSelectedIndexes = selectedIndexes.slice(0, selectedIndexes.length);
 
     if (isSelected) {
@@ -34,6 +34,7 @@ export default function Listbox(props) {
       props.refs[deselectIndex].current.toggleSelected();
     }
 
+    props.onSelectionChange(props.refs[toggledRefIndex].current.optionData);
     setSelectedIndexes(newSelectedIndexes);
   };
 
@@ -51,7 +52,7 @@ export default function Listbox(props) {
     const selectedRefIndex = refIndexOf(event.target);
     if (selectedRefIndex !== -1) {
       const isSelected = props.refs[selectedRefIndex].current.toggleSelected();
-      updateSelectedIndexes(selectedRefIndex, isSelected);
+      optionsWasSelected(selectedRefIndex, isSelected);
     }
   }
 
@@ -78,7 +79,7 @@ export default function Listbox(props) {
       case 'Enter': {
         keyEvent.preventDefault();
         const isSelected = props.refs[activeIndex].current.toggleSelected();
-        updateSelectedIndexes(activeIndex, isSelected);
+        optionsWasSelected(activeIndex, isSelected);
         break;
       }
       case 'Home':
@@ -115,6 +116,7 @@ Listbox.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   labelledBy: PropTypes.string.isRequired,
+  onSelectionChange: PropTypes.func,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   selectionLimit: PropTypes.number,
 };
@@ -122,5 +124,6 @@ Listbox.propTypes = {
 Listbox.defaultProps = {
   className: styles.container,
   children: undefined,
+  onSelectionChange: () => {},
   selectionLimit: 0,
 };

@@ -29,8 +29,8 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <ListOption ref={refs[0]}>Hello</ListOption>
-          <ListOption ref={refs[1]}>Hey</ListOption>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
     });
@@ -112,8 +112,8 @@ describe('src/components/listbox/listbox', () => {
     it('displays a list of things', () => {
       render((
         <Listbox {...requiredProps}>
-          <ListOption>Hello</ListOption>
-          <ListOption>Hey</ListOption>
+          <ListOption value="hello">Hello</ListOption>
+          <ListOption value="hey">Hey</ListOption>
         </Listbox>
       ));
 
@@ -126,8 +126,8 @@ describe('src/components/listbox/listbox', () => {
     it('allows setting the class name', () => {
       render((
         <Listbox {...requiredProps} className="prioritize-me">
-          <ListOption>Hello</ListOption>
-          <ListOption>Hey</ListOption>
+          <ListOption value="hello">Hello</ListOption>
+          <ListOption value="hey">Hey</ListOption>
         </Listbox>
       ));
       expect(screen.getByRole('listbox')).toHaveClass('prioritize-me');
@@ -141,13 +141,31 @@ describe('src/components/listbox/listbox', () => {
           {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           <label id="unique-label-id">Label</label>
           <Listbox {...requiredProps} labelledBy="unique-label-id">
-            <ListOption>Hello</ListOption>
-            <ListOption>Hey</ListOption>
+            <ListOption value="hello">Hello</ListOption>
+            <ListOption value="hey">Hey</ListOption>
           </Listbox>
         </React.Fragment>
       ));
 
       expect(screen.getByLabelText('Label')).toBeInTheDocument();
+    });
+  });
+
+  describe('onSelectionChange API', () => {
+    it('informs when a selection is made', () => {
+      const refs = [createRef(), createRef()];
+      const onSelectionChange = jest.fn();
+
+      render((
+        <Listbox {...requiredProps} refs={refs} onSelectionChange={onSelectionChange}>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Hey'));
+      expect(onSelectionChange.mock.calls.length).toBe(1);
+      expect(onSelectionChange.mock.calls[0].includes('hey')).toBe(true);
     });
   });
 
@@ -165,8 +183,8 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} refs={refs} selectionLimit={0}>
-          <ListOption ref={refs[0]}>Hello</ListOption>
-          <ListOption ref={refs[1]}>Hey</ListOption>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
 
@@ -183,8 +201,8 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} refs={refs} selectionLimit={1}>
-          <ListOption ref={refs[0]}>Hello</ListOption>
-          <ListOption ref={refs[1]}>Hey</ListOption>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
 
