@@ -8,6 +8,7 @@ import styles from './listbox.css';
 export default function Listbox(props) {
   const [active, setActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedIndexes, setSelectedIndexes] = useState([]);
 
   useEffect(() => {
     if (active) {
@@ -49,6 +50,20 @@ export default function Listbox(props) {
         keyEvent.preventDefault();
         setActiveIndex(props.refs.length - 1);
         break;
+      case 'Enter': {
+        keyEvent.preventDefault();
+        let newSelectedIndexes = selectedIndexes.slice(0, selectedIndexes.length);
+
+        if (props.refs[activeIndex].current.toggleSelected()) {
+          newSelectedIndexes.push(activeIndex);
+        } else {
+          const index = newSelectedIndexes.indexOf(activeIndex);
+          newSelectedIndexes = newSelectedIndexes.splice(index, 1);
+        }
+
+        setSelectedIndexes(newSelectedIndexes);
+        break;
+      }
       case 'Home':
         keyEvent.preventDefault();
         setActiveIndex(0);
@@ -70,11 +85,19 @@ export default function Listbox(props) {
   );
 }
 
+const ListOptionRefType = PropTypes.shape({
+  current: PropTypes.shape({
+    contains: PropTypes.func,
+    setActive: PropTypes.func,
+    toggleSelected: PropTypes.func,
+  }),
+});
+
 Listbox.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   labelledBy: PropTypes.string.isRequired,
-  refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
+  refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
 };
 
 Listbox.defaultProps = {
