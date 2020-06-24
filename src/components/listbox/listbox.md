@@ -64,3 +64,41 @@ const children = selections.map((s, index) => <ListOption key={`${s}-${index}`} 
   </FormControl>
 </div>
 ```
+
+To limit the number of items that may be selected, use the `selectionLimit` prop:
+
+```jsx
+const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
+
+<FormControl
+  label="Choose your answer"
+  labelId="listbox-example-1"
+>
+  <Listbox labelledBy="listbox-limit-example-1" refs={refs} selectionLimit={1}>
+    <ListOption ref={refs[0]}>Yes</ListOption>
+    <ListOption ref={refs[1]}>No</ListOption>
+    <ListOption ref={refs[2]}>Maybe</ListOption>
+    <ListOption ref={refs[3]}>I don't know</ListOption>
+    <ListOption ref={refs[4]} title="Can you repeat the question?">Can you repeat the question?</ListOption>
+  </Listbox>
+</FormControl>
+```
+
+To allow any number of items to be selected, set `selectionLimit` to `0`:
+
+```jsx
+const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
+
+<FormControl
+  label="Choose your answer"
+  labelId="listbox-example-1"
+>
+  <Listbox labelledBy="listbox-limit-example-2" refs={refs} selectionLimit={0}>
+    <ListOption ref={refs[0]}>Yes</ListOption>
+    <ListOption ref={refs[1]}>No</ListOption>
+    <ListOption ref={refs[2]}>Maybe</ListOption>
+    <ListOption ref={refs[3]}>I don't know</ListOption>
+    <ListOption ref={refs[4]} title="Can you repeat the question?">Can you repeat the question?</ListOption>
+  </Listbox>
+</FormControl>
+```

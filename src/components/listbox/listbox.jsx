@@ -29,6 +29,11 @@ export default function Listbox(props) {
       newSelectedIndexes = newSelectedIndexes.splice(indexOfToggledRef, 1);
     }
 
+    if (props.selectionLimit && newSelectedIndexes.length > props.selectionLimit) {
+      const deselectIndex = newSelectedIndexes.shift();
+      props.refs[deselectIndex].current.toggleSelected();
+    }
+
     setSelectedIndexes(newSelectedIndexes);
   };
 
@@ -44,10 +49,10 @@ export default function Listbox(props) {
 
   function onClick(event) {
     const selectedRefIndex = refIndexOf(event.target);
-    if (selectedRefIndex === -1) return;
-
-    const isSelected = props.refs[selectedRefIndex].current.toggleSelected();
-    updateSelectedIndexes(selectedRefIndex, isSelected);
+    if (selectedRefIndex !== -1) {
+      const isSelected = props.refs[selectedRefIndex].current.toggleSelected();
+      updateSelectedIndexes(selectedRefIndex, isSelected);
+    }
   }
 
   function onKeyDown(keyEvent) {
@@ -111,9 +116,11 @@ Listbox.propTypes = {
   children: PropTypes.node,
   labelledBy: PropTypes.string.isRequired,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
+  selectionLimit: PropTypes.number,
 };
 
 Listbox.defaultProps = {
   className: styles.container,
   children: undefined,
+  selectionLimit: 0,
 };
