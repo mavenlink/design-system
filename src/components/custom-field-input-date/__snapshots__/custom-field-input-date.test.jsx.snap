@@ -5,6 +5,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   <label
     className="label"
     htmlFor="hello"
+    id="hello-label"
   >
     Hello
   </label>
@@ -12,12 +13,14 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
     className="control-container"
   >
     <input
+      aria-controls="hello-label"
       className="input"
       defaultValue=""
       disabled={false}
       id="hello"
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       readOnly={true}
