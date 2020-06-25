@@ -39,9 +39,10 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
 
 <CustomFieldInputSingleChoice
+  choices={choices}
   id="editable-example-1"
   label="Editable Example 1"
-  choices={choices}
+  value={choices[3]}
 />
 ```
 
