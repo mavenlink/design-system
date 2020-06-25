@@ -112,8 +112,8 @@ describe('src/components/list-option/list-option', () => {
     describe('optionData', () => {
       it('responds with value', () => {
         const ref = createRef();
-        render(<ListOption {...requiredProps} ref={ref}>Yo</ListOption>);
-        act(() => { expect(ref.current.optionData).toBe('test-option'); });
+        render(<ListOption {...requiredProps} dataId="test-option" value="Yo" ref={ref}>Yo</ListOption>);
+        act(() => { expect(ref.current.optionData).toMatchObject({ id: 'test-option', label: 'Yo' }); });
       });
     });
   });

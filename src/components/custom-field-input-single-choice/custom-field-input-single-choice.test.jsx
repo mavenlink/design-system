@@ -13,8 +13,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('accessibility', () => {
+    const choices = [{
+      id: 'foo',
+      label: 'foo',
+    }, {
+      id: 'bar',
+      label: 'bar',
+    }];
+
     it('shows choices when clicked', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
 
@@ -23,7 +30,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('does not show choices when readOnly is true', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} readOnly />);
       userEvent.click(screen.getByLabelText('Foo'));
 
@@ -32,7 +38,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('does not show option when focused, but shows when enter key is pressed', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="YOOOOOOOO" id="yo" choices={choices} />);
       userEvent.tab();
 
@@ -46,7 +51,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('hides choices when ESC is pressed', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
       expect(screen.getByText('foo')).toBeInTheDocument();
@@ -58,7 +62,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('focuses on the first choice with tab', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
       userEvent.tab();
@@ -67,7 +70,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('focuses on the second choice with down arrow', () => {
-      const choices = ['foo', 'bar'];
       render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
       userEvent.tab();
@@ -123,8 +125,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('selection', () => {
+    const choices = [{
+      id: 'broke',
+      label: 'broke my heart',
+    }, {
+      id: 'now',
+      label: "now I'm aching for you",
+    }];
+
     it('sets the value of the input', () => {
-      const choices = ['broke my heart', "now I'm aching for you"];
       render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('broke my heart'));
@@ -133,7 +142,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('keeps the selected value selected', () => {
-      const choices = ['broke my heart', "now I'm aching for you"];
       render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('broke my heart'));
@@ -145,13 +153,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('value API', () => {
     it('accepts a value', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value="Some selection" />);
+      const value = { id: 'some-selection', label: 'Some selection' };
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={value} />);
       expect(screen.getByLabelText('Foo')).toHaveValue('Some selection');
     });
 
     it('provided value sets the corresponding list item as selected', () => {
-      const choices = ['hello'];
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value="hello" choices={choices} />);
+      const value = { id: 'hello', label: 'hello'};
+      const choices = [value];
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={value} choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
 
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');

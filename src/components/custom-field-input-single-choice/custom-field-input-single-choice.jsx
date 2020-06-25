@@ -35,7 +35,15 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   const listOptions = props.choices.map((item, index) => (
-    <ListOption key={item} ref={refs[index]} value={item} selected={item === value}>{item}</ListOption>
+    <ListOption
+      dataId={item.id}
+      key={item.id}
+      ref={refs[index]}
+      value={item.label}
+      selected={item.id === value.id}
+    >
+      {item.label}
+    </ListOption>
   ));
 
   function onSelectionChange(newValue) {
@@ -54,7 +62,7 @@ export default function CustomFieldInputSingleChoice(props) {
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
-        value={value}
+        value={value.label}
       />
       { showOptions && (
         <Listbox
@@ -70,14 +78,19 @@ export default function CustomFieldInputSingleChoice(props) {
   );
 }
 
+const ChoiceType = PropTypes.shape({
+  id: PropTypes.string,
+  label: PropTypes.string,
+});
+
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
-  choices: PropTypes.arrayOf(PropTypes.string),
+  choices: PropTypes.arrayOf(ChoiceType),
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: PropTypes.string,
+  value: ChoiceType,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
@@ -85,5 +98,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  value: undefined,
+  value: {},
 };

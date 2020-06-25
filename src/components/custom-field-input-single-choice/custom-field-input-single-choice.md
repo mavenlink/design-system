@@ -36,11 +36,21 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ### Editable examples
 
 ```jsx
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'];
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
 
 <CustomFieldInputSingleChoice
   id="editable-example-1"
   label="Editable Example 1"
+  choices={choices}
+/>
+```
+
+```jsx
+const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: toString(index), label: i }));
+
+<CustomFieldInputSingleChoice
+  id="editable-example-2"
+  label="Editable Example 2"
   choices={choices}
 />
 ```
