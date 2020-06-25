@@ -2,21 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './button.css';
 
-export default function Button(props) {
-  return (
-    <button
-      className={props.className || styles[props.color]}
-      disabled={props.disabled}
-      id={props.id}
-      name={props.name}
-      onClick={props.onClick}
-      type={props.type}
-      value={props.value}
-    >
-      {props.children}
-    </button>
-  );
-}
+const Button = React.forwardRef(
+  function Button(props, ref) {
+    return (
+      <button
+        className={props.className || styles[props.color]}
+        disabled={props.disabled}
+        id={props.id}
+        name={props.name}
+        onClick={props.onClick}
+        type={props.type}
+        value={props.value}
+        ref={ref}
+      >
+        {props.children}
+      </button>
+    );
+  });
 
 Button.propTypes = {
   className: PropTypes.string,
@@ -47,3 +49,5 @@ Button.defaultProps = {
   type: undefined,
   value: undefined,
 };
+
+export default Button;

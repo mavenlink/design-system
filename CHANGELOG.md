@@ -10,6 +10,9 @@
   - Minor: Update `CustomFieldInputSingleChoice` to select things
 </details>
 
+## 0.27.0 (June 23, 2020)
+- Minor: Forward refs to `Button`
+
 ## 0.26.0 (June 22, 2020)
 - Minor: Implement `FormControl` component
 - Major: Use `FormControl` for `Input`, `CustomFieldInputText`, , `CustomFieldInputNumber`, `CustomFieldInputCurrency`, `CustomFieldInputDate`, `CustomFieldInputSingleChoice`
