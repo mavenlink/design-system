@@ -131,12 +131,30 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(screen.getByLabelText('Oh La Mort')).toHaveValue('broke my heart');
     });
+
+    it('keeps the selected value selected', () => {
+      const choices = ['broke my heart', "now I'm aching for you"];
+      render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
+      userEvent.click(screen.getByLabelText('Oh La Mort'));
+      userEvent.click(screen.getByText('broke my heart'));
+      userEvent.click(screen.getByLabelText('Oh La Mort'));
+
+      expect(screen.getByText('broke my heart')).toHaveAttribute('aria-selected', 'true');
+    });
   });
 
   describe('value API', () => {
     it('accepts a value', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={'Some selection'} />);
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value="Some selection" />);
       expect(screen.getByLabelText('Foo')).toHaveValue('Some selection');
+    });
+
+    it('provided value sets the corresponding list item as selected', () => {
+      const choices = ['hello'];
+      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value="hello" choices={choices} />);
+      userEvent.click(screen.getByLabelText('Foo'));
+
+      expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
     });
   });
 });

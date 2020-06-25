@@ -35,7 +35,7 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   const listOptions = props.choices.map((item, index) => (
-    <ListOption key={item} ref={refs[index]} value={item}>{item}</ListOption>
+    <ListOption key={item} ref={refs[index]} value={item} selected={item === value}>{item}</ListOption>
   ));
 
   function onSelectionChange(newValue) {
