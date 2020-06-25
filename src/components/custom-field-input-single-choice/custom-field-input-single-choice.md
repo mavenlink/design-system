@@ -46,7 +46,7 @@ const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the quest
 ```
 
 ```jsx
-const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: toString(index), label: i }));
+const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i }));
 
 <CustomFieldInputSingleChoice
   id="editable-example-2"

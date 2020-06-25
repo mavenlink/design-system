@@ -159,7 +159,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('provided value sets the corresponding list item as selected', () => {
-      const value = { id: 'hello', label: 'hello'};
+      const value = { id: 'hello', label: 'hello' };
       const choices = [value];
       render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={value} choices={choices} />);
       userEvent.click(screen.getByLabelText('Foo'));
