@@ -37,6 +37,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <th class="subtext">Tag</th>
             <th class="subtext">Size</th>
             <th class="subtext">Weight</th>
+            <th class="subtext">Variable Name</th>
             <th class="subtext">Usage, example</th>
         </tr>
     </thead>
@@ -45,6 +46,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>h1</pre></td>
             <td>22px</td>
             <td>400</td>
+            <td><pre>--mds-type-page-title</pre></td>
             <td>
                 <h1 class="page-title">Main page titles</h1>
                 <pre>
@@ -58,6 +60,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>h2</pre></td>
             <td>16px</td>
             <td>600</td>
+            <td><pre>--mds-type-subhead-1</pre></td>
             <td>
                 <h2 class="subhead-1">Subheads</h2>
                 <pre>
@@ -71,6 +74,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>h3</pre></td>
             <td>16px</td>
             <td>400</td>
+            <td><pre>--mds-type-subhead-2</pre></td>
             <td>
                 <h3 class="subhead-2">Subheads</h3>
                 <h3 class="subhead-2">Section headings</h3>
@@ -85,6 +89,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>h4</pre></td>
             <td>14px</td>
             <td>400</td>
+            <td><pre>--mds-type-subhead-3</pre></td>
             <td>
                 <h4 class="subhead-3">Subheads</h4>
                 <pre>
@@ -98,6 +103,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>p, et al.</pre></td>
             <td>14px</td>
             <td>400</td>
+            <td><pre>--mds-type-content</pre></td>
             <td>
                 <p class="content">Normal</p>
                 <p class="content">Main body copy, table data, etc.</p>
@@ -112,6 +118,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
             <td><pre>th, et al.</pre></td>
             <td>12px</td>
             <td>400</td>
+            <td><pre>--mds-type-subtext</pre></td>
             <td>
                 <span class="subtext">Sub, table headings, support copy, legal, etc.</span>
                 <pre>
