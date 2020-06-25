@@ -14,6 +14,25 @@ describe('CustomFieldInputText', () => {
     expect(renderer.create(<TestComponent />).toJSON()).toMatchSnapshot();
   });
 
+  describe('aria props', () => {
+    const ariaProps = { autocomplete: 'list', haspopup: 'listbox' };
+
+    it('sets autocomplete to what is provided', () => {
+      render(<TestComponent ariaProps={ariaProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-autocomplete', 'list');
+    });
+
+    it('sets haspopup to what is provided', () => {
+      render(<TestComponent ariaProps={ariaProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-haspopup', 'listbox');
+    });
+
+    it('sets the aria-controls to the form control label ID', () => {
+      render(<TestComponent ariaProps={ariaProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-input-label');
+    });
+  });
+
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const { container } = render(<TestComponent className="prioritize-me" />);
@@ -115,6 +134,15 @@ describe('CustomFieldInputText', () => {
       const { getByLabelText } = render(<TestComponent onChange={e => onChange(e)} />);
       fireEvent.change(getByLabelText('Test label'), { target: { value: 'hey' } });
       expect(onChange.mock.calls.length).toBe(1);
+    });
+  });
+
+  describe('onClick', () => {
+    it('accepts an onClick listener', () => {
+      const onClick = jest.fn();
+      render(<TestComponent onClick={onClick} />);
+      fireEvent.click(screen.getByLabelText('Test label'));
+      expect(onClick.mock.calls.length).toBe(1);
     });
   });
 

@@ -5,6 +5,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
   <label
     className="label"
     htmlFor="test-input"
+    id="test-input-label"
   >
     Test label
   </label>
@@ -12,11 +13,13 @@ exports[`CustomFieldInputText has defaults 1`] = `
     className="control-container"
   >
     <input
+      aria-controls="test-input-label"
       className="input"
       disabled={false}
       id="test-input"
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       readOnly={false}

@@ -26,9 +26,21 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 />
 
 <CustomFieldInputSingleChoice
-  id="read-only-example-1"
-  label="Read Only Example 1"
+  id="read-only-example-2"
+  label="Read Only Example 2"
   readOnly
   value="I am a value"
+/>
+```
+
+### Editable examples
+
+```jsx
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'];
+
+<CustomFieldInputSingleChoice
+  id="editable-example-1"
+  label="Editable Example 1"
+  choices={choices}
 />
 ```
