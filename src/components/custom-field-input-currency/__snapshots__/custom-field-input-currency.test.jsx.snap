@@ -7,6 +7,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   <label
     className="label"
     htmlFor="foo"
+    id="foo-label"
   >
     cash money
   </label>
@@ -14,12 +15,14 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
     className="control-container"
   >
     <input
+      aria-controls="foo-label"
       className="input"
       defaultValue=""
       disabled={false}
       id="foo"
       onBlur={[Function]}
       onChange={[Function]}
+      onClick={[Function]}
       onFocus={[Function]}
       onKeyUp={[Function]}
       readOnly={false}

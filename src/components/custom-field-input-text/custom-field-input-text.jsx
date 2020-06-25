@@ -15,6 +15,7 @@ export default function CustomFieldInputText(props) {
   const [validationMessage, setValidationMessage] = useState('');
 
   const inputRef = props.inputRef || defaultRef;
+  const labelId = `${props.id}-label`;
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -58,11 +59,15 @@ export default function CustomFieldInputText(props) {
       className={props.className}
       error={validationMessage}
       id={props.id}
+      labelId={labelId}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
     >
       <input
+        aria-autocomplete={props.ariaProps.autocomplete}
+        aria-controls={labelId}
+        aria-haspopup={props.ariaProps.haspopup}
         defaultValue={props.value}
         className={styles.input}
         disabled={props.disabled}
@@ -72,6 +77,7 @@ export default function CustomFieldInputText(props) {
         name={props.name}
         onBlur={props.onBlur}
         onChange={props.onChange}
+        onClick={props.onClick}
         onFocus={props.onFocus}
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
@@ -87,6 +93,10 @@ export default function CustomFieldInputText(props) {
 }
 
 CustomFieldInputText.propTypes = {
+  ariaProps: PropTypes.shape({
+    autocomplete: PropTypes.string,
+    haspopup: PropTypes.string,
+  }),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
@@ -106,6 +116,7 @@ CustomFieldInputText.propTypes = {
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
@@ -124,6 +135,7 @@ CustomFieldInputText.propTypes = {
 };
 
 CustomFieldInputText.defaultProps = {
+  ariaProps: {},
   className: undefined,
   disabled: false,
   error: false,
@@ -135,6 +147,7 @@ CustomFieldInputText.defaultProps = {
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
+  onClick: () => {},
   onFocus: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
