@@ -109,6 +109,7 @@ const ListOptionRefType = PropTypes.shape({
     contains: PropTypes.func,
     setActive: PropTypes.func,
     toggleSelected: PropTypes.func,
+    value: PropTypes.any,
   }),
 });
 
