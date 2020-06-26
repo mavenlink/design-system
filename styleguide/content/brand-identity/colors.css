@@ -1,6 +1,6 @@
 @import "../../../src/styles/colors-v2.css";
 @import "../../../src/styles/spacing.css";
-@import "../../../src/styles/typography.css";
+@import "../../../src/styles/typography-v2.css";
 
 :global(.color-container) {
   display: flex;
@@ -16,13 +16,13 @@
 :global(.dark-contrast) {
   color: var(--white);
   padding: var(--spacing-medium);
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-content);
 }
 
 :global(.light-contrast) {
   color: var(--black);
   padding: var(--spacing-medium);
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-content);
 }
 
 :global(.other-colors) {

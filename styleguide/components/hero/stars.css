@@ -1,27 +1,3 @@
-:root {
-  --largeScreenBreakPoint: 1441px;
-  --x-wideScreenBreakPoint: 1920px;
-}
-
-.stars {
-  /* ensure to right of left mountain */
-  left: 10%;
-  width: 1000px;
-  height: 350px;
-}
-
-@media (min-width: var(--largeScreenBreakPoint)) {
-  .stars {
-    width: 1200px;
-  }
-}
-
-@media (min-width: var(--x-wideScreenBreakPoint)) {
-  .stars {
-    width: 1600px;
-  }
-}
-
 @keyframes fade { to { opacity: 0; } }
 
 .mavenConstellation {

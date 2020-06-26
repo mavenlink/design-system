@@ -9,11 +9,10 @@ function sortByName(a, b) {
 }
 
 export default function ComponentsListContainer(props) {
-  const location = window.location.hash.replace(/\W/g, '') || 'Overview';
   const shouldAlphabetize = !props.items.some(item => item.heading);
   const items = shouldAlphabetize ? props.items.sort(sortByName) : props.items;
 
-  return <ComponentsList {...props} items={items} current={location} />;
+  return <ComponentsList {...props} items={items} />;
 }
 
 ComponentsListContainer.propTypes = {
