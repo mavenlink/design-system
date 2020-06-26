@@ -33,11 +33,11 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
   labelId="listbox-example-1"
 >
   <Listbox labelledBy="listbox-example-1" refs={refs}>
-    <ListOption ref={refs[0]}>Yes</ListOption>
-    <ListOption ref={refs[1]}>No</ListOption>
-    <ListOption ref={refs[2]}>Maybe</ListOption>
-    <ListOption ref={refs[3]}>I don't know</ListOption>
-    <ListOption ref={refs[4]} title="Can you repeat the question?">Can you repeat the question?</ListOption>
+    <ListOption ref={refs[0]} value="1">Yes</ListOption>
+    <ListOption ref={refs[1]} value="2">No</ListOption>
+    <ListOption ref={refs[2]} value="3">Maybe</ListOption>
+    <ListOption ref={refs[3]} value="4">I don't know</ListOption>
+    <ListOption ref={refs[4]} title="Can you repeat the question?" value="5">Can you repeat the question?</ListOption>
   </Listbox>
 </FormControl>
 ```
@@ -49,9 +49,13 @@ const container = {
   width: '150px',
   height: '150px',
 };
-const selections = ['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?'];
-const refs = selections.map(_ => React.createRef());
-const children = selections.map((s, index) => <ListOption key={`${s}-${index}`} ref={refs[index]} title={s}>{s}</ListOption>);
+const options = ['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?'];
+const refs = options.map(_ => React.createRef());
+const children = options.map((option, index) => (
+  <ListOption key={`${option}-${index}`} ref={refs[index]} title={option} value={option}>
+    {option}
+  </ListOption>
+));
 
 <div style={container}>
   <FormControl
@@ -75,11 +79,11 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
   labelId="listbox-example-1"
 >
   <Listbox labelledBy="listbox-limit-example-1" refs={refs} selectionLimit={1}>
-    <ListOption ref={refs[0]}>Yes</ListOption>
-    <ListOption ref={refs[1]}>No</ListOption>
-    <ListOption ref={refs[2]}>Maybe</ListOption>
-    <ListOption ref={refs[3]}>I don't know</ListOption>
-    <ListOption ref={refs[4]} title="Can you repeat the question?">Can you repeat the question?</ListOption>
+    <ListOption ref={refs[0]} value="yes">Yes</ListOption>
+    <ListOption ref={refs[1]} value="no">No</ListOption>
+    <ListOption ref={refs[2]} value="maybe">Maybe</ListOption>
+    <ListOption ref={refs[3]} value="idk">I don't know</ListOption>
+    <ListOption ref={refs[4]} title="Can you repeat the question?" value="question">Can you repeat the question?</ListOption>
   </Listbox>
 </FormControl>
 ```
@@ -94,11 +98,11 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
   labelId="listbox-example-1"
 >
   <Listbox labelledBy="listbox-limit-example-2" refs={refs} selectionLimit={0}>
-    <ListOption ref={refs[0]}>Yes</ListOption>
-    <ListOption ref={refs[1]}>No</ListOption>
-    <ListOption ref={refs[2]}>Maybe</ListOption>
-    <ListOption ref={refs[3]}>I don't know</ListOption>
-    <ListOption ref={refs[4]} title="Can you repeat the question?">Can you repeat the question?</ListOption>
+    <ListOption ref={refs[0]} value="yes">Yes</ListOption>
+    <ListOption ref={refs[1]} value="no">No</ListOption>
+    <ListOption ref={refs[2]} value="maybe">Maybe</ListOption>
+    <ListOption ref={refs[3]} value="idk">I don't know</ListOption>
+    <ListOption ref={refs[4]} title="Can you repeat the question?" value="question">Can you repeat the question?</ListOption>
   </Listbox>
 </FormControl>
 ```

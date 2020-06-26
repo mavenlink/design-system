@@ -12,7 +12,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 <CustomFieldInputSingleChoice
   id="default-example-1"
   label="Default Example 1"
-  value="I am a value"
+  value={{ id: '1', label: 'I am a value' }}
 />
 ```
 
@@ -29,7 +29,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   id="read-only-example-2"
   label="Read Only Example 2"
   readOnly
-  value="I am a value"
+  value={{ id: '2', label: 'I am a value' }}
 />
 ```
 
