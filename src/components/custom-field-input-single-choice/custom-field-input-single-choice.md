@@ -10,7 +10,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 />
 
 <CustomFieldInputSingleChoice
-  id="default-example-1"
+  id="default-example-2"
   label="Default Example 1"
   value={{ id: '1', label: 'I am a value' }}
 />
