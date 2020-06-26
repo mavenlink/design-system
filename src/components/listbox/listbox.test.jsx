@@ -159,13 +159,13 @@ describe('src/components/listbox/listbox', () => {
       render((
         <Listbox {...requiredProps} refs={refs} onChange={onChange}>
           <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption dataId="hey" value="hey" ref={refs[1]}>Hey</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
 
       userEvent.click(screen.getByText('Hey'));
       expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange.mock.calls[0][0]).toMatchObject({ id: 'hey', label: 'hey' });
+      expect(onChange.mock.calls[0][0]).toEqual('hey');
     });
   });
 

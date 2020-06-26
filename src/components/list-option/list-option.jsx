@@ -19,10 +19,6 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     contains: (node) => {
       return rootRef.current.contains(node);
     },
-    optionData: {
-      id: props.dataId,
-      label: props.value,
-    },
     setActive: (bool) => {
       setFocusQueued(bool);
       setActive(bool);
@@ -32,6 +28,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setSelected(isSelected);
       return isSelected;
     },
+    value: props.value,
   }));
 
   useEffect(() => {
@@ -54,15 +51,13 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
-  dataId: PropTypes.string,
   defaultActive: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
 ListOption.defaultProps = {
-  dataId: undefined,
   defaultActive: true,
   selected: false,
   title: undefined,

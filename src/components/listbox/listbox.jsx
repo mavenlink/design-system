@@ -34,7 +34,7 @@ export default function Listbox(props) {
       props.refs[deselectIndex].current.toggleSelected();
     }
 
-    props.onChange(props.refs[toggledRefIndex].current.optionData);
+    props.onChange(props.refs[toggledRefIndex].current.value);
     setSelectedIndexes(newSelectedIndexes);
   };
 

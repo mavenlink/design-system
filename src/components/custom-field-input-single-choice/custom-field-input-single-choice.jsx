@@ -36,11 +36,13 @@ export default function CustomFieldInputSingleChoice(props) {
 
   const listOptions = props.choices.map((item, index) => (
     <ListOption
-      dataId={item.id}
       key={item.id}
       ref={refs[index]}
-      value={item.label}
       selected={item.id === value.id}
+      value={{
+        id: item.id,
+        label: item.label,
+      }}
     >
       {item.label}
     </ListOption>

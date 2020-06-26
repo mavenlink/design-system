@@ -109,11 +109,11 @@ describe('src/components/list-option/list-option', () => {
       });
     });
 
-    describe('optionData', () => {
-      it('responds with value', () => {
+    describe('value', () => {
+      it('has the value prop', () => {
         const ref = createRef();
-        render(<ListOption {...requiredProps} dataId="test-option" value="Yo" ref={ref}>Yo</ListOption>);
-        act(() => { expect(ref.current.optionData).toMatchObject({ id: 'test-option', label: 'Yo' }); });
+        render(<ListOption {...requiredProps} value="unique-value" ref={ref} />);
+        expect(ref.current.value).toEqual('unique-value');
       });
     });
   });
@@ -123,6 +123,14 @@ describe('src/components/list-option/list-option', () => {
       const title = "Hello. Is it me you're looking for?";
       render(<ListOption {...requiredProps} title={title} />);
       expect(screen.getByText('Test option')).toHaveAttribute('title', title);
+    });
+  });
+
+  describe('value API', () => {
+    it('sets it on the ref', () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} value="unique-value" ref={ref} />);
+      expect(ref.current.value).toEqual('unique-value');
     });
   });
 });
