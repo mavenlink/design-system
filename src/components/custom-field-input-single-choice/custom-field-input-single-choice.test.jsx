@@ -34,14 +34,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
-    it('does not show choices when readOnly is true', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} readOnly />);
-      userEvent.click(screen.getByLabelText('Test label'));
-
-      expect(screen.queryByText('foo')).not.toBeInTheDocument();
-      expect(screen.queryByText('bar')).not.toBeInTheDocument();
-    });
-
     it('does not show option when focused, but shows when enter key is pressed', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
       userEvent.tab();
@@ -114,6 +106,18 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('unsets the readonly attribute', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
+    });
+
+    it('shows the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
+    });
+
+    it('does not show the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
   });
 
