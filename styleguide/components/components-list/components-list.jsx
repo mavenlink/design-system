@@ -3,7 +3,7 @@ import React from 'react';
 import Link from '../link/index.js';
 import styles from './components-list.css';
 
-export default function ComponentsList({ current, items }) {
+export default function ComponentsList({ items }) {
   const filteredItems = items.filter(item => item.name);
 
   if (!filteredItems.length) {
@@ -18,7 +18,7 @@ export default function ComponentsList({ current, items }) {
           key={name}
         >
           <Link
-            className={current === name ? styles.current : styles.link}
+            className={styles.link}
             href={href}
           >
             {name}
@@ -31,7 +31,6 @@ export default function ComponentsList({ current, items }) {
 }
 
 ComponentsList.propTypes = {
-  current: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.node,
     href: PropTypes.string.isRequired,
@@ -40,5 +39,4 @@ ComponentsList.propTypes = {
 };
 
 ComponentsList.defaultProps = {
-  current: undefined,
 };

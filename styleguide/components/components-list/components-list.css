@@ -1,4 +1,6 @@
 @import "../../../src/styles/colors-v2.css";
+@import "../../../src/styles/typography-v2.css";
+@import "../../../src/styles/spacing.css";
 
 :root {
   --fullLeftDistance: 6px;
@@ -13,8 +15,8 @@
 .item {
   color: var(--mds-grey-87);
   display: block;
-  margin: 8px 0;
-  font-size: 16px; /* stylelint-disable-line mds/typography */
+  margin: var(--spacing-medium) var(--spacing-small) var(--spacing-medium) 0;
+  font: var(--mds-type-content);
   list-style: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -29,16 +31,4 @@
 .link:link,
 .link:visited {
   color: var(--mds-grey-87);
-}
-
-.current {
-  composes: link;
-  border-left: var(--selectedBorderWidth) solid var(--mds-brand-100);
-  font-weight: bold; /* stylelint-disable-line mds/typography */
-  padding-left: 3px;
-}
-
-.current:link,
-.current:visited {
-  color: var(--black);
 }
