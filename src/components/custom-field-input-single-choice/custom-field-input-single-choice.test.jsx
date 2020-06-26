@@ -5,10 +5,15 @@ import renderer from 'react-test-renderer';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
+  const requiredProps = {
+    id: 'test-id',
+    label: 'Test label',
+  };
+
   afterEach(cleanup);
 
   it('has defaults', () => {
-    const tree = renderer.create(<CustomFieldInputSingleChoice label="Foo" id="yo" />).toJSON();
+    const tree = renderer.create(<CustomFieldInputSingleChoice {...requiredProps} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -22,26 +27,26 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     }];
 
     it('shows choices when clicked', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
 
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
     it('does not show choices when readOnly is true', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="bar" choices={choices} readOnly />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} readOnly />);
+      userEvent.click(screen.getByLabelText('Test label'));
 
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });
 
     it('does not show option when focused, but shows when enter key is pressed', () => {
-      render(<CustomFieldInputSingleChoice label="YOOOOOOOO" id="yo" choices={choices} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
       userEvent.tab();
 
-      expect(screen.getByLabelText('YOOOOOOOO')).toHaveFocus();
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
 
@@ -51,8 +56,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('hides choices when ESC is pressed', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
 
@@ -62,16 +67,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('focuses on the first choice with tab', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab();
 
       expect(document.activeElement.innerHTML).toBe('foo');
     });
 
     it('focuses on the second choice with down arrow', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" choices={choices} />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab();
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
@@ -81,46 +86,46 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('id API', () => {
     it('accepts an ID', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="this-is-an-id" />);
-      expect(screen.getByLabelText('Foo')).toHaveAttribute('id', 'this-is-an-id');
+      render(<CustomFieldInputSingleChoice {...requiredProps} id="this-is-an-id" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'this-is-an-id');
     });
   });
 
   describe('label API', () => {
     it('accepts a label', () => {
-      render(<CustomFieldInputSingleChoice label="Bar" id="bar" />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} label="Bar" />);
       expect(screen.getByLabelText('Bar')).toBeDefined();
     });
   });
 
   describe('placeholder API', () => {
     it('accepts a placeholder', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="foo" placeholder="I am place" />);
-      expect(screen.getByLabelText('Foo')).toHaveAttribute('placeholder', 'I am place');
+      render(<CustomFieldInputSingleChoice {...requiredProps} placeholder="I am place" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('placeholder', 'I am place');
     });
   });
 
   describe('readOnly API', () => {
     it('sets the readonly attribute', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" readOnly />);
-      expect(screen.getByLabelText('Foo')).toHaveAttribute('readonly', '');
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('readonly', '');
     });
 
     it('unsets the readonly attribute', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" readOnly={false} />);
-      expect(screen.getByLabelText('Foo')).not.toHaveAttribute('readonly', '');
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
+      expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
     });
   });
 
   describe('required API', () => {
     it('sets the required attribute', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" required />);
-      expect(screen.getByLabelText('Foo')).toBeRequired();
+      render(<CustomFieldInputSingleChoice {...requiredProps} required />);
+      expect(screen.getByLabelText('Test label')).toBeRequired();
     });
 
     it('unsets the required attribute', () => {
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" required={false} />);
-      expect(screen.getByLabelText('Foo')).not.toBeRequired();
+      render(<CustomFieldInputSingleChoice {...requiredProps} required={false} />);
+      expect(screen.getByLabelText('Test label')).not.toBeRequired();
     });
   });
 
@@ -134,7 +139,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     }];
 
     it('sets the value of the input', () => {
-      render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} />);
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('broke my heart'));
 
@@ -142,7 +147,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('keeps the selected value selected', () => {
-      render(<CustomFieldInputSingleChoice label="Oh La Mort" id="hey" choices={choices} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} />);
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('broke my heart'));
       userEvent.click(screen.getByLabelText('Oh La Mort'));
@@ -154,15 +159,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   describe('value API', () => {
     it('accepts a value', () => {
       const value = { id: 'some-selection', label: 'Some selection' };
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={value} />);
-      expect(screen.getByLabelText('Foo')).toHaveValue('Some selection');
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
     });
 
     it('provided value sets the corresponding list item as selected', () => {
       const value = { id: 'hello', label: 'hello' };
       const choices = [value];
-      render(<CustomFieldInputSingleChoice label="Foo" id="yooo" value={value} choices={choices} />);
-      userEvent.click(screen.getByLabelText('Foo'));
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
 
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
     });
