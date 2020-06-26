@@ -151,21 +151,21 @@ describe('src/components/listbox/listbox', () => {
     });
   });
 
-  describe('onSelectionChange API', () => {
+  describe('onChange API', () => {
     it('informs when a selection is made', () => {
       const refs = [createRef(), createRef()];
-      const onSelectionChange = jest.fn();
+      const onChange = jest.fn();
 
       render((
-        <Listbox {...requiredProps} refs={refs} onSelectionChange={onSelectionChange}>
+        <Listbox {...requiredProps} refs={refs} onChange={onChange}>
           <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
           <ListOption dataId="hey" value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
 
       userEvent.click(screen.getByText('Hey'));
-      expect(onSelectionChange.mock.calls.length).toBe(1);
-      expect(onSelectionChange.mock.calls[0][0]).toMatchObject({ id: 'hey', label: 'hey' });
+      expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange.mock.calls[0][0]).toMatchObject({ id: 'hey', label: 'hey' });
     });
   });
 
