@@ -8,7 +8,6 @@ import styles from './listbox.css';
 export default function Listbox(props) {
   const [active, setActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedIndexes, setSelectedIndexes] = useState([]);
 
   useEffect(() => {
     if (active) {
@@ -19,18 +18,8 @@ export default function Listbox(props) {
   });
 
   const refIndexOf = target => props.refs.findIndex(ref => ref.current && ref.current.contains(target));
-  const optionsWasSelected = (toggledRefIndex, isSelected) => {
-    let newSelectedIndexes = selectedIndexes.slice(0, selectedIndexes.length);
-
-    if (isSelected) {
-      newSelectedIndexes.push(toggledRefIndex);
-    } else {
-      const indexOfToggledRef = newSelectedIndexes.indexOf(toggledRefIndex);
-      newSelectedIndexes = newSelectedIndexes.splice(indexOfToggledRef, 1);
-    }
-
+  const optionsWasSelected = (toggledRefIndex) => {
     props.onChange(props.refs[toggledRefIndex].current.value);
-    setSelectedIndexes(newSelectedIndexes);
   };
 
   function onFocus(event) {
@@ -46,8 +35,7 @@ export default function Listbox(props) {
   function onClick(event) {
     const selectedRefIndex = refIndexOf(event.target);
     if (selectedRefIndex !== -1) {
-      const isSelected = props.refs[selectedRefIndex].current.toggleSelected();
-      optionsWasSelected(selectedRefIndex, isSelected);
+      optionsWasSelected(selectedRefIndex);
     }
   }
 
@@ -73,8 +61,7 @@ export default function Listbox(props) {
         break;
       case 'Enter': {
         keyEvent.preventDefault();
-        const isSelected = props.refs[activeIndex].current.toggleSelected();
-        optionsWasSelected(activeIndex, isSelected);
+        optionsWasSelected(activeIndex);
         break;
       }
       case 'Home':
