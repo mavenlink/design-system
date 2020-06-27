@@ -93,10 +93,7 @@ CustomFieldInputSingleChoice.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: PropTypes.oneOfType([
-    ChoiceType,
-    undefined,
-  ]),
+  value: ChoiceType,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
