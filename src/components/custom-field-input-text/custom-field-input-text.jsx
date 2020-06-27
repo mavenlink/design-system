@@ -133,7 +133,7 @@ CustomFieldInputText.propTypes = {
     'number',
     'text',
   ]),
-  defaultValue: PropTypes.oneOfType([
+  value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
