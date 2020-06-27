@@ -6,8 +6,20 @@ It has no underlying validations besides developer intent (see Error example for
 
 ```jsx
 <CustomFieldInputText
-  id="test-id-1"
+  id="basic-test-1"
   label="Example 1"
+/>
+
+<CustomFieldInputText
+  defaultValue="This uses an uncontrolled value"
+  id="basic-test-2"
+  label="Example 1"
+/>
+
+<CustomFieldInputText
+  id="basic-test-3"
+  label="Example 1"
+  value="This uses a controlled value"
 />
 ```
 ----

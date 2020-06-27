@@ -56,15 +56,16 @@ export default function CustomFieldInputSingleChoice(props) {
   return (
     <div className={styles.container}>
       <CustomFieldInputText
-        defaultValue={value.label}
         icon={caretIcon}
         id={props.id}
         label={props.label}
+        onChange={() => {}}
         onClick={onClick}
         onKeyUp={onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
+        value={value.label}
       />
       { showOptions && (
         <Listbox
@@ -81,8 +82,8 @@ export default function CustomFieldInputSingleChoice(props) {
 }
 
 const ChoiceType = PropTypes.shape({
-  id: PropTypes.string,
-  label: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 });
 
 CustomFieldInputSingleChoice.propTypes = {
@@ -92,7 +93,10 @@ CustomFieldInputSingleChoice.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: ChoiceType,
+  value: PropTypes.oneOfType([
+    ChoiceType,
+    undefined,
+  ]),
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
@@ -100,5 +104,8 @@ CustomFieldInputSingleChoice.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  value: {},
+  value: {
+    id: undefined,
+    label: '',
+  },
 };

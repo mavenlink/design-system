@@ -40,6 +40,13 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('defaultValue API', () => {
+    it('sets the value attribute', () => {
+      render(<TestComponent defaultValue="test-value" />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
+    });
+  });
+
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<TestComponent disabled />);
@@ -230,13 +237,6 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('defaultValue API', () => {
-    it('sets the value attribute', () => {
-      render(<TestComponent defaultValue="test-value" />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
-    });
-  });
-
   describe('icon API', () => {
     it('shows an icon when provided', () => {
       const icon = <Icon name={calendarSvg.id} currentColor="action" />;
@@ -284,6 +284,13 @@ describe('CustomFieldInputText', () => {
     it('can be set to readonly', () => {
       const { getByLabelText } = render(<TestComponent readOnly />);
       expect(getByLabelText('Test label')).toHaveAttribute('readOnly');
+    });
+  });
+
+  describe('value API', () => {
+    it('sets the value attribute', () => {
+      render(<TestComponent value="test-value" />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
     });
   });
 });

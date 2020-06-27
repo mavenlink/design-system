@@ -86,6 +86,7 @@ export default function CustomFieldInputText(props) {
         required={props.required}
         step={props.step}
         type={props.type}
+        value={props.value}
       />
       {showIcon() && icon()}
     </FormControl>
@@ -132,6 +133,10 @@ CustomFieldInputText.propTypes = {
     'number',
     'text',
   ]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 CustomFieldInputText.defaultProps = {
@@ -156,4 +161,5 @@ CustomFieldInputText.defaultProps = {
   required: false,
   step: undefined,
   type: 'text',
+  value: undefined,
 };
