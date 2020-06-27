@@ -54,7 +54,7 @@ ListOption.propTypes = {
   defaultActive: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 ListOption.defaultProps = {
