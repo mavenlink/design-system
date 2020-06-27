@@ -56,6 +56,7 @@ export default function CustomFieldInputSingleChoice(props) {
   return (
     <div className={styles.container}>
       <CustomFieldInputText
+        defaultValue={value.label}
         icon={caretIcon}
         id={props.id}
         label={props.label}
@@ -64,7 +65,6 @@ export default function CustomFieldInputSingleChoice(props) {
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
-        value={value.label}
       />
       { showOptions && (
         <Listbox

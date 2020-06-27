@@ -15,9 +15,9 @@ It has no underlying validations besides developer intent (see Error example for
 ```jsx
 <CustomFieldInputText
   disabled
+  defaultValue="This value cannot be changed"
   id="test-id-2"
   label="Example 2"
-  value="This value cannot be changed"
 />
 ```
 ----

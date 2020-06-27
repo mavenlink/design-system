@@ -230,9 +230,9 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('value API', () => {
+  describe('defaultValue API', () => {
     it('sets the value attribute', () => {
-      render(<TestComponent value="test-value" />);
+      render(<TestComponent defaultValue="test-value" />);
       expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
     });
   });

@@ -85,6 +85,7 @@ export default function CustomFieldInputDate(props) {
 
     return (<CustomFieldInputText
       {...sharedProps}
+      defaultValue={value}
       error={!isValid}
       helpText={helpText()}
       id={props.id}
@@ -94,16 +95,15 @@ export default function CustomFieldInputDate(props) {
       onChange={handleOnChange}
       step={1}
       type="date"
-      value={value}
     />);
   }
 
   return (<CustomFieldInputText
     {...sharedProps}
+    defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
     id={props.id}
     key={`${props.id}-readonly`}
     type="text"
-    value={convertToFormat(props.value, 'Month dd, yyyy')}
   />);
 }
 
