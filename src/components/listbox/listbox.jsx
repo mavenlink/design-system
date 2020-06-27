@@ -29,11 +29,6 @@ export default function Listbox(props) {
       newSelectedIndexes = newSelectedIndexes.splice(indexOfToggledRef, 1);
     }
 
-    if (props.selectionLimit && newSelectedIndexes.length > props.selectionLimit) {
-      const deselectIndex = newSelectedIndexes.shift();
-      props.refs[deselectIndex].current.toggleSelected();
-    }
-
     props.onChange(props.refs[toggledRefIndex].current.value);
     setSelectedIndexes(newSelectedIndexes);
   };
@@ -119,12 +114,10 @@ Listbox.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
-  selectionLimit: PropTypes.number,
 };
 
 Listbox.defaultProps = {
   className: styles.container,
   children: undefined,
   onChange: () => {},
-  selectionLimit: 0,
 };

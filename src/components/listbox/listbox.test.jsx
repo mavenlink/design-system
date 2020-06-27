@@ -176,42 +176,4 @@ describe('src/components/listbox/listbox', () => {
       expect(() => userEvent.click(screen.getByText('foo'))).not.toThrow();
     });
   });
-
-  describe('selectionLimit API', () => {
-    it('allows all things to be selected on 0', () => {
-      const refs = [createRef(), createRef()];
-
-      render((
-        <Listbox {...requiredProps} refs={refs} selectionLimit={0}>
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Hello'));
-      expect(document.activeElement).toHaveAttribute('aria-selected', 'true');
-
-      userEvent.click(screen.getByText('Hey'));
-      expect(document.activeElement).toHaveAttribute('aria-selected', 'true');
-      expect(screen.getByText('Hello')).toHaveAttribute('aria-selected', 'true');
-    });
-
-    it('can be set to 1', () => {
-      const refs = [createRef(), createRef()];
-
-      render((
-        <Listbox {...requiredProps} refs={refs} selectionLimit={1}>
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Hello'));
-      expect(document.activeElement).toHaveAttribute('aria-selected', 'true');
-
-      userEvent.click(screen.getByText('Hey'));
-      expect(document.activeElement).toHaveAttribute('aria-selected', 'true');
-      expect(screen.getByText('Hello')).toHaveAttribute('aria-selected', 'false');
-    });
-  });
 });
