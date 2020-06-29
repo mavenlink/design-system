@@ -1,25 +1,49 @@
 import React, {
+  forwardRef,
   useEffect,
+  useImperativeHandle,
+  useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import styles from './listbox.css';
 
-export default function Listbox(props) {
+const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   const [active, setActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [didMount, setDidMount] = useState(false);
+  const [value, setValue] = useState(props.value);
+  const backupRef = useRef();
+  const ref = forwardedRef || backupRef;
 
   useEffect(() => {
     if (active) {
-      props.refs.forEach((ref, index) => {
-        if (ref.current) ref.current.setActive(index === activeIndex);
+      props.refs.forEach((optionRef, index) => {
+        if (optionRef.current) optionRef.current.setActive(index === activeIndex);
       });
     }
   });
 
-  const refIndexOf = target => props.refs.findIndex(ref => ref.current && ref.current.contains(target));
+  useEffect(() => {
+    if (!didMount) return;
+
+    props.onChange({ target: ref.current });
+  }, [value]);
+
+  useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    value,
+  }));
+
+  const refIndexOf = target => props.refs.findIndex(optionRef => (
+    optionRef.current && optionRef.current.contains(target)
+  ));
+
   const optionsWasSelected = (toggledRefIndex) => {
-    props.onChange(props.refs[toggledRefIndex].current.value);
+    setValue(props.refs[toggledRefIndex].current.value);
   };
 
   function onFocus(event) {
@@ -84,27 +108,30 @@ export default function Listbox(props) {
       { props.children }
     </ul>
   );
-}
+});
 
 const ListOptionRefType = PropTypes.shape({
   current: PropTypes.shape({
     contains: PropTypes.func,
     setActive: PropTypes.func,
-    toggleSelected: PropTypes.func,
     value: PropTypes.any,
   }),
 });
 
 Listbox.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node,
+  className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
+  value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
 Listbox.defaultProps = {
   className: styles.container,
   children: undefined,
   onChange: () => {},
+  value: undefined,
 };
+
+export default Listbox;

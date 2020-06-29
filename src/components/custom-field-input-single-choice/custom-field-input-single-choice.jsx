@@ -48,8 +48,8 @@ export default function CustomFieldInputSingleChoice(props) {
     </ListOption>
   ));
 
-  function onChange(newValue) {
-    setValue(newValue);
+  function onChange(event) {
+    setValue(event.target.value);
     setShowOptions(false);
   }
 
@@ -73,6 +73,7 @@ export default function CustomFieldInputSingleChoice(props) {
           labelledBy={`${props.id}-label`}
           onChange={onChange}
           refs={refs}
+          value={value}
         >
           { listOptions }
         </Listbox>
