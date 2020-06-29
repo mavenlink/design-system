@@ -38,7 +38,7 @@ export default function CustomFieldInputSingleChoice(props) {
     <ListOption
       key={item.id}
       ref={refs[index]}
-      selected={item.id === value.id}
+      selected={value && item.id === value.id}
       value={{
         id: item.id,
         label: item.label,
@@ -65,7 +65,7 @@ export default function CustomFieldInputSingleChoice(props) {
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
-        value={value.label}
+        value={value ? value.label : ''}
       />
       { showOptions && (
         <Listbox
@@ -101,8 +101,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  value: {
-    id: undefined,
-    label: '',
-  },
+  value: undefined,
 };
