@@ -7,14 +7,10 @@ function hasStars(slug) {
 }
 
 export default function Stars(props) {
-  return (
-    <div>
-      {hasStars(props.slug) &&
-        <div className={styles.stars}>
-          <div className={styles.mavenConstellation} />
-          <div className={styles.largeStar} />
-        </div>
-      }
+  return (hasStars(props.slug) &&
+    <div className={styles.stars}>
+      <div className={styles.mavenConstellation} />
+      <div className={styles.largeStar} />
     </div>
   );
 }

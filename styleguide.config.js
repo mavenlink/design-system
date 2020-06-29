@@ -103,16 +103,18 @@ module.exports = {
       sidebarBackground: 'white',
     },
     fontFamily: {
-      base: '"Open Sans", system-ui, sans-serif',
+      base: '"Open Sans", system-ui, sans-serif', // --mds-type-font-family
     },
     fontSize: {
-      base: 16,
-      h1: 30,
-      h2: 24,
-      h3: 18,
-      h4: 16,
-      h5: 14,
-      h6: 14,
+      base: 14, // --mds-type-content
+      text: 14, // --mds-type-content
+      small: 12, // --mds-type-subtext
+      h1: 22, // --mds-type-page-title
+      h2: 16, // --mds-type-subhead-1
+      h3: 16, // --mds-type-subhead-2
+      h4: 14, // --mds-type-subhead-3
+      h5: 14, // --mds-type-subhead-3
+      h6: 14, // --mds-type-subhead-3
     },
   },
   title: 'Mavenlink Design System',
