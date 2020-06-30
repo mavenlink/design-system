@@ -44,26 +44,32 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   const listOptions = () => {
-    const choices = {};
-    props.choices.forEach((item, index) => {
-      choices[item.id] = { ...item, index };
-    });
-
     if (searchValue) {
-      return props.choices.filter(item => item.label.toLowerCase().includes(searchValue.toLowerCase()))
-        .map(item => (
-          <ListOption
-            key={item.id}
-            ref={refs[choices[item.id].index]}
-            selected={value && item.id === value.id}
-            value={{
-              id: item.id,
-              label: item.label,
-            }}
-          >
-            {item.label}
-          </ListOption>
-        ));
+      const searchValueLowerCase = searchValue.toLowerCase();
+      const choices = {};
+      props.choices.forEach((item, index) => {
+        choices[item.id] = { ...item, index };
+      });
+
+      return props.choices.filter(item => item.label.toLowerCase().includes(searchValueLowerCase))
+        .map((item) => {
+          const choice = choices[item.id];
+          const ref = refs[choice.index];
+
+          return (
+            <ListOption
+              key={item.id}
+              ref={ref}
+              selected={value && item.id === value.id}
+              value={{
+                id: item.id,
+                label: item.label,
+              }}
+            >
+              {item.label}
+            </ListOption>
+          );
+        });
     }
 
     return props.choices.map((item, index) => (
