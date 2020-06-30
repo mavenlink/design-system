@@ -16,16 +16,19 @@ export default function TagList(props) {
 
   function onClick(event) {
     const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
+
     if (nextActiveIndex === -1) {
       props.onClick();
-    } else {
-      setActiveIndex(nextActiveIndex);
     }
   }
 
   function onFocus(event) {
-    const focusedATag = props.refs.some(ref => ref.current.contains(event.target));
-    if (focusedATag) setActive(true);
+    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
+
+    if (nextActiveIndex !== -1) {
+      setActive(true);
+      setActiveIndex(nextActiveIndex);
+    }
   }
 
   function onKeyDown(event) {
