@@ -15,6 +15,7 @@ export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
 
+  const inputRef = useRef();
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -51,6 +52,10 @@ export default function CustomFieldInputSingleChoice(props) {
   function onChange(event) {
     setValue(event.target.value);
     setShowOptions(false);
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }
 
   return (
@@ -64,6 +69,7 @@ export default function CustomFieldInputSingleChoice(props) {
         onKeyUp={onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
+        inputRef={inputRef}
         required={props.required}
         value={value ? value.label : ''}
       />

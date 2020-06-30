@@ -74,6 +74,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(document.activeElement.innerHTML).toBe('bar');
     });
+
+    it('focuses the input after selection', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('foo'));
+
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+    });
   });
 
   describe('id API', () => {
