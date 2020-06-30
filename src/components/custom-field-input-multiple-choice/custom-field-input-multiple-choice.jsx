@@ -17,9 +17,17 @@ function CustomFieldInputMultipleChoice(props) {
   const choicesRefs = props.choices.map(() => useRef());
   const valueRefs = props.value.map(() => useRef());
   const [expanded, setExpanded] = useState(false);
+  const [value, setValue] = useState(props.value);
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
+
+  function onChoiceRemove(event) {
+    const newValue = value.filter((choice, index) => (
+      valueRefs[index].current !== event.target
+    ));
+    setValue(newValue);
+  }
 
   function onClick() {
     setExpanded(true);
@@ -38,11 +46,12 @@ function CustomFieldInputMultipleChoice(props) {
         onClick={onClick}
         refs={valueRefs}
       >
-        {props.value.map((choice, index) => (
+        {value.map((choice, index) => (
           <Tag
             defaultActive={index === 0}
             id={`${props.id}-${choice.id}`}
             key={`${props.id}-${choice.id}`}
+            onRemove={onChoiceRemove}
             readOnly={props.readOnly}
             ref={valueRefs[index]}
           >

@@ -56,7 +56,7 @@ The `onRemove` prop is used to register a handler for interaction with the tag's
 
 
 ```
-<Tag id="on-clear-example" onRemove={event => { console.log(event); window.alert(event.type); }}>Test Title</Tag>
+<Tag id="on-clear-example" onRemove={event => { console.log(event); window.alert('Removed!'); }}>Test Title</Tag>
 ```
 
 ### Advanced usage

@@ -24,6 +24,22 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
+  describe('accessibility', () => {
+    it('removes choice values when pressing the remove button', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        value={requiredProps.choices}
+      />));
+
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+
+      userEvent.click(screen.getAllByRole('button')[0]);
+      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
+      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+  });
+
   describe('choices API', () => {
     it('can be set', () => {
       render((<CustomFieldInputMultipleChoice
