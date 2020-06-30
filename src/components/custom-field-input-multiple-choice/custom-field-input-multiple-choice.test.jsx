@@ -24,8 +24,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
-  describe('accessibility', () => {
-    it('removes choice values when pressing the remove button', () => {
+  describe('deselecting a choice', () => {
+    it('removes the choice value when pressing the remove button', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         value={requiredProps.choices}
@@ -50,9 +50,24 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         }]}
       />));
 
-      expect(screen.queryByText('Answer to everything')).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', 'Answer to everything')).not.toBeInTheDocument();
       userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.getByText('Answer to everything')).toBeInTheDocument();
+      expect(screen.getByRole('option', 'Answer to everything')).toBeInTheDocument();
+    });
+
+    it('does not show a selected choice', () => {
+      const choices =[{
+        id: '42',
+        label: 'Answer to everything',
+      }]
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        value={choices}
+      />));
+
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('option', 'Answer to everything')).not.toBeInTheDocument();
     });
   });
 

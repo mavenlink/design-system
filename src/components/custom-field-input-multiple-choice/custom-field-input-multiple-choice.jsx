@@ -66,15 +66,18 @@ function CustomFieldInputMultipleChoice(props) {
           labelledBy={`${props.id}-label`}
           refs={choicesRefs}
         >
-          {props.choices.map((choice, index) => (
-            <ListOption
-              key={`${props.id}-${choice.id}`}
-              ref={choicesRefs[index]}
-              value={choice}
-            >
-              {choice.label}
-            </ListOption>
-          ))}
+          {props.choices
+            .filter(choice => !value.includes(choice))
+            .map((choice, index) => (
+              <ListOption
+                key={`${props.id}-${choice.id}`}
+                ref={choicesRefs[index]}
+                value={choice}
+              >
+                {choice.label}
+              </ListOption>
+            ))
+          }
         </Listbox>
       )}
     </FormControl>
