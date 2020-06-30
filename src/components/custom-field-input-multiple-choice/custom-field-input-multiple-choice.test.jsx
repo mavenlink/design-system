@@ -4,10 +4,18 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
+    choices: [{
+      id: '1',
+      label: 'Choice 1',
+    }, {
+      id: '2',
+      label: 'Choice 2',
+    }],
     id: 'test-id',
     label: 'test label',
   };
@@ -16,18 +24,28 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
+  describe('choices API', () => {
+    it('can be set', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={[{
+          id: '42',
+          label: 'Answer to everything',
+        }]}
+      />));
+
+      expect(screen.queryByText('Answer to everything')).not.toBeInTheDocument();
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.getByText('Answer to everything')).toBeInTheDocument();
+    });
+  });
+
   describe('id API', () => {
     it('generates unique tag ids', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         id="123"
-        value={[{
-          id: '1',
-          label: 'Choice 1',
-        }, {
-          id: '2',
-          label: 'Choice 2',
-        }]}
+        value={requiredProps.choices}
       />));
 
       expect(screen.getByText('Choice 1').parentElement).toHaveAttribute('id', '123-1');
@@ -48,10 +66,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={true}
-        value={[{
-          id: '1',
-          label: 'Choice 1',
-        }]}
+        value={[requiredProps.choices[0]]}
       />));
 
       expect(screen.queryByRole('button')).toBeNull();
@@ -61,10 +76,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={false}
-        value={[{
-          id: '1',
-          label: 'Choice 1',
-        }]}
+        value={[requiredProps.choices[0]]}
       />));
 
       expect(screen.getByRole('button')).toBeInTheDocument();
@@ -75,13 +87,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('generates tags', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        value={[{
-          id: '1',
-          label: 'Choice 1',
-        }, {
-          id: '2',
-          label: 'Choice 2',
-        }]}
+        value={requiredProps.choices}
       />));
 
       expect(screen.getByText('Choice 1')).toBeInTheDocument();

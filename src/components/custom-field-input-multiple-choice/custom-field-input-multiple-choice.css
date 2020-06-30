@@ -21,3 +21,14 @@
 .input-icon {
   composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
 }
+
+.dropdown-container {
+  composes: container from '../listbox/listbox.css';
+  background-color: white;
+  box-sizing: border-box;
+  max-height: 160px;
+  overflow: scroll;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}

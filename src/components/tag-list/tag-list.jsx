@@ -16,11 +16,16 @@ export default function TagList(props) {
 
   function onClick(event) {
     const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
-    if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
+    if (nextActiveIndex === -1) {
+      props.onClick();
+    } else {
+      setActiveIndex(nextActiveIndex);
+    }
   }
 
-  function onFocus() {
-    setActive(true);
+  function onFocus(event) {
+    const focusedATag = props.refs.some(ref => ref.current.contains(event.target));
+    if (focusedATag) setActive(true);
   }
 
   function onKeyDown(event) {
@@ -69,9 +74,11 @@ TagList.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   labelledBy: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
 };
 
 TagList.defaultProps = {
   className: styles['tag-list'],
+  onClick: () => {},
 };

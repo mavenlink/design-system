@@ -1,20 +1,29 @@
 import React, {
   useRef,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import Listbox from '../listbox/listbox.jsx';
+import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
 function CustomFieldInputMultipleChoice(props) {
-  const refs = props.value.map(() => useRef());
+  const choicesRefs = props.choices.map(() => useRef());
+  const valueRefs = props.value.map(() => useRef());
+  const [expanded, setExpanded] = useState(false);
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
+
+  function onClick() {
+    setExpanded(true);
+  }
 
   return (
     <FormControl
@@ -26,7 +35,8 @@ function CustomFieldInputMultipleChoice(props) {
         className={classContainer}
         id={props.id}
         labelledBy={`${props.id}-label`}
-        refs={refs}
+        onClick={onClick}
+        refs={valueRefs}
       >
         {props.value.map((choice, index) => (
           <Tag
@@ -34,18 +44,39 @@ function CustomFieldInputMultipleChoice(props) {
             id={`${props.id}-${choice.id}`}
             key={`${props.id}-${choice.id}`}
             readOnly={props.readOnly}
-            ref={refs[index]}
+            ref={valueRefs[index]}
           >
             {choice.label}
           </Tag>
         ))}
         <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
       </TagList>
+      {(expanded &&
+        <Listbox
+          className={styles['dropdown-container']}
+          labelledBy={`${props.id}-label`}
+          refs={choicesRefs}
+        >
+          {props.choices.map((choice, index) => (
+            <ListOption
+              key={`${props.id}-${choice.id}`}
+              ref={choicesRefs[index]}
+              value={choice}
+            >
+              {choice.label}
+            </ListOption>
+          ))}
+        </Listbox>
+      )}
     </FormControl>
   );
 }
 
 CustomFieldInputMultipleChoice.propTypes = {
+  choices: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })),
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
