@@ -43,48 +43,42 @@ export default function CustomFieldInputSingleChoice(props) {
     }
   }
 
-  const listOptions = () => {
+  function getChoices() {
+    const choices = {};
+    props.choices.forEach((item, index) => {
+      choices[item.id] = { ...item, index };
+    });
+
     if (searchValue) {
       const searchValueLowerCase = searchValue.toLowerCase();
-      const choices = {};
-      props.choices.forEach((item, index) => {
-        choices[item.id] = { ...item, index };
-      });
 
-      return props.choices.filter(item => item.label.toLowerCase().includes(searchValueLowerCase))
-        .map((item) => {
-          const choice = choices[item.id];
-          const ref = refs[choice.index];
-
-          return (
-            <ListOption
-              key={item.id}
-              ref={ref}
-              selected={value && item.id === value.id}
-              value={{
-                id: item.id,
-                label: item.label,
-              }}
-            >
-              {item.label}
-            </ListOption>
-          );
-        });
+      return props.choices
+        .filter(item => item.label.toLowerCase().includes(searchValueLowerCase))
+        .map(item => choices[item.id]);
     }
 
-    return props.choices.map((item, index) => (
-      <ListOption
-        key={item.id}
-        ref={refs[index]}
-        selected={value && item.id === value.id}
-        value={{
-          id: item.id,
-          label: item.label,
-        }}
-      >
-        {item.label}
-      </ListOption>
-    ));
+    return props.choices.map(item => choices[item.id]);
+  }
+
+  const listOptions = () => {
+    return getChoices()
+      .map((item) => {
+        const ref = refs[item.index];
+
+        return (
+          <ListOption
+            key={item.id}
+            ref={ref}
+            selected={value && item.id === value.id}
+            value={{
+              id: item.id,
+              label: item.label,
+            }}
+          >
+            {item.label}
+          </ListOption>
+        );
+      });
   };
 
   function onSelectionChange(event) {
