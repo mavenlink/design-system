@@ -82,6 +82,7 @@ export default function CustomFieldInputSingleChoice(props) {
 
   function onSearchChange(event) {
     setSearchValue(event.target.value);
+    setShowOptions(true);
   }
 
   const customTextField = () => {
@@ -90,25 +91,18 @@ export default function CustomFieldInputSingleChoice(props) {
       id: props.id,
       key: showOptions ? 'single-choice-edit-mode' : 'single-choice-view-mode',
       label: props.label,
-      onChange: showOptions ? onSearchChange : onSelectionChange,
       onClick,
       onKeyUp,
       placeholder: props.placeholder,
       readOnly: props.readOnly,
       required: props.required,
+      value: searchValue || (value ? value.label : ''),
     };
-
-    if (showOptions) {
-      return (<CustomFieldInputText
-        {...sharedProps}
-        defaultValue={value ? value.label : ''}
-        inputRef={editRef}
-      />);
-    }
 
     return (<CustomFieldInputText
       {...sharedProps}
-      value={value ? value.label : ''}
+      inputRef={editRef}
+      onChange={onSearchChange}
     />);
   };
 

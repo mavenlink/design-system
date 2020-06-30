@@ -93,6 +93,18 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('Hey')).toBeInTheDocument();
       expect(screen.queryByText('Hi')).not.toBeInTheDocument();
     });
+
+    it('allows filtering when focused on the component', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.tab();
+      // NOTE: Use of fireEvent here was to get around userEvent.type() submitting a click
+      // event.
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 'he' } });
+
+      expect(document.activeElement).toHaveValue('he');
+      expect(screen.queryByText('Hey')).toBeInTheDocument();
+      expect(screen.queryByText('Hi')).not.toBeInTheDocument();
+    });
   });
 
   describe('id API', () => {
