@@ -138,9 +138,12 @@ const ChoiceType = PropTypes.shape({
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
+  // eslint-disable-next-line react/no-unused-prop-types
   label: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   required: PropTypes.bool,
   value: ChoiceType,
 };
