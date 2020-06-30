@@ -1,5 +1,4 @@
 import React, {
-  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -16,7 +15,6 @@ export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
-  const editRef = useRef();
 
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
@@ -24,12 +22,6 @@ export default function CustomFieldInputSingleChoice(props) {
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
     fill="skip"
   />);
-
-  useEffect(() => {
-    if (showOptions && !props.readOnly) {
-      editRef.current.focus();
-    }
-  }, [showOptions]);
 
   function onClick() {
     setShowOptions(!props.readOnly);
@@ -90,7 +82,6 @@ export default function CustomFieldInputSingleChoice(props) {
       <CustomFieldInputText
         icon={caretIcon}
         id={props.id}
-        inputRef={editRef}
         label={props.label}
         onChange={onSearchChange}
         onClick={onClick}
