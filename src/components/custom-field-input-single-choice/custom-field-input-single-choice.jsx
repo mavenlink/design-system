@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -14,6 +15,8 @@ import ListOption from '../list-option/list-option.jsx';
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [searchValue, setSearchValue] = useState(undefined);
+  const editRef = useRef();
 
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
@@ -21,6 +24,12 @@ export default function CustomFieldInputSingleChoice(props) {
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
     fill="skip"
   />);
+
+  useEffect(() => {
+    if (showOptions && !props.readOnly) {
+      editRef.current.focus();
+    }
+  }, [showOptions]);
 
   function onClick() {
     setShowOptions(!props.readOnly);
@@ -34,48 +43,95 @@ export default function CustomFieldInputSingleChoice(props) {
     }
   }
 
-  const listOptions = props.choices.map((item, index) => (
-    <ListOption
-      key={item.id}
-      ref={refs[index]}
-      selected={value && item.id === value.id}
-      value={{
-        id: item.id,
-        label: item.label,
-      }}
-    >
-      {item.label}
-    </ListOption>
-  ));
+  const listOptions = () => {
+    const choices = {};
+    props.choices.forEach((item, index) => {
+      choices[item.id] = { ...item, index };
+    });
 
-  function onChange(event) {
+    if (searchValue) {
+      return props.choices.filter(item => item.label.toLowerCase().includes(searchValue.toLowerCase()))
+        .map(item => (
+          <ListOption
+            key={item.id}
+            ref={refs[choices[item.id].index]}
+            selected={value && item.id === value.id}
+            value={{
+              id: item.id,
+              label: item.label,
+            }}
+          >
+            {item.label}
+          </ListOption>
+        ));
+    }
+
+    return props.choices.map((item, index) => (
+      <ListOption
+        key={item.id}
+        ref={refs[index]}
+        selected={value && item.id === value.id}
+        value={{
+          id: item.id,
+          label: item.label,
+        }}
+      >
+        {item.label}
+      </ListOption>
+    ));
+  };
+
+  function onSelectionChange(event) {
     setValue(event.target.value);
     setShowOptions(false);
   }
 
+  function onSearchChange(event) {
+    setSearchValue(event.target.value);
+  }
+
+  const input = () => {
+    const sharedProps = {
+      icon: caretIcon,
+      id: props.id,
+      label: props.label,
+      onClick,
+      onKeyUp,
+      placeholder: props.placeholder,
+      readOnly: props.readOnly,
+      required: props.required,
+    };
+
+    if (showOptions) {
+      return (<CustomFieldInputText
+        {...sharedProps}
+        defaultValue={value ? value.label : ''}
+        key="single-choice-edit-mode"
+        onChange={onSearchChange}
+        inputRef={editRef}
+      />);
+    }
+
+    return (<CustomFieldInputText
+      {...sharedProps}
+      key="single-choice-view-mode"
+      onChange={onSelectionChange}
+      value={value ? value.label : ''}
+    />);
+  };
+
   return (
     <div className={styles.container}>
-      <CustomFieldInputText
-        icon={caretIcon}
-        id={props.id}
-        label={props.label}
-        onChange={() => {}}
-        onClick={onClick}
-        onKeyUp={onKeyUp}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        required={props.required}
-        value={value ? value.label : ''}
-      />
+      { input() }
       { showOptions && (
         <Listbox
           className={styles.dropdown}
           labelledBy={`${props.id}-label`}
-          onChange={onChange}
+          onChange={onSelectionChange}
           refs={refs}
           value={value}
         >
-          { listOptions }
+          { listOptions() }
         </Listbox>
       ) }
     </div>
