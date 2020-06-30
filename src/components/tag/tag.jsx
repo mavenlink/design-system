@@ -21,7 +21,7 @@ const Tag = forwardRef(function Tag(props, ref) {
       case 'Enter':
         if (tabActiveStates[1]) {
           keyEvent.preventDefault();
-          props.onClear(keyEvent);
+          props.onRemove(keyEvent);
         }
         break;
       case 'ArrowDown':
@@ -54,7 +54,7 @@ const Tag = forwardRef(function Tag(props, ref) {
     setFocusQueued(true);
 
     if (gridIndex === 1) {
-      props.onClear(clickEvent);
+      props.onRemove(clickEvent);
     }
   }
 
@@ -123,13 +123,13 @@ Tag.propTypes = {
   children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  onClear: PropTypes.func,
+  onRemove: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
   defaultActive: true,
-  onClear: () => {},
+  onRemove: () => {},
   readOnly: false,
 };
 
