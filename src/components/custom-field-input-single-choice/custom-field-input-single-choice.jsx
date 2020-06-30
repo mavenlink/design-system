@@ -85,30 +85,21 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
-  const customTextField = () => {
-    const sharedProps = {
-      icon: caretIcon,
-      id: props.id,
-      key: showOptions ? 'single-choice-edit-mode' : 'single-choice-view-mode',
-      label: props.label,
-      onClick,
-      onKeyUp,
-      placeholder: props.placeholder,
-      readOnly: props.readOnly,
-      required: props.required,
-      value: searchValue || (value ? value.label : ''),
-    };
-
-    return (<CustomFieldInputText
-      {...sharedProps}
-      inputRef={editRef}
-      onChange={onSearchChange}
-    />);
-  };
-
   return (
     <div className={styles.container}>
-      { customTextField() }
+      <CustomFieldInputText
+        icon={caretIcon}
+        id={props.id}
+        inputRef={editRef}
+        label={props.label}
+        onChange={onSearchChange}
+        onClick={onClick}
+        onKeyUp={onKeyUp}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        required={props.required}
+        value={searchValue || (value ? value.label : '')}
+      />
       { showOptions && (
         <Listbox
           className={styles.dropdown}
@@ -132,12 +123,9 @@ const ChoiceType = PropTypes.shape({
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
-  // eslint-disable-next-line react/no-unused-prop-types
   label: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
-  // eslint-disable-next-line react/no-unused-prop-types
   required: PropTypes.bool,
   value: ChoiceType,
 };
