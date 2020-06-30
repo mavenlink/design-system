@@ -14,8 +14,8 @@ export default function TagList(props) {
     });
   }, [active, activeIndex]);
 
-  function onClick(clickEvent) {
-    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(clickEvent.target));
+  function onClick(event) {
+    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
     if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
   }
 
@@ -23,28 +23,28 @@ export default function TagList(props) {
     setActive(true);
   }
 
-  function onKeyDown(keyEvent) {
-    switch (keyEvent.key) {
+  function onKeyDown(event) {
+    switch (event.key) {
       case 'ArrowLeft':
       case 'ArrowUp':
         if (activeIndex > 0) {
-          keyEvent.preventDefault();
+          event.preventDefault();
           setActiveIndex(activeIndex - 1);
         }
         break;
       case 'ArrowRight':
       case 'ArrowDown':
         if (activeIndex < props.refs.length - 1) {
-          keyEvent.preventDefault();
+          event.preventDefault();
           setActiveIndex(activeIndex + 1);
         }
         break;
       case 'End':
-        keyEvent.preventDefault();
+        event.preventDefault();
         setActiveIndex(props.refs.length - 1);
         break;
       case 'Home':
-        keyEvent.preventDefault();
+        event.preventDefault();
         setActiveIndex(0);
         break;
       default:
