@@ -43,11 +43,9 @@ export default function CustomFieldInputSingleChoice(props) {
     }
   }
 
-  function getChoices() {
+  function getOptions() {
     const choices = {};
-    props.choices.forEach((item, index) => {
-      choices[item.id] = { ...item, index };
-    });
+    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
 
     if (searchValue) {
       const searchValueLowerCase = searchValue.toLowerCase();
@@ -61,24 +59,20 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   const listOptions = () => {
-    return getChoices()
-      .map((item) => {
-        const ref = refs[item.index];
-
-        return (
-          <ListOption
-            key={item.id}
-            ref={ref}
-            selected={value && item.id === value.id}
-            value={{
-              id: item.id,
-              label: item.label,
-            }}
-          >
-            {item.label}
-          </ListOption>
-        );
-      });
+    return getOptions()
+      .map(item => (
+        <ListOption
+          key={item.id}
+          ref={refs[item.index]}
+          selected={value && item.id === value.id}
+          value={{
+            id: item.id,
+            label: item.label,
+          }}
+        >
+          {item.label}
+        </ListOption>
+      ));
   };
 
   function onSelectionChange(event) {
@@ -90,11 +84,13 @@ export default function CustomFieldInputSingleChoice(props) {
     setSearchValue(event.target.value);
   }
 
-  const input = () => {
+  const customTextField = () => {
     const sharedProps = {
       icon: caretIcon,
       id: props.id,
+      key: showOptions ? 'single-choice-edit-mode' : 'single-choice-view-mode',
       label: props.label,
+      onChange: showOptions ? onSearchChange : onSelectionChange,
       onClick,
       onKeyUp,
       placeholder: props.placeholder,
@@ -106,23 +102,19 @@ export default function CustomFieldInputSingleChoice(props) {
       return (<CustomFieldInputText
         {...sharedProps}
         defaultValue={value ? value.label : ''}
-        key="single-choice-edit-mode"
-        onChange={onSearchChange}
         inputRef={editRef}
       />);
     }
 
     return (<CustomFieldInputText
       {...sharedProps}
-      key="single-choice-view-mode"
-      onChange={onSelectionChange}
       value={value ? value.label : ''}
     />);
   };
 
   return (
     <div className={styles.container}>
-      { input() }
+      { customTextField() }
       { showOptions && (
         <Listbox
           className={styles.dropdown}
