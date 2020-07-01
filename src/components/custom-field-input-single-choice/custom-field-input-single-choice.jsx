@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -12,9 +13,11 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
+  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
 
+  const inputRef = useRef();
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -22,15 +25,26 @@ export default function CustomFieldInputSingleChoice(props) {
     fill="skip"
   />);
 
-  function onClick() {
-    setShowOptions(!props.readOnly);
+  function onChange(event) {
+    setValue(event.target.value);
+    setShowOptions(false);
   }
 
-  function onKeyUp(event) {
-    if (event.key === 'Enter') {
-      setShowOptions(!props.readOnly);
-    } else if (event.key === 'Escape') {
-      setShowOptions(false);
+  function onClick() {
+    if (!props.readOnly) setShowOptions(true);
+  }
+
+  function onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault();
+        if (!showOptions && !props.readOnly) setShowOptions(true);
+        break;
+      case 'Escape':
+        event.preventDefault();
+        setShowOptions(false);
+        break;
+      default:
     }
   }
 
@@ -48,10 +62,14 @@ export default function CustomFieldInputSingleChoice(props) {
     </ListOption>
   ));
 
-  function onChange(event) {
-    setValue(event.target.value);
-    setShowOptions(false);
-  }
+  useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useEffect(() => {
+    if (!didMount) return;
+    if (!showOptions) inputRef.current.focus();
+  }, [showOptions]);
 
   return (
     <div className={styles.container}>
@@ -61,9 +79,10 @@ export default function CustomFieldInputSingleChoice(props) {
         label={props.label}
         onChange={() => {}}
         onClick={onClick}
-        onKeyUp={onKeyUp}
+        onKeyDown={onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
+        inputRef={inputRef}
         required={props.required}
         value={value ? value.label : ''}
       />
