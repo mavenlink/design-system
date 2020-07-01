@@ -16,28 +16,6 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   const backupRef = useRef();
   const ref = forwardedRef || backupRef;
 
-  useEffect(() => {
-    if (active) {
-      props.refs.forEach((optionRef, index) => {
-        if (optionRef.current) optionRef.current.setActive(index === activeIndex);
-      });
-    }
-  });
-
-  useEffect(() => {
-    if (!didMount) return;
-
-    props.onChange({ target: ref.current });
-  }, [value]);
-
-  useEffect(() => {
-    setDidMount(true);
-  }, []);
-
-  useImperativeHandle(ref, () => ({
-    value,
-  }));
-
   const refIndexOf = target => props.refs.findIndex(optionRef => (
     optionRef.current && optionRef.current.contains(target)
   ));
@@ -95,6 +73,28 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       default:
     }
   }
+
+  useEffect(() => {
+    if (active) {
+      props.refs.forEach((optionRef, index) => {
+        if (optionRef.current) optionRef.current.setActive(index === activeIndex);
+      });
+    }
+  });
+
+  useEffect(() => {
+    if (!didMount) return;
+
+    props.onChange({ target: ref.current });
+  }, [value]);
+
+  useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    value,
+  }));
 
   return (
     <ul
