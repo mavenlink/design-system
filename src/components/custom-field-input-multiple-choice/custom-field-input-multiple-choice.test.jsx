@@ -56,10 +56,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
 
     it('does not show a selected choice', () => {
-      const choices =[{
+      const choices = [{
         id: '42',
         label: 'Answer to everything',
-      }]
+      }];
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         choices={choices}

@@ -88,7 +88,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   choices: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
