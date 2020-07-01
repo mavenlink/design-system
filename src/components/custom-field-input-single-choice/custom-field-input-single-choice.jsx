@@ -69,7 +69,7 @@ export default function CustomFieldInputSingleChoice(props) {
   useEffect(() => {
     if (!didMount) return;
     if (!showOptions) inputRef.current.focus();
-  }, [showOptions])
+  }, [showOptions]);
 
   return (
     <div className={styles.container}>
