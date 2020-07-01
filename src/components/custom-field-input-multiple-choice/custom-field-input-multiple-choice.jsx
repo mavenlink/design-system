@@ -1,5 +1,5 @@
 import React, {
-  useRef,
+  createRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -14,10 +14,11 @@ import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
 function CustomFieldInputMultipleChoice(props) {
-  const choicesRefs = props.choices.map(() => useRef());
-  const valueRefs = props.value.map(() => useRef());
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
+  const visibleChoices = props.choices.filter(choice => !value.includes(choice));
+  const choicesRefs = visibleChoices.map(() => createRef());
+  const valueRefs = value.map(() => createRef());
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
@@ -27,6 +28,12 @@ function CustomFieldInputMultipleChoice(props) {
       valueRefs[index].current !== event.target
     ));
     setValue(newValue);
+  }
+
+  function onChoiceSelect(event) {
+    const selectedChoiceIndex = choicesRefs.findIndex(choiceRef => choiceRef === event.target);
+    const selectedChoice = visibleChoices[selectedChoiceIndex];
+    setValue([...value, selectedChoice]);
   }
 
   function onClick() {
@@ -71,6 +78,7 @@ function CustomFieldInputMultipleChoice(props) {
             .map((choice, index) => (
               <ListOption
                 key={`${props.id}-${choice.id}`}
+                onSelect={onChoiceSelect}
                 ref={choicesRefs[index]}
                 value={choice}
               >

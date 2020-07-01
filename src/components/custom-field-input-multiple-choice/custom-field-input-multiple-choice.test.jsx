@@ -114,6 +114,24 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('selecting a choice', () => {
+    it('removes the choice from the list of choices', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
+      userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
+    });
+
+    it('adds the choice to the selected choices', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
+      userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
+      expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
+    });
+  });
+
   describe('value API', () => {
     it('generates tags', () => {
       render((<CustomFieldInputMultipleChoice
