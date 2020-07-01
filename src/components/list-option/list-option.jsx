@@ -54,6 +54,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   useEffect(() => {
     if (focusQueued) {
       rootRef.current.focus();
+      setFocusQueued(false);
     }
   });
 
