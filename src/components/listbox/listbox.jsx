@@ -93,6 +93,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }, []);
 
   useImperativeHandle(ref, () => ({
+    focus: () => props.refs[activeIndex].current.setActive(true),
     value,
   }));
 
