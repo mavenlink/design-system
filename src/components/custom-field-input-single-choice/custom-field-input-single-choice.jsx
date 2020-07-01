@@ -23,6 +23,15 @@ export default function CustomFieldInputSingleChoice(props) {
     fill="skip"
   />);
 
+  function onChange(event) {
+    setValue(event.target.value);
+    setShowOptions(false);
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }
+
   function onClick() {
     setShowOptions(!props.readOnly);
   }
@@ -48,15 +57,6 @@ export default function CustomFieldInputSingleChoice(props) {
       {item.label}
     </ListOption>
   ));
-
-  function onChange(event) {
-    setValue(event.target.value);
-    setShowOptions(false);
-
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }
 
   return (
     <div className={styles.container}>
