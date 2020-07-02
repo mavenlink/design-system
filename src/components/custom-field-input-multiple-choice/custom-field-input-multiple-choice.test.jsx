@@ -142,6 +142,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.click(screen.getByLabelText('test label'));
       expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
       userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
+      userEvent.click(screen.getByLabelText('test label'));
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
     });
 
@@ -149,7 +150,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
       userEvent.click(screen.getByLabelText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
-      userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
+      userEvent.click(screen.getByLabelText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
     });
   });

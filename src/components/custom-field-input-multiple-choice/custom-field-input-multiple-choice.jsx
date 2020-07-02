@@ -36,6 +36,7 @@ function CustomFieldInputMultipleChoice(props) {
   function onChoiceSelect(event) {
     const selectedChoiceIndex = choicesRefs.findIndex(choiceRef => choiceRef === event.target);
     const selectedChoice = visibleChoices[selectedChoiceIndex];
+    setExpanded(false);
     setValue([...value, selectedChoice]);
   }
 
