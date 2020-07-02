@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {
+  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -22,6 +23,27 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
   it('has defaults', () => {
     expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
+  });
+
+  describe('autocompleter popup', () => {
+    it('opens on click', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Choice 2' })).not.toBeInTheDocument();
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Choice 2' })).toBeInTheDocument();
+    });
+
+    it('closes on escape key', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Choice 2' })).toBeInTheDocument();
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Choice 2' })).not.toBeInTheDocument();
+    });
   });
 
   describe('deselecting a choice', () => {
@@ -50,9 +72,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         }]}
       />));
 
-      expect(screen.queryByRole('option', 'Answer to everything')).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
       userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.getByRole('option', 'Answer to everything')).toBeInTheDocument();
+      expect(screen.getByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
     });
 
     it('does not show a selected choice', () => {
@@ -67,7 +89,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('option', 'Answer to everything')).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
     });
   });
 

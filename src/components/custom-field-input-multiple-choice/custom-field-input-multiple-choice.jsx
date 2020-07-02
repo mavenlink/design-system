@@ -1,5 +1,7 @@
 import React, {
   createRef,
+  useEffect,
+  useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -14,6 +16,7 @@ import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
 function CustomFieldInputMultipleChoice(props) {
+  const listboxRef = useRef();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
   const visibleChoices = props.choices.filter(choice => !value.includes(choice));
@@ -40,10 +43,26 @@ function CustomFieldInputMultipleChoice(props) {
     setExpanded(true);
   }
 
+  function onKeyDown(event) {
+    switch (event.key) {
+      case 'Escape':
+        setExpanded(false);
+        break;
+      default:
+    }
+  }
+
+  useEffect(() => {
+    if (expanded && listboxRef.current) {
+      listboxRef.current.focus();
+    }
+  }, [expanded]);
+
   return (
     <FormControl
       label={props.label}
       labelId={`${props.id}-label`}
+      onKeyDown={onKeyDown}
       readOnly={props.readOnly}
     >
       <TagList
@@ -67,10 +86,11 @@ function CustomFieldInputMultipleChoice(props) {
         ))}
         <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
       </TagList>
-      {(expanded &&
+      {(expanded && visibleChoices.length !== 0 &&
         <Listbox
-          className={styles['dropdown-container']}
+          className={styles['popup-container']}
           labelledBy={`${props.id}-label`}
+          ref={listboxRef}
           refs={choicesRefs}
         >
           {props.choices

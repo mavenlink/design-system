@@ -24,7 +24,7 @@
   composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
 }
 
-.dropdown-container {
+.popup-container {
   composes: container from '../listbox/listbox.css';
   background-color: var(--white);
   box-sizing: border-box;
