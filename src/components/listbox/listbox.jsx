@@ -80,7 +80,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
         if (optionRef.current) optionRef.current.setActive(index === activeIndex);
       });
     }
-  });
+  }, [active, activeIndex]);
 
   useEffect(() => {
     if (!didMount) return;
