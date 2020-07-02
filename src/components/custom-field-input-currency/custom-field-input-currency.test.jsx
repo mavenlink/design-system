@@ -35,7 +35,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
       const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus',
-        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps'];
+        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'dataAttributes'];
       const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
       const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
 
