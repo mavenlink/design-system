@@ -40,6 +40,13 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('dataAttributes API', () => {
+    it('can have custom data attributes', () => {
+      render(<TestComponent dataAttributes={{'test-attribute': 'some-value'}} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('data-test-attribute', 'some-value');
+    });
+  });
+
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<TestComponent disabled />);
