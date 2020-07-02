@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Adjust typography table to more clearly display MDS variable names
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
+  - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
 </details>
 
 ## 0.27.0 (June 23, 2020)
