@@ -25,6 +25,7 @@ function CustomFieldInputMultipleChoice(props) {
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
+  const renderPopup = expanded && visibleChoices.length !== 0;
 
   function onChoiceRemove(event) {
     const newValue = value.filter((choice, index) => (
@@ -87,7 +88,7 @@ function CustomFieldInputMultipleChoice(props) {
         ))}
         <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
       </TagList>
-      {(expanded && visibleChoices.length !== 0 &&
+      {(renderPopup &&
         <Listbox
           className={styles['popup-container']}
           labelledBy={`${props.id}-label`}
