@@ -28,21 +28,29 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   describe('autocompleter popup', () => {
     it('opens on click', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'Choice 2' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'Choice 2' })).toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
     });
 
     it('closes on escape key', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
       userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'Choice 2' })).toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
       fireEvent.keyDown(document.activeElement, { key: 'Escape' });
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'Choice 2' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('does not open when there are no choices', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('does not open when read-only', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} readOnly />);
+      userEvent.click(screen.getByLabelText('test label'));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
   });
 

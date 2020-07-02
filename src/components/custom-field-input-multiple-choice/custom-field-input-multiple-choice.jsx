@@ -25,7 +25,7 @@ function CustomFieldInputMultipleChoice(props) {
   const classContainer = props.readOnly ?
     styles['read-only-container'] :
     styles['read-write-container'];
-  const renderPopup = expanded && visibleChoices.length !== 0;
+  const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
 
   function onChoiceRemove(event) {
     const newValue = value.filter((choice, index) => (
