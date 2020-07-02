@@ -3,6 +3,8 @@
 exports[`Input has defaults 1`] = `
 <div
   className="container"
+  onKeyDown={[Function]}
+  role="presentation"
 >
   <label
     className="label"

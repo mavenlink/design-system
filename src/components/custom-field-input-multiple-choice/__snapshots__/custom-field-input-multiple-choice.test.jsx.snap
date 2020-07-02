@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-<div>
+<div
+  onKeyDown={[Function]}
+  role="presentation"
+>
   <label
     className="label"
     id="test-id-label"
