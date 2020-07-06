@@ -10,6 +10,7 @@
   - Minor: Adjust typography table to more clearly display MDS variable names
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
   - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
+  - Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
 </details>
 
 ## 0.27.0 (June 23, 2020)
