@@ -22,6 +22,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       onChange={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       onKeyUp={[Function]}
       readOnly={true}
       required={false}

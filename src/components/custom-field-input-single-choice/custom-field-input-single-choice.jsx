@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -12,10 +13,12 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
+  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
 
+  const inputRef = useRef();
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -24,14 +27,20 @@ export default function CustomFieldInputSingleChoice(props) {
   />);
 
   function onClick() {
-    setShowOptions(!props.readOnly);
+    if (!props.readOnly) setShowOptions(true);
   }
 
-  function onKeyUp(event) {
-    if (event.key === 'Enter') {
-      setShowOptions(!props.readOnly);
-    } else if (event.key === 'Escape') {
-      setShowOptions(false);
+  function onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault();
+        if (!showOptions && !props.readOnly) setShowOptions(true);
+        break;
+      case 'Escape':
+        event.preventDefault();
+        setShowOptions(false);
+        break;
+      default:
     }
   }
 
@@ -77,6 +86,15 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
+  useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useEffect(() => {
+    if (!didMount) return;
+    if (!showOptions) inputRef.current.focus();
+  }, [showOptions]);
+
   return (
     <div className={styles.container}>
       <CustomFieldInputText
@@ -85,9 +103,10 @@ export default function CustomFieldInputSingleChoice(props) {
         label={props.label}
         onChange={onSearchChange}
         onClick={onClick}
-        onKeyUp={onKeyUp}
+        onKeyDown={onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
+        inputRef={inputRef}
         required={props.required}
         value={searchValue || (value ? value.label : '')}
       />
