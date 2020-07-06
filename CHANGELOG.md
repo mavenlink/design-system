@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Update `CustomFieldInputNumber` to accept error and helpText props
 </details>
 
 ## 0.28.0 (July 02, 2020)
