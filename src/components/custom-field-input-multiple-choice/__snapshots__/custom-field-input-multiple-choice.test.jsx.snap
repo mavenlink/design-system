@@ -7,6 +7,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 >
   <label
     className="label"
+    htmlFor="test-id-autocomple"
     id="test-id-label"
   >
     test label
@@ -22,6 +23,12 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
       onKeyDown={[Function]}
       role="grid"
     >
+      <input
+        aria-labelledby="test-id-label"
+        id="test-id-autocomple"
+        onChange={[Function]}
+        value=""
+      />
       <svg
         className="input-icon size-medium stroke-none color-transparent"
         role="img"
