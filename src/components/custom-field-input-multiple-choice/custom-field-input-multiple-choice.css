@@ -12,7 +12,7 @@
 
 .read-write-container {
   composes: container;
-  composes: input from '../custom-field-input-text/custom-field-input-text.css';
+  composes: read-write-input from '../custom-field-input-text/custom-field-input-text.css';
 }
 
 .read-only-container {

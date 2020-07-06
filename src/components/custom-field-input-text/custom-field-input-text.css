@@ -3,7 +3,7 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.input {
+.input-styles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
@@ -11,6 +11,10 @@
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
   padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
   width: 100%;
+}
+
+.input {
+  composes: input-styles;
 }
 
 .input:disabled {
@@ -21,8 +25,12 @@
   background-color: var(--mds-grey-3);
 }
 
+.read-write-input {
+  composes: input-styles;
+}
+
 .read-only-input {
-  composes: input;
+  composes: read-write-input;
   background-color: var(--mds-grey-3);
 }
 
