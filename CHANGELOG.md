@@ -11,6 +11,10 @@
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
 </details>
 
+## 0.28.0 (July 02, 2020)
+- Minor: Publish all files in repo to NPM.
+- Minor: Adjust typography table to more clearly display MDS variable names
+
 ## 0.27.0 (June 23, 2020)
 - Minor: Forward refs to `Button`
 
