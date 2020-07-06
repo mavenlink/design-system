@@ -34,6 +34,25 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
+  describe('error and helpText API', () => {
+    it('is invalid when true', () => {
+      render(<TestComponent error helpText="Here's some help text!" />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+    });
+
+    it('shows the provided helpText when true', () => {
+      render(<TestComponent error helpText="Here's some help text!" />);
+      expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
+    });
+
+    it('does not show helpText when false', () => {
+      render(<TestComponent error={false} helpText="Here's some help text!" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
+    });
+  });
+
+  // TODO: helpText API as well
+
   describe('id API', () => {
     it('sets the id attribute', () => {
       render(<TestComponent id="test-id" />);
