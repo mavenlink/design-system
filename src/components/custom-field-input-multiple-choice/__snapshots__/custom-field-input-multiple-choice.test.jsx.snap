@@ -25,6 +25,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
     >
       <input
         aria-labelledby="test-id-label"
+        className="autocomplete-input"
         id="test-id-autocomple"
         onChange={[Function]}
         value=""
