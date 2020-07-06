@@ -1,4 +1,5 @@
 @import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
 
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
@@ -18,6 +19,11 @@
 .read-only-container {
   composes: container;
   composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.autocomplete-input {
+  border: none;
+  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
 }
 
 .input-icon {
