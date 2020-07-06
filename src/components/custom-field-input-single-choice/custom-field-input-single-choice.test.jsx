@@ -86,6 +86,35 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('filtering', () => {
+    const choices = [{
+      id: '1',
+      label: 'Hey',
+    }, {
+      id: '2',
+      label: 'Hi',
+    }];
+
+    it('occurs when provided text to filter on', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(document.activeElement, 'he');
+
+      expect(screen.getByText('Hey')).toBeInTheDocument();
+      expect(screen.queryByText('Hi')).not.toBeInTheDocument();
+    });
+
+    it('allows filtering when focused on the component', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.tab();
+      userEvent.type(document.activeElement, 'he', { skipClick: true });
+
+      expect(document.activeElement).toHaveValue('he');
+      expect(screen.queryByText('Hey')).toBeInTheDocument();
+      expect(screen.queryByText('Hi')).not.toBeInTheDocument();
+    });
+  });
+
   describe('id API', () => {
     it('accepts an ID', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} id="this-is-an-id" />);
