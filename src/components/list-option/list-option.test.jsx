@@ -12,6 +12,7 @@ import ListOption from './list-option.jsx';
 describe('src/components/list-option/list-option', () => {
   const requiredProps = {
     children: 'Test option',
+    value: 'test-option',
   };
 
   it('renders defaults', () => {
@@ -21,7 +22,7 @@ describe('src/components/list-option/list-option', () => {
 
   describe('children API', () => {
     it('accepts a node as children', () => {
-      render(<ListOption><div><span>Text is here!</span></div></ListOption>);
+      render(<ListOption {...requiredProps}><div><span>Text is here!</span></div></ListOption>);
       expect(screen.getByText('Text is here!')).toBeInTheDocument();
     });
   });
@@ -84,6 +85,14 @@ describe('src/components/list-option/list-option', () => {
         expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1');
       });
     });
+
+    describe('value', () => {
+      it('has the value prop', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} value="unique-value" ref={ref} />);
+        expect(ref.current.value).toEqual('unique-value');
+      });
+    });
   });
 
   describe('title API', () => {
@@ -91,6 +100,14 @@ describe('src/components/list-option/list-option', () => {
       const title = "Hello. Is it me you're looking for?";
       render(<ListOption {...requiredProps} title={title} />);
       expect(screen.getByText('Test option')).toHaveAttribute('title', title);
+    });
+  });
+
+  describe('value API', () => {
+    it('sets it on the ref', () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} value="unique-value" ref={ref} />);
+      expect(ref.current.value).toEqual('unique-value');
     });
   });
 });
