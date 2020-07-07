@@ -82,7 +82,15 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   function onSearchChange(event) {
-    setSearchValue(event.target.value);
+    const newValue = event.target.value;
+
+    if (newValue === '') {
+      setValue(undefined);
+      setSearchValue(undefined);
+      return;
+    }
+
+    setSearchValue(newValue);
     setShowOptions(true);
   }
 

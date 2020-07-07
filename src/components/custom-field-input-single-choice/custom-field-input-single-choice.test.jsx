@@ -113,6 +113,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.queryByText('Hey')).toBeInTheDocument();
       expect(screen.queryByText('Hi')).not.toBeInTheDocument();
     });
+
+    it('respects deleting the value', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Hey'));
+      userEvent.click(screen.getByLabelText('Test label'));
+      fireEvent.change(document.activeElement, { target: { value: '' } });
+
+      expect(document.activeElement).toHaveValue('');
+    });
   });
 
   describe('id API', () => {
