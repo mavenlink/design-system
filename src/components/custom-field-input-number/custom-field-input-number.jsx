@@ -32,7 +32,7 @@ export default function CustomFieldInputNumber(props) {
   useEffect(() => {
     if (!inputRef.current) return;
 
-    setInvalid(!inputRef.current.validity.valid || props.error);
+    setInvalid(!inputRef.current.validity.valid);
   });
 
   useEffect(() => {
