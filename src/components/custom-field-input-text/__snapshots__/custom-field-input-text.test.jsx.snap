@@ -21,6 +21,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
       onChange={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       onKeyUp={[Function]}
       readOnly={false}
       required={false}

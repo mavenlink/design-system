@@ -68,7 +68,7 @@ export default function CustomFieldInputText(props) {
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
-        defaultValue={props.value}
+        defaultValue={props.defaultValue}
         className={styles.input}
         disabled={props.disabled}
         id={props.id}
@@ -79,6 +79,7 @@ export default function CustomFieldInputText(props) {
         onChange={props.onChange}
         onClick={props.onClick}
         onFocus={props.onFocus}
+        onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
@@ -86,6 +87,7 @@ export default function CustomFieldInputText(props) {
         required={props.required}
         step={props.step}
         type={props.type}
+        value={props.value}
       />
       {showIcon() && icon()}
     </FormControl>
@@ -98,6 +100,10 @@ CustomFieldInputText.propTypes = {
     haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
@@ -118,6 +124,7 @@ CustomFieldInputText.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -137,6 +144,7 @@ CustomFieldInputText.propTypes = {
 CustomFieldInputText.defaultProps = {
   ariaProps: {},
   className: undefined,
+  defaultValue: undefined,
   disabled: false,
   error: false,
   helpText: undefined,
@@ -149,6 +157,7 @@ CustomFieldInputText.defaultProps = {
   onChange: () => {},
   onClick: () => {},
   onFocus: () => {},
+  onKeyDown: () => {},
   onKeyUp: () => {},
   placeholder: undefined,
   readOnly: false,
