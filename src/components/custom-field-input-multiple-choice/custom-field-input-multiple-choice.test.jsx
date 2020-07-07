@@ -55,6 +55,15 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.queryByRole('listbox')).toBeInTheDocument();
       });
 
+      it('opens on typing', async () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.tab();
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), 'Choi', { skipClick: true });
+        expect(screen.queryByRole('listbox')).toBeInTheDocument();
+      });
+
       it('closes on escape key', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} />);
         userEvent.click(screen.getByText('test label'));
