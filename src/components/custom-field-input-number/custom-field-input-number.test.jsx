@@ -2,7 +2,6 @@ import React, { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
-import userEvent from '@testing-library/user-event';
 
 describe('CustomFieldInputNumber', () => {
   function TestComponent(props = {}) {
