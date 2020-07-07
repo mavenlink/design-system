@@ -50,6 +50,7 @@ function CustomFieldInputMultipleChoice(props) {
   }
 
   function onAutocompleteChange(event) {
+    setExpanded(true);
     setAutocompleteValue(event.target.value);
   }
 
