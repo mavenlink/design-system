@@ -77,7 +77,9 @@ export default function CustomFieldInputSingleChoice(props) {
   };
 
   function onSelectionChange(event) {
-    setValue(event.target.value);
+    const selectedValue = event.target.value;
+    setValue(selectedValue);
+    setSearchValue(selectedValue.label);
     setShowOptions(false);
   }
 

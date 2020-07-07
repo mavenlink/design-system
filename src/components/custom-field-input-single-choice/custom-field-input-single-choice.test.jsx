@@ -123,6 +123,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(document.activeElement).toHaveValue('');
     });
+
+    it('allows selection on filtering', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(document.activeElement, 'he');
+      userEvent.click(screen.getByText('Hey'));
+
+      expect(document.activeElement).toHaveValue('Hey');
+    });
   });
 
   describe('id API', () => {
