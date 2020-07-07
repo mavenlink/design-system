@@ -26,19 +26,9 @@ export default function Icon(props) {
 }
 
 Icon.propTypes = {
-  id: PropTypes.string,
   ariaLabel: PropTypes.string,
   ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
-  fill: PropTypes.oneOf([
-    'primary',
-    'action',
-    'highlight',
-    'caution',
-    'gray',
-    'none',
-    'skip',
-  ]),
   currentColor: PropTypes.oneOf([
     'primary',
     'action',
@@ -48,6 +38,16 @@ Icon.propTypes = {
     'transparent',
     'skip',
   ]),
+  fill: PropTypes.oneOf([
+    'primary',
+    'action',
+    'highlight',
+    'caution',
+    'gray',
+    'none',
+    'skip',
+  ]),
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   role: PropTypes.oneOf([
     'button',
@@ -74,9 +74,9 @@ Icon.defaultProps = {
   ariaLabel: undefined,
   ariaLabelledBy: undefined,
   className: styles['icon-base'],
+  currentColor: 'transparent',
   fill: 'none',
   id: undefined,
-  currentColor: 'transparent',
   role: 'img',
   size: 'medium',
   stroke: 'none',
