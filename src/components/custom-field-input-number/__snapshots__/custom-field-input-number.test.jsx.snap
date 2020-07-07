@@ -32,6 +32,9 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       step={1}
       type="number"
     />
+    <div
+      className="icon-container"
+    />
   </div>
 </div>
 `;

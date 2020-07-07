@@ -33,7 +33,7 @@ export default function CustomFieldInputText(props) {
     }
   });
 
-  const icon = () => {
+  const showInvalidIcon = () => {
     if (isInvalid(props.error, props.readOnly)) {
       return (<Icon
         className={styles['input-icon']}
@@ -43,15 +43,15 @@ export default function CustomFieldInputText(props) {
       />);
     }
 
+    return undefined;
+  };
+
+  const showIcon = () => {
     if (props.icon) {
       return props.icon;
     }
 
     return undefined;
-  };
-
-  const showIcon = () => {
-    return isInvalid(props.error, props.readOnly) || !!props.icon;
   };
 
   return (
@@ -88,7 +88,10 @@ export default function CustomFieldInputText(props) {
         type={props.type}
         value={props.value}
       />
-      {showIcon() && icon()}
+      <div className={styles['icon-container']}>
+        { showInvalidIcon() }
+        { showIcon() }
+      </div>
     </FormControl>
   );
 }

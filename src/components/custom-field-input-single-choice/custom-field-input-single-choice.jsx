@@ -89,6 +89,8 @@ export default function CustomFieldInputSingleChoice(props) {
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
+        error={props.error}
+        helpText={props.helpText}
         value={searchValue || (value ? value.label : '')}
       />
       { showOptions && (
@@ -119,6 +121,8 @@ CustomFieldInputSingleChoice.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: ChoiceType,
+  error: PropTypes.bool,
+  helpText: PropTypes.string,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
@@ -127,4 +131,6 @@ CustomFieldInputSingleChoice.defaultProps = {
   readOnly: false,
   required: false,
   value: undefined,
+  error: false,
+  helpText: undefined,
 };

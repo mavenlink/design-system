@@ -40,10 +40,13 @@
   color: var(--mds-grey-54);
 }
 
-.input-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
+.icon-container {
   position: absolute;
   right: 6px;
   top: 6px;
+}
+
+.input-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
 }

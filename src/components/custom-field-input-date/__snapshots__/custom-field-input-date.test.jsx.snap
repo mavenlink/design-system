@@ -28,17 +28,21 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       step={1}
       type="date"
     />
-    <svg
-      className="input-icon size-medium color-transparent"
-      role="img"
+    <div
+      className="icon-container"
     >
-      <title>
-        Hello
-      </title>
-      <use
-        xlinkHref="#icon-calendar-fill.svg"
-      />
-    </svg>
+      <svg
+        className="input-icon size-medium color-transparent"
+        role="img"
+      >
+        <title>
+          Hello
+        </title>
+        <use
+          xlinkHref="#icon-calendar-fill.svg"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;

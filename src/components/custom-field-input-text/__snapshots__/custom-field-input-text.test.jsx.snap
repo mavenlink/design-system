@@ -26,6 +26,9 @@ exports[`CustomFieldInputText has defaults 1`] = `
       required={false}
       type="text"
     />
+    <div
+      className="icon-container"
+    />
   </div>
 </div>
 `;
