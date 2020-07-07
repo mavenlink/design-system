@@ -27,6 +27,11 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       onKeyUp={[Function]}
       readOnly={false}
       required={false}
+      style={
+        Object {
+          "--numIcon": 0,
+        }
+      }
       type="text"
     />
     <div

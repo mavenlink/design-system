@@ -2,6 +2,7 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
+@import '../icon/icon.css';
 
 .input {
   border: 1px solid var(--mds-grey-12);
@@ -9,7 +10,10 @@
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding-top: 7px;
+  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
+  padding-bottom: 7px;
+  padding-left: var(--spacing-medium);
   width: 100%;
 }
 
@@ -28,7 +32,6 @@
 
 .input:invalid {
   border-color: var(--mds-red-100);
-  padding-right: var(--spacing-x-large);
 }
 
 .input-container {

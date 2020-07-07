@@ -26,6 +26,11 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       readOnly={true}
       required={false}
       step={1}
+      style={
+        Object {
+          "--numIcon": 1,
+        }
+      }
       type="date"
     />
     <div
