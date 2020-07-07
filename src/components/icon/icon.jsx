@@ -17,6 +17,7 @@ export default function Icon(props) {
       aria-labelledby={props.ariaLabelledBy}
       className={classes.join(' ')}
       id={props.id}
+      onClick={props.onClick}
       role={props.role}
     >
       { props.title && <title>{props.title}</title> }
@@ -49,6 +50,7 @@ Icon.propTypes = {
   ]),
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   role: PropTypes.oneOf([
     'button',
     'img',
@@ -77,6 +79,7 @@ Icon.defaultProps = {
   currentColor: 'transparent',
   fill: 'none',
   id: undefined,
+  onClick: () => {},
   role: 'img',
   size: 'medium',
   stroke: 'none',

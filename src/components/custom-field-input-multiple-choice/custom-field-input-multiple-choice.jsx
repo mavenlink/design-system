@@ -10,6 +10,7 @@ import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import iconCaution from '../../svgs/icon-caution-fill.svg';
+import iconClear from '../../svgs/icon-clear-small.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
@@ -48,6 +49,12 @@ function CustomFieldInputMultipleChoice(props) {
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
     setValue([...value, selectedChoice]);
+  }
+
+  function onChoicesClear(event) {
+    event.preventDefault();
+    setValue([]);
+    setExpanded(false);
   }
 
   function onAutocompleteChange(event) {
@@ -126,6 +133,16 @@ function CustomFieldInputMultipleChoice(props) {
               currentColor="caution"
               fill="skip"
               name={iconCaution.id}
+            />
+          )}
+          {!props.readOnly && value.length > 0 && (
+            <Icon
+              className={styles['clear-icon']}
+              fill="skip"
+              name={iconClear.id}
+              onClick={onChoicesClear}
+              ariaLabel={`Remove all selected choices on ${props.label}`}
+              role="button"
             />
           )}
           <Icon className={styles['icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
