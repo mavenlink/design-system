@@ -82,37 +82,44 @@ function CustomFieldInputMultipleChoice(props) {
       onKeyDown={onKeyDown}
       readOnly={props.readOnly}
     >
-      <TagList
+      <div
         className={classContainer}
-        id={props.id}
-        labelledBy={`${props.id}-label`}
         onClick={onClick}
-        refs={valueRefs}
+        role="presentation"
       >
-        {value.map((choice, index) => (
-          <Tag
-            defaultActive={index === 0}
-            id={`${props.id}-${choice.id}`}
-            key={`${props.id}-${choice.id}`}
-            onRemove={onChoiceRemove}
-            readOnly={props.readOnly}
-            ref={valueRefs[index]}
-          >
-            {choice.label}
-          </Tag>
-        ))}
-        {!props.readOnly && (
-          <input
-            aria-labelledby={`${props.id}-label`}
-            className={styles['autocomplete-input']}
-            id={`${props.id}-autocomple`}
-            onChange={onAutocompleteChange}
-            ref={autocompleteRef}
-            value={autocompleteValue}
-          />
-        )}
-        <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
-      </TagList>
+        <TagList
+          className={styles['tag-list']}
+          id={props.id}
+          labelledBy={`${props.id}-label`}
+          refs={valueRefs}
+        >
+          {value.map((choice, index) => (
+            <Tag
+              defaultActive={index === 0}
+              id={`${props.id}-${choice.id}`}
+              key={`${props.id}-${choice.id}`}
+              onRemove={onChoiceRemove}
+              readOnly={props.readOnly}
+              ref={valueRefs[index]}
+            >
+              {choice.label}
+            </Tag>
+          ))}
+          {!props.readOnly && (
+            <input
+              aria-labelledby={`${props.id}-label`}
+              className={styles['autocomplete-input']}
+              id={`${props.id}-autocomple`}
+              onChange={onAutocompleteChange}
+              ref={autocompleteRef}
+              value={autocompleteValue}
+            />
+          )}
+        </TagList>
+        <div className={styles['icons-container']}>
+          <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
+        </div>
+      </div>
       {(renderPopup &&
         <Listbox
           className={styles['popup-container']}

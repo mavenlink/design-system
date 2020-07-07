@@ -9,7 +9,7 @@
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding: 7px 0 7px var(--spacing-medium);
   width: 100%;
 }
 
