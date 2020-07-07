@@ -145,7 +145,11 @@ function CustomFieldInputMultipleChoice(props) {
               role="button"
             />
           )}
-          <Icon className={styles.icon} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
+          <Icon
+            className={styles.icon}
+            name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
+            fill="skip"
+          />
         </div>
       </div>
       {(renderPopup &&
