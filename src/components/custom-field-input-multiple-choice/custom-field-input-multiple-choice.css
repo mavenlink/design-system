@@ -42,7 +42,7 @@
   padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
 }
 
-.input-icon {
+.icon {
   composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   pointer-events: none;
 }

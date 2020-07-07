@@ -119,7 +119,7 @@ function CustomFieldInputMultipleChoice(props) {
           )}
         </TagList>
         <div className={styles['icons-container']}>
-          <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
+          <Icon className={styles['icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
         </div>
       </div>
       {(renderPopup &&
