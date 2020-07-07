@@ -175,7 +175,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
     it('renders 2 icons with selected choices', () => {
       render((
-        <CustomFieldInputMultipleChoice {...requiredProps}
+        <CustomFieldInputMultipleChoice
+          {...requiredProps}
           helpText="This is an error message."
           value={[requiredProps.choices[0]]}
         />
