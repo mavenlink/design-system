@@ -37,8 +37,9 @@
 }
 
 .icons-container {
-  padding: var(--spacing-small) var(--spacing-medium);
+  display: inline-flex;
   flex-shrink: 0;
+  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
 }
 
 .input-icon {
