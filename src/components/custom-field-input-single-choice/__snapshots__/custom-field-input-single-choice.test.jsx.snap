@@ -36,6 +36,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       />
       <svg
         className="input-icon size-medium stroke-none color-transparent"
+        onClick={[Function]}
         role="img"
       >
         <use
