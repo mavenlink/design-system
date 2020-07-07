@@ -40,6 +40,13 @@ describe('CustomFieldInputNumber', () => {
       expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
 
+    it('updates correctly with a new error prop', () => {
+      const { rerender } = render(<TestComponent error={false} helpText="Here's some help text!" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
+      rerender(<TestComponent error helpText="Here's some help text!" />);
+      expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
+    });
+
     it('shows the provided helpText when true', () => {
       render(<TestComponent error helpText="Here's some help text!" />);
       expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
