@@ -149,6 +149,26 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
       expect(screen.queryByText('This is an error message.')).toBeInTheDocument();
     });
+
+    it('renders 1 icon', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      expect(screen.queryAllByRole('img')).toHaveLength(1);
+    });
+
+    it('renders 2 icons', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      expect(screen.queryAllByRole('img')).toHaveLength(2);
+    });
+
+    it('renders 2 icons with selected choices', () => {
+      render((
+        <CustomFieldInputMultipleChoice {...requiredProps}
+          helpText="This is an error message."
+          value={[requiredProps.choices[0]]}
+        />
+      ));
+      expect(screen.queryAllByRole('img')).toHaveLength(2);
+    });
   });
 
   describe('id API', () => {

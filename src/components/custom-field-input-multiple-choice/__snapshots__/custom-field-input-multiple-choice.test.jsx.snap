@@ -40,7 +40,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
         className="icons-container"
       >
         <svg
-          className="input-icon size-medium stroke-none color-transparent"
+          className="icon size-medium stroke-none color-transparent"
           role="img"
         >
           <use

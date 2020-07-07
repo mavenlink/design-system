@@ -9,6 +9,7 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import iconCaution from '../../svgs/icon-caution-fill.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
@@ -119,6 +120,7 @@ function CustomFieldInputMultipleChoice(props) {
           )}
         </TagList>
         <div className={styles['icons-container']}>
+          {!props.readOnly && props.helpText && <Icon className={styles['icon']} name={iconCaution.id} currentColor="caution" fill="skip" />}
           <Icon className={styles['icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
         </div>
       </div>
