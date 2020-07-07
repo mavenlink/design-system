@@ -21,6 +21,11 @@
   composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
 }
 
+.invalid-container {
+  composes: container;
+  composes: invalid-input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
 .autocomplete-input {
   border: none;
   margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;

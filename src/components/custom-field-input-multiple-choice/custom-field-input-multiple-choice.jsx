@@ -15,6 +15,13 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
+function getClassName(readOnly, helpText) {
+  if (readOnly) return styles['read-only-container'];
+  if (helpText) return styles['invalid-container'];
+
+  return styles['read-write-container'];
+}
+
 function CustomFieldInputMultipleChoice(props) {
   const autocompleteRef = useRef();
   const [autocompleteValue, setAutocompleteValue] = useState('');
@@ -25,9 +32,7 @@ function CustomFieldInputMultipleChoice(props) {
     .filter(choice => !value.includes(choice));
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = props.readOnly ?
-    styles['read-only-container'] :
-    styles['read-write-container'];
+  const classContainer = getClassName(props.readOnly, props.helpText);
   const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
 
   function onChoiceRemove(event) {
@@ -69,6 +74,7 @@ function CustomFieldInputMultipleChoice(props) {
 
   return (
     <FormControl
+      error={props.helpText}
       label={props.label}
       labelId={`${props.id}-label`}
       id={`${props.id}-autocomple`}
@@ -133,6 +139,7 @@ CustomFieldInputMultipleChoice.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
+  helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
@@ -143,6 +150,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
+  helpText: undefined,
   readOnly: false,
   value: [],
 };

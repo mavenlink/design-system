@@ -124,6 +124,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('helpText API', () => {
+    it('can bet set', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      expect(screen.queryByText('This is an error message.')).toBeInTheDocument();
+    });
+  });
+
   describe('id API', () => {
     it('generates unique tag ids', () => {
       render((<CustomFieldInputMultipleChoice
