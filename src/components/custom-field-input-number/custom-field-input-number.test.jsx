@@ -51,8 +51,6 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
-  // TODO: helpText API as well
-
   describe('id API', () => {
     it('sets the id attribute', () => {
       render(<TestComponent id="test-id" />);
