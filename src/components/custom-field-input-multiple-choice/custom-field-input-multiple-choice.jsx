@@ -54,7 +54,9 @@ function CustomFieldInputMultipleChoice(props) {
     setAutocompleteValue(event.target.value);
   }
 
-  function onClick() {
+  function onClick(event) {
+    if (event.defaultPrevented) return;
+
     setExpanded(true);
   }
 

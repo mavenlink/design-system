@@ -100,6 +100,17 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
     });
+
+    it('does not expand the popup', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        value={requiredProps.choices}
+      />));
+
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      userEvent.click(screen.getAllByRole('button')[0]);
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
   });
 
   describe('choices API', () => {
