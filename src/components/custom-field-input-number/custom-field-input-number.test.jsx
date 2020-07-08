@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
@@ -135,6 +136,16 @@ describe('CustomFieldInputNumber', () => {
     it('respects a provided step', () => {
       const { getByLabelText } = render(<TestComponent label="foo" step={12} />);
       expect(getByLabelText('foo')).toHaveAttribute('step', '12');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputNumber id="test-input" label="Test label" ref={inputRef} />);
+
+      userEvent.type(screen.getByLabelText('Test label'), '1234');
+      expect(inputRef.current.value()).toBe('1234');
     });
   });
 });

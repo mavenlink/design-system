@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
@@ -20,7 +20,8 @@ function getRootClassName(className, error, disabled) {
   return className;
 }
 
-export default function CustomFieldInputNumber(props) {
+const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
+  const componentRef = useRef(null);
   const inputRef = props.inputRef || useRef(null);
   const [invalid, setInvalid] = useState(false);
 
@@ -33,6 +34,12 @@ export default function CustomFieldInputNumber(props) {
 
     setInvalid(!inputRef.current.validity.valid);
   });
+
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return componentRef.current.value();
+    },
+  }));
 
   return (
     <CustomFieldInputText
@@ -50,12 +57,13 @@ export default function CustomFieldInputNumber(props) {
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
+      ref={componentRef}
       required={props.required}
       step={props.step}
       type="number"
     />
   );
-}
+});
 
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
@@ -88,3 +96,5 @@ CustomFieldInputNumber.defaultProps = {
   step: 1,
   value: '',
 };
+
+export default CustomFieldInputNumber;
