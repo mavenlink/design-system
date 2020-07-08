@@ -32,11 +32,8 @@ function initialInputValid(inputValue) {
     return true;
   }
 
-  if (inputValue.toString().split('.').length === 1) {
-    return true;
-  }
-
-  return false;
+  return inputValue.toString()
+    .split('.').length === 1;
 }
 
 function subunitToUnit(subunitValue, currencyCode) {
