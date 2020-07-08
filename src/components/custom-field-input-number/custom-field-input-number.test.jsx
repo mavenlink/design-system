@@ -121,8 +121,11 @@ describe('CustomFieldInputNumber', () => {
     });
 
     it('is invalid on a decimal number', () => {
+      const validityText = 'Constraints not satisfied';
       render(<TestComponent value={1.01} />);
+
       expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByText(validityText)).toBeInTheDocument();
     });
   });
 

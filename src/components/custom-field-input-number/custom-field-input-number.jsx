@@ -57,6 +57,7 @@ export default function CustomFieldInputNumber(props) {
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}
+      respectNativeValidity
       step={props.step}
       type="number"
     />

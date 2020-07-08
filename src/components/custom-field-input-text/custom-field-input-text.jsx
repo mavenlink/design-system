@@ -20,6 +20,11 @@ export default function CustomFieldInputText(props) {
   useEffect(() => {
     if (!inputRef.current) return;
 
+    if (props.respectNativeValidity && !inputRef.current.validity.valid) {
+      setValidationMessage(inputRef.current.validationMessage);
+      return;
+    }
+
     if (isInvalid(props.error, props.readOnly)) {
       if (props.helpText) {
         inputRef.current.setCustomValidity(props.helpText);
@@ -128,6 +133,7 @@ CustomFieldInputText.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
+  respectNativeValidity: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
   type: PropTypes.oneOf([
@@ -162,6 +168,7 @@ CustomFieldInputText.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  respectNativeValidity: false,
   step: undefined,
   type: 'text',
   value: undefined,
