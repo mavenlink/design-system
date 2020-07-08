@@ -34,26 +34,26 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
-  describe('helpText API', () => {
+  describe('errorText API', () => {
     it('is invalid when true', () => {
-      render(<TestComponent helpText="Here's some help text!" />);
+      render(<TestComponent errorText="Here's some help text!" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
 
-    it('updates correctly with a new helpText prop', () => {
-      const { rerender } = render(<TestComponent helpText="" />);
+    it('updates correctly with a new errorText prop', () => {
+      const { rerender } = render(<TestComponent errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
-      rerender(<TestComponent helpText="Here's some help text!" />);
+      rerender(<TestComponent errorText="Here's some help text!" />);
       expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
     });
 
-    it('shows the provided helpText when true', () => {
-      render(<TestComponent helpText="Here's some help text!" />);
+    it('shows the provided errorText when true', () => {
+      render(<TestComponent errorText="Here's some help text!" />);
       expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
     });
 
-    it('does not show helpText when it does not exist', () => {
-      render(<TestComponent helpText="" />);
+    it('does not show errorText when it does not exist', () => {
+      render(<TestComponent errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
     });
   });

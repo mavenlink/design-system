@@ -59,18 +59,18 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('helpText API', () => {
+  describe('errorText API', () => {
     xit('can have an error state through a native validation', () => {
       // I am not sure what is the best way to represent this in a test.
       // However, at the moment, there are end-to-end tests in the Number component tests.
-      const { container } = render(<TestComponent helpText="yo" />);
+      const { container } = render(<TestComponent errorText="yo" />);
       expect(container.firstChild).toHaveClass('error');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });
 
     it('can have an error state through a custom validation', () => {
-      render(<TestComponent helpText="Custom validation message" />);
+      render(<TestComponent errorText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });
@@ -255,7 +255,7 @@ describe('CustomFieldInputText', () => {
 
     it('gives preference to the error icon', () => {
       const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
-      const { queryByTitle, getByRole } = render(<TestComponent icon={icon} helpText="yo" />);
+      const { queryByTitle, getByRole } = render(<TestComponent icon={icon} errorText="yo" />);
       expect(queryByTitle('Hello')).toBeNull();
       expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });

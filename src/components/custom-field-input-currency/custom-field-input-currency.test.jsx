@@ -35,7 +35,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
       const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus',
-        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'respectNativeValidity'];
+        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'errorText'];
       const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
       const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
 
@@ -45,11 +45,11 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('presents contextual error state', () => {
-      const helpText = 'What do you want from us monster!?';
-      renderComponent({ value: 350, helpText, error: true });
+      const errorText = 'What do you want from us monster!?';
+      renderComponent({ value: 350, errorText, error: true });
 
       expect(screen.getByLabelText('currency')).toBeInvalid();
-      expect(screen.getByText(helpText)).toBeInTheDocument();
+      expect(screen.getByText(errorText)).toBeInTheDocument();
     });
 
     it('renders all forwarded props except event handlers', () => {

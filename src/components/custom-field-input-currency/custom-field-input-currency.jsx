@@ -119,7 +119,7 @@ export default function CustomFieldInputCurrency(props) {
       {...sharedProps}
       defaultValue={formattedNumber}
       error={props.error}
-      helpText={props.helpText}
+      errorText={props.errorText}
       onFocus={handleOnFocus}
       type="text"
     />
@@ -131,7 +131,7 @@ CustomFieldInputCurrency.propTypes = {
   currencyCode: currencyCodeType,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -147,7 +147,7 @@ CustomFieldInputCurrency.defaultProps = {
   currencyCode: 'USD',
   disabled: false,
   error: false,
-  helpText: undefined,
+  errorText: undefined,
   name: undefined,
   placeholder: undefined,
   readOnly: false,

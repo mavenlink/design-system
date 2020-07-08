@@ -24,7 +24,7 @@ function getRootClassName(className, error, disabled) {
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
 
-  const validationMessage = useValidation(props.readOnly, props.helpText, inputRef);
+  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
 
   function handleOnKeyUp(event) {
@@ -38,7 +38,7 @@ export default function CustomFieldInputNumber(props) {
   });
 
   useEffect(() => {
-    const hasError = props.helpText.length > 0;
+    const hasError = props.errorText.length > 0;
     setInvalid(hasError);
   }, [props.error]);
 
@@ -48,7 +48,7 @@ export default function CustomFieldInputNumber(props) {
       defaultValue={props.value}
       disabled={props.disabled}
       error={invalid}
-      helpText={validationMessage}
+      errorText={validationMessage}
       id={props.id}
       inputRef={inputRef}
       label={props.label}
@@ -70,7 +70,7 @@ export default function CustomFieldInputNumber(props) {
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -90,7 +90,7 @@ CustomFieldInputNumber.propTypes = {
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
-  helpText: '',
+  errorText: '',
   inputRef: undefined,
   name: undefined,
   onBlur: () => {},
