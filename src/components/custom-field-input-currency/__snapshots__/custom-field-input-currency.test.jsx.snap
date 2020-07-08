@@ -3,6 +3,8 @@
 exports[`CustomFieldInputCurrency has defaults 1`] = `
 <div
   className="custom-field-input-text"
+  onKeyDown={[Function]}
+  role="presentation"
 >
   <label
     className="label"
@@ -24,6 +26,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       onChange={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       onKeyUp={[Function]}
       readOnly={false}
       required={false}

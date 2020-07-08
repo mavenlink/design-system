@@ -29,8 +29,8 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <ListOption ref={refs[0]}>Hello</ListOption>
-          <ListOption ref={refs[1]}>Hey</ListOption>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
         </Listbox>
       ));
     });
@@ -99,8 +99,8 @@ describe('src/components/listbox/listbox', () => {
     it('displays a list of things', () => {
       render((
         <Listbox {...requiredProps}>
-          <ListOption>Hello</ListOption>
-          <ListOption>Hey</ListOption>
+          <ListOption value="hello">Hello</ListOption>
+          <ListOption value="hey">Hey</ListOption>
         </Listbox>
       ));
 
@@ -113,12 +113,27 @@ describe('src/components/listbox/listbox', () => {
     it('allows setting the class name', () => {
       render((
         <Listbox {...requiredProps} className="prioritize-me">
-          <ListOption>Hello</ListOption>
-          <ListOption>Hey</ListOption>
+          <ListOption value="hello">Hello</ListOption>
+          <ListOption value="hey">Hey</ListOption>
         </Listbox>
       ));
       expect(screen.getByRole('listbox')).toHaveClass('prioritize-me');
     });
+  });
+
+  describe('focus ref API', () => {
+    const ref = createRef();
+    const refs = [createRef(), createRef()];
+    render((
+      <Listbox {...requiredProps} ref={ref} refs={refs}>
+        <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+        <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+      </Listbox>
+    ));
+
+    expect(screen.getByText('Hello')).not.toHaveFocus();
+    act(() => ref.current.focus());
+    expect(screen.getByText('Hello')).toHaveFocus();
   });
 
   describe('labelledBy API', () => {
@@ -128,8 +143,8 @@ describe('src/components/listbox/listbox', () => {
           {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           <label id="unique-label-id">Label</label>
           <Listbox {...requiredProps} labelledBy="unique-label-id">
-            <ListOption>Hello</ListOption>
-            <ListOption>Hey</ListOption>
+            <ListOption value="hello">Hello</ListOption>
+            <ListOption value="hey">Hey</ListOption>
           </Listbox>
         </React.Fragment>
       ));
@@ -138,11 +153,68 @@ describe('src/components/listbox/listbox', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('informs when a selection is made', () => {
+      const ref = createRef();
+      const refs = [createRef(), createRef()];
+      const onChange = jest.fn();
+
+      render((
+        <Listbox {...requiredProps} ref={ref} refs={refs} onChange={onChange}>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Hey'));
+      expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange.mock.calls[0][0]).toEqual({ target: expect.objectContaining({ value: 'hey' }) });
+    });
+
+    it('is not called on mount', () => {
+      const onChange = jest.fn();
+
+      render(<Listbox {...requiredProps} onChange={onChange} />);
+
+      expect(onChange.mock.calls.length).toBe(0);
+    });
+  });
+
   describe('refs API', () => {
     it('does not freak out when current is undefined', () => {
       const refs = [{ current: undefined }];
       render(<Listbox {...requiredProps} refs={refs}><span tabIndex={-1}>foo</span></Listbox>);
       expect(() => userEvent.click(screen.getByText('foo'))).not.toThrow();
+    });
+  });
+
+  describe('value API', () => {
+    it('can be set', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value="unique value" />);
+      expect(ref.current.value).toEqual('unique value');
+    });
+  });
+
+  describe('value ref API', () => {
+    it('is set from value prop API', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value="unique value" />);
+      expect(ref.current.value).toEqual('unique value');
+    });
+
+    it('change on selection', () => {
+      const ref = createRef();
+      const refs = [createRef()];
+
+      render((
+        <Listbox {...requiredProps} ref={ref} refs={refs} value="unique value">
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Hello'));
+      expect(ref.current.value).toEqual('hello');
     });
   });
 });

@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useImperativeHandle, useRef, useState, forwardRef } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import styles from './tag.css';
 import clearIcon from '../../svgs/icon-clear-small.svg';
 import Icon from '../icon/index.js';
 
-const Tag = forwardRef(function Tag(props, ref) {
+const Tag = forwardRef(function Tag(props, forwardedRef) {
   const [focusQueued, setFocusQueued] = useState(false);
   const [isActive, setIsActive] = useState(props.defaultActive);
   const [tabActiveStates, setTabActiveStates] = useState(props.readOnly ? [true] : [true, false]);
@@ -12,6 +18,8 @@ const Tag = forwardRef(function Tag(props, ref) {
   const buttonId = `${props.id}-button`;
   const contentRef = useRef(null);
   const contentId = `${props.id}-content`;
+  const backupRef = useRef();
+  const ref = forwardedRef || backupRef;
   const refElements = [contentRef, buttonRef];
   const rootRef = useRef();
 
@@ -21,7 +29,7 @@ const Tag = forwardRef(function Tag(props, ref) {
       case 'Enter':
         if (tabActiveStates[1]) {
           keyEvent.preventDefault();
-          props.onClear(keyEvent);
+          props.onRemove({ target: ref.current });
         }
         break;
       case 'ArrowDown':
@@ -46,7 +54,7 @@ const Tag = forwardRef(function Tag(props, ref) {
     }
   }
 
-  function handleGridCellClick(clickEvent, gridIndex) {
+  function handleGridCellClick(event, gridIndex) {
     const newTabActiveStates = props.readOnly ? [false] : [false, false];
 
     newTabActiveStates[gridIndex] = true;
@@ -54,7 +62,7 @@ const Tag = forwardRef(function Tag(props, ref) {
     setFocusQueued(true);
 
     if (gridIndex === 1) {
-      props.onClear(clickEvent);
+      props.onRemove({ target: ref.current });
     }
   }
 
@@ -123,13 +131,13 @@ Tag.propTypes = {
   children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  onClear: PropTypes.func,
+  onRemove: PropTypes.func,
   readOnly: PropTypes.bool,
 };
 
 Tag.defaultProps = {
   defaultActive: true,
-  onClear: () => {},
+  onRemove: () => {},
   readOnly: false,
 };
 

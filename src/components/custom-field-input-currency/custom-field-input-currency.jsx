@@ -117,11 +117,11 @@ export default function CustomFieldInputCurrency(props) {
   return (
     <CustomFieldInputText
       {...sharedProps}
+      defaultValue={formattedNumber}
       error={props.error}
       helpText={props.helpText}
       onFocus={handleOnFocus}
       type="text"
-      value={formattedNumber}
     />
   );
 }

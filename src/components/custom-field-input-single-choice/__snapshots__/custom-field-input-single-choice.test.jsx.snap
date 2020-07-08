@@ -4,30 +4,35 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
 <div
   className="container"
 >
-  <div>
+  <div
+    onKeyDown={[Function]}
+    role="presentation"
+  >
     <label
       className="label"
-      htmlFor="yo"
-      id="yo-label"
+      htmlFor="test-id"
+      id="test-id-label"
     >
-      Foo
+      Test label
     </label>
     <div
       className="control-container"
     >
       <input
-        aria-controls="yo-label"
+        aria-controls="test-id-label"
         className="input"
         disabled={false}
-        id="yo"
+        id="test-id"
         onBlur={[Function]}
         onChange={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         onKeyUp={[Function]}
         readOnly={false}
         required={false}
         type="text"
+        value=""
       />
       <svg
         className="input-icon size-medium stroke-none color-transparent"

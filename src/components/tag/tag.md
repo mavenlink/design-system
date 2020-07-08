@@ -10,8 +10,8 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 | --- | --- | --- |
 | Left arrow/Up arrow | | Moves focus to text content |
 | Right arrow/Down arrow | | Moves focus to the clear button |
-| Enter | Focused on clear button | Invokes `onClear` callback |
-| Space | Focused on clear button | Invokes `onClear` callback |
+| Enter | Focused on clear button | Invokes `onRemove` callback |
+| Space | Focused on clear button | Invokes `onRemove` callback |
 
 #### Labels
 
@@ -52,11 +52,11 @@ const iconTick = require('../../svgs/icon-tick.svg');
 
 ### Functional API usage
 
-The `onClear` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature.
+The `onRemove` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature.
 
 
 ```
-<Tag id="on-clear-example" onClear={event => { console.log(event); window.alert(event.type); }}>Test Title</Tag>
+<Tag id="on-clear-example" onRemove={event => { console.log(event); window.alert('Removed!'); }}>Test Title</Tag>
 ```
 
 ### Advanced usage

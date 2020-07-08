@@ -10,9 +10,9 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 />
 
 <CustomFieldInputSingleChoice
-  id="default-example-1"
+  id="default-example-2"
   label="Default Example 1"
-  value="I am a value"
+  value={{ id: '1', label: 'I am a value' }}
 />
 ```
 
@@ -29,18 +29,29 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   id="read-only-example-2"
   label="Read Only Example 2"
   readOnly
-  value="I am a value"
+  value={{ id: '2', label: 'I am a value' }}
 />
 ```
 
 ### Editable examples
 
 ```jsx
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'];
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
 
 <CustomFieldInputSingleChoice
+  choices={choices}
   id="editable-example-1"
   label="Editable Example 1"
+  value={choices[3]}
+/>
+```
+
+```jsx
+const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i }));
+
+<CustomFieldInputSingleChoice
+  id="editable-example-2"
+  label="Editable Example 2"
   choices={choices}
 />
 ```
