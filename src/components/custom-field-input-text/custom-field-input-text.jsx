@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
@@ -10,7 +10,7 @@ function isInvalid(error, readOnly) {
   return error && !readOnly;
 }
 
-export default function CustomFieldInputText(props) {
+const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref) {
   const defaultRef = useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
 
@@ -32,6 +32,12 @@ export default function CustomFieldInputText(props) {
       setValidationMessage('');
     }
   });
+
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return inputRef.current.value;
+    }
+  }));
 
   const icon = () => {
     if (isInvalid(props.error, props.readOnly)) {
@@ -90,7 +96,7 @@ export default function CustomFieldInputText(props) {
       {showIcon() && icon()}
     </FormControl>
   );
-}
+});
 
 CustomFieldInputText.propTypes = {
   ariaProps: PropTypes.shape({
@@ -157,3 +163,5 @@ CustomFieldInputText.defaultProps = {
   type: 'text',
   value: undefined,
 };
+
+export default CustomFieldInputText;

@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Icon from '../icon/icon.jsx';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import CustomFieldInputText from './custom-field-input-text.jsx';
@@ -284,6 +285,16 @@ describe('CustomFieldInputText', () => {
     it('can be set to readonly', () => {
       const { getByLabelText } = render(<TestComponent readOnly />);
       expect(getByLabelText('Test label')).toHaveAttribute('readOnly');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputText id="test-input" label="Test label" ref={inputRef} />);
+
+      userEvent.type(screen.getByLabelText('Test label'), 'test')
+      expect(inputRef.current.value()).toBe('test');
     });
   });
 });
