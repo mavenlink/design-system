@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import currencyCodeType from './currency-code-type.js';
@@ -55,7 +54,8 @@ function formatValue(unitValue, currencyCode) {
   }).format(unitValue);
 }
 
-export default function CustomFieldInputCurrency(props) {
+const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, ref) {
+  const componentRef = useRef(null);
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -89,6 +89,12 @@ export default function CustomFieldInputCurrency(props) {
     }
   });
 
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return componentRef.current.value();
+    },
+  }));
+
   const sharedProps = {
     className: getRootClassName(props.className, props.error, props.disabled),
     disabled: props.disabled,
@@ -121,10 +127,11 @@ export default function CustomFieldInputCurrency(props) {
       error={props.error}
       helpText={props.helpText}
       onFocus={handleOnFocus}
+      ref={componentRef}
       type="text"
     />
   );
-}
+});
 
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
@@ -154,3 +161,5 @@ CustomFieldInputCurrency.defaultProps = {
   required: false,
   value: undefined,
 };
+
+export default CustomFieldInputCurrency;

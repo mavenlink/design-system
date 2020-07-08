@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import {
   fireEvent,
   render,
@@ -155,6 +155,19 @@ describe('CustomFieldInputCurrency', () => {
     it('accepts an undefined value', () => {
       const { getByLabelText } = renderComponent({ value: undefined });
       expect(getByLabelText('currency')).toHaveValue('');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
+
+      fireEvent.focus(screen.getByLabelText('Test label'));
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
+      fireEvent.blur(screen.getByLabelText('Test label'));
+
+      expect(inputRef.current.value()).toBe('$1,234.00');
     });
   });
 });
