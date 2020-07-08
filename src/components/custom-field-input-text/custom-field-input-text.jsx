@@ -15,7 +15,7 @@ export default function CustomFieldInputText(props) {
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
 
-  const validationMessage = useValidation(props.error, props.readOnly, props.helpText, inputRef);
+  const validationMessage = useValidation(() => isInvalid(props.error, props.readOnly), props.helpText, inputRef);
 
   const icon = () => {
     if (isInvalid(props.error, props.readOnly)) {

@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function isInvalid(error, readOnly) {
-  return error && !readOnly;
-}
-
-export default function useValidation(error, readOnly, helpText, inputRef) {
+export default function useValidation(invalidDueToProps, helpText, inputRef) {
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
@@ -15,7 +11,7 @@ export default function useValidation(error, readOnly, helpText, inputRef) {
       return;
     }
 
-    if (isInvalid(error, readOnly)) {
+    if (invalidDueToProps()) {
       if (helpText) {
         inputRef.current.setCustomValidity(helpText);
         setValidationMessage(helpText);
