@@ -1,21 +1,16 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../components/form-control/form-control.jsx';
 import styles from '../components/custom-field-input-text/custom-field-input-text.css';
-import useValidation from '../hooks/use-validation.jsx';
 import Icon from '../components/icon/icon.jsx';
 import cautionSvg from '../svgs/icon-caution-fill.svg';
 
 export default function AbstractCustomField(props) {
-  const defaultRef = useRef(null);
-  const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
-
-  const invalidDueToProps = () => props.error && !props.readOnly;
-  const validationMessage = useValidation(invalidDueToProps, props.helpText, inputRef);
+  const invalidDueToProps = props.error && !props.readOnly;
 
   const icon = () => {
-    if (invalidDueToProps()) {
+    if (invalidDueToProps) {
       return (<Icon
         className={styles['input-icon']}
         currentColor="caution"
@@ -32,13 +27,13 @@ export default function AbstractCustomField(props) {
   };
 
   const showIcon = () => {
-    return invalidDueToProps() || !!props.icon;
+    return invalidDueToProps || !!props.icon;
   };
 
   return (
     <FormControl
       className={props.className}
-      error={validationMessage}
+      error={props.helpText}
       id={props.id}
       labelId={labelId}
       label={props.label}
@@ -64,7 +59,7 @@ export default function AbstractCustomField(props) {
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={inputRef}
+        ref={props.inputRef}
         required={props.required}
         step={props.step}
         type={props.type}

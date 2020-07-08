@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import AbstractCustomField from '../../__internal__/abstract-custom-field.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
+import useValidation from '../../hooks/use-validation.jsx';
 
 const apiLimits = {
   max: 2 ** 31,
@@ -22,7 +23,9 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
-  const [invalid, setInvalid] = useState(props.error);
+
+  const validationMessage = useValidation(() => props.error && !props.readOnly, props.helpText, inputRef);
+  const [invalid, setInvalid] = useState(validationMessage !== '');
 
   function handleOnKeyUp(event) {
     setInvalid(!event.target.checkValidity());
@@ -44,7 +47,7 @@ export default function CustomFieldInputNumber(props) {
       defaultValue={props.value}
       disabled={props.disabled}
       error={invalid}
-      helpText={props.helpText}
+      helpText={validationMessage}
       id={props.id}
       inputRef={inputRef}
       label={props.label}
