@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
@@ -232,6 +232,18 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Test label'));
 
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      const value = { id: 'hello', label: 'hello' };
+      const choices = [value];
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value()).toStrictEqual(value);
     });
   });
 });
