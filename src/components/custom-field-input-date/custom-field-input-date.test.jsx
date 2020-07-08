@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import {
   cleanup,
   fireEvent,
@@ -201,5 +201,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     expect(getByTestId('custom-field-input')).toHaveClass('error');
     changeValue(() => getByLabelText('Field Date'), '2016-07-18');
     expect(getByTestId('custom-field-input')).not.toHaveClass('error');
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputDate id="test-input" label="Test label" ref={inputRef} value="2016-07-18" />);
+
+      expect(inputRef.current.value()).toBe('July 18, 2016');
+    });
   });
 });
