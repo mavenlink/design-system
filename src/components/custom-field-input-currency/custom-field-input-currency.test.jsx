@@ -167,7 +167,7 @@ describe('CustomFieldInputCurrency', () => {
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
       fireEvent.blur(screen.getByLabelText('Test label'));
 
-      expect(inputRef.current.value()).toBe('$1,234.00');
+      expect(inputRef.current.value()).toStrictEqual([123400, 'USD']);
     });
   });
 });
