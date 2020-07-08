@@ -10,25 +10,21 @@ function isInvalid(error, readOnly) {
   return error && !readOnly;
 }
 
-export default function CustomFieldInputText(props) {
-  const defaultRef = useRef(null);
+function useValidation(error, readOnly, helpText, inputRef) {
   const [validationMessage, setValidationMessage] = useState('');
-
-  const inputRef = props.inputRef || defaultRef;
-  const labelId = `${props.id}-label`;
 
   useEffect(() => {
     if (!inputRef.current) return;
 
-    if (props.respectNativeValidity && !inputRef.current.validity.valid) {
+    if (!inputRef.current.validity.valid) {
       setValidationMessage(inputRef.current.validationMessage);
       return;
     }
 
-    if (isInvalid(props.error, props.readOnly)) {
-      if (props.helpText) {
-        inputRef.current.setCustomValidity(props.helpText);
-        setValidationMessage(props.helpText);
+    if (isInvalid(error, readOnly)) {
+      if (helpText) {
+        inputRef.current.setCustomValidity(helpText);
+        setValidationMessage(helpText);
       } else {
         setValidationMessage(inputRef.current.validationMessage);
       }
@@ -37,6 +33,16 @@ export default function CustomFieldInputText(props) {
       setValidationMessage('');
     }
   });
+
+  return validationMessage;
+}
+
+export default function CustomFieldInputText(props) {
+  const defaultRef = useRef(null);
+  const inputRef = props.inputRef || defaultRef;
+  const labelId = `${props.id}-label`;
+
+  const validationMessage = useValidation(props.error, props.readOnly, props.helpText, inputRef);
 
   const icon = () => {
     if (isInvalid(props.error, props.readOnly)) {
