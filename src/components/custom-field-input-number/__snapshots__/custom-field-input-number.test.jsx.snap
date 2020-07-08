@@ -3,6 +3,8 @@
 exports[`CustomFieldInputNumber has defaults 1`] = `
 <div
   className="custom-field-input-text"
+  onKeyDown={[Function]}
+  role="presentation"
 >
   <label
     className="label"

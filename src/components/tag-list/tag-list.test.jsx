@@ -147,9 +147,26 @@ describe('TagList', () => {
 
       it('child will not be focused when inactive', async () => {
         const refs = [createRef()];
-        render(<TagList {...requiredProps} refs={refs}><Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag></TagList>);
+        render((
+          <TagList {...requiredProps} refs={refs}>
+            <Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag>
+          </TagList>
+        ));
 
         await waitFor(() => expect(screen.getByText('Test Child')).not.toHaveFocus());
+      });
+
+      it('does not steal focus away when another interactive element is clicked', () => {
+        const refs = [createRef()];
+        render((
+          <TagList {...requiredProps} refs={refs}>
+            <Tag id="test-tag-1" ref={refs[0]}>Test Child</Tag>
+            <input aria-label="input" />
+          </TagList>
+        ));
+
+        userEvent.click(screen.getByLabelText('input'));
+        expect(screen.getByLabelText('input')).toHaveFocus();
       });
     });
   });
@@ -172,6 +189,36 @@ describe('TagList', () => {
     it('can be set', () => {
       render(<TagList {...requiredProps} labelledBy="unique-id" />);
       expect(screen.getByRole('grid')).toHaveAttribute('aria-labelledby', 'unique-id');
+    });
+  });
+
+  describe('onClick API', () => {
+    it('can be set', () => {
+      const onClickSpy = jest.fn();
+      const refs = [createRef()];
+      render((
+        <TagList {...requiredProps} onClick={onClickSpy} refs={refs}>
+          <Tag id="test-tag-fake" ref={refs[0]}>test tag</Tag>
+          <input aria-label="test input" />
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByLabelText('test input'));
+      expect(onClickSpy).toHaveBeenCalled();
+    });
+
+    it('is not called when clicking a tag', () => {
+      const onClickSpy = jest.fn();
+      const refs = [createRef()];
+      render((
+        <TagList {...requiredProps} onClick={onClickSpy} refs={refs}>
+          <Tag id="test-tag-fake" ref={refs[0]}>test tag</Tag>
+          <input aria-label="test input" />
+        </TagList>
+      ));
+
+      userEvent.click(screen.getByText('test tag'));
+      expect(onClickSpy).not.toHaveBeenCalled();
     });
   });
 });

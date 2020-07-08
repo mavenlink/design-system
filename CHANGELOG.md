@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
+  - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
 </details>
 
 ## 0.28.0 (July 02, 2020)
