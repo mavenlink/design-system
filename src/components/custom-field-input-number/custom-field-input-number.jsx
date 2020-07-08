@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import AbstractCustomField from '../../__internal__/abstract-custom-field.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 import useValidation from '../../hooks/use-validation.jsx';
+import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 
 const apiLimits = {
   max: 2 ** 31,
@@ -24,7 +24,7 @@ function getRootClassName(className, error, disabled) {
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
 
-  const validationMessage = useValidation(() => props.error && !props.readOnly, props.helpText, inputRef);
+  const validationMessage = useValidation(props.error, props.readOnly, props.helpText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
 
   function handleOnKeyUp(event) {
@@ -42,7 +42,7 @@ export default function CustomFieldInputNumber(props) {
   }, [props.error]);
 
   return (
-    <AbstractCustomField
+    <CustomFieldInputText
       className={getRootClassName(props.className, invalid, props.disabled)}
       defaultValue={props.value}
       disabled={props.disabled}
