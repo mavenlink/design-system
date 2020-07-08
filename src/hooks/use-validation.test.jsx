@@ -13,7 +13,13 @@ describe('useValidation', () => {
   });
 
   it('has no validation message for a readOnly field', () => {
-    const { result } = renderHook(() => useValidation(false, '', mockRef(true, '')));
+    const { result } = renderHook(() => useValidation(true, '', mockRef(true, '')));
     expect(result.current).toBe('');
+  });
+
+  it('provides a validation message when the native validation is failing', () => {
+    const mockInputRef = mockRef(false, 'Welcome to Zombocom');
+    const { result } = renderHook(() => useValidation(false, '', mockInputRef));
+    expect(result.current).toBe('Welcome to Zombocom');
   });
 });
