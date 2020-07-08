@@ -24,7 +24,7 @@ function getRootClassName(className, error, disabled) {
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
 
-  const validationMessage = useValidation(props.error, props.readOnly, props.helpText, inputRef);
+  const validationMessage = useValidation(props.readOnly, props.helpText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
 
   function handleOnKeyUp(event) {
@@ -38,7 +38,8 @@ export default function CustomFieldInputNumber(props) {
   });
 
   useEffect(() => {
-    setInvalid(props.error);
+    const hasError = props.helpText.length > 0;
+    setInvalid(hasError);
   }, [props.error]);
 
   return (
@@ -69,7 +70,6 @@ export default function CustomFieldInputNumber(props) {
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
   helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
@@ -90,7 +90,6 @@ CustomFieldInputNumber.propTypes = {
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
-  error: false,
   helpText: '',
   inputRef: undefined,
   name: undefined,

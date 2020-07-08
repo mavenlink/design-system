@@ -11,8 +11,8 @@ export default function CustomFieldInputText(props) {
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
 
-  const invalidDueToProps = () => props.error && !props.readOnly;
-  const validationMessage = useValidation(props.error, props.readOnly, props.helpText, inputRef);
+  const validationMessage = useValidation(props.readOnly, props.helpText, inputRef);
+  const invalidDueToProps = () => props.helpText.length > 0 && !props.readOnly;
 
   const icon = () => {
     if (invalidDueToProps()) {
@@ -86,7 +86,6 @@ CustomFieldInputText.propTypes = {
     PropTypes.string,
   ]),
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
   helpText: PropTypes.string,
   icon: PropTypes.node,
   id: PropTypes.string.isRequired,
@@ -127,8 +126,7 @@ CustomFieldInputText.defaultProps = {
   className: undefined,
   defaultValue: undefined,
   disabled: false,
-  error: false,
-  helpText: undefined,
+  helpText: '',
   icon: undefined,
   inputRef: undefined,
   max: undefined,
