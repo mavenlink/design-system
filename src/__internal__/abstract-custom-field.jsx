@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import cautionSvg from '../../svgs/icon-caution-fill.svg';
-import FormControl from '../form-control/form-control.jsx';
-import Icon from '../icon/icon.jsx';
-import styles from './custom-field-input-text.css';
-import useValidation from '../../hooks/use-validation.jsx';
+import PropTypes from 'prop-types';
+import FormControl from '../components/form-control/form-control.jsx';
+import styles from '../components/custom-field-input-text/custom-field-input-text.css';
+import useValidation from '../hooks/use-validation.jsx';
+import Icon from '../components/icon/icon.jsx';
+import cautionSvg from '../svgs/icon-caution-fill.svg';
 
-export default function CustomFieldInputText(props) {
+export default function AbstractCustomField(props) {
   const defaultRef = useRef(null);
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
@@ -75,7 +75,7 @@ export default function CustomFieldInputText(props) {
   );
 }
 
-CustomFieldInputText.propTypes = {
+AbstractCustomField.propTypes = {
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
     haspopup: PropTypes.string,
@@ -122,7 +122,7 @@ CustomFieldInputText.propTypes = {
   ]),
 };
 
-CustomFieldInputText.defaultProps = {
+AbstractCustomField.defaultProps = {
   ariaProps: {},
   className: undefined,
   defaultValue: undefined,

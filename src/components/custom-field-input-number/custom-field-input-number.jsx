@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import AbstractCustomField from '../../__internal__/abstract-custom-field.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
 const apiLimits = {
@@ -40,7 +39,7 @@ export default function CustomFieldInputNumber(props) {
   }, [props.error]);
 
   return (
-    <CustomFieldInputText
+    <AbstractCustomField
       className={getRootClassName(props.className, invalid, props.disabled)}
       defaultValue={props.value}
       disabled={props.disabled}
