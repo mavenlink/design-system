@@ -39,13 +39,3 @@ Violating the conditions above will result in an improper state of the component
   label="Example 3"
 />
 ```
-----
-Inputs that derive from this component, or use cases that require context for the data, can specify `data` attributes to interact with the DOM native `dataset` property.
-
-```jsx
-<CustomFieldInputText
-  id="test-id-4"
-  label="Custom Data Attributes Example"
-  dataAttributes={{'test-me': 'test'}}
-/>
-```

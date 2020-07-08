@@ -117,7 +117,6 @@ export default function CustomFieldInputCurrency(props) {
   return (
     <CustomFieldInputText
       {...sharedProps}
-      dataAttributes={{'parent-input-type': 'currency', 'currency-code': props.currencyCode}}
       error={props.error}
       helpText={props.helpText}
       onFocus={handleOnFocus}

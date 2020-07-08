@@ -11,16 +11,11 @@ function isInvalid(error, readOnly) {
 }
 
 export default function CustomFieldInputText(props) {
-  const dataAttributes = {};
   const defaultRef = useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
 
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
-
-  Object.keys(props.dataAttributes).forEach(key => {
-    dataAttributes[`data-${key}`] = props.dataAttributes[key];
-  });
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -73,7 +68,6 @@ export default function CustomFieldInputText(props) {
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
-        {...dataAttributes}
         defaultValue={props.value}
         className={styles.input}
         disabled={props.disabled}
@@ -104,7 +98,6 @@ CustomFieldInputText.propTypes = {
     haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
-  dataAttributes: PropTypes.object,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helpText: PropTypes.string,
@@ -144,7 +137,6 @@ CustomFieldInputText.propTypes = {
 CustomFieldInputText.defaultProps = {
   ariaProps: {},
   className: undefined,
-  dataAttributes: {},
   disabled: false,
   error: false,
   helpText: undefined,

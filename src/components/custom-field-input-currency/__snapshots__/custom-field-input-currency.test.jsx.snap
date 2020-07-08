@@ -17,8 +17,6 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
     <input
       aria-controls="foo-label"
       className="input"
-      data-currency-code="USD"
-      data-parent-input-type="currency"
       defaultValue=""
       disabled={false}
       id="foo"
