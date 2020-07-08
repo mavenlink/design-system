@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
@@ -36,7 +35,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
   useImperativeHandle(ref, () => ({
     value: () => {
       return inputRef.current.value;
-    }
+    },
   }));
 
   const icon = () => {

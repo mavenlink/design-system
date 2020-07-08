@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
