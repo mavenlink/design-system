@@ -6,19 +6,16 @@ import Icon from '../icon/icon.jsx';
 import styles from './custom-field-input-text.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
-function isInvalid(error, readOnly) {
-  return error && !readOnly;
-}
-
 export default function CustomFieldInputText(props) {
   const defaultRef = useRef(null);
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
 
-  const validationMessage = useValidation(() => isInvalid(props.error, props.readOnly), props.helpText, inputRef);
+  const invalidDueToProps = () => props.error && !props.readOnly;
+  const validationMessage = useValidation(invalidDueToProps, props.helpText, inputRef);
 
   const icon = () => {
-    if (isInvalid(props.error, props.readOnly)) {
+    if (invalidDueToProps()) {
       return (<Icon
         className={styles['input-icon']}
         currentColor="caution"
@@ -35,7 +32,7 @@ export default function CustomFieldInputText(props) {
   };
 
   const showIcon = () => {
-    return isInvalid(props.error, props.readOnly) || !!props.icon;
+    return invalidDueToProps() || !!props.icon;
   };
 
   return (
