@@ -1,40 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
-
+import React, { useRef } from 'react';
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './custom-field-input-text.css';
+import useValidation from '../../hooks/use-validation.jsx';
 
 function isInvalid(error, readOnly) {
   return error && !readOnly;
-}
-
-function useValidation(error, readOnly, helpText, inputRef) {
-  const [validationMessage, setValidationMessage] = useState('');
-
-  useEffect(() => {
-    if (!inputRef.current) return;
-
-    if (!inputRef.current.validity.valid) {
-      setValidationMessage(inputRef.current.validationMessage);
-      return;
-    }
-
-    if (isInvalid(error, readOnly)) {
-      if (helpText) {
-        inputRef.current.setCustomValidity(helpText);
-        setValidationMessage(helpText);
-      } else {
-        setValidationMessage(inputRef.current.validationMessage);
-      }
-    } else {
-      inputRef.current.setCustomValidity('');
-      setValidationMessage('');
-    }
-  });
-
-  return validationMessage;
 }
 
 export default function CustomFieldInputText(props) {
