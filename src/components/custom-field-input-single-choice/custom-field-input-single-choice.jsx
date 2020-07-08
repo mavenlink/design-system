@@ -16,6 +16,7 @@ export default function CustomFieldInputSingleChoice(props) {
   const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [searchValue, setSearchValue] = useState(undefined);
 
   const inputRef = useRef();
   const refs = props.choices.map(() => useRef());
@@ -24,11 +25,6 @@ export default function CustomFieldInputSingleChoice(props) {
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
     fill="skip"
   />);
-
-  function onChange(event) {
-    setValue(event.target.value);
-    setShowOptions(false);
-  }
 
   function onClick() {
     if (!props.readOnly) setShowOptions(true);
@@ -48,19 +44,57 @@ export default function CustomFieldInputSingleChoice(props) {
     }
   }
 
-  const listOptions = props.choices.map((item, index) => (
-    <ListOption
-      key={item.id}
-      ref={refs[index]}
-      selected={value && item.id === value.id}
-      value={{
-        id: item.id,
-        label: item.label,
-      }}
-    >
-      {item.label}
-    </ListOption>
-  ));
+  function getOptions() {
+    const choices = {};
+    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
+
+    if (searchValue) {
+      const searchValueLowerCase = searchValue.toLowerCase();
+
+      return props.choices
+        .filter(item => item.label.toLowerCase().includes(searchValueLowerCase))
+        .map(item => choices[item.id]);
+    }
+
+    return props.choices.map(item => choices[item.id]);
+  }
+
+  const listOptions = () => {
+    return getOptions()
+      .map(item => (
+        <ListOption
+          key={item.id}
+          ref={refs[item.index]}
+          selected={value && item.id === value.id}
+          value={{
+            id: item.id,
+            label: item.label,
+          }}
+        >
+          {item.label}
+        </ListOption>
+      ));
+  };
+
+  function onSelectionChange(event) {
+    const selectedValue = event.target.value;
+    setValue(selectedValue);
+    setSearchValue(selectedValue.label);
+    setShowOptions(false);
+  }
+
+  function onSearchChange(event) {
+    const newValue = event.target.value;
+
+    if (newValue === '') {
+      setValue(undefined);
+      setSearchValue(undefined);
+      return;
+    }
+
+    setSearchValue(newValue);
+    setShowOptions(true);
+  }
 
   useEffect(() => {
     setDidMount(true);
@@ -77,24 +111,24 @@ export default function CustomFieldInputSingleChoice(props) {
         icon={caretIcon}
         id={props.id}
         label={props.label}
-        onChange={() => {}}
+        onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         inputRef={inputRef}
         required={props.required}
-        value={value ? value.label : ''}
+        value={searchValue || (value ? value.label : '')}
       />
       { showOptions && (
         <Listbox
           className={styles.dropdown}
           labelledBy={`${props.id}-label`}
-          onChange={onChange}
+          onChange={onSelectionChange}
           refs={refs}
           value={value}
         >
-          { listOptions }
+          { listOptions() }
         </Listbox>
       ) }
     </div>

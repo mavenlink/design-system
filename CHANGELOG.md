@@ -8,6 +8,7 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
+  - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
 </details>
 
 ## 0.28.0 (July 02, 2020)
