@@ -5,6 +5,18 @@ import styles from '../custom-field-input-text/custom-field-input-text.css';
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
 
+function getRootClassName(className, error, disabled) {
+  if (disabled) {
+    return `${className} ${styles.disabled}`;
+  }
+
+  if (error) {
+    return `${className} ${styles.error}`;
+  }
+
+  return className;
+}
+
 export default function AbstractCustomField(props) {
   const labelId = `${props.id}-label`;
   const invalidDueToProps = () => props.errorText.length > 0 && !props.readOnly;
@@ -30,9 +42,12 @@ export default function AbstractCustomField(props) {
     return invalidDueToProps() || !!props.icon;
   };
 
+  const hasError = props.errorText.length > 0;
+  const className = getRootClassName(props.className, hasError, props.disabled);
+
   return (
     <FormControl
-      className={props.className}
+      className={className}
       error={props.errorText}
       id={props.id}
       labelId={labelId}

@@ -7,18 +7,6 @@ import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
-
 function getLocale() {
   if (navigator && navigator.languages) {
     return navigator.languages[0];
@@ -87,7 +75,7 @@ export default function CustomFieldInputCurrency(props) {
   });
 
   const sharedProps = {
-    className: getRootClassName(props.className, props.error, props.disabled),
+    className: props.className,
     disabled: props.disabled,
     id: props.id,
     label: props.label,
@@ -115,7 +103,6 @@ export default function CustomFieldInputCurrency(props) {
     <CustomFieldInputText
       {...sharedProps}
       defaultValue={formattedNumber}
-      error={props.error}
       errorText={props.errorText}
       onFocus={handleOnFocus}
       type="text"
@@ -127,7 +114,6 @@ CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -143,7 +129,6 @@ CustomFieldInputCurrency.defaultProps = {
   className: styles['custom-field-input-text'],
   currencyCode: 'USD',
   disabled: false,
-  error: false,
   errorText: undefined,
   name: undefined,
   placeholder: undefined,

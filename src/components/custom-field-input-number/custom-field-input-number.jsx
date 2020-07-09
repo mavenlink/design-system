@@ -9,18 +9,6 @@ const apiLimits = {
   min: -(2 ** 31),
 };
 
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
-
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
 
@@ -44,7 +32,7 @@ export default function CustomFieldInputNumber(props) {
 
   return (
     <AbstractCustomField
-      className={getRootClassName(props.className, invalid, props.disabled)}
+      className={props.className}
       defaultValue={props.value}
       disabled={props.disabled}
       error={invalid}
