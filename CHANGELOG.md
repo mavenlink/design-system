@@ -15,6 +15,7 @@
 ## 0.28.0 (July 02, 2020)
 - Minor: Publish all files in repo to NPM.
 - Minor: Adjust typography table to more clearly display MDS variable names
+- Minor: Update `CustomFieldInputSingleChoice` to remove all selected choices
 
 ## 0.27.0 (June 23, 2020)
 - Minor: Forward refs to `Button`
