@@ -5,7 +5,7 @@
 }
 
 .input-icon {
-  composes: input-icon from '../__internal__/custom-field.css';
+  composes: input-icon from '../__internal__/abstract-custom-field.css';
 }
 
 .dropdown {

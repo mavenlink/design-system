@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
-import styles from '../__internal__/custom-field.css';
+import styles from '../__internal__/abstract-custom-field.css';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 
 const isValidInput = (value) => {

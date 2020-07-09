@@ -1,11 +1,11 @@
 .input {
-  composes: input from '../__internal__/custom-field.css';
+  composes: input from 'src/components/__internal__/abstract-custom-field.css';
 }
 
 .input-container {
-  composes: input-container from '../__internal__/custom-field.css';
+  composes: input-container from 'src/components/__internal__/abstract-custom-field.css';
 }
 
 .input-icon {
-  composes: input-icon from '../__internal__/custom-field.css';
+  composes: input-icon from 'src/components/__internal__/abstract-custom-field.css';
 }
