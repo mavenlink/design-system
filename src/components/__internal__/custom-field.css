@@ -1,0 +1,49 @@
+@import '../../styles/colors.css';
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography.css';
+
+.input {
+  border: 1px solid var(--mds-grey-12);
+  border-radius: var(--spacing-x-small);
+  box-sizing: border-box;
+  color: var(--mds-grey-87);
+  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  width: 100%;
+}
+
+.input:disabled {
+  background-color: var(--mds-grey-3);
+}
+
+.input:read-only {
+  background-color: var(--mds-grey-3);
+}
+
+.read-only-input {
+  composes: input;
+  background-color: var(--mds-grey-3);
+}
+
+.input:invalid {
+  border-color: var(--mds-red-100);
+  padding-right: var(--spacing-x-large);
+}
+
+.input-container {
+  margin: var(--spacing-small) 0;
+  position: relative;
+}
+
+.input-container input::placeholder {
+  color: var(--mds-grey-54);
+}
+
+.input-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
