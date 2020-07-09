@@ -2,24 +2,38 @@ import { renderHook } from '@testing-library/react-hooks';
 import useValidation from './use-validation.jsx';
 
 describe('useValidation', () => {
-  const mockRef = (valid, validationMessage) => ({
+  const mockRef = (validationMessage = '') => ({
     current: {
       validity: {
-        valid,
+        valid: validationMessage === '',
       },
       validationMessage,
       setCustomValidity: jest.fn(),
     },
   });
 
-  it('has no validation message for a readOnly field', () => {
-    const { result } = renderHook(() => useValidation(true, '', mockRef(true, '')));
-    expect(result.current).toBe('');
+  describe('native validation', () => {
+    it('responds with the native validation error message', () => {
+      const mockInputRef = mockRef('Welcome to Zombocom');
+      const { result } = renderHook(() => useValidation(false, '', mockInputRef));
+      expect(result.current).toBe('Welcome to Zombocom');
+    });
+
+    it('prioritizes native validation errors over contextual ones', () => {
+      const { result } = renderHook(() => useValidation(false, 'hey listen', mockRef('yo')));
+      expect(result.current).toBe('yo');
+    });
   });
 
-  it('provides a validation message when the native validation is failing', () => {
-    const mockInputRef = mockRef(false, 'Welcome to Zombocom');
-    const { result } = renderHook(() => useValidation(false, '', mockInputRef));
-    expect(result.current).toBe('Welcome to Zombocom');
+  describe('contextual validation', () => {
+    it('has no validation message for a readOnly field', () => {
+      const { result } = renderHook(() => useValidation(true, 'yo', mockRef()));
+      expect(result.current).toBe('');
+    });
+
+    it('provides the contextual error when one exists', () => {
+      const { result } = renderHook(() => useValidation(false, 'yo', mockRef()));
+      expect(result.current).toBe('yo');
+    });
   });
 });
