@@ -45,6 +45,16 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.getByText('Choice 1')).toBeInTheDocument();
         expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
       });
+
+      it('is cleared on selection', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByText('Choice 1')).toBeInTheDocument();
+        expect(screen.getByText('Choice 2')).toBeInTheDocument();
+        userEvent.type(document.activeElement, '1');
+        userEvent.click(screen.getByText('Choice 1'));
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('')
+      });
     });
 
     describe('popup', () => {

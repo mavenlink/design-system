@@ -42,6 +42,7 @@ function CustomFieldInputMultipleChoice(props) {
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
     setValue([...value, selectedChoice]);
+    setAutocompleteValue('');
   }
 
   function onAutocompleteChange(event) {
