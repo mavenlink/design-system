@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
-<div>
+<div
+  onKeyDown={[Function]}
+  role="presentation"
+>
   <label
     className="label"
     htmlFor="hello"
@@ -22,6 +25,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       onChange={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       onKeyUp={[Function]}
       readOnly={true}
       required={false}

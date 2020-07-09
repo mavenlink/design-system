@@ -4,7 +4,10 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
 <div
   className="container"
 >
-  <div>
+  <div
+    onKeyDown={[Function]}
+    role="presentation"
+  >
     <label
       className="label"
       htmlFor="test-id"
@@ -24,6 +27,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         onChange={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         onKeyUp={[Function]}
         readOnly={false}
         required={false}

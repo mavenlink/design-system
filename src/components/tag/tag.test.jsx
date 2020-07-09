@@ -107,15 +107,35 @@ describe('Tag', () => {
     });
   });
 
-  describe('onClear API', () => {
-    it('calls the onClear handler when the icon is clicked', () => {
-      const onClearSpy = jest.fn();
+  describe('onRemove API', () => {
+    it('calls the onRemove handler when the icon is clicked', () => {
+      const ref = createRef();
+      const onRemoveSpy = jest.fn();
+      render(<Tag {...requiredProps} onRemove={onRemoveSpy} ref={ref} />);
+      userEvent.click(screen.getByRole('button'));
+      expect(onRemoveSpy).toHaveBeenCalledWith({ target: expect.anything() });
+    });
 
-      render(<Tag {...requiredProps} onClear={onClearSpy} />);
+    it('calls the onRemove handler when enter key is pressed', () => {
+      const ref = createRef();
+      const onRemoveSpy = jest.fn();
+      render(<Tag {...requiredProps} onRemove={onRemoveSpy} ref={ref} />);
+      userEvent.tab();
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+      expect(screen.getAllByRole('gridcell')[1]).toHaveFocus();
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(onRemoveSpy).toHaveBeenCalledWith({ target: expect.anything() });
+    });
 
-      userEvent.click(screen.getAllByRole('gridcell')[1]);
-
-      expect(onClearSpy.mock.calls.length).toEqual(1);
+    it('calls the onRemove handler when space key is pressed', () => {
+      const ref = createRef();
+      const onRemoveSpy = jest.fn();
+      render(<Tag {...requiredProps} onRemove={onRemoveSpy} ref={ref} />);
+      userEvent.tab();
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+      expect(screen.getAllByRole('gridcell')[1]).toHaveFocus();
+      fireEvent.keyDown(document.activeElement, { key: ' ' });
+      expect(onRemoveSpy).toHaveBeenCalledWith({ target: expect.anything() });
     });
   });
 

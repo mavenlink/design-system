@@ -4,9 +4,11 @@ import React, {
 import renderer from 'react-test-renderer';
 import {
   act,
+  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ListOption from './list-option.jsx';
 
 describe('src/components/list-option/list-option', () => {
@@ -36,6 +38,36 @@ describe('src/components/list-option/list-option', () => {
     it('can be unset', () => {
       render(<ListOption {...requiredProps} defaultActive={false} />);
       expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1');
+    });
+  });
+
+  describe('onSelect API', () => {
+    it('is called when selecting by a mouse click', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} selected={false} />);
+      userEvent.click(screen.getByText('Test option'));
+      expect(onSelectSpy).toHaveBeenCalled();
+    });
+
+    it('is called when selecting by a keyboard key', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} selected={false} />);
+      fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
+      expect(onSelectSpy).toHaveBeenCalled();
+    });
+
+    it('is called when deselecting by a mouse click', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} selected={true} />);
+      userEvent.click(screen.getByText('Test option'));
+      expect(onSelectSpy).toHaveBeenCalled();
+    });
+
+    it('is called when deselecting by a keyboard key', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} selected={true} />);
+      fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
+      expect(onSelectSpy).toHaveBeenCalled();
     });
   });
 

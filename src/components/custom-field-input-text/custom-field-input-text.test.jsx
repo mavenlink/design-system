@@ -153,6 +153,15 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onKeyDown', () => {
+    it('handles the key down event', () => {
+      const onKeyDownSpy = jest.fn();
+      render(<TestComponent onKeyDown={onKeyDownSpy} />);
+      fireEvent.keyDown(screen.getByLabelText('Test label'));
+      expect(onKeyDownSpy.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('onKeyUp', () => {
     it('handles the key up event', () => {
       const onKeyUpSpy = jest.fn();

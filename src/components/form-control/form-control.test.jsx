@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import renderer from 'react-test-renderer';
 import {
+  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -80,6 +81,15 @@ describe('<FormControl>', () => {
     it('can be set without an id', () => {
       render(<FormControl {...requiredProps} id={undefined} labelId="unique-label-id" />);
       expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-label-id');
+    });
+  });
+
+  describe('onKeyDown API', () => {
+    it('can be set', () => {
+      const onKeyDownSpy = jest.fn();
+      render(<FormControl {...requiredProps} onKeyDown={onKeyDownSpy} />);
+      fireEvent.keyDown(screen.getByText('Test label'), { key: 'A' });
+      expect(onKeyDownSpy).toHaveBeenCalled();
     });
   });
 

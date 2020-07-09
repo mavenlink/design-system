@@ -1,3 +1,5 @@
+@import '../../styles/colors-v2.css';
+
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
@@ -20,4 +22,15 @@
 
 .input-icon {
   composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.popup-container {
+  composes: container from '../listbox/listbox.css';
+  background-color: var(--white);
+  box-sizing: border-box;
+  max-height: 160px;
+  overflow-y: scroll;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
 }

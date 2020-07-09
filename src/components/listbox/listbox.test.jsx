@@ -121,6 +121,21 @@ describe('src/components/listbox/listbox', () => {
     });
   });
 
+  describe('focus ref API', () => {
+    const ref = createRef();
+    const refs = [createRef(), createRef()];
+    render((
+      <Listbox {...requiredProps} ref={ref} refs={refs}>
+        <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+        <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+      </Listbox>
+    ));
+
+    expect(screen.getByText('Hello')).not.toHaveFocus();
+    act(() => ref.current.focus());
+    expect(screen.getByText('Hello')).toHaveFocus();
+  });
+
   describe('labelledBy API', () => {
     it('can be set', () => {
       render((
@@ -153,7 +168,7 @@ describe('src/components/listbox/listbox', () => {
 
       userEvent.click(screen.getByText('Hey'));
       expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange.mock.calls[0][0]).toEqual({ target: { value: 'hey' } });
+      expect(onChange.mock.calls[0][0]).toEqual({ target: expect.objectContaining({ value: 'hey' }) });
     });
 
     it('is not called on mount', () => {

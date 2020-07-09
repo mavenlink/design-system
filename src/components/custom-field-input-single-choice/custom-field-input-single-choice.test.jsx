@@ -42,7 +42,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
 
-      fireEvent.keyUp(document.activeElement, { key: 'Enter' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
@@ -53,7 +53,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
 
-      fireEvent.keyUp(document.activeElement, { key: 'Escape' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });
@@ -73,6 +73,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
       expect(document.activeElement.innerHTML).toBe('bar');
+    });
+
+    it('focuses the input after selection', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryAllByRole('option', 'bar')[0]).toBeInTheDocument();
+
+      userEvent.click(screen.getByText('foo'));
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.queryAllByRole('option', 'bar')[0]).toBeUndefined();
     });
   });
 
@@ -102,6 +112,25 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(document.activeElement).toHaveValue('he');
       expect(screen.queryByText('Hey')).toBeInTheDocument();
       expect(screen.queryByText('Hi')).not.toBeInTheDocument();
+    });
+
+    it('respects deleting the value', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Hey'));
+      userEvent.click(screen.getByLabelText('Test label'));
+      fireEvent.change(document.activeElement, { target: { value: '' } });
+
+      expect(document.activeElement).toHaveValue('');
+    });
+
+    it('allows selection on filtering', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(document.activeElement, 'he');
+      userEvent.click(screen.getByText('Hey'));
+
+      expect(document.activeElement).toHaveValue('Hey');
     });
   });
 
