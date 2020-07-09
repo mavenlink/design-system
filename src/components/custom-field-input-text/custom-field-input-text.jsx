@@ -43,6 +43,10 @@ export default function CustomFieldInputText(props) {
       num += 1;
     }
 
+    if (props.clear) {
+      num += 1;
+    }
+
     return num;
   };
 
@@ -62,6 +66,14 @@ export default function CustomFieldInputText(props) {
   const showIcon = () => {
     if (props.icon) {
       return props.icon;
+    }
+
+    return undefined;
+  };
+
+  const showClear = () => {
+    if (props.clear) {
+      return props.clear;
     }
 
     return undefined;
@@ -105,6 +117,7 @@ export default function CustomFieldInputText(props) {
       />
       <div className={styles['icon-container']}>
         { showInvalidIcon() }
+        { showClear() }
         { showIcon() }
       </div>
     </FormControl>
@@ -125,6 +138,7 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   icon: PropTypes.node,
+  clear: PropTypes.node,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -166,6 +180,7 @@ CustomFieldInputText.defaultProps = {
   error: false,
   helpText: undefined,
   icon: undefined,
+  clear: undefined,
   inputRef: undefined,
   max: undefined,
   min: undefined,

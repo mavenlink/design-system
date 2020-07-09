@@ -53,7 +53,7 @@ const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i
   id="editable-example-2"
   label="Editable Example 2"
   choices={choices}
-  value="yes"
+  value={choices[0]}
 />
 ```
 
@@ -65,7 +65,7 @@ const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the quest
   id="error-example-1"
   label="Error Example 1"
   choices={choices}
-  value="no"
+  value={choices[1]}
   error
   helpText="Error help."
 />

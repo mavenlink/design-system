@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Icon from '../icon/icon.jsx';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import clearSvg from '../../svgs/icon-clear-small.svg';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -264,6 +265,14 @@ describe('CustomFieldInputText', () => {
     it('shows no icon by default', () => {
       const { queryByRole } = render(<TestComponent />);
       expect(queryByRole('img')).toBeNull();
+    });
+  });
+
+  describe('clear API', () => {
+    it('shows an icon when provided', () => {
+      const icon = <Icon name={clearSvg.id} currentColor="action" />;
+      const { getByRole } = render(<TestComponent clear={icon} />);
+      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-clear-small.svg');
     });
   });
 

@@ -234,4 +234,31 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
     });
   });
+
+  describe('clear', () => {
+    it('clears a value and hides the icon', () => {
+      const value = { id: 'some-selection', label: 'Some selection' };
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
+      userEvent.click(screen.getAllByRole('img')[0]);
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    });
+
+    it('clears the search value and hides the icon', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} placeholder={'test-placeholder'} />);
+      userEvent.type(screen.getByPlaceholderText('test-placeholder'), 'some test text');
+      expect(screen.getByPlaceholderText('test-placeholder')).toHaveValue('some test text');
+      userEvent.click(screen.getAllByRole('img')[0]);
+      expect(screen.getByPlaceholderText('test-placeholder')).toHaveValue('');
+    });
+
+    describe('when the input choice is readOnly', () => {
+      it('does not show the clear icon', () => {
+        const value = { id: 'some-selection', label: 'Some selection' };
+        render(<CustomFieldInputSingleChoice {...requiredProps} value={value} readOnly />);
+        // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
+        expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
+      });
+    });
+  });
 });
