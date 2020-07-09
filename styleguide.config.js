@@ -4,7 +4,7 @@ const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
 
 module.exports = {
-  assetsDir: path.join(__dirname, 'styleguide', 'assets'),
+  assetsDir: path.join(__dirname, 'styleguide/assets'),
   exampleMode: 'expand',
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
@@ -17,12 +17,12 @@ module.exports = {
   },
   pagePerSection: true,
   require: [
-    path.join(__dirname, 'styleguide', 'content', 'content.css'),
+    path.join(__dirname, 'styleguide/content/content.css'),
   ],
   sections: [
     {
       name: 'Overview',
-      content: './styleguide/content/overview/overview.md',
+      content: path.join(__dirname, 'styleguide/content/overview/overview.md'),
     },
     {
       name: 'Components',
@@ -39,11 +39,11 @@ module.exports = {
       sections: [
         {
           name: 'Accessibility',
-          content: './styleguide/content/guidelines/accessibility.md',
+          content: path.join(__dirname, 'styleguide/content/guidelines/accessibility.md'),
         },
         {
           name: 'Contribute',
-          content: './docs/contributing.md',
+          content: path.join(__dirname, 'docs/contributing.md'),
         },
       ],
     },
@@ -52,15 +52,15 @@ module.exports = {
       sections: [
         {
           name: 'Colors',
-          content: './styleguide/content/brand-identity/colors.md',
+          content: path.join(__dirname, 'styleguide/content/brand-identity/colors.md'),
         },
         {
           name: 'Spacing',
-          content: './styleguide/content/brand-identity/spacing.md',
+          content: path.join(__dirname, 'styleguide/content/brand-identity/spacing.md'),
         },
         {
           name: 'Typography',
-          content: './styleguide/content/brand-identity/typography.md',
+          content: path.join(__dirname, 'styleguide/content/brand-identity/typography.md'),
         },
       ],
     },
@@ -69,7 +69,7 @@ module.exports = {
       sections: [
         {
           name: 'Basic Page Patterns',
-          content: './styleguide/content/design-patterns/basic-page-spacing.md',
+          content: path.join(__dirname, 'styleguide/content/design-patterns/basic-page-spacing.md'),
         },
       ],
     },
