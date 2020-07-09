@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import cautionSvg from '../../svgs/icon-caution-fill.svg';
-import FormControl from '../form-control/form-control.jsx';
-import Icon from '../icon/icon.jsx';
-import styles from './custom-field-input-text.css';
 import useValidation from '../../hooks/use-validation.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 
 export default function CustomFieldInputText(props) {
   const defaultRef = useRef(null);
@@ -12,66 +9,40 @@ export default function CustomFieldInputText(props) {
   const labelId = `${props.id}-label`;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
-  const invalidDueToProps = () => props.errorText.length > 0 && !props.readOnly;
 
-  const icon = () => {
-    if (invalidDueToProps()) {
-      return (<Icon
-        className={styles['input-icon']}
-        currentColor="caution"
-        name={cautionSvg.id}
-        size="medium"
-      />);
-    }
-
-    if (props.icon) {
-      return props.icon;
-    }
-
-    return undefined;
-  };
-
-  const showIcon = () => {
-    return invalidDueToProps() || !!props.icon;
-  };
-
+  // TODO: When other custom fields are decoupled from this one, remove a few props:
+  // icon
+  // min/max (maybe they're only used with number?)
+  // step
+  // type
   return (
-    <FormControl
+    <AbstractCustomField
+      ariaProps={props.ariaProps}
       className={props.className}
-      error={validationMessage}
+      defaultValue={props.defaultValue}
+      disabled={props.disabled}
+      errorText={validationMessage}
+      icon={props.icon}
       id={props.id}
-      labelId={labelId}
+      inputRef={inputRef}
       label={props.label}
+      labelId={labelId}
+      max={props.max}
+      min={props.min}
+      name={props.name}
+      onBlur={props.onBlur}
+      onChange={props.onChange}
+      onClick={props.onClick}
+      onFocus={props.onFocus}
+      onKeyDown={props.onKeyDown}
+      onKeyUp={props.onKeyUp}
+      placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}
-    >
-      <input
-        aria-autocomplete={props.ariaProps.autocomplete}
-        aria-controls={labelId}
-        aria-haspopup={props.ariaProps.haspopup}
-        defaultValue={props.defaultValue}
-        className={styles.input}
-        disabled={props.disabled}
-        id={props.id}
-        max={props.max}
-        min={props.min}
-        name={props.name}
-        onBlur={props.onBlur}
-        onChange={props.onChange}
-        onClick={props.onClick}
-        onFocus={props.onFocus}
-        onKeyDown={props.onKeyDown}
-        onKeyUp={props.onKeyUp}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        ref={inputRef}
-        required={props.required}
-        step={props.step}
-        type={props.type}
-        value={props.value}
-      />
-      {showIcon() && icon()}
-    </FormControl>
+      step={props.step}
+      type={props.type}
+      value={props.value}
+    />
   );
 }
 
