@@ -35,5 +35,17 @@ describe('useValidation', () => {
       const { result } = renderHook(() => useValidation(false, 'yo', mockRef()));
       expect(result.current).toBe('yo');
     });
+
+    it('sets the custom validity to the contextual error', () => {
+      const ref = mockRef();
+      renderHook(() => useValidation(false, 'yo', ref));
+      expect(ref.current.setCustomValidity.mock.calls.length > 0).toBe(true);
+    });
+
+    it('unsets the custom validity when there is no error', () => {
+      const ref = mockRef();
+      renderHook(() => useValidation(false, '', ref));
+      expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
+    });
   });
 });
