@@ -35,7 +35,7 @@
   background-color: var(--white);
   box-sizing: border-box;
   max-height: 160px;
-  overflow: scroll;
+  overflow-y: scroll;
   position: absolute;
   width: 100%;
   z-index: 10;
