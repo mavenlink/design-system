@@ -4,7 +4,7 @@ It has no underlying validations besides developer intent (see Error example for
 
 ##### Basic usage:
 
-```jsx
+```js
 <CustomFieldInputText
   id="basic-test-1"
   label="Example 1"
@@ -24,7 +24,7 @@ It has no underlying validations besides developer intent (see Error example for
 ```
 ----
 ##### Disabled state:
-```jsx
+```js
 <CustomFieldInputText
   disabled
   defaultValue="This value cannot be changed"
@@ -43,7 +43,7 @@ However, the underlying `<input />` element will still be valid unless one of th
 
 Violating the conditions above will result in an improper state of the component.
 
-```jsx
+```js
 <CustomFieldInputText
   error
   helpText="Custom error message here."

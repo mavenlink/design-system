@@ -4,7 +4,7 @@ monetary value automatically using the browser's locale. Focusing into the compo
 the numeric value of the currency, while the component's unfocused state presents the formatted currency value held
 within itself.
 
-```jsx
+```js
 <CustomFieldInputCurrency
   placeholder="$123.00"
   label="US Dollars"
@@ -27,7 +27,7 @@ within itself.
 ```
 ----
 ##### Disabled:
-```jsx
+```js
 <CustomFieldInputCurrency
   disabled={true}
   id="test-id-2"
@@ -43,7 +43,7 @@ Errors can be classified as technical or contextual. The first example below is 
 separated below a single cFa. The second, on the other hand, is contextual--perhaps the backend denied the value
 presented to it, responding with a specific message for the context of that specific currency value.
 
-```jsx
+```js
 <CustomFieldInputCurrency
   id="test-id-3"
   name="test-name-3"

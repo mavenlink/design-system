@@ -3,7 +3,7 @@ Its accessibility interactions are inherited from [`TagList`](#/Components/TagLi
 
 ### Default examples
 
-```jsx
+```js
 const choices = [
   { id: '1', label: 'command (abstract role)' },
   { id: '2', label: 'composite (abstract role)' },
@@ -99,7 +99,7 @@ const value = [
 
 ### Read-only examples
 
-```jsx
+```js
 <CustomFieldInputMultipleChoice
   choices={[]}
   id="234"

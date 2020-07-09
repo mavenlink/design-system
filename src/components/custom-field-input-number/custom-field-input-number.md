@@ -4,7 +4,7 @@ It also implements a similar validation to the custom field of type number from 
 A valid number is either: a) positive whole number; b) negative whole number.
 Otherwise, it is an invalid number and the component is in an invalid state.
 
-```jsx
+```js
 <CustomFieldInputNumber
   id="test-id-1"
   label="Example 1"
@@ -12,7 +12,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 ```
 ----
 ##### Disabled:
-```jsx
+```js
 <CustomFieldInputNumber
   disabled
   id="test-id-2"
@@ -22,7 +22,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 ```
 ----
 ##### Error:
-```jsx
+```js
 <CustomFieldInputNumber
   id="test-id-3"
   label="Example 3"

@@ -20,7 +20,7 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ### Basic examples
 
-```
+```js padded
 <Tag id="basic-example-1" readOnly>Test Title</Tag>
 <div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />
 <Tag id="basic-example-2" >Test Title</Tag>
@@ -28,7 +28,7 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ### Composition examples
 
-```
+```js
 <Tag id="composition-example-1" readOnly>
   Test Title
   <span style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>
@@ -37,14 +37,15 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 </Tag>
 ```
 
-```
-const iconTick = require('../../svgs/icon-tick.svg');
+```js
+import Icon from '../icon/icon.jsx';
+import iconTick from '../../svgs/icon-tick.svg';
 
 <Tag id="composition-example-2" readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
-      <Icon name={iconTick.default.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
+      <Icon name={iconTick.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
     </span>
   </span>
 </Tag>
@@ -55,7 +56,7 @@ const iconTick = require('../../svgs/icon-tick.svg');
 The `onRemove` prop is used to register a handler for interaction with the tag's `clear` action being used by pointer, keyboard, or accessibility feature.
 
 
-```
+```js
 <Tag id="on-clear-example" onRemove={event => { console.log(event); window.alert('Removed!'); }}>Test Title</Tag>
 ```
 
@@ -65,7 +66,7 @@ If not using inside a `TagList`, tags must be contained in an element with the `
 
 When using `Tag` components outside of the `TagList` component, ensure that focus is properly managed. The "tab" key should change focus between groups of elements, and the "arrow" keys should navigate internally in those lists. The native behavior shown here is incorrect, as the "tab" key moves between `Tag` components, and the "arrow" keys only navigate the internal `Tag` elements. Using `TagList` implements the correct behavior for you.
 
-```
+```js
 function Spacer() {
   return (<div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />);
 }

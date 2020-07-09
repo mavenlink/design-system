@@ -18,7 +18,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 - Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader).
 - Setup [SVG processing](https://svgontheweb.com/#spriting). One way of doing that is with [`svg-sprite-loader` for Webpack](https://github.com/kisenka/svg-sprite-loader).
 
-  ```js
+  ```js static
   // Webpack configuration
   const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
@@ -54,7 +54,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 - Use in your project
 
-  ```jsx
+  ```js
   import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
   function App() {
