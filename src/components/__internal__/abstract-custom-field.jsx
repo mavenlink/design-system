@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
 import styles from '../custom-field-input-text/custom-field-input-text.css';

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from '../custom-field-input-text/custom-field-input-text.css';
 import useValidation from '../../hooks/use-validation.jsx';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 
 const apiLimits = {
   max: 2 ** 31,
@@ -23,6 +23,7 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
+  const labelId = `${props.id}-label`;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
@@ -40,10 +41,10 @@ export default function CustomFieldInputNumber(props) {
   useEffect(() => {
     const hasError = props.errorText.length > 0;
     setInvalid(hasError);
-  }, [props.error]);
+  }, [props.errorText]);
 
   return (
-    <CustomFieldInputText
+    <AbstractCustomField
       className={getRootClassName(props.className, invalid, props.disabled)}
       defaultValue={props.value}
       disabled={props.disabled}
@@ -52,6 +53,7 @@ export default function CustomFieldInputNumber(props) {
       id={props.id}
       inputRef={inputRef}
       label={props.label}
+      labelId={labelId}
       max={apiLimits.max}
       min={apiLimits.min}
       name={props.name}
