@@ -53,7 +53,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.getByText('Choice 2')).toBeInTheDocument();
         userEvent.type(document.activeElement, '1');
         userEvent.click(screen.getByText('Choice 1'));
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('')
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
       });
     });
 
