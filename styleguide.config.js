@@ -17,7 +17,7 @@ module.exports = {
   },
   pagePerSection: true,
   require: [
-    './styleguide/content/content.css',
+    path.join(__dirname, 'styleguide', 'content', 'content.css'),
   ],
   sections: [
     {
