@@ -20,7 +20,7 @@ function isInvalid(error, readOnly) {
 
 export default function FormControl(props) {
   return (
-    <div className={props.className}>
+    <div className={props.className} onKeyDown={props.onKeyDown} role="presentation">
       <label
         className={getLabelClassName(props.error, props.readOnly)}
         htmlFor={props.id}
@@ -72,6 +72,7 @@ FormControl.propTypes = {
 
     return undefined;
   },
+  onKeyDown: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
 };
@@ -81,6 +82,7 @@ FormControl.defaultProps = {
   error: '',
   id: undefined,
   labelId: undefined,
+  onKeyDown: () => {},
   readOnly: false,
   required: false,
 };
