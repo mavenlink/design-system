@@ -6,7 +6,6 @@ import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 export default function CustomFieldInputText(props) {
   const defaultRef = useRef(null);
   const inputRef = props.inputRef || defaultRef;
-  const labelId = `${props.id}-label`;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
 
@@ -26,9 +25,6 @@ export default function CustomFieldInputText(props) {
       id={props.id}
       inputRef={inputRef}
       label={props.label}
-      labelId={labelId}
-      max={props.max}
-      min={props.min}
       name={props.name}
       onBlur={props.onBlur}
       onChange={props.onChange}
@@ -39,7 +35,6 @@ export default function CustomFieldInputText(props) {
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}
-      step={props.step}
       type={props.type}
       value={props.value}
     />

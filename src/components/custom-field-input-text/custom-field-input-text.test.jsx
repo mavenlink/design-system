@@ -104,30 +104,6 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('max API', () => {
-    it('sets the max attribute', () => {
-      render(<TestComponent max={5} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('max', '5');
-    });
-
-    it('allows a date string', () => {
-      render(<TestComponent max="2001-09-11" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('max', '2001-09-11');
-    });
-  });
-
-  describe('min API', () => {
-    it('sets the min attribute', () => {
-      render(<TestComponent min={-5} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('min', '-5');
-    });
-
-    it('allows a date string', () => {
-      render(<TestComponent min="2001-09-11" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('min', '2001-09-11');
-    });
-  });
-
   describe('name API', () => {
     it('sets the name attribute', () => {
       render(<TestComponent name="test-name" />);
@@ -219,13 +195,6 @@ describe('CustomFieldInputText', () => {
     it('can have no required indicator', () => {
       render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
-    });
-  });
-
-  describe('step API', () => {
-    it('sets the step attribute', () => {
-      render(<TestComponent step={2} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('step', '2');
     });
   });
 

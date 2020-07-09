@@ -6,6 +6,7 @@ import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
 
 export default function AbstractCustomField(props) {
+  const labelId = `${props.id}-label`;
   const invalidDueToProps = () => props.errorText.length > 0 && !props.readOnly;
 
   const icon = () => {
@@ -34,14 +35,14 @@ export default function AbstractCustomField(props) {
       className={props.className}
       error={props.errorText}
       id={props.id}
-      labelId={props.labelId}
+      labelId={labelId}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
     >
       <input
         aria-autocomplete={props.ariaProps.autocomplete}
-        aria-controls={props.labelId}
+        aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
         defaultValue={props.defaultValue}
         className={styles.input}
@@ -85,7 +86,6 @@ AbstractCustomField.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
-  labelId: PropTypes.string,
   max: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -124,7 +124,6 @@ AbstractCustomField.defaultProps = {
   errorText: '',
   icon: undefined,
   inputRef: undefined,
-  labelId: '',
   max: undefined,
   min: undefined,
   name: undefined,

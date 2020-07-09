@@ -23,7 +23,6 @@ function getRootClassName(className, error, disabled) {
 
 export default function CustomFieldInputNumber(props) {
   const inputRef = props.inputRef || useRef(null);
-  const labelId = `${props.id}-label`;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
@@ -53,7 +52,6 @@ export default function CustomFieldInputNumber(props) {
       id={props.id}
       inputRef={inputRef}
       label={props.label}
-      labelId={labelId}
       max={apiLimits.max}
       min={apiLimits.min}
       name={props.name}
