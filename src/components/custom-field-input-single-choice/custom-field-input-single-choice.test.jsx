@@ -245,11 +245,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('clears the search value and hides the icon', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} placeholder={'test-placeholder'} />);
-      userEvent.type(screen.getByPlaceholderText('test-placeholder'), 'some test text');
-      expect(screen.getByPlaceholderText('test-placeholder')).toHaveValue('some test text');
+      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+      userEvent.type(screen.getByLabelText('Test label', { selector: 'input' }), 'some test text');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('some test text');
       userEvent.click(screen.getAllByRole('img')[0]);
-      expect(screen.getByPlaceholderText('test-placeholder')).toHaveValue('');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('');
     });
 
     describe('when the input choice is readOnly', () => {
