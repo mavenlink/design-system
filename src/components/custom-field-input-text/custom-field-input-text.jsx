@@ -9,8 +9,6 @@ export default function CustomFieldInputText(props) {
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
 
-  // TODO: When other custom fields are decoupled from this one, remove a few props:
-  // icon
   return (
     <AbstractCustomField
       ariaProps={props.ariaProps}
@@ -18,7 +16,6 @@ export default function CustomFieldInputText(props) {
       defaultValue={props.defaultValue}
       disabled={props.disabled}
       errorText={validationMessage}
-      icon={props.icon}
       id={props.id}
       inputRef={inputRef}
       label={props.label}
@@ -50,7 +47,6 @@ CustomFieldInputText.propTypes = {
   ]),
   disabled: PropTypes.bool,
   errorText: PropTypes.string,
-  icon: PropTypes.node,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -76,7 +72,6 @@ CustomFieldInputText.defaultProps = {
   defaultValue: undefined,
   disabled: false,
   errorText: '',
-  icon: undefined,
   inputRef: undefined,
   name: undefined,
   onBlur: () => {},

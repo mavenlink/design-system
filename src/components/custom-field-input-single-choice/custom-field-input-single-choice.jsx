@@ -4,7 +4,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
@@ -73,7 +73,7 @@ export default function CustomFieldInputSingleChoice(props) {
 
   return (
     <div className={styles.container}>
-      <CustomFieldInputText
+      <AbstractCustomField
         icon={caretIcon}
         id={props.id}
         label={props.label}
