@@ -11,9 +11,6 @@ export default function CustomFieldInputText(props) {
 
   // TODO: When other custom fields are decoupled from this one, remove a few props:
   // icon
-  // min/max (maybe they're only used with number?)
-  // step
-  // type
   return (
     <AbstractCustomField
       ariaProps={props.ariaProps}
@@ -35,7 +32,7 @@ export default function CustomFieldInputText(props) {
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}
-      type={props.type}
+      type="text"
       value={props.value}
     />
   );
@@ -57,14 +54,6 @@ CustomFieldInputText.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
-  max: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  min: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
@@ -75,12 +64,6 @@ CustomFieldInputText.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  step: PropTypes.number,
-  type: PropTypes.oneOf([
-    'date',
-    'number',
-    'text',
-  ]),
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -95,8 +78,6 @@ CustomFieldInputText.defaultProps = {
   errorText: '',
   icon: undefined,
   inputRef: undefined,
-  max: undefined,
-  min: undefined,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
@@ -107,7 +88,5 @@ CustomFieldInputText.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  step: undefined,
-  type: 'text',
   value: undefined,
 };

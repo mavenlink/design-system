@@ -198,23 +198,6 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('type API', () => {
-    it('can be set to `number`', () => {
-      render(<TestComponent type="number" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'number');
-    });
-
-    it('can be set to `text`', () => {
-      render(<TestComponent type="text" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
-    });
-
-    it('can be set to `date`', () => {
-      render(<TestComponent type="date" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
-    });
-  });
-
   describe('icon API', () => {
     it('shows an icon when provided', () => {
       const icon = <Icon name={calendarSvg.id} currentColor="action" />;
