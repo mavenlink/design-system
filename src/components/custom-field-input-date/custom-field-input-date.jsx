@@ -55,7 +55,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   useImperativeHandle(ref, () => ({
     value: () => {
-      return componentRef.current.value();
+      return componentRef.current.value;
     },
   }));
 
@@ -109,7 +109,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
     id={props.id}
     key={`${props.id}-readonly`}
-    ref={componentRef}
+    inputRef={componentRef}
     type="text"
   />);
 });

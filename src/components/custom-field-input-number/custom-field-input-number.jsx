@@ -22,7 +22,6 @@ function getRootClassName(className, error, disabled) {
 }
 
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
-  const componentRef = useRef(null);
   const inputRef = props.inputRef || useRef(null);
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
@@ -45,7 +44,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
 
   useImperativeHandle(ref, () => ({
     value: () => {
-      return componentRef.current.value();
+      return inputRef.current.value;
     },
   }));
 
@@ -66,7 +65,6 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref={componentRef}
       required={props.required}
       respectNativeValidity
       step={props.step}

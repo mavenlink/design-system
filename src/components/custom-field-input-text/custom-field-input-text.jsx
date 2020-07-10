@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 
@@ -8,6 +8,12 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
   const inputRef = props.inputRef || defaultRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
+
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return inputRef.current.value;
+    },
+  }));
 
   return (
     <AbstractCustomField
@@ -28,7 +34,6 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
       onKeyUp={props.onKeyUp}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref
       required={props.required}
       type="text"
       value={props.value}
