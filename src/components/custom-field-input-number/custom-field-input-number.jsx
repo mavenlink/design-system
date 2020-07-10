@@ -9,18 +9,6 @@ const apiLimits = {
   min: -(2 ** 31),
 };
 
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
-
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
   const inputRef = props.inputRef || useRef(null);
 
