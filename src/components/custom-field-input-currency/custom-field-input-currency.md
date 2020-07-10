@@ -10,14 +10,18 @@ within itself.
   label="US Dollars"
   id="us-dollars"
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="Iraqi Dinar"
   currencyCode="IQD"
   id="iraqi-dinar"
   value={182211}
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="Central African Francs"
   id="cFa"
@@ -25,8 +29,9 @@ within itself.
   value={5200}
 />
 ```
-----
+
 ##### Disabled:
+
 ```js
 <CustomFieldInputCurrency
   disabled={true}
@@ -36,7 +41,7 @@ within itself.
   label="Disabled Field"
 />
 ```
-----
+
 ##### Error:
 
 Errors can be classified as technical or contextual. The first example below is a technical error--cFa cannot be
@@ -51,7 +56,9 @@ presented to it, responding with a specific message for the context of that spec
   currencyCode="XAF"
   label="Internal Error State"
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="External Error State"
   id="test-id-4"

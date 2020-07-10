@@ -8,14 +8,15 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     label="Andre's Birthday"
     value="1992-05-10"
 />
+```
 
+```js
 <CustomFieldInputDate
     id="my-birthday-2"
     label="Greyson's Birthday"
     value="08/20/2020"
 />
 ```
-----
 
 ##### Disabled state:
 
@@ -27,4 +28,3 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     disabled
 />
 ```
-----

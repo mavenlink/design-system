@@ -9,21 +9,26 @@ It has no underlying validations besides developer intent (see Error example for
   id="basic-test-1"
   label="Example 1"
 />
+```
 
+```js
 <CustomFieldInputText
   defaultValue="This uses an uncontrolled value"
   id="basic-test-2"
   label="Example 1"
 />
+```
 
+```js
 <CustomFieldInputText
   id="basic-test-3"
   label="Example 1"
   value="This uses a controlled value"
 />
 ```
-----
+
 ##### Disabled state:
+
 ```js
 <CustomFieldInputText
   disabled
@@ -32,7 +37,7 @@ It has no underlying validations besides developer intent (see Error example for
   label="Example 2"
 />
 ```
-----
+
 ##### Errored state:
 
 The `error` property indicates the error state of the component.

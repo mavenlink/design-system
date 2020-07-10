@@ -20,9 +20,11 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ### Basic examples
 
-```js padded
+```js
 <Tag id="basic-example-1" readOnly>Test Title</Tag>
-<div style={{display: 'inline-block', width: 'var(--spacing-medium)'}} />
+```
+
+```js
 <Tag id="basic-example-2" >Test Title</Tag>
 ```
 

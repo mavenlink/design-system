@@ -10,8 +10,9 @@ Otherwise, it is an invalid number and the component is in an invalid state.
   label="Example 1"
 />
 ```
-----
+
 ##### Disabled:
+
 ```js
 <CustomFieldInputNumber
   disabled
@@ -20,8 +21,9 @@ Otherwise, it is an invalid number and the component is in an invalid state.
   value={1337}
 />
 ```
-----
+
 ##### Error:
+
 ```js
 <CustomFieldInputNumber
   id="test-id-3"

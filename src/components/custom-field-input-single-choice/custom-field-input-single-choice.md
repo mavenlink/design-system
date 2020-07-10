@@ -8,7 +8,9 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   label="Default Example 1"
   placeholder="This is a single choice field"
 />
+```
 
+```js
 <CustomFieldInputSingleChoice
   id="default-example-2"
   label="Default Example 1"
@@ -24,7 +26,9 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   label="Read Only Example 1"
   readOnly
 />
+```
 
+```js
 <CustomFieldInputSingleChoice
   id="read-only-example-2"
   label="Read Only Example 2"
