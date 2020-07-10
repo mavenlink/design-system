@@ -9,13 +9,13 @@
   - Append new items to make git merging easier.
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
+  - Minor: Update `CustomFieldInputSingleChoice` to allow removing selected choices
   - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
 </details>
 
 ## 0.28.0 (July 02, 2020)
 - Minor: Publish all files in repo to NPM.
 - Minor: Adjust typography table to more clearly display MDS variable names
-- Minor: Update `CustomFieldInputSingleChoice` to remove all selected choices
 
 ## 0.27.0 (June 23, 2020)
 - Minor: Forward refs to `Button`
