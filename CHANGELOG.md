@@ -11,6 +11,7 @@
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
   - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
+  - Minor: Add ref `value` API to all CustomFieldInput components except MultipleChoice
 </details>
 
 ## 0.28.0 (July 02, 2020)

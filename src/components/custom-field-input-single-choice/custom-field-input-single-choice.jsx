@@ -1,5 +1,7 @@
 import React, {
+  forwardRef,
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -12,7 +14,7 @@ import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
-export default function CustomFieldInputSingleChoice(props) {
+const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
   const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -105,6 +107,12 @@ export default function CustomFieldInputSingleChoice(props) {
     if (!showOptions) inputRef.current.focus();
   }, [showOptions]);
 
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return value;
+    },
+  }));
+
   return (
     <div className={styles.container}>
       <AbstractCustomField
@@ -133,7 +141,7 @@ export default function CustomFieldInputSingleChoice(props) {
       ) }
     </div>
   );
-}
+});
 
 const ChoiceType = PropTypes.shape({
   id: PropTypes.string.isRequired,
@@ -157,3 +165,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   required: false,
   value: undefined,
 };
+
+export default CustomFieldInputSingleChoice;

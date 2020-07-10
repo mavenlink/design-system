@@ -45,3 +45,35 @@ The underlying `input` element will be invalid due to the custom error provided.
   label="Example 3"
 />
 ```
+----
+##### Ref usage:
+
+All CustomFieldInput* use `forwardRef` and `useImperativeHandle` to provide an API similar to the DOM native for determining their value.
+Below is an example of this usage:
+
+```jsx
+const React = require('react');
+
+function TestComponent() {
+  const inputRef = React.useRef(null);
+  const [value, setValue] = React.useState('');
+
+  const onChange = () => {
+    setValue(inputRef.current.value());
+  }
+
+  return (
+    <div>
+      <CustomFieldInputText
+        id="test-id-4"
+        label="Example 4"
+        onChange={onChange}
+        ref={inputRef}
+      />
+      <span>Value is: {value}</span>
+    </div>
+  )
+}
+
+<TestComponent />
+```

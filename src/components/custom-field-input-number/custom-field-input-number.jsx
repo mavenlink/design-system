@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } from 'react';
 import styles from '../__internal__/abstract-custom-field.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
@@ -9,7 +9,20 @@ const apiLimits = {
   min: -(2 ** 31),
 };
 
-export default function CustomFieldInputNumber(props) {
+function getRootClassName(className, error, disabled) {
+  if (disabled) {
+    return `${className} ${styles.disabled}`;
+  }
+
+  if (error) {
+    return `${className} ${styles.error}`;
+  }
+
+  return className;
+}
+
+const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
+  const componentRef = useRef(null);
   const inputRef = props.inputRef || useRef(null);
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
@@ -30,6 +43,12 @@ export default function CustomFieldInputNumber(props) {
     setInvalid(hasError);
   }, [props.errorText]);
 
+  useImperativeHandle(ref, () => ({
+    value: () => {
+      return componentRef.current.value();
+    },
+  }));
+
   return (
     <AbstractCustomField
       className={props.className}
@@ -47,13 +66,14 @@ export default function CustomFieldInputNumber(props) {
       onKeyUp={handleOnKeyUp}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
+      ref={componentRef}
       required={props.required}
       respectNativeValidity
       step={props.step}
       type="number"
     />
   );
-}
+});
 
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
@@ -88,3 +108,5 @@ CustomFieldInputNumber.defaultProps = {
   step: 1,
   value: '',
 };
+
+export default CustomFieldInputNumber;
