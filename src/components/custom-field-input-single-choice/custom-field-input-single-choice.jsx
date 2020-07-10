@@ -33,7 +33,7 @@ export default function CustomFieldInputSingleChoice(props) {
   };
 
   const clearIcon = () => {
-    if (!props.readOnly && (!!value || !!searchValue)) {
+    if (!props.readOnly && (value || searchValue)) {
       return (<Icon
         name={iconClear.id}
         onClick={clear}
