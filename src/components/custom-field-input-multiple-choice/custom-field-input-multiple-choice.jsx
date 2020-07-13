@@ -16,10 +16,13 @@ import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
 function CustomFieldInputMultipleChoice(props) {
-  const listboxRef = useRef();
+  const autocompleteRef = useRef();
+  const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const visibleChoices = props.choices.filter(choice => !value.includes(choice));
+  const visibleChoices = props.choices
+    .filter(choice => choice.label.includes(autocompleteValue))
+    .filter(choice => !value.includes(choice));
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = props.readOnly ?
@@ -39,6 +42,12 @@ function CustomFieldInputMultipleChoice(props) {
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
     setValue([...value, selectedChoice]);
+    setAutocompleteValue('');
+  }
+
+  function onAutocompleteChange(event) {
+    setExpanded(true);
+    setAutocompleteValue(event.target.value);
   }
 
   function onClick() {
@@ -55,8 +64,8 @@ function CustomFieldInputMultipleChoice(props) {
   }
 
   useEffect(() => {
-    if (expanded && listboxRef.current) {
-      listboxRef.current.focus();
+    if (expanded && autocompleteRef.current) {
+      autocompleteRef.current.focus();
     }
   }, [expanded]);
 
@@ -64,6 +73,7 @@ function CustomFieldInputMultipleChoice(props) {
     <FormControl
       label={props.label}
       labelId={`${props.id}-label`}
+      id={`${props.id}-autocomple`}
       onKeyDown={onKeyDown}
       readOnly={props.readOnly}
     >
@@ -86,28 +96,34 @@ function CustomFieldInputMultipleChoice(props) {
             {choice.label}
           </Tag>
         ))}
+        {!props.readOnly && (
+          <input
+            aria-labelledby={`${props.id}-label`}
+            className={styles['autocomplete-input']}
+            id={`${props.id}-autocomple`}
+            onChange={onAutocompleteChange}
+            ref={autocompleteRef}
+            value={autocompleteValue}
+          />
+        )}
         <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
       </TagList>
       {(renderPopup &&
         <Listbox
           className={styles['popup-container']}
           labelledBy={`${props.id}-label`}
-          ref={listboxRef}
           refs={choicesRefs}
         >
-          {props.choices
-            .filter(choice => !value.includes(choice))
-            .map((choice, index) => (
-              <ListOption
-                key={`${props.id}-${choice.id}`}
-                onSelect={onChoiceSelect}
-                ref={choicesRefs[index]}
-                value={choice}
-              >
-                {choice.label}
-              </ListOption>
-            ))
-          }
+          {visibleChoices.map((choice, index) => (
+            <ListOption
+              key={`${props.id}-${choice.id}`}
+              onSelect={onChoiceSelect}
+              ref={choicesRefs[index]}
+              value={choice}
+            >
+              {choice.label}
+            </ListOption>
+          ))}
         </Listbox>
       )}
     </FormControl>

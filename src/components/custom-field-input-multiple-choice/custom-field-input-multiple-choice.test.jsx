@@ -26,31 +26,73 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   });
 
   describe('autocompleter popup', () => {
-    it('opens on click', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
+    describe('input', () => {
+      it('focuses on click', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+      });
+
+      it('filters visible choices on value', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+        expect(screen.getByText('Choice 1')).toBeInTheDocument();
+        expect(screen.getByText('Choice 2')).toBeInTheDocument();
+        userEvent.type(document.activeElement, '1');
+        expect(screen.getByText('Choice 1')).toBeInTheDocument();
+        expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
+      });
+
+      it('is cleared on selection', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByText('Choice 1')).toBeInTheDocument();
+        expect(screen.getByText('Choice 2')).toBeInTheDocument();
+        userEvent.type(document.activeElement, '1');
+        userEvent.click(screen.getByText('Choice 1'));
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
+      });
     });
 
-    it('closes on escape key', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
-      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
-      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-    });
+    describe('popup', () => {
+      it('opens on click', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.queryByRole('listbox')).toBeInTheDocument();
+      });
 
-    it('does not open when there are no choices', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
-      userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-    });
+      it('opens on typing', async () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.tab();
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), 'Choi', { skipClick: true });
+        expect(screen.queryByRole('listbox')).toBeInTheDocument();
+      });
 
-    it('does not open when read-only', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} readOnly />);
-      userEvent.click(screen.getByLabelText('test label'));
-      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      it('closes on escape key', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.queryByRole('listbox')).toBeInTheDocument();
+        fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      });
+
+      it('does not open when there are no choices', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      });
+
+      it('does not open when read-only', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} readOnly />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      });
     });
   });
 
@@ -81,7 +123,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.getByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
     });
 
@@ -96,7 +138,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         value={choices}
       />));
 
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
     });
   });
@@ -118,7 +160,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('can be set', () => {
       render((<CustomFieldInputMultipleChoice {...requiredProps} label="Unique label" />));
 
-      expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
+      expect(screen.getByLabelText('Unique label', { selector: '[role="grid"]' })).toBeInTheDocument();
     });
   });
 
@@ -147,20 +189,20 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   describe('selecting a choice', () => {
     it('removes the choice from the list of choices', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
       userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
     });
 
     it('adds the choice to the selected choices', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
       userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
-      userEvent.click(screen.getByLabelText('test label'));
+      userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
     });
   });
