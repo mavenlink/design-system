@@ -243,7 +243,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(inputRef.current.value()).toStrictEqual(value);
+      expect(inputRef.current.value).toStrictEqual(value);
     });
   });
 });

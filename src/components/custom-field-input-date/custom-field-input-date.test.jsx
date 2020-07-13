@@ -208,7 +208,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const inputRef = createRef(null);
       render(<CustomFieldInputDate id="test-input" label="Test label" ref={inputRef} value="2016-07-18" />);
 
-      expect(inputRef.current.value()).toBe('July 18, 2016');
+      expect(inputRef.current.value).toBe('July 18, 2016');
     });
   });
 });

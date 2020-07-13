@@ -11,7 +11,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
 
   useImperativeHandle(ref, () => ({
     id: props.id,
-    value: () => {
+    get value() {
       return inputRef.current.value;
     },
   }));

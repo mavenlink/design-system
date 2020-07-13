@@ -64,7 +64,7 @@ describe('CustomFieldInputText', () => {
       render(<CustomFieldInputText id="test-input" label="Test label" ref={inputRef} />);
 
       userEvent.type(screen.getByLabelText('Test label'), 'test-value');
-      expect(inputRef.current.value()).toBe('test-value');
+      expect(inputRef.current.value).toBe('test-value');
     });
   });
 });

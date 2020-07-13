@@ -172,7 +172,7 @@ describe('CustomFieldInputNumber', () => {
       render(<CustomFieldInputNumber id="test-input" label="Test label" ref={inputRef} />);
 
       userEvent.type(screen.getByLabelText('Test label'), '1234');
-      expect(inputRef.current.value()).toBe('1234');
+      expect(inputRef.current.value).toBe('1234');
     });
   });
 });
