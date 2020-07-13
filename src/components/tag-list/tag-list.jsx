@@ -14,37 +14,45 @@ export default function TagList(props) {
     });
   }, [active, activeIndex]);
 
-  function onClick(clickEvent) {
-    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(clickEvent.target));
-    if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
+  function onClick(event) {
+    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
+
+    if (nextActiveIndex === -1) {
+      props.onClick();
+    }
   }
 
-  function onFocus() {
-    setActive(true);
+  function onFocus(event) {
+    const nextActiveIndex = props.refs.findIndex(ref => ref.current.contains(event.target));
+
+    if (nextActiveIndex !== -1) {
+      setActive(true);
+      setActiveIndex(nextActiveIndex);
+    }
   }
 
-  function onKeyDown(keyEvent) {
-    switch (keyEvent.key) {
+  function onKeyDown(event) {
+    switch (event.key) {
       case 'ArrowLeft':
       case 'ArrowUp':
         if (activeIndex > 0) {
-          keyEvent.preventDefault();
+          event.preventDefault();
           setActiveIndex(activeIndex - 1);
         }
         break;
       case 'ArrowRight':
       case 'ArrowDown':
         if (activeIndex < props.refs.length - 1) {
-          keyEvent.preventDefault();
+          event.preventDefault();
           setActiveIndex(activeIndex + 1);
         }
         break;
       case 'End':
-        keyEvent.preventDefault();
+        event.preventDefault();
         setActiveIndex(props.refs.length - 1);
         break;
       case 'Home':
-        keyEvent.preventDefault();
+        event.preventDefault();
         setActiveIndex(0);
         break;
       default:
@@ -69,9 +77,11 @@ TagList.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   labelledBy: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
 };
 
 TagList.defaultProps = {
   className: styles['tag-list'],
+  onClick: () => {},
 };
