@@ -108,9 +108,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   }, [showOptions]);
 
   useImperativeHandle(ref, () => ({
-    value: () => {
-      return value;
-    },
+    value,
   }));
 
   return (

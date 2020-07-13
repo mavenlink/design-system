@@ -31,9 +31,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
   }, [props.errorText]);
 
   useImperativeHandle(ref, () => ({
-    value: () => {
-      return inputRef.current.value;
-    },
+    value: inputRef.current.value,
   }));
 
   return (
