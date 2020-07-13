@@ -34,6 +34,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
     />
     <svg
       className="input-icon size-medium color-transparent"
+      onClick={[Function]}
       role="img"
     >
       <title>

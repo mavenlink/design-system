@@ -23,6 +23,7 @@ exports[`TagSkill has default 1`] = `
       >
         <svg
           className="icon-base size-small"
+          onClick={[Function]}
           role="img"
         >
           <use

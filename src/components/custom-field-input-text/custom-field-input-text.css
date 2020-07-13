@@ -3,14 +3,18 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.input {
+.input-styles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding: 7px 0 7px var(--spacing-medium);
   width: 100%;
+}
+
+.input {
+  composes: input-styles;
 }
 
 .input:disabled {
@@ -21,14 +25,23 @@
   background-color: var(--mds-grey-3);
 }
 
-.read-only-input {
-  composes: input;
-  background-color: var(--mds-grey-3);
-}
-
 .input:invalid {
   border-color: var(--mds-red-100);
   padding-right: var(--spacing-x-large);
+}
+
+.read-write-input {
+  composes: input-styles;
+}
+
+.read-only-input {
+  composes: read-write-input;
+  background-color: var(--mds-grey-3);
+}
+
+.invalid-input {
+  composes: read-write-input;
+  border-color: var(--mds-red-100);
 }
 
 .input-container {
