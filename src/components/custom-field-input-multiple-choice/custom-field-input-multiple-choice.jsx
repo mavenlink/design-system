@@ -9,22 +9,32 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import iconCaution from '../../svgs/icon-caution-fill.svg';
+import iconClear from '../../svgs/icon-clear-small.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 
+function getClassName(readOnly, helpText) {
+  if (readOnly) return styles['read-only-container'];
+  if (helpText) return styles['invalid-container'];
+
+  return styles['read-write-container'];
+}
+
 function CustomFieldInputMultipleChoice(props) {
-  const listboxRef = useRef();
+  const autocompleteRef = useRef();
+  const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const visibleChoices = props.choices.filter(choice => !value.includes(choice));
+  const visibleChoices = props.choices
+    .filter(choice => choice.label.includes(autocompleteValue))
+    .filter(choice => !value.includes(choice));
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = props.readOnly ?
-    styles['read-only-container'] :
-    styles['read-write-container'];
+  const classContainer = getClassName(props.readOnly, props.helpText);
   const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
 
   function onChoiceRemove(event) {
@@ -39,9 +49,23 @@ function CustomFieldInputMultipleChoice(props) {
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
     setValue([...value, selectedChoice]);
+    setAutocompleteValue('');
   }
 
-  function onClick() {
+  function onChoicesClear(event) {
+    event.preventDefault();
+    setValue([]);
+    setExpanded(false);
+  }
+
+  function onAutocompleteChange(event) {
+    setExpanded(true);
+    setAutocompleteValue(event.target.value);
+  }
+
+  function onClick(event) {
+    if (event.defaultPrevented) return;
+
     setExpanded(true);
   }
 
@@ -55,59 +79,96 @@ function CustomFieldInputMultipleChoice(props) {
   }
 
   useEffect(() => {
-    if (expanded && listboxRef.current) {
-      listboxRef.current.focus();
+    if (expanded && autocompleteRef.current) {
+      autocompleteRef.current.focus();
     }
   }, [expanded]);
 
   return (
     <FormControl
+      error={props.helpText}
       label={props.label}
       labelId={`${props.id}-label`}
+      id={`${props.id}-autocomple`}
       onKeyDown={onKeyDown}
       readOnly={props.readOnly}
     >
-      <TagList
+      <div
         className={classContainer}
-        id={props.id}
-        labelledBy={`${props.id}-label`}
         onClick={onClick}
-        refs={valueRefs}
+        role="presentation"
       >
-        {value.map((choice, index) => (
-          <Tag
-            defaultActive={index === 0}
-            id={`${props.id}-${choice.id}`}
-            key={`${props.id}-${choice.id}`}
-            onRemove={onChoiceRemove}
-            readOnly={props.readOnly}
-            ref={valueRefs[index]}
-          >
-            {choice.label}
-          </Tag>
-        ))}
-        <Icon className={styles['input-icon']} name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id} fill="skip" />
-      </TagList>
+        <TagList
+          className={styles['tag-list']}
+          id={props.id}
+          labelledBy={`${props.id}-label`}
+          refs={valueRefs}
+        >
+          {value.map((choice, index) => (
+            <Tag
+              defaultActive={index === 0}
+              id={`${props.id}-${choice.id}`}
+              key={`${props.id}-${choice.id}`}
+              onRemove={onChoiceRemove}
+              readOnly={props.readOnly}
+              ref={valueRefs[index]}
+            >
+              {choice.label}
+            </Tag>
+          ))}
+          {!props.readOnly && (
+            <input
+              aria-labelledby={`${props.id}-label`}
+              className={styles['autocomplete-input']}
+              id={`${props.id}-autocomple`}
+              onChange={onAutocompleteChange}
+              ref={autocompleteRef}
+              value={autocompleteValue}
+            />
+          )}
+        </TagList>
+        <div className={styles['icons-container']}>
+          {!props.readOnly && props.helpText && (
+            <Icon
+              className={styles.icon}
+              currentColor="caution"
+              fill="skip"
+              name={iconCaution.id}
+            />
+          )}
+          {!props.readOnly && value.length > 0 && (
+            <Icon
+              className={styles['clear-icon']}
+              fill="skip"
+              name={iconClear.id}
+              onClick={onChoicesClear}
+              ariaLabel={`Remove all selected choices on ${props.label}`}
+              role="button"
+            />
+          )}
+          <Icon
+            className={styles.icon}
+            name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
+            fill="skip"
+          />
+        </div>
+      </div>
       {(renderPopup &&
         <Listbox
           className={styles['popup-container']}
           labelledBy={`${props.id}-label`}
-          ref={listboxRef}
           refs={choicesRefs}
         >
-          {props.choices
-            .filter(choice => !value.includes(choice))
-            .map((choice, index) => (
-              <ListOption
-                key={`${props.id}-${choice.id}`}
-                onSelect={onChoiceSelect}
-                ref={choicesRefs[index]}
-                value={choice}
-              >
-                {choice.label}
-              </ListOption>
-            ))
-          }
+          {visibleChoices.map((choice, index) => (
+            <ListOption
+              key={`${props.id}-${choice.id}`}
+              onSelect={onChoiceSelect}
+              ref={choicesRefs[index]}
+              value={choice}
+            >
+              {choice.label}
+            </ListOption>
+          ))}
         </Listbox>
       )}
     </FormControl>
@@ -119,6 +180,7 @@ CustomFieldInputMultipleChoice.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
+  helpText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
@@ -129,6 +191,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
+  helpText: undefined,
   readOnly: false,
   value: [],
 };
