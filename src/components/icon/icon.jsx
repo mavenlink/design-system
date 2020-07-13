@@ -19,7 +19,6 @@ export default function Icon(props) {
       id={props.id}
       onClick={props.onClick}
       role={props.role}
-      onClick={props.onClick}
     >
       { props.title && <title>{props.title}</title> }
       <use xlinkHref={`#${props.name}`} />
@@ -71,7 +70,6 @@ Icon.propTypes = {
     'skip',
   ]),
   title: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 Icon.defaultProps = {
@@ -86,5 +84,4 @@ Icon.defaultProps = {
   size: 'medium',
   stroke: 'none',
   title: undefined,
-  onClick: () => {},
 };
