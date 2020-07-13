@@ -4,11 +4,11 @@
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
+  display: flex;
   height: auto;
   min-height: 32px;
   padding-top: 0;
   padding-bottom: 0;
-  position: relative;
 }
 
 .read-write-container {
@@ -21,13 +21,35 @@
   composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
 }
 
+.invalid-container {
+  composes: container;
+  composes: invalid-input from '../custom-field-input-text/custom-field-input-text.css';
+}
+
+.tag-list {
+  composes: tag-list from '../tag-list/tag-list.css';
+  flex-grow: 1;
+}
+
 .autocomplete-input {
   border: none;
   margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
 }
 
-.input-icon {
-  composes: input-icon from '../custom-field-input-text/custom-field-input-text.css';
+.icons-container {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
+}
+
+.icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
+}
+
+.clear-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  cursor: pointer;
 }
 
 .popup-container {

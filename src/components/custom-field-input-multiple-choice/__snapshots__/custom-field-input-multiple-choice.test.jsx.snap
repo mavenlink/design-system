@@ -16,28 +16,39 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
     className="control-container"
   >
     <div
-      aria-labelledby="test-id-label"
       className="read-write-container"
       onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      role="grid"
+      role="presentation"
     >
-      <input
+      <div
         aria-labelledby="test-id-label"
-        className="autocomplete-input"
-        id="test-id-autocomple"
-        onChange={[Function]}
-        value=""
-      />
-      <svg
-        className="input-icon size-medium stroke-none color-transparent"
-        role="img"
+        className="tag-list"
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="grid"
       >
-        <use
-          xlinkHref="#icon-caret-down.svg"
+        <input
+          aria-labelledby="test-id-label"
+          className="autocomplete-input"
+          id="test-id-autocomple"
+          onChange={[Function]}
+          value=""
         />
-      </svg>
+      </div>
+      <div
+        className="icons-container"
+      >
+        <svg
+          className="icon size-medium stroke-none color-transparent"
+          onClick={[Function]}
+          role="img"
+        >
+          <use
+            xlinkHref="#icon-caret-down.svg"
+          />
+        </svg>
+      </div>
     </div>
   </div>
 </div>

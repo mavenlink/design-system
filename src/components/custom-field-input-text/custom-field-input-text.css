@@ -9,7 +9,7 @@
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding: 7px 0 7px var(--spacing-medium);
   width: 100%;
 }
 
@@ -25,6 +25,11 @@
   background-color: var(--mds-grey-3);
 }
 
+.input:invalid {
+  border-color: var(--mds-red-100);
+  padding-right: var(--spacing-x-large);
+}
+
 .read-write-input {
   composes: input-styles;
 }
@@ -34,9 +39,9 @@
   background-color: var(--mds-grey-3);
 }
 
-.input:invalid {
+.invalid-input {
+  composes: read-write-input;
   border-color: var(--mds-red-100);
-  padding-right: var(--spacing-x-large);
 }
 
 .input-container {

@@ -106,9 +106,33 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
 
-      userEvent.click(screen.getAllByRole('button')[0]);
+      userEvent.click(screen.getByRole('button', { name: 'Remove Choice 1' }));
       expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+
+    it('does not expand the popup', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        value={requiredProps.choices}
+      />));
+
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      userEvent.click(screen.getByRole('button', { name: 'Remove Choice 1' }));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('removes all choices when pressing the clear button', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        value={requiredProps.choices}
+      />));
+
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+      userEvent.click(screen.getByRole('button', { name: 'Remove all selected choices on test label' }));
+      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
+      expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
     });
   });
 
@@ -140,6 +164,34 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('helpText API', () => {
+    it('can bet set', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      expect(screen.queryByText('This is an error message.')).toBeInTheDocument();
+    });
+
+    it('renders 1 icon', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      expect(screen.queryAllByRole('img')).toHaveLength(1);
+    });
+
+    it('renders 2 icons', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      expect(screen.queryAllByRole('img')).toHaveLength(2);
+    });
+
+    it('renders 2 icons with selected choices', () => {
+      render((
+        <CustomFieldInputMultipleChoice
+          {...requiredProps}
+          helpText="This is an error message."
+          value={[requiredProps.choices[0]]}
+        />
+      ));
+      expect(screen.queryAllByRole('img')).toHaveLength(2);
     });
   });
 
@@ -182,7 +234,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         value={[requiredProps.choices[0]]}
       />));
 
-      expect(screen.getByRole('button')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Remove Choice 1' })).toBeInTheDocument();
     });
   });
 

@@ -11,6 +11,8 @@
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
   - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
   - Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
+  - Minor: Update `Icon` with `onClick` prop API
+  - Minor: Update `CustomFieldInputMultipleChoice` to remove all selected choices
 </details>
 
 ## 0.28.0 (July 02, 2020)
