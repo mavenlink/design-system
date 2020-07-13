@@ -6,7 +6,7 @@ export default function useValidation(readOnly, helpText, inputRef) {
   useEffect(() => {
     if (!inputRef.current) return;
 
-    if (!inputRef.current.validity.valid) {
+    if (!inputRef.current.validity.valid && !inputRef.current.validity.customError) {
       setValidationMessage(inputRef.current.validationMessage);
       return;
     }

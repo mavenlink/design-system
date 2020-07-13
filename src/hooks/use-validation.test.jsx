@@ -2,10 +2,11 @@ import { renderHook } from '@testing-library/react-hooks';
 import useValidation from './use-validation.jsx';
 
 describe('useValidation', () => {
-  const mockRef = (validationMessage = '') => ({
+  const mockRef = (validationMessage = '', validitySpread = {}) => ({
     current: {
       validity: {
         valid: validationMessage === '',
+        ...validitySpread,
       },
       validationMessage,
       setCustomValidity: jest.fn(),
@@ -42,8 +43,14 @@ describe('useValidation', () => {
       expect(ref.current.setCustomValidity.mock.calls.length > 0).toBe(true);
     });
 
-    it('unsets the custom validity when there is no error', () => {
+    it('does not set the custom validity when there is no error', () => {
       const ref = mockRef();
+      renderHook(() => useValidation(false, '', ref));
+      expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
+    });
+
+    it('unsets custom validity when an an error is removed', () => {
+      const ref = mockRef('this is an error', { customError: true });
       renderHook(() => useValidation(false, '', ref));
       expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
     });
