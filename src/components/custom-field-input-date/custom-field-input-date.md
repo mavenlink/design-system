@@ -2,29 +2,29 @@ A simple date field for custom fields. Permits a variety of formats and allows c
 
 ##### Basic usage:
 
-```jsx
+```js
 <CustomFieldInputDate
     id="my-birthday-1"
-    label="Andre's Birthday" 
+    label="Andre's Birthday"
     value="1992-05-10"
 />
+```
 
+```js
 <CustomFieldInputDate
     id="my-birthday-2"
     label="Greyson's Birthday"
     value="08/20/2020"
 />
 ```
-----
 
 ##### Disabled state:
 
-```jsx
+```js
 <CustomFieldInputDate
     id="my-birthday-4"
     label="Juanca's Birthday"
-    value="03/03/1990" 
+    value="03/03/1990"
     disabled
 />
 ```
-----

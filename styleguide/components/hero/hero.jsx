@@ -2,60 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Animations from './animations.jsx';
 import styles from './hero.css';
+import mdsComponents from './mds-components.jpeg';
+import mdsGuidelines from './mds-guidelines.jpeg';
+import mdsHero from './mds-hero.jpeg';
+import mdsSoul from './mds-soul.jpeg';
 
-export default class Hero extends React.Component {
-  static propTypes = {
-    slug: PropTypes.string.isRequired,
-  }
+const slugsToImage = {
+  'section-overview': mdsHero,
+  'section-components': mdsComponents,
+  'section-guidelines': mdsGuidelines,
+  'section-brand-identity': mdsSoul,
+};
 
-  constructor() {
-    super();
-    this.heroRef = React.createRef();
-  }
-
-  state = { heroLoaded: false };
-
-  componentDidMount() {
-    const heroURL = this.getHeroImageURL();
-    this.setHeroLoaded(heroURL);
-  }
-
-  getHeroClasses = (slug) => {
-    if (slug === '') {
-      return styles.home;
-    }
-    return styles[slug];
-  }
-
-  getHeroImageURL = () => {
-    const heroCSSUrl = window.getComputedStyle(this.heroRef.current).getPropertyValue('background-image');
-    // above returns a url(URL) which needs to be further sliced ;)
-    const heroURL = heroCSSUrl.slice(5, -2);
-    return heroURL;
-  }
-
-  setHeroLoaded = (heroURL) => {
-    const img = new Image();
-    img.src = heroURL;
-    img.onload = () => {
-      // cache image
-      document.body.style.backgroundImage = heroURL;
-      this.setState({ heroLoaded: true });
-    };
-  }
-
-  isHero = (slug) => {
-    const heroes = { overview: true, components: true, soul: true, guidelines: true };
-    return heroes[slug];
-  }
-
-  render() {
-    const heroKlasses = this.getHeroClasses(this.props.slug);
-
-    return (
-      <div className={heroKlasses} ref={this.heroRef}>
-        {this.state.heroLoaded && <Animations slug={this.props.slug} />}
-      </div>
-    );
-  }
+export default function Hero(props) {
+  return slugsToImage[props.slug] ? (
+    <div className={styles.container}>
+      <img alt="" className={styles.hero} src={slugsToImage[props.slug]} />
+      <Animations slug={props.slug} />
+    </div>
+  ) : (
+    null
+  );
 }
+
+Hero.propTypes = {
+  slug: PropTypes.string.isRequired,
+};
+
+Hero.defaultProps = {
+};

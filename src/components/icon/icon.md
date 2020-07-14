@@ -21,8 +21,8 @@ The `Icon` component exposes a few configured properties to fine-tune the access
 
 Whenever the `role="button"` is set, the Icon requires a label/title to express what the button does (e.g. "Remove item").
 
-```jsx
-const icon = require('../../svgs/icon-clear-small.svg').default;
+```js
+import icon from '../../svgs/icon-clear-small.svg';
 <Icon name={icon.id} ariaLabel="Remove item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
 ```
 
@@ -30,8 +30,8 @@ In the above example, the SVG expresses its behavior to the user.
 However, it can be improved by being more specific (i.e. what is "item" in this case?).
 The `ariaLabelledBy` can indicate the action and the item specifying the IDs (in a particular order) of the elements with friendly screen reader labels.
 
-```jsx
-const icon = require('../../svgs/icon-clear-small.svg').default;
+```js
+import icon from '../../svgs/icon-clear-small.svg';
 
 <React.Fragment>
   <span id="a11y-item">I am an item</span>
@@ -47,8 +47,8 @@ const icon = require('../../svgs/icon-clear-small.svg').default;
 
 ### Basic Usage
 
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
+```js
+import icon from '../../svgs/icon-caution-fill.svg';
 <Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" title="alert icon" />
 ```
 
@@ -59,17 +59,17 @@ It is important to note that the `size` property should match the viewport of th
 If the SVG has a viewbox of `0 0 16 16` then it corresponds to a `size="small"`.
 Otherwise, the SVG scales to match the Icon size and has unintended visual consequences due to scaling strokes and embedded whitespace in the SVG.
 
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
+```js
+import icon from '../../svgs/icon-caution-fill.svg';
 <Icon name={icon.id} size="small" currentColor="skip" fill="skip" stroke="skip" />
 ```
 
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
+```js
+import icon from '../../svgs/icon-caution-fill.svg';
 <Icon name={icon.id} size="medium" currentColor="skip" fill="skip" stroke="skip" />
 ```
 
-```jsx
-const icon = require('../../svgs/icon-caution-fill.svg').default;
+```js
+import icon from '../../svgs/icon-caution-fill.svg';
 <Icon name={icon.id} size="large" currentColor="skip" fill="skip" stroke="skip" />
 ```

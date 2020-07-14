@@ -14,7 +14,7 @@ Otherwise, when using `<FormControl>`, you must implement:
 
 ### Examples
 
-```jsx
+```js
 <FormControl
   id="example-1"
   label="Basic example"
@@ -23,7 +23,7 @@ Otherwise, when using `<FormControl>`, you must implement:
 </FormControl>
 ```
 
-```jsx
+```js
 <FormControl
   id="example-2"
   label="Required example"
@@ -33,7 +33,7 @@ Otherwise, when using `<FormControl>`, you must implement:
 </FormControl>
 ```
 
-```jsx
+```js
 <FormControl
   error="This field is required."
   id="error-example"

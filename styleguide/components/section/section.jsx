@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './section.css';
 import Hero from '../hero/hero.jsx';
 
-function isHero(slug) {
-  const heroes = ['overview', 'components', 'brand-identity', 'guidelines'];
-  return heroes.includes(slug);
-}
-
 export default function Section(props) {
   const {
     components,
@@ -23,7 +18,7 @@ export default function Section(props) {
 
   return (
     <section>
-      {isHero(slug) && <Hero slug={slug} />}
+      <Hero slug={slug} />
       <div className={styles['root-content']}>
         {name &&
           <Heading depth={depth} id={slug} slotName="sectionToolbar" slotProps={props}>

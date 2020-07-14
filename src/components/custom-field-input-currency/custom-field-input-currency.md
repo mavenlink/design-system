@@ -4,20 +4,24 @@ monetary value automatically using the browser's locale. Focusing into the compo
 the numeric value of the currency, while the component's unfocused state presents the formatted currency value held
 within itself.
 
-```jsx
+```js
 <CustomFieldInputCurrency
   placeholder="$123.00"
   label="US Dollars"
   id="us-dollars"
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="Iraqi Dinar"
   currencyCode="IQD"
   id="iraqi-dinar"
   value={182211}
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="Central African Francs"
   id="cFa"
@@ -25,9 +29,10 @@ within itself.
   value={5200}
 />
 ```
-----
+
 ##### Disabled:
-```jsx
+
+```js
 <CustomFieldInputCurrency
   disabled={true}
   id="test-id-2"
@@ -36,14 +41,14 @@ within itself.
   label="Disabled Field"
 />
 ```
-----
+
 ##### Error:
 
 Errors can be classified as technical or contextual. The first example below is a technical error--cFa cannot be
 separated below a single cFa. The second, on the other hand, is contextual--perhaps the backend denied the value
 presented to it, responding with a specific message for the context of that specific currency value.
 
-```jsx
+```js
 <CustomFieldInputCurrency
   id="test-id-3"
   name="test-name-3"
@@ -51,7 +56,9 @@ presented to it, responding with a specific message for the context of that spec
   currencyCode="XAF"
   label="Internal Error State"
 />
+```
 
+```js
 <CustomFieldInputCurrency
   label="External Error State"
   id="test-id-4"

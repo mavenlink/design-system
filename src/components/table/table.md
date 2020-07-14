@@ -1,4 +1,4 @@
-```jsx
+```js
 const { TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } = require('./index.js');
 
 <Table>
