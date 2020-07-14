@@ -27,6 +27,26 @@ export default function CustomFieldInputSingleChoice(props) {
     fill="skip"
   />);
 
+  const wrapperRef = useRef(null);
+  function handleClickOutside(event) {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setShowOptions(false);
+      setSearchValue(value.label);
+    }
+  }
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      if (showOptions) {
+        document.addEventListener('mousedown', handleClickOutside);
+      }
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref, showOptions]);
+  };
+  useOutsideAlerter(wrapperRef);
+
   const clear = () => {
     setValue(undefined);
     setSearchValue(undefined);
@@ -123,7 +143,7 @@ export default function CustomFieldInputSingleChoice(props) {
   }, [showOptions]);
 
   return (
-    <div className={styles.container}>
+    <div ref={wrapperRef} className={styles.container}>
       <CustomFieldInputText
         icon={caretIcon}
         clear={clearIcon()}
