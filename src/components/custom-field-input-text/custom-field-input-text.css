@@ -9,3 +9,8 @@
 .input-icon {
   composes: input-icon from 'src/components/__internal__/abstract-custom-field.css';
 }
+
+.input-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
+}
