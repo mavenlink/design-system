@@ -78,7 +78,17 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   useImperativeHandle(ref, () => ({
     id: props.id,
     get value() {
-      return [parseInt(valueRef.current.value.replace(/\D/g, ''), 10), props.currencyCode];
+      let numberValue;
+
+      if (isEditing) {
+        numberValue = parseFloat(
+          valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
+        );
+      } else {
+        numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
+      }
+
+      return [numberValue, props.currencyCode];
     },
   }));
 
