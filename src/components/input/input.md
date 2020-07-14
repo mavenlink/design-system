@@ -1,11 +1,11 @@
-```jsx
+```js
 <Input id="greeting" label="Greeting" />
 ```
 
-```jsx
+```js
 <Input id="greeting" label="Greeting" invalid />
 ```
 
-```jsx
+```js
 <Input id="greeting" label="Greeting" disabled />
 ```

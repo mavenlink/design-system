@@ -1,16 +1,26 @@
 `TagSkill` is the variant of `Tag` for Mavenlink skills.
 Refer to the [Tag documentation](#/Components/Tag) for more information.
 
-```
+```js
 <TagSkill id="egg" name="Egg" />
-<span> </span>
+```
+
+```js
 <TagSkill id="bacon" name="Bacon" level={1} />
-<span> </span>
+```
+
+```js
 <TagSkill id="toast" name="Toast" level={2} />
-<span> </span>
+```
+
+```js
 <TagSkill id="bean" name="Bean" level={3} />
-<span> </span>
+```
+
+```js
 <TagSkill id="tomato" name="Tomato" level={4} />
-<span> </span>
+```
+
+```js
 <TagSkill id="avocado" name="Avocado" level={5} />
 ```

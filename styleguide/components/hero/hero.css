@@ -1,35 +1,9 @@
+.container {
+  position: relative;
+}
+
 .hero {
   background-size: 100% 100%;
   height: calc(500 * (100vw / 1280));
-  position: relative;
   width: 100%;
-}
-
-.overview {
-  composes: hero;
-  background-image: url(mds-hero.jpeg);
-}
-
-.home {
-  composes: overview;
-}
-
-.components {
-  composes: hero;
-  background-image: url(mds-components.jpeg);
-}
-
-.brand-identity {
-  composes: hero;
-  background-image: url(mds-soul.jpeg);
-}
-
-.guidelines {
-  composes: hero;
-  background-image: url(mds-guidelines.jpeg);
-}
-
-.hidden {
-  composes: hero;
-  display: none;
 }
