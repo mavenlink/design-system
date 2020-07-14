@@ -5,24 +5,12 @@ import styles from './abstract-custom-field.css';
 import cautionSvg from '../../svgs/icon-caution-fill.svg';
 import FormControl from '../form-control/form-control.jsx';
 
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
-
 export default function AbstractCustomField(props) {
   const labelId = `${props.id}-label`;
-  const invalidDueToProps = () => props.errorText.length > 0 && !props.readOnly;
+  const invalidDueToProps = props.errorText.length > 0 && !props.readOnly;
 
   const icon = () => {
-    if (invalidDueToProps()) {
+    if (invalidDueToProps) {
       return (<Icon
         className={styles['input-icon']}
         currentColor="caution"
@@ -39,15 +27,12 @@ export default function AbstractCustomField(props) {
   };
 
   const showIcon = () => {
-    return invalidDueToProps() || !!props.icon;
+    return invalidDueToProps || !!props.icon;
   };
-
-  const hasError = props.errorText.length > 0;
-  const className = getRootClassName(props.className, hasError, props.disabled);
 
   return (
     <FormControl
-      className={className}
+      className={props.className}
       error={props.errorText}
       id={props.id}
       labelId={labelId}

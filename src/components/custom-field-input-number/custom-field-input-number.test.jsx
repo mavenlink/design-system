@@ -23,14 +23,12 @@ describe('CustomFieldInputNumber', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const { container } = render(<TestComponent disabled />);
-      expect(container.firstChild).toHaveClass('disabled');
+      render(<TestComponent disabled />);
       expect(screen.getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
       const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('disabled');
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
     });
   });

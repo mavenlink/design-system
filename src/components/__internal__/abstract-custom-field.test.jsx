@@ -36,6 +36,13 @@ describe('AbstractCustomField', () => {
     });
   });
 
+  describe('defaultValue API', () => {
+    it('sets the value attribute', () => {
+      render(<AbstractCustomField {...sharedProps} defaultValue="test-value" />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
+    });
+  });
+
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<AbstractCustomField {...sharedProps} disabled />);
