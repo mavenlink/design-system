@@ -24,6 +24,13 @@ describe('useValidation', () => {
       const { result } = renderHook(() => useValidation(false, 'hey listen', mockRef('yo')));
       expect(result.current).toBe('yo');
     });
+
+    xit('is dependent on the checked validity', () => {
+      const { result, rerender } = renderHook(() => useValidation(false, '', mockRef('yo'), true));
+      expect(result.current).toBe('');
+      rerender(false, '', mockRef('yo'), false);
+      expect(result.current).toBe('yo');
+    });
   });
 
   describe('contextual validation', () => {

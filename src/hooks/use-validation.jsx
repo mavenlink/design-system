@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useValidation(readOnly, helpText, inputRef) {
+export default function useValidation(readOnly, helpText, inputRef, checkedValidity) {
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function useValidation(readOnly, helpText, inputRef) {
       inputRef.current.setCustomValidity('');
       setValidationMessage('');
     }
-  }, [readOnly, helpText, inputRef]);
+  }, [readOnly, helpText, checkedValidity]);
 
   return validationMessage;
 }
