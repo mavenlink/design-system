@@ -261,4 +261,38 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       });
     });
   });
+
+  describe('dropdown close behavior', () => {
+    fit('closes the dropdown when clicking outside', () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <title>Close</title>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Close'));
+      expect(screen.getByText('broke my heart')).not.toBeInTheDocument();
+    });
+
+    xit('closes the dropdown when tabbing away', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    });
+
+    xit('resets the inputs state', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    });
+  });
 });

@@ -12,6 +12,7 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 export default function CustomFieldInputSingleChoice(props) {
   const [didMount, setDidMount] = useState(false);
@@ -28,24 +29,11 @@ export default function CustomFieldInputSingleChoice(props) {
   />);
 
   const wrapperRef = useRef(null);
-  function handleClickOutside(event) {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      setShowOptions(false);
-      setSearchValue(value.label);
-    }
-  }
-  const useOutsideAlerter = (ref) => {
-    useEffect(() => {
-      if (showOptions) {
-        document.addEventListener('mousedown', handleClickOutside);
-      }
-
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [ref, showOptions]);
+  const handleDropdownClose = () => {
+    setShowOptions(false);
+    setSearchValue(value.label);
   };
-  useOutsideAlerter(wrapperRef);
+  useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
   const clear = () => {
     setValue(undefined);
@@ -118,6 +106,7 @@ export default function CustomFieldInputSingleChoice(props) {
     setValue(selectedValue);
     setSearchValue(selectedValue.label);
     setShowOptions(false);
+    inputRef.current.focus();
   }
 
   function onSearchChange(event) {
@@ -139,7 +128,6 @@ export default function CustomFieldInputSingleChoice(props) {
 
   useEffect(() => {
     if (!didMount) return;
-    if (!showOptions) inputRef.current.focus();
   }, [showOptions]);
 
   return (
