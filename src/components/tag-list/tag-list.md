@@ -35,7 +35,10 @@ This ensures screen readers can know:
 
 ### Example
 
-```jsx
+```js
+import FormControl from '../form-control/form-control.jsx';
+import Tag from '../tag/tag.jsx';
+
 const data = [
   'Molotov Solution',
   'Band Name',
@@ -64,7 +67,10 @@ const tagListId = 'basic-example';
 
 ### Wrapping example
 
-```jsx
+```js
+import FormControl from '../form-control/form-control.jsx';
+import Tag from '../tag/tag.jsx';
+
 const data = [
   'command (abstract role)',
   'composite (abstract role)',

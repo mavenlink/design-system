@@ -31,16 +31,16 @@ export default function Animations(props) {
   return (
     <React.Fragment>
       <Stars slug={props.slug} />
-      {props.slug === 'overview' && [
+      {props.slug === 'section-overview' && [
         getTransition('astro-1', 'astro-1-appear', 'astro-1-appear-active'),
         getTransition('astro-2', 'astro-2-appear', 'astro-2-appear-active'),
         getTransition('astros-laptop', 'astros-laptop-appear', 'astros-laptop-appear-active'),
       ]}
-      {props.slug === 'components' && [
+      {props.slug === 'section-components' && [
         getTransition('astros-browser', 'astros-browser-appear', 'astros-browser-appear-active'),
         getTransition('astro-with-browser2', 'astro-with-browser2-appear', 'astro-with-browser2-appear-active'),
       ]}
-      {props.slug === 'brand-identity' && [
+      {props.slug === 'section-brand-identity' && [
         getTransition('singer-dancers', 'singer-dancers-appear', 'singer-dancers-appear-active'),
         getTransition('singer-flying', 'singer-flying-appear', 'singer-flying-appear-active'),
         getTransition('singers', 'singers-appear', 'singers-appear-active'),

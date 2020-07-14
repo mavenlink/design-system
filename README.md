@@ -18,7 +18,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 - Setup [CSS modules](https://github.com/css-modules/css-modules). One way of doing that is with [`style-loader` for Webpack](https://github.com/webpack-contrib/style-loader) and [`css-loader` for Webpack](https://github.com/webpack-contrib/css-loader).
 - Setup [SVG processing](https://svgontheweb.com/#spriting). One way of doing that is with [`svg-sprite-loader` for Webpack](https://github.com/kisenka/svg-sprite-loader).
 
-  ```js
+  ```js static
   // Webpack configuration
   const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
@@ -54,7 +54,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 - Use in your project
 
-  ```jsx
+  ```js
   import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
   function App() {
@@ -68,7 +68,7 @@ We periodically update and upgrade styles. We have also created linters to help 
 
  - Install [stylelint](https://stylelint.io/) into your project
  - In your stylelint configuration file (`.stylelintrc.json, .stylelintrc, stylelint.config.js`) include the following:
- 
+
     ```js
     module.exports = {
       // ... stylelint configuration ...
@@ -89,19 +89,6 @@ We periodically update and upgrade styles. We have also created linters to help 
 
 - [Code of conduct](./docs/code_of_conduct.md)
 - [Contributing](./docs/contributing.md)
-- [Decision Log](./docs/decisions.md)
 - [Component Design Principles](./docs/principles.md)
 - [Making a New Release](./docs/releases.md)
 - [Testing Philosophy](./docs/testing.md)
-
-## Contributing
-
-We encourage you to contribute to the Mavenlink Design System!
-Please check out the [Contributing documentation](./docs/contributing.md) for guidelines about how to proceed.
-
-Everyone interacting with the codebase, issue trackers, chat rooms, and mailing lists is expected to follow the [code of conduct](./docs/code_of_conduct.md).
-
-## Maintainers
-
-- When making architectural decisions, [review the decision log](./docs/decisions.md) first. Update as needed.
-- When publishing releases, please follow the steps outlined [in the "releases" documentation](./docs/releases.md).
