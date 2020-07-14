@@ -45,6 +45,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
+  const valueRef = isEditing ? numberRef : componentRef;
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
@@ -77,7 +78,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   useImperativeHandle(ref, () => ({
     id: props.id,
     get value() {
-      return [parseInt(componentRef.current.value.replace(/\D/g, ''), 10), props.currencyCode];
+      return [parseInt(valueRef.current.value.replace(/\D/g, ''), 10), props.currencyCode];
     },
   }));
 
