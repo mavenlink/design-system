@@ -12,19 +12,11 @@ describe('CustomFieldInputText', () => {
     expect(renderer.create(<TestComponent />).toJSON()).toMatchSnapshot();
   });
 
-  describe('defaultValue API', () => {
-    it('sets the value attribute', () => {
-      render(<TestComponent defaultValue="test-value" />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
-    });
-  });
-
   describe('errorText API', () => {
     it('can have an error state through a native validation', () => {
       // I am not sure what is the best way to represent this in a test.
       // However, at the moment, there are end-to-end tests in the Number component tests.
-      const { container } = render(<TestComponent errorText="yo" />);
-      expect(container.firstChild).toHaveClass('error');
+      render(<TestComponent errorText="yo" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });

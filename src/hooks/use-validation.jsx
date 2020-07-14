@@ -18,7 +18,7 @@ export default function useValidation(readOnly, helpText, inputRef) {
       inputRef.current.setCustomValidity('');
       setValidationMessage('');
     }
-  });
+  }, [readOnly, helpText, inputRef]);
 
   return validationMessage;
 }
