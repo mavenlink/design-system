@@ -14,6 +14,7 @@
   - Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
   - Minor: Update `Icon` with `onClick` prop API
   - Minor: Update `CustomFieldInputMultipleChoice` to remove all selected choices
+  - Minor: Update `CustomFieldInputMultipleChoice` and `CustomFieldInputMultipleChoice` to close dropdown on click, escape and tab
 </details>
 
 ## 0.28.0 (July 02, 2020)
