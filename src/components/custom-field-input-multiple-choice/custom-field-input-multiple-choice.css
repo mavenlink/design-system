@@ -1,13 +1,14 @@
 @import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
 
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../__internal__/abstract-custom-field.css';
+  display: flex;
   height: auto;
   min-height: 32px;
   padding-top: 0;
   padding-bottom: 0;
-  position: relative;
 }
 
 .read-write-container {
@@ -20,8 +21,34 @@
   composes: read-only-input from '../__internal__/abstract-custom-field.css';
 }
 
-.input-icon {
-  composes: input-icon from '../__internal__/abstract-custom-field.css';
+.invalid-container {
+  composes: container;
+}
+
+.tag-list {
+  composes: tag-list from '../tag-list/tag-list.css';
+  flex-grow: 1;
+}
+
+.autocomplete-input {
+  border: none;
+  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+}
+
+.icons-container {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
+}
+
+.icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
+}
+
+.clear-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  cursor: pointer;
 }
 
 .popup-container {

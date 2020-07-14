@@ -62,6 +62,7 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
     setFocusQueued(true);
 
     if (gridIndex === 1) {
+      event.preventDefault();
       props.onRemove({ target: ref.current });
     }
   }
