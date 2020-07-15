@@ -12,14 +12,16 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import useValidation from '../../hooks/use-validation.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
   const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
-
   const inputRef = useRef();
+
+  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}

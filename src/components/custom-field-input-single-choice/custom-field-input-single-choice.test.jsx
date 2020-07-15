@@ -86,6 +86,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('errorText', () => {
+    it('sets the input to be invalid', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
+      expect(screen.getByLabelText('Test label')).not.toBeValid();
+    });
+  });
+
   describe('filtering', () => {
     const choices = [{
       id: '1',
