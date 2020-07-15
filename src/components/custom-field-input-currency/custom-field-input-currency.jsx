@@ -61,22 +61,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
     return [numberValue, props.currencyCode];
   });
 
-  useCustomFieldValue(props.id, ref, () => {
-    let numberValue;
-
-    if (isEditing) {
-      const currencyFractionDigits = currencyMetaData[props.currencyCode].maximumFractionDigits;
-
-      numberValue = parseFloat(
-        valueRef.current.value * (10 ** currencyFractionDigits),
-      );
-    } else {
-      numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
-    }
-
-    return [numberValue, props.currencyCode];
-  });
-
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
       setInput(parseFloat(event.target.value));
