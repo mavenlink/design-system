@@ -25,10 +25,28 @@ describe('useValidation', () => {
       expect(result.current).toBe('yo');
     });
 
-    xit('is dependent on the checked validity', () => {
-      const { result, rerender } = renderHook(() => useValidation(false, '', mockRef('yo'), true));
+    it('is dependent on the checked validity', () => {
+      const initialProps = {
+        readOnly: false,
+        helpText: '',
+        inputRef: mockRef(),
+        checkedValidity: true,
+      };
+
+      const { result, rerender } = renderHook(({ readOnly, helpText, inputRef, checkedValidity }) => (
+        useValidation(readOnly, helpText, inputRef, checkedValidity)
+      ), {
+        initialProps,
+      });
+
       expect(result.current).toBe('');
-      rerender(false, '', mockRef('yo'), false);
+
+      rerender({
+        ...initialProps,
+        inputRef: mockRef('yo'),
+        checkedValidity: false,
+      });
+
       expect(result.current).toBe('yo');
     });
   });
