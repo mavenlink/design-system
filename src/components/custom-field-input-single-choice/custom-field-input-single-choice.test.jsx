@@ -233,6 +233,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('returns empty string when no value is provided', () => {
+      const ref = createRef();
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={undefined} ref={ref} />);
+      expect(ref.current.value).toBe('');
+    });
   });
 
   describe('forwardRef API', () => {
