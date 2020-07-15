@@ -7,6 +7,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
+import { waitFor } from "@testing-library/dom";
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
@@ -268,6 +269,81 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+  });
+
+  describe('dropdown close behavior', () => {
+    it('closes the dropdown when clicking outside', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
+        </div>
+      );
+
+      userEvent.click(screen.getAllByLabelText('test label')[0]);
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('closes the dropdown when tabbing away', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
+          <input></input>
+        </div>
+      );
+
+      userEvent.click(screen.getAllByLabelText('test label')[0]);
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+
+      fireEvent.focus(screen.getByText('broke my heart'));
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('resets the inputs state', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
+        </div>
+      );
+
+      expect(screen.getAllByLabelText('test label')[0]).toHaveValue('');
+      userEvent.click(screen.getAllByLabelText('test label')[0]);
+      fireEvent.change(document.activeElement, { target: { value: 'broke my' } });
+      expect(screen.getAllByLabelText('test label')[0]).toHaveValue('broke my');
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getAllByLabelText('test label')[0]).toHaveValue(''));
     });
   });
 });
