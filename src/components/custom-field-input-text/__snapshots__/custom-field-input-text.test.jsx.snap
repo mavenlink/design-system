@@ -28,15 +28,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
       onKeyUp={[Function]}
       readOnly={false}
       required={false}
-      style={
-        Object {
-          "--numIcon": 0,
-        }
-      }
       type="text"
-    />
-    <div
-      className="icon-container"
     />
   </div>
 </div>

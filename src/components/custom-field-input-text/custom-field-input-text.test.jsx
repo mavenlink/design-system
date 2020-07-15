@@ -1,13 +1,6 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
-<<<<<<< HEAD
 import { render, screen } from '@testing-library/react';
-=======
-import { fireEvent, render, screen } from '@testing-library/react';
-import Icon from '../icon/icon.jsx';
-import calendarSvg from '../../svgs/icon-calendar-fill.svg';
-import clearSvg from '../../svgs/icon-clear-small.svg';
->>>>>>> @{-1}
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {

@@ -30,29 +30,20 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       readOnly={true}
       required={false}
       step={1}
-      style={
-        Object {
-          "--numIcon": 1,
-        }
-      }
       type="date"
     />
-    <div
-      className="icon-container"
+    <svg
+      className="input-icon size-medium color-transparent"
+      onClick={[Function]}
+      role="img"
     >
-      <svg
-        className="input-icon size-medium color-transparent"
-        onClick={[Function]}
-        role="img"
-      >
-        <title>
-          Hello
-        </title>
-        <use
-          xlinkHref="#icon-calendar-fill.svg"
-        />
-      </svg>
-    </div>
+      <title>
+        Hello
+      </title>
+      <use
+        xlinkHref="#icon-calendar-fill.svg"
+      />
+    </svg>
   </div>
 </div>
 `;
