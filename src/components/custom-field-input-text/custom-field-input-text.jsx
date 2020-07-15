@@ -8,13 +8,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
   const inputRef = props.inputRef || defaultRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
-
-  useImperativeHandle(ref, () => ({
-    id: props.id,
-    get value() {
-      return inputRef.current.value;
-    },
-  }));
+  useImperativeHandle(props.id, ref, () => inputRef.current.value);
 
   return (
     <AbstractCustomField

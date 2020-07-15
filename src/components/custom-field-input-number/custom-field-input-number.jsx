@@ -3,6 +3,7 @@ import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } f
 import styles from '../__internal__/abstract-custom-field.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
+import useCustomFieldValue from '../../hooks/use-custom-field-value';
 
 const apiLimits = {
   max: 2 ** 31,
@@ -14,6 +15,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
   const [invalid, setInvalid] = useState(validationMessage !== '');
+  useCustomFieldValue(props.id, ref, () => inputRef.current.value);
 
   function handleOnKeyUp(event) {
     setInvalid(!event.target.checkValidity());
@@ -29,13 +31,6 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
     const hasError = props.errorText.length > 0;
     setInvalid(hasError);
   }, [props.errorText]);
-
-  useImperativeHandle(ref, () => ({
-    id: props.id,
-    get value() {
-      return inputRef.current.value;
-    },
-  }));
 
   return (
     <AbstractCustomField

@@ -1,10 +1,11 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 import styles from '../__internal__/abstract-custom-field.css';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
+import useCustomFieldValue from '../../hooks/use-custom-field-value.jsx';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
@@ -32,6 +33,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
   const [isFocused] = useState(false);
+  useCustomFieldValue(props.id, ref, () => componentRef.current.value);
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -52,13 +54,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
       inputRef.current.focus();
     }
   }, [isEditing, isFocused]);
-
-  useImperativeHandle(ref, () => ({
-    id: props.id,
-    get value() {
-      return componentRef.current.value;
-    },
-  }));
 
   const handleOnChange = (event) => {
     if (inputRef.current) {
