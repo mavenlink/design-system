@@ -57,14 +57,12 @@ All CustomFieldInput* use `forwardRef` and `useImperativeHandle` to provide an A
 Below is an example of this usage:
 
 ```jsx
-const React = require('react');
-
 function TestComponent() {
   const inputRef = React.useRef(null);
   const [value, setValue] = React.useState('');
 
   const onChange = () => {
-    setValue(inputRef.current.value());
+    setValue(inputRef.current.value);
   }
 
   return (
