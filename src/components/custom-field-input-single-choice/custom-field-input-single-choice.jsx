@@ -19,7 +19,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
-  useCustomFieldValue(props.id, ref, () => value);
+  useCustomFieldValue(props.id, ref, () => value || '');
 
   const inputRef = useRef();
   const refs = props.choices.map(() => useRef());
