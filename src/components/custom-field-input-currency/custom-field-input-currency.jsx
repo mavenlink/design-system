@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
+import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import styles from '../__internal__/abstract-custom-field.css';
+import useCustomFieldValue from '../../hooks/use-custom-field-value.jsx';
 
 function getLocale() {
   if (navigator && navigator.languages) {
@@ -46,6 +47,19 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
+  useCustomFieldValue(props.id, ref, () => {
+    let numberValue;
+
+    if (isEditing) {
+      numberValue = parseFloat(
+        valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
+      );
+    } else {
+      numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
+    }
+
+    return [numberValue, props.currencyCode];
+  });
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
@@ -74,23 +88,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
       numberRef.current.focus();
     }
   });
-
-  useImperativeHandle(ref, () => ({
-    id: props.id,
-    get value() {
-      let numberValue;
-
-      if (isEditing) {
-        numberValue = parseFloat(
-          valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
-        );
-      } else {
-        numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
-      }
-
-      return [numberValue, props.currencyCode];
-    },
-  }));
 
   const sharedProps = {
     className: props.className,
