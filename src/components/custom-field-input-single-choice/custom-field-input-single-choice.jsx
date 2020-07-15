@@ -1,5 +1,4 @@
 import React, {
-  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -15,7 +14,6 @@ import ListOption from '../list-option/list-option.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 export default function CustomFieldInputSingleChoice(props) {
-  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -125,14 +123,6 @@ export default function CustomFieldInputSingleChoice(props) {
     setSearchValue(newValue);
     setShowOptions(true);
   }
-
-  useEffect(() => {
-    setDidMount(true);
-  }, []);
-
-  useEffect(() => {
-    if (!didMount) return;
-  }, [showOptions]);
 
   return (
     <div ref={wrapperRef} className={styles.container}>

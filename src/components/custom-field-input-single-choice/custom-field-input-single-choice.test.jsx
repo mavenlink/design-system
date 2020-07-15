@@ -2,8 +2,8 @@ import React from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
-import { waitFor } from "@testing-library/dom";
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   const requiredProps = {
@@ -277,7 +277,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         <div>
           <span>CLOSE</span>
           <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
-        </div>
+        </div>,
       );
 
       userEvent.click(screen.getByLabelText('Test label'));
@@ -298,8 +298,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(
         <div>
           <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
-          <input></input>
-        </div>
+          <input />
+        </div>,
       );
 
       userEvent.click(screen.getByLabelText('Test label'));
@@ -324,7 +324,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         <div>
           <span>CLOSE</span>
           <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
-        </div>
+        </div>,
       );
 
       expect(screen.getByLabelText('Test label')).toHaveValue('');

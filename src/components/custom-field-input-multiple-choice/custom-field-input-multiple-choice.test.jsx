@@ -6,8 +6,8 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
-import { waitFor } from "@testing-library/dom";
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
@@ -286,7 +286,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         <div>
           <span>CLOSE</span>
           <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
-        </div>
+        </div>,
       );
 
       userEvent.click(screen.getAllByLabelText('test label')[0]);
@@ -307,8 +307,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render(
         <div>
           <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
-          <input></input>
-        </div>
+          <input />
+        </div>,
       );
 
       userEvent.click(screen.getAllByLabelText('test label')[0]);
@@ -333,7 +333,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         <div>
           <span>CLOSE</span>
           <CustomFieldInputMultipleChoice {...requiredProps} choices={choices} />
-        </div>
+        </div>,
       );
 
       expect(screen.getAllByLabelText('test label')[0]).toHaveValue('');
