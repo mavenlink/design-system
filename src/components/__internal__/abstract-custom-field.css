@@ -3,7 +3,7 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.input {
+.input-styles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
@@ -16,6 +16,10 @@
   width: 100%;
 }
 
+.input {
+  composes: input-styles;
+}
+
 .input:disabled {
   background-color: var(--mds-grey-3);
 }
@@ -25,7 +29,7 @@
 }
 
 .read-only-input {
-  composes: input;
+  composes: input-styles;
   background-color: var(--mds-grey-3);
 }
 
@@ -47,6 +51,11 @@
   position: absolute;
   right: 6px;
   top: 6px;
+}
+
+.invalid-input {
+  composes: input-styles;
+  border-color: var(--mds-red-100);
 }
 
 .input-icon {

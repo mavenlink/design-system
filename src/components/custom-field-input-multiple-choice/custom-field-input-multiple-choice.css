@@ -23,6 +23,7 @@
 
 .invalid-container {
   composes: container;
+  composes: invalid-input from '../__internal__/abstract-custom-field.css';
 }
 
 .tag-list {
