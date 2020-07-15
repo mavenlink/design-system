@@ -13,7 +13,7 @@
 
 .read-write-container {
   composes: container;
-  composes: input from '../__internal__/abstract-custom-field.css';
+  composes: input-styles from '../__internal__/abstract-custom-field.css';
 }
 
 .read-only-container {
