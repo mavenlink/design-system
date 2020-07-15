@@ -33,11 +33,9 @@ describe('useValidation', () => {
         checkedValidity: true,
       };
 
-      const { result, rerender } = renderHook(({ readOnly, helpText, inputRef, checkedValidity }) => (
-        useValidation(readOnly, helpText, inputRef, checkedValidity)
-      ), {
-        initialProps,
-      });
+      const { result, rerender } = renderHook(props => (
+        useValidation(props.readOnly, props.helpText, props.inputRef, props.checkedValidity)
+      ), { initialProps });
 
       expect(result.current).toBe('');
 
