@@ -3,6 +3,7 @@ import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
+import { waitFor } from "@testing-library/dom";
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   const requiredProps = {
@@ -263,7 +264,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('dropdown close behavior', () => {
-    fit('closes the dropdown when clicking outside', () => {
+    it('closes the dropdown when clicking outside', async () => {
       const choices = [{
         id: 'broke',
         label: 'broke my heart',
@@ -274,25 +275,66 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       render(
         <div>
-          <title>Close</title>
+          <span>CLOSE</span>
           <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
         </div>
       );
 
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('broke my heart')).toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Close'));
-      expect(screen.getByText('broke my heart')).not.toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
     });
 
-    xit('closes the dropdown when tabbing away', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    it('closes the dropdown when tabbing away', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+          <input></input>
+        </div>
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+
+      fireEvent.focus(screen.getByText('broke my heart'));
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
     });
 
-    xit('resets the inputs state', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+    it('resets the inputs state', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>
+      );
+
       expect(screen.getByLabelText('Test label')).toHaveValue('');
+      userEvent.click(screen.getByLabelText('Test label'));
+      fireEvent.change(document.activeElement, { target: { value: 'broke my' } });
+      expect(screen.getAllByLabelText('Test label')[0]).toHaveValue('broke my');
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue(''));
     });
   });
 });
