@@ -176,6 +176,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   readOnly: false,
   required: false,
   value: undefined,
-  error: false,
-  helpText: undefined,
+  errorText: undefined,
 };
