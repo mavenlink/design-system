@@ -138,7 +138,7 @@ export default function CustomFieldInputSingleChoice(props) {
         readOnly={props.readOnly}
         inputRef={inputRef}
         required={props.required}
-        errorText={props.errorText}
+        errorText={validationMessage}
         value={searchValue || (value ? value.label : '')}
       />
       { showOptions && (
