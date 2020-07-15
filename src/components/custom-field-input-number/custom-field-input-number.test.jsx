@@ -28,7 +28,7 @@ describe('CustomFieldInputNumber', () => {
     });
 
     it('can be enabled', () => {
-      const { container } = render(<TestComponent />);
+      render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
     });
   });

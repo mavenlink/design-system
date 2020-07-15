@@ -25,7 +25,7 @@ Otherwise, the user does not know the context of the list.
 
 ### Examples
 
-```jsx
+```js
 const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
 
 <FormControl
@@ -44,7 +44,7 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
 
 If the list needs to be a certain size or style, place the listbox into its own containing `div` and style that `div`:
 
-```jsx
+```js
 const container = {
   width: '150px',
   height: '150px',

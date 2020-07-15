@@ -2,7 +2,7 @@
 
 For rows that should contain more than one full-length component, a `SectionRow` should be used to wrap thse children.
 
-```
+```js
 <Section
   title="I am a section"
   description="Test description"
@@ -10,7 +10,11 @@ For rows that should contain more than one full-length component, a `SectionRow`
 ```
 
 `Section`s can contain child elements, like any other element:
-```
+
+```js
+import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import SectionRow from '../section-row/section-row.jsx';
+
 <Section
   title="Project Details"
   description="These fields allow control of custom project fields."
@@ -37,17 +41,22 @@ For rows that should contain more than one full-length component, a `SectionRow`
 ```
 
 `Section`s can be siblings with proper spacing, and with things like form submission containers:
-```
-<Section
-  title="Top Section"
-  description="This is the top section."
-/>
-<Section
-  title="Bottom Section"
-  description="This is the bottom section."
-/>
-<div>
-  <Button color="primary">Save</Button>
-  <Button color="secondary">Cancel</Button>
-</div>
+
+```js
+import Button from '../button/button.jsx';
+
+<React.Fragment>
+  <Section
+    title="Top Section"
+    description="This is the top section."
+  />
+  <Section
+    title="Bottom Section"
+    description="This is the bottom section."
+  />
+  <div>
+    <Button color="primary">Save</Button>
+    <Button color="secondary">Cancel</Button>
+  </div>
+</React.Fragment>
 ```

@@ -4,27 +4,32 @@ It has no underlying validations besides developer intent (see Error example for
 
 ##### Basic usage:
 
-```jsx
+```js
 <CustomFieldInputText
   id="basic-test-1"
   label="Example 1"
 />
+```
 
+```js
 <CustomFieldInputText
   defaultValue="This uses an uncontrolled value"
   id="basic-test-2"
   label="Example 1"
 />
+```
 
+```js
 <CustomFieldInputText
   id="basic-test-3"
   label="Example 1"
   value="This uses a controlled value"
 />
 ```
-----
+
 ##### Disabled state:
-```jsx
+
+```js
 <CustomFieldInputText
   disabled
   defaultValue="This value cannot be changed"
@@ -32,13 +37,13 @@ It has no underlying validations besides developer intent (see Error example for
   label="Example 2"
 />
 ```
-----
+
 ##### Errored state:
 
 The `errorText` property indicates the error state of the component.
 The underlying `input` element will be invalid due to the custom error provided.
 
-```jsx
+```js
 <CustomFieldInputText
   errorText="Custom error message here."
   id="test-id-3"

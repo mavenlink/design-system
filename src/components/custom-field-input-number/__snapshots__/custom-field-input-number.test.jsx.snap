@@ -33,7 +33,15 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
       readOnly={false}
       required={false}
       step={1}
+      style={
+        Object {
+          "--numIcon": 0,
+        }
+      }
       type="number"
+    />
+    <div
+      className="icon-container"
     />
   </div>
 </div>

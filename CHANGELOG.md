@@ -10,8 +10,12 @@
   - Major: All custom fields now use a single `errorText` prop to determine error state
   - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
   - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
+  - Minor: Update `CustomFieldInputSingleChoice` to allow removing selected choices
   - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
   - Minor: Add ref `value` API to all CustomFieldInput components except MultipleChoice
+  - Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
+  - Minor: Update `Icon` with `onClick` prop API
+  - Minor: Update `CustomFieldInputMultipleChoice` to remove all selected choices
 </details>
 
 ## 0.28.0 (July 02, 2020)

@@ -3,14 +3,21 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
 
-.input {
+.input-styles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding-top: 7px;
+  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
+  padding-bottom: 7px;
+  padding-left: var(--spacing-medium);
   width: 100%;
+}
+
+.input {
+  composes: input-styles;
 }
 
 .input:disabled {
@@ -22,7 +29,7 @@
 }
 
 .read-only-input {
-  composes: input;
+  composes: input-styles;
   background-color: var(--mds-grey-3);
 }
 
@@ -40,10 +47,18 @@
   color: var(--mds-grey-54);
 }
 
-.input-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
+.icon-container {
   position: absolute;
   right: 6px;
   top: 6px;
+}
+
+.invalid-input {
+  composes: input-styles;
+  border-color: var(--mds-red-100);
+}
+
+.input-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
 }

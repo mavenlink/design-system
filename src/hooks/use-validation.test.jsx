@@ -24,6 +24,29 @@ describe('useValidation', () => {
       const { result } = renderHook(() => useValidation(false, 'hey listen', mockRef('yo')));
       expect(result.current).toBe('yo');
     });
+
+    it('is dependent on the checked validity', () => {
+      const initialProps = {
+        readOnly: false,
+        helpText: '',
+        inputRef: mockRef(),
+        checkedValidity: true,
+      };
+
+      const { result, rerender } = renderHook(props => (
+        useValidation(props.readOnly, props.helpText, props.inputRef, props.checkedValidity)
+      ), { initialProps });
+
+      expect(result.current).toBe('');
+
+      rerender({
+        ...initialProps,
+        inputRef: mockRef('yo'),
+        checkedValidity: false,
+      });
+
+      expect(result.current).toBe('yo');
+    });
   });
 
   describe('contextual validation', () => {

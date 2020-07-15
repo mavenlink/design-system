@@ -36,6 +36,7 @@ exports[`TagList renders a TagList 1`] = `
         aria-labelledby="test-tag-fake-button test-tag-fake-content"
         className="icon-base size-small"
         id="test-tag-fake-button"
+        onClick={[Function]}
         role="button"
       >
         <use

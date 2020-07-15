@@ -9,7 +9,24 @@ export default function AbstractCustomField(props) {
   const labelId = `${props.id}-label`;
   const invalidDueToProps = props.errorText.length > 0 && !props.readOnly;
 
-  const icon = () => {
+  const numIcons = () => {
+    let num = 0;
+    if (invalidDueToProps) {
+      num += 1;
+    }
+
+    if (props.icon) {
+      num += 1;
+    }
+
+    if (props.clear) {
+      num += 1;
+    }
+
+    return num;
+  };
+
+  const showInvalidIcon = () => {
     if (invalidDueToProps) {
       return (<Icon
         className={styles['input-icon']}
@@ -19,6 +36,10 @@ export default function AbstractCustomField(props) {
       />);
     }
 
+    return undefined;
+  };
+
+  const showIcon = () => {
     if (props.icon) {
       return props.icon;
     }
@@ -26,8 +47,12 @@ export default function AbstractCustomField(props) {
     return undefined;
   };
 
-  const showIcon = () => {
-    return invalidDueToProps || !!props.icon;
+  const showClear = () => {
+    if (props.clear) {
+      return props.clear;
+    }
+
+    return undefined;
   };
 
   return (
@@ -62,10 +87,15 @@ export default function AbstractCustomField(props) {
         ref={props.inputRef}
         required={props.required}
         step={props.step}
+        style={{ '--numIcon': numIcons() }}
         type={props.type}
         value={props.value}
       />
-      {showIcon() && icon()}
+      <div className={styles['icon-container']}>
+        { showInvalidIcon() }
+        { showClear() }
+        { showIcon() }
+      </div>
     </FormControl>
   );
 }
@@ -76,6 +106,7 @@ AbstractCustomField.propTypes = {
     haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
+  clear: PropTypes.node,
   defaultValue: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -119,6 +150,7 @@ AbstractCustomField.propTypes = {
 AbstractCustomField.defaultProps = {
   ariaProps: {},
   className: undefined,
+  clear: undefined,
   defaultValue: undefined,
   disabled: false,
   errorText: '',

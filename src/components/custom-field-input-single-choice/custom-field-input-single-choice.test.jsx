@@ -86,6 +86,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('errorText', () => {
+    it('sets the input to be invalid', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
+      expect(screen.getByLabelText('Test label')).not.toBeValid();
+    });
+  });
+
   describe('filtering', () => {
     const choices = [{
       id: '1',
@@ -232,6 +239,33 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Test label'));
 
       expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
+    });
+  });
+
+  describe('clear', () => {
+    it('clears a value and hides the icon', () => {
+      const value = { id: 'some-selection', label: 'Some selection' };
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
+      userEvent.click(screen.getAllByRole('img')[0]);
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    });
+
+    it('clears the search value and hides the icon', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+      userEvent.type(screen.getByLabelText('Test label', { selector: 'input' }), 'some test text');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('some test text');
+      userEvent.click(screen.getAllByRole('img')[0]);
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('');
+    });
+
+    describe('when the input choice is readOnly', () => {
+      it('does not show the clear icon', () => {
+        const value = { id: 'some-selection', label: 'Some selection' };
+        render(<CustomFieldInputSingleChoice {...requiredProps} value={value} readOnly />);
+        // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
+        expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
+      });
     });
   });
 

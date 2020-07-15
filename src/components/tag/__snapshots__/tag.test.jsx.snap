@@ -28,6 +28,7 @@ exports[`Tag renders a tag component 1`] = `
       aria-labelledby="test-id-button test-id-content"
       className="icon-base size-small"
       id="test-id-button"
+      onClick={[Function]}
       role="button"
     >
       <use

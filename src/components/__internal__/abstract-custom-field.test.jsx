@@ -64,9 +64,8 @@ describe('AbstractCustomField', () => {
 
     it('gives preference to the error icon', () => {
       const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
-      const { queryByTitle, getByRole } = render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
-      expect(queryByTitle('Hello')).toBeNull();
-      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+      const { getAllByRole } = render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
+      expect(getAllByRole('img')[0].firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
     });
 
     it('shows no icon by default', () => {

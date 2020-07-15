@@ -10,25 +10,21 @@ const apiLimits = {
 };
 
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
-  const inputRef = props.inputRef || useRef(null);
+  const fallbackRef = useRef(null);
+  const inputRef = props.inputRef || fallbackRef;
 
-  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
-  const [invalid, setInvalid] = useState(validationMessage !== '');
+  const [checkedValidity, setCheckedValidity] = useState(false);
+  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, checkedValidity);
 
   function handleOnKeyUp(event) {
-    setInvalid(!event.target.checkValidity());
+    setCheckedValidity(!event.target.checkValidity());
   }
 
   useEffect(() => {
     if (!inputRef.current) return;
 
-    setInvalid(!inputRef.current.validity.valid);
+    setCheckedValidity(!inputRef.current.validity.valid);
   });
-
-  useEffect(() => {
-    const hasError = props.errorText.length > 0;
-    setInvalid(hasError);
-  }, [props.errorText]);
 
   useImperativeHandle(ref, () => ({
     id: props.id,
@@ -42,7 +38,6 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       className={props.className}
       defaultValue={props.value}
       disabled={props.disabled}
-      error={invalid}
       errorText={validationMessage}
       id={props.id}
       inputRef={inputRef}

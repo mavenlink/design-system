@@ -1,9 +1,9 @@
 The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
 Its accessibility interactions are inherited from [`TagList`](#/Components/TagList) and [`Tag`](#/Components/Tag) components.
 
-### Default examples
+### Default state examples
 
-```jsx
+```js
 const choices = [
   { id: '1', label: 'command (abstract role)' },
   { id: '2', label: 'composite (abstract role)' },
@@ -97,12 +97,12 @@ const value = [
 />
 ```
 
-### Read-only examples
+### Read-only state examples
 
-```jsx
+```js
 <CustomFieldInputMultipleChoice
   choices={[]}
-  id="234"
+  id="read-only-example-1"
   label="This custom field is read-only"
   readOnly
   value={[
@@ -110,5 +110,23 @@ const value = [
     { id: '2', label: 'Second Choice' },
     { id: '3', label: 'Third Choice' },
   ]}
+/>
+```
+
+### Invalid state examples
+
+```jsx
+const choices = [
+    { id: '1', label: 'First Choice' },
+    { id: '2', label: 'Second Choice' },
+    { id: '3', label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  errorText="If you're not first, you're last!"
+  id="invalid-example-1"
+  label="This custom field is invalid"
+  value={[choices[1]]}
 />
 ```

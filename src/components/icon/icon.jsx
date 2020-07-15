@@ -17,6 +17,7 @@ export default function Icon(props) {
       aria-labelledby={props.ariaLabelledBy}
       className={classes.join(' ')}
       id={props.id}
+      onClick={props.onClick}
       role={props.role}
     >
       { props.title && <title>{props.title}</title> }
@@ -26,19 +27,9 @@ export default function Icon(props) {
 }
 
 Icon.propTypes = {
-  id: PropTypes.string,
   ariaLabel: PropTypes.string,
   ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
-  fill: PropTypes.oneOf([
-    'primary',
-    'action',
-    'highlight',
-    'caution',
-    'gray',
-    'none',
-    'skip',
-  ]),
   currentColor: PropTypes.oneOf([
     'primary',
     'action',
@@ -48,7 +39,18 @@ Icon.propTypes = {
     'transparent',
     'skip',
   ]),
+  fill: PropTypes.oneOf([
+    'primary',
+    'action',
+    'highlight',
+    'caution',
+    'gray',
+    'none',
+    'skip',
+  ]),
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   role: PropTypes.oneOf([
     'button',
     'img',
@@ -74,9 +76,10 @@ Icon.defaultProps = {
   ariaLabel: undefined,
   ariaLabelledBy: undefined,
   className: styles['icon-base'],
+  currentColor: 'transparent',
   fill: 'none',
   id: undefined,
-  currentColor: 'transparent',
+  onClick: () => {},
   role: 'img',
   size: 'medium',
   stroke: 'none',
