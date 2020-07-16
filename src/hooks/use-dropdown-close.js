@@ -17,7 +17,7 @@ const useDropdownClose = (ref, dropdownOpen, handleDropdownClose) => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('focusin', handleClickOutside);
     };
-  }, [ref, dropdownOpen]);
+  }, [ref.current, dropdownOpen]);
 };
 
 export default useDropdownClose;

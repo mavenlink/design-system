@@ -305,7 +305,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('broke my heart')).toBeInTheDocument();
 
-      fireEvent.focus(screen.getByText('broke my heart'));
+      userEvent.tab();
       userEvent.tab();
 
       await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
@@ -328,9 +328,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       );
 
       expect(screen.getByLabelText('Test label')).toHaveValue('');
-      userEvent.click(screen.getByLabelText('Test label'));
-      fireEvent.change(document.activeElement, { target: { value: 'broke my' } });
-      expect(screen.getAllByLabelText('Test label')[0]).toHaveValue('broke my');
+      userEvent.type(screen.getByLabelText('Test label'), 'broke my');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('broke my');
       expect(screen.getByText('broke my heart')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
 

@@ -26,14 +26,12 @@ export default function CustomFieldInputSingleChoice(props) {
     fill="skip"
   />);
 
-  const defaultValue = () => {
-    return (value ? value.label : '');
-  };
+  const defaultValue = value ? value.label : '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
     setShowOptions(false);
-    setSearchValue(defaultValue());
+    setSearchValue(defaultValue);
   };
   useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
@@ -140,7 +138,7 @@ export default function CustomFieldInputSingleChoice(props) {
         required={props.required}
         error={props.error}
         helpText={props.helpText}
-        value={searchValue || defaultValue()}
+        value={searchValue || defaultValue}
       />
       { showOptions && (
         <Listbox
