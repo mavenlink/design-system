@@ -176,6 +176,9 @@ describe('CustomFieldInputCurrency', () => {
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });
+
+      expect(inputRef.current.value).toStrictEqual(['', 'USD']);
+
       fireEvent.blur(screen.getByLabelText('Test label'));
 
       expect(inputRef.current.value).toStrictEqual(['', 'USD']);
