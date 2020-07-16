@@ -6,6 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import Icon from '../icon/icon.jsx';
+import iconClear from '../../svgs/icon-clear-small.svg';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
@@ -25,6 +26,22 @@ export default function CustomFieldInputSingleChoice(props) {
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
     fill="skip"
   />);
+
+  const clear = () => {
+    setValue(undefined);
+    setSearchValue(undefined);
+  };
+
+  const clearIcon = () => {
+    if (!props.readOnly && (value || searchValue)) {
+      return (<Icon
+        name={iconClear.id}
+        onClick={clear}
+      />);
+    }
+
+    return undefined;
+  };
 
   function onClick() {
     if (!props.readOnly) setShowOptions(true);
@@ -109,6 +126,7 @@ export default function CustomFieldInputSingleChoice(props) {
     <div className={styles.container}>
       <CustomFieldInputText
         icon={caretIcon}
+        clear={clearIcon()}
         id={props.id}
         label={props.label}
         onChange={onSearchChange}
@@ -118,6 +136,8 @@ export default function CustomFieldInputSingleChoice(props) {
         readOnly={props.readOnly}
         inputRef={inputRef}
         required={props.required}
+        error={props.error}
+        helpText={props.helpText}
         value={searchValue || (value ? value.label : '')}
       />
       { showOptions && (
@@ -148,6 +168,8 @@ CustomFieldInputSingleChoice.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: ChoiceType,
+  error: PropTypes.bool,
+  helpText: PropTypes.string,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
@@ -156,4 +178,6 @@ CustomFieldInputSingleChoice.defaultProps = {
   readOnly: false,
   required: false,
   value: undefined,
+  error: false,
+  helpText: undefined,
 };

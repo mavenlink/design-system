@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Icon from '../icon/icon.jsx';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import clearSvg from '../../svgs/icon-clear-small.svg';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -253,16 +254,25 @@ describe('CustomFieldInputText', () => {
       expect(getByRole('img')).toBeDefined();
     });
 
-    it('gives preference to the error icon', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
-      const { queryByTitle, getByRole } = render(<TestComponent icon={icon} error />);
-      expect(queryByTitle('Hello')).toBeNull();
-      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    it('renders both icons', () => {
+      const icon = <Icon name={calendarSvg.id} />;
+      render(<TestComponent icon={icon} error />);
+      const icons = screen.getAllByRole('img');
+      expect(icons[0].firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+      expect(icons[1].firstChild).toHaveAttribute('xlink:href', '#icon-calendar-fill.svg');
     });
 
     it('shows no icon by default', () => {
       const { queryByRole } = render(<TestComponent />);
       expect(queryByRole('img')).toBeNull();
+    });
+  });
+
+  describe('clear API', () => {
+    it('shows an icon when provided', () => {
+      const icon = <Icon name={clearSvg.id} currentColor="action" />;
+      const { getByRole } = render(<TestComponent clear={icon} />);
+      expect(getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-clear-small.svg');
     });
   });
 

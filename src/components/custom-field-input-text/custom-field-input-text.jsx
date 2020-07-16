@@ -6,10 +6,6 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './custom-field-input-text.css';
 
-function isInvalid(error, readOnly) {
-  return error && !readOnly;
-}
-
 export default function CustomFieldInputText(props) {
   const defaultRef = useRef(null);
   const [validationMessage, setValidationMessage] = useState('');
@@ -17,10 +13,14 @@ export default function CustomFieldInputText(props) {
   const inputRef = props.inputRef || defaultRef;
   const labelId = `${props.id}-label`;
 
+  const isInvalid = () => {
+    return props.error && !props.readOnly;
+  };
+
   useEffect(() => {
     if (!inputRef.current) return;
 
-    if (isInvalid(props.error, props.readOnly)) {
+    if (isInvalid()) {
       if (props.helpText) {
         inputRef.current.setCustomValidity(props.helpText);
         setValidationMessage(props.helpText);
@@ -33,8 +33,25 @@ export default function CustomFieldInputText(props) {
     }
   });
 
-  const icon = () => {
-    if (isInvalid(props.error, props.readOnly)) {
+  const numIcons = () => {
+    let num = 0;
+    if (isInvalid()) {
+      num += 1;
+    }
+
+    if (props.icon) {
+      num += 1;
+    }
+
+    if (props.clear) {
+      num += 1;
+    }
+
+    return num;
+  };
+
+  const showInvalidIcon = () => {
+    if (isInvalid()) {
       return (<Icon
         className={styles['input-icon']}
         currentColor="caution"
@@ -43,6 +60,10 @@ export default function CustomFieldInputText(props) {
       />);
     }
 
+    return undefined;
+  };
+
+  const showIcon = () => {
     if (props.icon) {
       return props.icon;
     }
@@ -50,8 +71,12 @@ export default function CustomFieldInputText(props) {
     return undefined;
   };
 
-  const showIcon = () => {
-    return isInvalid(props.error, props.readOnly) || !!props.icon;
+  const showClear = () => {
+    if (props.clear) {
+      return props.clear;
+    }
+
+    return undefined;
   };
 
   return (
@@ -70,6 +95,7 @@ export default function CustomFieldInputText(props) {
         aria-haspopup={props.ariaProps.haspopup}
         defaultValue={props.defaultValue}
         className={styles.input}
+        style={{ '--numIcon': numIcons() }}
         disabled={props.disabled}
         id={props.id}
         max={props.max}
@@ -89,7 +115,11 @@ export default function CustomFieldInputText(props) {
         type={props.type}
         value={props.value}
       />
-      {showIcon() && icon()}
+      <div className={styles['icon-container']}>
+        { showInvalidIcon() }
+        { showClear() }
+        { showIcon() }
+      </div>
     </FormControl>
   );
 }
@@ -108,6 +138,7 @@ CustomFieldInputText.propTypes = {
   error: PropTypes.bool,
   helpText: PropTypes.string,
   icon: PropTypes.node,
+  clear: PropTypes.node,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -149,6 +180,7 @@ CustomFieldInputText.defaultProps = {
   error: false,
   helpText: undefined,
   icon: undefined,
+  clear: undefined,
   inputRef: undefined,
   max: undefined,
   min: undefined,

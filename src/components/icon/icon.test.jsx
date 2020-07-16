@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Icon from './icon.jsx';
 
@@ -256,6 +256,17 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('color-none');
         expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
+    });
+  });
+
+  describe('onClick API', () => {
+    it('sets the onclick handler', () => {
+      const onClickSpy = jest.fn();
+      render((
+        <Icon {...requiredProps} onClick={onClickSpy} />
+      ));
+      fireEvent.click(screen.getByRole('img'));
+      expect(onClickSpy.mock.calls.length).toEqual(1);
     });
   });
 });

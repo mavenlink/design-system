@@ -2,19 +2,19 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
 @import '../../styles/typography.css';
+@import '../icon/icon.css';
 
-.input-styles {
+.input {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding: 7px 0 7px var(--spacing-medium);
+  padding-top: 7px;
+  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
+  padding-bottom: 7px;
+  padding-left: var(--spacing-medium);
   width: 100%;
-}
-
-.input {
-  composes: input-styles;
 }
 
 .input:disabled {
@@ -31,7 +31,7 @@
 }
 
 .read-write-input {
-  composes: input-styles;
+  composes: input;
 }
 
 .read-only-input {
@@ -53,10 +53,13 @@
   color: var(--mds-grey-54);
 }
 
-.input-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
+.icon-container {
   position: absolute;
   right: 6px;
   top: 6px;
+}
+
+.input-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
 }
