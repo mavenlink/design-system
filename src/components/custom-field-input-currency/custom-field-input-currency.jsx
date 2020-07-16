@@ -88,6 +88,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
         numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
       }
 
+      if (isNaN(numberValue)) {
+        numberValue = '';
+      }
+
       return [numberValue, props.currencyCode];
     },
   }));
