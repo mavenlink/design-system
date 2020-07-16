@@ -2,13 +2,15 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 
 ### Default examples
 
-```jsx
+```js
 <CustomFieldInputSingleChoice
   id="default-example-1"
   label="Default Example 1"
   placeholder="This is a single choice field"
 />
+```
 
+```js
 <CustomFieldInputSingleChoice
   id="default-example-2"
   label="Default Example 1"
@@ -18,13 +20,15 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 
 ### Read-only examples
 
-```jsx
+```js
 <CustomFieldInputSingleChoice
   id="read-only-example-1"
   label="Read Only Example 1"
   readOnly
 />
+```
 
+```js
 <CustomFieldInputSingleChoice
   id="read-only-example-2"
   label="Read Only Example 2"
@@ -35,7 +39,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 
 ### Editable examples
 
-```jsx
+```js
 const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
 
 <CustomFieldInputSingleChoice
@@ -46,7 +50,7 @@ const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the quest
 />
 ```
 
-```jsx
+```js
 const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i }));
 
 <CustomFieldInputSingleChoice

@@ -7,15 +7,19 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
-  - Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
-  - Minor: Update `CustomFieldInputSingleChoice` to allow removing selected choices
-  - Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
-  - Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
-  - Minor: Update `Icon` with `onClick` prop API
-  - Minor: Update `CustomFieldInputMultipleChoice` to remove all selected choices
   - Minor: Update `CustomFieldInputMultipleChoice` and `CustomFieldInputMultipleChoice` to close dropdown on click, escape and tab
 </details>
+
+## 0.30.0 (July 16, 2020)
+- Minor: Update `CustomFieldInputSingleChoice` to allow removing selected choices
+
+## 0.29.0 (July 15, 2020)
+- Minor: Update `CustomFieldInputSingleChoice` to select choices provided via props
+- Minor: Update `CustomFieldInputSingleChoice` to allow searching and filtering on provided choices
+- Minor: Update `CustomFieldInputMultipleChoice` to select choices and deselect choices
+- Minor: Update `CustomFieldInputMultipleChoice` to autocomplete choices
+- Minor: Update `Icon` with `onClick` prop API
+- Minor: Update `CustomFieldInputMultipleChoice` to remove all selected choices
 
 ## 0.28.0 (July 02, 2020)
 - Minor: Publish all files in repo to NPM.

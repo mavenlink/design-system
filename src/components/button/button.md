@@ -1,11 +1,11 @@
-```jsx
+```js
 <Button>Default Button</Button>
 ```
 
-```jsx
+```js
 <Button color="primary">Primary Button</Button>
 ```
 
-```jsx
+```js
 <Button color="secondary">Secondary Button</Button>
 ```
