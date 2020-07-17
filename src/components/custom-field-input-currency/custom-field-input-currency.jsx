@@ -47,7 +47,7 @@ export default function CustomFieldInputCurrency(props) {
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
-      setInput(parseFloat(event.target.value));
+      setInput(event.target.value === '' ? '' : parseFloat(event.target.value));
       setIsEditing(false);
     }
 

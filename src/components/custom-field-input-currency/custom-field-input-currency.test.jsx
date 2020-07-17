@@ -4,6 +4,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
@@ -155,6 +156,18 @@ describe('CustomFieldInputCurrency', () => {
     it('accepts an undefined value', () => {
       const { getByLabelText } = renderComponent({ value: undefined });
       expect(getByLabelText('currency')).toHaveValue('');
+    });
+  });
+
+  describe('displayed value', () => {
+    it('does not try to parse an empty input to float', () => {
+      renderComponent();
+
+      userEvent.click(screen.getByLabelText('currency'));
+      userEvent.click(document.body);
+      userEvent.click(screen.getByLabelText('currency'));
+
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
     });
   });
 });
