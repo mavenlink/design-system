@@ -49,7 +49,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
-      setInput(parseFloat(event.target.value));
+      setInput(event.target.value === '' ? '' : parseFloat(event.target.value));
       setIsEditing(false);
     }
 
