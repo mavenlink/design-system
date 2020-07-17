@@ -57,7 +57,7 @@ export default function AbstractCustomField(props) {
 
   useEffect(() => {
     if (!props.value && props.inputRef && props.inputRef.current) {
-      props.inputRef.current.value = props.defaultValue ? props.defaultValue : '';
+      props.inputRef.current.value = props.defaultValue ? props.defaultValue : ''; // eslint-disable-line no-param-reassign
     }
   }, [props.defaultValue]);
 
