@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
 import styles from './abstract-custom-field.css';
@@ -54,6 +54,12 @@ export default function AbstractCustomField(props) {
 
     return undefined;
   };
+
+  useEffect(() => {
+    if (!props.value && props.inputRef && props.inputRef.current) {
+      props.inputRef.current.value = props.defaultValue ? props.defaultValue : '';
+    }
+  }, [props.defaultValue]);
 
   return (
     <FormControl

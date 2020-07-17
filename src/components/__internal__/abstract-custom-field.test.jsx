@@ -41,6 +41,15 @@ describe('AbstractCustomField', () => {
       render(<AbstractCustomField {...sharedProps} defaultValue="test-value" />);
       expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
     });
+
+    it('responds to changes in defaultValue', () => {
+      const inputRef = React.createRef();
+      const { rerender } = render(<AbstractCustomField {...sharedProps} defaultValue="test-value" inputRef={inputRef} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
+
+      rerender(<AbstractCustomField {...sharedProps} defaultValue="new-test-value" inputRef={inputRef} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('new-test-value');
+    });
   });
 
   describe('disabled API', () => {
