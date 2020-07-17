@@ -281,7 +281,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
-      userEvent.click(screen.getByLabelText('test label', { selector: 'input'}));
+      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
       await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
