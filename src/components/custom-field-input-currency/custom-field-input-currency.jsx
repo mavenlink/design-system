@@ -82,14 +82,12 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
       if (valueRef.current.value === '') {
         numberValue = '';
+      } else if (isEditing) {
+        numberValue = parseFloat(
+          valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
+        );
       } else {
-        if (isEditing) {
-          numberValue = parseFloat(
-            valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
-          );
-        } else {
-          numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
-        }
+        numberValue = parseInt(valueRef.current.value.replace(/\D/g, ''), 10);
       }
 
       return [numberValue, props.currencyCode];
