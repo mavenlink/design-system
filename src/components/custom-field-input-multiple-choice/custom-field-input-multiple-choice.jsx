@@ -16,6 +16,7 @@ import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 function getClassName(readOnly, errorText) {
   if (readOnly) return styles['read-only-container'];
@@ -36,6 +37,13 @@ function CustomFieldInputMultipleChoice(props) {
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
   const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
+
+  const wrapperRef = useRef(null);
+  const handleDropdownClose = () => {
+    setExpanded(false);
+    setAutocompleteValue('');
+  };
+  useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
   function onChoiceRemove(event) {
     const newValue = value.filter((choice, index) => (
@@ -85,93 +93,95 @@ function CustomFieldInputMultipleChoice(props) {
   }, [expanded]);
 
   return (
-    <FormControl
-      error={props.errorText}
-      label={props.label}
-      labelId={`${props.id}-label`}
-      id={`${props.id}-autocomple`}
-      onKeyDown={onKeyDown}
-      readOnly={props.readOnly}
-    >
-      <div
-        className={classContainer}
-        onClick={onClick}
-        role="presentation"
+    <div ref={wrapperRef}>
+      <FormControl
+        error={props.errorText}
+        label={props.label}
+        labelId={`${props.id}-label`}
+        id={`${props.id}-autocomple`}
+        onKeyDown={onKeyDown}
+        readOnly={props.readOnly}
       >
-        <TagList
-          className={styles['tag-list']}
-          id={props.id}
-          labelledBy={`${props.id}-label`}
-          refs={valueRefs}
+        <div
+          className={classContainer}
+          onClick={onClick}
+          role="presentation"
         >
-          {value.map((choice, index) => (
-            <Tag
-              defaultActive={index === 0}
-              id={`${props.id}-${choice.id}`}
-              key={`${props.id}-${choice.id}`}
-              onRemove={onChoiceRemove}
-              readOnly={props.readOnly}
-              ref={valueRefs[index]}
-            >
-              {choice.label}
-            </Tag>
-          ))}
-          {!props.readOnly && (
-            <input
-              aria-labelledby={`${props.id}-label`}
-              className={styles['autocomplete-input']}
-              id={`${props.id}-autocomple`}
-              onChange={onAutocompleteChange}
-              ref={autocompleteRef}
-              value={autocompleteValue}
-            />
-          )}
-        </TagList>
-        <div className={styles['icons-container']}>
-          {!props.readOnly && props.errorText && (
+          <TagList
+            className={styles['tag-list']}
+            id={props.id}
+            labelledBy={`${props.id}-label`}
+            refs={valueRefs}
+          >
+            {value.map((choice, index) => (
+              <Tag
+                defaultActive={index === 0}
+                id={`${props.id}-${choice.id}`}
+                key={`${props.id}-${choice.id}`}
+                onRemove={onChoiceRemove}
+                readOnly={props.readOnly}
+                ref={valueRefs[index]}
+              >
+                {choice.label}
+              </Tag>
+            ))}
+            {!props.readOnly && (
+              <input
+                aria-labelledby={`${props.id}-label`}
+                className={styles['autocomplete-input']}
+                id={`${props.id}-autocomple`}
+                onChange={onAutocompleteChange}
+                ref={autocompleteRef}
+                value={autocompleteValue}
+              />
+            )}
+          </TagList>
+          <div className={styles['icons-container']}>
+            {!props.readOnly && props.errorText && (
+              <Icon
+                className={styles.icon}
+                currentColor="caution"
+                fill="skip"
+                name={iconCaution.id}
+              />
+            )}
+            {!props.readOnly && value.length > 0 && (
+              <Icon
+                className={styles['clear-icon']}
+                fill="skip"
+                name={iconClear.id}
+                onClick={onChoicesClear}
+                ariaLabel={`Remove all selected choices on ${props.label}`}
+                role="button"
+              />
+            )}
             <Icon
               className={styles.icon}
-              currentColor="caution"
+              name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
               fill="skip"
-              name={iconCaution.id}
             />
-          )}
-          {!props.readOnly && value.length > 0 && (
-            <Icon
-              className={styles['clear-icon']}
-              fill="skip"
-              name={iconClear.id}
-              onClick={onChoicesClear}
-              ariaLabel={`Remove all selected choices on ${props.label}`}
-              role="button"
-            />
-          )}
-          <Icon
-            className={styles.icon}
-            name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-            fill="skip"
-          />
+          </div>
         </div>
-      </div>
-      {(renderPopup &&
-        <Listbox
-          className={styles['popup-container']}
-          labelledBy={`${props.id}-label`}
-          refs={choicesRefs}
-        >
-          {visibleChoices.map((choice, index) => (
-            <ListOption
-              key={`${props.id}-${choice.id}`}
-              onSelect={onChoiceSelect}
-              ref={choicesRefs[index]}
-              value={choice}
-            >
-              {choice.label}
-            </ListOption>
-          ))}
-        </Listbox>
-      )}
-    </FormControl>
+        {(renderPopup &&
+          <Listbox
+            className={styles['popup-container']}
+            labelledBy={`${props.id}-label`}
+            refs={choicesRefs}
+          >
+            {visibleChoices.map((choice, index) => (
+              <ListOption
+                key={`${props.id}-${choice.id}`}
+                onSelect={onChoiceSelect}
+                ref={choicesRefs[index]}
+                value={choice}
+              >
+                {choice.label}
+              </ListOption>
+            ))}
+          </Listbox>
+        )}
+      </FormControl>
+    </div>
   );
 }
 
