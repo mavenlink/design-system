@@ -1,5 +1,4 @@
 import React, {
-  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -13,9 +12,9 @@ import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 export default function CustomFieldInputSingleChoice(props) {
-  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -28,6 +27,15 @@ export default function CustomFieldInputSingleChoice(props) {
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
     fill="skip"
   />);
+
+  const defaultValue = value ? value.label : '';
+
+  const wrapperRef = useRef(null);
+  const handleDropdownClose = () => {
+    setShowOptions(false);
+    setSearchValue(defaultValue);
+  };
+  useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
   const clear = () => {
     setValue(undefined);
@@ -100,6 +108,7 @@ export default function CustomFieldInputSingleChoice(props) {
     setValue(selectedValue);
     setSearchValue(selectedValue.label);
     setShowOptions(false);
+    inputRef.current.focus();
   }
 
   function onSearchChange(event) {
@@ -115,17 +124,8 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
-  useEffect(() => {
-    setDidMount(true);
-  }, []);
-
-  useEffect(() => {
-    if (!didMount) return;
-    if (!showOptions) inputRef.current.focus();
-  }, [showOptions]);
-
   return (
-    <div className={styles.container}>
+    <div ref={wrapperRef} className={styles.container}>
       <AbstractCustomField
         icon={caretIcon}
         clear={clearIcon()}
@@ -139,7 +139,7 @@ export default function CustomFieldInputSingleChoice(props) {
         inputRef={inputRef}
         required={props.required}
         errorText={validationMessage}
-        value={searchValue || (value ? value.label : '')}
+        value={searchValue || defaultValue}
       />
       { showOptions && (
         <Listbox
