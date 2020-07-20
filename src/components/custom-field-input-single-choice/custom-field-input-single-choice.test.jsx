@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
@@ -259,6 +260,80 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
         expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
       });
+    });
+  });
+
+  describe('dropdown close behavior', () => {
+    it('closes the dropdown when clicking outside', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('closes the dropdown when tabbing away', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+          <input />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+
+      userEvent.tab();
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('resets the inputs state', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>,
+      );
+
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+      userEvent.type(screen.getByLabelText('Test label'), 'broke my');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('broke my');
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue(''));
     });
   });
 });

@@ -6,6 +6,7 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
@@ -268,6 +269,56 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+  });
+
+  describe('dropdown close behavior', () => {
+    it('closes the dropdown when clicking outside', async () => {
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+    });
+
+    it('closes the dropdown when tabbing away', async () => {
+      render(
+        <div>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+          <input />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+
+      userEvent.tab();
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+    });
+
+    it('resets the inputs state', async () => {
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+        </div>,
+      );
+
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
+      userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), '1');
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('1');
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue(''));
     });
   });
 });

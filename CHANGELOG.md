@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Update `CustomFieldInputMultipleChoice` and `CustomFieldInputMultipleChoice` to close dropdown on click, escape and tab
 </details>
 
 ## 0.30.0 (July 16, 2020)

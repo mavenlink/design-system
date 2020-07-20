@@ -1,53 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-<div
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="test-id-autocomple"
-    id="test-id-label"
-  >
-    test label
-  </label>
+<div>
   <div
-    className="control-container"
+    onKeyDown={[Function]}
+    role="presentation"
   >
+    <label
+      className="label"
+      htmlFor="test-id-autocomple"
+      id="test-id-label"
+    >
+      test label
+    </label>
     <div
-      className="read-write-container"
-      onClick={[Function]}
-      role="presentation"
+      className="control-container"
     >
       <div
-        aria-labelledby="test-id-label"
-        className="tag-list"
+        className="read-write-container"
         onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="grid"
+        role="presentation"
       >
-        <input
+        <div
           aria-labelledby="test-id-label"
-          className="autocomplete-input"
-          id="test-id-autocomple"
-          onChange={[Function]}
-          value=""
-        />
-      </div>
-      <div
-        className="icons-container"
-      >
-        <svg
-          className="icon size-medium stroke-none color-transparent"
+          className="tag-list"
           onClick={[Function]}
-          role="img"
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="grid"
         >
-          <use
-            xlinkHref="#icon-caret-down.svg"
+          <input
+            aria-labelledby="test-id-label"
+            className="autocomplete-input"
+            id="test-id-autocomple"
+            onChange={[Function]}
+            value=""
           />
-        </svg>
+        </div>
+        <div
+          className="icons-container"
+        >
+          <svg
+            className="icon size-medium stroke-none color-transparent"
+            onClick={[Function]}
+            role="img"
+          >
+            <use
+              xlinkHref="#icon-caret-down.svg"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
