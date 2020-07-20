@@ -1,23 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect } from 'react';
-
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
-import styles from '../custom-field-input-text/custom-field-input-text.css';
-
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
+import styles from '../__internal__/abstract-custom-field.css';
 
 function getLocale() {
   if (navigator && navigator.languages) {
@@ -32,11 +19,8 @@ function initialInputValid(inputValue) {
     return true;
   }
 
-  if (inputValue.toString().split('.').length === 1) {
-    return true;
-  }
-
-  return false;
+  return inputValue.toString()
+    .split('.').length === 1;
 }
 
 function subunitToUnit(subunitValue, currencyCode) {
@@ -63,7 +47,7 @@ export default function CustomFieldInputCurrency(props) {
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
-      setInput(parseFloat(event.target.value));
+      setInput(event.target.value === '' ? '' : parseFloat(event.target.value));
       setIsEditing(false);
     }
 
@@ -90,7 +74,7 @@ export default function CustomFieldInputCurrency(props) {
   });
 
   const sharedProps = {
-    className: getRootClassName(props.className, props.error, props.disabled),
+    className: props.className,
     disabled: props.disabled,
     id: props.id,
     label: props.label,
@@ -118,8 +102,7 @@ export default function CustomFieldInputCurrency(props) {
     <CustomFieldInputText
       {...sharedProps}
       defaultValue={formattedNumber}
-      error={props.error}
-      helpText={props.helpText}
+      errorText={props.errorText}
       onFocus={handleOnFocus}
       type="text"
     />
@@ -130,8 +113,7 @@ CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -146,8 +128,7 @@ CustomFieldInputCurrency.defaultProps = {
   className: styles['custom-field-input-text'],
   currencyCode: 'USD',
   disabled: false,
-  error: false,
-  helpText: undefined,
+  errorText: undefined,
   name: undefined,
   placeholder: undefined,
   readOnly: false,

@@ -116,17 +116,17 @@ const value = [
 ### Invalid state examples
 
 ```jsx
-<CustomFieldInputMultipleChoice
-  choices={[
+const choices = [
     { id: '1', label: 'First Choice' },
     { id: '2', label: 'Second Choice' },
     { id: '3', label: 'Third Choice' },
-  ]}
-  helpText="If you're not first, you're last!"
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  errorText="If you're not first, you're last!"
   id="invalid-example-1"
   label="This custom field is invalid"
-  value={[
-    { id: '2', label: 'Second Choice' },
-  ]}
+  value={[choices[1]]}
 />
 ```

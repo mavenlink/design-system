@@ -18,9 +18,9 @@ import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
-function getClassName(readOnly, helpText) {
+function getClassName(readOnly, errorText) {
   if (readOnly) return styles['read-only-container'];
-  if (helpText) return styles['invalid-container'];
+  if (errorText) return styles['invalid-container'];
 
   return styles['read-write-container'];
 }
@@ -35,7 +35,7 @@ function CustomFieldInputMultipleChoice(props) {
     .filter(choice => !value.includes(choice));
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = getClassName(props.readOnly, props.helpText);
+  const classContainer = getClassName(props.readOnly, props.errorText);
   const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
 
   const wrapperRef = useRef(null);
@@ -100,7 +100,7 @@ function CustomFieldInputMultipleChoice(props) {
   return (
     <div ref={wrapperRef}>
       <FormControl
-        error={props.helpText}
+        error={props.errorText}
         label={props.label}
         labelId={`${props.id}-label`}
         id={`${props.id}-autocomple`}
@@ -142,7 +142,7 @@ function CustomFieldInputMultipleChoice(props) {
             )}
           </TagList>
           <div className={styles['icons-container']}>
-            {!props.readOnly && props.helpText && (
+            {!props.readOnly && props.errorText && (
               <Icon
                 className={styles.icon}
                 currentColor="caution"
@@ -198,7 +198,7 @@ CustomFieldInputMultipleChoice.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
@@ -209,7 +209,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
-  helpText: undefined,
+  errorText: undefined,
   readOnly: false,
   value: [],
 };

@@ -40,18 +40,12 @@ It has no underlying validations besides developer intent (see Error example for
 
 ##### Errored state:
 
-The `error` property indicates the error state of the component.
-However, the underlying `<input />` element will still be valid unless one of the two is true:
-
-1. The `<input />` uses native input validation and is in fact invalid.
-2. The `helpText` property is a non-empty string (which represents the validation message).
-
-Violating the conditions above will result in an improper state of the component.
+The `errorText` property indicates the error state of the component.
+The underlying `input` element will be invalid due to the custom error provided.
 
 ```js
 <CustomFieldInputText
-  error
-  helpText="Custom error message here."
+  errorText="Custom error message here."
   id="test-id-3"
   label="Example 3"
 />
