@@ -3,7 +3,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
 import iconClear from '../../svgs/icon-clear-small.svg';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
@@ -11,14 +11,16 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
-
   const inputRef = useRef();
+
+  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
   const refs = props.choices.map(() => useRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
@@ -124,7 +126,7 @@ export default function CustomFieldInputSingleChoice(props) {
 
   return (
     <div ref={wrapperRef} className={styles.container}>
-      <CustomFieldInputText
+      <AbstractCustomField
         icon={caretIcon}
         clear={clearIcon()}
         id={props.id}
@@ -136,8 +138,7 @@ export default function CustomFieldInputSingleChoice(props) {
         readOnly={props.readOnly}
         inputRef={inputRef}
         required={props.required}
-        error={props.error}
-        helpText={props.helpText}
+        errorText={validationMessage}
         value={searchValue || defaultValue}
       />
       { showOptions && (
@@ -168,8 +169,7 @@ CustomFieldInputSingleChoice.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: ChoiceType,
-  error: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
@@ -178,6 +178,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   readOnly: false,
   required: false,
   value: undefined,
-  error: false,
-  helpText: undefined,
+  errorText: undefined,
 };
