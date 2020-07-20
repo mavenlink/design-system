@@ -38,6 +38,7 @@ export default function CustomFieldInputSingleChoice(props) {
   const clear = () => {
     setValue(undefined);
     setSearchValue(undefined);
+    inputRef.current.focus();
   };
 
   const clearIcon = () => {
@@ -45,6 +46,9 @@ export default function CustomFieldInputSingleChoice(props) {
       return (<Icon
         name={iconClear.id}
         onClick={clear}
+        onEnter={clear}
+        titleAttrText={'Remove selected choice'}
+        tabable={true}
       />);
     }
 

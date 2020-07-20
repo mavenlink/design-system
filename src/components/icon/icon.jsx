@@ -11,6 +11,13 @@ export default function Icon(props) {
     props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
   ].filter(Boolean);
 
+  const tabindex = props.tabable ? '0' : '-1';
+  const onKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      props.onEnter();
+    }
+  };
+
   return (
     <svg
       aria-label={props.ariaLabel}
@@ -19,9 +26,10 @@ export default function Icon(props) {
       id={props.id}
       onClick={props.onClick}
       role={props.role}
+      title={props.titleAttrText}
     >
       { props.title && <title>{props.title}</title> }
-      <use xlinkHref={`#${props.name}`} />
+      <use tabIndex={tabindex} onKeyDown={onKeyDown} xlinkHref={`#${props.name}`} />
     </svg>
   );
 }
@@ -51,6 +59,7 @@ Icon.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  onEnter: PropTypes.func,
   role: PropTypes.oneOf([
     'button',
     'img',
@@ -70,6 +79,8 @@ Icon.propTypes = {
     'skip',
   ]),
   title: PropTypes.string,
+  tabable: PropTypes.bool,
+  titleAttrText: PropTypes.string,
 };
 
 Icon.defaultProps = {
@@ -80,8 +91,11 @@ Icon.defaultProps = {
   fill: 'none',
   id: undefined,
   onClick: () => {},
+  onEnter: () => {},
   role: 'img',
   size: 'medium',
   stroke: 'none',
   title: undefined,
+  tabable: undefined,
+  titleAttrText: undefined,
 };

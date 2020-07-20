@@ -60,10 +60,15 @@ function CustomFieldInputMultipleChoice(props) {
     setAutocompleteValue('');
   }
 
-  function onChoicesClear(event) {
-    event.preventDefault();
+  function clearChoices() {
     setValue([]);
     setExpanded(false);
+    autocompleteRef.current.focus();
+  }
+
+  function onChoicesClear(event) {
+    event.preventDefault();
+    clearChoices();
   }
 
   function onAutocompleteChange(event) {
@@ -151,6 +156,9 @@ function CustomFieldInputMultipleChoice(props) {
                 fill="skip"
                 name={iconClear.id}
                 onClick={onChoicesClear}
+                onEnter={clearChoices}
+                titleAttrText={'Remove selected choice'}
+                tabable={true}
                 ariaLabel={`Remove all selected choices on ${props.label}`}
                 role="button"
               />
