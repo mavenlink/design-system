@@ -33,10 +33,12 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
     },
   }));
 
+  const value = props.value === undefined ? '' : props.value.toString();
+
   return (
     <AbstractCustomField
       className={props.className}
-      defaultValue={props.value}
+      defaultValue={value}
       disabled={props.disabled}
       errorText={validationMessage}
       id={props.id}
@@ -70,10 +72,7 @@ CustomFieldInputNumber.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['']),
-  ]),
+  value: PropTypes.number,
 };
 
 CustomFieldInputNumber.defaultProps = {
@@ -87,7 +86,7 @@ CustomFieldInputNumber.defaultProps = {
   readOnly: false,
   required: false,
   step: 1,
-  value: '',
+  value: undefined,
 };
 
 export default CustomFieldInputNumber;

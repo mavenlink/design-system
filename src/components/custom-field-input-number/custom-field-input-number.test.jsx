@@ -102,11 +102,19 @@ describe('CustomFieldInputNumber', () => {
     it('is valid on a positive integer', () => {
       render(<TestComponent value={1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(1);
     });
 
     it('is valid on zero', () => {
       render(<TestComponent value={0} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(0);
+    });
+
+    it('is valid on undefined', () => {
+      render(<TestComponent value={undefined} />);
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(null);
     });
 
     it('is valid on a negative integer', () => {

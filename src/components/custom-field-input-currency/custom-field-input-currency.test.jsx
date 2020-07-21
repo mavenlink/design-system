@@ -197,4 +197,27 @@ describe('CustomFieldInputCurrency', () => {
       expect(screen.getByLabelText('currency')).toHaveValue(null);
     });
   });
+
+  describe('value API', () => {
+    it('can be undefined', () => {
+      renderComponent();
+      expect(screen.getByLabelText('currency')).toHaveValue('');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
+    });
+
+    it('can be 0', () => {
+      renderComponent({ value: 0 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0);
+    });
+
+    it('can be a positive integer', () => {
+      renderComponent({ value: 1 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0.01);
+    });
+  });
 });

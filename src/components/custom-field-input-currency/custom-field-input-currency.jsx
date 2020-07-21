@@ -24,13 +24,13 @@ function initialInputValid(inputValue) {
 }
 
 function subunitToUnit(subunitValue, currencyCode) {
-  if (!subunitValue) return '';
+  if (subunitValue === undefined) return undefined;
 
   return subunitValue / (10 ** currencyMetaData[currencyCode].maximumFractionDigits);
 }
 
 function formatValue(unitValue, currencyCode) {
-  if (!unitValue) return '';
+  if (unitValue === undefined) return '';
 
   return new Intl.NumberFormat(getLocale(), {
     style: 'currency',
@@ -49,7 +49,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
-      setInput(event.target.value === '' ? '' : parseFloat(event.target.value));
+      setInput(event.target.value === '' ? undefined : parseFloat(event.target.value));
       setIsEditing(false);
     }
 

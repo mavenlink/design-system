@@ -14,6 +14,16 @@ within itself.
 
 ```js
 <CustomFieldInputCurrency
+  placeholder="$123.00"
+  label="US Dollars"
+  id="us-dollars-1"
+  value={0}
+/>
+```
+
+
+```js
+<CustomFieldInputCurrency
   label="Iraqi Dinar"
   currencyCode="IQD"
   id="iraqi-dinar"
