@@ -124,7 +124,24 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
-  const choices = getOptions();
+  function openMenu() {
+    const choices = getOptions();
+
+    return (
+      <React.Fragment>
+        <Listbox
+          className={styles.dropdown}
+          labelledBy={`${props.id}-label`}
+          onChange={onSelectionChange}
+          refs={refs}
+          value={value}
+        >
+          { listOptions(choices) }
+        </Listbox>
+        { choices.length === 0 && <span>No options available.</span> }
+      </React.Fragment>
+    );
+  }
 
   return (
     <div ref={wrapperRef} className={styles.container}>
@@ -143,20 +160,7 @@ export default function CustomFieldInputSingleChoice(props) {
         errorText={validationMessage}
         value={searchValue || defaultValue}
       />
-      { showOptions && (
-        <React.Fragment>
-          <Listbox
-            className={styles.dropdown}
-            labelledBy={`${props.id}-label`}
-            onChange={onSelectionChange}
-            refs={refs}
-            value={value}
-          >
-            { listOptions(choices) }
-          </Listbox>
-          { choices.length === 0 && <span>No options available.</span> }
-        </React.Fragment>
-      ) }
+      { showOptions && openMenu() }
     </div>
   );
 }
