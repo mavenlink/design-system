@@ -4,6 +4,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
@@ -35,7 +36,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('prop-forward API', () => {
     it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
       const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus',
-        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'clear'];
+        'type', 'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'errorText'];
       const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
       const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
 
@@ -45,11 +46,11 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('presents contextual error state', () => {
-      const helpText = 'What do you want from us monster!?';
-      renderComponent({ value: 350, helpText, error: true });
+      const errorText = 'What do you want from us monster!?';
+      renderComponent({ value: 350, errorText, error: true });
 
       expect(screen.getByLabelText('currency')).toBeInvalid();
-      expect(screen.getByText(helpText)).toBeInTheDocument();
+      expect(screen.getByText(errorText)).toBeInTheDocument();
     });
 
     it('renders all forwarded props except event handlers', () => {
@@ -155,6 +156,18 @@ describe('CustomFieldInputCurrency', () => {
     it('accepts an undefined value', () => {
       const { getByLabelText } = renderComponent({ value: undefined });
       expect(getByLabelText('currency')).toHaveValue('');
+    });
+  });
+
+  describe('displayed value', () => {
+    it('does not try to parse an empty input to float', () => {
+      renderComponent();
+
+      userEvent.click(screen.getByLabelText('currency'));
+      userEvent.click(document.body);
+      userEvent.click(screen.getByLabelText('currency'));
+
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
     });
   });
 });

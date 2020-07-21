@@ -22,15 +22,37 @@ describe('CustomFieldInputNumber', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const { container } = render(<TestComponent disabled />);
-      expect(container.firstChild).toHaveClass('disabled');
+      render(<TestComponent disabled />);
       expect(screen.getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('disabled');
+      render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+    });
+  });
+
+  describe('errorText API', () => {
+    it('is invalid when true', () => {
+      render(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+    });
+
+    it('updates correctly with a new errorText prop', () => {
+      const { rerender } = render(<TestComponent errorText="" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
+      rerender(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
+    });
+
+    it('shows the provided errorText when true', () => {
+      render(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
+    });
+
+    it('does not show errorText when it does not exist', () => {
+      render(<TestComponent errorText="" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
     });
   });
 
@@ -97,8 +119,11 @@ describe('CustomFieldInputNumber', () => {
     });
 
     it('is invalid on a decimal number', () => {
+      const validityText = 'Constraints not satisfied';
       render(<TestComponent value={1.01} />);
+
       expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByText(validityText)).toBeInTheDocument();
     });
   });
 

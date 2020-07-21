@@ -70,7 +70,6 @@ const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the quest
   label="Error Example 1"
   choices={choices}
   value={choices[1]}
-  error
-  helpText="Error help."
+  errorText="Error help."
 />
 ```
