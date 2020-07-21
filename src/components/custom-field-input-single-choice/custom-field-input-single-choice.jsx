@@ -137,8 +137,12 @@ export default function CustomFieldInputSingleChoice(props) {
           value={value}
         >
           { listOptions(choices) }
+          { choices.length === 0 && (
+            <ListOption value={{}}>
+              <span className={styles['no-options']}>No options available.</span>
+            </ListOption>)
+          }
         </Listbox>
-        { choices.length === 0 && <span>No options available.</span> }
       </React.Fragment>
     );
   }

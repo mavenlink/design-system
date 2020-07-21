@@ -4,14 +4,20 @@
   position: relative;
 }
 
-.input-icon {
-  composes: input-icon from '../__internal__/abstract-custom-field.css';
-}
-
 .dropdown {
   composes: container from '../listbox/listbox.css';
   box-sizing: border-box;
   background-color: var(--white);
   position: absolute;
   width: 100%;
+}
+
+.input-icon {
+  composes: input-icon from '../__internal__/abstract-custom-field.css';
+}
+
+.no-options {
+  color: var(--mds-grey-54);
+  display: flex;
+  justify-content: center;
 }
