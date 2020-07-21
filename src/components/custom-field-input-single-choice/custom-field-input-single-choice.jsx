@@ -128,22 +128,20 @@ export default function CustomFieldInputSingleChoice(props) {
     const choices = getOptions();
 
     return (
-      <React.Fragment>
-        <Listbox
-          className={styles.dropdown}
-          labelledBy={`${props.id}-label`}
-          onChange={onSelectionChange}
-          refs={refs}
-          value={value}
-        >
-          { listOptions(choices) }
-          { choices.length === 0 && (
-            <ListOption value={{}}>
-              <span className={styles['no-options']}>No options available.</span>
-            </ListOption>)
-          }
-        </Listbox>
-      </React.Fragment>
+      <Listbox
+        className={styles.dropdown}
+        labelledBy={`${props.id}-label`}
+        onChange={onSelectionChange}
+        refs={refs}
+        value={value}
+      >
+        { listOptions(choices) }
+        { choices.length === 0 && (
+          <ListOption value={{}}>
+            <span className={styles['no-options']}>{ props.noOptionText }</span>
+          </ListOption>)
+        }
+      </Listbox>
     );
   }
 
@@ -178,6 +176,7 @@ CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
   label: PropTypes.string.isRequired,
+  noOptionText: PropTypes.string,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -187,6 +186,7 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
+  noOptionText: 'No options available.',
   placeholder: undefined,
   readOnly: false,
   required: false,
