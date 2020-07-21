@@ -36,7 +36,7 @@ function CustomFieldInputMultipleChoice(props) {
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
-  const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
+  const renderPopup = !props.readOnly && expanded;
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -178,6 +178,7 @@ function CustomFieldInputMultipleChoice(props) {
                 {choice.label}
               </ListOption>
             ))}
+            {visibleChoices.length === 0 && <span>No options available.</span>}
           </Listbox>
         )}
       </FormControl>
