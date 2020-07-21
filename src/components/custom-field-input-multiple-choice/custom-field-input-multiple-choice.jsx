@@ -178,7 +178,7 @@ function CustomFieldInputMultipleChoice(props) {
                 {choice.label}
               </ListOption>
             ))}
-            {visibleChoices.length === 0 && <span>No options available.</span>}
+            {visibleChoices.length === 0 && <span>{ props.noOptionText }</span>}
           </Listbox>
         )}
       </FormControl>
@@ -194,6 +194,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  noOptionText: PropTypes.string,
   readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -203,6 +204,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 
 CustomFieldInputMultipleChoice.defaultProps = {
   errorText: undefined,
+  noOptionText: 'No options available.',
   readOnly: false,
   value: [],
 };

@@ -8,6 +8,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
+import CustomFieldInputSingleChoice from '../custom-field-input-single-choice/custom-field-input-single-choice';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
@@ -87,6 +88,12 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
         userEvent.click(screen.getByText('test label'));
         expect(screen.getByText('No options available.')).toBeInTheDocument();
+      });
+
+      it('shows the noOptionText provided for when there are no options available', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} noOptionText="nope" />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByText('nope')).toBeInTheDocument();
       });
 
       it('does not open when read-only', () => {
