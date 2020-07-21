@@ -159,6 +159,41 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('displayed value', () => {
+    it('does not try to parse an empty input to float', () => {
+      renderComponent();
+
+      userEvent.click(screen.getByLabelText('currency'));
+      userEvent.click(document.body);
+      userEvent.click(screen.getByLabelText('currency'));
+
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
+    });
+  });
+
+  describe('value API', () => {
+    it('can be undefined', () => {
+      renderComponent();
+      expect(screen.getByLabelText('currency')).toHaveValue('');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
+    });
+
+    it('can be 0', () => {
+      renderComponent({ value: 0 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0);
+    });
+
+    it('can be a positive integer', () => {
+      renderComponent({ value: 1 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0.01);
+    });
+  });
+
   describe('value ref API', () => {
     it('can get a positive value', () => {
       const inputRef = createRef(null);
@@ -194,41 +229,6 @@ describe('CustomFieldInputCurrency', () => {
       fireEvent.blur(screen.getByLabelText('Test label'));
 
       expect(inputRef.current.value).toStrictEqual(['', 'USD']);
-    });
-  });
-
-  describe('displayed value', () => {
-    it('does not try to parse an empty input to float', () => {
-      renderComponent();
-
-      userEvent.click(screen.getByLabelText('currency'));
-      userEvent.click(document.body);
-      userEvent.click(screen.getByLabelText('currency'));
-
-      expect(screen.getByLabelText('currency')).toHaveValue(null);
-    });
-  });
-
-  describe('value API', () => {
-    it('can be undefined', () => {
-      renderComponent();
-      expect(screen.getByLabelText('currency')).toHaveValue('');
-      userEvent.click(screen.getByLabelText('currency'));
-      expect(screen.getByLabelText('currency')).toHaveValue(null);
-    });
-
-    it('can be 0', () => {
-      renderComponent({ value: 0 });
-      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
-      userEvent.click(screen.getByLabelText('currency'));
-      expect(screen.getByLabelText('currency')).toHaveValue(0);
-    });
-
-    it('can be a positive integer', () => {
-      renderComponent({ value: 1 });
-      expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
-      userEvent.click(screen.getByLabelText('currency'));
-      expect(screen.getByLabelText('currency')).toHaveValue(0.01);
     });
   });
 });
