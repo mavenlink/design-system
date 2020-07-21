@@ -1,6 +1,11 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
 
+.autocomplete-input {
+  border: none;
+  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+}
+
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
   composes: input-container from '../__internal__/abstract-custom-field.css';
@@ -9,6 +14,44 @@
   min-height: 32px;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.clear-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  cursor: pointer;
+}
+
+.icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
+}
+
+.icons-container {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
+}
+
+.invalid-container {
+  composes: container;
+  composes: invalid-input from '../__internal__/abstract-custom-field.css';
+}
+
+.no-options {
+  color: var(--mds-grey-54);
+  display: flex;
+  justify-content: center;
+}
+
+.popup-container {
+  composes: container from '../listbox/listbox.css';
+  background-color: var(--white);
+  box-sizing: border-box;
+  max-height: 160px;
+  overflow-y: scroll;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
 }
 
 .read-write-container {
@@ -21,44 +64,7 @@
   composes: read-only-input from '../__internal__/abstract-custom-field.css';
 }
 
-.invalid-container {
-  composes: container;
-  composes: invalid-input from '../__internal__/abstract-custom-field.css';
-}
-
 .tag-list {
   composes: tag-list from '../tag-list/tag-list.css';
   flex-grow: 1;
-}
-
-.autocomplete-input {
-  border: none;
-  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
-}
-
-.icons-container {
-  display: inline-flex;
-  flex-shrink: 0;
-  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
-}
-
-.icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
-}
-
-.clear-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  cursor: pointer;
-}
-
-.popup-container {
-  composes: container from '../listbox/listbox.css';
-  background-color: var(--white);
-  box-sizing: border-box;
-  max-height: 160px;
-  overflow-y: scroll;
-  position: absolute;
-  width: 100%;
-  z-index: 10;
 }

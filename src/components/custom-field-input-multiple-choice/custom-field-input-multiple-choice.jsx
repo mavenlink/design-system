@@ -178,7 +178,11 @@ function CustomFieldInputMultipleChoice(props) {
                 {choice.label}
               </ListOption>
             ))}
-            {visibleChoices.length === 0 && <span>{ props.noOptionText }</span>}
+            {visibleChoices.length === 0 && (
+              <ListOption value={{}}>
+                <span className={styles['no-options']}>{ props.noOptionText }</span>
+              </ListOption>)
+            }
           </Listbox>
         )}
       </FormControl>
