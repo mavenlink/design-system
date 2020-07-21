@@ -86,8 +86,8 @@ export default function CustomFieldInputSingleChoice(props) {
     return props.choices.map(item => choices[item.id]);
   }
 
-  const listOptions = () => {
-    return getOptions()
+  const listOptions = (choices) => {
+    return choices
       .map(item => (
         <ListOption
           key={item.id}
@@ -124,6 +124,8 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
+  const choices = getOptions();
+
   return (
     <div ref={wrapperRef} className={styles.container}>
       <AbstractCustomField
@@ -142,15 +144,18 @@ export default function CustomFieldInputSingleChoice(props) {
         value={searchValue || defaultValue}
       />
       { showOptions && (
-        <Listbox
-          className={styles.dropdown}
-          labelledBy={`${props.id}-label`}
-          onChange={onSelectionChange}
-          refs={refs}
-          value={value}
-        >
-          { listOptions() }
-        </Listbox>
+        <React.Fragment>
+          <Listbox
+            className={styles.dropdown}
+            labelledBy={`${props.id}-label`}
+            onChange={onSelectionChange}
+            refs={refs}
+            value={value}
+          >
+            { listOptions(choices) }
+          </Listbox>
+          { choices.length === 0 && <span>No options available.</span> }
+        </React.Fragment>
       ) }
     </div>
   );

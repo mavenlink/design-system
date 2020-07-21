@@ -87,6 +87,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('choices', () => {
+    it('informs user when there are no choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+    });
+  });
+
   describe('errorText', () => {
     it('sets the input to be invalid', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
