@@ -49,6 +49,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           Hello
         </title>
         <use
+          onKeyDown={[Function]}
           xlinkHref="#icon-calendar-fill.svg"
         />
       </svg>

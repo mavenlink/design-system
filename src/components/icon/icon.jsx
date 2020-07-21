@@ -11,7 +11,7 @@ export default function Icon(props) {
     props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
   ].filter(Boolean);
 
-  const tabindex = props.tabable ? '0' : '-1';
+  const tabindex = props.tabable ? '0' : undefined;
   const onKeyDown = (event) => {
     if (event.key === 'Enter') {
       props.onEnter();

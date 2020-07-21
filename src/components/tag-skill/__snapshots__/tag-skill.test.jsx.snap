@@ -27,6 +27,7 @@ exports[`TagSkill has default 1`] = `
           role="img"
         >
           <use
+            onKeyDown={[Function]}
             xlinkHref="#icon-tick.svg"
           />
         </svg>

@@ -58,6 +58,7 @@ function CustomFieldInputMultipleChoice(props) {
     setExpanded(false);
     setValue([...value, selectedChoice]);
     setAutocompleteValue('');
+    autocompleteRef.current.focus();
   }
 
   function clearChoices() {

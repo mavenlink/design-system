@@ -46,6 +46,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
             role="img"
           >
             <use
+              onKeyDown={[Function]}
               xlinkHref="#icon-caret-down.svg"
             />
           </svg>

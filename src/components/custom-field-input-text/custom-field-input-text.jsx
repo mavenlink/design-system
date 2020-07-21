@@ -56,6 +56,7 @@ export default function CustomFieldInputText(props) {
         className={styles['input-icon']}
         currentColor="caution"
         name={cautionSvg.id}
+        titleAttrText={'Error'}
         size="medium"
       />);
     }
@@ -93,6 +94,8 @@ export default function CustomFieldInputText(props) {
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
+        aria-invalid={isInvalid() ? 'true' : undefined}
+        aria-describedby={isInvalid() ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
         className={styles.input}
         style={{ '--numIcon': numIcons() }}
