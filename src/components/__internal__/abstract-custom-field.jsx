@@ -32,6 +32,7 @@ export default function AbstractCustomField(props) {
         className={styles['input-icon']}
         currentColor="caution"
         name={cautionSvg.id}
+        titleAttrText={'Error'}
         size="medium"
       />);
     }
@@ -75,6 +76,8 @@ export default function AbstractCustomField(props) {
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
+        aria-invalid={invalidDueToProps ? 'true' : undefined}
+        aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
         className={styles.input}
         disabled={props.disabled}
