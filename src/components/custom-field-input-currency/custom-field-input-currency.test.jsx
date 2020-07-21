@@ -171,6 +171,17 @@ describe('CustomFieldInputCurrency', () => {
       expect(inputRef.current.value).toStrictEqual([123400, 'USD']);
     });
 
+    it('can get a negative value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
+
+      fireEvent.focus(screen.getByLabelText('Test label'));
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
+      expect(inputRef.current.value).toStrictEqual([-123400, 'USD']);
+      fireEvent.blur(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toStrictEqual([-123400, 'USD']);
+    });
+
     it('returns an empty string if the inputs are empty', () => {
       const inputRef = createRef(null);
       render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
