@@ -37,12 +37,6 @@
   composes: invalid-input from '../__internal__/abstract-custom-field.css';
 }
 
-.no-options {
-  color: var(--mds-grey-54);
-  display: flex;
-  justify-content: center;
-}
-
 .popup-container {
   composes: container from '../listbox/listbox.css';
   background-color: var(--white);

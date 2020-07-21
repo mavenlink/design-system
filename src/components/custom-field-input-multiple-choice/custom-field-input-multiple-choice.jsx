@@ -17,6 +17,7 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import NoChoiceListItem from '../__internal__/no-choice-list-item.jsx';
 
 function getClassName(readOnly, errorText) {
   if (readOnly) return styles['read-only-container'];
@@ -179,10 +180,8 @@ function CustomFieldInputMultipleChoice(props) {
               </ListOption>
             ))}
             {visibleChoices.length === 0 && (
-              <ListOption value={{}}>
-                <span className={styles['no-options']}>{ props.noOptionText }</span>
-              </ListOption>)
-            }
+              <NoChoiceListItem noOptionText={props.noOptionText} />
+            )}
           </Listbox>
         )}
       </FormControl>

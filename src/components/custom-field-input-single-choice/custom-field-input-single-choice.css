@@ -15,9 +15,3 @@
 .input-icon {
   composes: input-icon from '../__internal__/abstract-custom-field.css';
 }
-
-.no-options {
-  color: var(--mds-grey-54);
-  display: flex;
-  justify-content: center;
-}

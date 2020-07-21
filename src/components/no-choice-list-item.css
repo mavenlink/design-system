@@ -1,0 +1,7 @@
+@import '../styles/colors-v2.css';
+
+.no-options {
+  color: var(--mds-grey-54);
+  display: flex;
+  justify-content: center;
+}
