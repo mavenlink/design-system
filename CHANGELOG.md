@@ -7,6 +7,14 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Major: CustomFieldInputText has a `ref` prop with a ref API for `value`
+    - Upgrading: pass a `ref` to the component
+  - Major: CustomFieldInputNumber has a `ref` prop with a ref API for `value`
+    - Upgrading: pass a `ref` to the component
+  - Major: CustomFieldInputNumber's `value` prop no longer accepts an empty string
+      - Upgrade path: whenever you are passing an empty string to the `value` prop, change it to `undefined`
+  - Major: CustomFieldInputCurrent has a ref prop with a ref API for `value`
+    - Upgrading: pass a `ref` to the component
 </details>
 
 ## 0.31.0 (July 20, 2020)
