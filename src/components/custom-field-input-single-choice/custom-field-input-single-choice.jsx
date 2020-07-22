@@ -154,7 +154,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         value={searchValue || defaultValue}
       />
       { showOptions && (
-        choices.length === 0 ? (<NoOptions className={styles['no-options']} text={props.noOptionText} />) : (
+        choices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles.dropdown}
             labelledBy={`${props.id}-label`}
