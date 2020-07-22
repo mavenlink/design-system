@@ -21,7 +21,6 @@ within itself.
 />
 ```
 
-
 ```js
 <CustomFieldInputCurrency
   label="Iraqi Dinar"
