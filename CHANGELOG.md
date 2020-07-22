@@ -8,6 +8,7 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
+  - Minor: Add `Popup` component available for use
 </details>
 
 ## 0.31.0 (July 20, 2020)

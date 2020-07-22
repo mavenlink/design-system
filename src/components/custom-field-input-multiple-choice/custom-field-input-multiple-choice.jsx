@@ -16,7 +16,7 @@ import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import NoOptions from '../__internal__/no-options/no-options.jsx';
-import Popup from '../__internal__/popup/popup.jsx';
+import Popup from '../popup/popup.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
