@@ -199,6 +199,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
+
+    it('shows the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
+    });
   });
 
   describe('required API', () => {
