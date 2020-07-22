@@ -89,12 +89,6 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.getByText('No options available.')).toBeInTheDocument();
       });
 
-      it('shows the noOptionText provided for when there are no options available', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} noOptionText="nope" />);
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByText('nope')).toBeInTheDocument();
-      });
-
       it('does not open when read-only', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} readOnly />);
         userEvent.click(screen.getByText('test label'));

@@ -17,6 +17,8 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import NoOptions from '../__internal__/no-options/no-options';
+import Popup from '../__internal__/popup/popup';
 
 function getClassName(readOnly, errorText) {
   if (readOnly) return styles['read-only-container'];
@@ -162,29 +164,26 @@ function CustomFieldInputMultipleChoice(props) {
             />
           </div>
         </div>
-        {(renderPopup &&
-          <Listbox
-            className={styles['popup-container']}
-            labelledBy={`${props.id}-label`}
-            refs={choicesRefs}
-          >
-            {visibleChoices.map((choice, index) => (
-              <ListOption
-                key={`${props.id}-${choice.id}`}
-                onSelect={onChoiceSelect}
-                ref={choicesRefs[index]}
-                value={choice}
-              >
-                {choice.label}
-              </ListOption>
-            ))}
-            {visibleChoices.length === 0 && (
-              <ListOption value={{}}>
-                <span className={styles['no-options']}>{ props.noOptionText }</span>
-              </ListOption>)
-            }
-          </Listbox>
-        )}
+        <Popup show={renderPopup}>
+          { visibleChoices.length === 0 ? (<NoOptions />) : (
+            <Listbox
+              className={styles['popup-container']}
+              labelledBy={`${props.id}-label`}
+              refs={choicesRefs}
+            >
+              {visibleChoices.map((choice, index) => (
+                <ListOption
+                  key={`${props.id}-${choice.id}`}
+                  onSelect={onChoiceSelect}
+                  ref={choicesRefs[index]}
+                  value={choice}
+                >
+                  {choice.label}
+                </ListOption>
+              ))}
+            </Listbox>
+          ) }
+        </Popup>
       </FormControl>
     </div>
   );
@@ -198,7 +197,6 @@ CustomFieldInputMultipleChoice.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  noOptionText: PropTypes.string,
   readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -208,7 +206,6 @@ CustomFieldInputMultipleChoice.propTypes = {
 
 CustomFieldInputMultipleChoice.defaultProps = {
   errorText: undefined,
-  noOptionText: 'No options available.',
   readOnly: false,
   value: [],
 };
