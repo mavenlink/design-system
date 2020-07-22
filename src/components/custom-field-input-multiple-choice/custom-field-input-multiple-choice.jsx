@@ -15,6 +15,7 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
+import NoOptions from '../no-options/no-options.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
@@ -36,7 +37,7 @@ function CustomFieldInputMultipleChoice(props) {
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
-  const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
+  const renderPopup = !props.readOnly && expanded;
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -162,7 +163,7 @@ function CustomFieldInputMultipleChoice(props) {
             />
           </div>
         </div>
-        {(renderPopup &&
+        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles['popup-container']}
             labelledBy={`${props.id}-label`}
@@ -178,7 +179,7 @@ function CustomFieldInputMultipleChoice(props) {
                 {choice.label}
               </ListOption>
             ))}
-          </Listbox>
+          </Listbox>)
         )}
       </FormControl>
     </div>

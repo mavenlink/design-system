@@ -4,7 +4,7 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
-import styles from '../__internal__/abstract-custom-field.css';
+import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 
 function getLocale() {
   if (navigator && navigator.languages) {

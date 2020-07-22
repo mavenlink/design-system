@@ -83,10 +83,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       });
 
-      it('does not open when there are no choices', () => {
+      it('informs the user when no choice is available', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
         userEvent.click(screen.getByText('test label'));
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        expect(screen.getByText('No options available.')).toBeInTheDocument();
       });
 
       it('does not open when read-only', () => {

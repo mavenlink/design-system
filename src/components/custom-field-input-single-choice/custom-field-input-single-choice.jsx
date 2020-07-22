@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
 import iconClear from '../../svgs/icon-clear-small.svg';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';
@@ -13,6 +13,7 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import NoOptions from '../no-options/no-options.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
@@ -88,8 +89,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     return props.choices.map(item => choices[item.id]);
   }
 
-  const listOptions = () => {
-    return getOptions()
+  const listOptions = (choices) => {
+    return choices
       .map(item => (
         <ListOption
           key={item.id}
@@ -133,6 +134,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     },
   }));
 
+  const choices = getOptions();
+
   return (
     <div ref={wrapperRef} className={styles.container}>
       <AbstractCustomField
@@ -151,16 +154,18 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         value={searchValue || defaultValue}
       />
       { showOptions && (
-        <Listbox
-          className={styles.dropdown}
-          labelledBy={`${props.id}-label`}
-          onChange={onSelectionChange}
-          refs={refs}
-          value={value}
-        >
-          { listOptions() }
-        </Listbox>
-      ) }
+        choices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
+          <Listbox
+            className={styles.dropdown}
+            labelledBy={`${props.id}-label`}
+            onChange={onSelectionChange}
+            refs={refs}
+            value={value}
+          >
+            { listOptions(choices) }
+          </Listbox>
+        )
+      )}
     </div>
   );
 });

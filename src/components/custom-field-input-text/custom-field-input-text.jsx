@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import useValidation from '../../hooks/use-validation.jsx';
-import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 
 const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref) {
   const defaultRef = useRef(null);

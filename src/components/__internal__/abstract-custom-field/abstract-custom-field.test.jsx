@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AbstractCustomField from './abstract-custom-field.jsx';
-import Icon from '../icon/icon.jsx';
-import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import Icon from '../../icon/icon.jsx';
+import calendarSvg from '../../../svgs/icon-calendar-fill.svg';
 
 describe('AbstractCustomField', () => {
   const sharedProps = {

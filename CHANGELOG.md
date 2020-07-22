@@ -8,6 +8,8 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Major: CustomFieldInputSingleChoice's `value` on `ref` is now an array containing the `id` of the chosen option
+  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
+  - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
 </details>
 
 ## 0.32.0 (July 22, 2020)
