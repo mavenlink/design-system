@@ -163,7 +163,7 @@ function CustomFieldInputMultipleChoice(props) {
             />
           </div>
         </div>
-        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions />) : (
+        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles['popup-container']}
             labelledBy={`${props.id}-label`}
