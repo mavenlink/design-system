@@ -13,7 +13,6 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import NoChoiceListItem from '../__internal__/no-choice-list-item.jsx';
 
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
@@ -125,7 +124,26 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
-  const choices = getOptions();
+  function openMenu() {
+    const choices = getOptions();
+
+    return (
+      <Listbox
+        className={styles.dropdown}
+        labelledBy={`${props.id}-label`}
+        onChange={onSelectionChange}
+        refs={refs}
+        value={value}
+      >
+        { listOptions(choices) }
+        { choices.length === 0 && (
+          <ListOption value={{}}>
+            <span className={styles['no-options']}>{ props.noOptionText }</span>
+          </ListOption>)
+        }
+      </Listbox>
+    );
+  }
 
   return (
     <div ref={wrapperRef} className={styles.container}>
@@ -144,20 +162,7 @@ export default function CustomFieldInputSingleChoice(props) {
         errorText={validationMessage}
         value={searchValue || defaultValue}
       />
-      { showOptions && (
-        <Listbox
-          className={styles.dropdown}
-          labelledBy={`${props.id}-label`}
-          onChange={onSelectionChange}
-          refs={refs}
-          value={value}
-        >
-          { listOptions(choices) }
-          { choices.length === 0 && (
-            <NoChoiceListItem noOptionText={props.noOptionText} />
-          )}
-        </Listbox>
-      )}
+      { showOptions && openMenu() }
     </div>
   );
 }
