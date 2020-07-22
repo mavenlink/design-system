@@ -31,6 +31,18 @@ Popup.defaultProps = {
   show: false,
 };
 
+function NoOptions(props) {
+  return (<span className={styles['no-options']}>{ props.text }</span>);
+}
+
+NoOptions.propTypes = {
+  text: PropTypes.string,
+};
+
+NoOptions.defaultProps = {
+  text: 'No options available.',
+};
+
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -161,9 +173,7 @@ export default function CustomFieldInputSingleChoice(props) {
         value={searchValue || defaultValue}
       />
       <Popup show={showOptions}>
-        { choices.length === 0 ? (
-          <span className={styles['no-options']}>{ props.noOptionText }</span>
-        ) : (
+        { choices.length === 0 ? (<NoOptions text={props.noOptionText} />) : (
           <Listbox
             className={styles.dropdown}
             labelledBy={`${props.id}-label`}
