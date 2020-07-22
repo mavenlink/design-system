@@ -17,16 +17,19 @@ import useDropdownClose from '../../hooks/use-dropdown-close.js';
 function Popup(props) {
   return (
     <React.Fragment>
-      { props.children }
+      { props.show && props.children }
     </React.Fragment>
   );
 }
 
 Popup.propTypes = {
   children: PropTypes.node.isRequired,
+  show: PropTypes.bool,
 };
 
-Popup.defaultProps = {};
+Popup.defaultProps = {
+  show: false,
+};
 
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
@@ -157,23 +160,21 @@ export default function CustomFieldInputSingleChoice(props) {
         errorText={validationMessage}
         value={searchValue || defaultValue}
       />
-      { showOptions && (
-        <Popup>
-          {choices.length === 0 ? (
-            <span className={styles['no-options']}>{props.noOptionText}</span>
-          ) : (
-            <Listbox
-              className={styles.dropdown}
-              labelledBy={`${props.id}-label`}
-              onChange={onSelectionChange}
-              refs={refs}
-              value={value}
-            >
-              { listOptions(choices) }
-            </Listbox>
-          )}
-        </Popup>
-      ) }
+      <Popup show={showOptions}>
+        { choices.length === 0 ? (
+          <span className={styles['no-options']}>{ props.noOptionText }</span>
+        ) : (
+          <Listbox
+            className={styles.dropdown}
+            labelledBy={`${props.id}-label`}
+            onChange={onSelectionChange}
+            refs={refs}
+            value={value}
+          >
+            { listOptions(choices) }
+          </Listbox>
+        )}
+      </Popup>
     </div>
   );
 }
