@@ -1,0 +1,12 @@
+@import '../../styles/typography-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.no-options {
+  align-items: center;
+  color: var(--mds-grey-54);
+  display: flex;
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  justify-content: center;
+}

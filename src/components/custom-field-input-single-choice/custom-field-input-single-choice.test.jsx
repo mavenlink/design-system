@@ -87,6 +87,20 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('choices', () => {
+    it('informs user when there are no choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+    });
+
+    it('does not inform the user when there are choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByText('No options available.')).not.toBeInTheDocument();
+    });
+  });
+
   describe('errorText', () => {
     it('sets the input to be invalid', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
@@ -174,16 +188,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
     });
 
-    it('shows the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
-    });
-
     it('does not show the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} choices={[{ id: '1', label: 'yo' }]} />);
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('shows the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
     });
   });
 
