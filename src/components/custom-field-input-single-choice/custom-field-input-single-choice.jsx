@@ -124,26 +124,7 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
-  function openMenu() {
-    const choices = getOptions();
-
-    return (
-      <Listbox
-        className={styles.dropdown}
-        labelledBy={`${props.id}-label`}
-        onChange={onSelectionChange}
-        refs={refs}
-        value={value}
-      >
-        { listOptions(choices) }
-        { choices.length === 0 && (
-          <ListOption value={{}}>
-            <span className={styles['no-options']}>{ props.noOptionText }</span>
-          </ListOption>)
-        }
-      </Listbox>
-    );
-  }
+  const choices = getOptions();
 
   return (
     <div ref={wrapperRef} className={styles.container}>
@@ -162,7 +143,22 @@ export default function CustomFieldInputSingleChoice(props) {
         errorText={validationMessage}
         value={searchValue || defaultValue}
       />
-      { showOptions && openMenu() }
+      { showOptions && (
+        <Listbox
+          className={styles.dropdown}
+          labelledBy={`${props.id}-label`}
+          onChange={onSelectionChange}
+          refs={refs}
+          value={value}
+        >
+          { listOptions(choices) }
+          { choices.length === 0 && (
+            <ListOption value={{}}>
+              <span className={styles['no-options']}>{ props.noOptionText }</span>
+            </ListOption>)
+          }
+        </Listbox>
+      ) }
     </div>
   );
 }
