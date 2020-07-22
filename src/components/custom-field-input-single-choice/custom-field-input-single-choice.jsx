@@ -11,7 +11,7 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
-import NoOptions from '../__internal__/no-options/no-options.jsx';
+import NoOptions from '../no-options/no-options.jsx';
 import Popup from '../popup/popup.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
