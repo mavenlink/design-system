@@ -14,6 +14,20 @@ import ListOption from '../list-option/list-option.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
+function Popup(props) {
+  return (
+    <React.Fragment>
+      { props.children }
+    </React.Fragment>
+  );
+}
+
+Popup.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+Popup.defaultProps = {};
+
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -125,14 +139,6 @@ export default function CustomFieldInputSingleChoice(props) {
   }
 
   const choices = getOptions();
-
-  function Popup(props) {
-    return (
-      <React.Fragment>
-        { props.children }
-      </React.Fragment>
-    );
-  }
 
   return (
     <div ref={wrapperRef} className={styles.container}>
