@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } from 'react';
 import styles from '../__internal__/abstract-custom-field.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
@@ -9,7 +9,7 @@ const apiLimits = {
   min: -(2 ** 31),
 };
 
-export default function CustomFieldInputNumber(props) {
+const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
   const fallbackRef = useRef(null);
   const inputRef = props.inputRef || fallbackRef;
 
@@ -26,10 +26,19 @@ export default function CustomFieldInputNumber(props) {
     setCheckedValidity(!inputRef.current.validity.valid);
   });
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return inputRef.current.value;
+    },
+  }));
+
+  const value = props.value === undefined ? '' : props.value.toString();
+
   return (
     <AbstractCustomField
       className={props.className}
-      defaultValue={props.value}
+      defaultValue={value}
       disabled={props.disabled}
       errorText={validationMessage}
       id={props.id}
@@ -47,7 +56,7 @@ export default function CustomFieldInputNumber(props) {
       type="number"
     />
   );
-}
+});
 
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
@@ -63,10 +72,7 @@ CustomFieldInputNumber.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['']),
-  ]),
+  value: PropTypes.number,
 };
 
 CustomFieldInputNumber.defaultProps = {
@@ -80,5 +86,7 @@ CustomFieldInputNumber.defaultProps = {
   readOnly: false,
   required: false,
   step: 1,
-  value: '',
+  value: undefined,
 };
+
+export default CustomFieldInputNumber;
