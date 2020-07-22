@@ -126,6 +126,14 @@ export default function CustomFieldInputSingleChoice(props) {
 
   const choices = getOptions();
 
+  function Popup(props) {
+    return (
+      <React.Fragment>
+        { props.children }
+      </React.Fragment>
+    );
+  }
+
   return (
     <div ref={wrapperRef} className={styles.container}>
       <AbstractCustomField
@@ -144,17 +152,22 @@ export default function CustomFieldInputSingleChoice(props) {
         value={searchValue || defaultValue}
       />
       { showOptions && (
-        <Listbox
-          className={styles.dropdown}
-          labelledBy={`${props.id}-label`}
-          onChange={onSelectionChange}
-          refs={refs}
-          value={value}
-        >
-          { listOptions(choices) }
-        </Listbox>
+        <Popup>
+          {choices.length === 0 ? (
+            <span className={styles['no-options']}>{props.noOptionText}</span>
+          ) : (
+            <Listbox
+              className={styles.dropdown}
+              labelledBy={`${props.id}-label`}
+              onChange={onSelectionChange}
+              refs={refs}
+              value={value}
+            >
+              { listOptions(choices) }
+            </Listbox>
+          )}
+        </Popup>
       ) }
-      { choices.length === 0 && (<span className={styles['no-options']}>{ props.noOptionText }</span>)}
     </div>
   );
 }

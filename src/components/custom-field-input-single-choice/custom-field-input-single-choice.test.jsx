@@ -94,6 +94,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('No options available.')).toBeInTheDocument();
     });
 
+    it('does not inform the user when there are choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByText('No options available.')).not.toBeInTheDocument();
+    });
+
     it('shows the noOptionText provided for when there are no options available', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} noOptionText="nope" />);
       userEvent.click(screen.getByLabelText('Test label'));
