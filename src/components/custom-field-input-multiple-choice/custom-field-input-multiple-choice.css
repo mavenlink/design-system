@@ -8,7 +8,7 @@
 
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
-  composes: input-container from '../__internal__/abstract-custom-field.css';
+  composes: input-container from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   display: flex;
   height: auto;
   min-height: 32px;
@@ -34,7 +34,7 @@
 
 .invalid-container {
   composes: container;
-  composes: invalid-input from '../__internal__/abstract-custom-field.css';
+  composes: invalid-input from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .no-options {
@@ -56,12 +56,12 @@
 
 .read-write-container {
   composes: container;
-  composes: input-styles from '../__internal__/abstract-custom-field.css';
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .read-only-container {
   composes: container;
-  composes: read-only-input from '../__internal__/abstract-custom-field.css';
+  composes: read-only-input from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .tag-list {

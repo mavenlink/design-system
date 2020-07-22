@@ -3,7 +3,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import AbstractCustomField from '../__internal__/abstract-custom-field.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
 import iconClear from '../../svgs/icon-clear-small.svg';
 import iconCaretDown from '../../svgs/icon-caret-down.svg';

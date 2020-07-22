@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icon/icon.jsx';
+import Icon from '../../icon/icon.jsx';
 import styles from './abstract-custom-field.css';
-import cautionSvg from '../../svgs/icon-caution-fill.svg';
-import FormControl from '../form-control/form-control.jsx';
+import cautionSvg from '../../../svgs/icon-caution-fill.svg';
+import FormControl from '../../form-control/form-control.jsx';
 
 export default function AbstractCustomField(props) {
   const labelId = `${props.id}-label`;
