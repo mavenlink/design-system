@@ -269,4 +269,15 @@ describe('Icon', () => {
       expect(onClickSpy.mock.calls.length).toEqual(1);
     });
   });
+
+  describe('onEnter API', () => {
+    it('sets the onkeydown handler', () => {
+      const onEnterSpy = jest.fn();
+      render((
+        <Icon {...requiredProps} onEnter={onEnterSpy} />
+      ));
+      fireEvent.keyDown(screen.getByRole('img').firstChild, { key: 'Enter', code: 'Enter' });
+      expect(onEnterSpy.mock.calls.length).toEqual(1);
+    });
+  });
 });
