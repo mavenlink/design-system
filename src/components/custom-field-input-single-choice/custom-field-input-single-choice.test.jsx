@@ -193,18 +193,6 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
     });
-
-    it('shows the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
-    });
-
-    it('does not show the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} />);
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-    });
   });
 
   describe('required API', () => {
