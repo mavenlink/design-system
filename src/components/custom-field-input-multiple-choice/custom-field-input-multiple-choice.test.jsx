@@ -123,7 +123,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('removes all choices when pressing the clear button', () => {
+    it('removes all choices when pressing the clear button and focuses the input', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         value={requiredProps.choices}
@@ -134,6 +134,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.click(screen.getByRole('button', { name: 'Remove all selected choices on test label' }));
       expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
       expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
@@ -249,7 +250,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
     });
 
-    it('adds the choice to the selected choices', () => {
+    it('adds the choice to the selected choices and focuses the auto completer', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
@@ -257,6 +258,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
