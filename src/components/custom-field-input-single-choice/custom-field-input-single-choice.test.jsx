@@ -271,14 +271,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('forwardRef API', () => {
-    it('can be used to get value', () => {
+    it('can be used to get value as array of selected id', () => {
       const inputRef = createRef(null);
-      const value = { id: 'hello', label: 'hello' };
+      const value = { id: '0', label: 'hello' };
       const choices = [value];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(inputRef.current.value).toStrictEqual(value);
+      expect(inputRef.current.value).toStrictEqual([value.id]);
     });
   });
 
