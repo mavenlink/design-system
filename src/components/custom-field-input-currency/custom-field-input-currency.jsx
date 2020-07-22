@@ -81,8 +81,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
       let numberValue;
 
       if (valueRef.current.value === '') {
-        numberValue = '';
-      } else if (isEditing) {
+        return undefined;
+      }
+
+      if (isEditing) {
         numberValue = parseFloat(
           valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
         );
