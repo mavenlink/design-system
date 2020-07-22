@@ -7,7 +7,19 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
+  - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
 </details>
+
+## 0.32.0 (July 22, 2020)
+- Major: CustomFieldInputText has a `ref` prop with a ref API for `value`
+  - Upgrading: pass a `ref` to the component
+- Major: CustomFieldInputNumber has a `ref` prop with a ref API for `value`
+  - Upgrading: pass a `ref` to the component
+- Major: CustomFieldInputNumber's `value` prop no longer accepts an empty string
+    - Upgrade path: whenever you are passing an empty string to the `value` prop, change it to `undefined`
+- Major: CustomFieldInputCurrent has a ref prop with a ref API for `value`
+  - Upgrading: pass a `ref` to the component
 
 ## 0.31.0 (July 20, 2020)
 - Major: All custom fields now use a single `errorText` prop to determine error state

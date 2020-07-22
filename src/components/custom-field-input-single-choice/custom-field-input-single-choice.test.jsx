@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
@@ -84,6 +84,20 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByText('foo'));
       expect(screen.getByLabelText('Test label')).toHaveFocus();
       expect(screen.queryAllByRole('option', 'bar')[0]).toBeUndefined();
+    });
+  });
+
+  describe('choices', () => {
+    it('informs user when there are no choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+    });
+
+    it('does not inform the user when there are choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByText('No options available.')).not.toBeInTheDocument();
     });
   });
 
@@ -174,16 +188,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
     });
 
-    it('shows the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
-    });
-
     it('does not show the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} choices={[{ id: '1', label: 'yo' }]} />);
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('shows the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
     });
   });
 
@@ -267,6 +281,18 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
         expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
       });
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      const value = { id: 'hello', label: 'hello' };
+      const choices = [value];
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toStrictEqual(value);
     });
   });
 

@@ -1,7 +1,7 @@
-@import '../../styles/colors.css';
-@import '../../styles/colors-v2.css';
-@import '../../styles/spacing.css';
-@import '../../styles/typography.css';
+@import '../../../styles/colors.css';
+@import '../../../styles/colors-v2.css';
+@import '../../../styles/spacing.css';
+@import '../../../styles/typography.css';
 
 .input-styles {
   border: 1px solid var(--mds-grey-12);
@@ -59,6 +59,6 @@
 }
 
 .input-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  composes: icon-base from '../../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   pointer-events: none;
 }
