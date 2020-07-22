@@ -16,7 +16,6 @@ import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import NoOptions from '../no-options/no-options.jsx';
-import Popup from '../popup/popup.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
@@ -164,26 +163,24 @@ function CustomFieldInputMultipleChoice(props) {
             />
           </div>
         </div>
-        <Popup show={renderPopup}>
-          { visibleChoices.length === 0 ? (<NoOptions />) : (
-            <Listbox
-              className={styles['popup-container']}
-              labelledBy={`${props.id}-label`}
-              refs={choicesRefs}
-            >
-              {visibleChoices.map((choice, index) => (
-                <ListOption
-                  key={`${props.id}-${choice.id}`}
-                  onSelect={onChoiceSelect}
-                  ref={choicesRefs[index]}
-                  value={choice}
-                >
-                  {choice.label}
-                </ListOption>
-              ))}
-            </Listbox>
-          ) }
-        </Popup>
+        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions />) : (
+          <Listbox
+            className={styles['popup-container']}
+            labelledBy={`${props.id}-label`}
+            refs={choicesRefs}
+          >
+            {visibleChoices.map((choice, index) => (
+              <ListOption
+                key={`${props.id}-${choice.id}`}
+                onSelect={onChoiceSelect}
+                ref={choicesRefs[index]}
+                value={choice}
+              >
+                {choice.label}
+              </ListOption>
+            ))}
+          </Listbox>)
+        )}
       </FormControl>
     </div>
   );

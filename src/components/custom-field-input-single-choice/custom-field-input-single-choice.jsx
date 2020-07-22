@@ -12,7 +12,6 @@ import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import NoOptions from '../no-options/no-options.jsx';
-import Popup from '../popup/popup.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
@@ -145,8 +144,8 @@ export default function CustomFieldInputSingleChoice(props) {
         errorText={validationMessage}
         value={searchValue || defaultValue}
       />
-      <Popup show={showOptions}>
-        { choices.length === 0 ? (<NoOptions text={props.noOptionText} />) : (
+      { showOptions && (
+        choices.length === 0 ? (<NoOptions className={styles['no-options']} text={props.noOptionText} />) : (
           <Listbox
             className={styles.dropdown}
             labelledBy={`${props.id}-label`}
@@ -156,8 +155,8 @@ export default function CustomFieldInputSingleChoice(props) {
           >
             { listOptions(choices) }
           </Listbox>
-        )}
-      </Popup>
+        )
+      )}
     </div>
   );
 }
@@ -171,7 +170,6 @@ CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
   label: PropTypes.string.isRequired,
-  noOptionText: PropTypes.string,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -181,7 +179,6 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
-  noOptionText: 'No options available.',
   placeholder: undefined,
   readOnly: false,
   required: false,
