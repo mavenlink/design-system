@@ -1,0 +1,14 @@
+@import '../../../styles/typography-v2.css';
+@import '../../../styles/spacing.css';
+
+.no-options {
+  border: 1px solid var(--mds-grey-38);
+  border-radius: 3px;
+  color: var(--mds-grey-54);
+  display: flex;
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  justify-content: center;
+  line-height: var(--spacing-x-large); /* stylelint-disable-line mds/typography */
+  list-style-type: none;
+}

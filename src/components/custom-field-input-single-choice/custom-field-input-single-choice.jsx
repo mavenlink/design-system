@@ -11,21 +11,10 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import NoOptions from '../__internal__/no-options/no-options.jsx';
 import Popup from '../__internal__/popup/popup.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-
-function NoOptions(props) {
-  return (<span className={styles['no-options']}>{ props.text }</span>);
-}
-
-NoOptions.propTypes = {
-  text: PropTypes.string,
-};
-
-NoOptions.defaultProps = {
-  text: 'No options available.',
-};
 
 export default function CustomFieldInputSingleChoice(props) {
   const [showOptions, setShowOptions] = useState(false);
