@@ -1,4 +1,6 @@
 import React, {
+  forwardRef,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -15,7 +17,7 @@ import NoOptions from '../no-options/no-options.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
-export default function CustomFieldInputSingleChoice(props) {
+const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -125,6 +127,13 @@ export default function CustomFieldInputSingleChoice(props) {
     setShowOptions(true);
   }
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return value;
+    },
+  }));
+
   const choices = getOptions();
 
   return (
@@ -159,7 +168,7 @@ export default function CustomFieldInputSingleChoice(props) {
       )}
     </div>
   );
-}
+});
 
 const ChoiceType = PropTypes.shape({
   id: PropTypes.string.isRequired,
@@ -185,3 +194,5 @@ CustomFieldInputSingleChoice.defaultProps = {
   value: undefined,
   errorText: undefined,
 };
+
+export default CustomFieldInputSingleChoice;

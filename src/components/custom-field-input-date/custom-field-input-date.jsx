@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
@@ -26,7 +26,8 @@ const isValueValid = (value, error, isInputValid = false) => {
   return isValidInput(value);
 };
 
-export default function CustomFieldInputDate(props) {
+const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
+  const componentRef = useRef(null);
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
@@ -51,6 +52,13 @@ export default function CustomFieldInputDate(props) {
       inputRef.current.focus();
     }
   }, [isEditing, isFocused]);
+
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return componentRef.current.value;
+    },
+  }));
 
   const handleOnChange = (event) => {
     if (inputRef.current) {
@@ -102,9 +110,10 @@ export default function CustomFieldInputDate(props) {
     defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
     id={props.id}
     key={`${props.id}-readonly`}
+    inputRef={componentRef}
     type="text"
   />);
-}
+});
 
 CustomFieldInputDate.propTypes = {
   className: PropTypes.string,
@@ -131,3 +140,5 @@ CustomFieldInputDate.defaultProps = {
   required: false,
   value: '',
 };
+
+export default CustomFieldInputDate;

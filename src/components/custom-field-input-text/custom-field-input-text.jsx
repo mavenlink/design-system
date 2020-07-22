@@ -1,13 +1,20 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 
-export default function CustomFieldInputText(props) {
+const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref) {
   const defaultRef = useRef(null);
   const inputRef = props.inputRef || defaultRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
+
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return inputRef.current.value;
+    },
+  }));
 
   return (
     <AbstractCustomField
@@ -33,7 +40,7 @@ export default function CustomFieldInputText(props) {
       value={props.value}
     />
   );
-}
+});
 
 CustomFieldInputText.propTypes = {
   ariaProps: PropTypes.shape({
@@ -85,3 +92,5 @@ CustomFieldInputText.defaultProps = {
   required: false,
   value: undefined,
 };
+
+export default CustomFieldInputText;

@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
@@ -46,6 +47,16 @@ describe('CustomFieldInputText', () => {
     it('sets the value attribute', () => {
       render(<TestComponent value="test-value" />);
       expect(screen.getByLabelText('Test label')).toHaveValue('test-value');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputText id="test-input" label="Test label" ref={inputRef} />);
+
+      userEvent.type(screen.getByLabelText('Test label'), 'test-value');
+      expect(inputRef.current.value).toBe('test-value');
     });
   });
 });

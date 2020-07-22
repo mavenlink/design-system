@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import {
   fireEvent,
   render,
@@ -168,6 +168,65 @@ describe('CustomFieldInputCurrency', () => {
       userEvent.click(screen.getByLabelText('currency'));
 
       expect(screen.getByLabelText('currency')).toHaveValue(null);
+    });
+  });
+
+  describe('value API', () => {
+    it('can be undefined', () => {
+      renderComponent();
+      expect(screen.getByLabelText('currency')).toHaveValue('');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(null);
+    });
+
+    it('can be 0', () => {
+      renderComponent({ value: 0 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0);
+    });
+
+    it('can be a positive integer', () => {
+      renderComponent({ value: 1 });
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveValue(0.01);
+    });
+  });
+
+  describe('value ref API', () => {
+    it('can get a positive value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
+
+      fireEvent.focus(screen.getByLabelText('Test label'));
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
+      expect(inputRef.current.value).toStrictEqual([123400, 'USD']);
+      fireEvent.blur(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toStrictEqual([123400, 'USD']);
+    });
+
+    it('can get a negative value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
+
+      fireEvent.focus(screen.getByLabelText('Test label'));
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
+      expect(inputRef.current.value).toStrictEqual([-123400, 'USD']);
+      fireEvent.blur(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toStrictEqual([-123400, 'USD']);
+    });
+
+    it('can be undefined', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputCurrency id="test-input" label="Test label" ref={inputRef} />);
+
+      fireEvent.focus(screen.getByLabelText('Test label'));
+      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });
+
+      expect(inputRef.current.value).toBeUndefined();
+      fireEvent.blur(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toBeUndefined();
     });
   });
 });
