@@ -11,25 +11,9 @@ import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import Popup from '../__internal__/popup/popup.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-
-function Popup(props) {
-  return (
-    <React.Fragment>
-      { props.show && props.children }
-    </React.Fragment>
-  );
-}
-
-Popup.propTypes = {
-  children: PropTypes.node.isRequired,
-  show: PropTypes.bool,
-};
-
-Popup.defaultProps = {
-  show: false,
-};
 
 function NoOptions(props) {
   return (<span className={styles['no-options']}>{ props.text }</span>);
