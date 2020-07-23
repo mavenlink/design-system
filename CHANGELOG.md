@@ -11,6 +11,7 @@
   - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
   - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
   - Patch: Fix a bug in `CustomFieldInputSingleChoice` related to differing number of `useRef` calls between renders
+  - Minor: Add `className` prop to `CustomFieldInputSingleChoice`
 </details>
 
 ## 0.32.0 (July 22, 2020)
