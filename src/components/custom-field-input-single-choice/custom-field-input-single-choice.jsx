@@ -53,7 +53,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         onClick={clear}
         onEnter={clear}
         ariaLabel={'Remove selected choice'}
-        tabable={true}
+        role={'button'}
       />);
     }
 

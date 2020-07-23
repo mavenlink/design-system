@@ -11,7 +11,7 @@ export default function Icon(props) {
     props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
   ].filter(Boolean);
 
-  const tabindex = props.tabable ? '0' : undefined;
+  const tabindex = props.role === 'button' ? '0' : undefined;
   const onKeyDown = (event) => {
     if (event.key === 'Enter' || event.key === 'Space') {
       props.onEnter();
@@ -78,7 +78,6 @@ Icon.propTypes = {
     'skip',
   ]),
   title: PropTypes.string,
-  tabable: PropTypes.bool,
 };
 
 Icon.defaultProps = {
@@ -94,5 +93,4 @@ Icon.defaultProps = {
   size: 'medium',
   stroke: 'none',
   title: undefined,
-  tabable: undefined,
 };

@@ -33,6 +33,7 @@ exports[`Tag renders a tag component 1`] = `
     >
       <use
         onKeyDown={[Function]}
+        tabIndex="0"
         xlinkHref="#icon-clear-small.svg"
       />
     </svg>

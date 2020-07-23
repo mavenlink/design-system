@@ -41,6 +41,7 @@ exports[`TagList renders a TagList 1`] = `
       >
         <use
           onKeyDown={[Function]}
+          tabIndex="0"
           xlinkHref="#icon-clear-small.svg"
         />
       </svg>

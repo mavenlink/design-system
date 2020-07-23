@@ -262,7 +262,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const value = { id: 'some-selection', label: 'Some selection' };
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
-      userEvent.click(screen.getAllByRole('img')[0]);
+      userEvent.click(screen.getByRole('button'));
       expect(screen.getByLabelText('Test label')).toHaveValue('');
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
@@ -273,8 +273,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
       userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
       userEvent.tab();
-      expect(screen.getByRole('img', { name: 'Remove selected choice' }).firstChild).toHaveFocus();
-      fireEvent.keyDown(screen.getByRole('img', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      expect(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild).toHaveFocus();
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       expect(screen.getByLabelText('Test label')).toHaveValue('');
     });
 
