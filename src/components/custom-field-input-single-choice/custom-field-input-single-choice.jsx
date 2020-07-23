@@ -52,7 +52,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         name={iconClear.id}
         onClick={clear}
         onEnter={clear}
-        titleAttrText={'Remove selected choice'}
+        ariaLabel={'Remove selected choice'}
         tabable={true}
       />);
     }

@@ -13,7 +13,7 @@ export default function Icon(props) {
 
   const tabindex = props.tabable ? '0' : undefined;
   const onKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === 'Space') {
       props.onEnter();
     }
   };
@@ -26,7 +26,6 @@ export default function Icon(props) {
       id={props.id}
       onClick={props.onClick}
       role={props.role}
-      title={props.titleAttrText}
     >
       { props.title && <title>{props.title}</title> }
       <use tabIndex={tabindex} onKeyDown={onKeyDown} xlinkHref={`#${props.name}`} />
@@ -80,7 +79,6 @@ Icon.propTypes = {
   ]),
   title: PropTypes.string,
   tabable: PropTypes.bool,
-  titleAttrText: PropTypes.string,
 };
 
 Icon.defaultProps = {
@@ -97,5 +95,4 @@ Icon.defaultProps = {
   stroke: 'none',
   title: undefined,
   tabable: undefined,
-  titleAttrText: undefined,
 };

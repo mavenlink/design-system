@@ -32,7 +32,7 @@ export default function AbstractCustomField(props) {
         className={styles['input-icon']}
         currentColor="caution"
         name={cautionSvg.id}
-        titleAttrText={'Error'}
+        ariaLabel={'Error'}
         size="medium"
       />);
     }
