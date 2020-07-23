@@ -1,4 +1,5 @@
 import React, {
+  createRef,
   forwardRef,
   useImperativeHandle,
   useRef,
@@ -24,7 +25,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const inputRef = useRef();
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
-  const refs = props.choices.map(() => useRef());
+  const refs = props.choices.map(() => createRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}

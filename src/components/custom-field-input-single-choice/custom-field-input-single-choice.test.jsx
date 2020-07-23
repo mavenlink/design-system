@@ -99,6 +99,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByText('No options available.')).not.toBeInTheDocument();
     });
+
+    it('does not break if the choices are changed', () => {
+      const { rerender } = render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+    });
   });
 
   describe('errorText', () => {
