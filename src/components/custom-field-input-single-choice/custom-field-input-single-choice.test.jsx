@@ -109,6 +109,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('className API', () => {
+    it('prioritizes className prop', () => {
+      const { container } = render(<CustomFieldInputSingleChoice {...requiredProps} className="prioritize-me" />);
+      expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('errorText', () => {
     it('sets the input to be invalid', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);

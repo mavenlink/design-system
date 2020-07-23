@@ -138,7 +138,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const choices = getOptions();
 
   return (
-    <div ref={wrapperRef} className={styles.container}>
+    <div ref={wrapperRef} className={props.className}>
       <AbstractCustomField
         icon={caretIcon}
         clear={clearIcon()}
@@ -179,6 +179,7 @@ const ChoiceType = PropTypes.shape({
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
+  className: PropTypes.string,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -189,6 +190,7 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
+  className: styles.container,
   placeholder: undefined,
   readOnly: false,
   required: false,
