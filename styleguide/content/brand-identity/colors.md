@@ -125,3 +125,51 @@ Use Yellow 100, `--mds-yellow-100`
 <img alt="warning message example" src="images/message-warning.jpg" />
 
 * Yellow text is not to be used to ensure accessibility. Use colored accents instead (icons, colored bars) and black font
+
+### Upgrading from V1 to V2
+
+Here is a table that should help you upgrade a v1 color to v2.
+Reminder: always ask your designer for feedback!
+This upgrade guide is subjective.
+
+| Color v1 | Recommended color v2 |
+| ---      | ---                  |
+| `--palette-primary-dark`  | `--mds-brand-100` |
+| `--palette-primary-base` | `--mds-brand-100` |
+| `--palette-primary-light` | `--mds-brand-54` |
+| `--palette-primary-hover` | `--mds-brand-100` |
+| `--palette-action-dark` | `--mds-green-100` |
+| `--palette-action-base` | `--mds-green-100` |
+| `--palette-action-light` | N/A |
+| `--palette-action-hover` | `--mds-green-100` |
+| `--palette-highlight-dark` | N/A |
+| `--palette-highlight-base` | `--mds-orange-100` |
+| `--palette-highlight-light` | N/A |
+| `--palette-highlight-hover` | `--mds-orange-100` |
+| `--palette-caution-dark` | `--mds-red-100` |
+| `--palette-caution-base` | `--mds-red-100` |
+| `--palette-caution-light` | N/A |
+| `--palette-caution-hover` | `--mds-red-100` |
+| `--palette-warning-dark` | `--mds-yellow-100` |
+| `--palette-warning-base` | `--mds-yellow-100` |
+| `--palette-warning-light` | N/A |
+| `--palette-warning-hover` | N/A |
+| `--palette-brand-dark` | N/A |
+| `--palette-neutral-xx-dark` | `--mds-grey-87` |
+| `--palette-neutral-x-dark` | `--mds-grey-87` |
+| `--palette-neutral-dark` | `--mds-grey-87` |
+| `--palette-neutral-mid-dark` | `--mds-grey-54` |
+| `--palette-neutral-base` | `--mds-grey-38` |
+| `--palette-neutral-mid` | `--mds-grey-38` |
+| `--palette-neutral-mid-light` | `--mds-grey-38` |
+| `--palette-neutral-light` | `--mds-grey-12` |
+| `--palette-neutral-x-light` | `--mds-grey-3` |
+| `--palette-neutral-xx-light` | `--mds-grey-3` |
+| `--palette-caution-text` | N/A |
+| `--palette-grey-x-light` | `--mds-grey-3` |
+| `--palette-grey-light` | `--mds-grey-12` |
+| `--palette-grey-base` | `--mds-grey-38` |
+| `--palette-grey-dark` | `--mds-grey-54` |
+| `--palette-grey-x-dark` | `--mds-grey-87` |
+| `--white` | `--white` |
+| `--black` | `--black` |
