@@ -311,6 +311,36 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('onChange API', () => {
+    const choices = [{
+      id: 'broke',
+      label: 'broke my heart',
+    }, {
+      id: 'now',
+      label: "now I'm aching for you",
+    }];
+
+    it('calls onChange when a new value is selected', () => {
+      let changeValue = '';
+      const onChange = (ref) => {
+        changeValue = ref.value;
+      };
+
+      render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} onChange={onChange} />);
+
+      userEvent.click(screen.getByLabelText('Oh La Mort'));
+      userEvent.click(screen.getByText('broke my heart'));
+
+      expect(changeValue).toStrictEqual(['broke']);
+
+      userEvent.click(screen.getAllByRole('img')[0]);
+      userEvent.click(screen.getByLabelText('Oh La Mort'));
+      userEvent.click(screen.getByText('now I\'m aching for you'));
+
+      expect(changeValue).toStrictEqual(['now']);
+    });
+  });
+
   describe('dropdown close behavior', () => {
     it('closes the dropdown when clicking outside', async () => {
       const choices = [{

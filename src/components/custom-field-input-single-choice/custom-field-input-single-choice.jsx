@@ -1,6 +1,7 @@
 import React, {
   createRef,
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -23,6 +24,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
   const inputRef = useRef();
+  const selfRef = ref || useRef();
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
   const refs = props.choices.map(() => createRef());
@@ -119,8 +121,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     const newValue = event.target.value;
 
     if (newValue === '') {
-      setValue(undefined);
-      setSearchValue(undefined);
+      clear();
       return;
     }
 
@@ -128,12 +129,16 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     setShowOptions(true);
   }
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(selfRef, () => ({
     id: props.id,
     get value() {
-      return [value.id];
+      return value ? [value.id] : [];
     },
   }));
+
+  useEffect(() => {
+    props.onChange(selfRef.current);
+  }, [value]);
 
   const choices = getOptions();
 
@@ -181,6 +186,7 @@ CustomFieldInputSingleChoice.propTypes = {
   choices: PropTypes.arrayOf(ChoiceType),
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -191,6 +197,7 @@ CustomFieldInputSingleChoice.propTypes = {
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
   className: styles.container,
+  onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
