@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.34.0 (July 27, 2020)
+- Minor: Add colors v1 -> v2 upgrade guide for pre-existing Mavenlink code
+
 ## 0.33.0 (July 22, 2020)
 - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
 - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
