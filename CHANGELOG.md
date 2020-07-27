@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
-  - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
 </details>
+
+## 0.33.0 (July 22, 2020)
+- Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
+- Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
 
 ## 0.32.0 (July 22, 2020)
 - Major: CustomFieldInputText has a `ref` prop with a ref API for `value`
