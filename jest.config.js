@@ -1,5 +1,4 @@
 module.exports = {
-  testEnvironment: 'jest-environment-jsdom-sixteen',
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
   },
@@ -7,7 +6,6 @@ module.exports = {
     '@testing-library/jest-dom/extend-expect.js',
     '<rootDir>/jest.config.setup.files.after.env.js',
   ],
-  testEnvironment: 'jest-environment-jsdom-sixteen',
   testPathIgnorePatterns: [
     'node_modules',
     'styleguide/cypress/integration',
