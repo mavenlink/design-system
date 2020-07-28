@@ -307,16 +307,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(inputRef.current.value).toStrictEqual([value.id]);
+      expect(inputRef.current.value).toStrictEqual([Number(value.id)]);
     });
   });
 
   describe('onChange API', () => {
     const choices = [{
-      id: 'broke',
+      id: '1',
       label: 'broke my heart',
     }, {
-      id: 'now',
+      id: '2',
       label: "now I'm aching for you",
     }];
 
@@ -331,13 +331,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('broke my heart'));
 
-      expect(changeValue).toStrictEqual(['broke']);
+      expect(changeValue).toStrictEqual([1]);
 
       userEvent.click(screen.getAllByRole('img')[0]);
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('now I\'m aching for you'));
 
-      expect(changeValue).toStrictEqual(['now']);
+      expect(changeValue).toStrictEqual([2]);
     });
   });
 
