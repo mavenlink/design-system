@@ -48,7 +48,7 @@
     "eslint-plugin-cypress": "^2.2.0",
     "file-loader": "^3.0.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0",
+    "jest": "^26.1.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
