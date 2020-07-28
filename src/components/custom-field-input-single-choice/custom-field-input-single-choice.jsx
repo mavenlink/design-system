@@ -24,7 +24,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
   const inputRef = useRef();
-  const selfRef = ref || useRef();
+  const backupRef = useRef();
+  const selfRef = ref || backupRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
   const refs = props.choices.map(() => createRef());
