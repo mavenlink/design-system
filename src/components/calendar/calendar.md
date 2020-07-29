@@ -25,3 +25,8 @@
 | Down arrow | Year | Moves the focus to the next year |
 | Home | Year | Moves the focus to the first year in the list |
 | End | Year | Moves the focus to the last year in the list |
+
+
+```jsx
+<Calendar />
+```
