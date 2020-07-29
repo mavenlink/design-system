@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Brand Identity information is now displayed across a few different pages
 </details>
 
 ## v0.34.0 (July 27, 2020)
