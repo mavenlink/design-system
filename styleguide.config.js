@@ -52,21 +52,16 @@ module.exports = {
       ],
     },
     {
-      name: 'Brand Identity',
-      sections: [
-        {
-          name: 'Colors',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/colors.md'),
-        },
-        {
-          name: 'Spacing',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/spacing.md'),
-        },
-        {
-          name: 'Typography',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/typography.md'),
-        },
-      ],
+      name: 'Colors',
+      content: path.join(__dirname, 'styleguide/content/brand-identity/colors.md'),
+    },
+    {
+      name: 'Spacing',
+      content: path.join(__dirname, 'styleguide/content/brand-identity/spacing.md'),
+    },
+    {
+      name: 'Typography',
+      content: path.join(__dirname, 'styleguide/content/brand-identity/typography.md'),
     },
     {
       name: 'Design Patterns',
