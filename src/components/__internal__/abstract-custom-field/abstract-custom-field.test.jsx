@@ -83,11 +83,6 @@ describe('AbstractCustomField', () => {
       expect(screen.getByRole('img', { name: 'Label' }).children[1]).toHaveAttribute('xlink:href', '#icon-calendar-fill.svg');
     });
 
-    it('renders the error with aria-label for accessibility', () => {
-      render(<AbstractCustomField {...sharedProps} errorText="yo" />);
-      expect(screen.getByRole('img', { name: 'Error' }).firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
-    });
-
     it('shows no icon by default', () => {
       const { queryByRole } = render(<AbstractCustomField {...sharedProps} />);
       expect(queryByRole('img')).toBeNull();

@@ -44,6 +44,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         className="input-icon size-medium color-transparent"
         onClick={[Function]}
         role="img"
+        tabIndex={-1}
       >
         <title>
           Hello

@@ -273,7 +273,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
       userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
       userEvent.tab();
-      expect(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild).toHaveFocus();
+      expect(screen.getByRole('button', { name: 'Remove selected choice' })).toHaveFocus();
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       expect(screen.getByLabelText('Test label')).toHaveValue('');
     });

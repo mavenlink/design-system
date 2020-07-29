@@ -115,6 +115,7 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
             ariaLabel="Remove"
             ariaLabelledBy={`${buttonId} ${contentId}`}
             id={buttonId}
+            active={isActive}
             name={clearIcon.id}
             size="small"
             stroke="skip"
