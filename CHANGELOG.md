@@ -12,6 +12,13 @@
   - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` accessibility improvements.
 </details>
 
+## v0.34.0 (July 27, 2020)
+- Minor: Add colors v1 -> v2 upgrade guide for pre-existing Mavenlink code
+
+## 0.33.0 (July 22, 2020)
+- Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
+- Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
+
 ## 0.32.0 (July 22, 2020)
 - Major: CustomFieldInputText has a `ref` prop with a ref API for `value`
   - Upgrading: pass a `ref` to the component

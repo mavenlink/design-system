@@ -125,3 +125,51 @@ Use Yellow 100, `--mds-yellow-100`
 <img alt="warning message example" src="images/message-warning.jpg" />
 
 * Yellow text is not to be used to ensure accessibility. Use colored accents instead (icons, colored bars) and black font
+
+### Upgrading from V1 to V2
+
+Here is a table that should help you upgrade a v1 color to v2.
+Reminder: always ask your designer for feedback!
+This upgrade guide is subjective.
+
+| Color v1 | Recommended color v2 |
+| ---      | ---                  |
+| <div class="light-contrast" style="background-color: var(--palette-primary-dark);">`--palette-primary-dark`</div> | <div class="light-contrast" style="background-color: var(--mds-brand-100);">`--mds-brand-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-primary-base);">`--palette-primary-base`</div> | <div class="light-contrast" style="background-color: var(--mds-brand-100);">`--mds-brand-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-primary-light);">`--palette-primary-light`</div> | <div class="light-contrast" style="background-color: var(--mds-brand-54);">`--mds-brand-54`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-primary-hover);">`--palette-primary-hover`</div> | <div class="light-contrast" style="background-color: var(--mds-brand-100);">`--mds-brand-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-action-dark);">`--palette-action-dark`</div>| <div class="light-contrast" style="background-color: var(--mds-green-100);">`--mds-green-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-action-base);">`--palette-action-base`</div>| <div class="light-contrast" style="background-color: var(--mds-green-100);">`--mds-green-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-action-light);">`--palette-action-light`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-action-hover);">`--palette-action-hover`</div> | <div class="light-contrast" style="background-color: var(--mds-green-100);">`--mds-green-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-highlight-dark);">`--palette-highlight-dark`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-highlight-base);">`--palette-highlight-base`</div> | <div class="light-contrast" style="background-color: var(--mds-orange-100);">`--mds-orange-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-highlight-light);">`--palette-highlight-light`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-highlight-hover);">`--palette-highlight-hover`</div> | <div class="light-contrast" style="background-color: var(--mds-orange-100);">`--mds-orange-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-caution-dark);">`--palette-caution-dark`</div> | <div class="light-contrast" style="background-color: var(--mds-red-100);">`--mds-red-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-caution-base);">`--palette-caution-base`</div> | <div class="light-contrast" style="background-color: var(--mds-red-100);">`--mds-red-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-caution-light);">`--palette-caution-light`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-caution-hover);">`--palette-caution-hover`</div> | <div class="light-contrast" style="background-color: var(--mds-red-100);">`--mds-red-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-warning-dark);">`--palette-warning-dark`</div> | <div class="light-contrast" style="background-color: var(--mds-yellow-100);">`--mds-yellow-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-warning-base);">`--palette-warning-base`</div> | <div class="light-contrast" style="background-color: var(--mds-yellow-100);">`--mds-yellow-100`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-warning-light);">`--palette-warning-light`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-warning-hover);">`--palette-warning-hover`</div> | N/A |
+| <div class="dark-contrast" style="background-color: var(--palette-brand-dark);">`--palette-brand-dark`</div> | N/A |
+| <div class="dark-contrast" style="background-color: var(--palette-neutral-xx-dark);">`--palette-neutral-xx-dark`</div> | <div class="dark-contrast" style="background-color: var(--mds-grey-87);">`--mds-grey-87`</div> |
+| <div class="dark-contrast" style="background-color: var(--palette-neutral-x-dark);">`--palette-neutral-x-dark`</div> | <div class="dark-contrast" style="background-color: var(--mds-grey-87);">`--mds-grey-87`</div> |
+| <div class="dark-contrast" style="background-color: var(--palette-neutral-dark);">`--palette-neutral-dark`</div> | <div class="dark-contrast" style="background-color: var(--mds-grey-87);">`--mds-grey-87`</div> |
+| <div class="dark-contrast" style="background-color: var(--palette-neutral-mid-dark);">`--palette-neutral-mid-dark`</div> | <div class="dark-contrast" style="background-color: var(--mds-grey-54);">`--mds-grey-54`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-base);">`--palette-neutral-base`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-38);">`--mds-grey-38`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-mid);">`--palette-neutral-mid`</div>| <div class="light-contrast" style="background-color: var(--mds-grey-38);">`--mds-grey-38`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-mid-light);">`--palette-neutral-mid-light`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-38);">`--mds-grey-38`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-light);">`--palette-neutral-light`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-12);">`--mds-grey-12`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-x-light);">`--palette-neutral-x-light`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-3);">`--mds-grey-3`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-neutral-xx-light);">`--palette-neutral-xx-light`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-3);">`--mds-grey-3`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-caution-text);">`--palette-caution-text`</div> | N/A |
+| <div class="light-contrast" style="background-color: var(--palette-grey-x-light);">`--palette-grey-x-light`</div> | <div class="light-contrast" style="background-color: var(--mds-grey-3);">`--mds-grey-3`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-grey-light);">`--palette-grey-light`</div>| <div class="light-contrast" style="background-color: var(--mds-grey-12);">`--mds-grey-12`</div> |
+| <div class="light-contrast" style="background-color: var(--palette-grey-base);">`--palette-grey-base`</div>| <div class="light-contrast" style="background-color: var(--mds-grey-38);">`--mds-grey-38`</div> |
+| <div class="dark-contrast" style="background-color: var(--palette-grey-dark);">`--palette-grey-dark`</div>| <div class="dark-contrast" style="background-color: var(--mds-grey-54);">`--mds-grey-54`</div> |
+| <div class="dark-contrast" style="background-color: var(--palette-grey-x-dark);">`--palette-grey-x-dark`</div>| <div class="dark-contrast" style="background-color: var(--mds-grey-87);">`--mds-grey-87`</div> |
+| <div class="light-contrast" style="background-color: var(--white);">`--white`</div>| <div class="light-contrast" style="background-color: var(--white);">`--white`</div> |
+| <div class="dark-contrast" style="background-color: var(--black);">`--black`</div>| <div class="dark-contrast" style="background-color: var(--black);">`--black`</div> |
