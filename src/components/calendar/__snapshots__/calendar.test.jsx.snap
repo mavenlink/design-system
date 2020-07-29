@@ -6,13 +6,25 @@ Object {
   "baseElement": <body>
     <div>
       <div>
+        <button>
+          Prev
+        </button>
         July 2020
+        <button>
+          Next
+        </button>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
+      <button>
+        Prev
+      </button>
       July 2020
+      <button>
+        Next
+      </button>
     </div>
   </div>,
   "debug": [Function],
