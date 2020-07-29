@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        Calendar
+        July 2020
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      Calendar
+      July 2020
     </div>
   </div>,
   "debug": [Function],

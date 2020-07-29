@@ -28,5 +28,5 @@
 
 
 ```jsx
-<Calendar />
+<Calendar date="2020-07-21" />
 ```
