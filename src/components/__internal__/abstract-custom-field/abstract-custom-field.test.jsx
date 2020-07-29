@@ -30,7 +30,7 @@ describe('AbstractCustomField', () => {
 
     it('sets aria-describedby to link to a hint and aria-invalid when there are errors', () => {
       render(<AbstractCustomField {...sharedProps} errorText={'there are errors.'} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-describedby', 'test-idHint');
+      expect(screen.getByLabelText('Test label')).toHaveDescription('there are errors.');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
   });
