@@ -19,18 +19,18 @@ export default function Icon(props) {
   };
 
   return (
-      <svg
-        tabIndex={tabindex}
-        aria-label={props.ariaLabel}
-        aria-labelledby={props.ariaLabelledBy}
-        className={classes.join(' ')}
-        id={props.id}
-        onClick={props.onClick}
-        role={props.role}
-      >
-        { props.title && <title>{props.title}</title> }
-        <use onKeyDown={onKeyDown} xlinkHref={`#${props.name}`} />
-      </svg>
+    <svg
+      tabIndex={tabindex}
+      aria-label={props.ariaLabel}
+      aria-labelledby={props.ariaLabelledBy}
+      className={classes.join(' ')}
+      id={props.id}
+      onClick={props.onClick}
+      role={props.role}
+    >
+      { props.title && <title>{props.title}</title> }
+      <use onKeyDown={onKeyDown} xlinkHref={`#${props.name}`} />
+    </svg>
   );
 }
 
