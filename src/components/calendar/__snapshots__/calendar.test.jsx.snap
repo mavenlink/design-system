@@ -33,37 +33,37 @@ exports[`<Calendar /> has defaults 1`] = `
             <th
               class="weekday"
             >
-              Sun
+              S
             </th>
             <th
               class="weekday"
             >
-              Mon
+              M
             </th>
             <th
               class="weekday"
             >
-              Tue
+              T
             </th>
             <th
               class="weekday"
             >
-              Wed
+              W
             </th>
             <th
               class="weekday"
             >
-              Thu
+              T
             </th>
             <th
               class="weekday"
             >
-              Fri
+              F
             </th>
             <th
               class="weekday"
             >
-              Sat
+              S
             </th>
           </tr>
         </thead>
@@ -330,37 +330,37 @@ exports[`<Calendar /> renders the previous month 1`] = `
             <th
               class="weekday"
             >
-              Sun
+              S
             </th>
             <th
               class="weekday"
             >
-              Mon
+              M
             </th>
             <th
               class="weekday"
             >
-              Tue
+              T
             </th>
             <th
               class="weekday"
             >
-              Wed
+              W
             </th>
             <th
               class="weekday"
             >
-              Thu
+              T
             </th>
             <th
               class="weekday"
             >
-              Fri
+              F
             </th>
             <th
               class="weekday"
             >
-              Sat
+              S
             </th>
           </tr>
         </thead>
@@ -627,37 +627,37 @@ exports[`<Calendar /> renders the previous year 1`] = `
             <th
               class="weekday"
             >
-              Sun
+              S
             </th>
             <th
               class="weekday"
             >
-              Mon
+              M
             </th>
             <th
               class="weekday"
             >
-              Tue
+              T
             </th>
             <th
               class="weekday"
             >
-              Wed
+              W
             </th>
             <th
               class="weekday"
             >
-              Thu
+              T
             </th>
             <th
               class="weekday"
             >
-              Fri
+              F
             </th>
             <th
               class="weekday"
             >
-              Sat
+              S
             </th>
           </tr>
         </thead>

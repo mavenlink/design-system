@@ -12,7 +12,7 @@ function getDateIterator(year, month) {
 function getHeadCell(iterator) {
   const date = iterator.getDate();
   const weekday = iterator.toLocaleDateString(undefined, {
-    weekday: 'short',
+    weekday: 'narrow',
   });
   iterator.setDate(date + 1);
 
