@@ -52,3 +52,9 @@
   background-color: var(--mds-grey-3);
   color: var(--mds-grey-54);
 }
+
+.date:hover {
+  background-color: var(--mds-grey-12);
+  color: var(--black);
+  border-radius: 3px;
+}
