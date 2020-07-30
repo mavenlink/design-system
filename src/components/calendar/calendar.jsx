@@ -29,7 +29,7 @@ function getCell(iterator, month) {
   iterator.setDate(date + 1);
 
   return (
-    <td className={dateMonth === month ? styles.date : styles['inactive-date']}>
+    <td className={dateMonth === month ? styles.date : styles['not-current-date']}>
       {date}
     </td>
   );

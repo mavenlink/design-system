@@ -22,9 +22,9 @@ describe('<Calendar />', () => {
   it('renders the previous month', () => {
     render(<Calendar {...requiredProps} />);
     userEvent.click(screen.getByText('Prev'));
-    expect(screen.getByText('31')).toHaveClass('inactive-date');
+    expect(screen.getByText('31')).toHaveClass('not-current-date');
     expect(screen.getAllByText('1')[0]).toHaveClass('date');
-    expect(screen.getAllByText('1')[1]).toHaveClass('inactive-date');
+    expect(screen.getAllByText('1')[1]).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
@@ -42,10 +42,10 @@ describe('<Calendar />', () => {
     userEvent.click(screen.getByText('Prev'));
     userEvent.click(screen.getByText('Prev'));
     userEvent.click(screen.getByText('Prev'));
-    expect(screen.getAllByText('30')[0]).toHaveClass('inactive-date');
+    expect(screen.getAllByText('30')[0]).toHaveClass('not-current-date');
     expect(screen.getAllByText('30')[1]).toHaveClass('date');
     expect(screen.getAllByText('1')[0]).toHaveClass('date');
-    expect(screen.getAllByText('1')[1]).toHaveClass('inactive-date');
+    expect(screen.getAllByText('1')[1]).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 

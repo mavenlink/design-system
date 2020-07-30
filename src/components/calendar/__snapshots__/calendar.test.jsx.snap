@@ -70,17 +70,17 @@ exports[`<Calendar /> has defaults 1`] = `
         <tbody>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               28
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               29
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               30
             </td>
@@ -248,44 +248,44 @@ exports[`<Calendar /> has defaults 1`] = `
               31
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               1
             </td>
           </tr>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               2
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               3
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               4
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               5
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               6
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               7
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               8
             </td>
@@ -367,7 +367,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
         <tbody>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               31
             </td>
@@ -530,59 +530,59 @@ exports[`<Calendar /> renders the previous month 1`] = `
               30
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               1
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               2
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               3
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               4
             </td>
           </tr>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               5
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               6
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               7
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               8
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               9
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               10
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               11
             </td>
@@ -664,7 +664,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
         <tbody>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               30
             </td>
@@ -832,54 +832,54 @@ exports[`<Calendar /> renders the previous year 1`] = `
               31
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               1
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               2
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               3
             </td>
           </tr>
           <tr>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               4
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               5
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               6
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               7
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               8
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               9
             </td>
             <td
-              class="inactive-date"
+              class="not-current-date"
             >
               10
             </td>

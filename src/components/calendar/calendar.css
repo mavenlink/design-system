@@ -47,10 +47,9 @@
   width: var(--spacing-x-large);
 }
 
-.inactive-date {
+.not-current-date {
   composes: date;
   background-color: var(--mds-grey-3);
-  color: var(--mds-grey-54);
 }
 
 .date:hover {
