@@ -44,8 +44,10 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
             className="icon size-medium stroke-none color-transparent"
             onClick={[Function]}
             role="img"
+            tabIndex={-1}
           >
             <use
+              onKeyDown={[Function]}
               xlinkHref="#icon-caret-down.svg"
             />
           </svg>

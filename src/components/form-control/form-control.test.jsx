@@ -57,6 +57,16 @@ describe('<FormControl>', () => {
       render(<FormControl {...requiredProps} error="I am an error message" />);
       expect(screen.getByText('I am an error message')).toBeInTheDocument();
     });
+
+    it('uses aria-live polite to alert users of an error', () => {
+      render(<FormControl {...requiredProps} error="I am an error message" />);
+      expect(screen.getByText('I am an error message')).toHaveAttribute('aria-live', 'polite');
+    });
+
+    it('uses a hint to alert users of the error message', () => {
+      render(<FormControl {...requiredProps} error="I am an error message" />);
+      expect(screen.getByText('I am an error message')).toHaveAttribute('id', 'test-idHint');
+    });
   });
 
   describe('id API', () => {

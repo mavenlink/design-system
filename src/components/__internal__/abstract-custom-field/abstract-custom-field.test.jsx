@@ -27,6 +27,12 @@ describe('AbstractCustomField', () => {
       render(<AbstractCustomField {...sharedProps} ariaProps={ariaProps} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-id-label');
     });
+
+    it('sets aria-describedby to link to a hint and aria-invalid when there are errors', () => {
+      render(<AbstractCustomField {...sharedProps} errorText={'there are errors.'} />);
+      expect(screen.getByLabelText('Test label')).toHaveDescription('there are errors.');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+    });
   });
 
   describe('className API', () => {
@@ -71,10 +77,10 @@ describe('AbstractCustomField', () => {
       expect(getByRole('img')).toBeDefined();
     });
 
-    it('gives preference to the error icon', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" />;
-      const { getAllByRole } = render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
-      expect(getAllByRole('img')[0].firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+    it('renders the icon passed in', () => {
+      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" ariaLabel={'Label'} />;
+      render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
+      expect(screen.getByRole('img', { name: 'Label' }).children[1]).toHaveAttribute('xlink:href', '#icon-calendar-fill.svg');
     });
 
     it('shows no icon by default', () => {

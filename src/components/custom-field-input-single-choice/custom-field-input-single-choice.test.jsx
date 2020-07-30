@@ -258,20 +258,24 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('clear', () => {
-    it('clears a value and hides the icon', () => {
+    it('clears a value, hides the icon, and focuses the input', () => {
       const value = { id: 'some-selection', label: 'Some selection' };
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
-      userEvent.click(screen.getAllByRole('img')[0]);
+      userEvent.click(screen.getByRole('button'));
       expect(screen.getByLabelText('Test label')).toHaveValue('');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
 
-    it('clears the search value and hides the icon', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} />);
-      userEvent.type(screen.getByLabelText('Test label', { selector: 'input' }), 'some test text');
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('some test text');
-      userEvent.click(screen.getAllByRole('img')[0]);
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('');
+    it('clears a value when enter is pressed on the clear icon and the clear icon can be focused for accessibility', () => {
+      const value = { id: 'some-selection', label: 'Some selection' };
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
+      userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
+      userEvent.tab();
+      expect(screen.getByRole('button', { name: 'Remove selected choice' })).toHaveFocus();
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
     });
 
     describe('when the input choice is readOnly', () => {
