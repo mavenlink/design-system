@@ -16,6 +16,38 @@ describe('<Calendar />', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  it('renders the previous month', () => {
+    jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
+    render(<Calendar {...requiredProps} />);
+    userEvent.click(screen.getByText('Prev'));
+    expect(screen.getByText('31')).toHaveClass('inactive-date');
+    expect(screen.getAllByText('1')[0]).toHaveClass('date');
+    expect(screen.getAllByText('1')[1]).toHaveClass('inactive-date');
+    expect(document.body).toMatchSnapshot();
+  });
+
+  it('renders the previous year', () => {
+    jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
+    render(<Calendar {...requiredProps} />);
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByText('Prev'));
+    expect(screen.getAllByText('30')[0]).toHaveClass('inactive-date');
+    expect(screen.getAllByText('30')[1]).toHaveClass('date');
+    expect(screen.getAllByText('1')[0]).toHaveClass('date');
+    expect(screen.getAllByText('1')[1]).toHaveClass('inactive-date');
+    expect(document.body).toMatchSnapshot();
+  });
+
   describe('previous month button', () => {
     it('displays the previous month', () => {
       jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020

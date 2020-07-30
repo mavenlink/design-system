@@ -37,16 +37,20 @@ function getCell(iterator, month) {
 
 function Calendar(props) {
   const valueDate = new Date(props.value ? props.value : Date.now());
-  const [year] = useState(valueDate.getFullYear());
+  const [year, setYear] = useState(valueDate.getFullYear());
   const [month, setMonth] = useState(valueDate.getMonth());
   const [date] = useState(valueDate.getDate());
 
   function onPreviousMonthPress() {
-    setMonth(month - 1);
+    const tmpDate = new Date(year, month - 1);
+    setMonth(tmpDate.getMonth());
+    setYear(tmpDate.getFullYear());
   }
 
   function onNextMonthPress() {
-    setMonth(month + 1);
+    const tmpDate = new Date(year, month + 1);
+    setMonth(tmpDate.getMonth());
+    setYear(tmpDate.getFullYear());
   }
 
   const calendarDate = new Date(year, month, date);
