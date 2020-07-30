@@ -27,6 +27,10 @@
   flex-grow: 1;
 }
 
+.calendar-grid {
+  border-collapse: collapse;
+}
+
 .weekday {
   color: var(--black);
   font: var(--mds-type-subhead-3);
@@ -41,4 +45,10 @@
   height: var(--spacing-x-large);
   text-align: center;
   width: var(--spacing-x-large);
+}
+
+.inactive-date {
+  composes: date;
+  background-color: var(--mds-grey-3);
+  color: var(--mds-grey-54);
 }

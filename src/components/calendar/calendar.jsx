@@ -23,12 +23,13 @@ function getHeadCell(iterator) {
   );
 }
 
-function getCell(iterator) {
+function getCell(iterator, month) {
   const date = iterator.getDate();
+  const dateMonth = iterator.getMonth();
   iterator.setDate(date + 1);
 
   return (
-    <td className={styles.date}>
+    <td className={dateMonth === month ? styles.date : styles['inactive-date']}>
       {date}
     </td>
   );
@@ -76,7 +77,7 @@ function Calendar(props) {
             Next
         </button>
       </div>
-      <table>
+      <table className={styles['calendar-grid']}>
         <thead>
           <tr>
             {getHeadCell(headIterator)}
@@ -90,58 +91,58 @@ function Calendar(props) {
         </thead>
         <tbody>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
           <tr>
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
-            {getCell(iterator)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
+            {getCell(iterator, month)}
           </tr>
         </tbody>
       </table>
