@@ -233,7 +233,7 @@ exports[`<Calendar /> has defaults 1`] = `
               28
             </td>
             <td
-              class="date"
+              class="highlighted-date"
             >
               29
             </td>

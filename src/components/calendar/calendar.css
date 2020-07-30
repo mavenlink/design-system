@@ -52,6 +52,13 @@
   background-color: var(--mds-grey-3);
 }
 
+.highlighted-date {
+  composes: date;
+  background-color: var(--mds-grey-54);
+  border-radius: 3px;
+  color: var(--white);
+}
+
 .date:hover {
   background-color: var(--mds-grey-12);
   color: var(--black);
