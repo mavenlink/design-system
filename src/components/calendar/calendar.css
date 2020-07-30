@@ -1,8 +1,19 @@
 @import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
 @import '../../styles/typography-v2.css';
+
+.container {
+  box-sizing: border-box;
+  padding-bottom: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+  width: fit-content;
+}
 
 .header {
   display: flex;
+  padding-bottom: var(--spacing-large);
+  padding-top: var(--spacing-large);
 }
 
 .month-button {
@@ -17,9 +28,15 @@
 .weekday {
   color: var(--black);
   font: var(--mds-type-subhead-3);
+  padding-bottom: var(--spacing-medium);
+  padding-top: var(--spacing-medium);
 }
 
 .date {
+  box-sizing: border-box;
   color: var(--black);
   font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  text-align: center;
+  width: var(--spacing-x-large);
 }

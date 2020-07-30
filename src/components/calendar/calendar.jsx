@@ -43,7 +43,7 @@ function Calendar(props) {
   const headIterator = new Date(iterator.getTime());
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       <div className={styles.header}>
         <button
           className={styles['month-button']}
@@ -233,7 +233,7 @@ function Calendar(props) {
           </tr>
         </tbody>
       </table>
-    </React.Fragment>
+    </div>
   );
 }
 
