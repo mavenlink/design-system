@@ -9,19 +9,29 @@ function getDateIterator(year, month) {
   return new Date(year, month, 1 - firstDate.getDay());
 }
 
-function getDateIteratorDate(iterator) {
-  const date = iterator.getDate();
-  iterator.setDate(date + 1);
-  return date;
-}
-
-function getDateIteratorWeekday(iterator) {
+function getHeadCell(iterator) {
   const date = iterator.getDate();
   const weekday = iterator.toLocaleDateString(undefined, {
     weekday: 'short',
   });
   iterator.setDate(date + 1);
-  return weekday;
+
+  return (
+    <th className={styles.weekday}>
+      {weekday}
+    </th>
+  );
+}
+
+function getCell(iterator) {
+  const date = iterator.getDate();
+  iterator.setDate(date + 1);
+
+  return (
+    <td className={styles.date}>
+      {date}
+    </td>
+  );
 }
 
 function Calendar(props) {
@@ -69,167 +79,69 @@ function Calendar(props) {
       <table>
         <thead>
           <tr>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
-            <th className={styles.weekday}>
-              {getDateIteratorWeekday(headIterator)}
-            </th>
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
+            {getHeadCell(headIterator)}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
           <tr>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
-            <td className={styles.date}>
-              {getDateIteratorDate(iterator)}
-            </td>
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
+            {getCell(iterator)}
           </tr>
         </tbody>
       </table>
