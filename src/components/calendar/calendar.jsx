@@ -14,6 +14,15 @@ function getDateIteratorDate(iterator) {
   return date;
 }
 
+function getDateIteratorWeekday(iterator) {
+  const date = iterator.getDate();
+  const weekday = iterator.toLocaleDateString(undefined, {
+    weekday: 'short',
+  });
+  iterator.setDate(date + 1);
+  return weekday;
+}
+
 function Calendar(props) {
   const valueDate = new Date(props.value ? props.value : Date.now());
   const [year] = useState(valueDate.getFullYear());
@@ -30,6 +39,7 @@ function Calendar(props) {
 
   const calendarDate = new Date(year, month, date);
   const iterator = getDateIterator(year, month);
+  const headIterator = new Date(iterator.getTime());
 
   return (
     <React.Fragment>
@@ -44,13 +54,13 @@ function Calendar(props) {
       <table>
         <thead>
           <tr>
-            <td>Su</td>
-            <td>Mo</td>
-            <td>Tu</td>
-            <td>We</td>
-            <td>Th</td>
-            <td>Fr</td>
-            <td>Sa</td>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th>{getDateIteratorWeekday(headIterator)}</th>
           </tr>
         </thead>
         <tbody>

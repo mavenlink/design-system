@@ -17,27 +17,27 @@ Object {
       <table>
         <thead>
           <tr>
-            <td>
-              Su
-            </td>
-            <td>
-              Mo
-            </td>
-            <td>
-              Tu
-            </td>
-            <td>
-              We
-            </td>
-            <td>
-              Th
-            </td>
-            <td>
-              Fr
-            </td>
-            <td>
-              Sa
-            </td>
+            <th>
+              Sun
+            </th>
+            <th>
+              Mon
+            </th>
+            <th>
+              Tue
+            </th>
+            <th>
+              Wed
+            </th>
+            <th>
+              Thu
+            </th>
+            <th>
+              Fri
+            </th>
+            <th>
+              Sat
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -214,27 +214,27 @@ Object {
     <table>
       <thead>
         <tr>
-          <td>
-            Su
-          </td>
-          <td>
-            Mo
-          </td>
-          <td>
-            Tu
-          </td>
-          <td>
-            We
-          </td>
-          <td>
-            Th
-          </td>
-          <td>
-            Fr
-          </td>
-          <td>
-            Sa
-          </td>
+          <th>
+            Sun
+          </th>
+          <th>
+            Mon
+          </th>
+          <th>
+            Tue
+          </th>
+          <th>
+            Wed
+          </th>
+          <th>
+            Thu
+          </th>
+          <th>
+            Fri
+          </th>
+          <th>
+            Sat
+          </th>
         </tr>
       </thead>
       <tbody>
