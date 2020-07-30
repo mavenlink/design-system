@@ -72,20 +72,8 @@ function Calendar(props) {
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-          </tr>
-          <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
@@ -102,6 +90,14 @@ function Calendar(props) {
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
           </tr>
           <tr>
@@ -112,10 +108,8 @@ function Calendar(props) {
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
             <td>{getDateIteratorDate(iterator)}</td>
