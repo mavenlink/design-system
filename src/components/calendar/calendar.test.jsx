@@ -11,13 +11,13 @@ describe('<Calendar />', () => {
   };
 
   it('has defaults', () => {
-    jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778) // July 29, 2020
+    jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
     expect(render(<Calendar {...requiredProps} />)).toMatchSnapshot();
   });
 
   describe('previous month button', () => {
     it('displays the previous month', () => {
-      jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778) // July 29, 2020
+      jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByText('Prev'));
       expect(screen.getByText('June 2020')).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('<Calendar />', () => {
 
   describe('next month button', () => {
     it('displays the next month', () => {
-      jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778) // July 29, 2020
+      jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByText('Next'));
       expect(screen.getByText('August 2020')).toBeInTheDocument();
