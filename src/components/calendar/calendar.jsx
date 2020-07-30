@@ -3,6 +3,17 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
+function getDateIterator(year, month) {
+  const firstDate = new Date(year, month, 1);
+  return new Date(year, month, 1 - firstDate.getDay());
+}
+
+function getDateIteratorDate(iterator) {
+  const date = iterator.getDate();
+  iterator.setDate(date + 1);
+  return date;
+}
+
 function Calendar(props) {
   const valueDate = new Date(props.value ? props.value : Date.now());
   const [year] = useState(valueDate.getFullYear());
@@ -18,16 +29,94 @@ function Calendar(props) {
   }
 
   const calendarDate = new Date(year, month, date);
+  const iterator = getDateIterator(year, month);
 
   return (
-    <div>
-      <button onClick={onPreviousMonthPress}>Prev</button>
-      {calendarDate.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      })}
-      <button onClick={onNextMonthPress}>Next</button>
-    </div>
+    <React.Fragment>
+      <div>
+        <button onClick={onPreviousMonthPress}>Prev</button>
+        {calendarDate.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+        })}
+        <button onClick={onNextMonthPress}>Next</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td>Su</td>
+            <td>Mo</td>
+            <td>Tu</td>
+            <td>We</td>
+            <td>Th</td>
+            <td>Fr</td>
+            <td>Sa</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+          <tr>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+            <td>{getDateIteratorDate(iterator)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </React.Fragment>
   );
 }
 
