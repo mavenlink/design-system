@@ -12,7 +12,7 @@ describe('<Calendar />', () => {
 
   it('has defaults', () => {
     jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
-    render(<Calendar {...requiredProps} />)
+    render(<Calendar {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
   });
 
