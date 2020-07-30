@@ -52,7 +52,7 @@ function getCell(iterator, month, highlightedDate) {
 }
 
 function Calendar(props) {
-  const highlightedDate = new Date(props.value ? props.value : Date.now());
+  const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
   const [date] = useState(highlightedDate.getDate());

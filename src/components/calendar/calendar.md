@@ -30,3 +30,7 @@
 ```jsx
 <Calendar />
 ```
+
+```jsx
+<Calendar value="2012-02-28" />
+```
