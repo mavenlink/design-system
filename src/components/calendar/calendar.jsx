@@ -14,6 +14,8 @@ function getHeadCell(iterator) {
   const weekday = iterator.toLocaleDateString(undefined, {
     weekday: 'narrow',
   });
+
+  // This needs to occur at the end of this function
   iterator.setDate(date + 1);
 
   return (
