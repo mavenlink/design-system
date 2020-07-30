@@ -1,0 +1,25 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/typography-v2.css';
+
+.header {
+  display: flex;
+}
+
+.month-button {
+  flex-grow: 0;
+}
+
+.year-button {
+  color: var(--black);
+  flex-grow: 1;
+}
+
+.weekday {
+  color: var(--black);
+  font: var(--mds-type-subhead-3);
+}
+
+.date {
+  color: var(--black);
+  font: var(--mds-type-content);
+}

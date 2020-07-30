@@ -2,6 +2,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import styles from './calendar.css';
 
 function getDateIterator(year, month) {
   const firstDate = new Date(year, month, 1);
@@ -43,80 +44,192 @@ function Calendar(props) {
 
   return (
     <React.Fragment>
-      <div>
-        <button onClick={onPreviousMonthPress}>Prev</button>
-        {calendarDate.toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'long',
-        })}
-        <button onClick={onNextMonthPress}>Next</button>
+      <div className={styles.header}>
+        <button
+          className={styles['month-button']}
+          onClick={onPreviousMonthPress}
+        >
+          Prev
+        </button>
+        <button
+          className={styles['year-button']}
+        >
+          {calendarDate.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+          })}
+        </button>
+        <button
+          className={styles['month-button']}
+          onClick={onNextMonthPress}
+        >
+            Next
+        </button>
       </div>
       <table>
         <thead>
           <tr>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
-            <th>{getDateIteratorWeekday(headIterator)}</th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
+            <th className={styles.weekday}>
+              {getDateIteratorWeekday(headIterator)}
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
           <tr>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
-            <td>{getDateIteratorDate(iterator)}</td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
+            <td className={styles.date}>
+              {getDateIteratorDate(iterator)}
+            </td>
           </tr>
         </tbody>
       </table>
