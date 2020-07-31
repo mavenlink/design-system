@@ -10,6 +10,7 @@ export default function IconButton(props) {
   return (
     <Icon
       active
+      className={props.className}
       currentColor="skip"
       fill="skip"
       height={height}
@@ -25,6 +26,7 @@ export default function IconButton(props) {
 }
 
 IconButton.propTypes = {
+  className: PropTypes.string,
   label: PropTypes.string.isRequired,
   icon: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -34,4 +36,5 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
+  className: undefined,
 };

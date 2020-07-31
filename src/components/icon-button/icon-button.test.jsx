@@ -21,6 +21,13 @@ describe('<IconButton />', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  describe('className prop API', () => {
+    it('can be set', () => {
+      render(<IconButton {...requiredProps} className="unique-class-name" />);
+      expect(screen.getByRole('button', { name: 'Test label' })).toHaveClass('unique-class-name');
+    });
+  });
+
   describe('label prop API', () => {
     it('can be set', () => {
       render(<IconButton {...requiredProps} label="Unique label" />);
