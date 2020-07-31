@@ -5,7 +5,7 @@ import styles from './icon.css';
 export default function Icon(props) {
   const classes = [
     props.className,
-    props.fill === 'skip' ? '' : styles[`size-${props.size}`],
+    props.size === 'skip' ? '' : styles[`size-${props.size}`],
     props.fill === 'skip' ? '' : styles[`fill-${props.fill}`],
     props.stroke === 'skip' ? '' : styles[`stroke-${props.stroke}`],
     props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],

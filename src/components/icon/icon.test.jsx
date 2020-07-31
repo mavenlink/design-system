@@ -108,6 +108,7 @@ describe('Icon', () => {
       expect(screen.getByRole('img')).not.toHaveClass('size-small');
       expect(screen.getByRole('img')).not.toHaveClass('size-medium');
       expect(screen.getByRole('img')).not.toHaveClass('size-large');
+      expect(screen.getByRole('img')).not.toHaveClass('size-skip');
     });
   });
 
