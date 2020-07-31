@@ -14,6 +14,15 @@ within itself.
 
 ```js
 <CustomFieldInputCurrency
+  placeholder="$123.00"
+  label="US Dollars"
+  id="us-dollars-1"
+  value={0}
+/>
+```
+
+```js
+<CustomFieldInputCurrency
   label="Iraqi Dinar"
   currencyCode="IQD"
   id="iraqi-dinar"
@@ -65,7 +74,6 @@ presented to it, responding with a specific message for the context of that spec
   name="test-name-4"
   value={350}
   currencyCode="USD"
-  error
-  helpText="What do you want from us monster!?"
+  errorText="What do you want from us monster!?"
 />
 ```

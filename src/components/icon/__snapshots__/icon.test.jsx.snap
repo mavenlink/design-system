@@ -5,8 +5,10 @@ exports[`Icon has defaults 1`] = `
   className="icon-base size-medium fill-none stroke-none color-transparent"
   onClick={[Function]}
   role="img"
+  tabIndex={-1}
 >
   <use
+    onKeyDown={[Function]}
     xlinkHref="#foobar"
   />
 </svg>

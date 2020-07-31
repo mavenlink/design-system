@@ -25,8 +25,10 @@ exports[`TagSkill has default 1`] = `
           className="icon-base size-small"
           onClick={[Function]}
           role="img"
+          tabIndex={-1}
         >
           <use
+            onKeyDown={[Function]}
             xlinkHref="#icon-tick.svg"
           />
         </svg>

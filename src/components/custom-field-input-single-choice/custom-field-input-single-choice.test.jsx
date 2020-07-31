@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
@@ -86,6 +87,27 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('choices', () => {
+    it('informs user when there are no choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+    });
+
+    it('does not inform the user when there are choices available', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByText('No options available.')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('errorText', () => {
+    it('sets the input to be invalid', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
+      expect(screen.getByLabelText('Test label')).not.toBeValid();
+    });
+  });
+
   describe('filtering', () => {
     const choices = [{
       id: '1',
@@ -166,16 +188,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly', '');
     });
 
-    it('shows the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} />);
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByRole('listbox')).toBeInTheDocument();
-    });
-
     it('does not show the listbox', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={true} choices={[{ id: '1', label: 'yo' }]} />);
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('shows the listbox', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} readOnly={false} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByRole('listbox')).toBeInTheDocument();
     });
   });
 
@@ -236,20 +258,24 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('clear', () => {
-    it('clears a value and hides the icon', () => {
+    it('clears a value, hides the icon, and focuses the input', () => {
       const value = { id: 'some-selection', label: 'Some selection' };
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
-      userEvent.click(screen.getAllByRole('img')[0]);
+      userEvent.click(screen.getByRole('button'));
       expect(screen.getByLabelText('Test label')).toHaveValue('');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
 
-    it('clears the search value and hides the icon', () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} />);
-      userEvent.type(screen.getByLabelText('Test label', { selector: 'input' }), 'some test text');
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('some test text');
-      userEvent.click(screen.getAllByRole('img')[0]);
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('');
+    it('clears a value when enter is pressed on the clear icon and the clear icon can be focused for accessibility', () => {
+      const value = { id: 'some-selection', label: 'Some selection' };
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
+      userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
+      userEvent.tab();
+      expect(screen.getByRole('button', { name: 'Remove selected choice' })).toHaveFocus();
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
     });
 
     describe('when the input choice is readOnly', () => {
@@ -259,6 +285,92 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
         expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
       });
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      const value = { id: 'hello', label: 'hello' };
+      const choices = [value];
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(inputRef.current.value).toStrictEqual(value);
+    });
+  });
+
+  describe('dropdown close behavior', () => {
+    it('closes the dropdown when clicking outside', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('closes the dropdown when tabbing away', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+          <input />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+
+      userEvent.tab();
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('broke my heart')).not.toBeInTheDocument());
+    });
+
+    it('resets the inputs state', async () => {
+      const choices = [{
+        id: 'broke',
+        label: 'broke my heart',
+      }, {
+        id: 'now',
+        label: "now I'm aching for you",
+      }];
+
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
+        </div>,
+      );
+
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+      userEvent.type(screen.getByLabelText('Test label'), 'broke my');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('broke my');
+      expect(screen.getByText('broke my heart')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue(''));
     });
   });
 });

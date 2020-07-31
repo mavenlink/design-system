@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
@@ -22,15 +23,37 @@ describe('CustomFieldInputNumber', () => {
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      const { container } = render(<TestComponent disabled />);
-      expect(container.firstChild).toHaveClass('disabled');
+      render(<TestComponent disabled />);
       expect(screen.getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      const { container } = render(<TestComponent />);
-      expect(container.firstChild).not.toHaveClass('disabled');
+      render(<TestComponent />);
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+    });
+  });
+
+  describe('errorText API', () => {
+    it('is invalid when true', () => {
+      render(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+    });
+
+    it('updates correctly with a new errorText prop', () => {
+      const { rerender } = render(<TestComponent errorText="" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
+      rerender(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
+    });
+
+    it('shows the provided errorText when true', () => {
+      render(<TestComponent errorText="Here's some help text!" />);
+      expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
+    });
+
+    it('does not show errorText when it does not exist', () => {
+      render(<TestComponent errorText="" />);
+      expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
     });
   });
 
@@ -79,11 +102,19 @@ describe('CustomFieldInputNumber', () => {
     it('is valid on a positive integer', () => {
       render(<TestComponent value={1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(1);
     });
 
     it('is valid on zero', () => {
       render(<TestComponent value={0} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(0);
+    });
+
+    it('is valid on undefined', () => {
+      render(<TestComponent value={undefined} />);
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveValue(null);
     });
 
     it('is valid on a negative integer', () => {
@@ -97,8 +128,11 @@ describe('CustomFieldInputNumber', () => {
     });
 
     it('is invalid on a decimal number', () => {
+      const validityText = 'Constraints not satisfied';
       render(<TestComponent value={1.01} />);
+
       expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByText(validityText)).toBeInTheDocument();
     });
   });
 
@@ -135,6 +169,16 @@ describe('CustomFieldInputNumber', () => {
     it('respects a provided step', () => {
       const { getByLabelText } = render(<TestComponent label="foo" step={12} />);
       expect(getByLabelText('foo')).toHaveAttribute('step', '12');
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('can be used to get value', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputNumber id="test-input" label="Test label" ref={inputRef} />);
+
+      userEvent.type(screen.getByLabelText('Test label'), '1234');
+      expect(inputRef.current.value).toBe('1234');
     });
   });
 });

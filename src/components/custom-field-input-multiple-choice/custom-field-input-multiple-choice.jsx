@@ -15,11 +15,13 @@ import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
+import NoOptions from '../no-options/no-options.jsx';
 import styles from './custom-field-input-multiple-choice.css';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
-function getClassName(readOnly, helpText) {
+function getClassName(readOnly, errorText) {
   if (readOnly) return styles['read-only-container'];
-  if (helpText) return styles['invalid-container'];
+  if (errorText) return styles['invalid-container'];
 
   return styles['read-write-container'];
 }
@@ -34,8 +36,15 @@ function CustomFieldInputMultipleChoice(props) {
     .filter(choice => !value.includes(choice));
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = getClassName(props.readOnly, props.helpText);
-  const renderPopup = !props.readOnly && expanded && visibleChoices.length !== 0;
+  const classContainer = getClassName(props.readOnly, props.errorText);
+  const renderPopup = !props.readOnly && expanded;
+
+  const wrapperRef = useRef(null);
+  const handleDropdownClose = () => {
+    setExpanded(false);
+    setAutocompleteValue('');
+  };
+  useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
   function onChoiceRemove(event) {
     const newValue = value.filter((choice, index) => (
@@ -50,12 +59,18 @@ function CustomFieldInputMultipleChoice(props) {
     setExpanded(false);
     setValue([...value, selectedChoice]);
     setAutocompleteValue('');
+    autocompleteRef.current.focus();
+  }
+
+  function clearChoices() {
+    setValue([]);
+    setExpanded(false);
+    autocompleteRef.current.focus();
   }
 
   function onChoicesClear(event) {
     event.preventDefault();
-    setValue([]);
-    setExpanded(false);
+    clearChoices();
   }
 
   function onAutocompleteChange(event) {
@@ -85,93 +100,97 @@ function CustomFieldInputMultipleChoice(props) {
   }, [expanded]);
 
   return (
-    <FormControl
-      error={props.helpText}
-      label={props.label}
-      labelId={`${props.id}-label`}
-      id={`${props.id}-autocomple`}
-      onKeyDown={onKeyDown}
-      readOnly={props.readOnly}
-    >
-      <div
-        className={classContainer}
-        onClick={onClick}
-        role="presentation"
+    <div ref={wrapperRef}>
+      <FormControl
+        error={props.errorText}
+        label={props.label}
+        labelId={`${props.id}-label`}
+        id={`${props.id}-autocomple`}
+        onKeyDown={onKeyDown}
+        readOnly={props.readOnly}
       >
-        <TagList
-          className={styles['tag-list']}
-          id={props.id}
-          labelledBy={`${props.id}-label`}
-          refs={valueRefs}
+        <div
+          className={classContainer}
+          onClick={onClick}
+          role="presentation"
         >
-          {value.map((choice, index) => (
-            <Tag
-              defaultActive={index === 0}
-              id={`${props.id}-${choice.id}`}
-              key={`${props.id}-${choice.id}`}
-              onRemove={onChoiceRemove}
-              readOnly={props.readOnly}
-              ref={valueRefs[index]}
-            >
-              {choice.label}
-            </Tag>
-          ))}
-          {!props.readOnly && (
-            <input
-              aria-labelledby={`${props.id}-label`}
-              className={styles['autocomplete-input']}
-              id={`${props.id}-autocomple`}
-              onChange={onAutocompleteChange}
-              ref={autocompleteRef}
-              value={autocompleteValue}
-            />
-          )}
-        </TagList>
-        <div className={styles['icons-container']}>
-          {!props.readOnly && props.helpText && (
+          <TagList
+            className={styles['tag-list']}
+            id={props.id}
+            labelledBy={`${props.id}-label`}
+            refs={valueRefs}
+          >
+            {value.map((choice, index) => (
+              <Tag
+                defaultActive={index === 0}
+                id={`${props.id}-${choice.id}`}
+                key={`${props.id}-${choice.id}`}
+                onRemove={onChoiceRemove}
+                readOnly={props.readOnly}
+                ref={valueRefs[index]}
+              >
+                {choice.label}
+              </Tag>
+            ))}
+            {!props.readOnly && (
+              <input
+                aria-labelledby={`${props.id}-label`}
+                className={styles['autocomplete-input']}
+                id={`${props.id}-autocomple`}
+                onChange={onAutocompleteChange}
+                ref={autocompleteRef}
+                value={autocompleteValue}
+              />
+            )}
+          </TagList>
+          <div className={styles['icons-container']}>
+            {!props.readOnly && props.errorText && (
+              <Icon
+                className={styles.icon}
+                currentColor="caution"
+                fill="skip"
+                name={iconCaution.id}
+              />
+            )}
+            {!props.readOnly && value.length > 0 && (
+              <Icon
+                className={styles['clear-icon']}
+                fill="skip"
+                name={iconClear.id}
+                onClick={onChoicesClear}
+                onEnter={clearChoices}
+                tabable={true}
+                ariaLabel={`Remove all selected choices on ${props.label}`}
+                role="button"
+              />
+            )}
             <Icon
               className={styles.icon}
-              currentColor="caution"
+              name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
               fill="skip"
-              name={iconCaution.id}
             />
-          )}
-          {!props.readOnly && value.length > 0 && (
-            <Icon
-              className={styles['clear-icon']}
-              fill="skip"
-              name={iconClear.id}
-              onClick={onChoicesClear}
-              ariaLabel={`Remove all selected choices on ${props.label}`}
-              role="button"
-            />
-          )}
-          <Icon
-            className={styles.icon}
-            name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-            fill="skip"
-          />
+          </div>
         </div>
-      </div>
-      {(renderPopup &&
-        <Listbox
-          className={styles['popup-container']}
-          labelledBy={`${props.id}-label`}
-          refs={choicesRefs}
-        >
-          {visibleChoices.map((choice, index) => (
-            <ListOption
-              key={`${props.id}-${choice.id}`}
-              onSelect={onChoiceSelect}
-              ref={choicesRefs[index]}
-              value={choice}
-            >
-              {choice.label}
-            </ListOption>
-          ))}
-        </Listbox>
-      )}
-    </FormControl>
+        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
+          <Listbox
+            className={styles['popup-container']}
+            labelledBy={`${props.id}-label`}
+            refs={choicesRefs}
+          >
+            {visibleChoices.map((choice, index) => (
+              <ListOption
+                key={`${props.id}-${choice.id}`}
+                onSelect={onChoiceSelect}
+                ref={choicesRefs[index]}
+                value={choice}
+              >
+                {choice.label}
+              </ListOption>
+            ))}
+          </Listbox>)
+        )}
+      </FormControl>
+    </div>
   );
 }
 
@@ -180,7 +199,7 @@ CustomFieldInputMultipleChoice.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
@@ -191,7 +210,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
-  helpText: undefined,
+  errorText: undefined,
   readOnly: false,
   value: [],
 };

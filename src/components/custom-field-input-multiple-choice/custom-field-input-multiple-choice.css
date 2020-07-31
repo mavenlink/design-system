@@ -1,9 +1,14 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
 
+.autocomplete-input {
+  border: none;
+  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+}
+
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
-  composes: input-container from '../custom-field-input-text/custom-field-input-text.css';
+  composes: input-container from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   display: flex;
   height: auto;
   min-height: 32px;
@@ -11,29 +16,14 @@
   padding-bottom: 0;
 }
 
-.read-write-container {
-  composes: container;
-  composes: read-write-input from '../custom-field-input-text/custom-field-input-text.css';
+.clear-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  cursor: pointer;
 }
 
-.read-only-container {
-  composes: container;
-  composes: read-only-input from '../custom-field-input-text/custom-field-input-text.css';
-}
-
-.invalid-container {
-  composes: container;
-  composes: invalid-input from '../custom-field-input-text/custom-field-input-text.css';
-}
-
-.tag-list {
-  composes: tag-list from '../tag-list/tag-list.css';
-  flex-grow: 1;
-}
-
-.autocomplete-input {
-  border: none;
-  margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+.icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: none;
 }
 
 .icons-container {
@@ -42,14 +32,9 @@
   padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
 }
 
-.icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
-}
-
-.clear-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  cursor: pointer;
+.invalid-container {
+  composes: container;
+  composes: invalid-input from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .popup-container {
@@ -61,4 +46,28 @@
   position: absolute;
   width: 100%;
   z-index: 10;
+}
+
+.no-options {
+  composes: popup-container;
+  composes: no-options from '../no-options/no-options.css';
+  color: var(--mds-grey-54);
+  display: flex;
+  justify-content: center;
+  overflow-y: unset;
+}
+
+.read-write-container {
+  composes: container;
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+}
+
+.read-only-container {
+  composes: container;
+  composes: read-only-input from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+}
+
+.tag-list {
+  composes: tag-list from '../tag-list/tag-list.css';
+  flex-grow: 1;
 }

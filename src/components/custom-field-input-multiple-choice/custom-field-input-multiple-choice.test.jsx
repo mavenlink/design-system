@@ -6,6 +6,7 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
@@ -82,10 +83,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       });
 
-      it('does not open when there are no choices', () => {
+      it('informs the user when no choice is available', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
         userEvent.click(screen.getByText('test label'));
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+        expect(screen.getByText('No options available.')).toBeInTheDocument();
       });
 
       it('does not open when read-only', () => {
@@ -122,7 +123,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('removes all choices when pressing the clear button', () => {
+    it('removes all choices when pressing the clear button and focuses the input', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         value={requiredProps.choices}
@@ -133,6 +134,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.click(screen.getByRole('button', { name: 'Remove all selected choices on test label' }));
       expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
       expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
@@ -167,9 +169,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
-  describe('helpText API', () => {
+  describe('errorText API', () => {
     it('can bet set', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      render(<CustomFieldInputMultipleChoice {...requiredProps} errorText="This is an error message." />);
       expect(screen.queryByText('This is an error message.')).toBeInTheDocument();
     });
 
@@ -179,7 +181,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
 
     it('renders 2 icons', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} helpText="This is an error message." />);
+      render(<CustomFieldInputMultipleChoice {...requiredProps} errorText="This is an error message." />);
       expect(screen.queryAllByRole('img')).toHaveLength(2);
     });
 
@@ -187,7 +189,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((
         <CustomFieldInputMultipleChoice
           {...requiredProps}
-          helpText="This is an error message."
+          errorText="This is an error message."
           value={[requiredProps.choices[0]]}
         />
       ));
@@ -248,7 +250,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
     });
 
-    it('adds the choice to the selected choices', () => {
+    it('adds the choice to the selected choices and focuses the auto completer', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
@@ -256,6 +258,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
@@ -268,6 +271,56 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+  });
+
+  describe('dropdown close behavior', () => {
+    it('closes the dropdown when clicking outside', async () => {
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+    });
+
+    it('closes the dropdown when tabbing away', async () => {
+      render(
+        <div>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+          <input />
+        </div>,
+      );
+
+      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+
+      userEvent.tab();
+      userEvent.tab();
+
+      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+    });
+
+    it('resets the inputs state', async () => {
+      render(
+        <div>
+          <span>CLOSE</span>
+          <CustomFieldInputMultipleChoice {...requiredProps} />
+        </div>,
+      );
+
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
+      userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), '1');
+      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('1');
+      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(screen.getByText('CLOSE'));
+
+      await waitFor(() => expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue(''));
     });
   });
 });

@@ -1,23 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
-import styles from '../custom-field-input-text/custom-field-input-text.css';
-
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
-
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
+import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 
 function getLocale() {
   if (navigator && navigator.languages) {
@@ -32,21 +19,18 @@ function initialInputValid(inputValue) {
     return true;
   }
 
-  if (inputValue.toString().split('.').length === 1) {
-    return true;
-  }
-
-  return false;
+  return inputValue.toString()
+    .split('.').length === 1;
 }
 
 function subunitToUnit(subunitValue, currencyCode) {
-  if (!subunitValue) return '';
+  if (subunitValue === undefined) return undefined;
 
   return subunitValue / (10 ** currencyMetaData[currencyCode].maximumFractionDigits);
 }
 
 function formatValue(unitValue, currencyCode) {
-  if (!unitValue) return '';
+  if (unitValue === undefined) return '';
 
   return new Intl.NumberFormat(getLocale(), {
     style: 'currency',
@@ -55,15 +39,17 @@ function formatValue(unitValue, currencyCode) {
   }).format(unitValue);
 }
 
-export default function CustomFieldInputCurrency(props) {
+const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, ref) {
+  const componentRef = useRef(null);
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const numberRef = useRef(null);
+  const valueRef = isEditing ? numberRef : componentRef;
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
-      setInput(parseFloat(event.target.value));
+      setInput(event.target.value === '' ? undefined : parseFloat(event.target.value));
       setIsEditing(false);
     }
 
@@ -89,8 +75,29 @@ export default function CustomFieldInputCurrency(props) {
     }
   });
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      let numberValue;
+
+      if (valueRef.current.value === '') {
+        return undefined;
+      }
+
+      if (isEditing) {
+        numberValue = parseFloat(
+          valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
+        );
+      } else {
+        numberValue = parseInt(valueRef.current.value.replace(/[^0-9-]/g, ''), 10);
+      }
+
+      return [numberValue, props.currencyCode];
+    },
+  }));
+
   const sharedProps = {
-    className: getRootClassName(props.className, props.error, props.disabled),
+    className: props.className,
     disabled: props.disabled,
     id: props.id,
     label: props.label,
@@ -118,20 +125,19 @@ export default function CustomFieldInputCurrency(props) {
     <CustomFieldInputText
       {...sharedProps}
       defaultValue={formattedNumber}
-      error={props.error}
-      helpText={props.helpText}
+      errorText={props.errorText}
       onFocus={handleOnFocus}
+      ref={componentRef}
       type="text"
     />
   );
-}
+});
 
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -146,11 +152,12 @@ CustomFieldInputCurrency.defaultProps = {
   className: styles['custom-field-input-text'],
   currencyCode: 'USD',
   disabled: false,
-  error: false,
-  helpText: undefined,
+  errorText: undefined,
   name: undefined,
   placeholder: undefined,
   readOnly: false,
   required: false,
   value: undefined,
 };
+
+export default CustomFieldInputCurrency;

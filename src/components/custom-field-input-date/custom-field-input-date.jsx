@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
 import Icon from '../icon/icon.jsx';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
-import styles from '../custom-field-input-text/custom-field-input-text.css';
+import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
@@ -26,7 +26,8 @@ const isValueValid = (value, error, isInputValid = false) => {
   return isValidInput(value);
 };
 
-export default function CustomFieldInputDate(props) {
+const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
+  const componentRef = useRef(null);
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
@@ -52,6 +53,13 @@ export default function CustomFieldInputDate(props) {
     }
   }, [isEditing, isFocused]);
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return componentRef.current.value;
+    },
+  }));
+
   const handleOnChange = (event) => {
     if (inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
@@ -62,12 +70,12 @@ export default function CustomFieldInputDate(props) {
     props.onChange(event);
   };
 
-  const helpText = () => {
+  const errorText = () => {
     if (!isValid && !isValidInput(props.value)) {
       return `"${props.value}" is an invalid date`;
     }
 
-    return props.helpText;
+    return props.errorText;
   };
 
   const sharedProps = {
@@ -83,11 +91,10 @@ export default function CustomFieldInputDate(props) {
   if (isEditing || !isValid) {
     const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
-    return (<CustomFieldInputText
+    return (<AbstractCustomField
       {...sharedProps}
       defaultValue={value}
-      error={!isValid}
-      helpText={helpText()}
+      errorText={errorText()}
       id={props.id}
       key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
@@ -98,20 +105,21 @@ export default function CustomFieldInputDate(props) {
     />);
   }
 
-  return (<CustomFieldInputText
+  return (<AbstractCustomField
     {...sharedProps}
     defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
     id={props.id}
     key={`${props.id}-readonly`}
+    inputRef={componentRef}
     type="text"
   />);
-}
+});
 
 CustomFieldInputDate.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
-  helpText: PropTypes.string,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   min: PropTypes.string,
@@ -125,10 +133,12 @@ CustomFieldInputDate.defaultProps = {
   className: undefined,
   disabled: false,
   error: false,
-  helpText: '',
+  errorText: '',
   min: undefined,
   max: undefined,
   onChange: () => {},
   required: false,
   value: '',
 };
+
+export default CustomFieldInputDate;

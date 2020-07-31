@@ -1,65 +1,12 @@
-@import '../../styles/colors.css';
-@import '../../styles/colors-v2.css';
-@import '../../styles/spacing.css';
-@import '../../styles/typography.css';
-@import '../icon/icon.css';
-
 .input {
-  border: 1px solid var(--mds-grey-12);
-  border-radius: var(--spacing-x-small);
-  box-sizing: border-box;
-  color: var(--mds-grey-87);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding-top: 7px;
-  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
-  padding-bottom: 7px;
-  padding-left: var(--spacing-medium);
-  width: 100%;
-}
-
-.input:disabled {
-  background-color: var(--mds-grey-3);
-}
-
-.input:read-only {
-  background-color: var(--mds-grey-3);
-}
-
-.input:invalid {
-  border-color: var(--mds-red-100);
-  padding-right: var(--spacing-x-large);
-}
-
-.read-write-input {
-  composes: input;
-}
-
-.read-only-input {
-  composes: read-write-input;
-  background-color: var(--mds-grey-3);
-}
-
-.invalid-input {
-  composes: read-write-input;
-  border-color: var(--mds-red-100);
+  composes: input from 'src/components/__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .input-container {
-  margin: var(--spacing-small) 0;
-  position: relative;
-}
-
-.input-container input::placeholder {
-  color: var(--mds-grey-54);
-}
-
-.icon-container {
-  position: absolute;
-  right: 6px;
-  top: 6px;
+  composes: input-container from 'src/components/__internal__/abstract-custom-field/abstract-custom-field.css';
 }
 
 .input-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  composes: input-icon from 'src/components/__internal__/abstract-custom-field/abstract-custom-field.css';
   pointer-events: none;
 }

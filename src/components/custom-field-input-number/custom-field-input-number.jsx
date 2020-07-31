@@ -1,46 +1,46 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
-
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import styles from '../custom-field-input-text/custom-field-input-text.css';
+import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } from 'react';
+import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+import useValidation from '../../hooks/use-validation.jsx';
+import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 
 const apiLimits = {
   max: 2 ** 31,
   min: -(2 ** 31),
 };
 
-function getRootClassName(className, error, disabled) {
-  if (disabled) {
-    return `${className} ${styles.disabled}`;
-  }
+const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
+  const fallbackRef = useRef(null);
+  const inputRef = props.inputRef || fallbackRef;
 
-  if (error) {
-    return `${className} ${styles.error}`;
-  }
-
-  return className;
-}
-
-export default function CustomFieldInputNumber(props) {
-  const inputRef = props.inputRef || useRef(null);
-  const [invalid, setInvalid] = useState(false);
+  const [checkedValidity, setCheckedValidity] = useState(false);
+  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, checkedValidity);
 
   function handleOnKeyUp(event) {
-    setInvalid(!event.target.checkValidity());
+    setCheckedValidity(!event.target.checkValidity());
   }
 
   useEffect(() => {
     if (!inputRef.current) return;
 
-    setInvalid(!inputRef.current.validity.valid);
+    setCheckedValidity(!inputRef.current.validity.valid);
   });
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    get value() {
+      return inputRef.current.value;
+    },
+  }));
+
+  const value = props.value === undefined ? '' : props.value.toString();
+
   return (
-    <CustomFieldInputText
-      className={getRootClassName(props.className, invalid, props.disabled)}
-      defaultValue={props.value}
+    <AbstractCustomField
+      className={props.className}
+      defaultValue={value}
       disabled={props.disabled}
-      error={invalid}
+      errorText={validationMessage}
       id={props.id}
       inputRef={inputRef}
       label={props.label}
@@ -56,11 +56,12 @@ export default function CustomFieldInputNumber(props) {
       type="number"
     />
   );
-}
+});
 
 CustomFieldInputNumber.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
@@ -71,15 +72,13 @@ CustomFieldInputNumber.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['']),
-  ]),
+  value: PropTypes.number,
 };
 
 CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
+  errorText: '',
   inputRef: undefined,
   name: undefined,
   onBlur: () => {},
@@ -87,5 +86,7 @@ CustomFieldInputNumber.defaultProps = {
   readOnly: false,
   required: false,
   step: 1,
-  value: '',
+  value: undefined,
 };
+
+export default CustomFieldInputNumber;
