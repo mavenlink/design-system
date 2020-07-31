@@ -5,7 +5,7 @@ import styles from './icon.css';
 export default function Icon(props) {
   const classes = [
     props.className,
-    styles[`size-${props.size}`],
+    props.fill === 'skip' ? '' : styles[`size-${props.size}`],
     props.fill === 'skip' ? '' : styles[`fill-${props.fill}`],
     props.stroke === 'skip' ? '' : styles[`stroke-${props.stroke}`],
     props.currentColor === 'skip' ? '' : styles[`color-${props.currentColor}`],
@@ -24,9 +24,11 @@ export default function Icon(props) {
       aria-label={props.ariaLabel}
       aria-labelledby={props.ariaLabelledBy}
       className={classes.join(' ')}
+      height={props.height}
       id={props.id}
       onClick={props.onClick}
       role={props.role}
+      width={props.width}
     >
       { props.title && <title>{props.title}</title> }
       <use onKeyDown={onKeyDown} xlinkHref={`#${props.name}`} />
@@ -56,6 +58,7 @@ Icon.propTypes = {
     'none',
     'skip',
   ]),
+  height: PropTypes.number,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func,
@@ -68,6 +71,7 @@ Icon.propTypes = {
     'small',
     'medium',
     'large',
+    'skip',
   ]),
   stroke: PropTypes.oneOf([
     'primary',
@@ -80,6 +84,7 @@ Icon.propTypes = {
   ]),
   title: PropTypes.string,
   active: PropTypes.bool,
+  width: PropTypes.number,
 };
 
 Icon.defaultProps = {
@@ -88,6 +93,7 @@ Icon.defaultProps = {
   className: styles['icon-base'],
   currentColor: 'transparent',
   fill: 'none',
+  height: undefined,
   id: undefined,
   onClick: () => {},
   onEnter: () => {},
@@ -96,4 +102,5 @@ Icon.defaultProps = {
   stroke: 'none',
   title: undefined,
   active: true,
+  width: undefined,
 };

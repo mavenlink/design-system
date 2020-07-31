@@ -34,6 +34,16 @@ describe('Icon', () => {
     });
   });
 
+  describe('height API', () => {
+    it('can be set', () => {
+      render((
+        <Icon {...requiredProps} height={11} />
+      ));
+
+      expect(screen.getByRole('img')).toHaveAttribute('height', '11');
+    });
+  });
+
   describe('id API', () => {
     it('can be set', () => {
       render((
@@ -88,6 +98,16 @@ describe('Icon', () => {
         <Icon {...requiredProps} size="large" />
       ));
       expect(screen.getByRole('img')).toHaveClass('size-large');
+    });
+
+    it('can be "skip"', () => {
+      render((
+        <Icon {...requiredProps} size="skip" />
+      ));
+
+      expect(screen.getByRole('img')).not.toHaveClass('size-small');
+      expect(screen.getByRole('img')).not.toHaveClass('size-medium');
+      expect(screen.getByRole('img')).not.toHaveClass('size-large');
     });
   });
 
@@ -278,6 +298,16 @@ describe('Icon', () => {
       ));
       fireEvent.keyDown(screen.getByRole('img').firstChild, { key: 'Enter', code: 'Enter' });
       expect(onEnterSpy.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('width API', () => {
+    it('can be set', () => {
+      render((
+        <Icon {...requiredProps} width={10} />
+      ));
+
+      expect(screen.getByRole('img')).toHaveAttribute('width', '10');
     });
   });
 });

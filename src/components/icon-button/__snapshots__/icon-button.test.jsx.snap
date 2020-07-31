@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<IconButton /> has defaults 1`] = `
+<body>
+  <div>
+    <svg
+      class="icon-base"
+      height="4"
+      role="button"
+      tabindex="0"
+      width="3"
+    >
+      <title>
+        Test label
+      </title>
+      <use
+        xlink:href="#test-id"
+      />
+    </svg>
+  </div>
+</body>
+`;
