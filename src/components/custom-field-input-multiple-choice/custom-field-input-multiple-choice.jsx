@@ -135,6 +135,7 @@ function CustomFieldInputMultipleChoice(props) {
             {!props.readOnly && (
               <input
                 aria-labelledby={`${props.id}-label`}
+                aria-haspopup={'listbox'}
                 className={styles['autocomplete-input']}
                 id={`${props.id}-autocomple`}
                 onChange={onAutocompleteChange}

@@ -156,6 +156,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         required={props.required}
         errorText={validationMessage}
         value={searchValue || defaultValue}
+        ariaProps={{ haspopup: 'listbox' }}
       />
       { showOptions && (
         choices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (

@@ -56,6 +56,11 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         userEvent.click(screen.getByText('Choice 1'));
         expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
       });
+
+      it('has aria-haspopup for accessibility', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        expect(screen.getByLabelText('test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
+      });
     });
 
     describe('popup', () => {

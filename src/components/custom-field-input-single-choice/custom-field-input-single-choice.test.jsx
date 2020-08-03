@@ -85,6 +85,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).toHaveFocus();
       expect(screen.queryAllByRole('option', 'bar')[0]).toBeUndefined();
     });
+
+    it('has aria-haspopup for accessibility', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      expect(screen.getByLabelText('Test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
+    });
   });
 
   describe('choices', () => {
