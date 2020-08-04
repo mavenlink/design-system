@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -42,25 +43,92 @@ function getCellClassName(iterator, month, highlightedDate) {
   return styles['not-current-date'];
 }
 
-function getCell(iterator, month, highlightedDate) {
-  const date = iterator.getDate();
-  const className = getCellClassName(iterator, month, highlightedDate);
-
-  // This needs to occur at the end of this function
-  iterator.setDate(date + 1);
-
-  return (
-    <td className={className}>
-      {date}
-    </td>
-  );
-}
-
 function Calendar(props) {
   const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
+  const focusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
   // const [date] = useState(highlightedDate.getDate());
+
+  const [active, setActive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  let refs = [];
+
+  const getCell = (iterator, cellMonth, cellHighlightedDate) => {
+    const date = iterator.getDate();
+    const className = getCellClassName(iterator, cellMonth, cellHighlightedDate);
+    const ref = React.createRef();
+    refs = [ref, ...refs];
+
+    const sameDay = iterator.getDate() === focusedDate.getDate() && iterator.getMonth() === focusedDate.getMonth();
+    const tabIndex = sameDay ? 0 : null;
+
+    // This needs to occur at the end of this function
+    iterator.setDate(date + 1); return (
+      <td tabIndex={tabIndex} className={className} ref={ref} >
+        {date}
+      </td>
+    );
+  };
+
+  useEffect(() => {
+    refs.forEach((ref, index) => {
+      if (active) {
+        // ref.current.setIsActive(index === activeIndex);
+      }
+    });
+  }, [active, activeIndex]);
+
+  function onKeyDown(event) {
+    switch (event.key) {
+      case 'ArrowLeft':
+        if (activeIndex > 0) {
+          event.preventDefault();
+          setActiveIndex(activeIndex - 1);
+        }
+        break;
+      case 'ArrowUp':
+        if (activeIndex > 7) {
+          event.preventDefault();
+          setActiveIndex(activeIndex - 7);
+        } else {
+          // todo
+        }
+        break;
+      case 'ArrowRight':
+        if (activeIndex < refs.length - 1) {
+          event.preventDefault();
+          setActiveIndex(activeIndex + 1);
+        }
+        break;
+      case 'ArrowDown':
+        if (activeIndex < refs.length - 7) {
+          event.preventDefault();
+          setActiveIndex(activeIndex + 7);
+        } else {
+          // todo
+        }
+        break;
+      case 'End':
+        event.preventDefault();
+        setActiveIndex(refs.length - 1);
+        break;
+      case 'Home':
+        event.preventDefault();
+        setActiveIndex(0);
+        break;
+      default:
+    }
+  }
+
+  function onFocus(event) {
+    const nextActiveIndex = refs.findIndex(ref => ref.current.contains(event.target));
+
+    if (nextActiveIndex !== -1) {
+      setActive(true);
+      setActiveIndex(nextActiveIndex);
+    }
+  }
 
   function onPreviousMonthPress() {
     const tmpDate = new Date(year, month - 1);
@@ -109,7 +177,7 @@ function Calendar(props) {
           onClick={onNextMonthPress}
         />
       </div>
-      <table className={styles['calendar-grid']}>
+      <table tabIndex={0} className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
         <thead>
           <tr>
             {getHeadCell(headIterator)}
@@ -123,58 +191,58 @@ function Calendar(props) {
         </thead>
         <tbody>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
           <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
+            {getCell(iterator, month, highlightedDate, refs)}
           </tr>
         </tbody>
       </table>
@@ -184,6 +252,7 @@ function Calendar(props) {
 
 Calendar.propTypes = {
   value: PropTypes.string,
+  refs: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 Calendar.defaultProps = {
