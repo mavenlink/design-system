@@ -2,6 +2,9 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import arrowLeft from '../../svgs/arrow-left.svg';
+import arrowRight from '../../svgs/arrow-right.svg';
+import IconButton from '../icon-button/icon-button.jsx';
 import styles from './calendar.css';
 
 function getDateIterator(year, month) {
@@ -69,33 +72,39 @@ function Calendar(props) {
     setYear(tmpDate.getFullYear());
   }
 
-  const calendarDate = new Date(year, month, date);
+  const previousCalendarMonth = new Date(year, month - 1);
+  const currentCalendarMonth = new Date(year, month);
+  const nextCalendarMonth = new Date(year, month + 1);
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button
-          className={styles['month-button']}
+        <IconButton
+          icon={arrowLeft}
+          label={`Change calendar to ${previousCalendarMonth.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+          })}`}
           onClick={onPreviousMonthPress}
-        >
-          Prev
-        </button>
+        />
         <button
           className={styles['year-button']}
         >
-          {calendarDate.toLocaleDateString(undefined, {
+          {currentCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
             month: 'long',
           })}
         </button>
-        <button
-          className={styles['month-button']}
+        <IconButton
+          icon={arrowRight}
+          label={`Change calendar to ${nextCalendarMonth.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+          })}`}
           onClick={onNextMonthPress}
-        >
-            Next
-        </button>
+        />
       </div>
       <table className={styles['calendar-grid']}>
         <thead>

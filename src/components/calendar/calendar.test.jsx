@@ -21,27 +21,28 @@ describe('<Calendar />', () => {
 
   it('renders the previous month', () => {
     render(<Calendar {...requiredProps} />);
-    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to June 2020' }));
     expect(screen.getByText('31')).toHaveClass('not-current-date');
     expect(screen.getAllByText('1')[0]).toHaveClass('date');
     expect(screen.getAllByText('1')[1]).toHaveClass('not-current-date');
+    expect(screen.getAllByText('11')[1]).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
   it('renders the previous year', () => {
     render(<Calendar {...requiredProps} />);
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
-    userEvent.click(screen.getByText('Prev'));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to June 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to May 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to April 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to March 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to February 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to January 2020' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to December 2019' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to November 2019' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to October 2019' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to September 2019' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to August 2019' }));
+    userEvent.click(screen.getByRole('button', { name: 'Change calendar to July 2019' }));
     expect(screen.getAllByText('30')[0]).toHaveClass('not-current-date');
     expect(screen.getAllByText('30')[1]).toHaveClass('date');
     expect(screen.getAllByText('1')[0]).toHaveClass('date');
@@ -52,7 +53,7 @@ describe('<Calendar />', () => {
   describe('previous month button', () => {
     it('displays the previous month', () => {
       render(<Calendar {...requiredProps} />);
-      userEvent.click(screen.getByText('Prev'));
+      userEvent.click(screen.getByRole('button', { name: 'Change calendar to June 2020' }));
       expect(screen.getByText('June 2020')).toBeInTheDocument();
     });
   });
@@ -60,7 +61,7 @@ describe('<Calendar />', () => {
   describe('next month button', () => {
     it('displays the next month', () => {
       render(<Calendar {...requiredProps} />);
-      userEvent.click(screen.getByText('Next'));
+      userEvent.click(screen.getByRole('button', { name: 'Change calendar to August 2020' }));
       expect(screen.getByText('August 2020')).toBeInTheDocument();
     });
   });

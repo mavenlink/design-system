@@ -9,21 +9,39 @@ exports[`<Calendar /> has defaults 1`] = `
       <div
         class="header"
       >
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Prev
-        </button>
+          <title>
+            Change calendar to June 2020
+          </title>
+          <use
+            xlink:href="#arrow-left.svg"
+          />
+        </svg>
         <button
           class="year-button"
         >
           July 2020
         </button>
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Next
-        </button>
+          <title>
+            Change calendar to August 2020
+          </title>
+          <use
+            xlink:href="#arrow-right.svg"
+          />
+        </svg>
       </div>
       <table
         class="calendar-grid"
@@ -306,21 +324,39 @@ exports[`<Calendar /> renders the previous month 1`] = `
       <div
         class="header"
       >
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Prev
-        </button>
+          <title>
+            Change calendar to May 2020
+          </title>
+          <use
+            xlink:href="#arrow-left.svg"
+          />
+        </svg>
         <button
           class="year-button"
         >
           June 2020
         </button>
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Next
-        </button>
+          <title>
+            Change calendar to July 2020
+          </title>
+          <use
+            xlink:href="#arrow-right.svg"
+          />
+        </svg>
       </div>
       <table
         class="calendar-grid"
@@ -603,21 +639,39 @@ exports[`<Calendar /> renders the previous year 1`] = `
       <div
         class="header"
       >
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Prev
-        </button>
+          <title>
+            Change calendar to June 2019
+          </title>
+          <use
+            xlink:href="#arrow-left.svg"
+          />
+        </svg>
         <button
           class="year-button"
         >
           July 2019
         </button>
-        <button
-          class="month-button"
+        <svg
+          class="icon-base"
+          height="8"
+          role="button"
+          tabindex="0"
+          width="12"
         >
-          Next
-        </button>
+          <title>
+            Change calendar to August 2019
+          </title>
+          <use
+            xlink:href="#arrow-right.svg"
+          />
+        </svg>
       </div>
       <table
         class="calendar-grid"

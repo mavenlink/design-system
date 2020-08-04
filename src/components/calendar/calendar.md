@@ -7,6 +7,8 @@
 | Space, Enter | Change month button | Changes the month to the previous or next month |
 | Space, Enter | Change year button | Changes the calendar to a list of years |
 | Space, Enter | Date | Selects the active date |
+| Left arrow | Date | Moves the focus to the previous date |
+| Right arrow | Date | Moves the focus to the next date |
 | Up arrow | Date | Moves the focus to the previous week |
 | Down arrow | Date | Moves the focus to the next week |
 | Home | Date | Moves the focus to the beginning of the week |
@@ -25,6 +27,12 @@
 | Down arrow | Year | Moves the focus to the next year |
 | Home | Year | Moves the focus to the first year in the list |
 | End | Year | Moves the focus to the last year in the list |
+
+## Label Support
+
+| Element | Label |
+| --- | --- |
+| Change month button | Change month to MONTH YEAR |
 
 
 ```jsx

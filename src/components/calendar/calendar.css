@@ -13,13 +13,10 @@
 }
 
 .header {
+  align-items: center;
   display: flex;
   padding-bottom: var(--spacing-large);
   padding-top: var(--spacing-large);
-}
-
-.month-button {
-  flex-grow: 0;
 }
 
 .year-button {
