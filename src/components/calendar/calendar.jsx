@@ -99,7 +99,11 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}
-          <Icon icon={caretDown} v={2} />
+          <Icon
+            className={styles['change-year-icon']}
+            icon={caretDown}
+            v={2}
+          />
         </button>
         <IconButton
           className={styles['change-month-button']}
