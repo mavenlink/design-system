@@ -20,3 +20,4 @@ In order to reduce overhead in maintaing PRs, please follow these rules:
 - [ ] Deployment URL: https://mavenlink.github.io/design-system/$BRANCH
 - [ ] (When ready for review) Reviewer(s)
 - [ ] Green Bigmaven CI check
+- [ ] DevQA on Bigmaven staging (e.g. does the work need to be imported in the internal design system?)
