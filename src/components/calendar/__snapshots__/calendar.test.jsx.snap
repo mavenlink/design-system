@@ -27,6 +27,16 @@ exports[`<Calendar /> has defaults 1`] = `
           class="year-button"
         >
           July 2020
+          <svg
+            class="icon-base"
+            height="32"
+            role="img"
+            width="32"
+          >
+            <use
+              xlink:href="#caret-down.svg"
+            />
+          </svg>
         </button>
         <svg
           class="icon-base"
@@ -342,6 +352,16 @@ exports[`<Calendar /> renders the previous month 1`] = `
           class="year-button"
         >
           June 2020
+          <svg
+            class="icon-base"
+            height="32"
+            role="img"
+            width="32"
+          >
+            <use
+              xlink:href="#caret-down.svg"
+            />
+          </svg>
         </button>
         <svg
           class="icon-base"
@@ -657,6 +677,16 @@ exports[`<Calendar /> renders the previous year 1`] = `
           class="year-button"
         >
           July 2019
+          <svg
+            class="icon-base"
+            height="32"
+            role="img"
+            width="32"
+          >
+            <use
+              xlink:href="#caret-down.svg"
+            />
+          </svg>
         </button>
         <svg
           class="icon-base"

@@ -4,7 +4,9 @@ import React, {
 import PropTypes from 'prop-types';
 import arrowLeft from '../../svgs/arrow-left.svg';
 import arrowRight from '../../svgs/arrow-right.svg';
+import caretDown from '../../svgs/caret-down.svg';
 import IconButton from '../icon-button/icon-button.jsx';
+import Icon from '../icon/icon.jsx';
 import styles from './calendar.css';
 
 function getDateIterator(year, month) {
@@ -96,6 +98,7 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}
+          <Icon icon={caretDown} v={2} />
         </button>
         <IconButton
           icon={arrowRight}
