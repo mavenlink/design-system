@@ -7,6 +7,10 @@ import Icon from './icon.jsx';
 describe('Icon', () => {
   const requiredProps = {
     name: 'foobar',
+    icon: {
+      id: 'foobar',
+      viewBox: '0 0 0 0',
+    },
   };
 
   it('has defaults', () => {
@@ -34,13 +38,21 @@ describe('Icon', () => {
     });
   });
 
-  describe('height API', () => {
-    it('can be set', () => {
+  describe('icon API', () => {
+    it('sets the height', () => {
       render((
-        <Icon {...requiredProps} height={11} />
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
       ));
 
       expect(screen.getByRole('img')).toHaveAttribute('height', '11');
+    });
+
+    it('sets the width', () => {
+      render((
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
+      ));
+
+      expect(screen.getByRole('img')).toHaveAttribute('width', '10');
     });
   });
 
@@ -278,6 +290,35 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
     });
+
+    describe('v2', () => {
+      it('skips fill, stroke, and currentColor', () => {
+        render(<Icon {...requiredProps} className="i-am-a-classname" v={2} />);
+
+        expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
+
+        expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-action');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-none');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
+
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
+
+        expect(screen.getByRole('img')).not.toHaveClass('color-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('color-action');
+        expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('color-none');
+        expect(screen.getByRole('img')).not.toHaveClass('color-skip');
+      });
+    });
   });
 
   describe('onClick API', () => {
@@ -299,16 +340,6 @@ describe('Icon', () => {
       ));
       fireEvent.keyDown(screen.getByRole('img').firstChild, { key: 'Enter', code: 'Enter' });
       expect(onEnterSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('width API', () => {
-    it('can be set', () => {
-      render((
-        <Icon {...requiredProps} width={10} />
-      ));
-
-      expect(screen.getByRole('img')).toHaveAttribute('width', '10');
     });
   });
 });

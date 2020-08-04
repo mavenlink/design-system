@@ -15,13 +15,17 @@
 .header {
   align-items: center;
   display: flex;
+  justify-content: space-between;
   padding-bottom: var(--spacing-large);
   padding-top: var(--spacing-large);
 }
 
 .year-button {
+  background-color: var(--white);
+  border: none;
   color: var(--black);
-  flex-grow: 1;
+  cursor: pointer;
+  font: var(--mds-type-subhead-3)
 }
 
 .calendar-grid {

@@ -41,13 +41,13 @@ describe('<IconButton />', () => {
       expect(screen.getByRole('button', { name: 'Test label' }).children[1]).toHaveAttribute('xlink:href', '#unique-id');
     });
 
-    it('sets the width', () => {
-      render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, viewBox: '1 2 3 41'}} />);
+    it('sets the height', () => {
+      render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, viewBox: '1 2 3 41' }} />);
       expect(screen.getByRole('button', { name: 'Test label' })).toHaveAttribute('height', '41');
     });
 
     it('sets the width', () => {
-      render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, viewBox: '1 2 42 4'}} />);
+      render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, viewBox: '1 2 42 4' }} />);
       expect(screen.getByRole('button', { name: 'Test label' })).toHaveAttribute('width', '42');
     });
   });
