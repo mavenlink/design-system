@@ -10,6 +10,9 @@
   - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
   - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
   - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` accessibility improvements.
+  - Minor: Implement static `Calendar` component
+  - Minor: Implement `Icon` v2 API
+  - Minor: Implement `IconButton` component
 </details>
 
 ## v0.34.0 (July 27, 2020)
