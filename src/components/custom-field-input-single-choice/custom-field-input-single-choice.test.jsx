@@ -106,6 +106,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByText('No options available.')).toBeInTheDocument();
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} choices={[{ id: '1', label: 'yo' }]} />);
+      userEvent.click(screen.getAllByLabelText('Test label')[0]);
+      userEvent.click(screen.getByText('yo'));
     });
   });
 
@@ -337,7 +339,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(changeValue).toStrictEqual([1]);
 
-      userEvent.click(screen.getAllByRole('img')[0]);
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('now I\'m aching for you'));
 
