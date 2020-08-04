@@ -27,7 +27,7 @@
   color: var(--black);
   cursor: pointer;
   display: inline-flex;
-  font: var(--mds-type-subhead-3)
+  font: var(--mds-type-subhead-3);
 }
 
 .calendar-grid {
