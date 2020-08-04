@@ -30,6 +30,11 @@
   font: var(--mds-type-subhead-3);
 }
 
+.change-month-button {
+  composes: icon-base from '../icon/icon.css';
+  padding: var(--spacing-medium);
+}
+
 .calendar-grid {
   border-collapse: collapse;
 }

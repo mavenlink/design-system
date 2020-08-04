@@ -84,6 +84,7 @@ function Calendar(props) {
     <div className={styles.container}>
       <div className={styles.header}>
         <IconButton
+          className={styles['change-month-button']}
           icon={arrowLeft}
           label={`Change calendar to ${previousCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
@@ -101,6 +102,7 @@ function Calendar(props) {
           <Icon icon={caretDown} v={2} />
         </button>
         <IconButton
+          className={styles['change-month-button']}
           icon={arrowRight}
           label={`Change calendar to ${nextCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
