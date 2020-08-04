@@ -11,6 +11,7 @@
   - Patch: Fix a bug in `CustomFieldInputSingleChoice` related to differing number of `useRef` calls between renders
   - Minor: Add `className` prop to `CustomFieldInputSingleChoice`
   - Minor: Add `onChange` function prop to `CustomFieldInputSingleChoice`
+  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` accessibility improvements.
 </details>
 
 ## v0.34.0 (July 27, 2020)

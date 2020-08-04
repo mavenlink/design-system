@@ -47,6 +47,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const clear = () => {
     setValue(undefined);
     setSearchValue(undefined);
+    inputRef.current.focus();
   };
 
   const clearIcon = () => {
@@ -54,6 +55,9 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
       return (<Icon
         name={iconClear.id}
         onClick={clear}
+        onEnter={clear}
+        ariaLabel={'Remove selected choice'}
+        role={'button'}
       />);
     }
 
