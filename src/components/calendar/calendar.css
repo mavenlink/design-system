@@ -31,14 +31,14 @@
 }
 
 .change-year-icon {
-  composes: icon-base from '../icon/icon.css';
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   padding-bottom: var(--spacing-medium);
   padding-left: var(--spacing-medium);
   padding-top: var(--spacing-medium);
 }
 
 .change-month-button {
-  composes: icon-base from '../icon/icon.css';
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   padding: var(--spacing-medium);
 }
 
