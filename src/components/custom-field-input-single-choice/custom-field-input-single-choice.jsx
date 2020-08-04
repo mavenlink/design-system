@@ -182,7 +182,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 });
 
 const ChoiceType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
 });
 
