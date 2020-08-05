@@ -20,7 +20,6 @@ function getHeadCell(iterator) {
     weekday: 'narrow',
   });
 
-  // This needs to occur at the end of this function
   iterator.setDate(date + 1);
 
   return (
@@ -46,7 +45,6 @@ function getCell(iterator, month, highlightedDate) {
   const date = iterator.getDate();
   const className = getCellClassName(iterator, month, highlightedDate);
 
-  // This needs to occur at the end of this function
   iterator.setDate(date + 1);
 
   return (
