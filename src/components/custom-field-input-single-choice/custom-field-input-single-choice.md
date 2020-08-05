@@ -14,7 +14,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 <CustomFieldInputSingleChoice
   id="default-example-2"
   label="Default Example 1"
-  value={{ id: '1', label: 'I am a value' }}
+  value={{ id: 1, label: 'I am a value' }}
 />
 ```
 
@@ -33,14 +33,14 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   id="read-only-example-2"
   label="Read Only Example 2"
   readOnly
-  value={{ id: '2', label: 'I am a value' }}
+  value={{ id: 2, label: 'I am a value' }}
 />
 ```
 
 ### Editable examples
 
 ```js
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map((i, index) => ({ id: index, label: i }));
 
 <CustomFieldInputSingleChoice
   choices={choices}
@@ -51,7 +51,7 @@ const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the quest
 ```
 
 ```js
-const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i }));
+const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: index, label: i }));
 
 <CustomFieldInputSingleChoice
   id="editable-example-2"
@@ -63,7 +63,7 @@ const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: `${index}`, label: i
 
 ##### Error:
 ```jsx
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map(i => ({ id: i, label: i }));
+const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map((i, index) => ({ id: index, label: i }));
 
 <CustomFieldInputSingleChoice
   id="error-example-1"

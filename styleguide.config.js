@@ -35,7 +35,7 @@ module.exports = {
       sectionDepth: 1,
     },
     {
-      name: 'List of Icons',
+      name: 'Icon Library',
       content: './styleguide/content/icons/index.md',
     },
     {
