@@ -45,23 +45,23 @@ function getCellClassName(iterator, month, highlightedDate) {
 
 function Calendar(props) {
   const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
-  const focusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
-  // const [date] = useState(highlightedDate.getDate());
-
   const [active, setActive] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  let refs = [];
+  const [focusedDate, setFocusedDate] = useState(new Date(props.value ? `${props.value}T00:00` : Date.now()));
+  let refs = {};
 
   const getCell = (iterator, cellMonth, cellHighlightedDate) => {
     const date = iterator.getDate();
     const className = getCellClassName(iterator, cellMonth, cellHighlightedDate);
     const ref = React.createRef();
-    refs = [ref, ...refs];
 
-    const sameDay = iterator.getDate() === focusedDate.getDate() && iterator.getMonth() === focusedDate.getMonth();
-    const tabIndex = sameDay ? 0 : null;
+    const cellRef = {};
+    cellRef[iterator.toDateString()] = ref;
+    refs = { ...cellRef, ...refs };
+
+    const sameDate = iterator.getDate() === focusedDate.getDate() && iterator.getMonth() === focusedDate.getMonth();
+    const tabIndex = sameDate ? 0 : null;
 
     // This needs to occur at the end of this function
     iterator.setDate(date + 1); return (
@@ -72,72 +72,92 @@ function Calendar(props) {
   };
 
   useEffect(() => {
-    refs.forEach((ref, index) => {
-      if (active) {
-        // ref.current.setIsActive(index === activeIndex);
-      }
-    });
-  }, [active, activeIndex]);
+    const ref = refs[focusedDate.toDateString()];
+    if (ref) {
+      ref.current.focus();
+    }
+  }, [focusedDate]);
+
+  function handleKeyboardDateChange(dateAmount) {
+    const newDate = new Date(focusedDate.setDate(focusedDate.getDate() + dateAmount));
+    setFocusedDate(newDate);
+    const ref = refs[newDate.toDateString()];
+    if (!ref) {
+      changeMonth(Math.abs(dateAmount) / dateAmount);
+    }
+  }
 
   function onKeyDown(event) {
     switch (event.key) {
       case 'ArrowLeft':
-        if (activeIndex > 0) {
+        if (active) {
           event.preventDefault();
-          setActiveIndex(activeIndex - 1);
+          handleKeyboardDateChange(-1);
         }
         break;
       case 'ArrowUp':
-        if (activeIndex > 7) {
+        if (active) {
           event.preventDefault();
-          setActiveIndex(activeIndex - 7);
-        } else {
-          // todo
+          handleKeyboardDateChange(-7);
         }
         break;
       case 'ArrowRight':
-        if (activeIndex < refs.length - 1) {
+        if (active) {
           event.preventDefault();
-          setActiveIndex(activeIndex + 1);
+          handleKeyboardDateChange(1);
         }
         break;
       case 'ArrowDown':
-        if (activeIndex < refs.length - 7) {
+        if (active) {
           event.preventDefault();
-          setActiveIndex(activeIndex + 7);
-        } else {
-          // todo
+          handleKeyboardDateChange(7);
         }
         break;
       case 'End':
-        event.preventDefault();
-        setActiveIndex(refs.length - 1);
+        if (active) {
+          event.preventDefault();
+          handleKeyboardDateChange(6 - focusedDate.getDay());
+        }
         break;
       case 'Home':
-        event.preventDefault();
-        setActiveIndex(0);
+        if (active) {
+          event.preventDefault();
+          handleKeyboardDateChange(0 - focusedDate.getDay());
+        }
+        break;
+      case 'PageUp':
+        if (active) {
+          event.preventDefault();
+          handleKeyboardDateChange(0);
+        }
+        break;
+      case 'PageDown':
+        if (active) {
+          event.preventDefault();
+          handleKeyboardDateChange();
+        }
         break;
       default:
     }
   }
 
   function onFocus(event) {
-    const nextActiveIndex = refs.findIndex(ref => ref.current.contains(event.target));
-
-    if (nextActiveIndex !== -1) {
+    const activeRef = Object.values(refs).find(ref => ref.current.contains(event.target));
+    if (activeRef) {
       setActive(true);
-      setActiveIndex(nextActiveIndex);
     }
   }
 
   function onPreviousMonthPress() {
-    const tmpDate = new Date(year, month - 1);
-    setMonth(tmpDate.getMonth());
-    setYear(tmpDate.getFullYear());
+    changeMonth(-1);
   }
 
   function onNextMonthPress() {
-    const tmpDate = new Date(year, month + 1);
+    changeMonth(1);
+  }
+
+  function changeMonth(monthAmount) {
+    const tmpDate = new Date(year, month + monthAmount);
     setMonth(tmpDate.getMonth());
     setYear(tmpDate.getFullYear());
   }
@@ -177,7 +197,7 @@ function Calendar(props) {
           onClick={onNextMonthPress}
         />
       </div>
-      <table tabIndex={0} className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
+      <table lassName={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
         <thead>
           <tr>
             {getHeadCell(headIterator)}
@@ -252,7 +272,7 @@ function Calendar(props) {
 
 Calendar.propTypes = {
   value: PropTypes.string,
-  refs: PropTypes.arrayOf(PropTypes.any).isRequired,
+  refs: PropTypes.Object,
 };
 
 Calendar.defaultProps = {

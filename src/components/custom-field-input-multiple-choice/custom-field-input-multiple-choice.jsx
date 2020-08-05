@@ -158,8 +158,7 @@ function CustomFieldInputMultipleChoice(props) {
                 fill="skip"
                 name={iconClear.id}
                 onClick={onChoicesClear}
-                onEnter={clearChoices}
-                tabable={true}
+
                 ariaLabel={`Remove all selected choices on ${props.label}`}
                 role="button"
               />
