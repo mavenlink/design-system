@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`
 </details>
 
 ## v0.35.0 (August 5, 2020)
