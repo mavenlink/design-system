@@ -162,6 +162,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         choices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles.dropdown}
+            ariaExpanded={true}
             labelledBy={`${props.id}-label`}
             onChange={onSelectionChange}
             refs={refs}

@@ -90,6 +90,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
       expect(screen.getByLabelText('Test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
     });
+
+    it('has aria-expanded for accessibility', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByLabelText('Test label', { selector: 'ul[aria-expanded=true]' })).toBeInTheDocument();
+    });
   });
 
   describe('choices', () => {

@@ -8,6 +8,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
+import CustomFieldInputSingleChoice from "../custom-field-input-single-choice/custom-field-input-single-choice";
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
@@ -60,6 +61,12 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       it('has aria-haspopup for accessibility', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} />);
         expect(screen.getByLabelText('test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
+      });
+
+      it('has aria-expanded for accessibility', () => {
+        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        userEvent.click(screen.getByText('test label'));
+        expect(screen.getByLabelText('test label', { selector: 'ul[aria-expanded=true]' })).toBeInTheDocument();
       });
     });
 

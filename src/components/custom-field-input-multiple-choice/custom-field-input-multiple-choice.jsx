@@ -176,6 +176,7 @@ function CustomFieldInputMultipleChoice(props) {
           <Listbox
             className={styles['popup-container']}
             labelledBy={`${props.id}-label`}
+            ariaExpanded={true}
             refs={choicesRefs}
           >
             {visibleChoices.map((choice, index) => (
