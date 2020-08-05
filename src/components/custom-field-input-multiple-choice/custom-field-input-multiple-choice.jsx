@@ -1,8 +1,10 @@
 import React, {
   createRef,
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
+  forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
@@ -26,7 +28,7 @@ function getClassName(readOnly, errorText) {
   return styles['read-write-container'];
 }
 
-function CustomFieldInputMultipleChoice(props) {
+const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   const autocompleteRef = useRef();
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
@@ -38,6 +40,8 @@ function CustomFieldInputMultipleChoice(props) {
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
   const renderPopup = !props.readOnly && expanded;
+  const backupRef = useRef();
+  const selfRef = ref || backupRef;
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -99,6 +103,16 @@ function CustomFieldInputMultipleChoice(props) {
     }
   }, [expanded]);
 
+  useEffect(() => {
+    props.onChange(selfRef.current);
+  }, [value]);
+
+  useImperativeHandle(selfRef, () => ({
+    id: props.id,
+    get value() {
+      return value ? value.map(v => v.id) : [];
+    },
+  }));
   return (
     <div ref={wrapperRef}>
       <FormControl
@@ -192,25 +206,26 @@ function CustomFieldInputMultipleChoice(props) {
       </FormControl>
     </div>
   );
-}
+});
+
+const ChoiceType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+});
 
 CustomFieldInputMultipleChoice.propTypes = {
-  choices: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
+  choices: PropTypes.arrayOf(ChoiceType).isRequired,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   readOnly: PropTypes.bool,
-  value: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
+  value: PropTypes.arrayOf(ChoiceType),
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
   errorText: undefined,
+  onChange: () => {},
   readOnly: false,
   value: [],
 };
