@@ -1,5 +1,7 @@
 import React, {
+  createRef,
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -22,9 +24,11 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
   const inputRef = useRef();
+  const backupRef = useRef();
+  const selfRef = ref || backupRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
-  const refs = props.choices.map(() => useRef());
+  const refs = props.choices.map(() => createRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
     name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
@@ -122,8 +126,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     const newValue = event.target.value;
 
     if (newValue === '') {
-      setValue(undefined);
-      setSearchValue(undefined);
+      clear();
       return;
     }
 
@@ -131,17 +134,21 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     setShowOptions(true);
   }
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(selfRef, () => ({
     id: props.id,
     get value() {
-      return value;
+      return value ? [Number(value.id)] : [];
     },
   }));
+
+  useEffect(() => {
+    props.onChange(selfRef.current);
+  }, [value]);
 
   const choices = getOptions();
 
   return (
-    <div ref={wrapperRef} className={styles.container}>
+    <div ref={wrapperRef} className={props.className}>
       <AbstractCustomField
         icon={caretIcon}
         clear={clearIcon()}
@@ -175,14 +182,16 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 });
 
 const ChoiceType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
 });
 
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   choices: PropTypes.arrayOf(ChoiceType),
+  className: PropTypes.string,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -192,6 +201,8 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
+  className: styles.container,
+  onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
