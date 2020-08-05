@@ -59,7 +59,6 @@ function Calendar(props) {
   const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
-  // const [date] = useState(highlightedDate.getDate());
 
   function onPreviousMonthPress() {
     const tmpDate = new Date(year, month - 1);
