@@ -30,11 +30,12 @@ function getHeadCell(iterator) {
 }
 
 function getCellClassName(iterator, month, highlightedDate) {
-  if (
+  const isHighlightedDate =
     highlightedDate.getFullYear() === iterator.getFullYear()
     && highlightedDate.getMonth() === iterator.getMonth()
-    && highlightedDate.getDate() === iterator.getDate()
-  ) return styles['highlighted-date'];
+    && highlightedDate.getDate() === iterator.getDate();
+
+  if (isHighlightedDate) return styles['highlighted-date'];
 
   if (iterator.getMonth() === month) return styles.date;
 
