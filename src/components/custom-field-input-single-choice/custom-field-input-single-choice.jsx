@@ -137,7 +137,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   useImperativeHandle(selfRef, () => ({
     id: props.id,
     get value() {
-      return value ? [Number(value.id)] : [];
+      return value ? [value.id] : [];
     },
   }));
 
