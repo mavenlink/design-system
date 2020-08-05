@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
+import styles from './icon-button.css';
 
 export default function IconButton(props) {
   return (
@@ -31,5 +32,5 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
-  className: undefined,
+  className: styles.button,
 };

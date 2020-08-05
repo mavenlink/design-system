@@ -38,7 +38,7 @@
 }
 
 .change-month-button {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  composes: button from '../icon-button/icon-button.css'; /* stylelint-disable-line css-modules/composed-class-names */
   padding: var(--spacing-medium);
 }
 
