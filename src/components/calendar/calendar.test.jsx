@@ -51,6 +51,11 @@ describe('<Calendar />', () => {
   });
 
   describe('accessibility', () => {
+    it('does not steal focus on mount', () => {
+      render(<Calendar {...requiredProps} />);
+      expect(document.body).toHaveFocus();
+    });
+
     describe('when a date is focused', () => {
       it('selects the active date on Enter', () => {
         render(<Calendar {...requiredProps} />);

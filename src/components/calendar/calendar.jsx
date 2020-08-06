@@ -88,7 +88,7 @@ function Calendar(props) {
 
   useEffect(() => {
     const ref = refs[focusedDate.toDateString()];
-    if (ref) {
+    if (active && ref) {
       ref.current.focus();
     }
   }, [focusedDate]);
@@ -132,11 +132,9 @@ function Calendar(props) {
       },
     };
 
-    if (active) {
-      if (Object.keys(keyDownKeyHandlers).includes(event.key)) {
-        event.preventDefault();
-        keyDownKeyHandlers[event.key]();
-      }
+    if (Object.keys(keyDownKeyHandlers).includes(event.key)) {
+      event.preventDefault();
+      keyDownKeyHandlers[event.key]();
     }
   }
 
