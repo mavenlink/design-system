@@ -10,7 +10,7 @@ exports[`<Calendar /> has defaults 1`] = `
         class="header"
       >
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"
@@ -28,10 +28,10 @@ exports[`<Calendar /> has defaults 1`] = `
         >
           July 2020
           <svg
-            class="icon-base"
-            height="32"
+            class="change-year-icon"
+            height="6"
             role="img"
-            width="32"
+            width="10"
           >
             <use
               xlink:href="#caret-down.svg"
@@ -39,7 +39,7 @@ exports[`<Calendar /> has defaults 1`] = `
           </svg>
         </button>
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"
@@ -335,7 +335,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
         class="header"
       >
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"
@@ -353,10 +353,10 @@ exports[`<Calendar /> renders the previous month 1`] = `
         >
           June 2020
           <svg
-            class="icon-base"
-            height="32"
+            class="change-year-icon"
+            height="6"
             role="img"
-            width="32"
+            width="10"
           >
             <use
               xlink:href="#caret-down.svg"
@@ -364,7 +364,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </svg>
         </button>
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"
@@ -660,7 +660,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
         class="header"
       >
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"
@@ -678,10 +678,10 @@ exports[`<Calendar /> renders the previous year 1`] = `
         >
           July 2019
           <svg
-            class="icon-base"
-            height="32"
+            class="change-year-icon"
+            height="6"
             role="img"
-            width="32"
+            width="10"
           >
             <use
               xlink:href="#caret-down.svg"
@@ -689,7 +689,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </svg>
         </button>
         <svg
-          class="icon-base"
+          class="change-month-button"
           height="8"
           role="button"
           tabindex="0"

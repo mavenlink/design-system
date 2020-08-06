@@ -7,13 +7,18 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` now indicates to the user when no options are available
-  - Minor: Add `NoOptions` component to indicate a lack of options for single and multi choice custom fields
-  - Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` accessibility improvements.
   - Minor: Implement static `Calendar` component
   - Minor: Implement `Icon` v2 API
   - Minor: Implement `IconButton` component
 </details>
+
+## v0.35.0 (August 5, 2020)
+- Major: CustomFieldInputSingleChoice's `value` on `ref` is now an array containing the `id` of the chosen option
+  - Upgrading: ensure that areas of code using `value` expect this new format
+- Patch: Fix a bug in `CustomFieldInputSingleChoice` related to differing number of `useRef` calls between renders
+- Minor: Add `className` prop to `CustomFieldInputSingleChoice`
+- Minor: Add `onChange` function prop to `CustomFieldInputSingleChoice`
+- Minor: `CustomFieldInputSingleChoice` and `CustomFieldInputMultipleChoice` accessibility improvements.
 
 ## v0.34.0 (July 27, 2020)
 - Minor: Add colors v1 -> v2 upgrade guide for pre-existing Mavenlink code

@@ -21,7 +21,6 @@ function getHeadCell(iterator) {
     weekday: 'narrow',
   });
 
-  // This needs to occur at the end of this function
   iterator.setDate(date + 1);
 
   return (
@@ -32,11 +31,12 @@ function getHeadCell(iterator) {
 }
 
 function getCellClassName(iterator, month, highlightedDate) {
-  if (
+  const isHighlightedDate =
     highlightedDate.getFullYear() === iterator.getFullYear()
     && highlightedDate.getMonth() === iterator.getMonth()
-    && highlightedDate.getDate() === iterator.getDate()
-  ) return styles['highlighted-date'];
+    && highlightedDate.getDate() === iterator.getDate();
+
+  if (isHighlightedDate) return styles['highlighted-date'];
 
   if (iterator.getMonth() === month) return styles.date;
 
@@ -172,6 +172,7 @@ function Calendar(props) {
     <div className={styles.container}>
       <div className={styles.header}>
         <IconButton
+          className={styles['change-month-button']}
           icon={arrowLeft}
           label={`Change calendar to ${previousCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
@@ -186,9 +187,14 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}
-          <Icon icon={caretDown} v={2} />
+          <Icon
+            className={styles['change-year-icon']}
+            icon={caretDown}
+            v={2}
+          />
         </button>
         <IconButton
+          className={styles['change-month-button']}
           icon={arrowRight}
           label={`Change calendar to ${nextCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',

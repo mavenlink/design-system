@@ -4,7 +4,7 @@ exports[`<IconButton /> has defaults 1`] = `
 <body>
   <div>
     <svg
-      class="icon-base"
+      class="button"
       height="4"
       role="button"
       tabindex="0"
