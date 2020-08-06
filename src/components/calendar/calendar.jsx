@@ -20,11 +20,14 @@ function getHeadCell(iterator) {
   const weekday = iterator.toLocaleDateString(undefined, {
     weekday: 'narrow',
   });
+  const uniqueWeekday = iterator.toLocaleDateString(undefined, {
+    weekday: 'short',
+  });
 
   iterator.setDate(date + 1);
 
   return (
-    <th key={`header-${date}`} className={styles.weekday}>
+    <th key={`header-${uniqueWeekday}`} className={styles.weekday}>
       {weekday}
     </th>
   );
@@ -164,32 +167,6 @@ function Calendar(props) {
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
 
-  const renderHeader = () => {
-    return (
-      <thead key={'thead'}>
-        <tr>
-          { [...Array(7)].map(() => getHeadCell(headIterator)) }
-        </tr>
-      </thead>
-    );
-  };
-
-  const renderWeek = () => {
-    return (
-      <tr>
-        { [...Array(7)].map(() => getCell(iterator, month, highlightedDate)) }
-      </tr>
-    );
-  };
-
-  const renderMonth = () => {
-    return (
-      <tbody key={'tbody'}>
-        { [...Array(6)].map(() => renderWeek()) }
-      </tbody>
-    );
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -226,8 +203,18 @@ function Calendar(props) {
         />
       </div>
       <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
-        { renderHeader() }
-        { renderMonth() }
+        <thead>
+          <tr>
+            {[...Array(7)].map(() => getHeadCell(headIterator))}
+          </tr>
+        </thead>
+        <tbody>
+          {[...Array(6)].map(() => (
+            <tr key={iterator.getTime()}>
+              {[...Array(7)].map(() => getCell(iterator, month, highlightedDate))}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
