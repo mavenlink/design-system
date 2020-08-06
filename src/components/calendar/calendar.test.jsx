@@ -73,4 +73,49 @@ describe('<Calendar />', () => {
       expect(screen.getByText('28')).toHaveClass('highlighted-date');
     });
   });
+
+  it('When a Date is focused and you press Space, Enter it Selects the active date', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Left arrow it Moves the focus to the previous date', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Right arrow it Moves the focus to the next date', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Up arrow it Moves the focus to the previous week', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Down arrow it Moves the focus to the next week', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Home it Moves the focus to the beginning of the week', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press End it Moves the focus to the end of the week', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Page Up it Changes the calendar to the previous month', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Page Down it Changes the calendar to the next month', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Shift + Page Up it Changes the calendar to the previous year', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
+  it('When a Date is focused and you press Shift + Page Down it Changes the calendar to the next year', () => {
+    render(<Calendar {...requiredProps} />);
+  });
+
 });
