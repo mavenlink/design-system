@@ -128,13 +128,15 @@ function Calendar(props) {
       case 'PageUp':
         if (active) {
           event.preventDefault();
-          handleKeyboardDateChange(0);
+          const numDays = new Date(focusedDate.getYear(), focusedDate.getMonth(), 0).getDate();
+          handleKeyboardDateChange(-numDays);
         }
         break;
       case 'PageDown':
         if (active) {
           event.preventDefault();
-          handleKeyboardDateChange();
+          const numDays = new Date(focusedDate.getYear(), focusedDate.getMonth() + 1, 0).getDate();
+          handleKeyboardDateChange(numDays);
         }
         break;
       default:
