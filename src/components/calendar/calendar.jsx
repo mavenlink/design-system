@@ -193,6 +193,32 @@ function Calendar(props) {
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
 
+  const renderHeader = () => {
+    return (
+      <thead>
+        <tr>
+          { [...Array(7)].map(() => getHeadCell(headIterator)) }
+        </tr>
+      </thead>
+    );
+  };
+
+  const renderWeek = () => {
+    return (
+      <tr>
+        { [...Array(7)].map(() => getCell(iterator, month, highlightedDate)) }
+      </tr>
+    );
+  };
+
+  const renderMonth = () => {
+    return (
+      <tbody>
+        { [...Array(6)].map(() => renderWeek()) }
+      </tbody>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -229,73 +255,8 @@ function Calendar(props) {
         />
       </div>
       <table lassName={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
-        <thead>
-          <tr>
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-            {getCell(iterator, month, highlightedDate, refs)}
-          </tr>
-        </tbody>
+        { renderHeader() }
+        { renderMonth() }
       </table>
     </div>
   );
@@ -303,7 +264,6 @@ function Calendar(props) {
 
 Calendar.propTypes = {
   value: PropTypes.string,
-  refs: PropTypes.Object,
 };
 
 Calendar.defaultProps = {
