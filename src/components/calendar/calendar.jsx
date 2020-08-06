@@ -254,7 +254,7 @@ function Calendar(props) {
           onClick={onNextMonthPress}
         />
       </div>
-      <table lassName={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
+      <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
         { renderHeader() }
         { renderMonth() }
       </table>
