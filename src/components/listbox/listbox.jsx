@@ -100,7 +100,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   return (
     <ul
       aria-labelledby={props.labelledBy}
-      aria-expanded={props.ariaExpanded}
+      aria-expanded={props.expanded}
       className={props.className}
       onClick={onClick}
       onFocus={onFocus}
@@ -124,7 +124,7 @@ Listbox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
-  ariaExpanded: PropTypes.bool,
+  expanded: PropTypes.bool,
   onChange: PropTypes.func,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
@@ -133,7 +133,7 @@ Listbox.propTypes = {
 Listbox.defaultProps = {
   className: styles.container,
   children: undefined,
-  ariaExpanded: false,
+  expanded: false,
   onChange: () => {},
   value: undefined,
 };
