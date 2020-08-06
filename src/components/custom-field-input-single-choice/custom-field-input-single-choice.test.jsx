@@ -382,16 +382,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       render(
         <div>
           <CustomFieldInputSingleChoice {...requiredProps} choices={choices} />
-          <button></button>
+          <input />
         </div>,
       );
 
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('broke my heart')).toBeInTheDocument();
 
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
       userEvent.tab();
       userEvent.tab();
 

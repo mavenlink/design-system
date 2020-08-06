@@ -274,7 +274,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
-  fdescribe('dropdown close behavior', () => {
+  describe('dropdown close behavior', () => {
     it('closes the dropdown when clicking outside', async () => {
       render(
         <div>
@@ -290,12 +290,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
 
     it('closes the dropdown when tabbing away', async () => {
-      console.log('my test');
-
       render(
         <div>
           <CustomFieldInputMultipleChoice {...requiredProps} />
-          <input/>
+          <input />
         </div>,
       );
 
@@ -305,11 +303,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.tab();
       userEvent.tab();
 
-
       await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
     });
 
-    xit('resets the inputs state', async () => {
+    it('resets the inputs state', async () => {
       render(
         <div>
           <span>CLOSE</span>
