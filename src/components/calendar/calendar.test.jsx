@@ -50,6 +50,58 @@ describe('<Calendar />', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  describe('accessibility', () => {
+    describe('when a date is focused', () => {
+      it('selects the active date on Enter', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('selects the active date on Space', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the previous date on LeftArrow', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the next date on RightArrow', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the previous week on UpArrow', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the next week on DownArrow', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the beginning of the week on Home', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('moves the focus to the end of the week on End', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('changes the calendar to the previous month on PageUp', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('changes the calendar to the next month on PageDown', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('changes the calendar to the previous year on Shift+PageUp', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+
+      it('changes the calendar to the next year on Shift+PageDown', () => {
+        render(<Calendar {...requiredProps} />);
+      });
+    });
+  });
+
   describe('previous month button', () => {
     it('displays the previous month', () => {
       render(<Calendar {...requiredProps} />);
@@ -74,48 +126,5 @@ describe('<Calendar />', () => {
     });
   });
 
-  it('When a Date is focused and you press Space, Enter it Selects the active date', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Left arrow it Moves the focus to the previous date', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Right arrow it Moves the focus to the next date', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Up arrow it Moves the focus to the previous week', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Down arrow it Moves the focus to the next week', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Home it Moves the focus to the beginning of the week', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press End it Moves the focus to the end of the week', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Page Up it Changes the calendar to the previous month', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Page Down it Changes the calendar to the next month', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Shift + Page Up it Changes the calendar to the previous year', () => {
-    render(<Calendar {...requiredProps} />);
-  });
-
-  it('When a Date is focused and you press Shift + Page Down it Changes the calendar to the next year', () => {
-    render(<Calendar {...requiredProps} />);
-  });
 
 });
