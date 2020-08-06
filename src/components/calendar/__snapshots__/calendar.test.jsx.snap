@@ -55,6 +55,7 @@ exports[`<Calendar /> has defaults 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -262,6 +263,7 @@ exports[`<Calendar /> has defaults 1`] = `
             </td>
             <td
               class="highlighted-date"
+              tabindex="0"
             >
               29
             </td>
@@ -380,6 +382,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -705,6 +708,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -902,6 +906,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
             </td>
             <td
               class="date"
+              tabindex="0"
             >
               29
             </td>

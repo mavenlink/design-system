@@ -24,7 +24,7 @@ function getHeadCell(iterator) {
   iterator.setDate(date + 1);
 
   return (
-    <th className={styles.weekday}>
+    <th key={`header-${date}`} className={styles.weekday}>
       {weekday}
     </th>
   );
@@ -64,6 +64,7 @@ function Calendar(props) {
 
   const getCell = (iterator, cellMonth, cellHighlightedDate) => {
     const date = iterator.getDate();
+    const dateMonth = iterator.getMonth();
     const className = getCellClassName(iterator, cellMonth, cellHighlightedDate);
     const ref = React.createRef();
 
@@ -71,12 +72,12 @@ function Calendar(props) {
     cellRef[iterator.toDateString()] = ref;
     refs = { ...cellRef, ...refs };
 
-    const sameDate = iterator.getDate() === focusedDate.getDate() && iterator.getMonth() === focusedDate.getMonth();
+    const sameDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
     const tabIndex = sameDate ? 0 : null;
 
     // This needs to occur at the end of this function
     iterator.setDate(date + 1); return (
-      <td tabIndex={tabIndex} className={className} ref={ref} >
+      <td key={`${dateMonth}-${date}`} tabIndex={tabIndex} className={className} ref={ref} >
         {date}
       </td>
     );
@@ -165,7 +166,7 @@ function Calendar(props) {
 
   const renderHeader = () => {
     return (
-      <thead>
+      <thead key={'thead'}>
         <tr>
           { [...Array(7)].map(() => getHeadCell(headIterator)) }
         </tr>
@@ -183,7 +184,7 @@ function Calendar(props) {
 
   const renderMonth = () => {
     return (
-      <tbody>
+      <tbody key={'tbody'}>
         { [...Array(6)].map(() => renderWeek()) }
       </tbody>
     );
