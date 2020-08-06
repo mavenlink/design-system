@@ -1,0 +1,82 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
+
+.container {
+  border: 1px solid var(--mds-grey-38);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding-bottom: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+  width: fit-content;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-large);
+  padding-top: var(--spacing-large);
+}
+
+.year-button {
+  align-items: center;
+  background-color: var(--white);
+  border: none;
+  color: var(--black);
+  cursor: pointer;
+  display: inline-flex;
+  font: var(--mds-type-subhead-3);
+}
+
+.change-year-icon {
+  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  padding-bottom: var(--spacing-medium);
+  padding-left: var(--spacing-medium);
+  padding-top: var(--spacing-medium);
+}
+
+.change-month-button {
+  composes: button from '../icon-button/icon-button.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  padding: var(--spacing-medium);
+}
+
+.calendar-grid {
+  border-collapse: collapse;
+}
+
+.weekday {
+  color: var(--black);
+  font: var(--mds-type-subhead-3);
+  padding-bottom: var(--spacing-medium);
+  padding-top: var(--spacing-medium);
+}
+
+.date {
+  box-sizing: border-box;
+  color: var(--black);
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  text-align: center;
+  vertical-align: middle; /* Override bigmaven global pollution */
+  width: var(--spacing-x-large);
+}
+
+.not-current-date {
+  composes: date;
+  background-color: var(--mds-grey-3);
+}
+
+.highlighted-date {
+  composes: date;
+  background-color: var(--mds-grey-54);
+  border-radius: 3px;
+  color: var(--white);
+}
+
+.date:hover {
+  background-color: var(--mds-grey-12);
+  color: var(--black);
+  border-radius: 3px;
+}
