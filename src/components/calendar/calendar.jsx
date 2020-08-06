@@ -43,6 +43,17 @@ function getCellClassName(iterator, month, highlightedDate) {
   return styles['not-current-date'];
 }
 
+function isEndDate(date) {
+  const nextDate = new Date(date.getYear(), date.getMonth(), date.getDate() + 1);
+  return date.getMonth() !== nextDate.getMonth();
+}
+
+function getDaysInMonth(date, nextMonth) {
+  let month = date.getMonth() + nextMonth;
+  if (isEndDate(date)) month += 1;
+  return new Date(date.getYear(), month, 0).getDate();
+}
+
 function Calendar(props) {
   const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
@@ -78,13 +89,17 @@ function Calendar(props) {
     }
   }, [focusedDate]);
 
+  function handleKeyboardYearChange(direction) {
+    changeMonth(12 * direction);
+    const newDate = new Date(focusedDate.getFullYear() + direction, focusedDate.getMonth(), focusedDate.getDate());
+    setFocusedDate(newDate);
+  }
+
   function handleKeyboardDateChange(dateAmount) {
     const newDate = new Date(focusedDate.setDate(focusedDate.getDate() + dateAmount));
     setFocusedDate(newDate);
     const ref = refs[newDate.toDateString()];
-    if (!ref) {
-      changeMonth(Math.abs(dateAmount) / dateAmount);
-    }
+    if (!ref) changeMonth(Math.abs(dateAmount) / dateAmount);
   }
 
   function onKeyDown(event) {
@@ -128,15 +143,23 @@ function Calendar(props) {
       case 'PageUp':
         if (active) {
           event.preventDefault();
-          const numDays = new Date(focusedDate.getYear(), focusedDate.getMonth(), 0).getDate();
-          handleKeyboardDateChange(-numDays);
+          if (event.shiftKey) {
+            handleKeyboardYearChange(-1);
+          } else {
+            changeMonth(-1);
+            handleKeyboardDateChange(-getDaysInMonth(focusedDate, 0));
+          }
         }
         break;
       case 'PageDown':
         if (active) {
           event.preventDefault();
-          const numDays = new Date(focusedDate.getYear(), focusedDate.getMonth() + 1, 0).getDate();
-          handleKeyboardDateChange(numDays);
+          if (event.shiftKey) {
+            handleKeyboardYearChange(1);
+          } else {
+            changeMonth(1);
+            handleKeyboardDateChange(getDaysInMonth(focusedDate, 1));
+          }
         }
         break;
       default:
