@@ -103,66 +103,36 @@ function Calendar(props) {
   }
 
   function onKeyDown(event) {
-    switch (event.key) {
-      case 'ArrowLeft':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(-1);
+    const keyDownKeyHandlers = {
+      ArrowLeft: () => handleKeyboardDateChange(-1),
+      ArrowUp: () => handleKeyboardDateChange(-7),
+      ArrowRight: () => handleKeyboardDateChange(1),
+      ArrowDown: () => handleKeyboardDateChange(7),
+      End: () => handleKeyboardDateChange(6 - focusedDate.getDay()),
+      Home: () => handleKeyboardDateChange(0 - focusedDate.getDay()),
+      PageUp: () => {
+        if (event.shiftKey) {
+          handleKeyboardYearChange(-1);
+        } else {
+          changeMonth(-1);
+          handleKeyboardDateChange(-getDaysInMonth(focusedDate, 0));
         }
-        break;
-      case 'ArrowUp':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(-7);
+      },
+      PageDown: () => {
+        if (event.shiftKey) {
+          handleKeyboardYearChange(1);
+        } else {
+          changeMonth(1);
+          handleKeyboardDateChange(getDaysInMonth(focusedDate, 1));
         }
-        break;
-      case 'ArrowRight':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(1);
-        }
-        break;
-      case 'ArrowDown':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(7);
-        }
-        break;
-      case 'End':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(6 - focusedDate.getDay());
-        }
-        break;
-      case 'Home':
-        if (active) {
-          event.preventDefault();
-          handleKeyboardDateChange(0 - focusedDate.getDay());
-        }
-        break;
-      case 'PageUp':
-        if (active) {
-          event.preventDefault();
-          if (event.shiftKey) {
-            handleKeyboardYearChange(-1);
-          } else {
-            changeMonth(-1);
-            handleKeyboardDateChange(-getDaysInMonth(focusedDate, 0));
-          }
-        }
-        break;
-      case 'PageDown':
-        if (active) {
-          event.preventDefault();
-          if (event.shiftKey) {
-            handleKeyboardYearChange(1);
-          } else {
-            changeMonth(1);
-            handleKeyboardDateChange(getDaysInMonth(focusedDate, 1));
-          }
-        }
-        break;
-      default:
+      },
+    };
+
+    if (active) {
+      if (Object.keys(keyDownKeyHandlers).includes(event.key)) {
+        event.preventDefault();
+        keyDownKeyHandlers[event.key]();
+      }
     }
   }
 
