@@ -8,7 +8,6 @@ import {
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
-import CustomFieldInputSingleChoice from "../custom-field-input-single-choice/custom-field-input-single-choice";
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
