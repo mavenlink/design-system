@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape</title>
+    <g id="Forms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.54">
+        <g id="Forms/Datepicker/No-Disabled-Dates" transform="translate(-18.000000, -23.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="Icons/Zz-Working/Arrows/Left" transform="translate(10.000000, 22.000000)">
+                <path d="M12,1.61024276 C12.5522847,1.61024276 13,2.05795801 13,2.61024276 L13,2.61024276 L13,3.99924276 L18.5,4 C19.0128358,4 19.4355072,4.38604019 19.4932723,4.88337887 L19.5,5 C19.5,5.55228475 19.0522847,6 18.5,6 L18.5,6 L13,5.99924276 L13,7.38975724 C13,7.57443112 12.9488867,7.75455521 12.8535981,7.9106929 L12.7739573,8.02299503 C12.4242297,8.45043984 11.794207,8.51344211 11.3667622,8.16371454 L11.3667622,8.16371454 L8.63810154,5.93250586 C8.26469769,5.78748838 8,5.42465592 8,5 C8,4.57611759 8.26373428,4.21383362 8.63606217,4.06828876 L11.3667622,1.83628546 C11.5454243,1.69010736 11.7691576,1.61024276 12,1.61024276 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
