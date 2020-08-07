@@ -9,8 +9,10 @@
   - Append new items to make git merging easier.
 </details>
 
-## v0.36.0 (August 6, 2020)
+## v0.36.1 (August 7, 2020)
 - Patch: Brand Identity information is now displayed across a few different pages
+
+## v0.36.0 (August 6, 2020)
 - Minor: Implement static `Calendar` component
 - Minor: Implement `Icon` v2 API
 - Minor: Implement `IconButton` component
