@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -22,10 +23,10 @@ describe('<Calendar />', () => {
   it('renders the previous month', () => {
     render(<Calendar {...requiredProps} />);
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to June 2020' }));
-    expect(screen.getByRole('cell', { name: 'May 31' })).toHaveClass('not-current-date');
-    expect(screen.getByRole('cell', { name: 'June 1' })).toHaveClass('date');
-    expect(screen.getByRole('cell', { name: 'July 1' })).toHaveClass('not-current-date');
-    expect(screen.getByRole('cell', { name: 'July 11' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('gridcell', { name: 'May 31' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('gridcell', { name: 'June 1' })).toHaveClass('date');
+    expect(screen.getByRole('gridcell', { name: 'July 1' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('gridcell', { name: 'July 11' })).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
@@ -43,10 +44,10 @@ describe('<Calendar />', () => {
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to September 2019' }));
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to August 2019' }));
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to July 2019' }));
-    expect(screen.getByRole('cell', { name: 'June 30' })).toHaveClass('not-current-date');
-    expect(screen.getByRole('cell', { name: 'July 30' })).toHaveClass('date');
-    expect(screen.getByRole('cell', { name: 'July 1' })).toHaveClass('date');
-    expect(screen.getByRole('cell', { name: 'August 1' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('gridcell', { name: 'June 30' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('gridcell', { name: 'July 30' })).toHaveClass('date');
+    expect(screen.getByRole('gridcell', { name: 'July 1' })).toHaveClass('date');
+    expect(screen.getByRole('gridcell', { name: 'August 1' })).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
@@ -59,10 +60,26 @@ describe('<Calendar />', () => {
     describe('when a date is focused', () => {
       it('selects the active date on Enter', () => {
         render(<Calendar {...requiredProps} />);
+        userEvent.tab();
+        userEvent.tab();
+        userEvent.tab();
+        userEvent.tab();
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveFocus();
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveAttribute('aria-selected', 'false');
+        fireEvent.keyDown(screen.getByRole('gridcell', { name: 'July 29' }), { key: 'Enter' });
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveAttribute('aria-selected', 'true');
       });
 
       it('selects the active date on Space', () => {
         render(<Calendar {...requiredProps} />);
+        userEvent.tab();
+        userEvent.tab();
+        userEvent.tab();
+        userEvent.tab();
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveFocus();
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveAttribute('aria-selected', 'false');
+        fireEvent.keyDown(screen.getByRole('gridcell', { name: 'July 29' }), { key: 'Space' });
+        expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveAttribute('aria-selected', 'true');
       });
 
       it('moves the focus to the previous date on LeftArrow', () => {
@@ -105,6 +122,13 @@ describe('<Calendar />', () => {
         render(<Calendar {...requiredProps} />);
       });
     });
+
+    it('selects a date on click', () => {
+      render(<Calendar {...requiredProps} />);
+      expect(screen.getByRole('gridcell', { name: 'July 28' })).toHaveAttribute('aria-selected', 'false');
+      userEvent.click(screen.getByRole('gridcell', { name: 'July 28' }));
+      expect(screen.getByRole('gridcell', { name: 'July 28' })).toHaveAttribute('aria-selected', 'true');
+    });
   });
 
   describe('previous month button', () => {
@@ -127,7 +151,7 @@ describe('<Calendar />', () => {
     it('can be set', () => {
       expect(render(<Calendar {...requiredProps} value="2012-02-28" />));
       expect(screen.getByText('February 2012')).toBeInTheDocument();
-      expect(screen.getByRole('cell', { name: 'February 28' })).toHaveAttribute('aria-selected', 'true');
+      expect(screen.getByRole('gridcell', { name: 'February 28' })).toHaveAttribute('aria-selected', 'true');
     });
   });
 });

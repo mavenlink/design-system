@@ -89,6 +89,10 @@ function Calendar(props) {
     if (!ref) changeMonth(Math.abs(dateAmount) / dateAmount);
   }
 
+  function onDateClick(event) {
+    setSelectedDate(new Date(Number(event.target.dataset.epoch)));
+  }
+
   function onKeyDown(event) {
     const keyDownKeyHandlers = {
       ArrowLeft: () => handleKeyboardDateChange(-1),
@@ -96,6 +100,9 @@ function Calendar(props) {
       ArrowRight: () => handleKeyboardDateChange(1),
       ArrowDown: () => handleKeyboardDateChange(7),
       End: () => handleKeyboardDateChange(6 - focusedDate.getDay()),
+      Enter: () => {
+        setSelectedDate(focusedDate);
+      },
       Home: () => handleKeyboardDateChange(0 - focusedDate.getDay()),
       PageUp: () => {
         if (event.shiftKey) {
@@ -112,6 +119,9 @@ function Calendar(props) {
           changeMonth(1);
           handleKeyboardDateChange(getDaysInMonth(focusedDate, 1));
         }
+      },
+      Space: () => {
+        setSelectedDate(focusedDate);
       },
     };
 
@@ -160,16 +170,20 @@ function Calendar(props) {
 
     const sameDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
     const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
-    const tabIndex = sameDate ? 0 : null;
     const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
+    const tabIndex = sameDate ? 0 : null;
+    const epoch = iterator.getTime();
 
     iterator.setDate(date + 1); return (
       <td
         aria-label={label}
         aria-selected={selected}
         className={className}
+        data-epoch={epoch}
+        onClick={onDateClick}
         key={`${dateMonth}-${date}`}
         ref={ref}
+        role="gridcell"
         tabIndex={tabIndex}
       >
         {date}

@@ -102,6 +102,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="June 28"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593327600000"
+              role="gridcell"
             >
               28
             </td>
@@ -109,6 +111,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="June 29"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593414000000"
+              role="gridcell"
             >
               29
             </td>
@@ -116,6 +120,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="June 30"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593500400000"
+              role="gridcell"
             >
               30
             </td>
@@ -123,6 +129,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 1"
               aria-selected="false"
               class="date"
+              data-epoch="1593586800000"
+              role="gridcell"
             >
               1
             </td>
@@ -130,6 +138,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 2"
               aria-selected="false"
               class="date"
+              data-epoch="1593673200000"
+              role="gridcell"
             >
               2
             </td>
@@ -137,6 +147,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 3"
               aria-selected="false"
               class="date"
+              data-epoch="1593759600000"
+              role="gridcell"
             >
               3
             </td>
@@ -144,6 +156,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 4"
               aria-selected="false"
               class="date"
+              data-epoch="1593846000000"
+              role="gridcell"
             >
               4
             </td>
@@ -153,6 +167,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 5"
               aria-selected="false"
               class="date"
+              data-epoch="1593932400000"
+              role="gridcell"
             >
               5
             </td>
@@ -160,6 +176,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 6"
               aria-selected="false"
               class="date"
+              data-epoch="1594018800000"
+              role="gridcell"
             >
               6
             </td>
@@ -167,6 +185,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 7"
               aria-selected="false"
               class="date"
+              data-epoch="1594105200000"
+              role="gridcell"
             >
               7
             </td>
@@ -174,6 +194,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 8"
               aria-selected="false"
               class="date"
+              data-epoch="1594191600000"
+              role="gridcell"
             >
               8
             </td>
@@ -181,6 +203,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 9"
               aria-selected="false"
               class="date"
+              data-epoch="1594278000000"
+              role="gridcell"
             >
               9
             </td>
@@ -188,6 +212,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 10"
               aria-selected="false"
               class="date"
+              data-epoch="1594364400000"
+              role="gridcell"
             >
               10
             </td>
@@ -195,6 +221,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 11"
               aria-selected="false"
               class="date"
+              data-epoch="1594450800000"
+              role="gridcell"
             >
               11
             </td>
@@ -204,6 +232,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 12"
               aria-selected="false"
               class="date"
+              data-epoch="1594537200000"
+              role="gridcell"
             >
               12
             </td>
@@ -211,6 +241,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 13"
               aria-selected="false"
               class="date"
+              data-epoch="1594623600000"
+              role="gridcell"
             >
               13
             </td>
@@ -218,6 +250,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 14"
               aria-selected="false"
               class="date"
+              data-epoch="1594710000000"
+              role="gridcell"
             >
               14
             </td>
@@ -225,6 +259,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 15"
               aria-selected="false"
               class="date"
+              data-epoch="1594796400000"
+              role="gridcell"
             >
               15
             </td>
@@ -232,6 +268,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 16"
               aria-selected="false"
               class="date"
+              data-epoch="1594882800000"
+              role="gridcell"
             >
               16
             </td>
@@ -239,6 +277,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 17"
               aria-selected="false"
               class="date"
+              data-epoch="1594969200000"
+              role="gridcell"
             >
               17
             </td>
@@ -246,6 +286,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 18"
               aria-selected="false"
               class="date"
+              data-epoch="1595055600000"
+              role="gridcell"
             >
               18
             </td>
@@ -255,6 +297,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 19"
               aria-selected="false"
               class="date"
+              data-epoch="1595142000000"
+              role="gridcell"
             >
               19
             </td>
@@ -262,6 +306,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 20"
               aria-selected="false"
               class="date"
+              data-epoch="1595228400000"
+              role="gridcell"
             >
               20
             </td>
@@ -269,6 +315,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 21"
               aria-selected="false"
               class="date"
+              data-epoch="1595314800000"
+              role="gridcell"
             >
               21
             </td>
@@ -276,6 +324,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 22"
               aria-selected="false"
               class="date"
+              data-epoch="1595401200000"
+              role="gridcell"
             >
               22
             </td>
@@ -283,6 +333,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 23"
               aria-selected="false"
               class="date"
+              data-epoch="1595487600000"
+              role="gridcell"
             >
               23
             </td>
@@ -290,6 +342,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 24"
               aria-selected="false"
               class="date"
+              data-epoch="1595574000000"
+              role="gridcell"
             >
               24
             </td>
@@ -297,6 +351,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 25"
               aria-selected="false"
               class="date"
+              data-epoch="1595660400000"
+              role="gridcell"
             >
               25
             </td>
@@ -306,6 +362,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 26"
               aria-selected="false"
               class="date"
+              data-epoch="1595746800000"
+              role="gridcell"
             >
               26
             </td>
@@ -313,6 +371,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 27"
               aria-selected="false"
               class="date"
+              data-epoch="1595833200000"
+              role="gridcell"
             >
               27
             </td>
@@ -320,6 +380,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 28"
               aria-selected="false"
               class="date"
+              data-epoch="1595919600000"
+              role="gridcell"
             >
               28
             </td>
@@ -327,6 +389,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 29"
               aria-selected="false"
               class="highlighted-date"
+              data-epoch="1596006000000"
+              role="gridcell"
               tabindex="0"
             >
               29
@@ -335,6 +399,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 30"
               aria-selected="false"
               class="date"
+              data-epoch="1596092400000"
+              role="gridcell"
             >
               30
             </td>
@@ -342,6 +408,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="July 31"
               aria-selected="false"
               class="date"
+              data-epoch="1596178800000"
+              role="gridcell"
             >
               31
             </td>
@@ -349,6 +417,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 1"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596265200000"
+              role="gridcell"
             >
               1
             </td>
@@ -358,6 +428,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 2"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596351600000"
+              role="gridcell"
             >
               2
             </td>
@@ -365,6 +437,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 3"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596438000000"
+              role="gridcell"
             >
               3
             </td>
@@ -372,6 +446,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 4"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596524400000"
+              role="gridcell"
             >
               4
             </td>
@@ -379,6 +455,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 5"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596610800000"
+              role="gridcell"
             >
               5
             </td>
@@ -386,6 +464,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 6"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596697200000"
+              role="gridcell"
             >
               6
             </td>
@@ -393,6 +473,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 7"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596783600000"
+              role="gridcell"
             >
               7
             </td>
@@ -400,6 +482,8 @@ exports[`<Calendar /> has defaults 1`] = `
               aria-label="August 8"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1596870000000"
+              role="gridcell"
             >
               8
             </td>
@@ -513,6 +597,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="May 31"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1590908400000"
+              role="gridcell"
             >
               31
             </td>
@@ -520,6 +606,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 1"
               aria-selected="false"
               class="date"
+              data-epoch="1590994800000"
+              role="gridcell"
             >
               1
             </td>
@@ -527,6 +615,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 2"
               aria-selected="false"
               class="date"
+              data-epoch="1591081200000"
+              role="gridcell"
             >
               2
             </td>
@@ -534,6 +624,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 3"
               aria-selected="false"
               class="date"
+              data-epoch="1591167600000"
+              role="gridcell"
             >
               3
             </td>
@@ -541,6 +633,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 4"
               aria-selected="false"
               class="date"
+              data-epoch="1591254000000"
+              role="gridcell"
             >
               4
             </td>
@@ -548,6 +642,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 5"
               aria-selected="false"
               class="date"
+              data-epoch="1591340400000"
+              role="gridcell"
             >
               5
             </td>
@@ -555,6 +651,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 6"
               aria-selected="false"
               class="date"
+              data-epoch="1591426800000"
+              role="gridcell"
             >
               6
             </td>
@@ -564,6 +662,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 7"
               aria-selected="false"
               class="date"
+              data-epoch="1591513200000"
+              role="gridcell"
             >
               7
             </td>
@@ -571,6 +671,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 8"
               aria-selected="false"
               class="date"
+              data-epoch="1591599600000"
+              role="gridcell"
             >
               8
             </td>
@@ -578,6 +680,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 9"
               aria-selected="false"
               class="date"
+              data-epoch="1591686000000"
+              role="gridcell"
             >
               9
             </td>
@@ -585,6 +689,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 10"
               aria-selected="false"
               class="date"
+              data-epoch="1591772400000"
+              role="gridcell"
             >
               10
             </td>
@@ -592,6 +698,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 11"
               aria-selected="false"
               class="date"
+              data-epoch="1591858800000"
+              role="gridcell"
             >
               11
             </td>
@@ -599,6 +707,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 12"
               aria-selected="false"
               class="date"
+              data-epoch="1591945200000"
+              role="gridcell"
             >
               12
             </td>
@@ -606,6 +716,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 13"
               aria-selected="false"
               class="date"
+              data-epoch="1592031600000"
+              role="gridcell"
             >
               13
             </td>
@@ -615,6 +727,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 14"
               aria-selected="false"
               class="date"
+              data-epoch="1592118000000"
+              role="gridcell"
             >
               14
             </td>
@@ -622,6 +736,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 15"
               aria-selected="false"
               class="date"
+              data-epoch="1592204400000"
+              role="gridcell"
             >
               15
             </td>
@@ -629,6 +745,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 16"
               aria-selected="false"
               class="date"
+              data-epoch="1592290800000"
+              role="gridcell"
             >
               16
             </td>
@@ -636,6 +754,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 17"
               aria-selected="false"
               class="date"
+              data-epoch="1592377200000"
+              role="gridcell"
             >
               17
             </td>
@@ -643,6 +763,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 18"
               aria-selected="false"
               class="date"
+              data-epoch="1592463600000"
+              role="gridcell"
             >
               18
             </td>
@@ -650,6 +772,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 19"
               aria-selected="false"
               class="date"
+              data-epoch="1592550000000"
+              role="gridcell"
             >
               19
             </td>
@@ -657,6 +781,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 20"
               aria-selected="false"
               class="date"
+              data-epoch="1592636400000"
+              role="gridcell"
             >
               20
             </td>
@@ -666,6 +792,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 21"
               aria-selected="false"
               class="date"
+              data-epoch="1592722800000"
+              role="gridcell"
             >
               21
             </td>
@@ -673,6 +801,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 22"
               aria-selected="false"
               class="date"
+              data-epoch="1592809200000"
+              role="gridcell"
             >
               22
             </td>
@@ -680,6 +810,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 23"
               aria-selected="false"
               class="date"
+              data-epoch="1592895600000"
+              role="gridcell"
             >
               23
             </td>
@@ -687,6 +819,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 24"
               aria-selected="false"
               class="date"
+              data-epoch="1592982000000"
+              role="gridcell"
             >
               24
             </td>
@@ -694,6 +828,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 25"
               aria-selected="false"
               class="date"
+              data-epoch="1593068400000"
+              role="gridcell"
             >
               25
             </td>
@@ -701,6 +837,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 26"
               aria-selected="false"
               class="date"
+              data-epoch="1593154800000"
+              role="gridcell"
             >
               26
             </td>
@@ -708,6 +846,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 27"
               aria-selected="false"
               class="date"
+              data-epoch="1593241200000"
+              role="gridcell"
             >
               27
             </td>
@@ -717,6 +857,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 28"
               aria-selected="false"
               class="date"
+              data-epoch="1593327600000"
+              role="gridcell"
             >
               28
             </td>
@@ -724,6 +866,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 29"
               aria-selected="false"
               class="date"
+              data-epoch="1593414000000"
+              role="gridcell"
             >
               29
             </td>
@@ -731,6 +875,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="June 30"
               aria-selected="false"
               class="date"
+              data-epoch="1593500400000"
+              role="gridcell"
             >
               30
             </td>
@@ -738,6 +884,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 1"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593586800000"
+              role="gridcell"
             >
               1
             </td>
@@ -745,6 +893,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 2"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593673200000"
+              role="gridcell"
             >
               2
             </td>
@@ -752,6 +902,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 3"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593759600000"
+              role="gridcell"
             >
               3
             </td>
@@ -759,6 +911,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 4"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593846000000"
+              role="gridcell"
             >
               4
             </td>
@@ -768,6 +922,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 5"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1593932400000"
+              role="gridcell"
             >
               5
             </td>
@@ -775,6 +931,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 6"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594018800000"
+              role="gridcell"
             >
               6
             </td>
@@ -782,6 +940,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 7"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594105200000"
+              role="gridcell"
             >
               7
             </td>
@@ -789,6 +949,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 8"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594191600000"
+              role="gridcell"
             >
               8
             </td>
@@ -796,6 +958,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 9"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594278000000"
+              role="gridcell"
             >
               9
             </td>
@@ -803,6 +967,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 10"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594364400000"
+              role="gridcell"
             >
               10
             </td>
@@ -810,6 +976,8 @@ exports[`<Calendar /> renders the previous month 1`] = `
               aria-label="July 11"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1594450800000"
+              role="gridcell"
             >
               11
             </td>
@@ -923,6 +1091,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="June 30"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1561878000000"
+              role="gridcell"
             >
               30
             </td>
@@ -930,6 +1100,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 1"
               aria-selected="false"
               class="date"
+              data-epoch="1561964400000"
+              role="gridcell"
             >
               1
             </td>
@@ -937,6 +1109,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 2"
               aria-selected="false"
               class="date"
+              data-epoch="1562050800000"
+              role="gridcell"
             >
               2
             </td>
@@ -944,6 +1118,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 3"
               aria-selected="false"
               class="date"
+              data-epoch="1562137200000"
+              role="gridcell"
             >
               3
             </td>
@@ -951,6 +1127,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 4"
               aria-selected="false"
               class="date"
+              data-epoch="1562223600000"
+              role="gridcell"
             >
               4
             </td>
@@ -958,6 +1136,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 5"
               aria-selected="false"
               class="date"
+              data-epoch="1562310000000"
+              role="gridcell"
             >
               5
             </td>
@@ -965,6 +1145,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 6"
               aria-selected="false"
               class="date"
+              data-epoch="1562396400000"
+              role="gridcell"
             >
               6
             </td>
@@ -974,6 +1156,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 7"
               aria-selected="false"
               class="date"
+              data-epoch="1562482800000"
+              role="gridcell"
             >
               7
             </td>
@@ -981,6 +1165,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 8"
               aria-selected="false"
               class="date"
+              data-epoch="1562569200000"
+              role="gridcell"
             >
               8
             </td>
@@ -988,6 +1174,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 9"
               aria-selected="false"
               class="date"
+              data-epoch="1562655600000"
+              role="gridcell"
             >
               9
             </td>
@@ -995,6 +1183,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 10"
               aria-selected="false"
               class="date"
+              data-epoch="1562742000000"
+              role="gridcell"
             >
               10
             </td>
@@ -1002,6 +1192,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 11"
               aria-selected="false"
               class="date"
+              data-epoch="1562828400000"
+              role="gridcell"
             >
               11
             </td>
@@ -1009,6 +1201,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 12"
               aria-selected="false"
               class="date"
+              data-epoch="1562914800000"
+              role="gridcell"
             >
               12
             </td>
@@ -1016,6 +1210,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 13"
               aria-selected="false"
               class="date"
+              data-epoch="1563001200000"
+              role="gridcell"
             >
               13
             </td>
@@ -1025,6 +1221,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 14"
               aria-selected="false"
               class="date"
+              data-epoch="1563087600000"
+              role="gridcell"
             >
               14
             </td>
@@ -1032,6 +1230,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 15"
               aria-selected="false"
               class="date"
+              data-epoch="1563174000000"
+              role="gridcell"
             >
               15
             </td>
@@ -1039,6 +1239,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 16"
               aria-selected="false"
               class="date"
+              data-epoch="1563260400000"
+              role="gridcell"
             >
               16
             </td>
@@ -1046,6 +1248,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 17"
               aria-selected="false"
               class="date"
+              data-epoch="1563346800000"
+              role="gridcell"
             >
               17
             </td>
@@ -1053,6 +1257,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 18"
               aria-selected="false"
               class="date"
+              data-epoch="1563433200000"
+              role="gridcell"
             >
               18
             </td>
@@ -1060,6 +1266,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 19"
               aria-selected="false"
               class="date"
+              data-epoch="1563519600000"
+              role="gridcell"
             >
               19
             </td>
@@ -1067,6 +1275,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 20"
               aria-selected="false"
               class="date"
+              data-epoch="1563606000000"
+              role="gridcell"
             >
               20
             </td>
@@ -1076,6 +1286,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 21"
               aria-selected="false"
               class="date"
+              data-epoch="1563692400000"
+              role="gridcell"
             >
               21
             </td>
@@ -1083,6 +1295,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 22"
               aria-selected="false"
               class="date"
+              data-epoch="1563778800000"
+              role="gridcell"
             >
               22
             </td>
@@ -1090,6 +1304,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 23"
               aria-selected="false"
               class="date"
+              data-epoch="1563865200000"
+              role="gridcell"
             >
               23
             </td>
@@ -1097,6 +1313,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 24"
               aria-selected="false"
               class="date"
+              data-epoch="1563951600000"
+              role="gridcell"
             >
               24
             </td>
@@ -1104,6 +1322,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 25"
               aria-selected="false"
               class="date"
+              data-epoch="1564038000000"
+              role="gridcell"
             >
               25
             </td>
@@ -1111,6 +1331,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 26"
               aria-selected="false"
               class="date"
+              data-epoch="1564124400000"
+              role="gridcell"
             >
               26
             </td>
@@ -1118,6 +1340,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 27"
               aria-selected="false"
               class="date"
+              data-epoch="1564210800000"
+              role="gridcell"
             >
               27
             </td>
@@ -1127,6 +1351,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 28"
               aria-selected="false"
               class="date"
+              data-epoch="1564297200000"
+              role="gridcell"
             >
               28
             </td>
@@ -1134,6 +1360,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 29"
               aria-selected="false"
               class="date"
+              data-epoch="1564383600000"
+              role="gridcell"
               tabindex="0"
             >
               29
@@ -1142,6 +1370,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 30"
               aria-selected="false"
               class="date"
+              data-epoch="1564470000000"
+              role="gridcell"
             >
               30
             </td>
@@ -1149,6 +1379,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="July 31"
               aria-selected="false"
               class="date"
+              data-epoch="1564556400000"
+              role="gridcell"
             >
               31
             </td>
@@ -1156,6 +1388,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 1"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1564642800000"
+              role="gridcell"
             >
               1
             </td>
@@ -1163,6 +1397,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 2"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1564729200000"
+              role="gridcell"
             >
               2
             </td>
@@ -1170,6 +1406,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 3"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1564815600000"
+              role="gridcell"
             >
               3
             </td>
@@ -1179,6 +1417,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 4"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1564902000000"
+              role="gridcell"
             >
               4
             </td>
@@ -1186,6 +1426,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 5"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1564988400000"
+              role="gridcell"
             >
               5
             </td>
@@ -1193,6 +1435,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 6"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1565074800000"
+              role="gridcell"
             >
               6
             </td>
@@ -1200,6 +1444,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 7"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1565161200000"
+              role="gridcell"
             >
               7
             </td>
@@ -1207,6 +1453,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 8"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1565247600000"
+              role="gridcell"
             >
               8
             </td>
@@ -1214,6 +1462,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 9"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1565334000000"
+              role="gridcell"
             >
               9
             </td>
@@ -1221,6 +1471,8 @@ exports[`<Calendar /> renders the previous year 1`] = `
               aria-label="August 10"
               aria-selected="false"
               class="not-current-date"
+              data-epoch="1565420400000"
+              role="gridcell"
             >
               10
             </td>
