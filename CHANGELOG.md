@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Brand Identity information is now displayed across a few different pages
   - Minor: Implement static `Calendar` component
   - Minor: Implement `Icon` v2 API
   - Minor: Implement `IconButton` component
