@@ -130,14 +130,20 @@ describe('<Calendar />', () => {
         expect(screen.getByRole('gridcell', { name: 'August 29' })).toHaveFocus();
       });
 
-      it('changes the calendar to the previous year on Shift+PageUp', () => {
+      xit('changes the calendar to the previous year on Shift+PageUp', () => {
+        // We need a way to trigger page up and shift at the same time
+        // renderAndExpectFocusedCalendar();
+        // fireEvent.keyDown(screen.getByRole('grid'), { key: 'PageUp', code: 'PageUp', meta: '{shift}' });
+        // expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveFocus();
+        // check the year
+      });
+
+      xit('changes the calendar to the next year on Shift+PageDown', () => {
+        // We need a way to trigger page down and shift at the same time
         // renderAndExpectFocusedCalendar();
         // fireEvent.keyDown(screen.getByRole('grid'), { key: 'PageDown', code: 'PageDown', meta: '{shift}' });
         // expect(screen.getByRole('gridcell', { name: 'July 29' })).toHaveFocus();
-      });
-
-      it('changes the calendar to the next year on Shift+PageDown', () => {
-        // render(<Calendar {...requiredProps} />);
+        // check the year
       });
     });
 
