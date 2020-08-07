@@ -7,11 +7,15 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Brand Identity information is now displayed across a few different pages
-  - Minor: Implement static `Calendar` component
-  - Minor: Implement `Icon` v2 API
-  - Minor: Implement `IconButton` component
 </details>
+
+## v0.36.1 (August 7, 2020)
+- Patch: Brand Identity information is now displayed across a few different pages
+
+## v0.36.0 (August 6, 2020)
+- Minor: Implement static `Calendar` component
+- Minor: Implement `Icon` v2 API
+- Minor: Implement `IconButton` component
 
 ## v0.35.0 (August 5, 2020)
 - Major: CustomFieldInputSingleChoice's `value` on `ref` is now an array containing the `id` of the chosen option
