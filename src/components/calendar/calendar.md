@@ -32,7 +32,8 @@
 
 | Element | Label |
 | --- | --- |
-| Change month button | Change month to MONTH YEAR |
+| Change month button | Change month to (localized) MONTH YEAR |
+| Date | (Localized) MONTH DATE |
 
 
 ```jsx

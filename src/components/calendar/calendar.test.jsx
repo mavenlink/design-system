@@ -22,10 +22,10 @@ describe('<Calendar />', () => {
   it('renders the previous month', () => {
     render(<Calendar {...requiredProps} />);
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to June 2020' }));
-    expect(screen.getByText('31')).toHaveClass('not-current-date');
-    expect(screen.getAllByText('1')[0]).toHaveClass('date');
-    expect(screen.getAllByText('1')[1]).toHaveClass('not-current-date');
-    expect(screen.getAllByText('11')[1]).toHaveClass('not-current-date');
+    expect(screen.getByRole('cell', { name: 'May 31' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('cell', { name: 'June 1' })).toHaveClass('date');
+    expect(screen.getByRole('cell', { name: 'July 1' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('cell', { name: 'July 11' })).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
@@ -43,10 +43,10 @@ describe('<Calendar />', () => {
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to September 2019' }));
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to August 2019' }));
     userEvent.click(screen.getByRole('button', { name: 'Change calendar to July 2019' }));
-    expect(screen.getAllByText('30')[0]).toHaveClass('not-current-date');
-    expect(screen.getAllByText('30')[1]).toHaveClass('date');
-    expect(screen.getAllByText('1')[0]).toHaveClass('date');
-    expect(screen.getAllByText('1')[1]).toHaveClass('not-current-date');
+    expect(screen.getByRole('cell', { name: 'June 30' })).toHaveClass('not-current-date');
+    expect(screen.getByRole('cell', { name: 'July 30' })).toHaveClass('date');
+    expect(screen.getByRole('cell', { name: 'July 1' })).toHaveClass('date');
+    expect(screen.getByRole('cell', { name: 'August 1' })).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
   });
 
@@ -127,9 +127,7 @@ describe('<Calendar />', () => {
     it('can be set', () => {
       expect(render(<Calendar {...requiredProps} value="2012-02-28" />));
       expect(screen.getByText('February 2012')).toBeInTheDocument();
-      expect(screen.getByText('28')).toHaveClass('highlighted-date');
+      expect(screen.getByRole('cell', { name: 'February 28' })).toHaveAttribute('aria-selected', 'true');
     });
   });
-
-
 });

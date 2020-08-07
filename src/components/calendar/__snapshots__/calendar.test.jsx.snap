@@ -99,36 +99,50 @@ exports[`<Calendar /> has defaults 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="June 28"
+              aria-selected="false"
               class="not-current-date"
             >
               28
             </td>
             <td
+              aria-label="June 29"
+              aria-selected="false"
               class="not-current-date"
             >
               29
             </td>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="not-current-date"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="date"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="date"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="date"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="date"
             >
               4
@@ -136,36 +150,50 @@ exports[`<Calendar /> has defaults 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="date"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="date"
             >
               6
             </td>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="date"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="date"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="date"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="date"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="date"
             >
               11
@@ -173,36 +201,50 @@ exports[`<Calendar /> has defaults 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 12"
+              aria-selected="false"
               class="date"
             >
               12
             </td>
             <td
+              aria-label="July 13"
+              aria-selected="false"
               class="date"
             >
               13
             </td>
             <td
+              aria-label="July 14"
+              aria-selected="false"
               class="date"
             >
               14
             </td>
             <td
+              aria-label="July 15"
+              aria-selected="false"
               class="date"
             >
               15
             </td>
             <td
+              aria-label="July 16"
+              aria-selected="false"
               class="date"
             >
               16
             </td>
             <td
+              aria-label="July 17"
+              aria-selected="false"
               class="date"
             >
               17
             </td>
             <td
+              aria-label="July 18"
+              aria-selected="false"
               class="date"
             >
               18
@@ -210,36 +252,50 @@ exports[`<Calendar /> has defaults 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 19"
+              aria-selected="false"
               class="date"
             >
               19
             </td>
             <td
+              aria-label="July 20"
+              aria-selected="false"
               class="date"
             >
               20
             </td>
             <td
+              aria-label="July 21"
+              aria-selected="false"
               class="date"
             >
               21
             </td>
             <td
+              aria-label="July 22"
+              aria-selected="false"
               class="date"
             >
               22
             </td>
             <td
+              aria-label="July 23"
+              aria-selected="false"
               class="date"
             >
               23
             </td>
             <td
+              aria-label="July 24"
+              aria-selected="false"
               class="date"
             >
               24
             </td>
             <td
+              aria-label="July 25"
+              aria-selected="false"
               class="date"
             >
               25
@@ -247,37 +303,51 @@ exports[`<Calendar /> has defaults 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 26"
+              aria-selected="false"
               class="date"
             >
               26
             </td>
             <td
+              aria-label="July 27"
+              aria-selected="false"
               class="date"
             >
               27
             </td>
             <td
+              aria-label="July 28"
+              aria-selected="false"
               class="date"
             >
               28
             </td>
             <td
+              aria-label="July 29"
+              aria-selected="false"
               class="highlighted-date"
               tabindex="0"
             >
               29
             </td>
             <td
+              aria-label="July 30"
+              aria-selected="false"
               class="date"
             >
               30
             </td>
             <td
+              aria-label="July 31"
+              aria-selected="false"
               class="date"
             >
               31
             </td>
             <td
+              aria-label="August 1"
+              aria-selected="false"
               class="not-current-date"
             >
               1
@@ -285,36 +355,50 @@ exports[`<Calendar /> has defaults 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="August 2"
+              aria-selected="false"
               class="not-current-date"
             >
               2
             </td>
             <td
+              aria-label="August 3"
+              aria-selected="false"
               class="not-current-date"
             >
               3
             </td>
             <td
+              aria-label="August 4"
+              aria-selected="false"
               class="not-current-date"
             >
               4
             </td>
             <td
+              aria-label="August 5"
+              aria-selected="false"
               class="not-current-date"
             >
               5
             </td>
             <td
+              aria-label="August 6"
+              aria-selected="false"
               class="not-current-date"
             >
               6
             </td>
             <td
+              aria-label="August 7"
+              aria-selected="false"
               class="not-current-date"
             >
               7
             </td>
             <td
+              aria-label="August 8"
+              aria-selected="false"
               class="not-current-date"
             >
               8
@@ -426,36 +510,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="May 31"
+              aria-selected="false"
               class="not-current-date"
             >
               31
             </td>
             <td
+              aria-label="June 1"
+              aria-selected="false"
               class="date"
             >
               1
             </td>
             <td
+              aria-label="June 2"
+              aria-selected="false"
               class="date"
             >
               2
             </td>
             <td
+              aria-label="June 3"
+              aria-selected="false"
               class="date"
             >
               3
             </td>
             <td
+              aria-label="June 4"
+              aria-selected="false"
               class="date"
             >
               4
             </td>
             <td
+              aria-label="June 5"
+              aria-selected="false"
               class="date"
             >
               5
             </td>
             <td
+              aria-label="June 6"
+              aria-selected="false"
               class="date"
             >
               6
@@ -463,36 +561,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="June 7"
+              aria-selected="false"
               class="date"
             >
               7
             </td>
             <td
+              aria-label="June 8"
+              aria-selected="false"
               class="date"
             >
               8
             </td>
             <td
+              aria-label="June 9"
+              aria-selected="false"
               class="date"
             >
               9
             </td>
             <td
+              aria-label="June 10"
+              aria-selected="false"
               class="date"
             >
               10
             </td>
             <td
+              aria-label="June 11"
+              aria-selected="false"
               class="date"
             >
               11
             </td>
             <td
+              aria-label="June 12"
+              aria-selected="false"
               class="date"
             >
               12
             </td>
             <td
+              aria-label="June 13"
+              aria-selected="false"
               class="date"
             >
               13
@@ -500,36 +612,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="June 14"
+              aria-selected="false"
               class="date"
             >
               14
             </td>
             <td
+              aria-label="June 15"
+              aria-selected="false"
               class="date"
             >
               15
             </td>
             <td
+              aria-label="June 16"
+              aria-selected="false"
               class="date"
             >
               16
             </td>
             <td
+              aria-label="June 17"
+              aria-selected="false"
               class="date"
             >
               17
             </td>
             <td
+              aria-label="June 18"
+              aria-selected="false"
               class="date"
             >
               18
             </td>
             <td
+              aria-label="June 19"
+              aria-selected="false"
               class="date"
             >
               19
             </td>
             <td
+              aria-label="June 20"
+              aria-selected="false"
               class="date"
             >
               20
@@ -537,36 +663,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="June 21"
+              aria-selected="false"
               class="date"
             >
               21
             </td>
             <td
+              aria-label="June 22"
+              aria-selected="false"
               class="date"
             >
               22
             </td>
             <td
+              aria-label="June 23"
+              aria-selected="false"
               class="date"
             >
               23
             </td>
             <td
+              aria-label="June 24"
+              aria-selected="false"
               class="date"
             >
               24
             </td>
             <td
+              aria-label="June 25"
+              aria-selected="false"
               class="date"
             >
               25
             </td>
             <td
+              aria-label="June 26"
+              aria-selected="false"
               class="date"
             >
               26
             </td>
             <td
+              aria-label="June 27"
+              aria-selected="false"
               class="date"
             >
               27
@@ -574,36 +714,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="June 28"
+              aria-selected="false"
               class="date"
             >
               28
             </td>
             <td
+              aria-label="June 29"
+              aria-selected="false"
               class="date"
             >
               29
             </td>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="date"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="not-current-date"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="not-current-date"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="not-current-date"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="not-current-date"
             >
               4
@@ -611,36 +765,50 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="not-current-date"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="not-current-date"
             >
               6
             </td>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="not-current-date"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="not-current-date"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="not-current-date"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="not-current-date"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="not-current-date"
             >
               11
@@ -752,36 +920,50 @@ exports[`<Calendar /> renders the previous year 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="not-current-date"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="date"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="date"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="date"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="date"
             >
               4
             </td>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="date"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="date"
             >
               6
@@ -789,36 +971,50 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="date"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="date"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="date"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="date"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="date"
             >
               11
             </td>
             <td
+              aria-label="July 12"
+              aria-selected="false"
               class="date"
             >
               12
             </td>
             <td
+              aria-label="July 13"
+              aria-selected="false"
               class="date"
             >
               13
@@ -826,36 +1022,50 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 14"
+              aria-selected="false"
               class="date"
             >
               14
             </td>
             <td
+              aria-label="July 15"
+              aria-selected="false"
               class="date"
             >
               15
             </td>
             <td
+              aria-label="July 16"
+              aria-selected="false"
               class="date"
             >
               16
             </td>
             <td
+              aria-label="July 17"
+              aria-selected="false"
               class="date"
             >
               17
             </td>
             <td
+              aria-label="July 18"
+              aria-selected="false"
               class="date"
             >
               18
             </td>
             <td
+              aria-label="July 19"
+              aria-selected="false"
               class="date"
             >
               19
             </td>
             <td
+              aria-label="July 20"
+              aria-selected="false"
               class="date"
             >
               20
@@ -863,36 +1073,50 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 21"
+              aria-selected="false"
               class="date"
             >
               21
             </td>
             <td
+              aria-label="July 22"
+              aria-selected="false"
               class="date"
             >
               22
             </td>
             <td
+              aria-label="July 23"
+              aria-selected="false"
               class="date"
             >
               23
             </td>
             <td
+              aria-label="July 24"
+              aria-selected="false"
               class="date"
             >
               24
             </td>
             <td
+              aria-label="July 25"
+              aria-selected="false"
               class="date"
             >
               25
             </td>
             <td
+              aria-label="July 26"
+              aria-selected="false"
               class="date"
             >
               26
             </td>
             <td
+              aria-label="July 27"
+              aria-selected="false"
               class="date"
             >
               27
@@ -900,37 +1124,51 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="July 28"
+              aria-selected="false"
               class="date"
             >
               28
             </td>
             <td
+              aria-label="July 29"
+              aria-selected="false"
               class="date"
               tabindex="0"
             >
               29
             </td>
             <td
+              aria-label="July 30"
+              aria-selected="false"
               class="date"
             >
               30
             </td>
             <td
+              aria-label="July 31"
+              aria-selected="false"
               class="date"
             >
               31
             </td>
             <td
+              aria-label="August 1"
+              aria-selected="false"
               class="not-current-date"
             >
               1
             </td>
             <td
+              aria-label="August 2"
+              aria-selected="false"
               class="not-current-date"
             >
               2
             </td>
             <td
+              aria-label="August 3"
+              aria-selected="false"
               class="not-current-date"
             >
               3
@@ -938,36 +1176,50 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </tr>
           <tr>
             <td
+              aria-label="August 4"
+              aria-selected="false"
               class="not-current-date"
             >
               4
             </td>
             <td
+              aria-label="August 5"
+              aria-selected="false"
               class="not-current-date"
             >
               5
             </td>
             <td
+              aria-label="August 6"
+              aria-selected="false"
               class="not-current-date"
             >
               6
             </td>
             <td
+              aria-label="August 7"
+              aria-selected="false"
               class="not-current-date"
             >
               7
             </td>
             <td
+              aria-label="August 8"
+              aria-selected="false"
               class="not-current-date"
             >
               8
             </td>
             <td
+              aria-label="August 9"
+              aria-selected="false"
               class="not-current-date"
             >
               9
             </td>
             <td
+              aria-label="August 10"
+              aria-selected="false"
               class="not-current-date"
             >
               10

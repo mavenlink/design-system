@@ -33,13 +33,16 @@ function getHeadCell(iterator) {
   );
 }
 
-function getCellClassName(iterator, month, highlightedDate) {
-  const isHighlightedDate =
-    highlightedDate.getFullYear() === iterator.getFullYear()
-    && highlightedDate.getMonth() === iterator.getMonth()
-    && highlightedDate.getDate() === iterator.getDate();
+function isSameDate(date1, date2) {
+  return (
+    date1.getFullYear() === date2.getFullYear()
+    && date1.getMonth() === date2.getMonth()
+    && date1.getDate() === date2.getDate()
+  );
+}
 
-  if (isHighlightedDate) return styles['highlighted-date'];
+function getCellClassName(iterator, month, highlightedDate) {
+  if (isSameDate(iterator, highlightedDate)) return styles['highlighted-date'];
 
   if (iterator.getMonth() === month) return styles.date;
 
@@ -58,33 +61,13 @@ function getDaysInMonth(date, nextMonth) {
 }
 
 function Calendar(props) {
-  const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
+  const [selectedDate, setSelectedDate] = useState(props.value ? new Date(`${props.value}T00:00`) : undefined);
+  const highlightedDate = new Date(selectedDate ? selectedDate.getTime() : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
   const [active, setActive] = useState(false);
   const [focusedDate, setFocusedDate] = useState(new Date(props.value ? `${props.value}T00:00` : Date.now()));
   let refs = {};
-
-  const getCell = (iterator, cellMonth, cellHighlightedDate) => {
-    const date = iterator.getDate();
-    const dateMonth = iterator.getMonth();
-    const className = getCellClassName(iterator, cellMonth, cellHighlightedDate);
-    const ref = React.createRef();
-
-    const cellRef = {};
-    cellRef[iterator.toDateString()] = ref;
-    refs = { ...cellRef, ...refs };
-
-    const sameDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
-    const tabIndex = sameDate ? 0 : null;
-
-    // This needs to occur at the end of this function
-    iterator.setDate(date + 1); return (
-      <td key={`${dateMonth}-${date}`} tabIndex={tabIndex} className={className} ref={ref} >
-        {date}
-      </td>
-    );
-  };
 
   useEffect(() => {
     const ref = refs[focusedDate.toDateString()];
@@ -165,6 +148,35 @@ function Calendar(props) {
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
 
+  const getCell = () => {
+    const date = iterator.getDate();
+    const dateMonth = iterator.getMonth();
+    const className = getCellClassName(iterator, month, highlightedDate);
+    const ref = React.createRef();
+
+    const cellRef = {};
+    cellRef[iterator.toDateString()] = ref;
+    refs = { ...cellRef, ...refs };
+
+    const sameDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
+    const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+    const tabIndex = sameDate ? 0 : null;
+    const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
+
+    iterator.setDate(date + 1); return (
+      <td
+        aria-label={label}
+        aria-selected={selected}
+        className={className}
+        key={`${dateMonth}-${date}`}
+        ref={ref}
+        tabIndex={tabIndex}
+      >
+        {date}
+      </td>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -209,7 +221,7 @@ function Calendar(props) {
         <tbody>
           {[...Array(6)].map(() => (
             <tr key={iterator.getTime()}>
-              {[...Array(7)].map(() => getCell(iterator, month, highlightedDate))}
+              {[...Array(7)].map(() => getCell())}
             </tr>
           ))}
         </tbody>
