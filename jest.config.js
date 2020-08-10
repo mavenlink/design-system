@@ -16,4 +16,5 @@ module.exports = {
     svg$: '<rootDir>/jest.config.transform.svg.js',
   },
   verbose: true,
+  globalSetup: './jest.config.globalSetup.js',
 };
