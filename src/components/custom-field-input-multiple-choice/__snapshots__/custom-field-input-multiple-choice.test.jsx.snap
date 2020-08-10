@@ -30,6 +30,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
           role="grid"
         >
           <input
+            aria-expanded={false}
             aria-haspopup="listbox"
             aria-labelledby="test-id-label"
             className="autocomplete-input"

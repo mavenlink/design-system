@@ -163,13 +163,12 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         required={props.required}
         errorText={validationMessage}
         value={searchValue || defaultValue}
-        ariaProps={{ haspopup: 'listbox' }}
+        ariaProps={{ haspopup: 'listbox', expanded: showOptions }}
       />
       { showOptions && (
         choices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles.dropdown}
-            expanded={true}
             labelledBy={`${props.id}-label`}
             onChange={onSelectionChange}
             refs={refs}

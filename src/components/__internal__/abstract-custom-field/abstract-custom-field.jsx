@@ -75,6 +75,7 @@ export default function AbstractCustomField(props) {
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={labelId}
         aria-haspopup={props.ariaProps.haspopup}
+        aria-expanded={props.ariaProps.expanded}
         aria-invalid={invalidDueToProps ? 'true' : undefined}
         aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
@@ -112,6 +113,7 @@ AbstractCustomField.propTypes = {
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
     haspopup: PropTypes.string,
+    expanded: PropTypes.bool,
   }),
   className: PropTypes.string,
   clear: PropTypes.node,

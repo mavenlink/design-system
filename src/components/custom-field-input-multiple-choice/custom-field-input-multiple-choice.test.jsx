@@ -64,8 +64,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       it('has aria-expanded for accessibility', () => {
         render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
         userEvent.click(screen.getByText('test label'));
-        expect(screen.getByLabelText('test label', { selector: 'ul[aria-expanded=true]' })).toBeInTheDocument();
+        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
       });
     });
 

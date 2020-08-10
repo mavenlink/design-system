@@ -93,8 +93,9 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
     it('has aria-expanded for accessibility', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByLabelText('Test label', { selector: 'ul[aria-expanded=true]' })).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
     });
   });
 

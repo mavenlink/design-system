@@ -136,6 +136,7 @@ function CustomFieldInputMultipleChoice(props) {
               <input
                 aria-labelledby={`${props.id}-label`}
                 aria-haspopup={'listbox'}
+                aria-expanded={renderPopup}
                 className={styles['autocomplete-input']}
                 id={`${props.id}-autocomple`}
                 onChange={onAutocompleteChange}
@@ -176,7 +177,6 @@ function CustomFieldInputMultipleChoice(props) {
           <Listbox
             className={styles['popup-container']}
             labelledBy={`${props.id}-label`}
-            expanded={true}
             refs={choicesRefs}
           >
             {visibleChoices.map((choice, index) => (
