@@ -67,6 +67,8 @@ module.exports = {
           content: path.join(__dirname, 'styleguide/content/brand-identity/typography.md'),
         },
       ],
+      sectionDepth: 2,
+      pagePerSection: true,
     },
     {
       name: 'Design Patterns',
