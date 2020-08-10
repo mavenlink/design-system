@@ -13,7 +13,17 @@ describe('<Calendar />', () => {
 
   beforeEach(() => {
     jest.spyOn(Date, 'now').mockImplementation(() => 1596062788778); // July 29, 2020
-    jest.spyOn(Date.prototype, 'getTimezoneOffset').mockImplementation(() => 360); // Force timezone to MDT
+    const offSet = (new Date()).getTimezoneOffset() * 60000;
+
+    function getTimeTimezoneAdjusted() {
+      Date.prototype.getTime.mockRestore();
+      const timeValue = this.getTime();
+      jest.spyOn(Date.prototype, 'getTime').mockImplementation(getTimeTimezoneAdjusted);
+
+      return timeValue + offSet;
+    }
+
+    jest.spyOn(Date.prototype, 'getTime').mockImplementation(getTimeTimezoneAdjusted);
   });
 
   function renderAndExpectFocusedCalendar() {
