@@ -134,11 +134,11 @@ function CustomFieldInputMultipleChoice(props) {
             ))}
             {!props.readOnly && (
               <input
-                aria-labelledby={`${props.id}-label`}
-                aria-haspopup={'listbox'}
-                aria-expanded={renderPopup}
-                aria-autocomplete={'list'}
+                aria-autocomplete="list"
                 aria-controls={`${props.id}-multi-choice-listbox`}
+                aria-expanded={renderPopup}
+                aria-haspopup="listbox"
+                aria-labelledby={`${props.id}-label`}
                 role="combobox"
                 className={styles['autocomplete-input']}
                 id={`${props.id}-autocomple`}
