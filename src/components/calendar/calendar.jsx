@@ -202,6 +202,7 @@ function Calendar(props) {
             month: 'long',
           })}`}
           onClick={onPreviousMonthPress}
+          onEnter={onPreviousMonthPress}
         />
         <button
           className={styles['year-button']}
@@ -224,6 +225,7 @@ function Calendar(props) {
             month: 'long',
           })}`}
           onClick={onNextMonthPress}
+          onEnter={onNextMonthPress}
         />
       </div>
       <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >

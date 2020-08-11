@@ -155,18 +155,24 @@ describe('<Calendar />', () => {
   });
 
   describe('previous month button', () => {
-    it('displays the previous month', () => {
+    it('displays the previous month when clicked and when enter is pressed', () => {
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByTitle('Change calendar to June 2020'));
       expect(screen.getByText('June 2020')).toBeInTheDocument();
+
+      fireEvent.keyDown(screen.getByTitle('Change calendar to May 2020'), { key: 'Enter', code: 'Enter' });
+      expect(screen.getByText('May 2020')).toBeInTheDocument();
     });
   });
 
   describe('next month button', () => {
-    it('displays the next month', () => {
+    it('displays the next month when clicked and when enter is pressed', () => {
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByTitle('Change calendar to August 2020'));
       expect(screen.getByText('August 2020')).toBeInTheDocument();
+
+      fireEvent.keyDown(screen.getByTitle('Change calendar to September 2020'), { key: 'Enter', code: 'Enter' });
+      expect(screen.getByText('September 2020')).toBeInTheDocument();
     });
   });
 

@@ -12,6 +12,7 @@ export default function IconButton(props) {
       fill="skip"
       icon={props.icon}
       onClick={props.onClick}
+      onEnter={props.onEnter}
       role="button"
       size="skip"
       stroke="skip"
@@ -29,8 +30,10 @@ IconButton.propTypes = {
     viewBox: PropTypes.string.isRequired,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
+  onEnter: PropTypes.func,
 };
 
 IconButton.defaultProps = {
   className: styles.button,
+  onEnter: () => {},
 };
