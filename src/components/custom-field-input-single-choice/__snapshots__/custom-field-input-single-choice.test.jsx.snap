@@ -19,7 +19,8 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       className="control-container"
     >
       <input
-        aria-controls="test-id-label"
+        aria-autocomplete="list"
+        aria-controls="test-id-single-choice-listbox"
         aria-expanded={false}
         aria-haspopup="listbox"
         className="input"
@@ -33,6 +34,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         onKeyUp={[Function]}
         readOnly={false}
         required={false}
+        role="combobox"
         style={
           Object {
             "--numIcon": 1,

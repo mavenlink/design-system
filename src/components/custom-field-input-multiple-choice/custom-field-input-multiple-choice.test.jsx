@@ -57,16 +57,20 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
       });
 
-      it('has aria-haspopup for accessibility', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        expect(screen.getByLabelText('test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
-      });
+      describe('accessibility', () => {
+        it('has aria-haspopup, aria-autocomplete is list, and aria-controls references the list box id', () => {
+          render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-haspopup', 'listbox');
+          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'list');
+          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-controls', 'test-id-multi-choice-listbox');
+        });
 
-      it('has aria-expanded for accessibility', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
+        it('has aria-expanded ', () => {
+          render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
+          userEvent.click(screen.getByText('test label'));
+          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
+        });
       });
     });
 

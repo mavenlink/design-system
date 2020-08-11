@@ -30,12 +30,15 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
           role="grid"
         >
           <input
+            aria-autocomplete="list"
+            aria-controls="test-id-multi-choice-listbox"
             aria-expanded={false}
             aria-haspopup="listbox"
             aria-labelledby="test-id-label"
             className="autocomplete-input"
             id="test-id-autocomple"
             onChange={[Function]}
+            role="combobox"
             value=""
           />
         </div>
