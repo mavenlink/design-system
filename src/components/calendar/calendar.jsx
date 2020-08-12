@@ -1,4 +1,5 @@
 import React, {
+  createRef,
   useEffect,
   useState,
 } from 'react';
@@ -9,6 +10,8 @@ import caretDown from '../../svgs/caret-down.svg';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './calendar.css';
+import Listbox from '../listbox/listbox.jsx';
+import ListOption from '../list-option/list-option.jsx'
 
 function getDateIterator(year, month) {
   const firstDate = new Date(year, month, 1);
@@ -66,6 +69,7 @@ function Calendar(props) {
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
   const [active, setActive] = useState(false);
+  const [yearView, setYearView] = useState(false);
   const [focusedDate, setFocusedDate] = useState(new Date(props.value ? `${props.value}T00:00` : Date.now()));
   let refs = {};
 
@@ -157,6 +161,28 @@ function Calendar(props) {
   const nextCalendarMonth = new Date(year, month + 1);
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
+  const yearViewRefs = [...Array(26)].map(() => createRef());
+
+  useEffect(() => {
+    if (yearView && yearViewRefs[11].current) {
+      yearViewRefs[11].current.rootRef.current.scrollIntoView({ block: 'nearest', inline: 'start' });
+    }
+  }, [yearView]);
+
+  function onChangeYearView() {
+    setYearView(!yearView);
+  }
+
+  const renderOption = (ref, index) => {
+    const listOptionYear = highlightedDate.getFullYear() + index - 5;
+    const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
+    return (
+      <ListOption ref={ref} value={optionDate}>{optionDate.getFullYear()}</ListOption>
+    );
+  };
+  function renderYearOptions() {
+    return yearViewRefs.map(renderOption);
+  }
 
   const getCell = () => {
     const date = iterator.getDate();
@@ -214,6 +240,8 @@ function Calendar(props) {
           <Icon
             className={styles['change-year-icon']}
             icon={caretDown}
+            onClick={onChangeYearView}
+            onEnter={onChangeYearView}
             v={2}
           />
         </button>
@@ -228,20 +256,30 @@ function Calendar(props) {
           onEnter={onNextMonthPress}
         />
       </div>
-      <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
-        <thead>
-          <tr>
-            {[...Array(7)].map(() => getHeadCell(headIterator))}
-          </tr>
-        </thead>
-        <tbody>
-          {[...Array(6)].map(() => (
-            <tr key={iterator.getTime()}>
-              {[...Array(7)].map(() => getCell())}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      { yearView ?
+        (
+          <Listbox value={highlightedDate} className={styles['calendar-year-list']} labelledBy={'year-view'} refs={yearViewRefs} >
+            { renderYearOptions() }
+          </Listbox>
+        )
+        :
+        (
+          <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
+            <thead>
+              <tr>
+                {[...Array(7)].map(() => getHeadCell(headIterator))}
+              </tr>
+            </thead>
+            <tbody>
+              {[...Array(6)].map(() => (
+                <tr key={iterator.getTime()}>
+                  {[...Array(7)].map(() => getCell())}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      }
     </div>
   );
 }

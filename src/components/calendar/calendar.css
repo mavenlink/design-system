@@ -37,6 +37,11 @@
   padding-top: var(--spacing-medium);
 }
 
+.calendar-year-list {
+  height: calc(var(--spacing-x-large) * 7); /* 7 list options */
+  overflow: scroll;
+}
+
 .change-month-button {
   composes: button from '../icon-button/icon-button.css'; /* stylelint-disable-line css-modules/composed-class-names */
   padding: var(--spacing-medium);
