@@ -85,6 +85,20 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).toHaveFocus();
       expect(screen.queryAllByRole('option', 'bar')[0]).toBeUndefined();
     });
+
+    it('has aria-haspopup, role is combobox, aria-autocomplete is list, and aria-controls references the list box id', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      expect(screen.getByLabelText('Test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'list');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-controls', 'test-id-single-choice-listbox');
+    });
+
+    it('has aria-expanded for accessibility', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} />);
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
+    });
   });
 
   describe('choices', () => {

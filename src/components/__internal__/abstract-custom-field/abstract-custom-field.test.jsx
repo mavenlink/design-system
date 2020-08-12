@@ -11,7 +11,7 @@ describe('AbstractCustomField', () => {
   };
 
   describe('aria props', () => {
-    const ariaProps = { autocomplete: 'list', haspopup: 'listbox' };
+    const ariaProps = { autocomplete: 'list', haspopup: 'listbox', controls: 'test-dropdown' };
 
     it('sets autocomplete to what is provided', () => {
       render(<AbstractCustomField {...sharedProps} ariaProps={ariaProps} />);
@@ -23,9 +23,9 @@ describe('AbstractCustomField', () => {
       expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-haspopup', 'listbox');
     });
 
-    it('sets the aria-controls to the form control label ID', () => {
+    it('sets the aria-controls to what is provided', () => {
       render(<AbstractCustomField {...sharedProps} ariaProps={ariaProps} />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-id-label');
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('aria-controls', 'test-dropdown');
     });
 
     it('sets aria-describedby to link to a hint and aria-invalid when there are errors', () => {

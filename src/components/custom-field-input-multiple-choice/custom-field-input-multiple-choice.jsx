@@ -134,7 +134,12 @@ function CustomFieldInputMultipleChoice(props) {
             ))}
             {!props.readOnly && (
               <input
+                aria-autocomplete="list"
+                aria-controls={`${props.id}-multi-choice-listbox`}
+                aria-expanded={renderPopup}
+                aria-haspopup="listbox"
                 aria-labelledby={`${props.id}-label`}
+                role="combobox"
                 className={styles['autocomplete-input']}
                 id={`${props.id}-autocomple`}
                 onChange={onAutocompleteChange}
@@ -174,6 +179,7 @@ function CustomFieldInputMultipleChoice(props) {
         { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles['popup-container']}
+            id={`${props.id}-multi-choice-listbox`}
             labelledBy={`${props.id}-label`}
             refs={choicesRefs}
           >
