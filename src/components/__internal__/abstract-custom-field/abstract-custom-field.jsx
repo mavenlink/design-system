@@ -73,14 +73,16 @@ export default function AbstractCustomField(props) {
     >
       <input
         aria-autocomplete={props.ariaProps.autocomplete}
-        aria-controls={labelId}
+        aria-controls={props.ariaProps.controls}
         aria-haspopup={props.ariaProps.haspopup}
+        aria-expanded={props.ariaProps.expanded}
         aria-invalid={invalidDueToProps ? 'true' : undefined}
         aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
         className={styles.input}
         disabled={props.disabled}
         id={props.id}
+        role={props.inputRole}
         max={props.max}
         min={props.min}
         name={props.name}
@@ -111,6 +113,8 @@ export default function AbstractCustomField(props) {
 AbstractCustomField.propTypes = {
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
+    controls: PropTypes.string,
+    expanded: PropTypes.bool,
     haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
@@ -123,6 +127,7 @@ AbstractCustomField.propTypes = {
   errorText: PropTypes.string,
   icon: PropTypes.node,
   id: PropTypes.string.isRequired,
+  inputRole: PropTypes.string,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   max: PropTypes.oneOfType([
@@ -164,6 +169,7 @@ AbstractCustomField.defaultProps = {
   errorText: '',
   icon: undefined,
   inputRef: undefined,
+  inputRole: undefined,
   max: undefined,
   min: undefined,
   name: undefined,

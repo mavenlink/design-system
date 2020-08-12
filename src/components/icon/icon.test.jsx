@@ -7,6 +7,10 @@ import Icon from './icon.jsx';
 describe('Icon', () => {
   const requiredProps = {
     name: 'foobar',
+    icon: {
+      id: 'foobar',
+      viewBox: '0 0 0 0',
+    },
   };
 
   it('has defaults', () => {
@@ -31,6 +35,24 @@ describe('Icon', () => {
         <Icon {...requiredProps} ariaLabelledBy="unique-id" />
       ));
       expect(screen.getByRole('img')).toHaveAttribute('aria-labelledby', 'unique-id');
+    });
+  });
+
+  describe('icon API', () => {
+    it('sets the height', () => {
+      render((
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
+      ));
+
+      expect(screen.getByRole('img')).toHaveAttribute('height', '11');
+    });
+
+    it('sets the width', () => {
+      render((
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
+      ));
+
+      expect(screen.getByRole('img')).toHaveAttribute('width', '10');
     });
   });
 
@@ -88,6 +110,17 @@ describe('Icon', () => {
         <Icon {...requiredProps} size="large" />
       ));
       expect(screen.getByRole('img')).toHaveClass('size-large');
+    });
+
+    it('can be "skip"', () => {
+      render((
+        <Icon {...requiredProps} size="skip" />
+      ));
+
+      expect(screen.getByRole('img')).not.toHaveClass('size-small');
+      expect(screen.getByRole('img')).not.toHaveClass('size-medium');
+      expect(screen.getByRole('img')).not.toHaveClass('size-large');
+      expect(screen.getByRole('img')).not.toHaveClass('size-skip');
     });
   });
 
@@ -248,6 +281,35 @@ describe('Icon', () => {
         render((
           <Icon {...requiredProps} currentColor="skip" />
         ));
+
+        expect(screen.getByRole('img')).not.toHaveClass('color-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('color-action');
+        expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('color-none');
+        expect(screen.getByRole('img')).not.toHaveClass('color-skip');
+      });
+    });
+
+    describe('v2', () => {
+      it('skips fill, stroke, and currentColor', () => {
+        render(<Icon {...requiredProps} className="i-am-a-classname" v={2} />);
+
+        expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
+
+        expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-action');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-none');
+        expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
+
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
+        expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
 
         expect(screen.getByRole('img')).not.toHaveClass('color-primary');
         expect(screen.getByRole('img')).not.toHaveClass('color-action');
