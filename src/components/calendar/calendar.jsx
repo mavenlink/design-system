@@ -158,6 +158,12 @@ function Calendar(props) {
     setYear(tmpDate.getFullYear());
   }
 
+  function changeYear(newYear) {
+    setYear(newYear.target.current.value.getFullYear());
+    setSelectedDate(new Date(newYear.target.current.value.getFullYear(), focusedDate.getMonth(), focusedDate.getDate()));
+    setYearView(false);
+  }
+
   const previousCalendarMonth = new Date(year, month - 1);
   const currentCalendarMonth = new Date(year, month);
   const nextCalendarMonth = new Date(year, month + 1);
@@ -179,7 +185,7 @@ function Calendar(props) {
     const listOptionYear = highlightedDate.getFullYear() + index - 5;
     const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
     return (
-      <ListOption ref={ref} value={optionDate}>{optionDate.getFullYear()}</ListOption>
+      <ListOption ref={ref} onSelect={changeYear} value={optionDate}>{optionDate.getFullYear()}</ListOption>
     );
   };
   function renderYearOptions() {
@@ -234,6 +240,8 @@ function Calendar(props) {
         />
         <button
           className={styles['year-button']}
+          onClick={onChangeYearView}
+          onEnter={onChangeYearView}
         >
           {currentCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
@@ -242,8 +250,6 @@ function Calendar(props) {
           <Icon
             className={styles['change-year-icon']}
             icon={caretDown}
-            onClick={onChangeYearView}
-            onEnter={onChangeYearView}
             v={2}
           />
         </button>
