@@ -64,13 +64,15 @@ function getDaysInMonth(date, nextMonth) {
 }
 
 function Calendar(props) {
-  const [selectedDate, setSelectedDate] = useState(props.value ? new Date(`${props.value}T00:00`) : undefined);
+  const defaultDate = props.value ? new Date(`${props.value}T00:00`) : undefined;
+  const [selectedDate, setSelectedDate] = useState(defaultDate);
   const highlightedDate = new Date(selectedDate ? selectedDate.getTime() : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
   const [active, setActive] = useState(false);
   const [yearView, setYearView] = useState(false);
-  const [focusedDate, setFocusedDate] = useState(new Date(props.value ? `${props.value}T00:00` : Date.now()));
+  const defaultFocusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
+  const [focusedDate, setFocusedDate] = useState(defaultFocusedDate);
   let refs = {};
 
   useEffect(() => {
