@@ -231,6 +231,12 @@ function Calendar(props) {
     );
   };
 
+  const onYearKeyDown = (event) => {
+    if (event.key === 'Space') {
+      onChangeYearView();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -247,7 +253,7 @@ function Calendar(props) {
         <button
           className={styles['year-button']}
           onClick={onChangeYearView}
-          onEnter={onChangeYearView}
+          onKeyDown={onYearKeyDown}
         >
           {currentCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
