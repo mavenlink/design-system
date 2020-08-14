@@ -177,7 +177,7 @@ function Calendar(props) {
   const yearViewRefs = [...Array(26)].map(() => createRef());
 
   useEffect(() => {
-    if (yearView && yearViewRefs[11].current) {
+    if (yearView && yearViewRefs[11].current && yearViewRefs[11].current.rootRef.current.scrollIntoView) {
       yearViewRefs[11].current.rootRef.current.scrollIntoView({ block: 'nearest', inline: 'start' });
     }
   }, [yearView]);
@@ -191,7 +191,9 @@ function Calendar(props) {
     const listOptionYear = startYear + index;
     const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
     return (
-      <ListOption ref={ref} onSelect={changeYear} value={optionDate}>{optionDate.getFullYear()}</ListOption>
+      <ListOption ref={ref} onSelect={changeYear} key={optionDate} value={optionDate}>
+        {optionDate.getFullYear()}
+      </ListOption>
     );
   };
   function renderYearOptions() {

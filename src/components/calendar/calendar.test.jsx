@@ -6,6 +6,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendar from './calendar.jsx';
+import {waitFor} from "@testing-library/dom";
 
 describe('<Calendar />', () => {
   const requiredProps = {
@@ -58,6 +59,37 @@ describe('<Calendar />', () => {
     expect(screen.getByLabelText('July 1')).toHaveClass('date');
     expect(screen.getByLabelText('August 1')).toHaveClass('not-current-date');
     expect(document.body).toMatchSnapshot();
+  });
+
+  describe('year view', () => {
+    it('renders 5 years back and 20 years forward and opens/closes on click, space, and enter', async () => {
+      render(<Calendar {...requiredProps} />);
+
+      // click
+      userEvent.click(screen.getByText('July 2020'));
+      expect(screen.getByText('2015')).toBeInTheDocument();
+      expect(screen.getByText('2040')).toBeInTheDocument();
+      userEvent.click(screen.getByText('July 2020'));
+      expect(screen.queryByText('2015')).not.toBeInTheDocument();
+      expect(screen.queryByText('2040')).not.toBeInTheDocument();
+
+      // pressing enter fires click event on a button element
+
+      // space
+      fireEvent.keyDown(screen.getByText('July 2020'), { key: 'Space', code: 'Space' });
+      expect(screen.getByText('2015')).toBeInTheDocument();
+      expect(screen.getByText('2040')).toBeInTheDocument();
+      fireEvent.keyDown(screen.getByText('July 2020'), { key: 'Space', code: 'Space' });
+      expect(screen.queryByText('2015')).not.toBeInTheDocument();
+      expect(screen.queryByText('2040')).not.toBeInTheDocument();
+    });
+
+    it('changes the date the year selected', () => {
+      render(<Calendar {...requiredProps} />);
+      userEvent.click(screen.getByText('July 2020'));
+      userEvent.click(screen.getByText('2022'));
+      expect(screen.getByText('July 2022')).toBeInTheDocument();
+    });
   });
 
   describe('accessibility', () => {
