@@ -11,7 +11,7 @@ import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './calendar.css';
 import Listbox from '../listbox/listbox.jsx';
-import ListOption from '../list-option/list-option.jsx'
+import ListOption from '../list-option/list-option.jsx';
 
 function getDateIterator(year, month) {
   const firstDate = new Date(year, month, 1);
@@ -160,7 +160,12 @@ function Calendar(props) {
 
   function changeYear(newYear) {
     setYear(newYear.target.current.value.getFullYear());
-    setSelectedDate(new Date(newYear.target.current.value.getFullYear(), focusedDate.getMonth(), focusedDate.getDate()));
+    const newYearDate = new Date(
+      newYear.target.current.value.getFullYear(),
+      focusedDate.getMonth(),
+      focusedDate.getDate(),
+    );
+    setSelectedDate(newYearDate);
     setYearView(false);
   }
 
@@ -182,7 +187,8 @@ function Calendar(props) {
   }
 
   const renderOption = (ref, index) => {
-    const listOptionYear = highlightedDate.getFullYear() + index - 5;
+    const startYear = highlightedDate.getFullYear() - 5;
+    const listOptionYear = startYear + index;
     const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
     return (
       <ListOption ref={ref} onSelect={changeYear} value={optionDate}>{optionDate.getFullYear()}</ListOption>
