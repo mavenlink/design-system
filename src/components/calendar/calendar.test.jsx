@@ -6,7 +6,6 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendar from './calendar.jsx';
-import {waitFor} from "@testing-library/dom";
 
 describe('<Calendar />', () => {
   const requiredProps = {
