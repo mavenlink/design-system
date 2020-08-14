@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader has defaults 1`] = `
+<div
+  className="wrapper"
+  data-testid="loader"
+>
+  <span
+    className="spinner"
+  >
+    Loading...
+  </span>
+</div>
+`;
