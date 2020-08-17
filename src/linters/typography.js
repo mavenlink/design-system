@@ -24,7 +24,7 @@ const properties = [
   'line-height',
 ];
 
-module.exports = stylelint.createPlugin(ruleName, () => {
+module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) => {
   return (root, result) => {
     root.walkDecls((declaration) => {
       const property = declaration.prop;
@@ -37,8 +37,19 @@ module.exports = stylelint.createPlugin(ruleName, () => {
         });
 
         if (invalidFontSetting) {
-          const violation = { ruleName, node: declaration, result };
-          stylelint.utils.report({ ...violation, message: messages.rejected });
+          if (context.fix) {
+            const currentValue = declaration.value;
+
+            if (currentValue === '32px') {
+              declaration.value = 'var(--spacing-x-large)';
+            } else {
+              const violation = { ruleName, node: declaration, result };
+              stylelint.utils.report({ ...violation, message: messages.rejected });
+            }
+          } else {
+            const violation = { ruleName, node: declaration, result };
+            stylelint.utils.report({ ...violation, message: messages.rejected });
+          }
         }
       }
     });
