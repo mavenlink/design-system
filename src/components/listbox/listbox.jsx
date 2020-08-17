@@ -101,6 +101,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     <ul
       aria-labelledby={props.labelledBy}
       className={props.className}
+      id={props.id}
       onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
@@ -122,6 +123,7 @@ const ListOptionRefType = PropTypes.shape({
 Listbox.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  id: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   refs: PropTypes.arrayOf(ListOptionRefType).isRequired,
@@ -130,6 +132,7 @@ Listbox.propTypes = {
 
 Listbox.defaultProps = {
   className: styles.container,
+  id: undefined,
   children: undefined,
   onChange: () => {},
   value: undefined,
