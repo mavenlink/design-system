@@ -16,3 +16,7 @@
 .section > * {
   margin-bottom: var(--spacing-large);
 }
+
+.section:last-of-type {
+  margin-bottom: var(--spacing-x-large);
+}
