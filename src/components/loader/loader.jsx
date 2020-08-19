@@ -2,33 +2,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './loader.css';
 
-export default function Loader({ cssInline, cssSpinner, cssInlineWrapper, cssWrapper, inline }) {
+export default function Loader({ inline }) {
   return (
     <div
       aria-busy="true"
       aria-live="polite"
-      className={inline ? cssInlineWrapper : cssWrapper}
-      data-testid="loader"
+      className={inline ? styles.inlineWrapper : styles.wrapper}
       role="progressbar"
       tabIndex={0}
     >
-      <span className={inline ? cssInline : cssSpinner}>Loading...</span>
+      <span className={inline ? styles.inline : styles.spinner}>Loading...</span>
     </div>
   );
 }
 
 Loader.propTypes = {
-  cssInline: PropTypes.string,
-  cssSpinner: PropTypes.string,
-  cssWrapper: PropTypes.string,
-  cssInlineWrapper: PropTypes.string,
   inline: PropTypes.bool,
 };
 
 Loader.defaultProps = {
-  cssInline: styles.inline,
-  cssSpinner: styles.spinner,
-  cssWrapper: styles.wrapper,
-  cssInlineWrapper: styles.inlineWrapper,
   inline: false,
 };

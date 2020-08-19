@@ -5,7 +5,6 @@ exports[`Loader has defaults 1`] = `
   aria-busy="true"
   aria-live="polite"
   className="wrapper"
-  data-testid="loader"
   role="progressbar"
   tabIndex={0}
 >
