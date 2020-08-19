@@ -4,7 +4,14 @@ import styles from './loader.css';
 
 export default function Loader({ cssInline, cssSpinner, cssInlineWrapper, cssWrapper, inline }) {
   return (
-    <div data-testid="loader" className={inline ? cssInlineWrapper : cssWrapper}>
+    <div
+      aria-busy="true"
+      aria-live="polite"
+      className={inline ? cssInlineWrapper : cssWrapper}
+      data-testid="loader"
+      role="progressbar"
+      tabIndex={0}
+    >
       <span className={inline ? cssInline : cssSpinner}>Loading...</span>
     </div>
   );
