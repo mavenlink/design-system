@@ -2,7 +2,7 @@
 
 exports[`Section renders a section component 1`] = `
 <section
-  className="section"
+  className="outer-section"
 >
   <h2
     className="subheading"
