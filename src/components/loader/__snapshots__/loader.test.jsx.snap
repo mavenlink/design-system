@@ -2,8 +2,12 @@
 
 exports[`Loader has defaults 1`] = `
 <div
+  aria-busy="true"
+  aria-live="polite"
   className="wrapper"
   data-testid="loader"
+  role="progressbar"
+  tabIndex={0}
 >
   <span
     className="spinner"
