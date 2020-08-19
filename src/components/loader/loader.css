@@ -169,33 +169,12 @@
   width: 1em;
 }
 
-.overlaySpinner {
-  animation: spinner 1.1s infinite ease;
-  border-radius: 50%;
-  font-size: 10px; /* stylelint-disable-line mds/typography */
-  height: 1em;
-  opacity: 0.4;
-  text-indent: -9999em;
-  transform: translateZ(0);
-  width: 1em;
-  z-index: 2;
-}
-
 .wrapper {
   align-items: center;
   display: flex;
   height: 5em;
   justify-content: center;
   position: relative;
-  width: 100%;
-}
-
-.overlayWrapper {
-  align-items: center;
-  display: flex;
-  height: 37.5em;
-  justify-content: center;
-  position: absolute;
   width: 100%;
 }
 
