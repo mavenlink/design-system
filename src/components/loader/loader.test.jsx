@@ -8,7 +8,8 @@ describe('Loader', () => {
   afterEach(cleanup);
 
   it('has defaults', () => {
-    const tree = renderer.create((<Loader />)).toJSON();
+    render(<Loader />);
+    expect(document.body).toMatchSnapshot();
     expect(tree).toMatchSnapshot();
   });
 
