@@ -5,98 +5,98 @@
   0%,
   100% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 1),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.38),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.54),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.87);
+      0 -2.4em 0 0 var(--black),
+      1.6em -1.6em 0 0 var(--mds-grey-12),
+      2.4em 0 0 0 var(--mds-grey-12),
+      1.6em 1.6em 0 0 var(--mds-grey-12),
+      0 2.4em 0 0 var(--mds-grey-12),
+      -1.6em 1.6em 0 0 var(--mds-grey-38),
+      -2.4em 0 0 0 var(--mds-grey-54),
+      -1.6em -1.6em 0 0 var(--mds-grey-87);
   }
 
   12.4% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.87),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 1),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.38),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.54);
+      0 -2.4em 0 0 var(--mds-grey-87),
+      1.6em -1.6em 0 0 var(--black),
+      2.4em 0 0 0 var(--mds-grey-12),
+      1.6em 1.6em 0 0 var(--mds-grey-12),
+      0 2.4em 0 0 var(--mds-grey-12),
+      -1.6em 1.6em 0 0 var(--mds-grey-12),
+      -2.4em 0 0 0 var(--mds-grey-38),
+      -1.6em -1.6em 0 0 var(--mds-grey-54);
   }
 
   25% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.54),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.87),
-      2.4em 0 0 0 rgba(0, 0, 0, 1),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.38);
+      0 -2.4em 0 0 var(--mds-grey-54),
+      1.6em -1.6em 0 0 var(--mds-grey-87),
+      2.4em 0 0 0 var(--black),
+      1.6em 1.6em 0 0 var(--mds-grey-12),
+      0 2.4em 0 0 var(--mds-grey-12),
+      -1.6em 1.6em 0 0 var(--mds-grey-12),
+      -2.4em 0 0 0 var(--mds-grey-12),
+      -1.6em -1.6em 0 0 var(--mds-grey-38);
   }
 
   37.5% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.38),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.54),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.87),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 1),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12);
+      0 -2.4em 0 0 var(--mds-grey-38),
+      1.6em -1.6em 0 0 var(--mds-grey-54),
+      2.4em 0 0 0 var(--mds-grey-87),
+      1.6em 1.6em 0 0 var(--black),
+      0 2.4em 0 0 var(--mds-grey-12),
+      -1.6em 1.6em 0 0 var(--mds-grey-12),
+      -2.4em 0 0 0 var(--mds-grey-12),
+      -1.6em -1.6em 0 0 var(--mds-grey-12);
   }
 
   50% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.12),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.38),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.54),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.87),
-      0 2.4em 0 0 rgba(0, 0, 0, 1),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12);
+      0 -2.4em 0 0 var(--mds-grey-12),
+      1.6em -1.6em 0 0 var(--mds-grey-38),
+      2.4em 0 0 0 var(--mds-grey-54),
+      1.6em 1.6em 0 0 var(--mds-grey-87),
+      0 2.4em 0 0 var(--black),
+      -1.6em 1.6em 0 0 var(--mds-grey-12),
+      -2.4em 0 0 0 var(--mds-grey-12),
+      -1.6em -1.6em 0 0 var(--mds-grey-12);
   }
 
   62.4% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.12),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.38),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.54),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.87),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 1),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12);
+      0 -2.4em 0 0 var(--mds-grey-12),
+      1.6em -1.6em 0 0 var(--mds-grey-12),
+      2.4em 0 0 0 var(--mds-grey-38),
+      1.6em 1.6em 0 0 var(--mds-grey-54),
+      0 2.4em 0 0 var(--mds-grey-87),
+      -1.6em 1.6em 0 0 var(--black),
+      -2.4em 0 0 0 var(--mds-grey-12),
+      -1.6em -1.6em 0 0 var(--mds-grey-12);
   }
 
   75% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.12),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.38),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.54),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.87),
-      -2.4em 0 0 0 rgba(0, 0, 0, 1),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12);
+      0 -2.4em 0 0 var(--mds-grey-12),
+      1.6em -1.6em 0 0 var(--mds-grey-12),
+      2.4em 0 0 0 var(--mds-grey-12),
+      1.6em 1.6em 0 0 var(--mds-grey-38),
+      0 2.4em 0 0 var(--mds-grey-54),
+      -1.6em 1.6em 0 0 var(--mds-grey-87),
+      -2.4em 0 0 0 var(--black),
+      -1.6em -1.6em 0 0 var(--mds-grey-12);
   }
 
   87.5% {
     box-shadow:
-      0 -2.4em 0 0 rgba(0, 0, 0, 0.12),
-      1.6em -1.6em 0 0 rgba(0, 0, 0, 0.12),
-      2.4em 0 0 0 rgba(0, 0, 0, 0.12),
-      1.6em 1.6em 0 0 rgba(0, 0, 0, 0.12),
-      0 2.4em 0 0 rgba(0, 0, 0, 0.38),
-      -1.6em 1.6em 0 0 rgba(0, 0, 0, 0.54),
-      -2.4em 0 0 0 rgba(0, 0, 0, 0.87),
-      -1.6em -1.6em 0 0 rgba(0, 0, 0, 1);
+      0 -2.4em 0 0 var(--mds-grey-12),
+      1.6em -1.6em 0 0 var(--mds-grey-12),
+      2.4em 0 0 0 var(--mds-grey-12),
+      1.6em 1.6em 0 0 var(--mds-grey-12),
+      0 2.4em 0 0 var(--mds-grey-38),
+      -1.6em 1.6em 0 0 var(--mds-grey-54),
+      -2.4em 0 0 0 var(--mds-grey-87),
+      -1.6em -1.6em 0 0 var(--black);
   }
 }
 
