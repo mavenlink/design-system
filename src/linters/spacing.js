@@ -30,6 +30,10 @@ const properties = [
   // 'border', // hmm
 ];
 
+let declarationToFix;
+let valueToFix;
+let shouldfix;
+
 module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) => {
   return (root, result) => {
     root.walkDecls((declaration) => {
@@ -44,7 +48,9 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
         }
 
         const validSpacingValue = valueTokens.every((token) => {
-          const includesSpacingVariable = validSpacingSettings.find(spacingVariable => token.includes(`var(${spacingVariable})`));
+          const includesSpacingVariable = validSpacingSettings.find((spacingVariable) => {
+            return token.includes(`var(${spacingVariable})`);
+          });
           return includesSpacingVariable || token === '0' || !Object.keys(fixmap).includes(token);
         });
 
@@ -53,13 +59,37 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
           const fixable = Object.keys(fixmap).includes(currentValue);
 
           if (context.fix && fixable) {
-            declaration.value = `var(${fixmap[currentValue]})`; // eslint-disable-line no-param-reassign
+            declarationToFix = declaration;
+            valueToFix = `var(${fixmap[currentValue]})`; // eslint-disable-line no-param-reassign
+            shouldfix = true;
+
+            let shouldImport = true;
+            try {
+              require.resolve('@mavenlink/design-system');
+            } catch (e) {
+              shouldImport = false;
+            }
+
+            const importString = '@import \'@mavenlink/design-system/src/styles/spacing.css\';';
+            if (!root.toString().includes(importString) && shouldImport) {
+              root.prepend(importString);
+            }
           } else {
             const violation = { ruleName, node: declaration, result };
             stylelint.utils.report({ ...violation, message: messages.rejected });
           }
         }
       }
+    });
+
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        if (shouldfix) {
+          declarationToFix.value = valueToFix;
+          shouldfix = false;
+        }
+        resolve();
+      }, 1);
     });
   };
 });
