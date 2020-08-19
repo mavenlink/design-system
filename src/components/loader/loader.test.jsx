@@ -9,7 +9,6 @@ describe('Loader', () => {
   it('has defaults', () => {
     render(<Loader />);
     expect(document.body).toMatchSnapshot();
-    expect(tree).toMatchSnapshot();
   });
 
   describe('inline API', () => {
