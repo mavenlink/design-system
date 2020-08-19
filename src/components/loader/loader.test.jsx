@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen, render, cleanup } from '@testing-library/react';
-import renderer from 'react-test-renderer';
 import Loader from './loader.jsx';
 import styles from './loader.css';
 
