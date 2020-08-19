@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loader has defaults 1`] = `
-<div
-  aria-busy="true"
-  aria-live="polite"
-  className="wrapper"
-  role="progressbar"
-  tabIndex={0}
->
-  <span
-    className="spinner"
-  >
-    Loading...
-  </span>
-</div>
+<body>
+  <div>
+    <div
+      aria-busy="true"
+      aria-live="polite"
+      class="wrapper"
+      role="progressbar"
+      tabindex="0"
+    >
+      <span
+        class="spinner"
+      >
+        Loading...
+      </span>
+    </div>
+  </div>
+</body>
 `;
