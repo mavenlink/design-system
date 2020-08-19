@@ -17,7 +17,7 @@ exports[`<Calendar /> has defaults 1`] = `
           width="12"
         >
           <title>
-            Change calendar to 2020 M06
+            Change calendar to June 2020
           </title>
           <use
             xlink:href="#arrow-left.svg"
@@ -26,7 +26,7 @@ exports[`<Calendar /> has defaults 1`] = `
         <button
           class="year-button"
         >
-          2020 M07
+          July 2020
           <svg
             class="change-year-icon"
             height="6"
@@ -46,7 +46,7 @@ exports[`<Calendar /> has defaults 1`] = `
           width="12"
         >
           <title>
-            Change calendar to 2020 M08
+            Change calendar to August 2020
           </title>
           <use
             xlink:href="#arrow-right.svg"
