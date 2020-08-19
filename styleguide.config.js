@@ -92,6 +92,13 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
+  styles: {
+    Para: {
+      para: {
+        fontSize: 14,
+      },
+    },
+  },
   template: {
     favicon: 'favicon.ico',
     head: {
