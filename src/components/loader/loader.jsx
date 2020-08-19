@@ -4,7 +4,7 @@ import styles from './loader.css';
 
 export default function Loader({ cssInline, cssSpinner, cssInlineWrapper, cssWrapper, inline }) {
   return (
-    <div data-testid={'loader'} className={inline ? cssInlineWrapper : cssWrapper}>
+    <div data-testid="loader" className={inline ? cssInlineWrapper : cssWrapper}>
       <span className={inline ? cssInline : cssSpinner}>Loading...</span>
     </div>
   );
