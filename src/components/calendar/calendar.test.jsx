@@ -83,7 +83,7 @@ describe('<Calendar />', () => {
       expect(screen.queryByText('2040')).not.toBeInTheDocument();
     });
 
-    it('changes the date the year selected', () => {
+    it('changes the date to the year selected', () => {
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByText('July 2020'));
       userEvent.click(screen.getByText('2022'));

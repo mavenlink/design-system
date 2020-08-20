@@ -41,9 +41,6 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     },
     value: props.value,
     rootRef,
-    // scrollIntoView: (options) => {
-    //   rootRef.current.scrollIntoView(options);
-    // },
   }));
 
   useEffect(() => {

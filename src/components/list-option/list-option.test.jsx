@@ -142,4 +142,12 @@ describe('src/components/list-option/list-option', () => {
       expect(ref.current.value).toEqual('unique-value');
     });
   });
+
+  describe('className API', () => {
+    it('accepts a className', () => {
+      const className = 'foo-bar';
+      render(<ListOption {...requiredProps} className={className} />);
+      expect(screen.getByText('Test option')).toHaveClass('foo-bar');
+    });
+  });
 });
