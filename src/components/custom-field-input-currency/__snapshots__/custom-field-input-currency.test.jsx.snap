@@ -17,7 +17,6 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
     className="control-container"
   >
     <input
-      aria-controls="foo-label"
       className="input"
       defaultValue=""
       disabled={false}

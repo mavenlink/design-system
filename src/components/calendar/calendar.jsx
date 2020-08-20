@@ -73,10 +73,12 @@ function Calendar(props) {
   const [yearView, setYearView] = useState(false);
   const defaultFocusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [focusedDate, setFocusedDate] = useState(defaultFocusedDate);
+  const [activeDate, setActiveDate] = useState(defaultFocusedDate);
   let refs = {};
 
   useEffect(() => {
     const ref = refs[focusedDate.toDateString()];
+    setActiveDate(focusedDate);
     if (active && ref) {
       ref.current.focus();
     }
@@ -93,6 +95,11 @@ function Calendar(props) {
     setFocusedDate(newDate);
     const ref = refs[newDate.toDateString()];
     if (!ref) changeMonth(Math.abs(dateAmount) / dateAmount);
+  }
+
+  function handleMonthPressChange(dateAmount) {
+    const newDate = new Date(activeDate.setDate(activeDate.getDate() + dateAmount));
+    setActiveDate(newDate);
   }
 
   function onDateClick(event) {
@@ -146,10 +153,12 @@ function Calendar(props) {
 
   function onPreviousMonthPress() {
     changeMonth(-1);
+    handleMonthPressChange(-getDaysInMonth(activeDate, 0));
   }
 
   function onNextMonthPress() {
     changeMonth(1);
+    handleMonthPressChange(getDaysInMonth(activeDate, 1));
   }
 
   function changeMonth(monthAmount) {
@@ -210,11 +219,16 @@ function Calendar(props) {
     cellRef[iterator.toDateString()] = ref;
     refs = { ...cellRef, ...refs };
 
-    const sameDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
+    const sameDateFocusedDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
+    const sameDateActiveDate = date === activeDate.getDate() && dateMonth === activeDate.getMonth();
     const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
     const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
-    const tabIndex = sameDate ? 0 : null;
+    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : null;
     const epoch = iterator.getTime();
+
+    function onCellFocus(event) {
+      setFocusedDate(new Date(Number(event.target.dataset.epoch)));
+    }
 
     iterator.setDate(date + 1); return (
       <td
@@ -227,6 +241,7 @@ function Calendar(props) {
         ref={ref}
         role="gridcell"
         tabIndex={tabIndex}
+        onFocus={onCellFocus}
       >
         {date}
       </td>

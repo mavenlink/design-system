@@ -868,6 +868,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
               class="date"
               data-epoch="1593388800000"
               role="gridcell"
+              tabindex="0"
             >
               29
             </td>
@@ -1362,7 +1363,6 @@ exports[`<Calendar /> renders the previous year 1`] = `
               class="date"
               data-epoch="1564358400000"
               role="gridcell"
-              tabindex="0"
             >
               29
             </td>
@@ -1381,6 +1381,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
               class="date"
               data-epoch="1564531200000"
               role="gridcell"
+              tabindex="0"
             >
               31
             </td>
