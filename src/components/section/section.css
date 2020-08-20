@@ -12,3 +12,7 @@
   margin-bottom: var(--spacing-large);
   margin-left: var(--spacing-x-large);
 }
+
+.section > * {
+  margin-bottom: var(--spacing-large);
+}
