@@ -200,7 +200,7 @@ function Calendar(props) {
     const listOptionYear = startYear + index;
     const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
     return (
-      <ListOption ref={ref} onSelect={changeYear} key={optionDate} value={optionDate}>
+      <ListOption className={styles.option} ref={ref} onSelect={changeYear} key={optionDate} value={optionDate}>
         {optionDate.getFullYear()}
       </ListOption>
     );

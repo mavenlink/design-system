@@ -40,7 +40,7 @@
 
 .calendar-year-list {
   height: calc(var(--spacing-x-large) * 7); /* 7 list options */
-  padding-left: var(--spacing-medium);
+  padding-left: 0;
   margin-top: calc(0 - var(--spacing-medium));
   margin-left: calc(var(--spacing-x-large) - var(--spacing-medium));
   margin-right: calc(var(--spacing-x-large) - var(--spacing-medium));
@@ -49,6 +49,11 @@
   border: 1px solid var(--mds-grey-38);
   border-radius: 3px;
   box-sizing: border-box;
+}
+
+.option {
+  composes: option from '../list-option/list-option.css';
+  padding-left: var(--spacing-large);
 }
 
 .change-month-button {
