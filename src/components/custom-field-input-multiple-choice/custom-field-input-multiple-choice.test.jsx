@@ -276,6 +276,16 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
       expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
+
+    it('sorts the choices based on ID', () => {
+      const testRef = createRef();
+      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={testRef} />);
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+      expect(testRef.current.value).toEqual([1, 2]);
+    });
   });
 
   describe('value API', () => {

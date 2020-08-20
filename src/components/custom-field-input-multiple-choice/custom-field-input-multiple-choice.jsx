@@ -61,7 +61,8 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     const selectedChoiceIndex = choicesRefs.findIndex(choiceRef => choiceRef === event.target);
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
-    setValue([...value, selectedChoice]);
+    const newValue = [...value, selectedChoice].sort((a, b) => a.id - b.id);
+    setValue(newValue);
     setAutocompleteValue('');
     autocompleteRef.current.focus();
   }
