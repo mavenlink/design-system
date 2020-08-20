@@ -17,7 +17,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-bottom: var(--spacing-large);
+  padding-bottom: var(--spacing-medium);
   padding-top: var(--spacing-large);
 }
 
@@ -41,11 +41,11 @@
 .calendar-year-list {
   height: calc(var(--spacing-x-large) * 7); /* 7 list options */
   padding-left: 0;
-  margin-top: calc(0 - var(--spacing-medium));
+  margin-top: 0;
   margin-left: calc(var(--spacing-x-large) - var(--spacing-medium));
   margin-right: calc(var(--spacing-x-large) - var(--spacing-medium));
   margin-bottom: var(--spacing-medium);
-  overflow: scroll;
+  overflow-y: scroll;
   border: 1px solid var(--mds-grey-38);
   border-radius: 3px;
   box-sizing: border-box;
@@ -63,6 +63,7 @@
 
 .calendar-grid {
   border-collapse: collapse;
+  margin-top: var(--spacing-large);
 }
 
 .weekday {
