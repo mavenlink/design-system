@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`
   - Patch: Don't coerce ref value for `CustomFieldInputSingleChoice` to a number anymore (it already is now)
+  - Minor: Adjust styling between sections for section component
 </details>
 
 ## v0.36.1 (August 7, 2020)
