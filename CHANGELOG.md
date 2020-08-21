@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Adjust styling between sections for section component
 </details>
+
+## v0.36.2 (August 21, 2020)
+- Patch: Adjust styling between sections for section component
 
 ## v0.36.1 (August 7, 2020)
 - Patch: Brand Identity information is now displayed across a few different pages
