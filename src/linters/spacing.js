@@ -20,8 +20,10 @@ function zip(obj, value, index) {
 const fixmap = valueKeys.reduce(zip, {});
 
 const messages = stylelint.utils.ruleMessages(ruleName, {
-  rejected: `Use MDS spacing variables where possible. This can always be auto fixed with the --fix option.
-Ie. ${JSON.stringify(fixmap)} For more info, see: ${url}`,
+  rejected: `To promote design consistency: use MDS spacing variables for margin and padding.
+This rule can always be auto fixed with the --fix option.
+Ie. ${JSON.stringify(fixmap)} For more info, see: ${url}.
+If you are using a spacing value that is close to the MDS variable value please consider using the MDS value.`,
 });
 
 const properties = [

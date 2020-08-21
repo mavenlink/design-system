@@ -8,6 +8,7 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Minor: Adjust styling between sections for section component
+  - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
 </details>
 
 ## v0.36.1 (August 7, 2020)
