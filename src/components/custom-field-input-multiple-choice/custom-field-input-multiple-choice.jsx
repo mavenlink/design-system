@@ -51,7 +51,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   function getVisibleChoices() {
     return props.choices
       .filter(choice => choice.label.includes(autocompleteValue))
-      .filter(choice => !value.includes(choice));
+      .filter(choice => !value.some(val => val.id === choice.id));
   }
 
   function onChoiceRemove(event) {
