@@ -33,9 +33,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const visibleChoices = props.choices
-    .filter(choice => choice.label.includes(autocompleteValue))
-    .filter(choice => !value.includes(choice));
+  const [visibleChoices, setVisibleChoices] = useState(getVisibleChoices());
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
@@ -49,6 +47,12 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     setAutocompleteValue('');
   };
   useDropdownClose(wrapperRef, expanded, handleDropdownClose);
+
+  function getVisibleChoices() {
+    return props.choices
+      .filter(choice => choice.label.includes(autocompleteValue))
+      .filter(choice => !value.includes(choice));
+  }
 
   function onChoiceRemove(event) {
     const newValue = value.filter((choice, index) => (
@@ -108,12 +112,21 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     props.onChange(selfRef.current);
   }, [value]);
 
+  useEffect(() => {
+    setVisibleChoices(getVisibleChoices());
+  }, [value, autocompleteValue])
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
   useImperativeHandle(selfRef, () => ({
     id: props.id,
     get value() {
       return value ? value.map(v => v.id) : [];
     },
   }));
+
   return (
     <div ref={wrapperRef}>
       <FormControl

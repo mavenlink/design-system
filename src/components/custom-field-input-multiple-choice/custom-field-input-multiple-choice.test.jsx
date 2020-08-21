@@ -183,6 +183,29 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
     });
+
+    it('does not show a selected choice when the selection is not set up on initial render', () => {
+      const choices = [{
+        id: 42,
+        label: 'Answer to everything',
+      }];
+      const { rerender } = render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+      />));
+
+      userEvent.click(screen.getByText('test label'));
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
+
+      rerender(<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        value={choices}
+      />);
+
+      userEvent.click(screen.getByText('test label'));
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+    });
   });
 
   describe('errorText API', () => {
