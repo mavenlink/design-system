@@ -60,7 +60,7 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
 
           if (context.fix && fixable) {
             declarationToFix = declaration;
-            valueToFix = `var(${fixmap[currentValue]})`; // eslint-disable-line no-param-reassign
+            valueToFix = `var(${fixmap[currentValue]})`;
             shouldfix = true;
 
             let shouldImport = true;
@@ -82,8 +82,8 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
       }
     });
 
-    return new Promise(function (resolve) {
-      setTimeout(function () {
+    return new Promise((resolve) => {
+      setTimeout(() => {
         if (shouldfix) {
           declarationToFix.value = valueToFix;
           shouldfix = false;
