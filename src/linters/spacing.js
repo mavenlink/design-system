@@ -58,11 +58,15 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
 
         if (!validSpacingValue) {
           const currentValue = declaration.value;
-          const fixable = Object.keys(fixmap).includes(currentValue);
+
+          const fixable = currentValue.split(' ').some(value => fixmap[value]);
 
           if (context.fix && fixable) {
             declarationToFix = declaration;
-            valueToFix = `var(${fixmap[currentValue]})`;
+            valueToFix = currentValue.split(' ').map((value) => {
+              const fixedValue = fixmap[value];
+              return fixedValue ? `var(${fixedValue})` : value;
+            }).join(' ');
             shouldfix = true;
 
             let shouldImport = true;

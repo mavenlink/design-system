@@ -63,4 +63,13 @@ describe('src/linters/spacing', () => {
       expect(data.output).toEqual('.className { margin: var(--spacing-large); }');
     });
   });
+
+  fit('fixes mds variables to their value when fixed is passed in and does not error even when there are multiple values', async () => {
+    const code = '.className { margin: 16px 0 8px 0; }';
+
+    await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
+      // expect(data.errored).toBe(false);
+      expect(data.output).toEqual('.className { margin: var(--spacing-large) 0 var(--spacing-medium) 0; }');
+    });
+  });
 });
