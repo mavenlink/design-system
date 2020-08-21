@@ -114,7 +114,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
 
   useEffect(() => {
     setVisibleChoices(getVisibleChoices());
-  }, [value, autocompleteValue])
+  }, [value, autocompleteValue]);
 
   useEffect(() => {
     setValue(props.value);
