@@ -205,6 +205,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+      expect(screen.getByText('Answer to everything')).toBeInTheDocument();
     });
   });
 
