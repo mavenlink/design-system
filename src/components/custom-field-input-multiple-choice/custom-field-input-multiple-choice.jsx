@@ -33,7 +33,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const [visibleChoices, setVisibleChoices] = useState(getVisibleChoices());
+  const visibleChoices = getVisibleChoices();
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.readOnly, props.errorText);
@@ -111,10 +111,6 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   useEffect(() => {
     props.onChange(selfRef.current);
   }, [value]);
-
-  useEffect(() => {
-    setVisibleChoices(getVisibleChoices());
-  }, [value, autocompleteValue]);
 
   useEffect(() => {
     setValue(props.value);
