@@ -64,7 +64,7 @@ describe('src/linters/spacing', () => {
     });
   });
 
-  fit('fixes mds variables to their value when fixed is passed in and does not error even when there are multiple values', async () => {
+  it('fixes mds variables to their value when fixed is passed in and does not error even when there are multiple values', async () => {
     const code = '.className { margin: 16px 0 8px 0; }';
 
     await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
