@@ -5,6 +5,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputDate from './custom-field-input-date.jsx';
 
@@ -26,7 +27,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const { container } = renderComponent({ className: 'prioritize-me' });
-      expect(container.firstChild).toHaveClass('prioritize-me');
+      expect(container.firstChild.firstChild).toHaveClass('prioritize-me');
     });
   });
 
@@ -156,6 +157,17 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         fireEvent.blur(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
       });
+    });
+  });
+
+  describe('calendar icon', () => {
+    fit('opens to the correct date on click and closes when clicking away', () => {
+      renderComponent({ value: '2016-07-18' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
+      userEvent.click(document.body);
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
   });
 

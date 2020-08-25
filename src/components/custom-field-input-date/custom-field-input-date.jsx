@@ -1,10 +1,12 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/icon-calendar-fill.svg';
-import Icon from '../icon/icon.jsx';
+import IconButton from '../icon-button/icon-button.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
-import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+import dateStyles from './custom-field-date.css';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import Calendar from '../calendar/calendar.jsx';
 
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
@@ -32,6 +34,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [isEditing, setIsEditing] = useState(true);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
   const [isFocused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -78,41 +81,65 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     return props.errorText;
   };
 
+  const wrapperRef = useRef(null);
+  const handleDropdownClose = () => {
+    setExpanded(false);
+  };
+  useDropdownClose(wrapperRef, expanded, handleDropdownClose);
+
+  const openCalendar = () => {
+    setExpanded(!expanded);
+  };
+
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
-    icon: <Icon className={styles['input-icon']} name={calendarSvg.id} title={props.label} stroke="skip" fill="skip" />,
+    icon: <IconButton onClick={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
     label: props.label,
     inputRef,
     readOnly: true,
     required: props.required,
   };
 
-  if (isEditing || !isValid) {
-    const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+  const renderField = () => {
+    if (isEditing || !isValid) {
+      const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
 
-    return (<AbstractCustomField
-      {...sharedProps}
-      defaultValue={value}
-      errorText={errorText()}
-      id={props.id}
-      key={`${props.id}-editing`}
-      min={convertToFormat(props.min, 'yyyy-mm-dd')}
-      max={convertToFormat(props.max, 'yyyy-mm-dd')}
-      onChange={handleOnChange}
-      step={1}
-      type="date"
-    />);
-  }
+      return (
+        <AbstractCustomField
+          {...sharedProps}
+          defaultValue={value}
+          errorText={errorText()}
+          id={props.id}
+          key={`${props.id}-editing`}
+          min={convertToFormat(props.min, 'yyyy-mm-dd')}
+          max={convertToFormat(props.max, 'yyyy-mm-dd')}
+          onChange={handleOnChange}
+          step={1}
+          type="date"
+        />);
+    }
 
-  return (<AbstractCustomField
-    {...sharedProps}
-    defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
-    id={props.id}
-    key={`${props.id}-readonly`}
-    inputRef={componentRef}
-    type="text"
-  />);
+    return (
+      <AbstractCustomField
+        {...sharedProps}
+        defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
+        id={props.id}
+        key={`${props.id}-readonly`}
+        inputRef={componentRef}
+        type="text"
+      />
+    );
+  };
+
+  return (
+    <div ref={wrapperRef}>
+      { renderField() }
+      { expanded && (
+        <Calendar value={props.value} />
+      )}
+    </div>
+  );
 });
 
 CustomFieldInputDate.propTypes = {

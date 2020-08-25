@@ -1,0 +1,9 @@
+@import '../../styles/spacing.css';
+
+.input-icon {
+  composes: input-icon from '../__internal__/abstract-custom-field/abstract-custom-field.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  pointer-events: auto;
+  height: 32px;
+  width: 26px;
+  margin-top: -6px;
+}
