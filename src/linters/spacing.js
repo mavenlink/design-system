@@ -28,13 +28,18 @@ If you are using a spacing value that is close to the MDS variable value please 
 
 const properties = [
   'margin',
+  'margin-top',
+  'margin-right',
+  'margin-bottom',
+  'margin-left',
   'padding',
-  // 'border', // hmm
+  'padding-top',
+  'padding-right',
+  'padding-bottom',
+  'padding-left',
 ];
 
-let declarationToFix;
-let valueToFix;
-let shouldfix;
+const fixes = [];
 
 module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) => {
   return (root, result) => {
@@ -62,12 +67,11 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
           const fixable = currentValue.split(' ').some(value => fixmap[value]);
 
           if (context.fix && fixable) {
-            declarationToFix = declaration;
-            valueToFix = currentValue.split(' ').map((value) => {
+            const valueToFix = currentValue.split(' ').map((value) => {
               const fixedValue = fixmap[value];
               return fixedValue ? `var(${fixedValue})` : value;
             }).join(' ');
-            shouldfix = true;
+            fixes.push([declaration, valueToFix]);
 
             let shouldImport = true;
             try {
@@ -88,12 +92,16 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
       }
     });
 
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (shouldfix) {
-          declarationToFix.value = valueToFix;
-          shouldfix = false;
-        }
+    // eslint-disable-next-line prefer-arrow-callback
+    return new Promise(function (resolve) {
+      // eslint-disable-next-line prefer-arrow-callback
+      setTimeout(function () {
+        // console.log(fixes);
+        // eslint-disable-next-line prefer-arrow-callback
+        fixes.forEach(function (fixTuple) {
+          // eslint-disable-next-line no-param-reassign
+          fixTuple[0].value = fixTuple[1];
+        });
         resolve();
       }, 1);
     });
