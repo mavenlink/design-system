@@ -7,6 +7,9 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`
+  - Patch: Don't coerce ref value for `CustomFieldInputSingleChoice` to a number anymore (it already is now)
+  - Minor: Adjust styling between sections for section component
 </details>
 
 ## v0.37.0 (August 25, 2020)

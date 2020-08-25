@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import renderer from 'react-test-renderer';
 import {
   fireEvent,
@@ -12,10 +12,10 @@ import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
     choices: [{
-      id: '1',
+      id: 1,
       label: 'Choice 1',
     }, {
-      id: '2',
+      id: 2,
       label: 'Choice 2',
     }],
     id: 'test-id',
@@ -159,7 +159,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         choices={[{
-          id: '42',
+          id: 42,
           label: 'Answer to everything',
         }]}
       />));
@@ -171,7 +171,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
     it('does not show a selected choice', () => {
       const choices = [{
-        id: '42',
+        id: 42,
         label: 'Answer to everything',
       }];
       render((<CustomFieldInputMultipleChoice
@@ -182,6 +182,30 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+    });
+
+    it('does not show a selected choice when the selection is not set up on initial render', () => {
+      const choices = [{
+        id: 42,
+        label: 'Answer to everything',
+      }];
+      const { rerender } = render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+      />));
+
+      userEvent.click(screen.getByText('test label'));
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
+
+      rerender(<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        value={choices}
+      />);
+
+      userEvent.click(screen.getByText('test label'));
+      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+      expect(screen.getByText('Answer to everything')).toBeInTheDocument();
     });
   });
 
@@ -276,6 +300,16 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
       expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
     });
+
+    it('sorts the choices based on ID', () => {
+      const testRef = createRef();
+      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={testRef} />);
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+      expect(testRef.current.value).toEqual([1, 2]);
+    });
   });
 
   describe('value API', () => {
@@ -287,6 +321,55 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       expect(screen.getByText('Choice 2')).toBeInTheDocument();
+    });
+  });
+
+  describe('forwardRef API', () => {
+    it('provides access to the value', () => {
+      const testRef = createRef();
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        ref={testRef}
+      />));
+
+      expect(testRef.current.value).toStrictEqual([]);
+
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+
+      expect(testRef.current.value).toStrictEqual([1]);
+
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+
+      expect(testRef.current.value).toStrictEqual([1, 2]);
+    });
+  });
+
+  describe('onChange API', () => {
+    it('fires the onChange prop function when the value changes', () => {
+      let componentValue = null;
+
+      function onChangeHandler(componentRefCurrent) {
+        componentValue = componentRefCurrent.value;
+      }
+
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        onChange={onChangeHandler}
+      />));
+
+      expect(componentValue).toStrictEqual([]);
+
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+
+      expect(componentValue).toStrictEqual([1]);
+
+      userEvent.click(screen.getByText('test label'));
+      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+
+      expect(componentValue).toStrictEqual([1, 2]);
     });
   });
 
