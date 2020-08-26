@@ -81,4 +81,13 @@ describe('src/linters/spacing', () => {
       expect(data.output).toEqual('.className { margin: var(--spacing-large) 0 var(--spacing-medium) 0; }; .otherClass { margin-top: var(--spacing-x-small) }');
     });
   });
+
+  it('can fix complex usages of calc', async () => {
+    const code = '.className { margin-top: calc((16px / 4) + 3px - (32px)); }';
+
+    await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
+      expect(data.errored).toBe(false);
+      expect(data.output).toEqual('.className { margin-top: calc((var(--spacing-large) / 4) + 3px - (var(--spacing-x-large))); }');
+    });
+  });
 });

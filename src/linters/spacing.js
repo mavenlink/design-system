@@ -47,30 +47,18 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
       const property = declaration.prop;
 
       if (properties.includes(property)) {
-        const valueTokens = declaration.value.split(' ');
+        const currentValue = declaration.value;
 
-        const includesCalc = declaration.value.includes('calc');
-        if (includesCalc) {
-          return;
-        }
-
-        const validSpacingValue = valueTokens.every((token) => {
-          const includesSpacingVariable = validSpacingSettings.find((spacingVariable) => {
-            return token.includes(`var(${spacingVariable})`);
-          });
-          return includesSpacingVariable || token === '0' || !Object.keys(fixmap).includes(token);
+        const invalidSpacingValue = Object.keys(fixmap).some((spacingVariable) => {
+          return currentValue.includes(spacingVariable);
         });
 
-        if (!validSpacingValue) {
-          const currentValue = declaration.value;
-
-          const fixable = currentValue.split(' ').some(value => fixmap[value]);
-
-          if (context.fix && fixable) {
-            const valueToFix = currentValue.split(' ').map((value) => {
-              const fixedValue = fixmap[value];
-              return fixedValue ? `var(${fixedValue})` : value;
-            }).join(' ');
+        if (invalidSpacingValue) {
+          if (context.fix) {
+            let valueToFix = currentValue;
+            Object.keys(fixmap).reverse().forEach((spacingVariable) => {
+              valueToFix = valueToFix.replace(spacingVariable, `var(${fixmap[spacingVariable]})`);
+            });
             fixes.push([declaration, valueToFix]);
 
             let shouldImport = true;
