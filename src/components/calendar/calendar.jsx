@@ -140,11 +140,8 @@ function Calendar(props) {
     }
   }
 
-  function onFocus(event) {
-    const activeRef = Object.values(refs).find(ref => ref.current.contains(event.target));
-    if (activeRef) {
-      setActive(true);
-    }
+  function onFocus() {
+    setActive(true);
   }
 
   function onPreviousMonthPress() {
@@ -245,13 +242,13 @@ function Calendar(props) {
           onEnter={onNextMonthPress}
         />
       </div>
-      <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
+      <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} >
         <thead>
           <tr>
             {[...Array(7)].map(() => getHeadCell(headIterator))}
           </tr>
         </thead>
-        <tbody>
+        <tbody onFocus={onFocus}>
           {[...Array(6)].map(() => (
             <tr key={iterator.getTime()}>
               {[...Array(7)].map(() => getCell())}
