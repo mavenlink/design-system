@@ -8,8 +8,20 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Minor: Calendar component dates can be navigated via keyboard
-  - Minor: Adjust styling between sections for section component
 </details>
+
+## v0.38.0 (August 25, 2020)
+  - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`
+  - Patch: Don't coerce ref value for `CustomFieldInputSingleChoice` to a number anymore (it already is now)
+  - Minor: Adjust styling between sections for section component
+
+## v0.37.0 (August 25, 2020)
+- Minor: Promote Loader component from internal MDS to external MDS
+- Minor: Add documentation explaining how to promote a component
+- Minor: Adjust styling between sections for section component
+
+## v0.36.2 (August 21, 2020)
+- Patch: Adjust styling between sections for section component
 
 ## v0.36.1 (August 7, 2020)
 - Patch: Brand Identity information is now displayed across a few different pages
