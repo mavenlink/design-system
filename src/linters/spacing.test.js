@@ -23,7 +23,7 @@ describe('src/linters/spacing', () => {
     });
   });
 
-  it('does not errors on a value differnet from a mds variable value', async () => {
+  it('does not errors on a value different from an MDS variable value', async () => {
     const code = '.className { margin: 3px; }';
 
     await stylelint.lint(configuration({ code })).then((data) => {

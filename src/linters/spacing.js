@@ -96,7 +96,6 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
     return new Promise(function (resolve) {
       // eslint-disable-next-line prefer-arrow-callback
       setTimeout(function () {
-        // console.log(fixes);
         // eslint-disable-next-line prefer-arrow-callback
         fixes.forEach(function (fixTuple) {
           // eslint-disable-next-line no-param-reassign
