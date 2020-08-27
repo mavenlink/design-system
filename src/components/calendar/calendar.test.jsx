@@ -83,6 +83,14 @@ describe('<Calendar />', () => {
       expect(screen.queryByText('2040')).not.toBeInTheDocument();
     });
 
+    it('tabs to the current year', () => {
+      render(<Calendar {...requiredProps} />);
+      userEvent.click(screen.getByText('July 2020'));
+      userEvent.tab();
+      userEvent.tab();
+      expect(screen.getByText('2020')).toHaveFocus();
+    });
+
     it('changes the date to the year selected', () => {
       render(<Calendar {...requiredProps} />);
       userEvent.click(screen.getByText('July 2020'));
