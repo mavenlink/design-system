@@ -64,6 +64,15 @@ describe('src/linters/spacing', () => {
     });
   });
 
+  it('ignores values that postfix match the mds values', async () => {
+    const code = '.className { margin-top: 444px; padding-left: 22px; padding-right: calc(22px + 4px); }';
+
+    await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
+      expect(data.errored).toBe(false);
+      expect(data.output).toEqual('.className { margin-top: 444px; padding-left: 22px; padding-right: calc(22px + var(--spacing-small)); }');
+    });
+  });
+
   it('fixes mds variables to their value when fixed is passed in and does not error even when there are multiple values', async () => {
     const code = '.className { margin: 16px 0 8px 0; }';
 

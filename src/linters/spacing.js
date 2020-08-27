@@ -1,5 +1,6 @@
 /* eslint-disable import/no-commonjs */
 
+const matchAll = require('string.prototype.matchall');
 const fs = require('fs');
 const path = require('path');
 const stylelint = require('stylelint');
@@ -50,14 +51,24 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
         const currentValue = declaration.value;
 
         const invalidSpacingValue = Object.keys(fixmap).some((spacingVariable) => {
-          return currentValue.includes(spacingVariable);
+          const pixelValueMatches = [...matchAll(currentValue, /\d+px/g)];
+          return pixelValueMatches.some(pixValueMatch => pixValueMatch[0] === spacingVariable);
         });
 
         if (invalidSpacingValue) {
           if (context.fix) {
             let valueToFix = currentValue;
-            Object.keys(fixmap).reverse().forEach((spacingVariable) => {
-              valueToFix = valueToFix.replace(spacingVariable, `var(${fixmap[spacingVariable]})`);
+            Object.keys(fixmap).forEach((spacingVariable) => {
+              const pixelValueMatches = [...matchAll(valueToFix, (/\d+px/g))];
+              pixelValueMatches.reverse().forEach((pixelValueMatch) => {
+                if (pixelValueMatch[0] === spacingVariable) {
+                  const firstHalf = valueToFix.substring(0, pixelValueMatch.index);
+                  const mdsVariable = fixmap[spacingVariable];
+                  const secondHalf = valueToFix.substring(pixelValueMatch.index
+                    + spacingVariable.length, valueToFix.length);
+                  valueToFix = `${firstHalf}var(${mdsVariable})${secondHalf}`;
+                }
+              });
             });
             fixes.push([declaration, valueToFix]);
 
