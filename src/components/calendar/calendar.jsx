@@ -144,11 +144,8 @@ function Calendar(props) {
     }
   }
 
-  function onFocus(event) {
-    const activeRef = Object.values(refs).find(ref => ref.current.contains(event.target));
-    if (activeRef) {
-      setActive(true);
-    }
+  function onFocus() {
+    setActive(true);
   }
 
   function onPreviousMonthPress() {
@@ -199,8 +196,16 @@ function Calendar(props) {
     const startYear = highlightedDate.getFullYear() - 5;
     const listOptionYear = startYear + index;
     const optionDate = new Date(listOptionYear, highlightedDate.getMonth(), highlightedDate.getDate());
+    const defaultActive = optionDate.getFullYear() === highlightedDate.getFullYear();
     return (
-      <ListOption className={styles.option} ref={ref} onSelect={changeYear} key={optionDate} value={optionDate}>
+      <ListOption
+        className={styles.option}
+        ref={ref}
+        onSelect={changeYear}
+        key={optionDate}
+        value={optionDate}
+        defaultActive={defaultActive}
+      >
         {optionDate.getFullYear()}
       </ListOption>
     );
@@ -301,13 +306,13 @@ function Calendar(props) {
         )
         :
         (
-          <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} onFocus={onFocus} >
+          <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} >
             <thead>
               <tr>
                 {[...Array(7)].map(() => getHeadCell(headIterator))}
               </tr>
             </thead>
-            <tbody>
+            <tbody onFocus={onFocus}>
               {[...Array(6)].map(() => (
                 <tr key={iterator.getTime()}>
                   {[...Array(7)].map(() => getCell())}
