@@ -72,9 +72,10 @@ export default function Icon(props) {
       onClick={props.onClick}
       role={props.role}
       width={vProps.width}
+      onKeyDown={onKeyDown}
     >
       { props.title && <title>{props.title}</title> }
-      <use onKeyDown={onKeyDown} xlinkHref={`#${vProps.name}`} />
+      <use xlinkHref={`#${vProps.name}`} />
     </svg>
   );
 }

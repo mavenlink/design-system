@@ -29,11 +29,11 @@ exports[`Tag renders a tag component 1`] = `
       className="icon-base size-small"
       id="test-id-button"
       onClick={[Function]}
+      onKeyDown={[Function]}
       role="button"
       tabIndex={0}
     >
       <use
-        onKeyDown={[Function]}
         xlinkHref="#icon-clear-small.svg"
       />
     </svg>

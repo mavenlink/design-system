@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -19,55 +20,142 @@ function getHeadCell(iterator) {
   const weekday = iterator.toLocaleDateString(undefined, {
     weekday: 'narrow',
   });
+  const uniqueWeekday = iterator.toLocaleDateString(undefined, {
+    weekday: 'short',
+  });
 
   iterator.setDate(date + 1);
 
   return (
-    <th className={styles.weekday}>
+    <th key={`header-${uniqueWeekday}`} className={styles.weekday}>
       {weekday}
     </th>
   );
 }
 
-function getCellClassName(iterator, month, highlightedDate) {
-  const isHighlightedDate =
-    highlightedDate.getFullYear() === iterator.getFullYear()
-    && highlightedDate.getMonth() === iterator.getMonth()
-    && highlightedDate.getDate() === iterator.getDate();
+function isSameDate(date1, date2) {
+  return (
+    date1.getFullYear() === date2.getFullYear()
+    && date1.getMonth() === date2.getMonth()
+    && date1.getDate() === date2.getDate()
+  );
+}
 
-  if (isHighlightedDate) return styles['highlighted-date'];
+function getCellClassName(iterator, month, highlightedDate) {
+  if (isSameDate(iterator, highlightedDate)) return styles['highlighted-date'];
 
   if (iterator.getMonth() === month) return styles.date;
 
   return styles['not-current-date'];
 }
 
-function getCell(iterator, month, highlightedDate) {
-  const date = iterator.getDate();
-  const className = getCellClassName(iterator, month, highlightedDate);
+function isEndDate(date) {
+  const nextDate = new Date(date.getYear(), date.getMonth(), date.getDate() + 1);
+  return date.getMonth() !== nextDate.getMonth();
+}
 
-  iterator.setDate(date + 1);
-
-  return (
-    <td className={className}>
-      {date}
-    </td>
-  );
+function getDaysInMonth(date, nextMonth) {
+  let month = date.getMonth() + nextMonth;
+  if (isEndDate(date)) month += 1;
+  return new Date(date.getYear(), month, 0).getDate();
 }
 
 function Calendar(props) {
-  const highlightedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
+  const defaultDate = props.value ? new Date(`${props.value}T00:00`) : undefined;
+  const [selectedDate, setSelectedDate] = useState(defaultDate);
+  const highlightedDate = new Date(selectedDate ? selectedDate.getTime() : Date.now());
   const [year, setYear] = useState(highlightedDate.getFullYear());
   const [month, setMonth] = useState(highlightedDate.getMonth());
+  const [active, setActive] = useState(false);
+  const defaultFocusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
+  const [focusedDate, setFocusedDate] = useState(defaultFocusedDate);
+  const [activeDate, setActiveDate] = useState(defaultFocusedDate);
+  let refs = {};
+
+  useEffect(() => {
+    const ref = refs[focusedDate.toDateString()];
+    setActiveDate(focusedDate);
+    if (active && ref) {
+      ref.current.focus();
+    }
+  }, [focusedDate]);
+
+  function handleKeyboardYearChange(direction) {
+    changeMonth(12 * direction);
+    const newDate = new Date(focusedDate.getFullYear() + direction, focusedDate.getMonth(), focusedDate.getDate());
+    setFocusedDate(newDate);
+  }
+
+  function handleKeyboardDateChange(dateAmount) {
+    const newDate = new Date(focusedDate.setDate(focusedDate.getDate() + dateAmount));
+    setFocusedDate(newDate);
+    const ref = refs[newDate.toDateString()];
+    if (!ref) changeMonth(Math.abs(dateAmount) / dateAmount);
+  }
+
+  function handleMonthPressChange(dateAmount) {
+    const newDate = new Date(activeDate.setDate(activeDate.getDate() + dateAmount));
+    setActiveDate(newDate);
+  }
+
+  function onDateClick(event) {
+    setSelectedDate(new Date(Number(event.target.dataset.epoch)));
+  }
+
+  function onKeyDown(event) {
+    const keyDownKeyHandlers = {
+      ArrowLeft: () => handleKeyboardDateChange(-1),
+      ArrowUp: () => handleKeyboardDateChange(-7),
+      ArrowRight: () => handleKeyboardDateChange(1),
+      ArrowDown: () => handleKeyboardDateChange(7),
+      End: () => handleKeyboardDateChange(6 - focusedDate.getDay()),
+      Enter: () => {
+        setSelectedDate(focusedDate);
+      },
+      Home: () => handleKeyboardDateChange(0 - focusedDate.getDay()),
+      PageUp: () => {
+        if (event.shiftKey) {
+          handleKeyboardYearChange(-1);
+        } else {
+          changeMonth(-1);
+          handleKeyboardDateChange(-getDaysInMonth(focusedDate, 0));
+        }
+      },
+      PageDown: () => {
+        if (event.shiftKey) {
+          handleKeyboardYearChange(1);
+        } else {
+          changeMonth(1);
+          handleKeyboardDateChange(getDaysInMonth(focusedDate, 1));
+        }
+      },
+      Space: () => {
+        setSelectedDate(focusedDate);
+      },
+    };
+
+    if (Object.keys(keyDownKeyHandlers).includes(event.key)) {
+      event.preventDefault();
+      keyDownKeyHandlers[event.key]();
+    }
+  }
+
+  function onFocus() {
+    setActive(true);
+  }
 
   function onPreviousMonthPress() {
-    const tmpDate = new Date(year, month - 1);
-    setMonth(tmpDate.getMonth());
-    setYear(tmpDate.getFullYear());
+    changeMonth(-1);
+    handleMonthPressChange(-getDaysInMonth(activeDate, 0));
   }
 
   function onNextMonthPress() {
-    const tmpDate = new Date(year, month + 1);
+    changeMonth(1);
+    handleMonthPressChange(getDaysInMonth(activeDate, 1));
+  }
+
+  function changeMonth(monthAmount) {
+    const tmpDate = new Date(year, month + monthAmount);
     setMonth(tmpDate.getMonth());
     setYear(tmpDate.getFullYear());
   }
@@ -77,6 +165,45 @@ function Calendar(props) {
   const nextCalendarMonth = new Date(year, month + 1);
   const iterator = getDateIterator(year, month);
   const headIterator = new Date(iterator.getTime());
+
+  const getCell = () => {
+    const date = iterator.getDate();
+    const dateMonth = iterator.getMonth();
+    const className = getCellClassName(iterator, month, highlightedDate);
+    const ref = React.createRef();
+
+    const cellRef = {};
+    cellRef[iterator.toDateString()] = ref;
+    refs = { ...cellRef, ...refs };
+
+    const sameDateFocusedDate = date === focusedDate.getDate() && dateMonth === focusedDate.getMonth();
+    const sameDateActiveDate = date === activeDate.getDate() && dateMonth === activeDate.getMonth();
+    const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+    const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
+    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : null;
+    const epoch = iterator.getTime();
+
+    function onCellFocus(event) {
+      setFocusedDate(new Date(Number(event.target.dataset.epoch)));
+    }
+
+    iterator.setDate(date + 1); return (
+      <td
+        aria-label={label}
+        aria-selected={selected}
+        className={className}
+        data-epoch={epoch}
+        onClick={onDateClick}
+        key={`${dateMonth}-${date}`}
+        ref={ref}
+        role="gridcell"
+        tabIndex={tabIndex}
+        onFocus={onCellFocus}
+      >
+        {date}
+      </td>
+    );
+  };
 
   return (
     <div className={styles.container}>
@@ -89,6 +216,7 @@ function Calendar(props) {
             month: 'long',
           })}`}
           onClick={onPreviousMonthPress}
+          onEnter={onPreviousMonthPress}
         />
         <button
           className={styles['year-button']}
@@ -111,75 +239,21 @@ function Calendar(props) {
             month: 'long',
           })}`}
           onClick={onNextMonthPress}
+          onEnter={onNextMonthPress}
         />
       </div>
-      <table className={styles['calendar-grid']}>
+      <table className={styles['calendar-grid']} role="grid" onKeyDown={onKeyDown} >
         <thead>
           <tr>
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
-            {getHeadCell(headIterator)}
+            {[...Array(7)].map(() => getHeadCell(headIterator))}
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
-          <tr>
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-            {getCell(iterator, month, highlightedDate)}
-          </tr>
+        <tbody onFocus={onFocus}>
+          {[...Array(6)].map(() => (
+            <tr key={iterator.getTime()}>
+              {[...Array(7)].map(() => getCell())}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

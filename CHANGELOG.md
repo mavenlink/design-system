@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Calendar component dates can be navigated via keyboard
 </details>
 
 ## v0.38.0 (August 25, 2020)
