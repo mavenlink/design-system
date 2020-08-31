@@ -155,8 +155,8 @@ CustomFieldInputDate.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  min: PropTypes.string,
-  max: PropTypes.string,
+  min: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
+  max: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,
