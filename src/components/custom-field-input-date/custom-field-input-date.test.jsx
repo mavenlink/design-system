@@ -161,13 +161,21 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   });
 
   describe('calendar icon', () => {
-    fit('opens to the correct date on click and closes when clicking away', () => {
+    it('opens to the correct date on click and closes when clicking away', () => {
       renderComponent({ value: '2016-07-18' });
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
       userEvent.click(screen.getByTitle('Field Date calendar button'));
       expect(screen.getByText('July 2016')).toBeInTheDocument();
       userEvent.click(document.body);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+    });
+
+    it('changes the date to the date selected', () => {
+      const { getByLabelText } = renderComponent({ value: '2016-09-13' });
+      expect(getByLabelText('Field Date')).toHaveValue('September 13, 2016');
+      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      userEvent.click(screen.getByLabelText('September 14'));
+      expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
     });
   });
 

@@ -102,8 +102,14 @@ function Calendar(props) {
     setActiveDate(newDate);
   }
 
+  function handleDateSelection(date) {
+    props.onDateSelected(date);
+    setSelectedDate(date);
+  }
+
   function onDateClick(event) {
-    setSelectedDate(new Date(Number(event.target.dataset.epoch)));
+    const date = new Date(Number(event.target.dataset.epoch));
+    handleDateSelection(date);
   }
 
   function onKeyDown(event) {
@@ -114,7 +120,7 @@ function Calendar(props) {
       ArrowDown: () => handleKeyboardDateChange(7),
       End: () => handleKeyboardDateChange(6 - focusedDate.getDay()),
       Enter: () => {
-        setSelectedDate(focusedDate);
+        handleDateSelection(focusedDate);
       },
       Home: () => handleKeyboardDateChange(0 - focusedDate.getDay()),
       PageUp: () => {
@@ -134,7 +140,7 @@ function Calendar(props) {
         }
       },
       Space: () => {
-        setSelectedDate(focusedDate);
+        handleDateSelection(focusedDate);
       },
     };
 
@@ -171,7 +177,7 @@ function Calendar(props) {
       focusedDate.getMonth(),
       focusedDate.getDate(),
     );
-    setSelectedDate(newYearDate);
+    handleDateSelection(newYearDate);
     setYearView(false);
   }
 
@@ -328,10 +334,12 @@ function Calendar(props) {
 
 Calendar.propTypes = {
   value: PropTypes.string,
+  onDateSelected: PropTypes.func,
 };
 
 Calendar.defaultProps = {
   value: undefined,
+  onDateSelected: () => {},
 };
 
 export default Calendar;

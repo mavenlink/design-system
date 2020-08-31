@@ -49,6 +49,9 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           tabIndex={0}
           width={32}
         >
+          <title>
+            Hello calendar button
+          </title>
           <use
             xlinkHref="#icon-calendar-fill.svg"
           />

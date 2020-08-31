@@ -32,7 +32,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const componentRef = useRef(null);
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(true);
-  const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
+  const [currentValue, setCurrentValue] = useState(props.value);
+  const [isValid, setIsValid] = useState(isValueValid(currentValue, props.error, true));
   const [isFocused] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
@@ -40,7 +41,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     if (!inputRef.current) return;
 
     const isInputValid = inputRef.current.validity.valid;
-    const valid = isValueValid(props.value, props.error, isInputValid);
+    const valid = isValueValid(currentValue, props.error, isInputValid);
     setIsValid(valid);
 
     if (!valid) {
@@ -48,13 +49,18 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     } else {
       setIsEditing(false);
     }
-  }, [inputRef.current, props.value, props.error]);
+  }, [inputRef.current, currentValue, props.error]);
 
   useEffect(() => {
     if (isEditing && isFocused) {
       inputRef.current.focus();
     }
   }, [isEditing, isFocused]);
+
+  function onDateSelected(date) {
+    setCurrentValue(date.toISOString().slice(0, 10));
+    setExpanded(false);
+  }
 
   useImperativeHandle(ref, () => ({
     id: props.id,
@@ -103,7 +109,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   const renderField = () => {
     if (isEditing || !isValid) {
-      const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+      const value = validDate(currentValue) ? convertToFormat(currentValue, 'yyyy-mm-dd') : currentValue;
 
       return (
         <AbstractCustomField
@@ -123,7 +129,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     return (
       <AbstractCustomField
         {...sharedProps}
-        defaultValue={convertToFormat(props.value, 'Month dd, yyyy')}
+        defaultValue={convertToFormat(currentValue, 'Month dd, yyyy')}
         id={props.id}
         key={`${props.id}-readonly`}
         inputRef={componentRef}
@@ -136,7 +142,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     <div ref={wrapperRef}>
       { renderField() }
       { expanded && (
-        <Calendar value={props.value} />
+        <Calendar value={currentValue} onDateSelected={onDateSelected} />
       )}
     </div>
   );
