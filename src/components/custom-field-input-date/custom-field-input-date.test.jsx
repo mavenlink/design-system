@@ -170,12 +170,24 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
 
-    it('changes the date to the date selected', () => {
+    it('opens to the correct date on click / pressing enter and closes on escape', () => {
+      const { getByLabelText } = renderComponent({ value: '2016-07-18' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(getByLabelText('Field Date'));
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      fireEvent.keyDown(getByLabelText('Field Date'), { key: 'Enter' });
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
+    });
+
+    it('changes the date to the date selected and focuses the input', () => {
       const { getByLabelText } = renderComponent({ value: '2016-09-13' });
       expect(getByLabelText('Field Date')).toHaveValue('September 13, 2016');
       userEvent.click(screen.getByTitle('Field Date calendar button'));
       userEvent.click(screen.getByLabelText('September 14'));
       expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
+      expect(getByLabelText('Field Date')).toHaveFocus();
     });
   });
 

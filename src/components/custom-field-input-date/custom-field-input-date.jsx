@@ -60,6 +60,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   function onDateSelected(date) {
     setCurrentValue(date.toISOString().slice(0, 10));
     setExpanded(false);
+    componentRef.current.focus();
   }
 
   useImperativeHandle(ref, () => ({
@@ -97,6 +98,22 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     setExpanded(!expanded);
   };
 
+  function onInputClick() {
+    setExpanded(!expanded);
+  }
+
+  function onInputKeyDown(event) {
+    if (event.key === 'Enter' || event.key === 'Space') {
+      setExpanded(!expanded);
+    }
+  }
+
+  function onKeyDown(event) {
+    if (event.key === 'Escape') {
+      setExpanded(false);
+    }
+  }
+
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
@@ -105,6 +122,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     inputRef,
     readOnly: true,
     required: props.required,
+    onClick: onInputClick,
+    onKeyDown: onInputKeyDown,
   };
 
   function renderField() {
@@ -139,7 +158,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   }
 
   return (
-    <div ref={wrapperRef}>
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div ref={wrapperRef} onKeyDown={onKeyDown}>
       { renderField() }
       { expanded && (
         <Calendar value={currentValue} onDateSelected={onDateSelected} />
