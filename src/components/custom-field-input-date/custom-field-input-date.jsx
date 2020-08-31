@@ -107,7 +107,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     required: props.required,
   };
 
-  const renderField = () => {
+  function renderField() {
     if (isEditing || !isValid) {
       const value = validDate(currentValue) ? convertToFormat(currentValue, 'yyyy-mm-dd') : currentValue;
 
@@ -136,7 +136,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         type="text"
       />
     );
-  };
+  }
 
   return (
     <div ref={wrapperRef}>
