@@ -14,7 +14,8 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
   const rootRef = useRef();
-  const className = props.selected ? styles.selected : styles.option;
+  const selectedClassName = props.selected ? styles.selected : styles.option;
+  const className = props.className ? props.className : selectedClassName;
 
   function onClick() {
     setSelected(!selected);
@@ -39,6 +40,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setActive(bool);
     },
     value: props.value,
+    rootRef,
   }));
 
   useEffect(() => {
@@ -73,6 +75,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 });
 
 ListOption.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   onSelect: PropTypes.func,
@@ -82,6 +85,7 @@ ListOption.propTypes = {
 };
 
 ListOption.defaultProps = {
+  className: undefined,
   defaultActive: true,
   onSelect: () => {},
   selected: false,

@@ -60,6 +60,45 @@ describe('<Calendar />', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  describe('year view', () => {
+    it('renders 5 years back and 20 years forward and opens/closes on click, space, and enter', async () => {
+      render(<Calendar {...requiredProps} />);
+
+      // click
+      userEvent.click(screen.getByText('July 2020'));
+      expect(screen.getByText('2015')).toBeInTheDocument();
+      expect(screen.getByText('2040')).toBeInTheDocument();
+      userEvent.click(screen.getByText('July 2020'));
+      expect(screen.queryByText('2015')).not.toBeInTheDocument();
+      expect(screen.queryByText('2040')).not.toBeInTheDocument();
+
+      // pressing enter fires click event on a button element
+
+      // space
+      fireEvent.keyDown(screen.getByText('July 2020'), { key: 'Space', code: 'Space' });
+      expect(screen.getByText('2015')).toBeInTheDocument();
+      expect(screen.getByText('2040')).toBeInTheDocument();
+      fireEvent.keyDown(screen.getByText('July 2020'), { key: 'Space', code: 'Space' });
+      expect(screen.queryByText('2015')).not.toBeInTheDocument();
+      expect(screen.queryByText('2040')).not.toBeInTheDocument();
+    });
+
+    it('tabs to the current year', () => {
+      render(<Calendar {...requiredProps} />);
+      userEvent.click(screen.getByText('July 2020'));
+      userEvent.tab();
+      userEvent.tab();
+      expect(screen.getByText('2020')).toHaveFocus();
+    });
+
+    it('changes the date to the year selected', () => {
+      render(<Calendar {...requiredProps} />);
+      userEvent.click(screen.getByText('July 2020'));
+      userEvent.click(screen.getByText('2022'));
+      expect(screen.getByText('July 2022')).toBeInTheDocument();
+    });
+  });
+
   describe('accessibility', () => {
     it('does not steal focus on mount', () => {
       render(<Calendar {...requiredProps} />);
