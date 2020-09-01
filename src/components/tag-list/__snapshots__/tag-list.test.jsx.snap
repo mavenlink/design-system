@@ -37,11 +37,11 @@ exports[`TagList renders a TagList 1`] = `
         className="icon-base size-small"
         id="test-tag-fake-button"
         onClick={[Function]}
+        onKeyDown={[Function]}
         role="button"
         tabIndex={0}
       >
         <use
-          onKeyDown={[Function]}
           xlinkHref="#icon-clear-small.svg"
         />
       </svg>

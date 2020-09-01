@@ -55,6 +55,7 @@ exports[`<Calendar /> has defaults 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -98,222 +99,391 @@ exports[`<Calendar /> has defaults 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="June 28"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593302400000"
+              role="gridcell"
             >
               28
             </td>
             <td
+              aria-label="June 29"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593388800000"
+              role="gridcell"
             >
               29
             </td>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593475200000"
+              role="gridcell"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="date"
+              data-epoch="1593561600000"
+              role="gridcell"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="date"
+              data-epoch="1593648000000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="date"
+              data-epoch="1593734400000"
+              role="gridcell"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="date"
+              data-epoch="1593820800000"
+              role="gridcell"
             >
               4
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="date"
+              data-epoch="1593907200000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="date"
+              data-epoch="1593993600000"
+              role="gridcell"
             >
               6
             </td>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="date"
+              data-epoch="1594080000000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="date"
+              data-epoch="1594166400000"
+              role="gridcell"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="date"
+              data-epoch="1594252800000"
+              role="gridcell"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="date"
+              data-epoch="1594339200000"
+              role="gridcell"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="date"
+              data-epoch="1594425600000"
+              role="gridcell"
             >
               11
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 12"
+              aria-selected="false"
               class="date"
+              data-epoch="1594512000000"
+              role="gridcell"
             >
               12
             </td>
             <td
+              aria-label="July 13"
+              aria-selected="false"
               class="date"
+              data-epoch="1594598400000"
+              role="gridcell"
             >
               13
             </td>
             <td
+              aria-label="July 14"
+              aria-selected="false"
               class="date"
+              data-epoch="1594684800000"
+              role="gridcell"
             >
               14
             </td>
             <td
+              aria-label="July 15"
+              aria-selected="false"
               class="date"
+              data-epoch="1594771200000"
+              role="gridcell"
             >
               15
             </td>
             <td
+              aria-label="July 16"
+              aria-selected="false"
               class="date"
+              data-epoch="1594857600000"
+              role="gridcell"
             >
               16
             </td>
             <td
+              aria-label="July 17"
+              aria-selected="false"
               class="date"
+              data-epoch="1594944000000"
+              role="gridcell"
             >
               17
             </td>
             <td
+              aria-label="July 18"
+              aria-selected="false"
               class="date"
+              data-epoch="1595030400000"
+              role="gridcell"
             >
               18
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 19"
+              aria-selected="false"
               class="date"
+              data-epoch="1595116800000"
+              role="gridcell"
             >
               19
             </td>
             <td
+              aria-label="July 20"
+              aria-selected="false"
               class="date"
+              data-epoch="1595203200000"
+              role="gridcell"
             >
               20
             </td>
             <td
+              aria-label="July 21"
+              aria-selected="false"
               class="date"
+              data-epoch="1595289600000"
+              role="gridcell"
             >
               21
             </td>
             <td
+              aria-label="July 22"
+              aria-selected="false"
               class="date"
+              data-epoch="1595376000000"
+              role="gridcell"
             >
               22
             </td>
             <td
+              aria-label="July 23"
+              aria-selected="false"
               class="date"
+              data-epoch="1595462400000"
+              role="gridcell"
             >
               23
             </td>
             <td
+              aria-label="July 24"
+              aria-selected="false"
               class="date"
+              data-epoch="1595548800000"
+              role="gridcell"
             >
               24
             </td>
             <td
+              aria-label="July 25"
+              aria-selected="false"
               class="date"
+              data-epoch="1595635200000"
+              role="gridcell"
             >
               25
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 26"
+              aria-selected="false"
               class="date"
+              data-epoch="1595721600000"
+              role="gridcell"
             >
               26
             </td>
             <td
+              aria-label="July 27"
+              aria-selected="false"
               class="date"
+              data-epoch="1595808000000"
+              role="gridcell"
             >
               27
             </td>
             <td
+              aria-label="July 28"
+              aria-selected="false"
               class="date"
+              data-epoch="1595894400000"
+              role="gridcell"
             >
               28
             </td>
             <td
+              aria-label="July 29"
+              aria-selected="false"
               class="highlighted-date"
+              data-epoch="1595980800000"
+              role="gridcell"
+              tabindex="0"
             >
               29
             </td>
             <td
+              aria-label="July 30"
+              aria-selected="false"
               class="date"
+              data-epoch="1596067200000"
+              role="gridcell"
             >
               30
             </td>
             <td
+              aria-label="July 31"
+              aria-selected="false"
               class="date"
+              data-epoch="1596153600000"
+              role="gridcell"
             >
               31
             </td>
             <td
+              aria-label="August 1"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596240000000"
+              role="gridcell"
             >
               1
             </td>
           </tr>
           <tr>
             <td
+              aria-label="August 2"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596326400000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="August 3"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596412800000"
+              role="gridcell"
             >
               3
             </td>
             <td
+              aria-label="August 4"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596499200000"
+              role="gridcell"
             >
               4
             </td>
             <td
+              aria-label="August 5"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596585600000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="August 6"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596672000000"
+              role="gridcell"
             >
               6
             </td>
             <td
+              aria-label="August 7"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596758400000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="August 8"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1596844800000"
+              role="gridcell"
             >
               8
             </td>
@@ -380,6 +550,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -423,222 +594,391 @@ exports[`<Calendar /> renders the previous month 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="May 31"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1590883200000"
+              role="gridcell"
             >
               31
             </td>
             <td
+              aria-label="June 1"
+              aria-selected="false"
               class="date"
+              data-epoch="1590969600000"
+              role="gridcell"
             >
               1
             </td>
             <td
+              aria-label="June 2"
+              aria-selected="false"
               class="date"
+              data-epoch="1591056000000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="June 3"
+              aria-selected="false"
               class="date"
+              data-epoch="1591142400000"
+              role="gridcell"
             >
               3
             </td>
             <td
+              aria-label="June 4"
+              aria-selected="false"
               class="date"
+              data-epoch="1591228800000"
+              role="gridcell"
             >
               4
             </td>
             <td
+              aria-label="June 5"
+              aria-selected="false"
               class="date"
+              data-epoch="1591315200000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="June 6"
+              aria-selected="false"
               class="date"
+              data-epoch="1591401600000"
+              role="gridcell"
             >
               6
             </td>
           </tr>
           <tr>
             <td
+              aria-label="June 7"
+              aria-selected="false"
               class="date"
+              data-epoch="1591488000000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="June 8"
+              aria-selected="false"
               class="date"
+              data-epoch="1591574400000"
+              role="gridcell"
             >
               8
             </td>
             <td
+              aria-label="June 9"
+              aria-selected="false"
               class="date"
+              data-epoch="1591660800000"
+              role="gridcell"
             >
               9
             </td>
             <td
+              aria-label="June 10"
+              aria-selected="false"
               class="date"
+              data-epoch="1591747200000"
+              role="gridcell"
             >
               10
             </td>
             <td
+              aria-label="June 11"
+              aria-selected="false"
               class="date"
+              data-epoch="1591833600000"
+              role="gridcell"
             >
               11
             </td>
             <td
+              aria-label="June 12"
+              aria-selected="false"
               class="date"
+              data-epoch="1591920000000"
+              role="gridcell"
             >
               12
             </td>
             <td
+              aria-label="June 13"
+              aria-selected="false"
               class="date"
+              data-epoch="1592006400000"
+              role="gridcell"
             >
               13
             </td>
           </tr>
           <tr>
             <td
+              aria-label="June 14"
+              aria-selected="false"
               class="date"
+              data-epoch="1592092800000"
+              role="gridcell"
             >
               14
             </td>
             <td
+              aria-label="June 15"
+              aria-selected="false"
               class="date"
+              data-epoch="1592179200000"
+              role="gridcell"
             >
               15
             </td>
             <td
+              aria-label="June 16"
+              aria-selected="false"
               class="date"
+              data-epoch="1592265600000"
+              role="gridcell"
             >
               16
             </td>
             <td
+              aria-label="June 17"
+              aria-selected="false"
               class="date"
+              data-epoch="1592352000000"
+              role="gridcell"
             >
               17
             </td>
             <td
+              aria-label="June 18"
+              aria-selected="false"
               class="date"
+              data-epoch="1592438400000"
+              role="gridcell"
             >
               18
             </td>
             <td
+              aria-label="June 19"
+              aria-selected="false"
               class="date"
+              data-epoch="1592524800000"
+              role="gridcell"
             >
               19
             </td>
             <td
+              aria-label="June 20"
+              aria-selected="false"
               class="date"
+              data-epoch="1592611200000"
+              role="gridcell"
             >
               20
             </td>
           </tr>
           <tr>
             <td
+              aria-label="June 21"
+              aria-selected="false"
               class="date"
+              data-epoch="1592697600000"
+              role="gridcell"
             >
               21
             </td>
             <td
+              aria-label="June 22"
+              aria-selected="false"
               class="date"
+              data-epoch="1592784000000"
+              role="gridcell"
             >
               22
             </td>
             <td
+              aria-label="June 23"
+              aria-selected="false"
               class="date"
+              data-epoch="1592870400000"
+              role="gridcell"
             >
               23
             </td>
             <td
+              aria-label="June 24"
+              aria-selected="false"
               class="date"
+              data-epoch="1592956800000"
+              role="gridcell"
             >
               24
             </td>
             <td
+              aria-label="June 25"
+              aria-selected="false"
               class="date"
+              data-epoch="1593043200000"
+              role="gridcell"
             >
               25
             </td>
             <td
+              aria-label="June 26"
+              aria-selected="false"
               class="date"
+              data-epoch="1593129600000"
+              role="gridcell"
             >
               26
             </td>
             <td
+              aria-label="June 27"
+              aria-selected="false"
               class="date"
+              data-epoch="1593216000000"
+              role="gridcell"
             >
               27
             </td>
           </tr>
           <tr>
             <td
+              aria-label="June 28"
+              aria-selected="false"
               class="date"
+              data-epoch="1593302400000"
+              role="gridcell"
             >
               28
             </td>
             <td
+              aria-label="June 29"
+              aria-selected="false"
               class="date"
+              data-epoch="1593388800000"
+              role="gridcell"
+              tabindex="0"
             >
               29
             </td>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="date"
+              data-epoch="1593475200000"
+              role="gridcell"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593561600000"
+              role="gridcell"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593648000000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593734400000"
+              role="gridcell"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593820800000"
+              role="gridcell"
             >
               4
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593907200000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1593993600000"
+              role="gridcell"
             >
               6
             </td>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1594080000000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1594166400000"
+              role="gridcell"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1594252800000"
+              role="gridcell"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1594339200000"
+              role="gridcell"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1594425600000"
+              role="gridcell"
             >
               11
             </td>
@@ -705,6 +1045,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
       </div>
       <table
         class="calendar-grid"
+        role="grid"
       >
         <thead>
           <tr>
@@ -748,222 +1089,391 @@ exports[`<Calendar /> renders the previous year 1`] = `
         <tbody>
           <tr>
             <td
+              aria-label="June 30"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1561852800000"
+              role="gridcell"
             >
               30
             </td>
             <td
+              aria-label="July 1"
+              aria-selected="false"
               class="date"
+              data-epoch="1561939200000"
+              role="gridcell"
             >
               1
             </td>
             <td
+              aria-label="July 2"
+              aria-selected="false"
               class="date"
+              data-epoch="1562025600000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="July 3"
+              aria-selected="false"
               class="date"
+              data-epoch="1562112000000"
+              role="gridcell"
             >
               3
             </td>
             <td
+              aria-label="July 4"
+              aria-selected="false"
               class="date"
+              data-epoch="1562198400000"
+              role="gridcell"
             >
               4
             </td>
             <td
+              aria-label="July 5"
+              aria-selected="false"
               class="date"
+              data-epoch="1562284800000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="July 6"
+              aria-selected="false"
               class="date"
+              data-epoch="1562371200000"
+              role="gridcell"
             >
               6
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 7"
+              aria-selected="false"
               class="date"
+              data-epoch="1562457600000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="July 8"
+              aria-selected="false"
               class="date"
+              data-epoch="1562544000000"
+              role="gridcell"
             >
               8
             </td>
             <td
+              aria-label="July 9"
+              aria-selected="false"
               class="date"
+              data-epoch="1562630400000"
+              role="gridcell"
             >
               9
             </td>
             <td
+              aria-label="July 10"
+              aria-selected="false"
               class="date"
+              data-epoch="1562716800000"
+              role="gridcell"
             >
               10
             </td>
             <td
+              aria-label="July 11"
+              aria-selected="false"
               class="date"
+              data-epoch="1562803200000"
+              role="gridcell"
             >
               11
             </td>
             <td
+              aria-label="July 12"
+              aria-selected="false"
               class="date"
+              data-epoch="1562889600000"
+              role="gridcell"
             >
               12
             </td>
             <td
+              aria-label="July 13"
+              aria-selected="false"
               class="date"
+              data-epoch="1562976000000"
+              role="gridcell"
             >
               13
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 14"
+              aria-selected="false"
               class="date"
+              data-epoch="1563062400000"
+              role="gridcell"
             >
               14
             </td>
             <td
+              aria-label="July 15"
+              aria-selected="false"
               class="date"
+              data-epoch="1563148800000"
+              role="gridcell"
             >
               15
             </td>
             <td
+              aria-label="July 16"
+              aria-selected="false"
               class="date"
+              data-epoch="1563235200000"
+              role="gridcell"
             >
               16
             </td>
             <td
+              aria-label="July 17"
+              aria-selected="false"
               class="date"
+              data-epoch="1563321600000"
+              role="gridcell"
             >
               17
             </td>
             <td
+              aria-label="July 18"
+              aria-selected="false"
               class="date"
+              data-epoch="1563408000000"
+              role="gridcell"
             >
               18
             </td>
             <td
+              aria-label="July 19"
+              aria-selected="false"
               class="date"
+              data-epoch="1563494400000"
+              role="gridcell"
             >
               19
             </td>
             <td
+              aria-label="July 20"
+              aria-selected="false"
               class="date"
+              data-epoch="1563580800000"
+              role="gridcell"
             >
               20
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 21"
+              aria-selected="false"
               class="date"
+              data-epoch="1563667200000"
+              role="gridcell"
             >
               21
             </td>
             <td
+              aria-label="July 22"
+              aria-selected="false"
               class="date"
+              data-epoch="1563753600000"
+              role="gridcell"
             >
               22
             </td>
             <td
+              aria-label="July 23"
+              aria-selected="false"
               class="date"
+              data-epoch="1563840000000"
+              role="gridcell"
             >
               23
             </td>
             <td
+              aria-label="July 24"
+              aria-selected="false"
               class="date"
+              data-epoch="1563926400000"
+              role="gridcell"
             >
               24
             </td>
             <td
+              aria-label="July 25"
+              aria-selected="false"
               class="date"
+              data-epoch="1564012800000"
+              role="gridcell"
             >
               25
             </td>
             <td
+              aria-label="July 26"
+              aria-selected="false"
               class="date"
+              data-epoch="1564099200000"
+              role="gridcell"
             >
               26
             </td>
             <td
+              aria-label="July 27"
+              aria-selected="false"
               class="date"
+              data-epoch="1564185600000"
+              role="gridcell"
             >
               27
             </td>
           </tr>
           <tr>
             <td
+              aria-label="July 28"
+              aria-selected="false"
               class="date"
+              data-epoch="1564272000000"
+              role="gridcell"
             >
               28
             </td>
             <td
+              aria-label="July 29"
+              aria-selected="false"
               class="date"
+              data-epoch="1564358400000"
+              role="gridcell"
             >
               29
             </td>
             <td
+              aria-label="July 30"
+              aria-selected="false"
               class="date"
+              data-epoch="1564444800000"
+              role="gridcell"
             >
               30
             </td>
             <td
+              aria-label="July 31"
+              aria-selected="false"
               class="date"
+              data-epoch="1564531200000"
+              role="gridcell"
+              tabindex="0"
             >
               31
             </td>
             <td
+              aria-label="August 1"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1564617600000"
+              role="gridcell"
             >
               1
             </td>
             <td
+              aria-label="August 2"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1564704000000"
+              role="gridcell"
             >
               2
             </td>
             <td
+              aria-label="August 3"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1564790400000"
+              role="gridcell"
             >
               3
             </td>
           </tr>
           <tr>
             <td
+              aria-label="August 4"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1564876800000"
+              role="gridcell"
             >
               4
             </td>
             <td
+              aria-label="August 5"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1564963200000"
+              role="gridcell"
             >
               5
             </td>
             <td
+              aria-label="August 6"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1565049600000"
+              role="gridcell"
             >
               6
             </td>
             <td
+              aria-label="August 7"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1565136000000"
+              role="gridcell"
             >
               7
             </td>
             <td
+              aria-label="August 8"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1565222400000"
+              role="gridcell"
             >
               8
             </td>
             <td
+              aria-label="August 9"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1565308800000"
+              role="gridcell"
             >
               9
             </td>
             <td
+              aria-label="August 10"
+              aria-selected="false"
               class="not-current-date"
+              data-epoch="1565395200000"
+              role="gridcell"
             >
               10
             </td>

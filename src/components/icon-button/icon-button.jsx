@@ -12,6 +12,7 @@ export default function IconButton(props) {
       fill="skip"
       icon={props.icon}
       onClick={props.onClick}
+      onEnter={props.onClick}
       role="button"
       size="skip"
       stroke="skip"

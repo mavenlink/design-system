@@ -42,13 +42,13 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       <svg
         className="input-icon size-medium color-transparent"
         onClick={[Function]}
+        onKeyDown={[Function]}
         role="img"
       >
         <title>
           Hello
         </title>
         <use
-          onKeyDown={[Function]}
           xlinkHref="#icon-calendar-fill.svg"
         />
       </svg>

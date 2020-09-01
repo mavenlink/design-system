@@ -9,14 +9,15 @@
   padding-bottom: var(--spacing-medium);
   padding-left: var(--spacing-medium);
   padding-right: var(--spacing-medium);
-  width: fit-content;
+  width: calc((var(--spacing-x-large) * 7) + calc(var(--spacing-medium) * 2));
+  height: 293px;
 }
 
 .header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-bottom: var(--spacing-large);
+  padding-bottom: var(--spacing-medium);
   padding-top: var(--spacing-large);
 }
 
@@ -37,6 +38,24 @@
   padding-top: var(--spacing-medium);
 }
 
+.calendar-year-list {
+  height: calc(var(--spacing-x-large) * 7); /* 7 list options */
+  padding-left: 0;
+  margin-top: 0;
+  margin-left: calc(var(--spacing-x-large) - var(--spacing-medium));
+  margin-right: calc(var(--spacing-x-large) - var(--spacing-medium));
+  margin-bottom: var(--spacing-medium);
+  overflow-y: scroll;
+  border: 1px solid var(--mds-grey-38);
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.option {
+  composes: option from '../list-option/list-option.css';
+  padding-left: var(--spacing-large);
+}
+
 .change-month-button {
   composes: button from '../icon-button/icon-button.css'; /* stylelint-disable-line css-modules/composed-class-names */
   padding: var(--spacing-medium);
@@ -44,6 +63,7 @@
 
 .calendar-grid {
   border-collapse: collapse;
+  margin-top: var(--spacing-large);
 }
 
 .weekday {
@@ -75,7 +95,7 @@
   color: var(--white);
 }
 
-.date:hover {
+.date:hover:not(.highlighted-date) {
   background-color: var(--mds-grey-12);
   color: var(--black);
   border-radius: 3px;

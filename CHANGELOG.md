@@ -7,8 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
 </details>
+
+## v0.39.2 (September 1, 2020)
+  - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
+  - Minor: Calendar component dates can be navigated via keyboard
+  - Minor: Calendar component year dropdown allows selecting a year
 
 ## v0.38.0 (August 25, 2020)
   - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`
@@ -22,7 +26,6 @@
 
 ## v0.36.2 (August 21, 2020)
 - Patch: Adjust styling between sections for section component
-</details>
 
 ## v0.36.1 (August 7, 2020)
 - Patch: Brand Identity information is now displayed across a few different pages
