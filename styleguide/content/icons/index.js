@@ -1,10 +1,13 @@
 const allSvgsModules = require.context('../../../src/svgs/', true, /svg$/);
 
-function getProps(iconName) {
+function getProps(iconName, iconModule) {
   const legacyIcons = [
-    'icon-calendar-fill.svg',
-    'icon-clear-small.svg',
+    'icon-calendar-fill',
+    'icon-caret-down',
+    'icon-caret-down-disabled',
     'icon-caution-fill',
+    'icon-clear-small',
+    'icon-tick',
   ];
 
   if (iconName === 'icon-caution-fill') {
@@ -15,6 +18,7 @@ function getProps(iconName) {
       fill: 'undefined',
       stroke: 'undefined',
       size: 'medium',
+      v: 1,
     };
   }
 
@@ -24,14 +28,17 @@ function getProps(iconName) {
       fill: 'primary',
       stroke: 'undefined',
       size: 'medium',
+      v: 1,
     };
   }
 
   return {
     currentColor: 'skip',
     fill: 'skip',
+    icon: iconModule,
     stroke: 'skip',
     size: 'medium',
+    v: 2,
   };
 }
 
@@ -40,7 +47,7 @@ export default allSvgsModules.keys().reduce((icons, file) => {
   const iconName = file.slice(2, -4); // strip './' and '.svg'
   return icons.concat([[{
     name: iconName,
-    ...getProps(iconName),
+    ...getProps(iconName, allSvgsModules(file).default),
   }, {
     path: `@mavenlink/design-system/svgs/${iconNameWithoutDot}`,
   }]]);
