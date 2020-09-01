@@ -59,14 +59,28 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
           if (context.fix) {
             let valueToFix = currentValue;
             Object.keys(fixmap).forEach((spacingVariable) => {
-              const pixelValueMatches = [...matchAll(valueToFix, (/\d+px/g))];
+              const pixelValueMatches = [...matchAll(valueToFix, (/-?\d+px/g))];
               pixelValueMatches.reverse().forEach((pixelValueMatch) => {
-                if (pixelValueMatch[0] === spacingVariable) {
-                  const firstHalf = valueToFix.substring(0, pixelValueMatch.index);
-                  const mdsVariable = fixmap[spacingVariable];
-                  const secondHalf = valueToFix.substring(pixelValueMatch.index
+                const matchIsNegative = pixelValueMatch[0][0] === '-';
+
+                let matchingString;
+                let mdsVariable;
+                let secondHalf;
+                if (matchIsNegative) {
+                  matchingString = pixelValueMatch[0].substring(1, pixelValueMatch[0].length);
+                  mdsVariable = `calc(-1 * var(${fixmap[spacingVariable]}))`;
+                  secondHalf = valueToFix.substring(pixelValueMatch.index + 1
                     + spacingVariable.length, valueToFix.length);
-                  valueToFix = `${firstHalf}var(${mdsVariable})${secondHalf}`;
+                } else {
+                  matchingString = pixelValueMatch[0];
+                  mdsVariable = `var(${fixmap[spacingVariable]})`;
+                  secondHalf = valueToFix.substring(pixelValueMatch.index
+                    + spacingVariable.length, valueToFix.length);
+                }
+
+                if (matchingString === spacingVariable) {
+                  const firstHalf = valueToFix.substring(0, pixelValueMatch.index);
+                  valueToFix = `${firstHalf}${mdsVariable}${secondHalf}`;
                 }
               });
             });
