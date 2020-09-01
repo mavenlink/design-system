@@ -9,10 +9,10 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
-import iconCaretDown from '../../svgs/icon-caret-down.svg';
+import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import iconCaution from '../../svgs/icon-caution-fill.svg';
-import iconClear from '../../svgs/icon-clear-small.svg';
+import iconClear from '../../svgs/clear.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
@@ -174,30 +174,36 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           </TagList>
           <div className={styles['icons-container']}>
             {!props.readOnly && props.errorText && (
-              <Icon
-                className={styles.icon}
-                currentColor="caution"
-                fill="skip"
-                name={iconCaution.id}
-              />
+              <div style={{display: 'flex', height: 'fit-content', marginRight: '4px'}}>
+                <Icon // Change me to icon button plis
+                  className={styles.icon}
+                  currentColor="caution"
+                  fill="skip"
+                  name={iconCaution.id}
+                />
+              </div>
             )}
             {!props.readOnly && value.length > 0 && (
-              <Icon
-                className={styles['clear-icon']}
-                fill="skip"
-                name={iconClear.id}
-                onClick={onChoicesClear}
-                onEnter={clearChoices}
-                tabable={true}
-                ariaLabel={`Remove all selected choices on ${props.label}`}
-                role="button"
-              />
+              <div style={{display: 'flex', height: 'fit-content', marginRight: '4px'}}>
+                <Icon
+                  className={styles['clear-icon']}
+                  icon={iconClear}
+                  onClick={onChoicesClear}
+                  onEnter={clearChoices}
+                  tabable={true}
+                  ariaLabel={`Remove all selected choices on ${props.label}`}
+                  role="button"
+                  v={2}
+                />
+              </div>
             )}
-            <Icon
-              className={styles.icon}
-              name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-              fill="skip"
-            />
+            <div style={{display: 'flex', height: 'fit-content'}}>
+              <Icon
+                className={styles.icon}
+                icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+                v={2}
+              />
+            </div>
           </div>
         </div>
         { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
