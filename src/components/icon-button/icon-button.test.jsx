@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import {
   fireEvent,
   render,
@@ -41,7 +43,6 @@ describe('<IconButton />', () => {
     });
   });
 
-
   describe('icon prop API', () => {
     it('sets the xlink:href', () => {
       render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, id: 'unique-id' }} />);
@@ -56,6 +57,13 @@ describe('<IconButton />', () => {
     it('sets the width', () => {
       render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, viewBox: '1 2 42 4' }} />);
       expect(screen.getByRole('button', { name: 'Test label' })).toHaveAttribute('width', '42');
+    });
+  });
+
+  describe('id prop API', () => {
+    it('can be set', () => {
+      render(<IconButton {...requiredProps} id="unique-id" />);
+      expect(screen.getByRole('button')).toHaveAttribute('id', 'unique-id');
     });
   });
 
@@ -78,7 +86,7 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('onPress prop API (only valid as a button)', () => {
+  describe('onPress prop API', () => {
     it('is called on click', () => {
       const onPressSpy = jest.fn(event => event.persist());
       render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
@@ -104,6 +112,14 @@ describe('<IconButton />', () => {
         defaultPrevented: true,
         target: expect.anything(),
       }));
+    });
+  });
+
+  describe('ref API', () => {
+    it('can be set', () => {
+      const ref = createRef();
+      render(<IconButton {...requiredProps} ref={ref} />);
+      expect(screen.getByRole('button')).toEqual(ref.current);
     });
   });
 });

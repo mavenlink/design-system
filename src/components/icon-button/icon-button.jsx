@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {
+  forwardRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import styles from './icon-button.css';
 
-export default function IconButton(props) {
+const IconButton = forwardRef(function IconButton(props, ref) {
   const viewBox = props.icon.viewBox.split(' ');
   const width = parseInt(viewBox[2], 10);
   const height = parseInt(viewBox[3], 10);
@@ -20,7 +22,9 @@ export default function IconButton(props) {
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
+      id={props.id}
       onClick={props.onPress}
+      ref={ref}
       role="button"
       tabIndex={tabIndex}
       width={width}
@@ -30,7 +34,7 @@ export default function IconButton(props) {
       <use xlinkHref={`#${props.icon.id}`} />
     </svg>
   );
-}
+});
 
 IconButton.propTypes = {
   active: PropTypes.bool,
@@ -39,6 +43,7 @@ IconButton.propTypes = {
     id: PropTypes.string.isRequired,
     viewBox: PropTypes.string.isRequired,
   }).isRequired,
+  id: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelledBy: PropTypes.string,
   onPress: PropTypes.func.isRequired,
@@ -47,5 +52,8 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   active: true,
   className: styles.button,
+  id: undefined,
   labelledBy: undefined,
 };
+
+export default IconButton;
