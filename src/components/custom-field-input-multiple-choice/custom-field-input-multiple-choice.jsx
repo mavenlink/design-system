@@ -9,6 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
+import IconButton from '../icon-button/icon-button.jsx';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
 import iconCaution from '../../svgs/icon-caution-fill.svg';
@@ -71,15 +72,11 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     autocompleteRef.current.focus();
   }
 
-  function clearChoices() {
+  function onChoicesClear(event) {
+    event.preventDefault();
     setValue([]);
     setExpanded(false);
     autocompleteRef.current.focus();
-  }
-
-  function onChoicesClear(event) {
-    event.preventDefault();
-    clearChoices();
   }
 
   function onAutocompleteChange(event) {
@@ -185,15 +182,11 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
             )}
             {!props.readOnly && value.length > 0 && (
               <div className={styles['icon-container']}>
-                <Icon
+                <IconButton
                   className={styles['clear-icon']}
                   icon={iconClear}
-                  onClick={onChoicesClear}
-                  onEnter={clearChoices}
-                  tabable={true}
-                  ariaLabel={`Remove all selected choices on ${props.label}`}
-                  role="button"
-                  v={2}
+                  label={`Remove all selected choices on ${props.label}`}
+                  onPress={onChoicesClear}
                 />
               </div>
             )}

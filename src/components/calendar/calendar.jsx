@@ -269,8 +269,7 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}`}
-          onClick={onPreviousMonthPress}
-          onEnter={onPreviousMonthPress}
+          onPress={onPreviousMonthPress}
         />
         <button
           className={styles['year-button']}
@@ -294,8 +293,7 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}`}
-          onClick={onNextMonthPress}
-          onEnter={onNextMonthPress}
+          onPress={onNextMonthPress}
         />
       </div>
       { yearView ?

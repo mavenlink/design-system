@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -8,17 +9,29 @@ import IconButton from './icon-button.jsx';
 
 describe('<IconButton />', () => {
   const requiredProps = {
-    label: 'Test label',
     icon: {
       id: 'test-id',
       viewBox: '1 2 3 4',
     },
-    onClick: () => {},
+    label: 'Test label',
+    onPress: () => {},
   };
 
   it('has defaults', () => {
     render(<IconButton {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
+  });
+
+  describe('active prop API', () => {
+    it('can be set', () => {
+      render(<IconButton {...requiredProps} active />);
+      expect(screen.getByRole('button')).toHaveAttribute('tabindex', '0');
+    });
+
+    it('can be unset', () => {
+      render(<IconButton {...requiredProps} active={false} />);
+      expect(screen.getByRole('button')).toHaveAttribute('tabindex', '-1');
+    });
   });
 
   describe('className prop API', () => {
@@ -28,12 +41,6 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('label prop API', () => {
-    it('can be set', () => {
-      render(<IconButton {...requiredProps} label="Unique label" />);
-      expect(screen.getByRole('button', { name: 'Unique label' })).toBeInTheDocument();
-    });
-  });
 
   describe('icon prop API', () => {
     it('sets the xlink:href', () => {
@@ -52,12 +59,51 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('onClick prop API', () => {
+  describe('label prop API', () => {
     it('can be set', () => {
-      const onClickSpy = jest.fn();
-      render(<IconButton {...requiredProps} onClick={onClickSpy} />);
-      userEvent.click(screen.getByRole('button', { name: 'Test label' }));
-      expect(onClickSpy).toHaveBeenCalledWith(expect.anything());
+      render(<IconButton {...requiredProps} label="Unique label" />);
+      expect(screen.getByRole('button', { name: 'Unique label' })).toBeInTheDocument();
+    });
+  });
+
+  describe('labelledBy prop API', () => {
+    it('can be set', () => {
+      render((
+        <React.Fragment>
+          <label id="label-id">Unique label</label>
+          <IconButton {...requiredProps} labelledBy="label-id" />
+        </React.Fragment>
+      ));
+      expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
+    });
+  });
+
+  describe('onPress prop API (only valid as a button)', () => {
+    it('is called on click', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
+      userEvent.click(screen.getByRole('button'));
+      expect(onPressSpy).toBeCalledWith(expect.objectContaining({ target: expect.anything() }));
+    });
+
+    it('is called on enter keypress', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: 'Enter' });
+      expect(onPressSpy).toBeCalledWith(expect.objectContaining({
+        defaultPrevented: true,
+        target: expect.anything(),
+      }));
+    });
+
+    it('is called on space keypress', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: ' ' });
+      expect(onPressSpy).toBeCalledWith(expect.objectContaining({
+        defaultPrevented: true,
+        target: expect.anything(),
+      }));
     });
   });
 });
