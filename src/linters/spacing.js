@@ -1,6 +1,4 @@
 /* eslint-disable import/no-commonjs */
-
-const matchAll = require('string.prototype.matchall');
 const fs = require('fs');
 const path = require('path');
 const stylelint = require('stylelint');
@@ -14,6 +12,36 @@ const valueKeys = spacing.match(cssValueRegex);
 
 const ruleName = 'mds/spacing';
 const url = 'https://mavenlink.github.io/design-system/master/#/Brand%20Identity/Spacing';
+
+// Note this can be replaced by native String.prototype.matchAll when node is upgraded past: 12.0.0
+const matchAll = (string, regex) => {
+  let splicedString = string;
+  let matches = splicedString.match(regex);
+  const finalMatches = [];
+
+  if (matches) {
+    matches = matches.filter((value, index) => {
+      return matches.indexOf(value) === index;
+    });
+
+    matches.forEach((match) => {
+      splicedString = string;
+      let index = splicedString.indexOf(match);
+      let buffer = 0;
+      while (index !== -1) {
+        const matchValue = {};
+        matchValue.index = index + buffer;
+        matchValue[0] = match;
+        finalMatches.push(matchValue);
+        splicedString = splicedString.substring(matchValue.index + match.length, splicedString.length);
+        buffer += index + match.length;
+        index = splicedString.indexOf(match);
+      }
+    });
+  }
+
+  return finalMatches;
+};
 
 function zip(obj, value, index) {
   return { ...obj, [value]: validSpacingSettings[index] };
@@ -51,7 +79,7 @@ module.exports = stylelint.createPlugin(ruleName, (primary, secondary, context) 
         const currentValue = declaration.value;
 
         const invalidSpacingValue = Object.keys(fixmap).some((spacingVariable) => {
-          const pixelValueMatches = [...matchAll(currentValue, /\d+px/g)];
+          const pixelValueMatches = [...matchAll(currentValue, /-?\d+px/g)];
           return pixelValueMatches.some(pixValueMatch => pixValueMatch[0] === spacingVariable);
         });
 

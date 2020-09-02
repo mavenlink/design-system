@@ -70,7 +70,6 @@
     "webpack": "^4.28.3"
   },
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "string.prototype.matchall": "^4.0.2"
+    "prop-types": "^15.6.2"
   }
 }

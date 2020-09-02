@@ -23,44 +23,12 @@ describe('src/linters/spacing', () => {
     });
   });
 
-  it('does not errors on a value different from an MDS variable value', async () => {
-    const code = '.className { margin: 3px; }';
-
-    await stylelint.lint(configuration({ code })).then((data) => {
-      expect(data.errored).toBe(false);
-    });
-  });
-
-  it('does not error on an attribute other than margin or padding', async () => {
-    const code = '.className { border: 2px; }';
-
-    await stylelint.lint(configuration({ code })).then((data) => {
-      expect(data.errored).toBe(false);
-    });
-  });
-
-  it('errors on margin', async () => {
-    const code = '.className { margin: 16px; }';
-
-    await stylelint.lint(configuration({ code })).then((data) => {
-      expect(data.errored).toBe(true);
-    });
-  });
-
-  it('errors on padding', async () => {
-    const code = '.className { padding: 32px; }';
-
-    await stylelint.lint(configuration({ code })).then((data) => {
-      expect(data.errored).toBe(true);
-    });
-  });
-
-  it('fixes mds variables to their value when fixed is passed in and does not error', async () => {
-    const code = '.className { margin: 16px; }';
+  it('fixes multiple mds variables to their values when fixed is passed in and does not error', async () => {
+    const code = '.className { margin: 16px 16px 0 0; }';
 
     await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
       expect(data.errored).toBe(false);
-      expect(data.output).toEqual('.className { margin: var(--spacing-large); }');
+      expect(data.output).toEqual('.className { margin: var(--spacing-large) var(--spacing-large) 0 0; }');
     });
   });
 
