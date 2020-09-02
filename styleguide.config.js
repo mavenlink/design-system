@@ -1,5 +1,6 @@
 /* eslint-disable import/no-commonjs */
 
+const fs = require('fs');
 const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
 
@@ -131,5 +132,18 @@ module.exports = {
   },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
+  updateExample(props = {}, exampleFilePath) {
+    const { settings = {}, lang } = props;
+    if (lang === 'css' && typeof settings.file === 'string') {
+      const filepath = path.resolve(path.dirname(exampleFilePath), settings.file);
+      settings.static = true;
+      return {
+        content: `/* ${settings.file} */\n\n${fs.readFileSync(filepath, 'utf8')}`,
+        settings,
+        lang
+      };
+    }
+    return props;
+  },
   webpackConfig,
 };
