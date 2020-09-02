@@ -174,7 +174,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           </TagList>
           <div className={styles['icons-container']}>
             {!props.readOnly && props.errorText && (
-              <div style={{display: 'flex', height: 'fit-content', marginRight: '4px'}}>
+              <div className={styles['icon-container']}>
                 <Icon // Change me to icon button plis
                   className={styles.icon}
                   currentColor="caution"
@@ -184,7 +184,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
               </div>
             )}
             {!props.readOnly && value.length > 0 && (
-              <div style={{display: 'flex', height: 'fit-content', marginRight: '4px'}}>
+              <div className={styles['icon-container']}>
                 <Icon
                   className={styles['clear-icon']}
                   icon={iconClear}
@@ -197,7 +197,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
                 />
               </div>
             )}
-            <div style={{display: 'flex', height: 'fit-content'}}>
+            <div className={styles['icon-container']}>
               <Icon
                 className={styles.icon}
                 icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
