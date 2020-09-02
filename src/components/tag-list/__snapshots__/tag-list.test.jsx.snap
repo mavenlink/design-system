@@ -1,54 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TagList renders a TagList 1`] = `
-<div
-  aria-labelledby="test-label-id"
-  className="tag-list"
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  role="grid"
->
-  <div
-    className="tag"
-    id="test-tag-fake"
-    role="row"
-  >
-    <span
-      className="content"
-      id="test-tag-fake-content"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="gridcell"
-      tabIndex="0"
+<body>
+  <div>
+    <div
+      aria-labelledby="test-label-id"
+      class="tag-list"
+      role="grid"
     >
-      Test Fake Tag
-    </span>
-    <span
-      className="icon-wrapper"
-      onKeyDown={[Function]}
-      role="gridcell"
-      tabIndex="-1"
-    >
-      <svg
-        aria-labelledby="test-tag-fake-button test-tag-fake-content"
-        className="icon"
-        height={8}
-        id="test-tag-fake-button"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={-1}
-        width={8}
+      <div
+        class="tag"
+        id="test-tag-fake"
+        role="row"
       >
-        <title>
-          Remove
-        </title>
-        <use
-          xlinkHref="#clear.svg"
-        />
-      </svg>
-    </span>
+        <span
+          class="content"
+          id="test-tag-fake-content"
+          role="gridcell"
+          tabindex="0"
+        >
+          Test Fake Tag
+        </span>
+        <span
+          class="icon-wrapper"
+          role="gridcell"
+          tabindex="-1"
+        >
+          <svg
+            aria-labelledby="test-tag-fake-button test-tag-fake-content"
+            class="icon"
+            height="8"
+            id="test-tag-fake-button"
+            role="button"
+            tabindex="-1"
+            width="8"
+          >
+            <title>
+              Remove
+            </title>
+            <use
+              xlink:href="#clear.svg"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
   </div>
-</div>
+</body>
 `;
