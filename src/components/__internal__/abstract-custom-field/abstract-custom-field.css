@@ -48,6 +48,8 @@
 }
 
 .icon-container {
+  align-items: center;
+  display: inline-flex;
   position: absolute;
   right: 6px;
   top: 6px;
