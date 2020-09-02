@@ -65,31 +65,6 @@ describe('Icon', () => {
     });
   });
 
-  describe('onClick API', () => {
-    it('can be set', () => {
-      const onClickSpy = jest.fn();
-      render(<Icon {...requiredProps} onClick={onClickSpy} />);
-      userEvent.click(screen.getByRole('img'));
-      expect(onClickSpy).toHaveBeenCalledWith(expect.anything());
-    });
-  });
-
-  describe('role API', () => {
-    it('can be button', () => {
-      render((
-        <Icon {...requiredProps} role="button" />
-      ));
-      expect(screen.getByRole('button'));
-    });
-
-    it('can be img', () => {
-      render((
-        <Icon {...requiredProps} role="img" />
-      ));
-      expect(screen.getByRole('img'));
-    });
-  });
-
   describe('size API', () => {
     it('can be "small"', () => {
       render((
@@ -318,28 +293,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('color-none');
         expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
-    });
-  });
-
-  describe('onClick API', () => {
-    it('sets the onclick handler', () => {
-      const onClickSpy = jest.fn();
-      render((
-        <Icon {...requiredProps} onClick={onClickSpy} />
-      ));
-      fireEvent.click(screen.getByRole('img'));
-      expect(onClickSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('onEnter API', () => {
-    it('sets the onkeydown handler', () => {
-      const onEnterSpy = jest.fn();
-      render((
-        <Icon {...requiredProps} onEnter={onEnterSpy} />
-      ));
-      fireEvent.keyDown(screen.getByRole('img').firstChild, { key: 'Enter', code: 'Enter' });
-      expect(onEnterSpy.mock.calls.length).toEqual(1);
     });
   });
 });

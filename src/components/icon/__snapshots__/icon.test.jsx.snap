@@ -3,8 +3,6 @@
 exports[`Icon has defaults 1`] = `
 <svg
   className="icon-base size-medium fill-none stroke-none color-transparent"
-  onClick={[Function]}
-  onKeyDown={[Function]}
   role="img"
 >
   <use

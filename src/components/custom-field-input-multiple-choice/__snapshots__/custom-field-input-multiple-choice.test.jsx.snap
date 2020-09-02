@@ -51,8 +51,6 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
             <svg
               className="icon"
               height={6}
-              onClick={[Function]}
-              onKeyDown={[Function]}
               role="img"
               width={10}
             >

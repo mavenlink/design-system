@@ -34,14 +34,6 @@ function usePropsForVersion(v, className, size, fill, stroke, currentColor, name
   return undefined;
 }
 
-function getTabIndex(active, role) {
-  if (role === 'button') {
-    return active ? 0 : -1;
-  }
-
-  return undefined;
-}
-
 export default function Icon(props) {
   const vProps = usePropsForVersion(
     props.v,
@@ -54,25 +46,15 @@ export default function Icon(props) {
     props.icon,
   );
 
-  const tabindex = getTabIndex(props.active, props.role);
-  const onKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === 'Space') {
-      props.onEnter();
-    }
-  };
-
   return (
     <svg
-      tabIndex={tabindex}
       aria-label={props.ariaLabel}
       aria-labelledby={props.ariaLabelledBy}
       className={vProps.className}
       height={vProps.height}
       id={props.id}
-      onClick={props.onClick}
-      role={props.role}
+      role="img"
       width={vProps.width}
-      onKeyDown={onKeyDown}
     >
       { props.title && <title>{props.title}</title> }
       <use xlinkHref={`#${vProps.name}`} />
@@ -116,12 +98,6 @@ Icon.propTypes = {
 
     return undefined;
   },
-  onClick: PropTypes.func,
-  onEnter: PropTypes.func,
-  role: PropTypes.oneOf([
-    'button',
-    'img',
-  ]),
   size: PropTypes.oneOf([
     'small',
     'medium',
@@ -151,9 +127,6 @@ Icon.defaultProps = {
   icon: undefined,
   id: undefined,
   name: undefined,
-  onClick: () => {},
-  onEnter: () => {},
-  role: 'img',
   size: 'medium',
   stroke: 'none',
   title: undefined,

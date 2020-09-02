@@ -14,36 +14,14 @@ Forward facing note:
 
 The `Icon` component exposes a few configured properties to fine-tune the accessibility provided by the SVG.
 
-- `role` API expresses whether it is presentational (`img`) or interactive (`button`)
 - `ariaLabel` API expresses an a11y description for the SVG
 - `ariaLabelledBy` API expresses a complex a11y description based on IDs for the SVG
 - `title` API expresses an a11y description for the SVG -- this does the same thing as `ariaLabel`
-
-Whenever the `role="button"` is set, the Icon requires a label/title to express what the button does (e.g. "Remove item").
-
-```js
-import icon from '../../svgs/icon-clear-small.svg';
-<Icon name={icon.id} ariaLabel="Remove item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
-```
-
-In the above example, the SVG expresses its behavior to the user.
-However, it can be improved by being more specific (i.e. what is "item" in this case?).
-The `ariaLabelledBy` can indicate the action and the item specifying the IDs (in a particular order) of the elements with friendly screen reader labels.
-
-```js
-import icon from '../../svgs/icon-clear-small.svg';
-
-<React.Fragment>
-  <span id="a11y-item">I am an item</span>
-  <Icon name={icon.id} id="a11y-icon" ariaLabel="Remove" ariaLabelledBy="a11y-icon a11y-item" role="button" size="small" currentColor="skip" fill="skip" stroke="skip" />
-</React.Fragment>
-```
 
 #### Keyboard functionality
 
 | Key | State | Behavior |
 | --- | --- | --- |
-| Enter | role="button" | The button is activated |
 
 ### Basic Usage
 
