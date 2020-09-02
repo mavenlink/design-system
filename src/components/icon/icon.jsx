@@ -114,7 +114,6 @@ Icon.propTypes = {
     'skip',
   ]),
   title: PropTypes.string,
-  active: PropTypes.bool,
   v: PropTypes.number,
 };
 
