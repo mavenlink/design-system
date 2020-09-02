@@ -6,7 +6,6 @@ function getProps(iconName, iconModule) {
     'icon-caret-down',
     'icon-caret-down-disabled',
     'icon-caution-fill',
-    'icon-clear-small',
     'icon-tick',
   ];
 
