@@ -26,23 +26,26 @@ exports[`TagList renders a TagList 1`] = `
     </span>
     <span
       className="icon-wrapper"
-      onClick={[Function]}
       onKeyDown={[Function]}
       role="gridcell"
       tabIndex="-1"
     >
       <svg
-        aria-label="Remove"
         aria-labelledby="test-tag-fake-button test-tag-fake-content"
-        className="icon-base size-small"
+        className="icon"
+        height={8}
         id="test-tag-fake-button"
         onClick={[Function]}
         onKeyDown={[Function]}
         role="button"
-        tabIndex={0}
+        tabIndex={-1}
+        width={8}
       >
+        <title>
+          Remove
+        </title>
         <use
-          xlinkHref="#icon-clear-small.svg"
+          xlinkHref="#clear.svg"
         />
       </svg>
     </span>

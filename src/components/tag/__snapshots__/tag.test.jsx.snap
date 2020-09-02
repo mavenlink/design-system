@@ -1,42 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag renders a tag component 1`] = `
-<div
-  className="tag"
-  id="test-id"
-  role="row"
->
-  <span
-    className="content"
-    id="test-id-content"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="gridcell"
-    tabIndex="0"
-  >
-    Test Title
-  </span>
-  <span
-    className="icon-wrapper"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="gridcell"
-    tabIndex="-1"
-  >
-    <svg
-      aria-label="Remove"
-      aria-labelledby="test-id-button test-id-content"
-      className="icon-base size-small"
-      id="test-id-button"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-      tabIndex={0}
+<body>
+  <div>
+    <div
+      class="tag"
+      id="test-id"
+      role="row"
     >
-      <use
-        xlinkHref="#icon-clear-small.svg"
-      />
-    </svg>
-  </span>
-</div>
+      <span
+        class="content"
+        id="test-id-content"
+        role="gridcell"
+        tabindex="0"
+      >
+        Test Title
+      </span>
+      <span
+        class="icon-wrapper"
+        role="gridcell"
+        tabindex="-1"
+      >
+        <svg
+          aria-labelledby="test-id-button test-id-content"
+          class="icon"
+          height="8"
+          id="test-id-button"
+          role="button"
+          tabindex="-1"
+          width="8"
+        >
+          <title>
+            Remove
+          </title>
+          <use
+            xlink:href="#clear.svg"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</body>
 `;

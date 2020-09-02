@@ -7,8 +7,8 @@ import React, {
   useState,
 } from 'react';
 import styles from './tag.css';
-import clearIcon from '../../svgs/icon-clear-small.svg';
-import Icon from '../icon/index.js';
+import clear from '../../svgs/clear.svg';
+import IconButton from '../icon-button/icon-button.jsx';
 
 const Tag = forwardRef(function Tag(props, forwardedRef) {
   const [focusQueued, setFocusQueued] = useState(false);
@@ -25,13 +25,6 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
 
   function handleGridCellKeyDown(keyEvent) {
     switch (keyEvent.key) {
-      case ' ':
-      case 'Enter':
-        if (tabActiveStates[1]) {
-          keyEvent.preventDefault();
-          props.onRemove({ target: ref.current });
-        }
-        break;
       case 'ArrowDown':
       case 'ArrowRight':
         if (!props.readOnly && tabActiveStates[0] === true && tabActiveStates[1] === false) {
@@ -105,23 +98,19 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
       {!props.readOnly &&
         <span
           className={styles['icon-wrapper']}
-          ref={buttonRef}
           role="gridcell"
-          tabIndex={isActive && tabActiveStates[1] ? '0' : '-1'}
-          onClick={clickEvent => handleGridCellClick(clickEvent, 1)}
           onKeyDown={handleGridCellKeyDown}
+          tabIndex="-1"
         >
-          <Icon
-            ariaLabel="Remove"
-            ariaLabelledBy={`${buttonId} ${contentId}`}
+          <IconButton
+            active={isActive && tabActiveStates[1]}
+            className={styles.icon}
             id={buttonId}
-            active={isActive}
-            name={clearIcon.id}
-            size="small"
-            stroke="skip"
-            fill="skip"
-            currentColor="skip"
-            role="button"
+            icon={clear}
+            label="Remove"
+            labelledBy={`${buttonId} ${contentId}`}
+            onPress={clickEvent => handleGridCellClick(clickEvent, 1)}
+            ref={buttonRef}
           />
         </span>
       }
