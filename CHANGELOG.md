@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Calendar component dates can be navigated via keyboard
   - Minor: Calendar component year dropdown allows selecting a year
+  - Minor: Add `defaultValue` to `Input` component API
 </details>
 
 ## v0.38.0 (August 25, 2020)
