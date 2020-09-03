@@ -1,13 +1,14 @@
 @import "../../../src/styles/colors-v2.css";
+@import "../../../src/styles/spacing.css";
 
 .container {
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-x-large);
   border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
 }
 
 .preview {
-  padding: 16px;
+  padding: var(--spacing-large);
   position: relative;
   z-index: 3;
 }
