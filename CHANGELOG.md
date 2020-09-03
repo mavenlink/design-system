@@ -9,7 +9,7 @@
   - Append new items to make git merging easier.
 </details>
 
-## v0.39.2 (September 1, 2020)
+## v0.39.3 (September 1, 2020)
   - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
   - Minor: Calendar component dates can be navigated via keyboard
   - Minor: Calendar component year dropdown allows selecting a year
