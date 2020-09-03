@@ -56,6 +56,10 @@
   top: 50%;
 }
 
+.icon-container > * {
+  margin-right: var(--spacing-small);
+}
+
 .invalid-input {
   composes: input-styles;
   border-color: var(--mds-red-100);

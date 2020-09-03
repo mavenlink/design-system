@@ -11,7 +11,7 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconCaretDown from '../../svgs/caret-down.svg';
-import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import iconCaution from '../../svgs/caution.svg';
 import iconClear from '../../svgs/clear.svg';
 import Listbox from '../listbox/listbox.jsx';

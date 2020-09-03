@@ -11,8 +11,8 @@ import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
-import iconCaretDown from '../../svgs/icon-caret-down.svg';
-import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import iconCaretDown from '../../svgs/caret-down.svg';
+import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
@@ -32,8 +32,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const refs = props.choices.map(() => createRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
-    name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-    fill="skip"
+    icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+    v={2}
   />);
 
   const defaultValue = value ? value.label : '';

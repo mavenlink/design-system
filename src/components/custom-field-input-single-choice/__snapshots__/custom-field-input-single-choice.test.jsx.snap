@@ -47,11 +47,13 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         className="icon-container"
       >
         <svg
-          className="input-icon size-medium stroke-none color-transparent"
+          className="input-icon"
+          height={6}
           role="img"
+          width={10}
         >
           <use
-            xlinkHref="#icon-caret-down.svg"
+            xlinkHref="#caret-down.svg"
           />
         </svg>
       </div>
