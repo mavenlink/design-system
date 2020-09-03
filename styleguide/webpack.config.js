@@ -45,14 +45,7 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader', options: { importLoaders: 1, modules: true } },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [
-                postCssPresetEnv(),
-              ],
-            },
-          },
+          { loader: 'postcss-loader', options: { plugins: () => [postCssPresetEnv()] } },
         ],
       },
     ],
