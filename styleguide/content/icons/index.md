@@ -21,7 +21,7 @@ const {
     {icons.map(([props, options]) => (
       <TableRow>
         <TableCell>
-          <Icon {...props} v={2} />
+          <Icon {...props} />
         </TableCell>
         <TableCell>{options.path}</TableCell>
       </TableRow>

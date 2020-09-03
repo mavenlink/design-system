@@ -48,7 +48,6 @@ export default function Input(props) {
           className={styles['invalid-icon']}
           icon={cautionSvg}
           title="Invalid input"
-          v={2}
         />
       )}
     </FormControl>

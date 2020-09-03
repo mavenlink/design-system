@@ -176,7 +176,6 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
                   className={styles.icon}
                   icon={iconCaution}
                   title="Invalid multiple choice custom field"
-                  v={2}
                 />
               </div>
             )}
@@ -194,7 +193,6 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
               <Icon
                 className={styles.icon}
                 icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-                v={2}
               />
             </div>
           </div>

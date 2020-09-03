@@ -81,7 +81,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
-    icon: <Icon className={styles['input-icon']} icon={calendarSvg} title={props.label} v={2} />,
+    icon: <Icon className={styles['input-icon']} icon={calendarSvg} title={props.label} />,
     label: props.label,
     inputRef,
     readOnly: true,

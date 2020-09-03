@@ -22,7 +22,6 @@ exports[`TagSkill has default 1`] = `
         className="level-tick"
       >
         <svg
-          className="icon-base"
           height={9}
           role="img"
           width={12}

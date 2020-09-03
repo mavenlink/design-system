@@ -2,8 +2,9 @@
 
 exports[`Icon has defaults 1`] = `
 <svg
-  className="icon-base size-medium fill-none stroke-none color-transparent"
+  height={0}
   role="img"
+  width={0}
 >
   <use
     xlinkHref="#foobar"

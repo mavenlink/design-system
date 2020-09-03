@@ -72,13 +72,13 @@ describe('AbstractCustomField', () => {
 
   describe('icon API', () => {
     it('shows an icon when provided', () => {
-      const icon = <Icon icon={calendarSvg} v={2} />;
+      const icon = <Icon icon={calendarSvg} />;
       const { getByRole } = render(<AbstractCustomField {...sharedProps} icon={icon} />);
       expect(getByRole('img')).toBeDefined();
     });
 
     it('renders the icon passed in', () => {
-      const icon = <Icon icon={calendarSvg} v={2} title="Calendar icon" />;
+      const icon = <Icon icon={calendarSvg} title="Calendar icon" />;
       render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
       expect(screen.getByRole('img', { name: 'Calendar icon' }).children[1]).toHaveAttribute('xlink:href', '#calendar.svg');
     });

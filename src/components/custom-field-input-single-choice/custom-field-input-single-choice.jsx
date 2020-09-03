@@ -33,7 +33,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const caretIcon = (<Icon
     className={styles['input-icon']}
     icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-    v={2}
   />);
 
   const defaultValue = value ? value.label : '';

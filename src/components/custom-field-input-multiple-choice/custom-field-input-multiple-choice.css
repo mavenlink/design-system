@@ -35,13 +35,11 @@
 }
 
 .clear-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   cursor: pointer;
   padding: 2px;
 }
 
 .icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   pointer-events: none;
 }
 
