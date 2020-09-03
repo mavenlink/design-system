@@ -41,13 +41,13 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 
 ```js
 import Icon from '../icon/icon.jsx';
-import iconTick from '../../svgs/icon-tick.svg';
+import iconTick from '../../svgs/tick.svg';
 
 <Tag id="composition-example-2" readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
-      <Icon name={iconTick.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
+      <Icon icon={iconTick} v={2} />
     </span>
   </span>
 </Tag>

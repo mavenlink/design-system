@@ -4,7 +4,6 @@ function getProps(iconName, iconModule) {
   const legacyIcons = [
     'icon-caret-down',
     'icon-caret-down-disabled',
-    'icon-tick',
   ];
 
   if (legacyIcons.includes(iconName)) {
