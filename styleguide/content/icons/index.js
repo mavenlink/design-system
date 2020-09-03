@@ -2,7 +2,6 @@ const allSvgsModules = require.context('../../../src/svgs/', true, /svg$/);
 
 function getProps(iconName, iconModule) {
   const legacyIcons = [
-    'icon-calendar-fill',
     'icon-caret-down',
     'icon-caret-down-disabled',
     'icon-tick',

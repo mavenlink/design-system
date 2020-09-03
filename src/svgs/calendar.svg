@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="14px" viewBox="0 0 11 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.54">
+        <path d="M4,0 L4,1 L7,1 L7,0 L9,0 L9,1 L10,1 C10.5522847,1 11,1.44771525 11,2 L11,13 C11,13.5522847 10.5522847,14 10,14 L1,14 C0.44771525,14 0,13.5522847 0,13 L0,2 C0,1.44771525 0.44771525,1 1,1 L2,1 L2,0 L4,0 Z M2.999,11 L1,11 L1,13 L2.999,13 L2.999,11 Z M10,11 L7.999,11 L7.999,13 L10,13 L10,11 Z M6.999,11 L3.999,11 L3.999,13 L6.999,13 L6.999,11 Z M2.999,8 L1,8 L1,10 L2.999,10 L2.999,8 Z M10,8 L7.999,8 L7.999,10 L10,10 L10,8 Z M6.999,8 L3.999,8 L3.999,10 L6.999,10 L6.999,8 Z M2.999,5 L1,5 L1,7 L2.999,7 L2.999,5 Z M10,5 L7.999,5 L7.999,7 L10,7 L10,5 Z M6.999,5 L3.999,5 L3.999,7 L6.999,7 L6.999,5 Z M10,2 L1,2 L1,4 L10,4 L10,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>
