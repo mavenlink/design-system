@@ -1,26 +1,21 @@
 The `<Icon>` component represents our latest patterns with using SVGs.
-It is also designed to be accessible -- please read our accessibility section below!
+It is designed to be accessible and easy-to-use.
 
-Forward facing note:
+## Label Support
 
-- `currentColor` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
-- `fill` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
-- `skip` API is being deprecated in favor of self-contained SVGs -- please use `skip` for now
-- *Self-contained are SVGs with all coloring styling applied in the SVG file
+| Element | Label |
+| --- | --- |
+| SVG | Provided by `label` or `labelledBy` props |
 
-### Accessibility
+## Keyboard functionality
 
-#### Labeling
+The `<Icon>` component does not support any interaction.
+For a interactive icon component, see [`<IconButton>`](#/Components/IconButton)
 
-The `Icon` component exposes a few configured properties to fine-tune the accessibility provided by the SVG.
+## Example
 
-- `ariaLabel` API expresses an a11y description for the SVG
-- `ariaLabelledBy` API expresses a complex a11y description based on IDs for the SVG
-- `title` API expresses an a11y description for the SVG -- this does the same thing as `ariaLabel`
+```js
+import arrowLeft from '../../svgs/arrow-left.svg';
 
-#### Keyboard functionality
-
-| Key | State | Behavior |
-| --- | --- | --- |
-
-Refactor in-progress.
+<Icon icon={arrowLeft} label="Left arrow" />
+```
