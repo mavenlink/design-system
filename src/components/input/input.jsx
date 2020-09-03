@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cautionSvg from '../../svgs/icon-caution-fill.svg';
+import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
@@ -43,7 +43,14 @@ export default function Input(props) {
         type={props.type}
         value={props.value}
       />
-      {isInvalid(props.invalid, props.readOnly) && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
+      {isInvalid(props.invalid, props.readOnly) && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          title="Invalid input"
+          v={2}
+        />
+      )}
     </FormControl>
   );
 }

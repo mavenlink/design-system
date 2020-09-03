@@ -5,21 +5,8 @@ function getProps(iconName, iconModule) {
     'icon-calendar-fill',
     'icon-caret-down',
     'icon-caret-down-disabled',
-    'icon-caution-fill',
     'icon-tick',
   ];
-
-  if (iconName === 'icon-caution-fill') {
-    // This is a one-off.
-    // We might want to not provide icon specific colors?
-    return {
-      currentColor: 'caution',
-      fill: 'undefined',
-      stroke: 'undefined',
-      size: 'medium',
-      v: 1,
-    };
-  }
 
   if (legacyIcons.includes(iconName)) {
     return {

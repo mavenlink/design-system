@@ -5,13 +5,11 @@ const path = require('path');
 
 module.exports = {
   process(src, filename, config, options) {
-    // import iconCautionSvg from 'src/svgs/icon-caution-fill.svg';
-    // results in
-    // iconCautionSvg := {
-    //   id: 'icon-caution-fill.svg',
-    //   viewBox: minX minY width height,
-    // }
-    // which helps us assert we are using the appropriate SVG(s) in our components
+    // This function implements the same interface as our SVG webpack loader.
+    // Jest does not use webpack loaders due to unknown reasons.
+    // For each SVG, it exports an object with:
+    // - id
+    // - viewbox
 
     const viewBox = fs
       .readFileSync(filename)

@@ -12,7 +12,7 @@ import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
-import iconCaution from '../../svgs/icon-caution-fill.svg';
+import iconCaution from '../../svgs/caution.svg';
 import iconClear from '../../svgs/clear.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
@@ -172,11 +172,11 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           <div className={styles['icons-container']}>
             {!props.readOnly && props.errorText && (
               <div className={styles['icon-container']}>
-                <Icon // Change me to icon button plis
+                <Icon
                   className={styles.icon}
-                  currentColor="caution"
-                  fill="skip"
-                  name={iconCaution.id}
+                  icon={iconCaution}
+                  title="Invalid multiple choice custom field"
+                  v={2}
                 />
               </div>
             )}

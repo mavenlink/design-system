@@ -137,13 +137,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).toHaveClass('fill-highlight');
       });
 
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} fill="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-caution');
-      });
-
       it('can be "none"', () => {
         render((
           <Icon {...requiredProps} fill="none" />
@@ -159,7 +152,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
         expect(screen.getByRole('img')).not.toHaveClass('fill-action');
         expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
         expect(screen.getByRole('img')).not.toHaveClass('fill-none');
         expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
       });
@@ -187,13 +179,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).toHaveClass('stroke-highlight');
       });
 
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} stroke="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-caution');
-      });
-
       it('can be "none"', () => {
         render((
           <Icon {...requiredProps} stroke="none" />
@@ -209,7 +194,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
       });
@@ -237,13 +221,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).toHaveClass('color-highlight');
       });
 
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-caution');
-      });
-
       it('can be "transparent"', () => {
         render((
           <Icon {...requiredProps} currentColor="transparent" />
@@ -259,7 +236,6 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('color-primary');
         expect(screen.getByRole('img')).not.toHaveClass('color-action');
         expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
         expect(screen.getByRole('img')).not.toHaveClass('color-none');
         expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
@@ -274,21 +250,18 @@ describe('Icon', () => {
         expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
         expect(screen.getByRole('img')).not.toHaveClass('fill-action');
         expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
         expect(screen.getByRole('img')).not.toHaveClass('fill-none');
         expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
 
         expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
         expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
 
         expect(screen.getByRole('img')).not.toHaveClass('color-primary');
         expect(screen.getByRole('img')).not.toHaveClass('color-action');
         expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
         expect(screen.getByRole('img')).not.toHaveClass('color-none');
         expect(screen.getByRole('img')).not.toHaveClass('color-skip');
       });
