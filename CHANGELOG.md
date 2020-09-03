@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `defaultValue` to `Input` component API
 </details>
 
 ## v0.39.3 (September 1, 2020)
