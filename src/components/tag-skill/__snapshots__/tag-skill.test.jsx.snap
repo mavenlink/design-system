@@ -26,6 +26,9 @@ exports[`TagSkill has default 1`] = `
           role="img"
           width={12}
         >
+          <title>
+            No level
+          </title>
           <use
             xlinkHref="#tick.svg"
           />

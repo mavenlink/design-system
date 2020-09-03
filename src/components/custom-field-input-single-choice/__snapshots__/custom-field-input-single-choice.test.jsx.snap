@@ -52,6 +52,9 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
           role="img"
           width={10}
         >
+          <title>
+            Open choices listbox
+          </title>
           <use
             xlinkHref="#caret-down.svg"
           />

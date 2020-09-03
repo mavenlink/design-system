@@ -33,6 +33,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const caretIcon = (<Icon
     className={styles['input-icon']}
     icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+    label={props.readOnly ? "Choice field is not editable" : "Open choices listbox"}
   />);
 
   const defaultValue = value ? value.label : '';

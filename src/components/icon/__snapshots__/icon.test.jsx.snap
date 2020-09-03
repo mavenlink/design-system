@@ -1,13 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Icon has defaults 1`] = `
-<svg
-  height={0}
-  role="img"
-  width={0}
->
-  <use
-    xlinkHref="#foobar"
-  />
-</svg>
+<body>
+  <div>
+    <svg
+      height="0"
+      role="img"
+      width="0"
+    >
+      <title>
+        Test label
+      </title>
+      <use
+        xlink:href="#foobar"
+      />
+    </svg>
+  </div>
+</body>
 `;

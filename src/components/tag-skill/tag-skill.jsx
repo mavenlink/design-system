@@ -14,7 +14,7 @@ export default function TagSkill(props) {
           <span className={styles.level}>{props.level}</span>
         ) : (
           <span className={styles['level-tick']}>
-            <Icon icon={iconTick} />
+            <Icon icon={iconTick} label="No level" />
           </span>
         )}
       </span>

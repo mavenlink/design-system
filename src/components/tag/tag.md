@@ -47,7 +47,7 @@ import iconTick from '../../svgs/tick.svg';
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
-      <Icon icon={iconTick} />
+      <Icon icon={iconTick} label="No level" />
     </span>
   </span>
 </Tag>

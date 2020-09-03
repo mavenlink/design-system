@@ -283,7 +283,7 @@ function Calendar(props) {
           <Icon
             className={styles['change-year-icon']}
             icon={caretDown}
-            v={2}
+            label="Open year listbox"
           />
         </button>
         <IconButton

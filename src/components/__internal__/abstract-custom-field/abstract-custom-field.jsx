@@ -31,7 +31,7 @@ export default function AbstractCustomField(props) {
       return (<Icon
         className={styles['input-icon']}
         icon={cautionSvg}
-        title="Invalid custom field"
+        label="Invalid custom field"
       />);
     }
 

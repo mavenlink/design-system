@@ -8,36 +8,32 @@ export default function Icon(props) {
 
   return (
     <svg
-      aria-label={props.ariaLabel}
-      aria-labelledby={props.ariaLabelledBy}
+      aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
       id={props.id}
       role="img"
       width={width}
     >
-      { props.title && <title>{props.title}</title> }
+      <title>{props.label}</title>
       <use xlinkHref={`#${props.icon.id}`} />
     </svg>
   );
 }
 
 Icon.propTypes = {
-  ariaLabel: PropTypes.string,
-  ariaLabelledBy: PropTypes.string,
   className: PropTypes.string,
   icon: PropTypes.shape({
     id: PropTypes.string,
     viewBox: PropTypes.string,
   }).isRequired,
   id: PropTypes.string,
-  title: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  labelledBy: PropTypes.string,
 };
 
 Icon.defaultProps = {
-  ariaLabel: undefined,
-  ariaLabelledBy: undefined,
   className: undefined,
   id: undefined,
-  title: undefined,
+  labelledBy: undefined,
 };

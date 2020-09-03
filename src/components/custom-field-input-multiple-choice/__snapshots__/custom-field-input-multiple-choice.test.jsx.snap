@@ -54,6 +54,9 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
               role="img"
               width={10}
             >
+              <title>
+                Open choices listbox
+              </title>
               <use
                 xlinkHref="#caret-down.svg"
               />

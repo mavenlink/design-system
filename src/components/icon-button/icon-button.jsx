@@ -24,11 +24,11 @@ const IconButton = forwardRef(function IconButton(props, ref) {
       height={height}
       id={props.id}
       onClick={props.onPress}
+      onKeyDown={onKeyDown}
       ref={ref}
       role="button"
       tabIndex={tabIndex}
       width={width}
-      onKeyDown={onKeyDown}
     >
       <title>{props.label}</title>
       <use xlinkHref={`#${props.icon.id}`} />
