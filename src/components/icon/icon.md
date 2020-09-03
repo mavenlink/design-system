@@ -10,12 +10,12 @@ It is designed to be accessible and easy-to-use.
 ## Keyboard functionality
 
 The `<Icon>` component does not support any interaction.
-For a interactive icon component, see [`<IconButton>`](#/Components/IconButton)
+For a interactive icon component, @see [`<IconButton>`](#/Components/IconButton)
 
 ## Example
 
 ```js
-import arrowLeft from '../../svgs/arrow-left.svg';
+import arrowLeft from '@mavenlink/design-system/src/svgs/arrow-left.svg';
 
 <Icon icon={arrowLeft} label="Left arrow" />
 ```
