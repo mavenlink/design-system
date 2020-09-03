@@ -27,12 +27,12 @@
 .icon-container {
   display: flex;
   height: fit-content;
-  margin-right: 4px;
+  margin-right: var(--spacing-small);
 }
 
 .clear-icon {
   cursor: pointer;
-  padding: 2px;
+  padding: var(--spacing-x-small);
 }
 
 .icon {
