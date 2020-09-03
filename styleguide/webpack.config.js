@@ -14,7 +14,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2|ico)(\?(r=)?[\d-]+)?$/,
+        test: /\.(jpeg|ico)$/,
         loader: 'url-loader?limit=10000',
       },
       {
