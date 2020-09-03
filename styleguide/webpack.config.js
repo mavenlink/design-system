@@ -15,6 +15,7 @@ module.exports = {
       },
       {
         test: /\.(jpeg|ico)$/,
+        exclude: /node_modules/,
         loader: 'url-loader?limit=10000',
       },
       {
