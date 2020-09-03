@@ -7,9 +7,13 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `defaultValue` to `Input` component API
+</details>
+
+## v0.39.3 (September 1, 2020)
+  - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
   - Minor: Calendar component dates can be navigated via keyboard
   - Minor: Calendar component year dropdown allows selecting a year
-</details>
 
 ## v0.38.0 (August 25, 2020)
   - Minor: Add `forwardRef` and `onChange` APIs to `CustomFieldInputMultipleChoice`

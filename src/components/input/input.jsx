@@ -27,6 +27,7 @@ export default function Input(props) {
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, props.invalid, props.readOnly)}
+        defaultValue={props.defaultValue}
         disabled={props.disabled}
         id={props.id}
         maxLength={props.maxLength}
@@ -58,6 +59,7 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
@@ -86,6 +88,7 @@ Input.defaultProps = {
   className: undefined,
   cssContainer: styles.container,
   cssLabel: undefined,
+  defaultValue: undefined,
   disabled: undefined,
   invalid: false,
   inputRef: undefined,
