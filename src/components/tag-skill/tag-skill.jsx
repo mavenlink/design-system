@@ -10,13 +10,13 @@ export default function TagSkill(props) {
     <Tag id={props.id} readOnly>
       <span className={styles.row}>
         {props.name}
-        {props.level ? (
-          <span className={styles.level}>{props.level}</span>
-        ) : (
-          <span className={styles['level-tick']}>
+        <span className={styles.level}>
+          {props.level ? (
+            props.level
+          ) : (
             <Icon icon={iconTick} label="No level" />
-          </span>
-        )}
+          )}
+        </span>
       </span>
     </Tag>
   );

@@ -19,7 +19,7 @@
 .icons-container {
   display: inline-flex;
   flex-shrink: 0;
-  margin: var(--spacing-small) 0 var(--spacing-small) var(--spacing-medium);
+  margin: var(--spacing-small) var(--spacing-medium);
   height: 22px;
   align-items: center;
 }
@@ -32,7 +32,7 @@
 
 .clear-icon {
   cursor: pointer;
-  padding: var(--spacing-x-small);
+  padding: var(--spacing-small);
 }
 
 .icon {

@@ -54,6 +54,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const clearIcon = () => {
     if (!props.readOnly && (value || searchValue)) {
       return (<IconButton
+        className={styles['clear-button']}
         icon={iconClear}
         label={'Remove selected choice'}
         onPress={clear}
