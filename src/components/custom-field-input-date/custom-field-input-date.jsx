@@ -31,36 +31,22 @@ const isValueValid = (value, error, isInputValid = false) => {
 const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
   const componentRef = useRef(null);
   const inputRef = useRef(null);
-  const [isEditing, setIsEditing] = useState(true);
-  const [currentValue, setCurrentValue] = useState(props.value);
+  const [isEditing, setIsEditing] = useState(false);
+  const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+  const [currentValue, setCurrentValue] = useState(value);
   const [isValid, setIsValid] = useState(isValueValid(currentValue, props.error, true));
-  const [isFocused] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    if (!inputRef.current) return;
-
-    const isInputValid = inputRef.current.validity.valid;
-    const valid = isValueValid(currentValue, props.error, isInputValid);
-    setIsValid(valid);
-
-    if (!valid) {
-      setIsEditing(true);
-    } else {
-      setIsEditing(false);
-    }
-  }, [inputRef.current, currentValue, props.error]);
-
-  useEffect(() => {
-    if (isEditing && isFocused) {
+    if (isEditing && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isEditing, isFocused]);
+  }, [isEditing]);
 
   function onDateSelected(date) {
     setCurrentValue(date.toISOString().slice(0, 10));
     setExpanded(false);
-    componentRef.current.focus();
+    setIsEditing(false);
   }
 
   useImperativeHandle(ref, () => ({
@@ -77,6 +63,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
       setIsValid(isValueValid(newDate, props.error, isInputValid));
     }
 
+    setCurrentValue(event.target.value);
     props.onChange(event);
   };
 
@@ -91,6 +78,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
     setExpanded(false);
+    setIsEditing(false);
   };
   useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
@@ -98,29 +86,33 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     setExpanded(!expanded);
   };
 
-  function onInputClick() {
-    setExpanded(!expanded);
+  function onInputClick(event) {
+    event.preventDefault();
+    setExpanded(true);
+    setIsEditing(true);
   }
 
   function onInputKeyDown(event) {
     if (event.key === 'Enter' || event.key === 'Space') {
+      event.preventDefault();
       setExpanded(!expanded);
+      setIsEditing(!isEditing);
     }
   }
 
   function onKeyDown(event) {
     if (event.key === 'Escape') {
       setExpanded(false);
+      setIsEditing(false);
     }
   }
 
   const sharedProps = {
-    className: props.className,
+    className: dateStyles['date-input'],
     disabled: props.disabled,
     icon: <IconButton onClick={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
     label: props.label,
     inputRef,
-    readOnly: true,
     required: props.required,
     onClick: onInputClick,
     onKeyDown: onInputKeyDown,
@@ -128,12 +120,10 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   function renderField() {
     if (isEditing || !isValid) {
-      const value = validDate(currentValue) ? convertToFormat(currentValue, 'yyyy-mm-dd') : currentValue;
-
       return (
         <AbstractCustomField
           {...sharedProps}
-          defaultValue={value}
+          defaultValue={currentValue}
           errorText={errorText()}
           id={props.id}
           key={`${props.id}-editing`}
@@ -169,7 +159,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 });
 
 CustomFieldInputDate.propTypes = {
-  className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorText: PropTypes.string,
@@ -183,7 +172,6 @@ CustomFieldInputDate.propTypes = {
 };
 
 CustomFieldInputDate.defaultProps = {
-  className: undefined,
   disabled: false,
   error: false,
   errorText: '',

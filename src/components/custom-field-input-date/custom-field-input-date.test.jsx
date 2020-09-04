@@ -24,13 +24,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     expect(tree).toMatchSnapshot();
   });
 
-  describe('className API', () => {
-    it('prioritizes className prop', () => {
-      const { container } = renderComponent({ className: 'prioritize-me' });
-      expect(container.firstChild.firstChild).toHaveClass('prioritize-me');
-    });
-  });
-
   describe('value API', () => {
     it('accepts a string in format YYYY-MM-DD', () => {
       const { getByLabelText } = renderComponent({ value: '2016-07-18' });
@@ -181,13 +174,12 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(screen.getByText('July 2016')).toBeInTheDocument();
     });
 
-    it('changes the date to the date selected and focuses the input', () => {
+    it('changes the date to the date selected', () => {
       const { getByLabelText } = renderComponent({ value: '2016-09-13' });
       expect(getByLabelText('Field Date')).toHaveValue('September 13, 2016');
       userEvent.click(screen.getByTitle('Field Date calendar button'));
       userEvent.click(screen.getByLabelText('September 14'));
       expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
-      expect(getByLabelText('Field Date')).toHaveFocus();
     });
   });
 

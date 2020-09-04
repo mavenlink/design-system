@@ -7,3 +7,9 @@
   width: 26px;
   margin-top: -6px;
 }
+
+.date-input input::-webkit-inner-spin-button,
+.date-input input::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}

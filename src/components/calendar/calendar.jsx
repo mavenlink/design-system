@@ -77,6 +77,24 @@ function Calendar(props) {
   let refs = {};
 
   useEffect(() => {
+    if (selectedDate && defaultDate && !isSameDate(selectedDate, defaultDate)) {
+      setSelectedDate(defaultDate);
+      setFocusedDate(defaultDate);
+
+      setYear(highlightedDate.getFullYear());
+      setMonth(highlightedDate.getMonth());
+      setActiveDate(defaultDate);
+    }
+  }, [defaultDate]);
+
+  useEffect(() => {
+    if (activeDate.getMonth() !== month || activeDate.getFullYear() !== year) {
+      setMonth(activeDate.getMonth());
+      setYear(activeDate.getFullYear());
+    }
+  }, [activeDate]);
+
+  useEffect(() => {
     const ref = refs[focusedDate.toDateString()];
     setActiveDate(focusedDate);
     if (active && ref) {

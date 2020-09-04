@@ -5,6 +5,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
   onKeyDown={[Function]}
 >
   <div
+    className="date-input"
     onKeyDown={[Function]}
     role="presentation"
   >
@@ -20,7 +21,6 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
     >
       <input
         className="input"
-        defaultValue=""
         disabled={false}
         id="hello"
         onBlur={[Function]}
@@ -29,15 +29,14 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         onFocus={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
-        readOnly={true}
+        readOnly={false}
         required={false}
-        step={1}
         style={
           Object {
             "--numIcon": 1,
           }
         }
-        type="date"
+        type="text"
       />
       <div
         className="icon-container"
