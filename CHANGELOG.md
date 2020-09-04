@@ -7,11 +7,13 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Add `defaultValue` to `Input` component API
   - Major: Deprecate Icon v1 API: size, currentColor, fill, name, title
   - Major: Implement Icon v2 API: icon, label
   - Major: Replace SVGs with self-contained SVGS -- embedded size and colors
 </details>
+
+## v0.40.0 (September 3, 2020)
+  - Minor: Add `defaultValue` to `Input` component API
 
 ## v0.39.3 (September 1, 2020)
   - Minor: Spacing linter to ensure values that can be MDS spacing variables are.
