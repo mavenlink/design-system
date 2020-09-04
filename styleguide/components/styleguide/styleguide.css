@@ -11,10 +11,16 @@
 }
 
 .sidebar {
+  --top-bar-height: 51px;
   background: var(--white);
   border-right: 1px solid var(--mds-grey-12);
   display: inline-block;
   grid-area: sidebar;
+  height: calc(100vh - var(--top-bar-height));
+  overflow-y: scroll;
+  position: sticky;
+  top: var(--top-bar-height);
+  vertical-align: top;
 }
 
 .main {
