@@ -1,4 +1,4 @@
-Typography in our application is important for establishing design consistency, as well as placing emphasis and hierarchical rules in the correct places in order to guide our users through the product. These are the type options which Product Design should be using in their mocks, and they are the type options Engineers should be using when building out new features or updating pages. 
+Typography in our application is important for establishing design consistency, as well as placing emphasis and hierarchical rules in the correct places in order to guide our users through the product. These are the type options which Product Design should be using in their mocks, and they are the type options Engineers should be using when building out new features or updating pages.
 
 ```css
 @import 'node_modules/@mavenlink/design-system/src/styles/typography-v2.css'

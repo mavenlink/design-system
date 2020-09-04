@@ -2,7 +2,7 @@ See `<Icon>` documentation for how to use an individual icon.
 
 ```js
 import icons from './index.js';
-import Icon from '../../../src/components/icon/icon.jsx';
+import Icon from '@mavenlink/design-system/src/components/icon/icon.jsx';
 const {
   Table,
   TableHeader,
@@ -10,7 +10,7 @@ const {
   TableBody,
   TableRow,
   TableCell,
-} = require('../../../src/components/table/index.js');
+} = require('@mavenlink/design-system/src/components/table');
 
 <Table>
   <TableHeader>
