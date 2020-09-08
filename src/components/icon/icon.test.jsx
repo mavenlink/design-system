@@ -1,47 +1,37 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import Icon from './icon.jsx';
 
 describe('Icon', () => {
   const requiredProps = {
-    name: 'foobar',
     icon: {
       id: 'foobar',
       viewBox: '0 0 0 0',
     },
+    label: 'Test label',
   };
 
   it('has defaults', () => {
-    const tree = renderer.create((
-      <Icon {...requiredProps} />
-    )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<Icon {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
-  describe('ariaLabel API', () => {
+  describe('className prop API', () => {
     it('can be set', () => {
-      render((
-        <Icon {...requiredProps} ariaLabel="clear" />
-      ));
-      expect(screen.getByLabelText('clear')).toBeDefined();
-    });
-  });
-
-  describe('ariaLabelledBy API', () => {
-    it('can be set', () => {
-      render((
-        <Icon {...requiredProps} ariaLabelledBy="unique-id" />
-      ));
-      expect(screen.getByRole('img')).toHaveAttribute('aria-labelledby', 'unique-id');
+      render(<Icon {...requiredProps} className="unique-class-name" />);
+      expect(screen.getByRole('img', { name: 'Test label' })).toHaveClass('unique-class-name');
     });
   });
 
   describe('icon API', () => {
+    it('sets the xlink:href', () => {
+      render(<Icon {...requiredProps} icon={{ ...requiredProps.icon, id: 'unique-id' }} />);
+      expect(screen.getByRole('img', { name: 'Test label' }).children[1]).toHaveAttribute('xlink:href', '#unique-id');
+    });
+
     it('sets the height', () => {
       render((
-        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} />
       ));
 
       expect(screen.getByRole('img')).toHaveAttribute('height', '11');
@@ -49,7 +39,7 @@ describe('Icon', () => {
 
     it('sets the width', () => {
       render((
-        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} v={2} />
+        <Icon {...requiredProps} icon={{ id: 'foobar', viewBox: '0 0 10 11' }} />
       ));
 
       expect(screen.getByRole('img')).toHaveAttribute('width', '10');
@@ -65,281 +55,22 @@ describe('Icon', () => {
     });
   });
 
-  describe('onClick API', () => {
+  describe('label prop API', () => {
     it('can be set', () => {
-      const onClickSpy = jest.fn();
-      render(<Icon {...requiredProps} onClick={onClickSpy} />);
-      userEvent.click(screen.getByRole('img'));
-      expect(onClickSpy).toHaveBeenCalledWith(expect.anything());
+      render(<Icon {...requiredProps} label="Unique label" />);
+      expect(screen.getByRole('img', { name: 'Unique label' })).toBeInTheDocument();
     });
   });
 
-  describe('role API', () => {
-    it('can be button', () => {
-      render((
-        <Icon {...requiredProps} role="button" />
-      ));
-      expect(screen.getByRole('button'));
-    });
-
-    it('can be img', () => {
-      render((
-        <Icon {...requiredProps} role="img" />
-      ));
-      expect(screen.getByRole('img'));
-    });
-  });
-
-  describe('size API', () => {
-    it('can be "small"', () => {
-      render((
-        <Icon {...requiredProps} size="small" />
-      ));
-      expect(screen.getByRole('img')).toHaveClass('size-small');
-    });
-
-    it('can be "medium"', () => {
-      render((
-        <Icon {...requiredProps} size="medium" />
-      ));
-      expect(screen.getByRole('img')).toHaveClass('size-medium');
-    });
-
-    it('can be "large"', () => {
-      render((
-        <Icon {...requiredProps} size="large" />
-      ));
-      expect(screen.getByRole('img')).toHaveClass('size-large');
-    });
-
-    it('can be "skip"', () => {
-      render((
-        <Icon {...requiredProps} size="skip" />
-      ));
-
-      expect(screen.getByRole('img')).not.toHaveClass('size-small');
-      expect(screen.getByRole('img')).not.toHaveClass('size-medium');
-      expect(screen.getByRole('img')).not.toHaveClass('size-large');
-      expect(screen.getByRole('img')).not.toHaveClass('size-skip');
-    });
-  });
-
-  describe('title API', () => {
+  describe('labelledBy prop API', () => {
     it('can be set', () => {
       render((
-        <Icon {...requiredProps} title="yo" />
+        <React.Fragment>
+          <label id="label-id">Unique label</label>
+          <Icon {...requiredProps} labelledBy="label-id" />
+        </React.Fragment>
       ));
-      expect(screen.getByTitle('yo')).toBeDefined();
-    });
-  });
-
-  describe('className API', () => {
-    it('has a class name', () => {
-      render((
-        <Icon {...requiredProps} size="large" className="i-am-a-classname" />
-      ));
-      expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
-    });
-
-    describe('fill', () => {
-      it('can be "primary"', () => {
-        render((
-          <Icon {...requiredProps} fill="primary" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-primary');
-      });
-
-      it('can be "action"', () => {
-        render((
-          <Icon {...requiredProps} fill="action" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-action');
-      });
-
-      it('can be "highlight"', () => {
-        render((
-          <Icon {...requiredProps} fill="highlight" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-highlight');
-      });
-
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} fill="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-caution');
-      });
-
-      it('can be "none"', () => {
-        render((
-          <Icon {...requiredProps} fill="none" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('fill-none');
-      });
-
-      it('can be "skip"', () => {
-        render((
-          <Icon {...requiredProps} fill="skip" />
-        ));
-
-        expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-action');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-none');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
-      });
-    });
-
-    describe('stroke', () => {
-      it('can be "primary"', () => {
-        render((
-          <Icon {...requiredProps} stroke="primary" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-primary');
-      });
-
-      it('can be "action"', () => {
-        render((
-          <Icon {...requiredProps} stroke="action" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-action');
-      });
-
-      it('can be "highlight"', () => {
-        render((
-          <Icon {...requiredProps} stroke="highlight" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-highlight');
-      });
-
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} stroke="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-caution');
-      });
-
-      it('can be "none"', () => {
-        render((
-          <Icon {...requiredProps} stroke="none" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('stroke-none');
-      });
-
-      it('can be "skip"', () => {
-        render((
-          <Icon {...requiredProps} stroke="skip" />
-        ));
-
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
-      });
-    });
-
-    describe('currentColor', () => {
-      it('can be "primary"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="primary" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-primary');
-      });
-
-      it('can be "action"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="action" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-action');
-      });
-
-      it('can be "highlight"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="highlight" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-highlight');
-      });
-
-      it('can be "caution"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="caution" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-caution');
-      });
-
-      it('can be "transparent"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="transparent" />
-        ));
-        expect(screen.getByRole('img')).toHaveClass('color-transparent');
-      });
-
-      it('can be "skip"', () => {
-        render((
-          <Icon {...requiredProps} currentColor="skip" />
-        ));
-
-        expect(screen.getByRole('img')).not.toHaveClass('color-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('color-action');
-        expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('color-none');
-        expect(screen.getByRole('img')).not.toHaveClass('color-skip');
-      });
-    });
-
-    describe('v2', () => {
-      it('skips fill, stroke, and currentColor', () => {
-        render(<Icon {...requiredProps} className="i-am-a-classname" v={2} />);
-
-        expect(screen.getByRole('img')).toHaveClass('i-am-a-classname');
-
-        expect(screen.getByRole('img')).not.toHaveClass('fill-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-action');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-none');
-        expect(screen.getByRole('img')).not.toHaveClass('fill-skip');
-
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-action');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-none');
-        expect(screen.getByRole('img')).not.toHaveClass('stroke-skip');
-
-        expect(screen.getByRole('img')).not.toHaveClass('color-primary');
-        expect(screen.getByRole('img')).not.toHaveClass('color-action');
-        expect(screen.getByRole('img')).not.toHaveClass('color-highlight');
-        expect(screen.getByRole('img')).not.toHaveClass('color-caution');
-        expect(screen.getByRole('img')).not.toHaveClass('color-none');
-        expect(screen.getByRole('img')).not.toHaveClass('color-skip');
-      });
-    });
-  });
-
-  describe('onClick API', () => {
-    it('sets the onclick handler', () => {
-      const onClickSpy = jest.fn();
-      render((
-        <Icon {...requiredProps} onClick={onClickSpy} />
-      ));
-      fireEvent.click(screen.getByRole('img'));
-      expect(onClickSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('onEnter API', () => {
-    it('sets the onkeydown handler', () => {
-      const onEnterSpy = jest.fn();
-      render((
-        <Icon {...requiredProps} onEnter={onEnterSpy} />
-      ));
-      fireEvent.keyDown(screen.getByRole('img').firstChild, { key: 'Enter', code: 'Enter' });
-      expect(onEnterSpy.mock.calls.length).toEqual(1);
+      expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,5 @@
 ```js
-const { TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } = require('./index.js');
+const { TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } = require('@mavenlink/design-system/src/components/table');
 
 <Table>
   <TableHeader>

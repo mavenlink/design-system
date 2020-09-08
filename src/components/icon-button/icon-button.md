@@ -1,29 +1,60 @@
-The `IconButton` component is a convenience wrapper for setting up an icon that is meant to be used as a button.
+The `IconButton` component encapsulates the requirements for using an icon as a button.
+It is recommened to apply some padding to the icon as a means of increasing the size of the button for easier usage.
 
 ## Keyboard Support
 
 | Key | Focused element | Function |
 | --- | --- | --- |
-| Space, Enter | Icon | Invokes the `onClick` handler |
+| Enter | Icon | Invokes the `onPress` handler |
+| Space | Icon | Invokes the `onPress` handler |
 
 ## Label Support
 
 | Focused element | Screen Reader |
 | --- | --- |
-| Icon | A description of the `onClick` handler |
+| Icon | A description of the `onPress` handler |
+
+```css { "file": "./icon-button.md.css" }
+```
+
+## Basic example
 
 ```jsx
-import caretDown from '../../svgs/caret-down.svg';
+import caretDown from '@mavenlink/design-system/src/svgs/caret-down.svg';
+import styles from './icon-button.md.css';
 
-<div style={{
-  border: '1px solid var(--mds-grey-54)',
-  borderRadius: '3px',
-  display: 'inline-flex',
-}}>
+<IconButton
+  className={styles.button}
+  label="Send an alert to the browser"
+  icon={caretDown}
+  onPress={() => alert('Button pressed!')}
+/>
+```
+
+## Advanced example
+
+A button represents an action on an object.
+It is recommened to link the button's label with the object's label.
+This is usually implemented by leveraging the `labelledBy` property which can reference many elements on the page.
+In the following example:
+the button clears the input;
+the button has a label of "clear";
+the input has a label of "the input";
+thus, the computed label is actually "clear the input".
+
+```jsx
+import clear from '@mavenlink/design-system/src/svgs/clear.svg';
+import styles from './icon-button.md.css';
+
+<div className={styles['adv-example']}>
+  <input id="adv-ex-input" label="the input" />
   <IconButton
-    label="Send an alert to the browser"
-    icon={caretDown}
-    onClick={() => alert('Button clicked!')}
+    className={styles['clear-button']}
+    label="clear"
+    labelledBy="adv-ex-button adv-ex-input"
+    id="adv-ex-button"
+    icon={clear}
+    onPress={() => alert('Imagine the input was cleared.')}
   />
 </div>
 ```

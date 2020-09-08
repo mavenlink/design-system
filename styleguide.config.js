@@ -1,5 +1,6 @@
 /* eslint-disable import/no-commonjs */
 
+const fs = require('fs');
 const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
 
@@ -14,6 +15,9 @@ module.exports = {
     // @see https://github.com/styleguidist/react-styleguidist/blob/34f3c83e769542157c72d0e055ad8850d22b6001/src/scripts/schemas/config.js#L97
     // @see https://github.com/styleguidist/react-styleguidist/commit/545b466c4461021ac7220504b8d61b4bb62573c2
     return componentPath.replace(/\.jsx?$/, '.md');
+  },
+  moduleAliases: {
+    '@mavenlink/design-system': __dirname,
   },
   pagePerSection: true,
   require: [
@@ -131,5 +135,18 @@ module.exports = {
   },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
+  updateExample(props = {}, exampleFilePath) {
+    const { settings = {}, lang } = props;
+    if (lang === 'css' && typeof settings.file === 'string') {
+      const filepath = path.resolve(path.dirname(exampleFilePath), settings.file);
+      settings.static = true;
+      return {
+        content: `/* ${settings.file} */\n\n${fs.readFileSync(filepath, 'utf8')}`,
+        settings,
+        lang
+      };
+    }
+    return props;
+  },
   webpackConfig,
 };

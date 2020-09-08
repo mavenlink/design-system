@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../../icon/icon.jsx';
 import styles from './abstract-custom-field.css';
-import cautionSvg from '../../../svgs/icon-caution-fill.svg';
+import cautionSvg from '../../../svgs/caution.svg';
 import FormControl from '../../form-control/form-control.jsx';
 
 export default function AbstractCustomField(props) {
@@ -30,9 +30,8 @@ export default function AbstractCustomField(props) {
     if (invalidDueToProps) {
       return (<Icon
         className={styles['input-icon']}
-        currentColor="caution"
-        name={cautionSvg.id}
-        size="medium"
+        icon={cautionSvg}
+        label="Invalid custom field"
       />);
     }
 

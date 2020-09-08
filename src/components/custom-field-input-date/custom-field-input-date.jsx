@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import calendarSvg from '../../svgs/calendar.svg';
 import Icon from '../icon/icon.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
@@ -81,7 +81,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const sharedProps = {
     className: props.className,
     disabled: props.disabled,
-    icon: <Icon className={styles['input-icon']} name={calendarSvg.id} title={props.label} stroke="skip" fill="skip" />,
+    icon: <Icon className={styles['input-icon']} icon={calendarSvg} label={props.label} />,
     label: props.label,
     inputRef,
     readOnly: true,

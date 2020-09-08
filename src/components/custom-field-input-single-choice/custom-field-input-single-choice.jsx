@@ -9,9 +9,10 @@ import React, {
 import PropTypes from 'prop-types';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
-import iconClear from '../../svgs/icon-clear-small.svg';
-import iconCaretDown from '../../svgs/icon-caret-down.svg';
-import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
+import IconButton from '../icon-button/icon-button.jsx';
+import iconClear from '../../svgs/clear.svg';
+import iconCaretDown from '../../svgs/caret-down.svg';
+import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import styles from './custom-field-input-single-choice.css';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
@@ -31,8 +32,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const refs = props.choices.map(() => createRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
-    name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-    fill="skip"
+    icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+    label={props.readOnly ? 'Choice field is not editable' : 'Open choices listbox'}
   />);
 
   const defaultValue = value ? value.label : '';
@@ -52,12 +53,11 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   const clearIcon = () => {
     if (!props.readOnly && (value || searchValue)) {
-      return (<Icon
-        name={iconClear.id}
-        onClick={clear}
-        onEnter={clear}
-        ariaLabel={'Remove selected choice'}
-        role={'button'}
+      return (<IconButton
+        className={styles['clear-button']}
+        icon={iconClear}
+        label={'Remove selected choice'}
+        onPress={clear}
       />);
     }
 

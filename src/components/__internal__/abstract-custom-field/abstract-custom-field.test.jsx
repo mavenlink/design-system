@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AbstractCustomField from './abstract-custom-field.jsx';
 import Icon from '../../icon/icon.jsx';
-import calendarSvg from '../../../svgs/icon-calendar-fill.svg';
+import calendarSvg from '../../../svgs/calendar.svg';
 
 describe('AbstractCustomField', () => {
   const sharedProps = {
@@ -72,15 +72,15 @@ describe('AbstractCustomField', () => {
 
   describe('icon API', () => {
     it('shows an icon when provided', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" />;
+      const icon = <Icon icon={calendarSvg} label="Test icon" />;
       const { getByRole } = render(<AbstractCustomField {...sharedProps} icon={icon} />);
       expect(getByRole('img')).toBeDefined();
     });
 
     it('renders the icon passed in', () => {
-      const icon = <Icon name={calendarSvg.id} currentColor="action" title="Hello" ariaLabel={'Label'} />;
+      const icon = <Icon icon={calendarSvg} label="Calendar icon" />;
       render(<AbstractCustomField {...sharedProps} icon={icon} errorText="yo" />);
-      expect(screen.getByRole('img', { name: 'Label' }).children[1]).toHaveAttribute('xlink:href', '#icon-calendar-fill.svg');
+      expect(screen.getByRole('img', { name: 'Calendar icon' }).children[1]).toHaveAttribute('xlink:href', '#calendar.svg');
     });
 
     it('shows no icon by default', () => {

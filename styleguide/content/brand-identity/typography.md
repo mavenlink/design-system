@@ -1,4 +1,4 @@
-Typography in our application is important for establishing design consistency, as well as placing emphasis and hierarchical rules in the correct places in order to guide our users through the product. These are the type options which Product Design should be using in their mocks, and they are the type options Engineers should be using when building out new features or updating pages. 
+Typography in our application is important for establishing design consistency, as well as placing emphasis and hierarchical rules in the correct places in order to guide our users through the product. These are the type options which Product Design should be using in their mocks, and they are the type options Engineers should be using when building out new features or updating pages.
 
 ```css
 @import 'node_modules/@mavenlink/design-system/src/styles/typography-v2.css'
@@ -135,12 +135,14 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
 
 We offer a linter for use with [stylelint](https://stylelint.io/) to enforce typography usage. To use it, simply install this library and add the following to your stylelint configure file:
 
-```json
+```js
+const path = require('path');
+
 module.exports = {
   /* ... */
   plugins: [
     /* ... */
-    './node_modules/@mavenlink/design-system/src/linters/typography.js'
+    path.resolve('@mavenlink/design-system/src/linters/typography.js'),
   ],
   rules: {
     /* ... */

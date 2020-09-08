@@ -33,6 +33,9 @@ exports[`<Calendar /> has defaults 1`] = `
             role="img"
             width="10"
           >
+            <title>
+              Open year listbox
+            </title>
             <use
               xlink:href="#caret-down.svg"
             />
@@ -528,6 +531,9 @@ exports[`<Calendar /> renders the previous month 1`] = `
             role="img"
             width="10"
           >
+            <title>
+              Open year listbox
+            </title>
             <use
               xlink:href="#caret-down.svg"
             />
@@ -1023,6 +1029,9 @@ exports[`<Calendar /> renders the previous year 1`] = `
             role="img"
             width="10"
           >
+            <title>
+              Open year listbox
+            </title>
             <use
               xlink:href="#caret-down.svg"
             />

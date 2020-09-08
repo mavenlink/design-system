@@ -1,5 +1,4 @@
 import React, { createRef } from 'react';
-import renderer from 'react-test-renderer';
 import { waitFor } from '@testing-library/dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,11 +13,8 @@ describe('TagList', () => {
   };
 
   it('renders a TagList', () => {
-    const tree = renderer
-      .create((
-        <TagList {...requiredProps} />
-      )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<TagList {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
