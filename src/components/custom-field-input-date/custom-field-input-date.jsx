@@ -116,6 +116,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     required: props.required,
     onClick: onInputClick,
     onKeyDown: onInputKeyDown,
+    errorText: props.errorText,
   };
 
   function renderField() {

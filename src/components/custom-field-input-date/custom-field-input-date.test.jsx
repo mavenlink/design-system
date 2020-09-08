@@ -99,6 +99,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('errorText', () => {
+    it('shows an error icon and the error text', () => {
+      renderComponent({ value: '2016-07-18', errorText: 'Bad Date!' });
+      expect(screen.getByLabelText('Field Date')).not.toBeValid();
+      expect(screen.getByText('Bad Date!')).toBeInTheDocument();
+    });
+  });
+
   describe('required API', () => {
     it('is required when told to be', () => {
       const { getByLabelText } = renderComponent({ required: true });
