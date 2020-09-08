@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import calendarSvg from '../../svgs/icon-calendar-fill.svg';
+import calendarSvg from '../../svgs/calendar.svg';
 import IconButton from '../icon-button/icon-button.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 import dateStyles from './custom-field-date.css';

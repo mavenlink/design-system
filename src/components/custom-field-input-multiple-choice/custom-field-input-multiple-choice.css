@@ -16,20 +16,27 @@
   padding-bottom: 0;
 }
 
-.clear-icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  cursor: pointer;
-}
-
-.icon {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: none;
-}
-
 .icons-container {
   display: inline-flex;
   flex-shrink: 0;
-  padding: calc(var(--spacing-small) + 1px) var(--spacing-medium);
+  margin: var(--spacing-small) var(--spacing-medium);
+  height: 22px;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  height: fit-content;
+  margin-right: var(--spacing-small);
+}
+
+.clear-icon {
+  cursor: pointer;
+  padding: var(--spacing-small);
+}
+
+.icon {
+  pointer-events: none;
 }
 
 .invalid-container {

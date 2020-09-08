@@ -314,7 +314,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         const value = { id: 1, label: 'Some selection' };
         render(<CustomFieldInputSingleChoice {...requiredProps} value={value} readOnly />);
         // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
-        expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caret-down-disabled.svg');
+        expect(screen.getByRole('img').children[1]).toHaveAttribute('xlink:href', '#caret-down-disabled.svg');
       });
     });
   });

@@ -1,5 +1,4 @@
 import React, { createRef } from 'react';
-import renderer from 'react-test-renderer';
 import { act, render, screen, fireEvent } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -12,59 +11,44 @@ describe('Tag', () => {
   };
 
   it('renders a tag component', () => {
-    const tree = renderer
-      .create((
-        <Tag {...requiredProps} />
-      )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<Tag {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
     describe('focus interactions', () => {
-      it('moves focus with arrow key', async () => {
+      it('moves focus with arrow key', () => {
         render(<Tag {...requiredProps} />);
 
         fireEvent.keyDown(screen.getByText('Test Title'), { key: 'ArrowRight' });
-
-        await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
-        expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+        expect(screen.getByLabelText('Remove')).toEqual(document.activeElement);
 
         fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-
-        await waitFor(() => expect(screen.getByText('Test Title')).not.toEqual(document.activeElement));
-        expect(screen.getAllByRole('gridcell')[1]).toEqual(document.activeElement);
+        expect(screen.getByLabelText('Remove')).toEqual(document.activeElement);
       });
 
-      it('sets focus on click', async () => {
+      it('sets focus on click', () => {
         render(<Tag {...requiredProps} />);
-
         userEvent.click(screen.getByRole('button'));
-
-        await waitFor(() => expect(screen.getByRole('button').parentElement).toEqual(document.activeElement));
+        expect(screen.getByLabelText('Remove')).toEqual(document.activeElement);
       });
     });
 
     describe('page tab sequence management', () => {
-      it('has defaults', () => {
-        render(<Tag {...requiredProps} />);
-        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
-        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
-      });
-
-      it('can be set', () => {
+      it('can be set', async () => {
         const ref = createRef();
         render(<Tag {...requiredProps} ref={ref} />);
         act(() => { ref.current.setIsActive(true); });
-        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
-        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+        await waitFor(() => expect(screen.getByText('Test Title')).toHaveAttribute('tabindex', '0'));
+        expect(screen.getByLabelText('Remove')).toHaveAttribute('tabindex', '-1');
       });
 
-      it('can be unset', () => {
+      it('can be unset', async () => {
         const ref = createRef();
         render(<Tag {...requiredProps} ref={ref} />);
         act(() => { ref.current.setIsActive(false); });
-        expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
-        expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+        await waitFor(() => expect(screen.getByText('Test Title')).toHaveAttribute('tabindex', '-1'));
+        expect(screen.getByLabelText('Remove')).toHaveAttribute('tabindex', '-1');
       });
     });
   });
@@ -79,14 +63,14 @@ describe('Tag', () => {
   describe('defaultActive API', () => {
     it('can be set', () => {
       render(<Tag {...requiredProps} defaultActive={true} />);
-      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '0');
-      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+      expect(screen.getByText('Test Title')).toHaveAttribute('tabindex', '0');
+      expect(screen.getByLabelText('Remove')).toHaveAttribute('tabindex', '-1');
     });
 
     it('can be unset', () => {
       render(<Tag {...requiredProps} defaultActive={false} />);
-      expect(screen.getAllByRole('gridcell')[0]).toHaveAttribute('tabindex', '-1');
-      expect(screen.getAllByRole('gridcell')[1]).toHaveAttribute('tabindex', '-1');
+      expect(screen.getByText('Test Title')).toHaveAttribute('tabindex', '-1');
+      expect(screen.getByLabelText('Remove')).toHaveAttribute('tabindex', '-1');
     });
   });
 
@@ -122,7 +106,7 @@ describe('Tag', () => {
       render(<Tag {...requiredProps} onRemove={onRemoveSpy} ref={ref} />);
       userEvent.tab();
       fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-      expect(screen.getAllByRole('gridcell')[1]).toHaveFocus();
+      expect(screen.getByLabelText('Remove')).toHaveFocus();
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(onRemoveSpy).toHaveBeenCalledWith({ target: expect.anything() });
     });
@@ -133,7 +117,7 @@ describe('Tag', () => {
       render(<Tag {...requiredProps} onRemove={onRemoveSpy} ref={ref} />);
       userEvent.tab();
       fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-      expect(screen.getAllByRole('gridcell')[1]).toHaveFocus();
+      expect(screen.getByLabelText('Remove')).toHaveFocus();
       fireEvent.keyDown(document.activeElement, { key: ' ' });
       expect(onRemoveSpy).toHaveBeenCalledWith({ target: expect.anything() });
     });
@@ -158,11 +142,11 @@ describe('Tag', () => {
       const ref = createRef();
       render(<Tag {...requiredProps} ref={ref} />);
 
-      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).not.toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Test Title')).not.toHaveFocus());
 
       act(() => { ref.current.setIsActive(true); });
 
-      await waitFor(() => expect(screen.getAllByRole('gridcell')[0]).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Test Title')).toHaveFocus());
     });
   });
 });
