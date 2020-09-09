@@ -1,4 +1,5 @@
 @import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
 
 .input-icon {
   composes: input-icon from '../__internal__/abstract-custom-field/abstract-custom-field.css'; /* stylelint-disable-line css-modules/composed-class-names */
@@ -11,4 +12,10 @@
 .date-input input::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
+}
+
+.calendar-container {
+  position: absolute;
+  background-color: var(--white);
+  z-index: 2147483647;
 }

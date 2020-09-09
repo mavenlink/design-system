@@ -161,7 +161,9 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     <div ref={wrapperRef} onKeyDown={onKeyDown}>
       { renderField() }
       { expanded && (
-        <Calendar value={currentValue} onDateSelected={onDateSelected} />
+        <div className={dateStyles['calendar-container']}>
+          <Calendar value={currentValue} onDateSelected={onDateSelected} />
+        </div>
       )}
     </div>
   );
