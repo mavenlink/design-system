@@ -3,7 +3,9 @@
 
 .autocomplete-input {
   border: none;
+  flex-grow: 1;
   margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+  width: 0;
 }
 
 .container {
@@ -69,5 +71,17 @@
 
 .tag-list {
   composes: tag-list from '../tag-list/tag-list.css';
+  display: flex;
   flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.tag {
+  composes: tag from '../tag/tag.css';
+  flex-basis: auto;
+}
+
+.tag-readonly {
+  composes: read-only-tag from '../tag/tag.css';
+  flex-basis: auto;
 }

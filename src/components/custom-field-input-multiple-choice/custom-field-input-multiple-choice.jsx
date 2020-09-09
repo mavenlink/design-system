@@ -146,6 +146,8 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           >
             {value.map((choice, index) => (
               <Tag
+                className={styles.tag}
+                classNameReadOnly={styles['tag-readonly']}
                 defaultActive={index === 0}
                 id={`${props.id}-${choice.id}`}
                 key={`${props.id}-${choice.id}`}

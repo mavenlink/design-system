@@ -76,6 +76,20 @@ describe('Tag', () => {
     });
   });
 
+  describe('className API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps} className="test-class" />);
+      expect(screen.getByText('Test Title').parentElement).toHaveAttribute('class', 'test-class');
+    });
+  });
+
+  describe('classNameReadOnly API', () => {
+    it('can be set', () => {
+      render(<Tag {...requiredProps} classNameReadOnly="test-class-readonly" readOnly />);
+      expect(screen.getByText('Test Title').parentElement).toHaveAttribute('class', 'test-class-readonly');
+    });
+  });
+
   describe('defaultActive API', () => {
     it('can be set', () => {
       render(<Tag {...requiredProps} defaultActive={true} />);

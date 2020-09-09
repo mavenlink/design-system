@@ -86,7 +86,7 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
 
   return (
     <div
-      className={props.readOnly ? styles['read-only-tag'] : styles.tag}
+      className={props.readOnly ? props.classNameReadOnly : props.className}
       id={props.id}
       ref={rootRef}
       role="row"
@@ -131,6 +131,8 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
 
 Tag.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  classNameReadOnly: PropTypes.string,
   defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onRemove: PropTypes.func,
@@ -138,6 +140,8 @@ Tag.propTypes = {
 };
 
 Tag.defaultProps = {
+  className: styles.tag,
+  classNameReadOnly: styles['read-only-tag'],
   defaultActive: true,
   onRemove: () => {},
   readOnly: false,
