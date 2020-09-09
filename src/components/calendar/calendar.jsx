@@ -269,8 +269,7 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}`}
-          onClick={onPreviousMonthPress}
-          onEnter={onPreviousMonthPress}
+          onPress={onPreviousMonthPress}
         />
         <button
           className={styles['year-button']}
@@ -284,7 +283,7 @@ function Calendar(props) {
           <Icon
             className={styles['change-year-icon']}
             icon={caretDown}
-            v={2}
+            label="Open year listbox"
           />
         </button>
         <IconButton
@@ -294,8 +293,7 @@ function Calendar(props) {
             year: 'numeric',
             month: 'long',
           })}`}
-          onClick={onNextMonthPress}
-          onEnter={onNextMonthPress}
+          onPress={onNextMonthPress}
         />
       </div>
       { yearView ?

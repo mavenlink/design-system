@@ -70,18 +70,20 @@ We periodically update and upgrade styles. We have also created linters to help 
  - In your stylelint configuration file (`.stylelintrc.json, .stylelintrc, stylelint.config.js`) include the following:
 
     ```js
+    const path = require('path');
+
     module.exports = {
       // ... stylelint configuration ...
       plugins: [
         // ...
-        './node_modules/@mavenlink/design-system/src/linters/colors.js',
+        path.resolve('@mavenlink/design-system/src/linters/colors.js'),
       ],
       // ...
       rules: [
          // ...
          'mds/colors': true,
       ],
-    }
+    };
     ```
  - Run stylelint to see failures
 

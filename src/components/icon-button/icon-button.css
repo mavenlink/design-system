@@ -1,4 +1,4 @@
 .button {
-  composes: icon-base from '../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
+  cursor: pointer;
   user-select: none;
 }

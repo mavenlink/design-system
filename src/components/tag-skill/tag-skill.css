@@ -10,8 +10,3 @@
   display: inline-flex;
   margin-left: var(--spacing-medium);
 }
-
-.level-tick {
-  composes: level;
-  margin-right: -3px;
-}

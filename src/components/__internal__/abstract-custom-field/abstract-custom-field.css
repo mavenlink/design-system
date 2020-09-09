@@ -48,9 +48,20 @@
 }
 
 .icon-container {
+  align-items: center;
+  display: inline-flex;
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: var(--spacing-medium);
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.icon-container > * {
+  margin-right: var(--spacing-small);
+}
+
+.icon-container > *:last-child {
+  margin-right: 0;
 }
 
 .invalid-input {
@@ -59,6 +70,5 @@
 }
 
 .input-icon {
-  composes: icon-base from '../../icon/icon.css'; /* stylelint-disable-line css-modules/composed-class-names */
   pointer-events: none;
 }

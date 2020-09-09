@@ -40,16 +40,16 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
       className="icon-container"
     >
       <svg
-        className="input-icon size-medium color-transparent"
-        onClick={[Function]}
-        onKeyDown={[Function]}
+        className="input-icon"
+        height={14}
         role="img"
+        width={11}
       >
         <title>
           Hello
         </title>
         <use
-          xlinkHref="#icon-calendar-fill.svg"
+          xlinkHref="#calendar.svg"
         />
       </svg>
     </div>

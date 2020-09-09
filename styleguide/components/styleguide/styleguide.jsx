@@ -7,11 +7,11 @@ export default function Styleguide({ children, hasSidebar, toc }) {
   return (
     <div className={styles.root}>
       <Header />
-      {hasSidebar &&
-        <nav className={styles.sidebar}>
+      {hasSidebar && (
+        <div className={styles.sidebar}>
           {toc}
-        </nav>
-      }
+        </div>
+      )}
       <main className={styles.main}>
         {children}
       </main>

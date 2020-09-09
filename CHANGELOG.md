@@ -11,6 +11,11 @@
   - Minor: Fix styling for input of `CustomFieldMultipleChoice` component
 </details>
 
+## v0.41.0
+  - Major: Deprecate Icon v1 API: size, currentColor, fill, name, title
+  - Major: Implement Icon v2 API: icon, label
+  - Major: Replace SVGs with self-contained SVGS -- embedded size and colors
+
 ## v0.40.0 (September 3, 2020)
   - Minor: Add `defaultValue` to `Input` component API
 

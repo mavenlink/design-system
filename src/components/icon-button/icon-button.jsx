@@ -1,37 +1,59 @@
-import React from 'react';
+import React, {
+  forwardRef,
+} from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icon/icon.jsx';
 import styles from './icon-button.css';
 
-export default function IconButton(props) {
+const IconButton = forwardRef(function IconButton(props, ref) {
+  const viewBox = props.icon.viewBox.split(' ');
+  const width = parseInt(viewBox[2], 10);
+  const height = parseInt(viewBox[3], 10);
+  const tabIndex = props.active ? 0 : -1;
+
+  function onKeyDown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      props.onPress(event);
+    }
+  }
+
   return (
-    <Icon
-      active
+    <svg
+      aria-labelledby={props.labelledBy}
       className={props.className}
-      currentColor="skip"
-      fill="skip"
-      icon={props.icon}
-      onClick={props.onClick}
-      onEnter={props.onClick}
+      height={height}
+      id={props.id}
+      onClick={props.onPress}
+      onKeyDown={onKeyDown}
+      ref={ref}
       role="button"
-      size="skip"
-      stroke="skip"
-      title={props.label}
-      v={2}
-    />
+      tabIndex={tabIndex}
+      width={width}
+    >
+      <title>{props.label}</title>
+      <use xlinkHref={`#${props.icon.id}`} />
+    </svg>
   );
-}
+});
 
 IconButton.propTypes = {
+  active: PropTypes.bool,
   className: PropTypes.string,
-  label: PropTypes.string.isRequired,
   icon: PropTypes.shape({
     id: PropTypes.string.isRequired,
     viewBox: PropTypes.string.isRequired,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  labelledBy: PropTypes.string,
+  onPress: PropTypes.func.isRequired,
 };
 
 IconButton.defaultProps = {
+  active: true,
   className: styles.button,
+  id: undefined,
+  labelledBy: undefined,
 };
+
+export default IconButton;

@@ -3,8 +3,15 @@
 @import '../../styles/typography.css';
 
 .icon-wrapper {
+  align-items: center;
+  display: inline-flex;
+}
+
+.icon {
+  composes: button from '../icon-button/icon-button.css';
   display: inline-flex;
   margin-left: var(--spacing-small);
+  padding: var(--spacing-x-small);
 }
 
 .tag {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 2</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" fill-rule="nonzero">
+            <path d="M12.7065637,2.79255873 L20.14045,14.9571 C20.7164278,15.8996091 20.4192954,17.1305859 19.4767863,17.7065637 C19.1627705,17.8984622 18.8018958,18 18.4338863,18 L3.56611368,18 C2.46154418,18 1.56611368,17.1045695 1.56611368,16 C1.56611368,15.6319905 1.66765145,15.2711158 1.85955001,14.9571 L9.29343633,2.79255873 C9.86941411,1.85004964 11.1003909,1.5529173 12.0429,2.12889508 C12.3136318,2.29434228 12.5411165,2.52182694 12.7065637,2.79255873 Z" id="Triangle" fill="#E85342"></path>
+            <rect id="Rectangle" fill="#FFFFFF" x="10" y="6" width="2" height="5" rx="1"></rect>
+            <rect id="Rectangle" fill="#FFFFFF" x="10" y="13" width="2" height="2" rx="1"></rect>
+        </g>
+    </g>
+</svg>
