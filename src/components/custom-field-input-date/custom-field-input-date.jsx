@@ -107,6 +107,18 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     }
   }
 
+  function onFocus(event) {
+    event.preventDefault();
+    setIsEditing(true);
+    setExpanded(true);
+  }
+
+  function onBlur(event) {
+    event.preventDefault();
+    setIsEditing(false);
+    setExpanded(false);
+  }
+
   const sharedProps = {
     className: dateStyles['date-input'],
     disabled: props.disabled,
@@ -117,6 +129,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     onClick: onInputClick,
     onKeyDown: onInputKeyDown,
     errorText: props.errorText,
+    onBlur,
   };
 
   function renderField() {
@@ -143,6 +156,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         id={props.id}
         key={`${props.id}-readonly`}
         inputRef={componentRef}
+        onFocus={onFocus}
         type="text"
       />
     );
