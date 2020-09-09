@@ -84,6 +84,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   const openCalendar = () => {
     setExpanded(!expanded);
+    setIsEditing(!isEditing);
   };
 
   function onInputClick(event) {
@@ -113,23 +114,16 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     setExpanded(true);
   }
 
-  function onBlur(event) {
-    event.preventDefault();
-    setIsEditing(false);
-    setExpanded(false);
-  }
-
   const sharedProps = {
     className: dateStyles['date-input'],
     disabled: props.disabled,
-    icon: <IconButton onClick={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
+    icon: <IconButton onPress={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
     label: props.label,
     inputRef,
     required: props.required,
     onClick: onInputClick,
     onKeyDown: onInputKeyDown,
     errorText: props.errorText,
-    onBlur,
   };
 
   function renderField() {
