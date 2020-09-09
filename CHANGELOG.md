@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `className` and `classNameReadOnly` to `Tag` component API
+  - Minor: Fix styling for input of `CustomFieldMultipleChoice` component
 </details>
 
 ## v0.40.0 (September 3, 2020)
