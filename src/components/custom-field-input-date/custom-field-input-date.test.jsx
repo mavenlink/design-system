@@ -84,11 +84,12 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
   describe('interaction', () => {
     describe('when focused', () => {
-      it('switches to a date input when focused', () => {
-        const { getByLabelText } = renderComponent();
+      it('switches to a date input when focused and opens the calendar', () => {
+        const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        expect(screen.getByText('July 2016')).toBeInTheDocument();
       });
 
       it('ensures the date input shows the correct value', () => {
