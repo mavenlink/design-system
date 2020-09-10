@@ -16,6 +16,12 @@ const isValidInput = (value) => {
   return validDate(value);
 };
 
+function isValidDate(dateString) {
+  if (dateString === '') return true;
+  const date = new Date(`${dateString}T00:00`);
+  return date instanceof Date && !isNaN(date);
+}
+
 const isValueValid = (value, error, isInputValid = false) => {
   if (error) {
     return false;
@@ -160,7 +166,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div ref={wrapperRef} onKeyDown={onKeyDown}>
       { renderField() }
-      { expanded && (
+      { expanded && isValidDate(currentValue) && (
         <div className={dateStyles['calendar-container']}>
           <Calendar value={currentValue} onDateSelected={onDateSelected} />
         </div>
