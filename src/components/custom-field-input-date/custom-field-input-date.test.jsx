@@ -60,43 +60,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         expect(screen.getByLabelText('Field Date')).toBeValid('error');
       });
     });
-
-    xdescribe('when the value is syntactically invalid', () => {
-      it('shows an error', () => {
-        const { getByTestId } = renderComponent({ value: 'not a date' });
-        expect(getByTestId('custom-field-input')).toHaveClass('error');
-      });
-
-      it('informs the user of an invalid value', () => {
-        const { getByTestId } = renderComponent({ value: 'not a date' });
-        expect(getByTestId('custom-field-input').innerHTML).toContain('"not a date" is an invalid date');
-      });
-    });
-
-    xdescribe('when the value is semantically invalid', () => {
-      it('shows an error', () => {
-        const { getByTestId } = renderComponent({ error: true });
-        expect(getByTestId('custom-field-input')).toHaveClass('error');
-      });
-
-      it('presents the provided help text', () => {
-        const helpText = 'This should appear';
-        const { getByTestId } = renderComponent({ error: true, helpText });
-        expect(getByTestId('custom-field-input').innerHTML).toContain(helpText);
-      });
-
-      it('still shows the provided value', () => {
-        const { getByLabelText } = renderComponent({ error: true, value: '05/10/1992' });
-        expect(getByLabelText('Field Date')).toHaveValue('1992-05-10');
-      });
-    });
-  });
-
-  describe('helpText', () => {
-    xit('shows on error', () => {
-      renderComponent({ helpText: 'YOOO', error: true });
-      expect(screen.getByText('YOOO')).toBeInTheDocument();
-    });
   });
 
   describe('errorText', () => {
@@ -120,7 +83,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   });
 
   describe('interaction', () => {
-    xdescribe('when focused', () => {
+    describe('when focused', () => {
       it('switches to a date input when focused', () => {
         const { getByLabelText } = renderComponent();
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
@@ -135,7 +98,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
       });
 
-      xit('focuses on the date input', () => {
+      it('focuses on the date input', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
         fireEvent.focus(getByLabelText('Field Date'));
@@ -143,13 +106,19 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       });
     });
 
-    xdescribe('when blurred', () => {
+    describe('when blurred', () => {
       it('switches over to the text input', () => {
-        const { getByLabelText } = renderComponent({ value: '07/18/2016' });
-        fireEvent.focus(getByLabelText('Field Date'));
-        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
-        fireEvent.blur(getByLabelText('Field Date'));
-        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+        render(
+          <div>
+            <CustomFieldInputDate label="Field Date" id="field-date" value={'07/18/2016'} />
+            <input aria-label={'force-blur'} />
+          </div>,
+        );
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+        userEvent.click(screen.getByLabelText('Field Date'));
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        userEvent.click(screen.getByLabelText('force-blur'));
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'text');
       });
 
       it('stays in edit mode when it is invalid', () => {
@@ -191,29 +160,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
-  xdescribe('min API', () => {
-    it('respects the min attribute', () => {
-      const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
-    });
-
-    it('is respected after a change', () => {
-      const { getByTestId, getByLabelText } = renderComponent({ min: '01-01-2000', value: '05-10-2001' });
-      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-      changeValue(() => getByLabelText('Field Date'), '1998-01-01');
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
-    });
-  });
-
-  xdescribe('max API', () => {
-    it('respects the max attribute', () => {
-      const { getByTestId } = renderComponent({ max: '01-01-1990', value: '05-10-1992' });
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
-    });
-  });
-
   describe('onChange API', () => {
-    xit('accepts an onChange listener', () => {
+    it('accepts an onChange listener', () => {
       const onChange = jest.fn();
       const { getByLabelText } = renderComponent({ value: '', onChange });
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
@@ -226,13 +174,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       renderComponent({ readOnly: true, helpText: 'Foo', error: true });
       expect(screen.queryByText('Foo')).not.toBeInTheDocument();
     });
-  });
-
-  xit('changing value changes valid/invalid state', () => {
-    const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
-    expect(getByTestId('custom-field-input')).toHaveClass('error');
-    changeValue(() => getByLabelText('Field Date'), '2016-07-18');
-    expect(getByTestId('custom-field-input')).not.toHaveClass('error');
   });
 
   describe('forwardRef API', () => {
