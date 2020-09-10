@@ -89,14 +89,3 @@
   flex-grow: 1;
   flex-wrap: wrap;
 }
-
-.tag {
-  composes: tag from '../tag/tag.css';
-  flex-basis: auto;
-  cursor: default;
-}
-
-.tag-readonly {
-  composes: read-only-tag from '../tag/tag.css';
-  flex-basis: auto;
-}
