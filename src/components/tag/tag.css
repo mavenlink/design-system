@@ -19,7 +19,7 @@
   background-color: var(--mds-grey-12);
   border-radius: var(--spacing-small);
   box-sizing: border-box;
-  cursor: text;
+  cursor: default;
   display: inline-flex;
   height: 22px;
   max-width: 100%;
