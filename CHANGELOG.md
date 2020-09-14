@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Perform simple refactor to avoid react re-rendering issue on `CustomFieldInputMultiChoice`
 </details>
 
 ## v0.41.0
