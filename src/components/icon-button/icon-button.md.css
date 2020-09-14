@@ -1,0 +1,19 @@
+@import '../../../src/styles/colors-v2.css';
+@import '../../../src/styles/spacing.css';
+
+.button {
+  composes: button from './icon-button.css';
+  border: 1px solid var(--mds-grey-54);
+  border-radius: 3px;
+  padding: var(--spacing-small);
+}
+
+.adv-example {
+  display: inline-flex;
+  align-items: center;
+}
+
+.clear-button {
+  composes: button;
+  margin-left: var(--spacing-small);
+}

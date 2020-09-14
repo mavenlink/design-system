@@ -20,6 +20,9 @@ module.exports = {
     env: {
       jest: true,
     },
+    rules: {
+      'jsx-a11y/label-has-for': 'off',
+    },
   }, {
     files: [
       '.eslintrc.js',

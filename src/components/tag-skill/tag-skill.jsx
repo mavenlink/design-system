@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import iconTick from '../../svgs/icon-tick.svg';
+import iconTick from '../../svgs/tick.svg';
 import Icon from '../icon/icon.jsx';
 import Tag from '../tag/tag.jsx';
 import styles from './tag-skill.css';
@@ -10,13 +10,13 @@ export default function TagSkill(props) {
     <Tag id={props.id} readOnly>
       <span className={styles.row}>
         {props.name}
-        {props.level ? (
-          <span className={styles.level}>{props.level}</span>
-        ) : (
-          <span className={styles['level-tick']}>
-            <Icon name={iconTick.id} size="small" stroke="skip" fill="skip" currentColor="skip" />
-          </span>
-        )}
+        <span className={styles.level}>
+          {props.level ? (
+            props.level
+          ) : (
+            <Icon icon={iconTick} label="No level" />
+          )}
+        </span>
       </span>
     </Tag>
   );

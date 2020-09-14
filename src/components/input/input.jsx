@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cautionSvg from '../../svgs/icon-caution-fill.svg';
+import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
@@ -27,6 +27,7 @@ export default function Input(props) {
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, props.invalid, props.readOnly)}
+        defaultValue={props.defaultValue}
         disabled={props.disabled}
         id={props.id}
         maxLength={props.maxLength}
@@ -43,7 +44,13 @@ export default function Input(props) {
         type={props.type}
         value={props.value}
       />
-      {isInvalid(props.invalid, props.readOnly) && <Icon className={styles['invalid-icon']} currentColor="caution" name={cautionSvg.id} />}
+      {isInvalid(props.invalid, props.readOnly) && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          label="Invalid input"
+        />
+      )}
     </FormControl>
   );
 }
@@ -52,6 +59,7 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
@@ -80,6 +88,7 @@ Input.defaultProps = {
   className: undefined,
   cssContainer: styles.container,
   cssLabel: undefined,
+  defaultValue: undefined,
   disabled: undefined,
   invalid: false,
   inputRef: undefined,

@@ -19,13 +19,13 @@ describe('CustomFieldInputText', () => {
       // However, at the moment, there are end-to-end tests in the Number component tests.
       render(<TestComponent errorText="yo" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+      expect(screen.getByText('Invalid custom field')).toBeInTheDocument();
     });
 
     it('can have an error state through a custom validation', () => {
       render(<TestComponent errorText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByRole('img').firstChild).toHaveAttribute('xlink:href', '#icon-caution-fill.svg');
+      expect(screen.getByText('Invalid custom field')).toBeInTheDocument();
     });
 
     it('can have no error state', () => {

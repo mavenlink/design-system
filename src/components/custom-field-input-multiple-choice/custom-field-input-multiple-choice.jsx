@@ -9,10 +9,11 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
-import iconCaretDown from '../../svgs/icon-caret-down.svg';
-import iconCaretDownDisabled from '../../svgs/icon-caret-down-disabled.svg';
-import iconCaution from '../../svgs/icon-caution-fill.svg';
-import iconClear from '../../svgs/icon-clear-small.svg';
+import IconButton from '../icon-button/icon-button.jsx';
+import iconCaretDown from '../../svgs/caret-down.svg';
+import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
+import iconCaution from '../../svgs/caution.svg';
+import iconClear from '../../svgs/clear.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import TagList from '../tag-list/tag-list.jsx';
@@ -71,15 +72,11 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     autocompleteRef.current.focus();
   }
 
-  function clearChoices() {
+  function onChoicesClear(event) {
+    event.preventDefault();
     setValue([]);
     setExpanded(false);
     autocompleteRef.current.focus();
-  }
-
-  function onChoicesClear(event) {
-    event.preventDefault();
-    clearChoices();
   }
 
   function onAutocompleteChange(event) {
@@ -174,30 +171,31 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           </TagList>
           <div className={styles['icons-container']}>
             {!props.readOnly && props.errorText && (
-              <Icon
-                className={styles.icon}
-                currentColor="caution"
-                fill="skip"
-                name={iconCaution.id}
-              />
+              <div className={styles['icon-container']}>
+                <Icon
+                  className={styles.icon}
+                  icon={iconCaution}
+                  label="Invalid multiple choice custom field"
+                />
+              </div>
             )}
             {!props.readOnly && value.length > 0 && (
-              <Icon
-                className={styles['clear-icon']}
-                fill="skip"
-                name={iconClear.id}
-                onClick={onChoicesClear}
-                onEnter={clearChoices}
-                tabable={true}
-                ariaLabel={`Remove all selected choices on ${props.label}`}
-                role="button"
-              />
+              <div className={styles['icon-container']}>
+                <IconButton
+                  className={styles['clear-icon']}
+                  icon={iconClear}
+                  label={`Remove all selected choices on ${props.label}`}
+                  onPress={onChoicesClear}
+                />
+              </div>
             )}
-            <Icon
-              className={styles.icon}
-              name={props.readOnly ? iconCaretDownDisabled.id : iconCaretDown.id}
-              fill="skip"
-            />
+            <div className={styles['icon-container']}>
+              <Icon
+                className={styles.icon}
+                icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+                label="Open choices listbox"
+              />
+            </div>
           </div>
         </div>
         { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (

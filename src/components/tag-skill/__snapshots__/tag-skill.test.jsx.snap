@@ -19,16 +19,18 @@ exports[`TagSkill has default 1`] = `
     >
       Egg
       <span
-        className="level-tick"
+        className="level"
       >
         <svg
-          className="icon-base size-small"
-          onClick={[Function]}
-          onKeyDown={[Function]}
+          height={9}
           role="img"
+          width={12}
         >
+          <title>
+            No level
+          </title>
           <use
-            xlinkHref="#icon-tick.svg"
+            xlinkHref="#tick.svg"
           />
         </svg>
       </span>
