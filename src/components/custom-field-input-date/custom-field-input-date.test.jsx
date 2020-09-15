@@ -159,6 +159,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       userEvent.click(screen.getByLabelText('September 14'));
       expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
     });
+
+    it('does not open when disabled', () => {
+      renderComponent({ value: '2016-07-18', disabled: true });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Field Date calendar'));
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+    });
   });
 
   describe('onChange API', () => {

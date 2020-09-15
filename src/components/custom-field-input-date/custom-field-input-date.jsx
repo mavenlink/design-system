@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/calendar.svg';
 import IconButton from '../icon-button/icon-button.jsx';
+import Icon from '../icon/icon.jsx';
 import { convertToFormat, validDate } from './format/format-date.js';
 import dateStyles from './custom-field-date.css';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
@@ -89,21 +90,27 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
   const openCalendar = () => {
-    setExpanded(!expanded);
-    setIsEditing(!isEditing);
+    if (!props.disabled) {
+      setExpanded(!expanded);
+      setIsEditing(!isEditing);
+    }
   };
 
   function onInputClick(event) {
     event.preventDefault();
-    setExpanded(true);
-    setIsEditing(true);
+    if (!props.disabled) {
+      setExpanded(true);
+      setIsEditing(true);
+    }
   }
 
   function onInputKeyDown(event) {
     if (event.key === 'Enter' || event.key === 'Space') {
       event.preventDefault();
-      setExpanded(!expanded);
-      setIsEditing(!isEditing);
+      if (!props.disabled) {
+        setExpanded(!expanded);
+        setIsEditing(!isEditing);
+      }
     }
   }
 
@@ -116,20 +123,38 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   function onFocus(event) {
     event.preventDefault();
-    setIsEditing(true);
-    setExpanded(true);
+    if (!props.disabled) {
+      setIsEditing(true);
+      setExpanded(true);
+    }
+  }
+
+  function calendarIcon() {
+    if (props.disabled) {
+      return (
+        <Icon
+          icon={calendarSvg}
+          title={props.label}
+          label={`${props.label} calendar`}
+        />
+      );
+    }
+
+    return (
+      <IconButton
+        onPress={openCalendar}
+        icon={calendarSvg}
+        title={props.label}
+        label={`${props.label} calendar button`}
+      />
+    );
   }
 
   const sharedProps = {
     className: dateStyles['date-input'],
     inputClassName: props.errorText ? dateStyles['input-invalid'] : dateStyles.input,
     disabled: props.disabled,
-    icon: <IconButton
-      onPress={openCalendar}
-      icon={calendarSvg}
-      title={props.label}
-      label={`${props.label} calendar button`}
-    />,
+    icon: calendarIcon(),
     label: props.label,
     inputRef,
     required: props.required,
