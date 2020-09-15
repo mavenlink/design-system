@@ -14,6 +14,16 @@
   -webkit-appearance: none;
 }
 
+.input {
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+}
+
+.input-invalid {
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+  border-color: var(--mds-red-100);
+  padding-right: var(--spacing-x-large);
+}
+
 .calendar-container {
   position: absolute;
   background-color: var(--white);

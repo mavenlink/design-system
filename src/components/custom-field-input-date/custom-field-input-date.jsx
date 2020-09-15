@@ -40,7 +40,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [isEditing, setIsEditing] = useState(false);
   const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
   const [currentValue, setCurrentValue] = useState(value);
-  const [isValid, setIsValid] = useState(isValueValid(currentValue, props.error, true));
+  const [isValid, setIsValid] = useState(isValueValid(currentValue, props.errorText, true));
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     if (inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
       const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
-      setIsValid(isValueValid(newDate, props.error, isInputValid));
+      setIsValid(isValueValid(newDate, props.errorText, isInputValid));
     }
 
     setCurrentValue(event.target.value);
@@ -122,6 +122,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   const sharedProps = {
     className: dateStyles['date-input'],
+    inputClassName: props.errorText ? dateStyles['input-invalid'] : dateStyles.input,
     disabled: props.disabled,
     icon: <IconButton onPress={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
     label: props.label,
@@ -177,7 +178,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
 CustomFieldInputDate.propTypes = {
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -190,7 +190,6 @@ CustomFieldInputDate.propTypes = {
 
 CustomFieldInputDate.defaultProps = {
   disabled: false,
-  error: false,
   errorText: '',
   min: undefined,
   max: undefined,
