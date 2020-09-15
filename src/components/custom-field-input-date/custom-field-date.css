@@ -1,13 +1,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/colors-v2.css';
 
-.input-icon {
-  composes: input-icon from '../__internal__/abstract-custom-field/abstract-custom-field.css'; /* stylelint-disable-line css-modules/composed-class-names */
-  pointer-events: auto;
-  height: 18px;
-  width: 18px;
-}
-
 .date-input input::-webkit-inner-spin-button,
 .date-input input::-webkit-calendar-picker-indicator {
   display: none;

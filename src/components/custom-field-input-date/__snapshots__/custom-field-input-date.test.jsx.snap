@@ -42,7 +42,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         className="icon-container"
       >
         <svg
-          className="input-icon"
+          className="button"
           height={14}
           onClick={[Function]}
           onKeyDown={[Function]}

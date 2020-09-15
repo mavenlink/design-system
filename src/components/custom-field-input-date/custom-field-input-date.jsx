@@ -124,7 +124,12 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     className: dateStyles['date-input'],
     inputClassName: props.errorText ? dateStyles['input-invalid'] : dateStyles.input,
     disabled: props.disabled,
-    icon: <IconButton onPress={openCalendar} className={dateStyles['input-icon']} icon={calendarSvg} title={props.label} label={`${props.label} calendar button`} />,
+    icon: <IconButton
+      onPress={openCalendar}
+      icon={calendarSvg}
+      title={props.label}
+      label={`${props.label} calendar button`}
+    />,
     label: props.label,
     inputRef,
     required: props.required,
