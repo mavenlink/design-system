@@ -12,7 +12,7 @@ import CustomFieldInputDate from './custom-field-input-date.jsx';
 describe('src/components/custom-field-input-date/custom-field-input-date', () => {
   const renderComponent = (props = {}) => render(<CustomFieldInputDate label="Field Date" id="field-date" {...props} />);
   const changeValue = (getInputElement, value) => {
-    fireEvent.focus(getInputElement());
+    userEvent.click(getInputElement());
     fireEvent.change(getInputElement(), { target: { value } });
     fireEvent.blur(getInputElement());
   };
@@ -91,18 +91,20 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
         expect(screen.getByText('July 2016')).toBeInTheDocument();
       });
+    });
 
+    describe('when clicked', () => {
       it('ensures the date input shows the correct value', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
       });
 
       it('focuses on the date input', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveFocus();
       });
     });
@@ -124,7 +126,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
       it('stays in edit mode when it is invalid', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016', error: true });
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         fireEvent.blur(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
       });

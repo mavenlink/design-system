@@ -43,6 +43,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [currentValue, setCurrentValue] = useState(value);
   const [isValid, setIsValid] = useState(isValueValid(currentValue, props.errorText, true));
   const [expanded, setExpanded] = useState(false);
+  const [shouldFocusInput, setShouldFocusInput] = useState(false);
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -50,7 +51,16 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     }
   }, [isEditing]);
 
+  useEffect(() => {
+    if (shouldFocusInput && componentRef.current) {
+      componentRef.current.focus();
+    }
+
+    setShouldFocusInput(false);
+  }, [shouldFocusInput]);
+
   function onDateSelected(date) {
+    setShouldFocusInput(true);
     setCurrentValue(date.toISOString().slice(0, 10));
     setExpanded(false);
     setIsEditing(false);
@@ -108,6 +118,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     if (event.key === 'Enter' || event.key === 'Space') {
       event.preventDefault();
       if (!props.disabled) {
+        setShouldFocusInput(true);
         setExpanded(!expanded);
         setIsEditing(!isEditing);
       }
@@ -118,14 +129,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     if (event.key === 'Escape') {
       setExpanded(false);
       setIsEditing(false);
-    }
-  }
-
-  function onFocus(event) {
-    event.preventDefault();
-    if (!props.disabled) {
-      setIsEditing(true);
-      setExpanded(true);
     }
   }
 
@@ -187,7 +190,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         id={props.id}
         key={`${props.id}-readonly`}
         inputRef={componentRef}
-        onFocus={onFocus}
         type="text"
       />
     );
