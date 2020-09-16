@@ -5,15 +5,11 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import CustomFieldInputDate from './custom-field-input-date.jsx';
 
 describe('src/components/custom-field-input-date/custom-field-input-date', () => {
-  const renderComponent = (props = {}) => render(<CustomFieldInputDate
-    label="Field Date"
-    name="field-id"
-    id="field-date"
-    {...props}
-  />);
+  const renderComponent = (props = {}) => render(<CustomFieldInputDate label="Field Date" id="field-date" {...props} />);
   const changeValue = (getInputElement, value) => {
     fireEvent.focus(getInputElement());
     fireEvent.change(getInputElement(), { target: { value } });
@@ -23,8 +19,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   afterEach(cleanup);
 
   it('has defaults', () => {
-    renderComponent();
-    expect(document.body).toMatchSnapshot();
+    const tree = renderer.create(<CustomFieldInputDate label="Hello" id="hello" />).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   describe('className API', () => {
@@ -66,7 +62,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('error API', () => {
     describe('when the value is valid', () => {
       it('does not show an error', () => {
-        renderComponent({ label: "Field Date", id: "field-date", value: "05/10/1992" });
+        render(<CustomFieldInputDate label="Field Date" id="field-date" value="05/10/1992" />);
         expect(screen.getByLabelText('Field Date')).toBeValid('error');
       });
     });
@@ -210,7 +206,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('forwardRef API', () => {
     it('can be used to get value', () => {
       const inputRef = createRef(null);
-      renderComponent({ id: "test-input", label: "Test label", ref: inputRef, value: "2016-07-18" });
+      render(<CustomFieldInputDate id="test-input" label="Test label" ref={inputRef} value="2016-07-18" />);
 
       expect(inputRef.current.value).toBe('July 18, 2016');
     });

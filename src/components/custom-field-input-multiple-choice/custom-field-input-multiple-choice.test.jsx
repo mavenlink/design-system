@@ -1,4 +1,5 @@
 import React, { createRef } from 'react';
+import renderer from 'react-test-renderer';
 import {
   fireEvent,
   render,
@@ -19,12 +20,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     }],
     id: 'test-id',
     label: 'test label',
-    name: 'field-id'
   };
 
   it('has defaults', () => {
-    render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-    expect(document.body).toMatchSnapshot();
+    expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
   describe('autocompleter popup', () => {

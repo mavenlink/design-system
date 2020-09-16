@@ -55,7 +55,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   useImperativeHandle(ref, () => ({
     id: props.id,
-    name: props.name,
     get value() {
       return componentRef.current.value;
     },
@@ -125,7 +124,6 @@ CustomFieldInputDate.propTypes = {
   label: PropTypes.string.isRequired,
   min: PropTypes.string,
   max: PropTypes.string,
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,

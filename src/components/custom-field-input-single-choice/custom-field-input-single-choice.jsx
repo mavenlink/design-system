@@ -136,7 +136,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   useImperativeHandle(selfRef, () => ({
     id: props.id,
-    name: props.name,
     get value() {
       return value ? [value.id] : [];
     },
@@ -155,7 +154,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         clear={clearIcon()}
         id={props.id}
         label={props.label}
-        name={props.name}
         onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}
@@ -201,7 +199,6 @@ CustomFieldInputSingleChoice.propTypes = {
   choices: PropTypes.arrayOf(ChoiceType),
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,

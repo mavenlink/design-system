@@ -1,21 +1,16 @@
 import React, { createRef } from 'react';
+import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
   function TestComponent(props = {}) {
-    return <CustomFieldInputText
-      id="test-input"
-      label="Test label"
-      name="field-id"
-      {...props}
-    />;
+    return <CustomFieldInputText id="test-input" label="Test label" {...props} />;
   }
 
   it('has defaults', () => {
-    render(<TestComponent />)
-    expect(document.body).toMatchSnapshot();
+    expect(renderer.create(<TestComponent />).toJSON()).toMatchSnapshot();
   });
 
   describe('errorText API', () => {
