@@ -136,6 +136,22 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
   });
 
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const choices = [{
+        id: 1,
+        label: 'foo',
+      }];
+      const ref = createRef();
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} ref={ref} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('foo'));
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.click(screen.getByText('Remove selected choice'));
+      expect(ref.current.dirty).toEqual(false);
+    });
+  });
+
   describe('errorText', () => {
     it('sets the input to be invalid', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} errorText="not valid" />);
