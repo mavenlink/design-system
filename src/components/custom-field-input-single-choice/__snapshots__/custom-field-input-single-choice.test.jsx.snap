@@ -55,3 +55,12 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
   </div>
 </body>
 `;
+
+exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-id",
+  "name": "field-id",
+  "value": Array [],
+}
+`;

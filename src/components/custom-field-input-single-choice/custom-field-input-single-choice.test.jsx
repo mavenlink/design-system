@@ -1,7 +1,11 @@
 import React, { createRef } from 'react';
-import { render, fireEvent, cleanup, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
@@ -11,11 +15,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     name: 'field-id',
   };
 
-  afterEach(cleanup);
-
   it('has defaults', () => {
-    render(<CustomFieldInputSingleChoice {...requiredProps} />);
+    const ref = createRef();
+    render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
