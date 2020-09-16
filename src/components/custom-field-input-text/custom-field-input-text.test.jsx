@@ -21,10 +21,12 @@ describe('CustomFieldInputText', () => {
     it('updates on user interactions', () => {
       const ref = createRef();
       render(<CustomFieldInputText {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('Test label'), 'test-value');
+      userEvent.type(screen.getByLabelText('Test label'), 'ab');
       expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('Test label'), '');
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
       expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      expect(ref.current.dirty).toEqual(false);
     });
   });
 
