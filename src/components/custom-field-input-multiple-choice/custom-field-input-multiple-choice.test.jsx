@@ -19,7 +19,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     }],
     id: 'test-id',
     label: 'test label',
-    name: 'field-id'
+    name: 'field-id',
   };
 
   it('has defaults', () => {

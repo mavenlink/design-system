@@ -5,16 +5,16 @@ import CustomFieldInputText from './custom-field-input-text.jsx';
 
 describe('CustomFieldInputText', () => {
   function TestComponent(props = {}) {
-    return <CustomFieldInputText
+    return (<CustomFieldInputText
       id="test-input"
       label="Test label"
       name="field-id"
       {...props}
-    />;
+    />);
   }
 
   it('has defaults', () => {
-    render(<TestComponent />)
+    render(<TestComponent />);
     expect(document.body).toMatchSnapshot();
   });
 

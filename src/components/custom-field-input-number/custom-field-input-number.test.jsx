@@ -5,12 +5,12 @@ import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
 describe('CustomFieldInputNumber', () => {
   function TestComponent(props = {}) {
-    return <CustomFieldInputNumber
+    return (<CustomFieldInputNumber
       id="test-input"
       label="Test label"
       name="field-id"
       {...props}
-    />;
+    />);
   }
 
   it('has defaults', () => {

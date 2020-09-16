@@ -66,7 +66,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('error API', () => {
     describe('when the value is valid', () => {
       it('does not show an error', () => {
-        renderComponent({ label: "Field Date", id: "field-date", value: "05/10/1992" });
+        renderComponent({ label: 'Field Date', id: 'field-date', value: '05/10/1992' });
         expect(screen.getByLabelText('Field Date')).toBeValid('error');
       });
     });
@@ -210,7 +210,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('forwardRef API', () => {
     it('can be used to get value', () => {
       const inputRef = createRef(null);
-      renderComponent({ id: "test-input", label: "Test label", ref: inputRef, value: "2016-07-18" });
+      renderComponent({ id: 'test-input', label: 'Test label', ref: inputRef, value: '2016-07-18' });
 
       expect(inputRef.current.value).toBe('July 18, 2016');
     });
