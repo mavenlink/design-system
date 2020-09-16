@@ -74,6 +74,7 @@ function Calendar(props) {
   const defaultFocusedDate = new Date(props.value ? `${props.value}T00:00` : Date.now());
   const [focusedDate, setFocusedDate] = useState(defaultFocusedDate);
   const [activeDate, setActiveDate] = useState(defaultFocusedDate);
+  const [scrollY, setScrollY] = useState(window.scrollY);
   let refs = {};
 
   useEffect(() => {
@@ -101,6 +102,12 @@ function Calendar(props) {
       ref.current.focus();
     }
   }, [focusedDate]);
+
+  useEffect(() => {
+    if (scrollY) {
+      window.scrollTo(window.scrollX, scrollY);
+    }
+  }, [month]);
 
   function handleKeyboardYearChange(direction) {
     changeMonth(12 * direction);
@@ -184,6 +191,7 @@ function Calendar(props) {
 
   function changeMonth(monthAmount) {
     const tmpDate = new Date(year, month + monthAmount);
+    setScrollY(window.scrollY);
     setMonth(tmpDate.getMonth());
     setYear(tmpDate.getFullYear());
   }
