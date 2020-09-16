@@ -1,70 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
-<div>
-  <div
-    onKeyDown={[Function]}
-    role="presentation"
-  >
-    <label
-      className="label"
-      htmlFor="test-id-autocomple"
-      id="test-id-label"
-    >
-      test label
-    </label>
-    <div
-      className="control-container"
-    >
+<body>
+  <div>
+    <div>
       <div
-        className="read-write-container"
-        onClick={[Function]}
         role="presentation"
       >
-        <div
-          aria-labelledby="test-id-label"
-          className="tag-list"
-          onClick={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          role="grid"
+        <label
+          class="label"
+          for="test-id-autocomple"
+          id="test-id-label"
         >
-          <input
-            aria-autocomplete="list"
-            aria-controls="test-id-multi-choice-listbox"
-            aria-expanded={false}
-            aria-haspopup="listbox"
-            aria-labelledby="test-id-label"
-            className="autocomplete-input"
-            id="test-id-autocomple"
-            onChange={[Function]}
-            role="combobox"
-            value=""
-          />
-        </div>
+          test label
+        </label>
         <div
-          className="icons-container"
+          class="control-container"
         >
           <div
-            className="icon-container"
+            class="read-write-container"
+            role="presentation"
           >
-            <svg
-              className="icon"
-              height={6}
-              role="img"
-              width={10}
+            <div
+              aria-labelledby="test-id-label"
+              class="tag-list"
+              role="grid"
             >
-              <title>
-                Open choices listbox
-              </title>
-              <use
-                xlinkHref="#caret-down.svg"
+              <input
+                aria-autocomplete="list"
+                aria-controls="test-id-multi-choice-listbox"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-labelledby="test-id-label"
+                class="autocomplete-input"
+                id="test-id-autocomple"
+                role="combobox"
+                value=""
               />
-            </svg>
+            </div>
+            <div
+              class="icons-container"
+            >
+              <div
+                class="icon-container"
+              >
+                <svg
+                  class="icon"
+                  height="6"
+                  role="img"
+                  width="10"
+                >
+                  <title>
+                    Open choices listbox
+                  </title>
+                  <use
+                    xlink:href="#caret-down.svg"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 `;

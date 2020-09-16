@@ -77,6 +77,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   useImperativeHandle(ref, () => ({
     id: props.id,
+    name: props.name,
     get value() {
       let numberValue;
 
@@ -140,7 +141,7 @@ CustomFieldInputCurrency.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   // onChange: Do not expose an onChange handler. See commit for details.
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,

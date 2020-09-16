@@ -1,58 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
-<div
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="hello"
-    id="hello-label"
-  >
-    Hello
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      className="input"
-      defaultValue=""
-      disabled={false}
-      id="hello"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      readOnly={true}
-      required={false}
-      step={1}
-      style={
-        Object {
-          "--numIcon": 1,
-        }
-      }
-      type="date"
-    />
+<body>
+  <div>
     <div
-      className="icon-container"
+      role="presentation"
     >
-      <svg
-        className="input-icon"
-        height={14}
-        role="img"
-        width={11}
+      <label
+        class="label"
+        for="field-date"
+        id="field-date-label"
       >
-        <title>
-          Hello
-        </title>
-        <use
-          xlinkHref="#calendar.svg"
+        Field Date
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          class="input"
+          id="field-date"
+          readonly=""
+          style="--numIcon: 1;"
+          type="text"
+          value=""
         />
-      </svg>
+        <div
+          class="icon-container"
+        >
+          <svg
+            class="input-icon"
+            height="14"
+            role="img"
+            width="11"
+          >
+            <title>
+              Field Date
+            </title>
+            <use
+              xlink:href="#calendar.svg"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</body>
 `;

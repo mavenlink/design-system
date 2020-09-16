@@ -1,66 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-single-choice/custom-field-input-single-choice has defaults 1`] = `
-<div
-  className="container"
->
-  <div
-    onKeyDown={[Function]}
-    role="presentation"
-  >
-    <label
-      className="label"
-      htmlFor="test-id"
-      id="test-id-label"
-    >
-      Test label
-    </label>
+<body>
+  <div>
     <div
-      className="control-container"
+      class="container"
     >
-      <input
-        aria-autocomplete="list"
-        aria-controls="test-id-single-choice-listbox"
-        aria-expanded={false}
-        aria-haspopup="listbox"
-        className="input"
-        disabled={false}
-        id="test-id"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        readOnly={false}
-        required={false}
-        role="combobox"
-        style={
-          Object {
-            "--numIcon": 1,
-          }
-        }
-        type="text"
-        value=""
-      />
       <div
-        className="icon-container"
+        role="presentation"
       >
-        <svg
-          className="input-icon"
-          height={6}
-          role="img"
-          width={10}
+        <label
+          class="label"
+          for="test-id"
+          id="test-id-label"
         >
-          <title>
-            Open choices listbox
-          </title>
-          <use
-            xlinkHref="#caret-down.svg"
+          Test label
+        </label>
+        <div
+          class="control-container"
+        >
+          <input
+            aria-autocomplete="list"
+            aria-controls="test-id-single-choice-listbox"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="input"
+            id="test-id"
+            name="field-id"
+            role="combobox"
+            style="--numIcon: 1;"
+            type="text"
+            value=""
           />
-        </svg>
+          <div
+            class="icon-container"
+          >
+            <svg
+              class="input-icon"
+              height="6"
+              role="img"
+              width="10"
+            >
+              <title>
+                Open choices listbox
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 `;
