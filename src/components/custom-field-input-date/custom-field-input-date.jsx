@@ -54,6 +54,9 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   }, [isEditing, isFocused]);
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      return props.value !== this.value;
+    },
     id: props.id,
     name: props.name,
     get value() {

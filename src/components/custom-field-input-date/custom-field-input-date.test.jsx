@@ -33,6 +33,19 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('dirty ref API', () => {
+    xit('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
+      userEvent.click(screen.getByLabelText('Field Date'));
+      expect(ref.current.dirty).toEqual(false);
+      userEvent.type(screen.getByLabelText('Field Date'), '12/12/1212');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Field Date'), '');
+      expect(ref.current.dirty).toEqual(false);
+    });
+  });
+
   describe('value API', () => {
     it('accepts a string in format YYYY-MM-DD', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value='2016-07-18' />);
