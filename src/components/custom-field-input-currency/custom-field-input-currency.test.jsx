@@ -23,17 +23,17 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   it('accepts a currency code', () => {
-    const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} value={5000} currencyCode='XAF' />);
-    expect(getByLabelText('currency').value).toMatch(/FCFA/);
+    render(<CustomFieldInputCurrency {...requiredProps} value={5000} currencyCode='XAF' />);
+    expect(screen.getByLabelText('currency').value).toMatch(/FCFA/);
   });
 
   it('sets the correct step according to the provided currency code', () => {
-    const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} currencyCode='IQD' value={10111} />);
+    render(<CustomFieldInputCurrency {...requiredProps} currencyCode='IQD' value={10111} />);
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
-    expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
-    fireEvent.focus(getByLabelText('currency'));
-    expect(getByLabelText('currency')).toHaveValue(10.111);
+    expect(screen.getByLabelText('currency')).toHaveValue('IQD 10.111');
+    fireEvent.focus(screen.getByLabelText('currency'));
+    expect(screen.getByLabelText('currency')).toHaveValue(10.111);
   });
 
   describe('prop-forward API', () => {
@@ -74,19 +74,19 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('disabled API', () => {
     it('respects the disabled prop', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
-      expect(getByLabelText('currency')).toBeDisabled();
+      render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
+      expect(screen.getByLabelText('currency')).toBeDisabled();
     });
 
     it('does not enter edit mode on focus', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
-      fireEvent.focus(getByLabelText('currency'));
-      expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
+      render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
+      fireEvent.focus(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
     it('respects the enabled prop', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={false} />);
-      expect(getByLabelText('currency')).not.toBeDisabled();
+      render(<CustomFieldInputCurrency {...requiredProps} disabled={false} />);
+      expect(screen.getByLabelText('currency')).not.toBeDisabled();
     });
   });
 
@@ -100,19 +100,19 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
-      expect(getByLabelText('currency')).toHaveAttribute('readOnly', '');
+      render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
+      expect(screen.getByLabelText('currency')).toHaveAttribute('readOnly', '');
     });
 
     it('does not enter edit mode on focus', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
-      fireEvent.focus(getByLabelText('currency'));
-      expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
+      render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
+      fireEvent.focus(screen.getByLabelText('currency'));
+      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
     it('is false by default', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
-      expect(getByLabelText('currency')).not.toHaveAttribute('readOnly', '');
+      render(<CustomFieldInputCurrency {...requiredProps} />);
+      expect(screen.getByLabelText('currency')).not.toHaveAttribute('readOnly', '');
     });
   });
 
@@ -129,33 +129,33 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('does not switch to view mode when its value is numerically invalid', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
+      render(<CustomFieldInputCurrency {...requiredProps} />);
 
-      fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: 12.111111 } });
-      fireEvent.blur(getByLabelText('currency'));
+      fireEvent.focus(screen.getByLabelText('currency'));
+      fireEvent.change(screen.getByLabelText('currency'), { target: { value: 12.111111 } });
+      fireEvent.blur(screen.getByLabelText('currency'));
 
-      expect(getByLabelText('currency')).toHaveAttribute('type', 'number');
-      expect(getByLabelText('currency')).toHaveValue(12.111111);
+      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'number');
+      expect(screen.getByLabelText('currency')).toHaveValue(12.111111);
     });
 
     xit('does not switch to view mode when its value is numerically invalid', () => {
       // This test does not work because programmatically setting value
       // on a number input does not reflect a user typing.
       // See commit for more details.
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
+      render(<CustomFieldInputCurrency {...requiredProps} />);
 
-      fireEvent.focus(getByLabelText('currency'));
-      fireEvent.change(getByLabelText('currency'), { target: { value: '12..' } });
-      fireEvent.blur(getByLabelText('currency'));
+      fireEvent.focus(screen.getByLabelText('currency'));
+      fireEvent.change(screen.getByLabelText('currency'), { target: { value: '12..' } });
+      fireEvent.blur(screen.getByLabelText('currency'));
 
-      expect(getByLabelText('currency')).toHaveAttribute('type', 'number');
-      expect(getByLabelText('currency')).toHaveValue('12..');
+      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'number');
+      expect(screen.getByLabelText('currency')).toHaveValue('12..');
     });
 
     it('accepts an undefined value', () => {
-      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} value={undefined} />);
-      expect(getByLabelText('currency')).toHaveValue('');
+      render(<CustomFieldInputCurrency {...requiredProps} value={undefined} />);
+      expect(screen.getByLabelText('currency')).toHaveValue('');
     });
   });
 
