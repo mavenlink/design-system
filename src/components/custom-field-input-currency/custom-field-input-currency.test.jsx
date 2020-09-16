@@ -9,25 +9,26 @@ import CustomFieldInputText from '../custom-field-input-text/custom-field-input-
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
 
 describe('CustomFieldInputCurrency', () => {
-  const renderComponent = (props = {}) => render(<CustomFieldInputCurrency
-    id="currency"
-    label="currency"
-    name="some-field-id"
-    {...props}
-  />);
+  const requiredProps = {
+    id: 'currency',
+    label: 'currency',
+    name: 'some-field-id',
+  };
 
   it('has defaults', () => {
-    renderComponent();
+    const ref = createRef();
+    render(<CustomFieldInputCurrency {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   it('accepts a currency code', () => {
-    const { getByLabelText } = renderComponent({ value: 5000, currencyCode: 'XAF' });
+    const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} value={5000} currencyCode='XAF' />);
     expect(getByLabelText('currency').value).toMatch(/FCFA/);
   });
 
   it('sets the correct step according to the provided currency code', () => {
-    const { getByLabelText } = renderComponent({ currencyCode: 'IQD', value: 10111 });
+    const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} currencyCode='IQD' value={10111} />);
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
     expect(getByLabelText('currency')).toHaveValue('IQD 10.111');
@@ -49,7 +50,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('presents contextual error state', () => {
       const errorText = 'What do you want from us monster!?';
-      renderComponent({ value: 350, errorText, error: true });
+      render(<CustomFieldInputCurrency {...requiredProps} value={350} errorText={errorText} error={true} />);
 
       expect(screen.getByLabelText('currency')).toBeInvalid();
       expect(screen.getByText(errorText)).toBeInTheDocument();
@@ -58,18 +59,18 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('disabled API', () => {
     it('respects the disabled prop', () => {
-      const { getByLabelText } = renderComponent({ disabled: true });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
       expect(getByLabelText('currency')).toBeDisabled();
     });
 
     it('does not enter edit mode on focus', () => {
-      const { getByLabelText } = renderComponent({ disabled: true });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
       fireEvent.focus(getByLabelText('currency'));
       expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
     it('respects the enabled prop', () => {
-      const { getByLabelText } = renderComponent({ disabled: false });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={false} />);
       expect(getByLabelText('currency')).not.toBeDisabled();
     });
   });
@@ -77,32 +78,32 @@ describe('CustomFieldInputCurrency', () => {
   describe('name ref API', () => {
     it('can be set', () => {
       const ref = createRef();
-      renderComponent({ name: 'some-unique-name', ref });
+      render(<CustomFieldInputCurrency {...requiredProps} name='some-unique-name' ref={ref} />);
       expect(ref.current.name).toEqual('some-unique-name');
     });
   });
 
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
-      const { getByLabelText } = renderComponent({ readOnly: true });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
       expect(getByLabelText('currency')).toHaveAttribute('readOnly', '');
     });
 
     it('does not enter edit mode on focus', () => {
-      const { getByLabelText } = renderComponent({ readOnly: true });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
       fireEvent.focus(getByLabelText('currency'));
       expect(getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
     it('is false by default', () => {
-      const { getByLabelText } = renderComponent();
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
       expect(getByLabelText('currency')).not.toHaveAttribute('readOnly', '');
     });
   });
 
   describe('input validation', () => {
     it('does not trigger error state for valid value', () => {
-      renderComponent();
+      render(<CustomFieldInputCurrency {...requiredProps} />);
 
       fireEvent.focus(screen.getByLabelText('currency'));
       fireEvent.change(screen.getByLabelText('currency'), { target: { value: 1234 } });
@@ -113,7 +114,7 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('does not switch to view mode when its value is numerically invalid', () => {
-      const { getByLabelText } = renderComponent();
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
 
       fireEvent.focus(getByLabelText('currency'));
       fireEvent.change(getByLabelText('currency'), { target: { value: 12.111111 } });
@@ -127,7 +128,7 @@ describe('CustomFieldInputCurrency', () => {
       // This test does not work because programmatically setting value
       // on a number input does not reflect a user typing.
       // See commit for more details.
-      const { getByLabelText } = renderComponent();
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} />);
 
       fireEvent.focus(getByLabelText('currency'));
       fireEvent.change(getByLabelText('currency'), { target: { value: '12..' } });
@@ -138,14 +139,14 @@ describe('CustomFieldInputCurrency', () => {
     });
 
     it('accepts an undefined value', () => {
-      const { getByLabelText } = renderComponent({ value: undefined });
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} value={undefined} />);
       expect(getByLabelText('currency')).toHaveValue('');
     });
   });
 
   describe('displayed value', () => {
     it('does not try to parse an empty input to float', () => {
-      renderComponent();
+      render(<CustomFieldInputCurrency {...requiredProps} />);
 
       userEvent.click(screen.getByLabelText('currency'));
       userEvent.click(document.body);
@@ -157,21 +158,21 @@ describe('CustomFieldInputCurrency', () => {
 
   describe('value API', () => {
     it('can be undefined', () => {
-      renderComponent();
+      render(<CustomFieldInputCurrency {...requiredProps} />);
       expect(screen.getByLabelText('currency')).toHaveValue('');
       userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveValue(null);
     });
 
     it('can be 0', () => {
-      renderComponent({ value: 0 });
+      render(<CustomFieldInputCurrency {...requiredProps} value={0} />);
       expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
       userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveValue(0);
     });
 
     it('can be a positive integer', () => {
-      renderComponent({ value: 1 });
+      render(<CustomFieldInputCurrency {...requiredProps} value={1} />);
       expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
       userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveValue(0.01);
@@ -181,7 +182,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('value ref API', () => {
     it('can get a positive value', () => {
       const ref = createRef(null);
-      renderComponent({ id: 'test-input', label: 'Test label', ref });
+      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
@@ -192,7 +193,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can get a negative value', () => {
       const ref = createRef(null);
-      renderComponent({ id: 'test-input', label: 'Test label', ref });
+      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
@@ -203,7 +204,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can be undefined', () => {
       const ref = createRef(null);
-      renderComponent({ id: 'test-input', label: 'Test label', ref });
+      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });

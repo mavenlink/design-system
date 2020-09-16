@@ -33,3 +33,11 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`CustomFieldInputCurrency has defaults 2`] = `
+Object {
+  "id": "currency",
+  "name": "some-field-id",
+  "value": undefined,
+}
+`;
