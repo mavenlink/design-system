@@ -39,6 +39,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
 
 exports[`CustomFieldInputNumber has defaults 2`] = `
 Object {
+  "dirty": false,
   "id": "test-input",
   "name": "field-id",
   "value": "",

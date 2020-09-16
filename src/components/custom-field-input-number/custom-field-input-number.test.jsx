@@ -24,6 +24,19 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
+      userEvent.type(screen.getByLabelText('Test label'), '12');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      expect(ref.current.dirty).toEqual(false);
+    });
+  });
+
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<CustomFieldInputNumber {...requiredProps} disabled />);

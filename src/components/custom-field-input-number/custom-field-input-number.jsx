@@ -27,6 +27,10 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
   });
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      const providedValue = props.value ? props.value : '';
+      return providedValue !== this.value;
+    },
     id: props.id,
     name: props.name,
     get value() {
