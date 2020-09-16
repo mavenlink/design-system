@@ -8,7 +8,7 @@
   width: 0;
 }
 
-.autocomplete-input:focus {
+.component-root:focus-within .autocomplete-input {
   flex-shrink: 0;
   margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
   min-width: 25%;
