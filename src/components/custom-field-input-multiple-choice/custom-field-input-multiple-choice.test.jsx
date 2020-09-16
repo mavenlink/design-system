@@ -3,9 +3,9 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
