@@ -36,6 +36,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
 
 exports[`CustomFieldInputCurrency has defaults 2`] = `
 Object {
+  "dirty": false,
   "id": "currency",
   "name": "some-field-id",
   "value": undefined,

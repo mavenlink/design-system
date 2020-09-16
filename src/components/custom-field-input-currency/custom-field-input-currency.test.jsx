@@ -57,6 +57,21 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputCurrency {...requiredProps} ref={ref} />);
+      userEvent.click(screen.getByLabelText('currency'));
+      expect(ref.current.dirty).toEqual(false);
+      userEvent.type(screen.getByLabelText('currency'), '12');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      expect(ref.current.dirty).toEqual(false);
+    });
+  });
+
   describe('disabled API', () => {
     it('respects the disabled prop', () => {
       const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);

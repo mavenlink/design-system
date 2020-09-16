@@ -76,6 +76,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   });
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      const currentValue = this.value ? this.value[0] : this.value;
+      return props.value !== currentValue;
+    },
     id: props.id,
     name: props.name,
     get value() {
