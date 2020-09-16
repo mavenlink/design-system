@@ -23,12 +23,12 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   it('accepts a currency code', () => {
-    render(<CustomFieldInputCurrency {...requiredProps} value={5000} currencyCode='XAF' />);
+    render(<CustomFieldInputCurrency {...requiredProps} value={5000} currencyCode="XAF" />);
     expect(screen.getByLabelText('currency').value).toMatch(/FCFA/);
   });
 
   it('sets the correct step according to the provided currency code', () => {
-    render(<CustomFieldInputCurrency {...requiredProps} currencyCode='IQD' value={10111} />);
+    render(<CustomFieldInputCurrency {...requiredProps} currencyCode="IQD" value={10111} />);
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
     expect(screen.getByLabelText('currency')).toHaveValue('IQD 10.111');
@@ -93,7 +93,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('name ref API', () => {
     it('can be set', () => {
       const ref = createRef();
-      render(<CustomFieldInputCurrency {...requiredProps} name='some-unique-name' ref={ref} />);
+      render(<CustomFieldInputCurrency {...requiredProps} name="some-unique-name" ref={ref} />);
       expect(ref.current.name).toEqual('some-unique-name');
     });
   });
@@ -197,7 +197,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('value ref API', () => {
     it('can get a positive value', () => {
       const ref = createRef(null);
-      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
+      render(<CustomFieldInputCurrency {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
@@ -208,7 +208,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can get a negative value', () => {
       const ref = createRef(null);
-      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
+      render(<CustomFieldInputCurrency {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
@@ -219,7 +219,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can be undefined', () => {
       const ref = createRef(null);
-      render(<CustomFieldInputCurrency {...requiredProps} id='test-input' label='Test label' ref={ref} />);
+      render(<CustomFieldInputCurrency {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });
