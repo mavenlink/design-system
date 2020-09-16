@@ -114,6 +114,9 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   }, [props.value.map(choice => choice.id).join('')]);
 
   useImperativeHandle(selfRef, () => ({
+    get dirty() {
+      return props.value.map(v => v.id).join(',') !== this.value.join(',');
+    },
     id: props.id,
     name: props.name,
     get value() {

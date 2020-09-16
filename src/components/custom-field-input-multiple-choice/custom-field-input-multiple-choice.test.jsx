@@ -23,8 +23,10 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   };
 
   it('has defaults', () => {
-    render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+    const ref = createRef();
+    render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('autocompleter popup', () => {
@@ -111,6 +113,19 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         userEvent.click(screen.getByText('test label'));
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       });
+    });
+  });
+
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
+      userEvent.click(screen.getByRole('combobox'));
+      expect(ref.current.dirty).toEqual(false);
+      userEvent.click(screen.getByText('Choice 1'));
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.click(screen.getByText('Remove all selected choices on test label'));
+      expect(ref.current.dirty).toEqual(false);
     });
   });
 

@@ -66,3 +66,12 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`<CustomFieldInputMultipleChoice> has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-id",
+  "name": "field-id",
+  "value": Array [],
+}
+`;
