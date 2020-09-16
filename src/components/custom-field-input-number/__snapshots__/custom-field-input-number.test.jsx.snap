@@ -36,3 +36,11 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`CustomFieldInputNumber has defaults 2`] = `
+Object {
+  "id": "test-input",
+  "name": "field-id",
+  "value": "",
+}
+`;

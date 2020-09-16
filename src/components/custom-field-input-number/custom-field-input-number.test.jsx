@@ -4,80 +4,79 @@ import userEvent from '@testing-library/user-event';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
 describe('CustomFieldInputNumber', () => {
-  function TestComponent(props = {}) {
-    return (<CustomFieldInputNumber
-      id="test-input"
-      label="Test label"
-      name="field-id"
-      {...props}
-    />);
-  }
+  const requiredProps = {
+    id: 'test-input',
+    label: 'Test label',
+    name: 'field-id',
+  };
 
   it('has defaults', () => {
-    render(<TestComponent />);
+    const ref = createRef();
+    render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('className API', () => {
     it('prioritizes className prop', () => {
-      const { container } = render(<TestComponent className="prioritize-me" />);
+      const { container } = render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
       expect(container.firstChild).toHaveClass('prioritize-me');
     });
   });
 
   describe('disabled API', () => {
     it('can be disabled', () => {
-      render(<TestComponent disabled />);
+      render(<CustomFieldInputNumber {...requiredProps} disabled />);
       expect(screen.getByLabelText('Test label')).toBeDisabled();
     });
 
     it('can be enabled', () => {
-      render(<TestComponent />);
+      render(<CustomFieldInputNumber {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).not.toBeDisabled();
     });
   });
 
   describe('errorText API', () => {
     it('is invalid when true', () => {
-      render(<TestComponent errorText="Here's some help text!" />);
+      render(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
 
     it('updates correctly with a new errorText prop', () => {
-      const { rerender } = render(<TestComponent errorText="" />);
+      const { rerender } = render(<CustomFieldInputNumber {...requiredProps} errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
-      rerender(<TestComponent errorText="Here's some help text!" />);
+      rerender(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
       expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
     });
 
     it('shows the provided errorText when true', () => {
-      render(<TestComponent errorText="Here's some help text!" />);
+      render(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
       expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
     });
 
     it('does not show errorText when it does not exist', () => {
-      render(<TestComponent errorText="" />);
+      render(<CustomFieldInputNumber {...requiredProps} errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
     });
   });
 
   describe('id API', () => {
     it('sets the id attribute', () => {
-      render(<TestComponent id="test-id" />);
+      render(<CustomFieldInputNumber {...requiredProps} id="test-id" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'test-id');
     });
   });
 
   describe('label API', () => {
     it('sets the label', () => {
-      render(<TestComponent label="Another label" />);
+      render(<CustomFieldInputNumber {...requiredProps} label="Another label" />);
       expect(screen.getByLabelText('Another label')).toBeDefined();
     });
   });
 
   describe('name API', () => {
     it('sets the name attribute', () => {
-      render(<TestComponent name="test-name" />);
+      render(<CustomFieldInputNumber {...requiredProps} name="test-name" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('name', 'test-name');
     });
   });
@@ -85,55 +84,55 @@ describe('CustomFieldInputNumber', () => {
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
       const placeholder = 'This is placeholder input';
-      render(<TestComponent placeholder={placeholder} />);
+      render(<CustomFieldInputNumber {...requiredProps} placeholder={placeholder} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('placeholder', placeholder);
     });
   });
 
   describe('required API', () => {
     it('sets the required attribute', () => {
-      render(<TestComponent required />);
+      render(<CustomFieldInputNumber {...requiredProps} required />);
       expect(screen.getByLabelText('Test label')).toBeRequired();
     });
 
     it('unsets the required attribute', () => {
-      render(<TestComponent />);
+      render(<CustomFieldInputNumber {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
     });
   });
 
   describe('value API', () => {
     it('is valid on a positive integer', () => {
-      render(<TestComponent value={1} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveValue(1);
     });
 
     it('is valid on zero', () => {
-      render(<TestComponent value={0} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={0} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveValue(0);
     });
 
     it('is valid on undefined', () => {
-      render(<TestComponent value={undefined} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={undefined} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveValue(null);
     });
 
     it('is valid on a negative integer', () => {
-      render(<TestComponent value={-1} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={-1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is valid on a decimal integer', () => {
-      render(<TestComponent value={1.00} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={1.00} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
     it('is invalid on a decimal number', () => {
       const validityText = 'Constraints not satisfied';
-      render(<TestComponent value={1.01} />);
+      render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
 
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByText(validityText)).toBeInTheDocument();
@@ -143,7 +142,7 @@ describe('CustomFieldInputNumber', () => {
   describe('events API', () => {
     it('accepts an onBlur event', () => {
       const onBlur = jest.fn();
-      const { getByLabelText } = render(<TestComponent label="foo" onBlur={onBlur} />);
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} label="foo" onBlur={onBlur} />);
       fireEvent.blur(getByLabelText('foo'));
       expect(onBlur.mock.calls.length).toEqual(1);
     });
@@ -152,26 +151,26 @@ describe('CustomFieldInputNumber', () => {
   describe('inputRef API', () => {
     it('sets the ref on the input', () => {
       const inputRef = createRef();
-      render(<TestComponent inputRef={inputRef} />);
+      render(<CustomFieldInputNumber {...requiredProps} inputRef={inputRef} />);
       expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
     });
   });
 
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
-      const { getByLabelText } = render(<TestComponent readOnly />);
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} readOnly />);
       expect(getByLabelText('Test label')).toHaveAttribute('readOnly', '');
     });
 
     it('is false by default', () => {
-      const { getByLabelText } = render(<TestComponent />);
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} />);
       expect(getByLabelText('Test label')).not.toHaveAttribute('readOnly', '');
     });
   });
 
   describe('step API', () => {
     it('respects a provided step', () => {
-      const { getByLabelText } = render(<TestComponent label="foo" step={12} />);
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} label="foo" step={12} />);
       expect(getByLabelText('foo')).toHaveAttribute('step', '12');
     });
   });
@@ -179,7 +178,7 @@ describe('CustomFieldInputNumber', () => {
   describe('forwardRef API', () => {
     it('can be used to get value', () => {
       const inputRef = createRef(null);
-      render(<CustomFieldInputNumber id="test-input" label="Test label" name="field-id" ref={inputRef} />);
+      render(<CustomFieldInputNumber {...requiredProps} ref={inputRef} />);
 
       userEvent.type(screen.getByLabelText('Test label'), '1234');
       expect(inputRef.current.value).toBe('1234');
