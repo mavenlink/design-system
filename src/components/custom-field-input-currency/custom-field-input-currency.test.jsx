@@ -17,7 +17,7 @@ describe('CustomFieldInputCurrency', () => {
   />);
 
   it('has defaults', () => {
-    renderComponent()
+    renderComponent();
     expect(document.body).toMatchSnapshot();
   });
 
@@ -181,7 +181,7 @@ describe('CustomFieldInputCurrency', () => {
   describe('value ref API', () => {
     it('can get a positive value', () => {
       const ref = createRef(null);
-      renderComponent({ id: "test-input", label: "Test label", ref });
+      renderComponent({ id: 'test-input', label: 'Test label', ref });
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
@@ -192,7 +192,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can get a negative value', () => {
       const ref = createRef(null);
-      renderComponent({ id: "test-input", label: "Test label", ref });
+      renderComponent({ id: 'test-input', label: 'Test label', ref });
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
@@ -203,7 +203,7 @@ describe('CustomFieldInputCurrency', () => {
 
     it('can be undefined', () => {
       const ref = createRef(null);
-      renderComponent({ id: "test-input", label: "Test label", ref });
+      renderComponent({ id: 'test-input', label: 'Test label', ref });
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });
