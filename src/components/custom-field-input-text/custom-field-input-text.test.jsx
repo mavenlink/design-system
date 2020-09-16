@@ -11,8 +11,21 @@ describe('CustomFieldInputText', () => {
   };
 
   it('has defaults', () => {
-    render(<CustomFieldInputText {...requiredProps} />);
+    const ref = createRef();
+    render(<CustomFieldInputText {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
+  });
+
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputText {...requiredProps} ref={ref} />);
+      userEvent.type(screen.getByLabelText('Test label'), 'test-value');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Test label'), '');
+      expect(ref.current.dirty).toEqual(true);
+    });
   });
 
   describe('errorText API', () => {

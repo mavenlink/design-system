@@ -32,3 +32,12 @@ exports[`CustomFieldInputText has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`CustomFieldInputText has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-input",
+  "name": "field-id",
+  "value": "",
+}
+`;

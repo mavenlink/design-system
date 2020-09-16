@@ -10,6 +10,10 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      const providedValue = props.value || '';
+      return providedValue !== this.value;
+    },
     id: props.id,
     name: props.name,
     get value() {
