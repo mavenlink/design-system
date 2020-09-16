@@ -115,6 +115,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
 
   useImperativeHandle(selfRef, () => ({
     id: props.id,
+    name: props.name,
     get value() {
       return value ? value.map(v => v.id) : [];
     },
@@ -232,6 +233,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(ChoiceType),

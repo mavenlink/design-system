@@ -1,7 +1,6 @@
 import React, { createRef } from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderer from 'react-test-renderer';
 import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
@@ -9,13 +8,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
+    name: 'field-id',
   };
 
   afterEach(cleanup);
 
   it('has defaults', () => {
-    const tree = renderer.create(<CustomFieldInputSingleChoice {...requiredProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<CustomFieldInputSingleChoice {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('accessibility', () => {

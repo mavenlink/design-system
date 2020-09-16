@@ -1,44 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CustomFieldInputCurrency has defaults 1`] = `
-<div
-  className="custom-field-input-text"
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="foo"
-    id="foo-label"
-  >
-    cash money
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      className="input"
-      defaultValue=""
-      disabled={false}
-      id="foo"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      readOnly={false}
-      required={false}
-      style={
-        Object {
-          "--numIcon": 0,
-        }
-      }
-      type="text"
-    />
+<body>
+  <div>
     <div
-      className="icon-container"
-    />
+      class="custom-field-input-text"
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="currency"
+        id="currency-label"
+      >
+        currency
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          class="input"
+          id="currency"
+          name="some-field-id"
+          style="--numIcon: 0;"
+          type="text"
+          value=""
+        />
+        <div
+          class="icon-container"
+        />
+      </div>
+    </div>
   </div>
-</div>
+</body>
 `;
