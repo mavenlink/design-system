@@ -5,13 +5,14 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import CustomFieldInputDate from './custom-field-input-date.jsx';
 
 describe('src/components/custom-field-input-date/custom-field-input-date', () => {
   const renderComponent = (props = {}) => render(<CustomFieldInputDate label="Field Date" id="field-date" {...props} />);
   const changeValue = (getInputElement, value) => {
-    fireEvent.focus(getInputElement());
+    userEvent.click(getInputElement());
     fireEvent.change(getInputElement(), { target: { value } });
     fireEvent.blur(getInputElement());
   };
@@ -21,13 +22,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   it('has defaults', () => {
     const tree = renderer.create(<CustomFieldInputDate label="Hello" id="hello" />).toJSON();
     expect(tree).toMatchSnapshot();
-  });
-
-  describe('className API', () => {
-    it('prioritizes className prop', () => {
-      const { container } = renderComponent({ className: 'prioritize-me' });
-      expect(container.firstChild).toHaveClass('prioritize-me');
-    });
   });
 
   describe('value API', () => {
@@ -66,42 +60,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
         expect(screen.getByLabelText('Field Date')).toBeValid('error');
       });
     });
-
-    xdescribe('when the value is syntactically invalid', () => {
-      it('shows an error', () => {
-        const { getByTestId } = renderComponent({ value: 'not a date' });
-        expect(getByTestId('custom-field-input')).toHaveClass('error');
-      });
-
-      it('informs the user of an invalid value', () => {
-        const { getByTestId } = renderComponent({ value: 'not a date' });
-        expect(getByTestId('custom-field-input').innerHTML).toContain('"not a date" is an invalid date');
-      });
-    });
-
-    xdescribe('when the value is semantically invalid', () => {
-      it('shows an error', () => {
-        const { getByTestId } = renderComponent({ error: true });
-        expect(getByTestId('custom-field-input')).toHaveClass('error');
-      });
-
-      it('presents the provided help text', () => {
-        const helpText = 'This should appear';
-        const { getByTestId } = renderComponent({ error: true, helpText });
-        expect(getByTestId('custom-field-input').innerHTML).toContain(helpText);
-      });
-
-      it('still shows the provided value', () => {
-        const { getByLabelText } = renderComponent({ error: true, value: '05/10/1992' });
-        expect(getByLabelText('Field Date')).toHaveValue('1992-05-10');
-      });
-    });
   });
 
-  describe('helpText', () => {
-    xit('shows on error', () => {
-      renderComponent({ helpText: 'YOOO', error: true });
-      expect(screen.getByText('YOOO')).toBeInTheDocument();
+  describe('errorText', () => {
+    it('shows an error icon and the error text', () => {
+      renderComponent({ value: '2016-07-18', errorText: 'Bad Date!' });
+      expect(screen.getByLabelText('Field Date')).not.toBeValid();
+      expect(screen.getByText('Bad Date!')).toBeInTheDocument();
     });
   });
 
@@ -118,70 +83,95 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   });
 
   describe('interaction', () => {
-    xdescribe('when focused', () => {
-      it('switches to a date input when focused', () => {
-        const { getByLabelText } = renderComponent();
+    describe('when focused', () => {
+      it('switches to a date input when focused and opens the calendar', () => {
+        const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        expect(screen.getByText('July 2016')).toBeInTheDocument();
       });
+    });
 
+    describe('when clicked', () => {
       it('ensures the date input shows the correct value', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
       });
 
-      xit('focuses on the date input', () => {
+      it('focuses on the date input', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016' });
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveFocus();
       });
     });
 
-    xdescribe('when blurred', () => {
+    describe('when blurred', () => {
       it('switches over to the text input', () => {
-        const { getByLabelText } = renderComponent({ value: '07/18/2016' });
-        fireEvent.focus(getByLabelText('Field Date'));
-        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
-        fireEvent.blur(getByLabelText('Field Date'));
-        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+        render(
+          <div>
+            <CustomFieldInputDate label="Field Date" id="field-date" value={'07/18/2016'} />
+            <input aria-label={'force-blur'} />
+          </div>,
+        );
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+        userEvent.click(screen.getByLabelText('Field Date'));
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        userEvent.click(screen.getByLabelText('force-blur'));
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'text');
       });
 
       it('stays in edit mode when it is invalid', () => {
         const { getByLabelText } = renderComponent({ value: '07/18/2016', error: true });
-        fireEvent.focus(getByLabelText('Field Date'));
+        userEvent.click(getByLabelText('Field Date'));
         fireEvent.blur(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
       });
     });
   });
 
-  xdescribe('min API', () => {
-    it('respects the min attribute', () => {
-      const { getByTestId } = renderComponent({ min: '01-01-2000', value: '05-10-1992' });
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
+  describe('calendar icon', () => {
+    it('opens to the correct date on click and closes when clicking away', () => {
+      renderComponent({ value: '2016-07-18' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
+      userEvent.click(document.body);
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
 
-    it('is respected after a change', () => {
-      const { getByTestId, getByLabelText } = renderComponent({ min: '01-01-2000', value: '05-10-2001' });
-      expect(getByTestId('custom-field-input')).not.toHaveClass('error');
-      changeValue(() => getByLabelText('Field Date'), '1998-01-01');
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    it('opens to the correct date on click / pressing enter and closes on escape', () => {
+      const { getByLabelText } = renderComponent({ value: '2016-07-18' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(getByLabelText('Field Date'));
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      fireEvent.keyDown(getByLabelText('Field Date'), { key: 'Enter' });
+      expect(screen.getByText('July 2016')).toBeInTheDocument();
     });
-  });
 
-  xdescribe('max API', () => {
-    it('respects the max attribute', () => {
-      const { getByTestId } = renderComponent({ max: '01-01-1990', value: '05-10-1992' });
-      expect(getByTestId('custom-field-input')).toHaveClass('error');
+    it('changes the date to the date selected', () => {
+      const { getByLabelText } = renderComponent({ value: '2016-09-13' });
+      expect(getByLabelText('Field Date')).toHaveValue('September 13, 2016');
+      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      userEvent.click(screen.getByLabelText('September 14'));
+      expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
+    });
+
+    it('does not open when disabled', () => {
+      renderComponent({ value: '2016-07-18', disabled: true });
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Field Date calendar'));
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
   });
 
   describe('onChange API', () => {
-    xit('accepts an onChange listener', () => {
+    it('accepts an onChange listener', () => {
       const onChange = jest.fn();
       const { getByLabelText } = renderComponent({ value: '', onChange });
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
@@ -194,13 +184,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       renderComponent({ readOnly: true, helpText: 'Foo', error: true });
       expect(screen.queryByText('Foo')).not.toBeInTheDocument();
     });
-  });
-
-  xit('changing value changes valid/invalid state', () => {
-    const { getByTestId, getByLabelText } = renderComponent({ value: 'not a date' });
-    expect(getByTestId('custom-field-input')).toHaveClass('error');
-    changeValue(() => getByLabelText('Field Date'), '2016-07-18');
-    expect(getByTestId('custom-field-input')).not.toHaveClass('error');
   });
 
   describe('forwardRef API', () => {

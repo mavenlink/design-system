@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Custom Field Date Input is editable and uses the Calendar component
 </details>
 
 ## v0.41.0
