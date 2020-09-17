@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Add `className` and `classNameReadOnly` to `Tag` component API
   - Minor: Fix styling for input of `CustomFieldMultipleChoice` component
+  - Minor: Custom Field Date Input is editable and uses the Calendar component
 </details>
 
 ## v0.41.0

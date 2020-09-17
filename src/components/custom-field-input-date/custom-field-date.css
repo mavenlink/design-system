@@ -1,0 +1,24 @@
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.date-input input::-webkit-inner-spin-button,
+.date-input input::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.input {
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+}
+
+.input-invalid {
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+  border-color: var(--mds-red-100);
+  padding-right: var(--spacing-x-large);
+}
+
+.calendar-container {
+  position: absolute;
+  background-color: var(--white);
+  z-index: 2147483647;
+}

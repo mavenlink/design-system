@@ -3,55 +3,61 @@
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <div
   onKeyDown={[Function]}
-  role="presentation"
 >
-  <label
-    className="label"
-    htmlFor="hello"
-    id="hello-label"
-  >
-    Hello
-  </label>
   <div
-    className="control-container"
+    className="date-input"
+    onKeyDown={[Function]}
+    role="presentation"
   >
-    <input
-      className="input"
-      defaultValue=""
-      disabled={false}
-      id="hello"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      readOnly={true}
-      required={false}
-      step={1}
-      style={
-        Object {
-          "--numIcon": 1,
-        }
-      }
-      type="date"
-    />
-    <div
-      className="icon-container"
+    <label
+      className="label"
+      htmlFor="hello"
+      id="hello-label"
     >
-      <svg
-        className="input-icon"
-        height={14}
-        role="img"
-        width={11}
+      Hello
+    </label>
+    <div
+      className="control-container"
+    >
+      <input
+        className="input"
+        disabled={false}
+        id="hello"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        readOnly={false}
+        required={false}
+        style={
+          Object {
+            "--numIcon": 1,
+          }
+        }
+        type="text"
+      />
+      <div
+        className="icon-container"
       >
-        <title>
-          Hello
-        </title>
-        <use
-          xlinkHref="#calendar.svg"
-        />
-      </svg>
+        <svg
+          className="button"
+          height={14}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+          width={11}
+        >
+          <title>
+            Hello calendar button
+          </title>
+          <use
+            xlinkHref="#calendar.svg"
+          />
+        </svg>
+      </div>
     </div>
   </div>
 </div>

@@ -78,7 +78,7 @@ export default function AbstractCustomField(props) {
         aria-invalid={invalidDueToProps ? 'true' : undefined}
         aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
-        className={styles.input}
+        className={props.inputClassName || styles.input}
         disabled={props.disabled}
         id={props.id}
         role={props.inputRole}
@@ -117,6 +117,7 @@ AbstractCustomField.propTypes = {
     haspopup: PropTypes.string,
   }),
   className: PropTypes.string,
+  inputClassName: PropTypes.string,
   clear: PropTypes.node,
   defaultValue: PropTypes.oneOfType([
     PropTypes.number,
@@ -162,6 +163,7 @@ AbstractCustomField.propTypes = {
 AbstractCustomField.defaultProps = {
   ariaProps: {},
   className: undefined,
+  inputClassName: undefined,
   clear: undefined,
   defaultValue: undefined,
   disabled: false,

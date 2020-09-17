@@ -193,6 +193,15 @@ describe('<Calendar />', () => {
     });
   });
 
+  describe('onDateSelected', () => {
+    it('calls the callback on date on click', () => {
+      const onDateSelectedSpy = jest.fn();
+      render(<Calendar {...requiredProps} onDateSelected={onDateSelectedSpy} />);
+      userEvent.click(screen.getByLabelText('July 28'));
+      expect(onDateSelectedSpy.mock.calls.length).toBe(1);
+    });
+  });
+
   describe('previous month button', () => {
     it('displays the previous month when clicked and when enter is pressed', () => {
       render(<Calendar {...requiredProps} />);
