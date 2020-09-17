@@ -86,7 +86,7 @@ function Calendar(props) {
       setMonth(highlightedDate.getMonth());
       setActiveDate(defaultDate);
     }
-  }, [defaultDate]);
+  }, [props.value]);
 
   useEffect(() => {
     if (activeDate.getMonth() !== month || activeDate.getFullYear() !== year) {
