@@ -29,7 +29,7 @@ const isValueValid = (value, error, isInputValid = false) => {
 const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
   const componentRef = useRef(null);
   const inputRef = useRef(null);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [isValid, setIsValid] = useState(isValueValid(props.value, props.error, true));
   const [isFocused] = useState(false);
 
