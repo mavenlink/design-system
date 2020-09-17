@@ -27,13 +27,12 @@ describe('CustomFieldInputNumber', () => {
   describe('dirty ref API', () => {
     it('updates on user interactions', () => {
       const ref = createRef();
-      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('Test label'), '12');
-      expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
-      expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} value={12} />);
       expect(ref.current.dirty).toEqual(false);
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
+      expect(ref.current.dirty).toEqual(true);
     });
   });
 
