@@ -100,6 +100,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
       defaultValue={value}
       errorText={errorText()}
       id={props.id}
+      inputRef={componentRef}
       key={`${props.id}-editing`}
       min={convertToFormat(props.min, 'yyyy-mm-dd')}
       max={convertToFormat(props.max, 'yyyy-mm-dd')}
