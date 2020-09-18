@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Button from '../button/button';
+import Button from '../button/button.jsx';
 import styles from './form.css';
 
 const Form = React.forwardRef((props, forwardedRef) => {
