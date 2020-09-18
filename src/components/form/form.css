@@ -1,0 +1,13 @@
+@import '../../styles/spacing.css';
+
+.buttons-container {
+  display: flex;
+  margin-left: var(--spacing-x-large);
+  margin-top: var(--spacing-medium);
+  max-width: 250px;
+}
+
+.primary-button {
+  composes: primary from '../button/button.css';
+  margin-right: var(--spacing-medium);
+}
