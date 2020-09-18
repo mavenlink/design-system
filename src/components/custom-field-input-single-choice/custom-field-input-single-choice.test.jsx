@@ -362,8 +362,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
     it('calls onChange when a new value is selected', () => {
       let changeValue = '';
-      const onChange = (ref) => {
-        changeValue = ref.value;
+      const onChange = (event) => {
+        changeValue = event.target.value;
       };
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} onChange={onChange} />);

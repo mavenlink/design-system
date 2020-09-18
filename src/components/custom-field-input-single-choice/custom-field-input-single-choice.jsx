@@ -147,7 +147,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   }));
 
   useEffect(() => {
-    props.onChange(selfRef.current);
+    props.onChange({ target: selfRef.current });
   }, [value]);
 
   const choices = getOptions();

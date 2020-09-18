@@ -106,7 +106,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   }, [expanded]);
 
   useEffect(() => {
-    props.onChange(selfRef.current);
+    props.onChange({ target: selfRef.current });
   }, [value]);
 
   useEffect(() => {

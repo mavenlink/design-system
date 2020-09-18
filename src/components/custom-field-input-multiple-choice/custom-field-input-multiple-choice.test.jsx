@@ -366,8 +366,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('fires the onChange prop function when the value changes', () => {
       let componentValue = null;
 
-      function onChangeHandler(componentRefCurrent) {
-        componentValue = componentRefCurrent.value;
+      function onChangeHandler(event) {
+        componentValue = event.target.value;
       }
 
       render((<CustomFieldInputMultipleChoice
