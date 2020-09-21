@@ -42,6 +42,33 @@ describe('<Form />', () => {
     });
   });
 
+  describe('dirty ref API', () => {
+    it('checks for some dirty control', () => {
+      const ref = createRef();
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      render((
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="input test 1" ref={refs[0]} />
+              <input aria-label="input test 2" ref={refs[1]} />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+
+      expect(ref.current.dirty).toEqual(false);
+      userEvent.type(screen.getByLabelText('input test 2'), 'abc');
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.type(screen.getByLabelText('input test 2'), '{backspace}{backspace}{backspace}');
+      expect(ref.current.dirty).toEqual(false);
+    });
+  });
+
   describe('onChange prop API', () => {
     it('is called', () => {
       const onChangeSpy = jest.fn((event) => event.persist());
@@ -102,6 +129,8 @@ describe('<Form />', () => {
       expect(screen.getByText('Save')).toBeInTheDocument();
     });
   });
+
+  describe('ref prop API', () => { /* Tested in usages */ })
 
   describe('refs prop API', () => { /* Tested in usages */ });
 });

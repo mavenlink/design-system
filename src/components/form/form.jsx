@@ -46,9 +46,14 @@ const Form = React.forwardRef((props, forwardedRef) => {
     get dirty() {
       return props.refs.some((controlRef) => {
         if (controlRef.current) {
-          return controlRef.current.dirty === undefined
-            ? true
-            : controlRef.current.dirty;
+          const isNative = controlRef.current.dirty === undefined;
+
+          if(isNative) {
+            const providedValue = controlRef.current.getAttribute('value') || '';
+            return controlRef.current.value !== providedValue;
+          }
+
+          return controlRef.current.dirty;
         }
 
         return false;
