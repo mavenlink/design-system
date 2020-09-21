@@ -31,7 +31,7 @@ describe('<Form />', () => {
         <Form ref={ref} refs={refs}>
           {() => (
             <React.Fragment>
-              <input aria-label="required input" ref={refs[0]} required/>
+              <input aria-label="required input" ref={refs[0]} required />
               <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
             </React.Fragment>
           )}
@@ -198,7 +198,7 @@ describe('<Form />', () => {
         <Form ref={ref} refs={refs}>
           {() => (
             <React.Fragment>
-              <input aria-label="required input" ref={refs[0]} required/>
+              <input aria-label="required input" ref={refs[0]} required />
               <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
             </React.Fragment>
           )}
