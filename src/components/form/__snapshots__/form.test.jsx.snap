@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> has defaults 1`] = `
+<body>
+  <div>
+    <form>
+      <div
+        class="buttons-container"
+      >
+        <button
+          class="primary-button"
+          disabled=""
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+`;
+
+exports[`<Form /> has defaults 2`] = `
+Object {
+  "checkValidity": [Function],
+  "dirty": false,
+}
+`;
