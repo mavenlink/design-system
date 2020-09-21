@@ -24,7 +24,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   function onSubmit(event) {
     event.preventDefault();
     props.onSubmit({
-      target: event.target,
+      target: ref.current,
       data: props.refs.reduce((data, controlRef) => {
         if (controlRef.current) {
           return {
