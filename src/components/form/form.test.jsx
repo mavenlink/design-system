@@ -46,5 +46,17 @@ describe('<Form />', () => {
     });
   });
 
+  describe('readOnly prop API', () => {
+    it('can be set', () => {
+      render(<Form {...requiredProps} readOnly={true} />);
+      expect(screen.queryByText('Save')).not.toBeInTheDocument();
+    });
+
+    it('can be unset', () => {
+      render(<Form {...requiredProps} readOnly={false} />);
+      expect(screen.getByText('Save')).toBeInTheDocument();
+    });
+  });
+
   describe('refs prop API', () => { /* Tested in usages */ });
 });

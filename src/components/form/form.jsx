@@ -62,7 +62,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   return (
     <form ref={formRef} onSubmit={onSubmit} onChange={onChange}>
       {props.children({ onChange })}
-      {props.isEditable &&
+      {!props.readOnly &&
         <div className={styles['buttons-container']}>
           <Button
             className={styles['primary-button']}
@@ -80,18 +80,18 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
 Form.propTypes = {
   children: PropTypes.func.isRequired,
-  isEditable: PropTypes.bool,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  readOnly: PropTypes.bool,
   refs: PropTypes.arrayOf(
     PropTypes.shape({ current: PropTypes.any }).isRequired
   ).isRequired,
 };
 
 Form.defaultProps = {
-  isEditable: true,
   onChange: () => {},
   onSubmit: () => {},
+  readOnly: false,
 };
 
 export default Form;
