@@ -19,6 +19,51 @@ describe('<Form />', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('children prop API', () => {
+    it('can be set', () => {
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      render((
+        <Form refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="input test 1" ref={refs[0]} />
+              <input aria-label="input test 2" ref={refs[1]} />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+
+      expect(screen.getByLabelText('input test 1')).toEqual(refs[0].current);
+      expect(screen.getByLabelText('input test 2')).toEqual(refs[1].current);
+    });
+  });
+
+  describe('onChange prop API', () => {
+    it('is called', () => {
+      const onChangeSpy = jest.fn((event) => event.persist());
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form onChange={onChangeSpy} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
+      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: refs[0].current,
+      }));
+    });
+  });
+
   describe('onSubmit prop API', () => {
     it('is called', () => {
       const onSubmitSpy = jest.fn();
