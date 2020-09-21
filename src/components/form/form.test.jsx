@@ -159,7 +159,32 @@ describe('<Form />', () => {
     });
   });
 
-  describe('ref prop API', () => { /* Tested in usages */ })
-
   describe('refs prop API', () => { /* Tested in usages */ });
+
+  describe('save button', () => {
+    it('is enables/disables on changes', () => {
+      const ref = createRef();
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      render((
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="input test 1" ref={refs[0]} />
+              <input aria-label="input test 2" ref={refs[1]} />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+
+      expect(screen.getByText('Save')).toBeDisabled();
+      userEvent.type(screen.getByLabelText('input test 2'), 'abc');
+      expect(screen.getByText('Save')).toBeEnabled();
+      userEvent.type(screen.getByLabelText('input test 2'), '{backspace}{backspace}{backspace}');
+      expect(screen.getByText('Save')).toBeDisabled();
+    });
+  });
 });
