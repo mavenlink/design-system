@@ -19,6 +19,35 @@ describe('<Form />', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('checkValidity ref API', () => {
+    it('checks for some invalid control', () => {
+      const ref = createRef();
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      render((
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="required input" ref={refs[0]} required/>
+              <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+
+      expect(ref.current.checkValidity()).toEqual(false);
+      userEvent.type(screen.getByLabelText('required input'), 'abc');
+      expect(ref.current.checkValidity()).toEqual(true);
+      userEvent.type(screen.getByLabelText('3-digit area code'), '1');
+      expect(ref.current.checkValidity()).toEqual(false);
+      userEvent.type(screen.getByLabelText('3-digit area code'), '23');
+      expect(ref.current.checkValidity()).toEqual(true);
+    });
+  });
+
   describe('children prop API', () => {
     it('can be set', () => {
       const refs = [
