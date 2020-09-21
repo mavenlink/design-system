@@ -186,5 +186,32 @@ describe('<Form />', () => {
       userEvent.type(screen.getByLabelText('input test 2'), '{backspace}{backspace}{backspace}');
       expect(screen.getByText('Save')).toBeDisabled();
     });
+
+    it('is enables/disables on validity changes', () => {
+      const ref = createRef();
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      render((
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="required input" ref={refs[0]} required/>
+              <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+
+      expect(screen.getByText('Save')).toBeDisabled();
+      userEvent.type(screen.getByLabelText('required input'), 'abc');
+      expect(screen.getByText('Save')).toBeEnabled();
+      userEvent.type(screen.getByLabelText('3-digit area code'), '1');
+      expect(screen.getByText('Save')).toBeDisabled();
+      userEvent.type(screen.getByLabelText('3-digit area code'), '23');
+      expect(screen.getByText('Save')).toBeEnabled();
+    });
   });
 });

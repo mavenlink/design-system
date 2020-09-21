@@ -17,7 +17,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
   function onChange(event) {
     props.onChange(event);
-    setValid(ref.current.checkValidity);
+    setValid(ref.current.checkValidity());
     setDirty(ref.current.dirty);
   }
 
