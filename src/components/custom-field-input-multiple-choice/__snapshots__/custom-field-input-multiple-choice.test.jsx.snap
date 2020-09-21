@@ -3,7 +3,9 @@
 exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="component-root"
+    >
       <div
         role="presentation"
       >

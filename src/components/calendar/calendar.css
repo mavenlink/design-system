@@ -3,6 +3,9 @@
 @import '../../styles/typography-v2.css';
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border: 1px solid var(--mds-grey-38);
   border-radius: 3px;
   box-sizing: border-box;
@@ -62,7 +65,6 @@
 
 .calendar-grid {
   border-collapse: collapse;
-  margin-top: var(--spacing-large);
 }
 
 .weekday {

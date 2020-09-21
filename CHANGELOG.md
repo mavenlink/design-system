@@ -7,6 +7,9 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `className` and `classNameReadOnly` to `Tag` component API
+  - Minor: Fix styling for input of `CustomFieldMultipleChoice` component
+  - Minor: Custom Field Date Input is editable and uses the Calendar component
   - Patch: Perform simple refactor to avoid react re-rendering issue on `CustomFieldInputMultiChoice`
 </details>
 

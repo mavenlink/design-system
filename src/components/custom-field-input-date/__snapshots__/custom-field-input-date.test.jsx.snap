@@ -3,43 +3,46 @@
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <body>
   <div>
-    <div
-      role="presentation"
-    >
-      <label
-        class="label"
-        for="field-date"
-        id="field-date-label"
-      >
-        Field Date
-      </label>
+    <div>
       <div
-        class="control-container"
+        class="date-input"
+        role="presentation"
       >
-        <input
-          class="input"
-          id="field-date"
-          readonly=""
-          style="--numIcon: 1;"
-          type="text"
-          value=""
-        />
-        <div
-          class="icon-container"
+        <label
+          class="label"
+          for="field-date"
+          id="field-date-label"
         >
-          <svg
-            class="input-icon"
-            height="14"
-            role="img"
-            width="11"
+          Field Date
+        </label>
+        <div
+          class="control-container"
+        >
+          <input
+            class="input"
+            id="field-date"
+            style="--numIcon: 1;"
+            type="text"
+            value=""
+          />
+          <div
+            class="icon-container"
           >
-            <title>
-              Field Date
-            </title>
-            <use
-              xlink:href="#calendar.svg"
-            />
-          </svg>
+            <svg
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
+            >
+              <title>
+                Field Date calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>

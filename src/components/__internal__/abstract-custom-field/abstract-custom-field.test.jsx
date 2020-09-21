@@ -40,6 +40,11 @@ describe('AbstractCustomField', () => {
       const { container } = render(<AbstractCustomField {...sharedProps} className="prioritize-me" />);
       expect(container.firstChild).toHaveClass('prioritize-me');
     });
+
+    it('prioritizes inputClassName prop', () => {
+      render(<AbstractCustomField {...sharedProps} inputClassName="input-prioritize-me" />);
+      expect(screen.getByLabelText('Test label')).toHaveClass('input-prioritize-me');
+    });
   });
 
   describe('defaultValue API', () => {

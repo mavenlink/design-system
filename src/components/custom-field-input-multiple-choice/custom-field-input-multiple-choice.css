@@ -3,7 +3,15 @@
 
 .autocomplete-input {
   border: none;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 0;
+}
+
+.component-root:focus-within .autocomplete-input {
+  flex-shrink: 0;
   margin: var(--spacing-small) var(--spacing-medium) var(--spacing-small) 0;
+  min-width: 25%;
 }
 
 .container {
@@ -67,6 +75,7 @@
 .read-write-container {
   composes: container;
   composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+  cursor: text;
 }
 
 .read-only-container {
@@ -76,5 +85,7 @@
 
 .tag-list {
   composes: tag-list from '../tag-list/tag-list.css';
+  display: flex;
   flex-grow: 1;
+  flex-wrap: wrap;
 }

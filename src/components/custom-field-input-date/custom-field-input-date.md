@@ -28,3 +28,15 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     disabled
 />
 ```
+
+
+##### Error state:
+
+```js
+<CustomFieldInputDate
+    id="my-birthday-4"
+    label="Juanca's Birthday"
+    value="03/03/1990"
+    errorText="Error help."
+/>
+```

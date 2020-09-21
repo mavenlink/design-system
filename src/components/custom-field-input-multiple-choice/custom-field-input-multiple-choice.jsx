@@ -125,7 +125,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   }));
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className={styles['component-root']}>
       <FormControl
         error={props.errorText}
         label={props.label}
