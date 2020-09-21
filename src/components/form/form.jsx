@@ -48,7 +48,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
         if (controlRef.current) {
           const isNative = controlRef.current.dirty === undefined;
 
-          if(isNative) {
+          if (isNative) {
             const providedValue = controlRef.current.getAttribute('value') || '';
             return controlRef.current.value !== providedValue;
           }
@@ -89,7 +89,7 @@ Form.propTypes = {
   onSubmit: PropTypes.func,
   readOnly: PropTypes.bool,
   refs: PropTypes.arrayOf(
-    PropTypes.shape({ current: PropTypes.any }).isRequired
+    PropTypes.shape({ current: PropTypes.any }).isRequired,
   ).isRequired,
 };
 

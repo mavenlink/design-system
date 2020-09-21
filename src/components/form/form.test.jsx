@@ -71,7 +71,7 @@ describe('<Form />', () => {
 
   describe('onChange prop API', () => {
     it('is called', () => {
-      const onChangeSpy = jest.fn((event) => event.persist());
+      const onChangeSpy = jest.fn(event => event.persist());
       const refs = [
         createRef(),
       ];
