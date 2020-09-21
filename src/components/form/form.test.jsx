@@ -7,6 +7,7 @@ import Form from './form.jsx';
 describe('<Form />', () => {
   const requiredProps = {
     children: () => {},
+    refs: [],
   };
 
   it('has defaults', () => {
@@ -15,4 +16,6 @@ describe('<Form />', () => {
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
   });
+
+  describe('refs prop API', () => { /* Tested in usages */ });
 });

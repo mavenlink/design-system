@@ -25,11 +25,11 @@ const Form = React.forwardRef((props, forwardedRef) => {
     event.preventDefault();
     props.onSubmit({
       target: event.target,
-      data: props.fieldRefs.reduce((data, fieldRef) => {
-        if (fieldRef.current) {
+      data: props.refs.reduce((data, controlRef) => {
+        if (controlRef.current) {
           return {
             ...data,
-            [fieldRef.current.name]: fieldRef.current,
+            [controlRef.current.name]: controlRef.current,
           };
         }
 
@@ -44,11 +44,11 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      return props.fieldRefs.some((fieldRef) => {
-        if (fieldRef.current) {
-          return fieldRef.current.dirty === undefined
+      return props.refs.some((controlRef) => {
+        if (controlRef.current) {
+          return controlRef.current.dirty === undefined
             ? true
-            : fieldRef.current.dirty;
+            : controlRef.current.dirty;
         }
 
         return false;
@@ -80,14 +80,15 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
 Form.propTypes = {
   children: PropTypes.func.isRequired,
-  fieldRefs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any }).isRequired),
   isEditable: PropTypes.bool,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  refs: PropTypes.arrayOf(
+    PropTypes.shape({ current: PropTypes.any }).isRequired
+  ).isRequired,
 };
 
 Form.defaultProps = {
-  fieldRefs: [],
   isEditable: true,
   onChange: () => {},
   onSubmit: () => {},
