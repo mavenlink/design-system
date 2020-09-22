@@ -26,7 +26,7 @@ const refs = [
   React.createRef(),
 ];
 
-<Form fieldRefs={refs} onSubmit={() => alert('Submitted the form!')}>
+<Form refs={refs} onSubmit={() => alert('Submitted the form!')}>
   {() => (
     <React.Fragment>
       <input defaultValue="Example for a persisted value" ref={refs[0]} />
@@ -64,7 +64,7 @@ function onSubmit(event) {
   window.alert(message);
 }
 
-<Form fieldRefs={refs} onSubmit={onSubmit}>
+<Form refs={refs} onSubmit={onSubmit}>
   {() => (
     <React.Fragment>
       <Text
