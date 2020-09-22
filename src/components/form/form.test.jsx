@@ -163,14 +163,13 @@ describe('<Form />', () => {
 
   describe('save button', () => {
     it('is enables/disables on changes', () => {
-      const ref = createRef();
       const refs = [
         createRef(),
         createRef(),
       ];
 
       render((
-        <Form ref={ref} refs={refs}>
+        <Form refs={refs}>
           {() => (
             <React.Fragment>
               <input aria-label="input test 1" ref={refs[0]} />
@@ -188,14 +187,13 @@ describe('<Form />', () => {
     });
 
     it('is enables/disables on validity changes', () => {
-      const ref = createRef();
       const refs = [
         createRef(),
         createRef(),
       ];
 
       render((
-        <Form ref={ref} refs={refs}>
+        <Form refs={refs}>
           {() => (
             <React.Fragment>
               <input aria-label="required input" ref={refs[0]} required />
@@ -215,14 +213,12 @@ describe('<Form />', () => {
     });
 
     it('is enables/disables on validity re-renders', () => {
-      const ref = createRef();
       const refs = [
-        createRef(),
         createRef(),
       ];
 
       const { rerender } = render((
-        <Form ref={ref} refs={refs}>
+        <Form refs={refs}>
           {() => (
             <React.Fragment>
               <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
@@ -232,16 +228,16 @@ describe('<Form />', () => {
       ));
       userEvent.type(screen.getByLabelText('3-digit area code'), '23');
       expect(screen.getByText('Save')).toBeDisabled();
-1
-      rerender(
-        <Form ref={ref} refs={refs}>
+
+      rerender((
+        <Form refs={refs}>
           {() => (
             <React.Fragment>
               <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{2}" />
             </React.Fragment>
           )}
         </Form>
-      );
+      ));
       expect(screen.getByText('Save')).toBeEnabled();
     });
   });
