@@ -106,15 +106,19 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   }, [expanded]);
 
   useEffect(() => {
-    props.onChange(selfRef.current);
+    props.onChange({ target: selfRef.current });
   }, [value]);
 
   useEffect(() => {
     setValue(props.value);
-  }, [props.value]);
+  }, [props.value.map(choice => choice.id).join('')]);
 
   useImperativeHandle(selfRef, () => ({
+    get dirty() {
+      return props.value.map(v => v.id).join(',') !== this.value.join(',');
+    },
     id: props.id,
+    name: props.name,
     get value() {
       return value ? value.map(v => v.id) : [];
     },
@@ -232,6 +236,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(ChoiceType),

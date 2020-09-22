@@ -67,7 +67,11 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   }
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      return props.value !== this.value;
+    },
     id: props.id,
+    name: props.name,
     get value() {
       return componentRef.current.value;
     },
@@ -215,6 +219,7 @@ CustomFieldInputDate.propTypes = {
   label: PropTypes.string.isRequired,
   min: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
   max: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   value: PropTypes.string,

@@ -1,21 +1,25 @@
 import React, { createRef } from 'react';
-import { render, fireEvent, cleanup, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderer from 'react-test-renderer';
-import { waitFor } from '@testing-library/dom';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
+    name: 'field-id',
   };
 
-  afterEach(cleanup);
-
   it('has defaults', () => {
-    const tree = renderer.create(<CustomFieldInputSingleChoice {...requiredProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const ref = createRef();
+    render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
+    expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
@@ -129,6 +133,22 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('prioritizes className prop', () => {
       const { container } = render(<CustomFieldInputSingleChoice {...requiredProps} className="prioritize-me" />);
       expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  });
+
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const choices = [{
+        id: 1,
+        label: 'foo',
+      }];
+      const ref = createRef();
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} ref={ref} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('foo'));
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.click(screen.getByText('Remove selected choice'));
+      expect(ref.current.dirty).toEqual(false);
     });
   });
 
@@ -342,8 +362,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
     it('calls onChange when a new value is selected', () => {
       let changeValue = '';
-      const onChange = (ref) => {
-        changeValue = ref.value;
+      const onChange = (event) => {
+        changeValue = event.target.value;
       };
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} onChange={onChange} />);

@@ -1,42 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CustomFieldInputText has defaults 1`] = `
-<div
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="test-input"
-    id="test-input-label"
-  >
-    Test label
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      className="input"
-      disabled={false}
-      id="test-input"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      readOnly={false}
-      required={false}
-      style={
-        Object {
-          "--numIcon": 0,
-        }
-      }
-      type="text"
-    />
+<body>
+  <div>
     <div
-      className="icon-container"
-    />
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="test-input"
+        id="test-input-label"
+      >
+        Test label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          class="input"
+          id="test-input"
+          name="field-id"
+          style="--numIcon: 0;"
+          type="text"
+          value=""
+        />
+        <div
+          class="icon-container"
+        />
+      </div>
+    </div>
   </div>
-</div>
+</body>
+`;
+
+exports[`CustomFieldInputText has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-input",
+  "name": "field-id",
+  "value": "",
+}
 `;

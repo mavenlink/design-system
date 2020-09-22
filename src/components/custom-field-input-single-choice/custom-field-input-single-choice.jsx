@@ -135,14 +135,19 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   }
 
   useImperativeHandle(selfRef, () => ({
+    get dirty() {
+      const providedValue = props.value ? props.value.id : undefined;
+      return providedValue !== this.value[0];
+    },
     id: props.id,
+    name: props.name,
     get value() {
       return value ? [value.id] : [];
     },
   }));
 
   useEffect(() => {
-    props.onChange(selfRef.current);
+    props.onChange({ target: selfRef.current });
   }, [value]);
 
   const choices = getOptions();
@@ -154,6 +159,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         clear={clearIcon()}
         id={props.id}
         label={props.label}
+        name={props.name}
         onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}
@@ -199,6 +205,7 @@ CustomFieldInputSingleChoice.propTypes = {
   choices: PropTypes.arrayOf(ChoiceType),
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,

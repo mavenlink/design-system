@@ -1,47 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CustomFieldInputNumber has defaults 1`] = `
-<div
-  className="custom-field-input-text"
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="test-input"
-    id="test-input-label"
-  >
-    Test label
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      className="input"
-      defaultValue=""
-      disabled={false}
-      id="test-input"
-      max={2147483648}
-      min={-2147483648}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      readOnly={false}
-      required={false}
-      step={1}
-      style={
-        Object {
-          "--numIcon": 0,
-        }
-      }
-      type="number"
-    />
+<body>
+  <div>
     <div
-      className="icon-container"
-    />
+      class="custom-field-input-text"
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="test-input"
+        id="test-input-label"
+      >
+        Test label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          class="input"
+          id="test-input"
+          max="2147483648"
+          min="-2147483648"
+          name="field-id"
+          step="1"
+          style="--numIcon: 0;"
+          type="number"
+          value=""
+        />
+        <div
+          class="icon-container"
+        />
+      </div>
+    </div>
   </div>
-</div>
+</body>
+`;
+
+exports[`CustomFieldInputNumber has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-input",
+  "name": "field-id",
+  "value": "",
+}
 `;

@@ -1,12 +1,11 @@
 import React, { createRef } from 'react';
-import renderer from 'react-test-renderer';
 import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/dom';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
@@ -20,10 +19,14 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     }],
     id: 'test-id',
     label: 'test label',
+    name: 'field-id',
   };
 
   it('has defaults', () => {
-    expect(renderer.create(<CustomFieldInputMultipleChoice {...requiredProps} />).toJSON()).toMatchSnapshot();
+    const ref = createRef();
+    render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
+    expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('autocompleter popup', () => {
@@ -110,6 +113,19 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         userEvent.click(screen.getByText('test label'));
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       });
+    });
+  });
+
+  describe('dirty ref API', () => {
+    it('updates on user interactions', () => {
+      const ref = createRef();
+      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
+      userEvent.click(screen.getByRole('combobox'));
+      expect(ref.current.dirty).toEqual(false);
+      userEvent.click(screen.getByText('Choice 1'));
+      expect(ref.current.dirty).toEqual(true);
+      userEvent.click(screen.getByText('Remove all selected choices on test label'));
+      expect(ref.current.dirty).toEqual(false);
     });
   });
 
@@ -350,8 +366,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('fires the onChange prop function when the value changes', () => {
       let componentValue = null;
 
-      function onChangeHandler(componentRefCurrent) {
-        componentValue = componentRefCurrent.value;
+      function onChangeHandler(event) {
+        componentValue = event.target.value;
       }
 
       render((<CustomFieldInputMultipleChoice

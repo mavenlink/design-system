@@ -1,64 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
-<div
-  onKeyDown={[Function]}
->
-  <div
-    className="date-input"
-    onKeyDown={[Function]}
-    role="presentation"
-  >
-    <label
-      className="label"
-      htmlFor="hello"
-      id="hello-label"
-    >
-      Hello
-    </label>
-    <div
-      className="control-container"
-    >
-      <input
-        className="input"
-        disabled={false}
-        id="hello"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        readOnly={false}
-        required={false}
-        style={
-          Object {
-            "--numIcon": 1,
-          }
-        }
-        type="text"
-      />
+<body>
+  <div>
+    <div>
       <div
-        className="icon-container"
+        class="date-input"
+        role="presentation"
       >
-        <svg
-          className="button"
-          height={14}
-          onClick={[Function]}
-          onKeyDown={[Function]}
-          role="button"
-          tabIndex={0}
-          width={11}
+        <label
+          class="label"
+          for="field-date"
+          id="field-date-label"
         >
-          <title>
-            Hello calendar button
-          </title>
-          <use
-            xlinkHref="#calendar.svg"
+          Field Date
+        </label>
+        <div
+          class="control-container"
+        >
+          <input
+            class="input"
+            id="field-date"
+            style="--numIcon: 1;"
+            type="text"
+            value=""
           />
-        </svg>
+          <div
+            class="icon-container"
+          >
+            <svg
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
+            >
+              <title>
+                Field Date calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
+`;
+
+exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "field-date",
+  "name": "field-id",
+  "value": "",
+}
 `;
