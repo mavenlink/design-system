@@ -213,5 +213,36 @@ describe('<Form />', () => {
       userEvent.type(screen.getByLabelText('3-digit area code'), '23');
       expect(screen.getByText('Save')).toBeEnabled();
     });
+
+    it('is enables/disables on validity re-renders', () => {
+      const ref = createRef();
+      const refs = [
+        createRef(),
+        createRef(),
+      ];
+
+      const { rerender } = render((
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{3}" />
+            </React.Fragment>
+          )}
+        </Form>
+      ));
+      userEvent.type(screen.getByLabelText('3-digit area code'), '23');
+      expect(screen.getByText('Save')).toBeDisabled();
+1
+      rerender(
+        <Form ref={ref} refs={refs}>
+          {() => (
+            <React.Fragment>
+              <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{2}" />
+            </React.Fragment>
+          )}
+        </Form>
+      );
+      expect(screen.getByText('Save')).toBeEnabled();
+    });
   });
 });

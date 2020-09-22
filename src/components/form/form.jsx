@@ -39,6 +39,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   }
 
   useEffect(() => {
+    setValid(ref.current.checkValidity());
     setDirty(ref.current.dirty);
   });
 
