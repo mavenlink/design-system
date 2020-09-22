@@ -10,6 +10,9 @@
 
 </details>
 
+## v0.42.1
+  - Patch: Fix documentation for Form
+
 ## v0.42.0
   - Minor: Add `className` and `classNameReadOnly` to `Tag` component API
   - Minor: Fix styling for input of `CustomFieldMultipleChoice` component
