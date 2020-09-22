@@ -233,7 +233,7 @@ describe('<Form />', () => {
         <Form refs={refs}>
           {() => (
             <React.Fragment>
-              <input aria-label="3-digit area code" ref={refs[1]} pattern="[0-9]{2}" />
+              <input aria-label="3-digit area code" ref={refs[0]} pattern="[0-9]{2}" />
             </React.Fragment>
           )}
         </Form>
