@@ -3,6 +3,7 @@
   <summary>
     Changes that have landed in master but are not yet released.
     Click to see more.
+    - Patch: Fix documentation of form component
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
