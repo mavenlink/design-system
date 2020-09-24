@@ -59,6 +59,14 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     setShouldFocusInput(false);
   }, [shouldFocusInput]);
 
+  useEffect(() => {
+    if (ref && currentValue) {
+      props.onChange({ target: ref.current });
+    } else if (currentValue) {
+      props.onChange();
+    }
+  }, [currentValue]);
+
   function onDateSelected(date) {
     setShouldFocusInput(true);
     setCurrentValue(date.toISOString().slice(0, 10));
@@ -68,12 +76,17 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      return props.value !== this.value;
+      return convertToFormat(props.value, 'yyyy-mm-dd') !== this.value;
     },
     id: props.id,
     name: props.name,
     get value() {
-      return componentRef.current.value;
+      if (inputRef.current) {
+        return convertToFormat(inputRef.current.value, 'yyyy-mm-dd');
+      } else if (componentRef.current) {
+        return convertToFormat(componentRef.current.value, 'yyyy-mm-dd');
+      }
+      return undefined;
     },
   }));
 
@@ -85,7 +98,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     }
 
     setCurrentValue(event.target.value);
-    props.onChange(event);
   };
 
   const errorText = () => {
@@ -163,7 +175,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     disabled: props.disabled,
     icon: calendarIcon(),
     label: props.label,
-    inputRef,
     required: props.required,
     onClick: onInputClick,
     onKeyDown: onInputKeyDown,
@@ -181,6 +192,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
           key={`${props.id}-editing`}
           min={convertToFormat(props.min, 'yyyy-mm-dd')}
           max={convertToFormat(props.max, 'yyyy-mm-dd')}
+          inputRef={inputRef}
           onChange={handleOnChange}
           step={1}
           type="date"

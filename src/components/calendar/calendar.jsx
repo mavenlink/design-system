@@ -216,7 +216,7 @@ function Calendar(props) {
 
   useEffect(() => {
     if (yearView && yearViewRefs[11].current && yearViewRefs[11].current.rootRef.current.scrollIntoView) {
-      yearViewRefs[11].current.rootRef.current.scrollIntoView({ block: 'nearest', inline: 'start' });
+      yearViewRefs[11].current.rootRef.current.scrollIntoView({ block: 'nearest' });
     }
   }, [yearView]);
 

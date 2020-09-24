@@ -7,6 +7,7 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     id="my-birthday-1"
     label="Andre's Birthday"
     value="1992-05-10"
+    name="custom-field-1"
 />
 ```
 
@@ -15,6 +16,7 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     id="my-birthday-2"
     label="Greyson's Birthday"
     value="08/20/2020"
+    name="custom-field-2"
 />
 ```
 
@@ -25,6 +27,7 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     id="my-birthday-4"
     label="Juanca's Birthday"
     value="03/03/1990"
+    name="custom-field-3"
     disabled
 />
 ```
@@ -37,6 +40,7 @@ A simple date field for custom fields. Permits a variety of formats and allows c
     id="my-birthday-4"
     label="Juanca's Birthday"
     value="03/03/1990"
+    name="custom-field-4"
     errorText="Error help."
 />
 ```
