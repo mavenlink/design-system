@@ -7,9 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Add submitText prop to Form
-
 </details>
+
+## v0.43.0
+  - Minor: Add submitText prop to Form
 
 ## v0.42.1
   - Patch: Fix documentation for Form
