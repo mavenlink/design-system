@@ -7,10 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Custom Field Date Input's onChange callback references ref as its target
-  - Minor: Add submitText prop to Form
 
 </details>
+
+## v0.43.1
+  - Patch: Custom Field Date Input's onChange callback references ref as its target
 
 ## v0.42.1
   - Patch: Fix documentation for Form
