@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Custom Field Date Input's onChange callback references ref as its target
 
 </details>
 
