@@ -76,7 +76,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
             type="submit"
             disabled={!valid || !dirty}
           >
-            Save
+            {props.submitText}
           </Button>
         </div>
       }
@@ -85,6 +85,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
 });
 
 Form.propTypes = {
+  submitText: PropTypes.string,
   children: PropTypes.func.isRequired,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
@@ -95,6 +96,7 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
+  submitText: 'Save',
   onChange: () => {},
   onSubmit: () => {},
   readOnly: false,
