@@ -10,7 +10,7 @@
 
 </details>
 
-## v0.43.1
+## v0.43.2
   - Patch: Custom Field Date Input's onChange callback references ref as its target
 
 ## v0.42.1
