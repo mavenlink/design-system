@@ -55,6 +55,6 @@ Object {
   "dirty": false,
   "id": "field-date",
   "name": "field-id",
-  "value": "",
+  "value": undefined,
 }
 `;

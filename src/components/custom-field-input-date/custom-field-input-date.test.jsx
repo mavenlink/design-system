@@ -27,6 +27,34 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('ref', () => {
+    it('has a dirty attribute; which returns true only when the value has changed', () => {
+      const ref = createRef();
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
+      expect(ref.current.dirty).toBe(false);
+      changeValue(() => screen.getByLabelText('Field Date'), '2016-07-18');
+      expect(ref.current.dirty).toBe(true);
+    });
+
+    it('has a id attribute; returns the id prop', () => {
+      const ref = createRef();
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
+      expect(ref.current.id).toEqual('field-date');
+    });
+
+    it('has a name attribute; returns name prop', () => {
+      const ref = createRef();
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
+      expect(ref.current.name).toEqual('field-id');
+    });
+
+    it('has a value attribute; returns the value in yyyy-mm-dd format', () => {
+      const ref = createRef();
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} value={'09/27/2020'} />);
+      expect(ref.current.value).toEqual('2020-09-27');
+    });
+  });
+
   describe('dirty ref API', () => {
     xit('updates on user interactions', () => {
       const ref = createRef();
@@ -192,6 +220,16 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="" onChange={onChange} />);
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange).toHaveBeenLastCalledWith('2016-07-18');
+    });
+
+    it('passes an object with target pointing to the current ref when initialized with a ref', () => {
+      const onChange = jest.fn();
+      const ref = createRef();
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} ref={ref} value="2016-07-16" onChange={onChange} />);
+      changeValue(() => getByLabelText('Field Date'), '2016-07-18');
+      expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange).toHaveBeenLastCalledWith({ target: ref.current });
     });
   });
 
@@ -206,8 +244,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('can be used to get value', () => {
       const inputRef = createRef(null);
       render(<CustomFieldInputDate {...requiredProps} id="test-input" label="Test label" ref={inputRef} value="2016-07-18" />);
-
-      expect(inputRef.current.value).toBe('July 18, 2016');
+      expect(inputRef.current.value).toBe('2016-07-18');
     });
   });
 });
