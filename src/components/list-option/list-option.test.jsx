@@ -118,6 +118,22 @@ describe('src/components/list-option/list-option', () => {
       });
     });
 
+    describe('setVisible', () => {
+      it('sets visible', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setVisible(true));
+        expect(screen.getByText('Test option')).not.toHaveClass('hidden');
+      });
+
+      it('unsets visible', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setVisible(false));
+        expect(screen.getByText('Test option')).toHaveClass('hidden');
+      });
+    });
+
     describe('value', () => {
       it('has the value prop', () => {
         const ref = createRef();

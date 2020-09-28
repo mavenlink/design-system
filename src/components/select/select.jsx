@@ -28,14 +28,13 @@ const Select = forwardRef(function Select(props, ref) {
   const selfRef = ref || backupRef;
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
-  const refs = props.choices.map(() => createRef());
   const caretIcon = (<Icon
     className={styles['input-icon']}
     icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = value ? value.label : '';
+  const defaultValue = value ? value : '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -81,19 +80,20 @@ const Select = forwardRef(function Select(props, ref) {
     }
   }
 
-  function getOptions() {
-    const choices = {};
-    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
-
+  function updateOptionVisibility() {
     if (searchValue) {
-      const searchValueLowerCase = searchValue.toLowerCase();
-
-      return props.choices
-        .filter(item => item.label.toLowerCase().includes(searchValueLowerCase))
-        .map(item => choices[item.id]);
+      props.listOptionRefs.forEach((listOptionRef) => {
+        if (listOptionRef.current) {
+          listOptionRef.current.setVisible(listOptionRef.current.value.includes(searchValue)); 
+        }
+      });
+    } else {
+      props.listOptionRefs.forEach((listOptionRef) => {
+        if (listOptionRef.current) {
+          listOptionRef.current.setVisible(true);
+        }
+      });
     }
-
-    return props.choices.map(item => choices[item.id]);
   }
 
   function onSelectionChange(event) {
@@ -118,13 +118,12 @@ const Select = forwardRef(function Select(props, ref) {
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      const providedValue = props.value ? props.value.id : undefined;
-      return providedValue !== this.value[0];
+      return props.value !== this.value;
     },
     id: props.id,
     name: props.name,
     get value() {
-      return value ? [value.id] : [];
+      return value;
     },
   }));
 
@@ -132,7 +131,9 @@ const Select = forwardRef(function Select(props, ref) {
     props.onChange({ target: selfRef.current });
   }, [value]);
 
-  const choices = getOptions();
+  useEffect(() => {
+    updateOptionVisibility();
+  }, [searchValue, props.listOptionRefs]);
 
   return (
     <div ref={wrapperRef} className={props.className}>
@@ -160,7 +161,7 @@ const Select = forwardRef(function Select(props, ref) {
         }}
       />
       { showOptions && (
-        props.children.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
+        (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles.dropdown}
             id={`${props.id}-single-choice-listbox`}
@@ -199,7 +200,6 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  choices: [],
   className: styles.container,
   onChange: () => {},
   placeholder: undefined,
