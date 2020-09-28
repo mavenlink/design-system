@@ -14,7 +14,7 @@ const getClassName = (className, visible) => {
   }
 
   return className;
-}
+};
 
 const ListOption = forwardRef(function ListOption(props, ref) {
   const [active, setActive] = useState(props.defaultActive);

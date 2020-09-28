@@ -1,5 +1,4 @@
 import React, {
-  createRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -34,7 +33,7 @@ const Select = forwardRef(function Select(props, ref) {
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = value ? value : '';
+  const defaultValue = value || '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -84,7 +83,7 @@ const Select = forwardRef(function Select(props, ref) {
     if (searchValue) {
       props.listOptionRefs.forEach((listOptionRef) => {
         if (listOptionRef.current) {
-          listOptionRef.current.setVisible(listOptionRef.current.value.includes(searchValue)); 
+          listOptionRef.current.setVisible(listOptionRef.current.value.includes(searchValue));
         }
       });
     } else {
@@ -188,6 +187,7 @@ const ListOptionRefType = PropTypes.shape({
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
@@ -197,9 +197,11 @@ Select.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   errorText: PropTypes.string,
+  value: PropTypes.string,
 };
 
 Select.defaultProps = {
+  children: undefined,
   className: styles.container,
   onChange: () => {},
   placeholder: undefined,

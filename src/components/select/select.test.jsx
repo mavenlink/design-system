@@ -4,7 +4,6 @@ import {
   render,
   screen,
   waitFor,
-  wait,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ListOption from '../list-option/list-option.jsx';
@@ -14,7 +13,7 @@ describe('src/components/select/select', () => {
   const baseListOptions = ['foo', 'bar'];
   const baseListOptionRefs = baseListOptions.map(() => createRef());
   const baseListOptionElements = baseListOptions.map((option, index) => {
-    return(<ListOption key={option} ref={baseListOptionRefs[index]} value={option}>{option}</ListOption>);
+    return (<ListOption key={option} ref={baseListOptionRefs[index]} value={option}>{option}</ListOption>);
   });
   const requiredProps = {
     id: 'test-id',
