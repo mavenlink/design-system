@@ -44,6 +44,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [isValid, setIsValid] = useState(isValueValid(currentValue, props.errorText, true));
   const [expanded, setExpanded] = useState(false);
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
+  const [initialValue, setInitialValue] = useState(true);
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -58,14 +59,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
     setShouldFocusInput(false);
   }, [shouldFocusInput]);
-
-  useEffect(() => {
-    if (ref && currentValue) {
-      props.onChange({ target: ref.current });
-    } else if (currentValue) {
-      props.onChange();
-    }
-  }, [currentValue]);
 
   function onDateSelected(date) {
     setShouldFocusInput(true);
@@ -89,6 +82,18 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
       return undefined;
     },
   }));
+
+  useEffect(() => {
+    if (!initialValue) {
+      if (ref) {
+        props.onChange({ target: ref.current });
+      } else {
+        props.onChange(currentValue);
+      }
+    } else {
+      setInitialValue(false);
+    }
+  }, [currentValue]);
 
   const handleOnChange = (event) => {
     if (inputRef.current) {
