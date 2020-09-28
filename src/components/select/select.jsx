@@ -12,7 +12,7 @@ import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
-import styles from '../custom-field-input-single-choice/custom-field-input-single-choice.css';
+import styles from './select.css';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
