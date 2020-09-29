@@ -161,6 +161,13 @@ describe('<Form />', () => {
 
   describe('refs prop API', () => { /* Tested in usages */ });
 
+  describe('submitText API', () => {
+    it('can be set', () => {
+      render(<Form {...requiredProps} submitText="YOLO SWAG" />);
+      expect(screen.getByText('YOLO SWAG').type).toEqual('submit');
+    });
+  });
+
   describe('save button', () => {
     it('is enables/disables on changes', () => {
       const refs = [

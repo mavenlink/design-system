@@ -1,13 +1,16 @@
 @import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
 
 .container {
   margin: var(--spacing-x-large);
 }
 
 .heading {
+  font: var(--mds-type-page-title);
   margin: 0;
 }
 
 .description {
+  font: var(--mds-type-content);
   margin: var(--spacing-large) 0 0;
 }
