@@ -46,13 +46,31 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map((i, index) => ({ id: index, label: i }));
 
-<CustomFieldInputSingleChoice
-  choices={choices}
-  id="editable-example-1"
-  label="Editable Example 1"
-  name="editable-1"
-  value={choices[3]}
-/>
+function TestComponent() {
+  const [value, setValue] = React.useState();
+  const inputRef = React.useRef();
+
+  function buttonOnClickHandler() {
+    setValue(inputRef.current.value);
+  }
+
+  return(
+    <div>
+      <CustomFieldInputSingleChoice
+        choices={choices}
+        id="editable-example-1"
+        label="Editable Example 1"
+        name="editable-1"
+        ref={inputRef}
+        value={choices[3]}
+      />
+      <button onClick={buttonOnClickHandler}>Get Value</button>
+      <div><span>{value}</span></div>
+    </div>
+  )
+}
+
+<TestComponent />
 ```
 
 ```js

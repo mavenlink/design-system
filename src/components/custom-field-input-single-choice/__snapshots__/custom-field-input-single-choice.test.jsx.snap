@@ -7,47 +7,51 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
       class="container"
     >
       <div
-        role="presentation"
+        class="container"
       >
-        <label
-          class="label"
-          for="test-id"
-          id="test-id-label"
-        >
-          Test label
-        </label>
         <div
-          class="control-container"
+          role="presentation"
         >
-          <input
-            aria-autocomplete="list"
-            aria-controls="test-id-single-choice-listbox"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class="input"
-            id="test-id"
-            name="field-id"
-            role="combobox"
-            style="--numIcon: 1;"
-            type="text"
-            value=""
-          />
-          <div
-            class="icon-container"
+          <label
+            class="label"
+            for="test-id"
+            id="test-id-label"
           >
-            <svg
-              class="input-icon"
-              height="6"
-              role="img"
-              width="10"
+            Test label
+          </label>
+          <div
+            class="control-container"
+          >
+            <input
+              aria-autocomplete="list"
+              aria-controls="test-id-single-choice-listbox"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              class="input"
+              id="test-id"
+              name="field-id"
+              role="combobox"
+              style="--numIcon: 1;"
+              type="text"
+              value=""
+            />
+            <div
+              class="icon-container"
             >
-              <title>
-                Open choices listbox
-              </title>
-              <use
-                xlink:href="#caret-down.svg"
-              />
-            </svg>
+              <svg
+                class="input-icon"
+                height="6"
+                role="img"
+                width="10"
+              >
+                <title>
+                  Open choices listbox
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
