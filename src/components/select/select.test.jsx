@@ -260,7 +260,7 @@ describe('src/components/select/select', () => {
       expect(screen.getByLabelText('Test label')).toHaveValue('foo');
     });
 
-    xit('keeps the selected value selected', () => {
+    it('keeps the selected value selected', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByText('foo'));
@@ -277,7 +277,7 @@ describe('src/components/select/select', () => {
       expect(screen.getByLabelText('Test label')).toHaveValue('foo');
     });
 
-    xit('provided value sets the corresponding list item as selected', () => {
+    it('provided value sets the corresponding list item as selected', () => {
       const value = 'bar';
       render(<Select {...requiredProps} value={value}>{baseListOptionElements}</Select>);
       userEvent.click(screen.getByLabelText('Test label'));

@@ -48,6 +48,9 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setFocusQueued(bool);
       setActive(bool);
     },
+    setSelected: (bool) => {
+      setSelected(bool);
+    },
     setVisible: (bool) => {
       setVisible(bool);
     },

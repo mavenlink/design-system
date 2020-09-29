@@ -95,6 +95,14 @@ const Select = forwardRef(function Select(props, ref) {
     }
   }
 
+  function updateOptionSelected() {
+    props.listOptionRefs.forEach((listOptionRef) => {
+      if (listOptionRef.current) {
+        listOptionRef.current.setSelected(value === listOptionRef.current.value);
+      }
+    });
+  }
+
   function onSelectionChange(event) {
     const selectedValue = event.target.value;
     setValue(selectedValue);
@@ -133,6 +141,10 @@ const Select = forwardRef(function Select(props, ref) {
   useEffect(() => {
     updateOptionVisibility();
   }, [searchValue, props.listOptionRefs]);
+
+  useEffect(() => {
+    updateOptionSelected();
+  }, [value, showOptions]);
 
   return (
     <div ref={wrapperRef} className={props.className}>

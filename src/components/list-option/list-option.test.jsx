@@ -118,6 +118,22 @@ describe('src/components/list-option/list-option', () => {
       });
     });
 
+    describe('setSelected', () => {
+      it('sets selected', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setSelected(true));
+        expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true');
+      });
+
+      it('unsets selected', () => {
+        const ref = createRef();
+        render(<ListOption {...requiredProps} ref={ref} />);
+        act(() => ref.current.setSelected(false));
+        expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+      });
+    });
+
     describe('setVisible', () => {
       it('sets visible', () => {
         const ref = createRef();
