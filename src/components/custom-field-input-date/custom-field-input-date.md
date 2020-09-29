@@ -2,12 +2,22 @@ A simple date field for custom fields. Permits a variety of formats and allows c
 
 ##### Basic usage:
 
-```js
+```jsx
+const ref = React.createRef();
+const onChange = function() { console.log(`
+value: ${ref.current.value}
+dirty: ${ref.current.dirty}
+name: ${ref.current.name}
+id: ${ref.current.id}`
+)};
+
 <CustomFieldInputDate
     id="my-birthday-1"
     label="Andre's Birthday"
     value="1992-05-10"
     name="custom-field-1"
+    ref={ref}
+    onChange={onChange}
 />
 ```
 
