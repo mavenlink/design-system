@@ -283,6 +283,28 @@ describe('src/components/select/select', () => {
 
       expect(screen.getByText('foo')).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('keeps the selected value selected even when value type is complex', () => {
+      const listOptions = [{ id: 0, label: 'foo' }];
+      const listOptionRefs = listOptions.map(() => React.createRef());
+      const listOptionElements = listOptions.map((option, index) => {
+        return (<ListOption key={option.id} ref={listOptionRefs[index]} value={option}>{option.label}</ListOption>);
+      });
+
+      render(
+        <Select
+          {...requiredProps}
+          value={listOptions[0]}
+          displayValueEvaluator={value => value.label}
+        >
+          {listOptionElements}
+        </Select>);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('foo'));
+      userEvent.click(screen.getAllByLabelText('Test label')[0]);
+
+      expect(screen.getByText('foo')).toHaveAttribute('aria-selected', 'true');
+    });
   });
 
   describe('value API', () => {

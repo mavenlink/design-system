@@ -33,7 +33,7 @@ const Select = forwardRef(function Select(props, ref) {
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = props.displayValueEvaluator(value || '');
+  const defaultValue = value ? props.displayValueEvaluator(value || props.value) : '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -100,7 +100,7 @@ const Select = forwardRef(function Select(props, ref) {
   function updateOptionSelected() {
     props.listOptionRefs.forEach((listOptionRef) => {
       if (listOptionRef.current) {
-        listOptionRef.current.setSelected(value === listOptionRef.current.value);
+        listOptionRef.current.setSelected(JSON.stringify(value) === JSON.stringify(listOptionRef.current.value));
       }
     });
   }
