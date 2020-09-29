@@ -135,6 +135,21 @@ describe('src/components/select/select', () => {
     });
   });
 
+  describe('displayValueEvaluator API', () => {
+    it('handles value objects when displayValueEvaluator is provided', () => {
+      const selectValue = { id: 0, label: 'foo' };
+      render(
+        <Select
+          {...requiredProps}
+          value={selectValue}
+          displayValueEvaluator={value => value.label}
+        >
+          {baseListOptionElements}
+        </Select>);
+      expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+    });
+  });
+
   describe('dirty ref API', () => {
     it('updates on user interactions', () => {
       const ref = createRef();

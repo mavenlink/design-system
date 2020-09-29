@@ -33,7 +33,7 @@ const Select = forwardRef(function Select(props, ref) {
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = value || '';
+  const defaultValue = props.displayValueEvaluator(value || '');
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -83,7 +83,9 @@ const Select = forwardRef(function Select(props, ref) {
     if (searchValue) {
       props.listOptionRefs.forEach((listOptionRef) => {
         if (listOptionRef.current) {
-          listOptionRef.current.setVisible(listOptionRef.current.value.includes(searchValue));
+          const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
+
+          listOptionRef.current.setVisible(listOptionDisplayValue.includes(searchValue));
         }
       });
     } else {
@@ -201,6 +203,9 @@ Select.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
+  /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. */
+  displayValueEvaluator: PropTypes.func,
+  errorText: PropTypes.string,
   label: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
@@ -208,19 +213,19 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  errorText: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
 Select.defaultProps = {
   children: undefined,
   className: styles.container,
+  displayValueEvaluator: value => value,
+  errorText: undefined,
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
   value: undefined,
-  errorText: undefined,
 };
 
 export default Select;
