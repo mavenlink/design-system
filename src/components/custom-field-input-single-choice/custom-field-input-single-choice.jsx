@@ -17,13 +17,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   const listOptionRefs = props.choices.map(() => createRef());
 
-  function getOptions() {
-    const choices = {};
-    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
-
-    return props.choices.map(item => choices[item.id]);
-  }
-
   function selectOnChangeHandler(event) {
     if (event.target.value) {
       setValue(props.choices.find(choice => choice.id === event.target.value.id));
@@ -32,8 +25,12 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     }
   }
 
-  const listOptions = (choices) => {
-    return choices
+  const listOptions = () => {
+    const choices = {};
+    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
+
+    return props.choices
+      .map(item => choices[item.id])
       .map(item => (
         <ListOption
           key={item.id}
@@ -65,8 +62,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     props.onChange({ target: selfRef.current });
   }, [value]);
 
-  const choices = getOptions();
-
   return (
     <Select
       className={props.className}
@@ -82,7 +77,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
       required={props.required}
       value={value}
     >
-      { listOptions(choices) }
+      { listOptions() }
     </Select>
   );
 });
