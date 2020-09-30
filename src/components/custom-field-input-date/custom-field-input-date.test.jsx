@@ -106,6 +106,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('placeholder API', () => {
+    it('does not show an error', () => {
+      render(<CustomFieldInputDate {...requiredProps} label="Field Date" id="field-date" placeholder="Select a date!" />);
+      expect(screen.getByLabelText('Field Date')).toHaveAttribute('placeholder', 'Select a date!');
+    });
+  });
+
   describe('errorText', () => {
     it('shows an error icon and the error text', () => {
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" errorText="Bad Date!" />);

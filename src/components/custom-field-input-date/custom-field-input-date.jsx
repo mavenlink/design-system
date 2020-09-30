@@ -234,6 +234,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         id={props.id}
         key={`${props.id}-readonly`}
         inputRef={componentRef}
+        placeholder={props.placeholder}
         type="text"
       />
     );
@@ -259,6 +260,7 @@ CustomFieldInputDate.propTypes = {
   label: PropTypes.string.isRequired,
   min: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
   max: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
+  placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   required: PropTypes.bool,
@@ -271,6 +273,7 @@ CustomFieldInputDate.defaultProps = {
   min: undefined,
   max: undefined,
   onChange: () => {},
+  placeholder: undefined,
   required: false,
   value: '',
 };
