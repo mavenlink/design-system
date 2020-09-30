@@ -1,10 +1,15 @@
 @import '../../styles/spacing.css';
 @import '../../styles/colors-v2.css';
+@import '../../styles/typography-v2.css';
 
 .date-input input::-webkit-inner-spin-button,
 .date-input input::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
+}
+
+.date-input input {
+  font: var(--mds-type-content);
 }
 
 .input {
