@@ -31,6 +31,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
       id={props.id}
       inputRef={inputRef}
       label={props.label}
+      maxLength={props.maxLength}
       name={props.name}
       onBlur={props.onBlur}
       onChange={props.onChange}
@@ -62,6 +63,10 @@ CustomFieldInputText.propTypes = {
   id: PropTypes.string.isRequired,
   inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
+  maxLength: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
@@ -85,6 +90,7 @@ CustomFieldInputText.defaultProps = {
   disabled: false,
   errorText: '',
   inputRef: undefined,
+  maxLength: undefined,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
