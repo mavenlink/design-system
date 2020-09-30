@@ -103,7 +103,7 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
-  className: '',
+  className: undefined,
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
