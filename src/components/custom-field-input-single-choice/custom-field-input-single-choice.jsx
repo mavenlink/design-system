@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Select from '../select/select.jsx';
-import styles from './custom-field-input-single-choice.css';
 import ListOption from '../list-option/list-option.jsx';
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
@@ -17,8 +16,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const selfRef = ref || backupRef;
 
   const listOptionRefs = props.choices.map(() => createRef());
-
-  const wrapperRef = useRef(null);
 
   function getOptions() {
     const choices = {};
@@ -71,23 +68,22 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const choices = getOptions();
 
   return (
-    <div ref={wrapperRef} className={props.className}>
-      <Select
-        displayValueEvaluator={selectValue => selectValue.label}
-        errorText={props.errorText}
-        id={props.id}
-        label={props.label}
-        listOptionRefs={listOptionRefs}
-        name={props.name}
-        onChange={selectOnChangeHandler}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        required={props.required}
-        value={value}
-      >
-        { listOptions(choices) }
-      </Select>
-    </div>
+    <Select
+      className={props.className}
+      displayValueEvaluator={selectValue => selectValue.label}
+      errorText={props.errorText}
+      id={props.id}
+      label={props.label}
+      listOptionRefs={listOptionRefs}
+      name={props.name}
+      onChange={selectOnChangeHandler}
+      placeholder={props.placeholder}
+      readOnly={props.readOnly}
+      required={props.required}
+      value={value}
+    >
+      { listOptions(choices) }
+    </Select>
   );
 });
 
@@ -112,7 +108,7 @@ CustomFieldInputSingleChoice.propTypes = {
 
 CustomFieldInputSingleChoice.defaultProps = {
   choices: [],
-  className: styles.container,
+  className: '',
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
