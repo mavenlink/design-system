@@ -79,32 +79,6 @@ const Select = forwardRef(function Select(props, ref) {
     }
   }
 
-  function updateOptionVisibility() {
-    if (searchValue) {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
-
-          listOptionRef.current.setVisible(listOptionDisplayValue.includes(searchValue));
-        }
-      });
-    } else {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          listOptionRef.current.setVisible(true);
-        }
-      });
-    }
-  }
-
-  function updateOptionSelected() {
-    props.listOptionRefs.forEach((listOptionRef) => {
-      if (listOptionRef.current) {
-        listOptionRef.current.setSelected(JSON.stringify(value) === JSON.stringify(listOptionRef.current.value));
-      }
-    });
-  }
-
   function onSelectionChange(event) {
     const selectedValue = event.target.value;
     setValue(selectedValue);
@@ -140,12 +114,30 @@ const Select = forwardRef(function Select(props, ref) {
     props.onChange({ target: selfRef.current });
   }, [value]);
 
-  useEffect(() => {
-    updateOptionVisibility();
+  useEffect(function updateOptionVisibility() {
+    if (searchValue) {
+      props.listOptionRefs.forEach((listOptionRef) => {
+        if (listOptionRef.current) {
+          const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
+
+          listOptionRef.current.setVisible(listOptionDisplayValue.includes(searchValue));
+        }
+      });
+    } else {
+      props.listOptionRefs.forEach((listOptionRef) => {
+        if (listOptionRef.current) {
+          listOptionRef.current.setVisible(true);
+        }
+      });
+    }
   }, [searchValue, props.listOptionRefs]);
 
-  useEffect(() => {
-    updateOptionSelected();
+  useEffect(function updateOptionSelected() {
+    props.listOptionRefs.forEach((listOptionRef) => {
+      if (listOptionRef.current) {
+        listOptionRef.current.setSelected(JSON.stringify(value) === JSON.stringify(listOptionRef.current.value));
+      }
+    });
   }, [value, showOptions]);
 
   return (
