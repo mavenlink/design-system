@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.44.1
+  - Patch: Import Select component in documentation
+
 ## v0.44.0
   - Patch: Update PageHeader typography to match MDS specs
   - Minor: Add new `Select` component

@@ -1,5 +1,7 @@
 Default usage:
 ```js
+import Select from '@mavenlink/design-system/src/components/select/select.jsx';
+
 <Select
   id="default-example-1"
   label="Default Example 1"
@@ -11,6 +13,7 @@ Default usage:
 
 Default usage with complex value objects:
 ```js
+import Select from '@mavenlink/design-system/src/components/select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 const listOptions = [{id: 0, label: 'foo'}];
@@ -34,6 +37,7 @@ const listOptionElements = listOptions.map((option, index) => {
 
 Complex usage with parent component:
 ```js
+import Select from '@mavenlink/design-system/src/components/select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 const listOptions = ['test', 'this', 'select'];
