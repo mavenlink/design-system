@@ -71,17 +71,17 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('value API', () => {
     it('accepts a string in format YYYY-MM-DD', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
-      expect(getByLabelText('Field Date')).toHaveValue('July 18, 2016');
+      expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
 
     it('accepts a string in format mm/dd/yyyy', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" />);
-      expect(getByLabelText('Field Date')).toHaveValue('July 18, 2016');
+      expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
 
     it('accepts a string in format mm-dd-yyyy', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
-      expect(getByLabelText('Field Date')).toHaveValue('July 18, 2016');
+      expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
   });
 
@@ -200,10 +200,10 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
     it('changes the date to the date selected', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-09-13" />);
-      expect(getByLabelText('Field Date')).toHaveValue('September 13, 2016');
+      expect(getByLabelText('Field Date')).toHaveValue('Sep 13, 2016');
       userEvent.click(screen.getByTitle('Field Date calendar button'));
       userEvent.click(screen.getByLabelText('September 14'));
-      expect(getByLabelText('Field Date')).toHaveValue('September 14, 2016');
+      expect(getByLabelText('Field Date')).toHaveValue('Sep 14, 2016');
     });
 
     it('does not open when disabled', () => {

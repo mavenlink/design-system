@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import calendarSvg from '../../svgs/calendar.svg';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
-import { convertToFormat, validDate } from './format/format-date.js';
 import dateStyles from './custom-field-date.css';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
@@ -16,6 +15,30 @@ const isValidInput = (value) => {
 
   return validDate(value);
 };
+
+function validDate(dateString) {
+  const dateNumber = Date.parse(dateString);
+  const date = new Date(dateNumber);
+  return date instanceof Date && !isNaN(dateNumber);
+}
+
+function formatDateString(dateString) {
+  if (!dateString) {
+    return '';
+  }
+
+  const date = new Date(Date.parse(dateString));
+  return date.toISOString().split('T')[0];
+}
+
+function presentDateString(dateString) {
+  if (!dateString) {
+    return '';
+  }
+
+  const date = new Date(Date.parse(dateString));
+  return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' });
+}
 
 function isValidDate(dateString) {
   if (dateString === '') return true;
@@ -39,7 +62,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const componentRef = useRef(null);
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(false);
-  const value = validDate(props.value) ? convertToFormat(props.value, 'yyyy-mm-dd') : props.value;
+  const value = validDate(props.value) ? formatDateString(props.value) : props.value;
   const [currentValue, setCurrentValue] = useState(value);
   const [isValid, setIsValid] = useState(isValueValid(currentValue, props.errorText, true));
   const [expanded, setExpanded] = useState(false);
@@ -69,15 +92,15 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      return convertToFormat(props.value, 'yyyy-mm-dd') !== this.value;
+      return formatDateString(props.value) !== this.value;
     },
     id: props.id,
     name: props.name,
     get value() {
       if (inputRef.current) {
-        return convertToFormat(inputRef.current.value, 'yyyy-mm-dd');
+        return formatDateString(inputRef.current.value);
       } else if (componentRef.current) {
-        return convertToFormat(componentRef.current.value, 'yyyy-mm-dd');
+        return formatDateString(componentRef.current.value);
       }
       return undefined;
     },
@@ -98,7 +121,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const handleOnChange = (event) => {
     if (inputRef.current) {
       const isInputValid = inputRef.current.validity.valid;
-      const newDate = convertToFormat(event.target.value, 'yyyy-mm-dd');
+      const newDate = formatDateString(event.target.value);
       setIsValid(isValueValid(newDate, props.errorText, isInputValid));
     }
 
@@ -195,8 +218,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
           errorText={errorText()}
           id={props.id}
           key={`${props.id}-editing`}
-          min={convertToFormat(props.min, 'yyyy-mm-dd')}
-          max={convertToFormat(props.max, 'yyyy-mm-dd')}
+          min={formatDateString(props.min)}
+          max={formatDateString(props.max)}
           inputRef={inputRef}
           onChange={handleOnChange}
           step={1}
@@ -207,7 +230,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     return (
       <AbstractCustomField
         {...sharedProps}
-        defaultValue={convertToFormat(currentValue, 'Month dd, yyyy')}
+        defaultValue={presentDateString(currentValue)}
         id={props.id}
         key={`${props.id}-readonly`}
         inputRef={componentRef}
