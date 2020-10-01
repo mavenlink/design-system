@@ -7,12 +7,17 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add maxLength attribute support to text and abstract custom fields
+</details>
+
+## v0.44.1
+  - Patch: Import Select component in documentation
+
+## v0.44.0
   - Patch: Update PageHeader typography to match MDS specs
   - Minor: Add new `Select` component
   - Minor: Refactor `CustomFieldInputSingleChoice` to use `Select`
   - Minor: Add new `setSelected` and `setVisible` methods to `ListOption` ref API
-  - Minor: Add maxLength attribute support to text and abstract custom fields
-</details>
 
 ## v0.43.3
   - Minor: Add submitText prop to Form
