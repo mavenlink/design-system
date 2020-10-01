@@ -11,6 +11,7 @@
   - Minor: Add new `Select` component
   - Minor: Refactor `CustomFieldInputSingleChoice` to use `Select`
   - Minor: Add new `setSelected` and `setVisible` methods to `ListOption` ref API
+  - Minor: Add maxLength attribute support to text and abstract custom fields
 </details>
 
 ## v0.43.3
