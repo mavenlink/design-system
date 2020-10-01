@@ -55,13 +55,13 @@ jobs:
       - run: yarn run wait-on http://localhost:6060 && yarn cypress run
   deploy:
     docker:
-      - image: circleci/node:10.18.0
+      - image: circleci/node:14
     working_directory: ~/repo
     steps:
       - checkout
       - install_dependencies:
           image: "node"
-          version: "10.18.0"
+          version: "14"
       - run: |
           git config user.email "ci-deployment@mavenlink"
           git config user.name "CI Deployment"

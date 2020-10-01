@@ -29,6 +29,27 @@ During development, it might be worthwhile to comment out contents of the file w
     - [`@testing-library/react` queries](https://testing-library.com/docs/guide-which-query) are DOM tree traversal methods with accessibility prioritized
     - [`@testing-library/dom` events](https://github.com/testing-library/dom-testing-library/blob/master/src/events.js) are DOM events to approximate user interactions on components
 
+The general flow for testing a component is:
+
+1. Test the default render state and ref state
+    - A simple test would: `render(...); expect(document.body).toMatchSnapshot();`
+    - A simple test would `render(<... ref={ref} />); expect(ref.current).toMatchSnapshot();`
+1. Test each prop API interface:
+    - boolean: set to `true` and `false`
+    - string: set to some unique string
+    - number: set to some unique number
+    - array: set to an empty array, an array length of 1, and an array length greater than 1
+1. Test each ref API interface:
+    - getter: get the value on a variety of component states (which matter to the getter function)
+    - setter: follow a similar testing pattern to the props API interface testing
+1. Test a11y interactivity
+    - For each keyboard support, there should be an explicit test for its functionality
+        - A simple test would `fireEvent.keyDown` (until `userEvent.type` works)
+    - For each mouse support, there should be an explicit test for its functionality
+        - A simple test would `userEvent.click`
+    - For each label support, there should be an explicit test for its functionality
+        - A simple test would `screen.getByLabelText`
+
 ## Integration
 
 Integration tests use [Cypress](https://www.cypress.io/), and serve to give us confidence that our design system site is working properly and is not broken. It's **_not_** intended to test the individual components.
