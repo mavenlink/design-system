@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add maxLength attribute support to text and abstract custom fields
 </details>
 
 ## v0.44.1

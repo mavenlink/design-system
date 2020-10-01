@@ -113,6 +113,18 @@ describe('AbstractCustomField', () => {
     });
   });
 
+  describe('maxLength API', () => {
+    it('sets the maxLength (integer) attribute', () => {
+      render(<AbstractCustomField {...sharedProps} maxLength={5} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('maxLength', '5');
+    });
+
+    it('sets the maxLength (string) attribute', () => {
+      render(<AbstractCustomField {...sharedProps} maxLength="5" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('maxLength', '5');
+    });
+  });
+
   describe('label API', () => {
     it('sets the label', () => {
       render(<AbstractCustomField {...sharedProps} label="Another label" />);
