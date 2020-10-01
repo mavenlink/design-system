@@ -83,6 +83,7 @@ export default function AbstractCustomField(props) {
         id={props.id}
         role={props.inputRole}
         max={props.max}
+        maxLength={props.maxLength}
         min={props.min}
         name={props.name}
         onBlur={props.onBlur}
@@ -134,6 +135,10 @@ AbstractCustomField.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
+  maxLength: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   min: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
@@ -172,6 +177,7 @@ AbstractCustomField.defaultProps = {
   inputRef: undefined,
   inputRole: undefined,
   max: undefined,
+  maxLength: undefined,
   min: undefined,
   name: undefined,
   onBlur: () => {},
