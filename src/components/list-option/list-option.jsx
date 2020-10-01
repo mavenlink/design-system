@@ -8,14 +8,23 @@ import React, {
 import PropTypes from 'prop-types';
 import styles from './list-option.css';
 
+const getClassName = (className, visible) => {
+  if (!visible) {
+    return `${className} ${styles.hidden}`;
+  }
+
+  return className;
+};
+
 const ListOption = forwardRef(function ListOption(props, ref) {
   const [active, setActive] = useState(props.defaultActive);
   const [didMount, setDidMount] = useState(false);
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
+  const [visible, setVisible] = useState(true);
   const rootRef = useRef();
   const selectedClassName = props.selected ? styles.selected : styles.option;
-  const className = props.className ? props.className : selectedClassName;
+  const className = getClassName(props.className ? props.className : selectedClassName, visible);
 
   function onClick() {
     setSelected(!selected);
@@ -38,6 +47,12 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     setActive: (bool) => {
       setFocusQueued(bool);
       setActive(bool);
+    },
+    setSelected: (bool) => {
+      setSelected(bool);
+    },
+    setVisible: (bool) => {
+      setVisible(bool);
     },
     value: props.value,
     rootRef,

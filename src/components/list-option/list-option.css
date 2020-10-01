@@ -2,6 +2,10 @@
 @import '../../styles/spacing.css';
 @import '../../styles/colors-v2.css';
 
+.hidden {
+  display: none;
+}
+
 .option {
   --selected-background: var(--mds-grey-12);
 
