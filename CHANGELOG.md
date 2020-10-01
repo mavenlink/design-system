@@ -11,6 +11,8 @@
   - Minor: Add new `Select` component
   - Minor: Refactor `CustomFieldInputSingleChoice` to use `Select`
   - Minor: Add new `setSelected` and `setVisible` methods to `ListOption` ref API
+  - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
+  - Minor: `Calendar` no longer triggers a selection on year view change
 </details>
 
 ## v0.43.3
