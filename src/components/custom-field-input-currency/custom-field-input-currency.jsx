@@ -40,10 +40,10 @@ function formatValue(unitValue, currencyCode) {
 }
 
 const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, ref) {
-  const componentRef = useRef(null);
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
 
@@ -119,7 +119,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
       <CustomFieldInputNumber
         {...sharedProps}
         onBlur={handleOnBlur}
-        inputRef={numberRef}
+        ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         value={input}
       />

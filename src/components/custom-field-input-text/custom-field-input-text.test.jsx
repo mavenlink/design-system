@@ -51,14 +51,6 @@ describe('CustomFieldInputText', () => {
     });
   });
 
-  describe('inputRef API', () => {
-    it('sets the ref on the input', () => {
-      const inputRef = createRef();
-      render(<CustomFieldInputText {...requiredProps} inputRef={inputRef} />);
-      expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
-    });
-  });
-
   describe('value API', () => {
     it('sets the value attribute', () => {
       render(<CustomFieldInputText {...requiredProps} value="test-value" />);
