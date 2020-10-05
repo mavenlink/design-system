@@ -65,7 +65,7 @@ function onSubmit(event) {
 }
 
 <Form refs={refs} onSubmit={onSubmit}>
-  {() => (
+  {({ onChange }) => (
     <React.Fragment>
       <Text
         defaultValue="Example for a persisted value"
@@ -100,6 +100,7 @@ function onSubmit(event) {
         id="single-choice-field"
         label="Custom Field Single Choice"
         name="single-choice-name"
+        onChange={onChange}
         ref={refs[4]}
       />
       <MultiChoice
@@ -107,6 +108,7 @@ function onSubmit(event) {
         id="multiple-choice-field"
         label="Custom Field Multiple Choice"
         name="multiple-choice-name"
+        onChange={onChange}
         ref={refs[5]}
       />
     </React.Fragment>
