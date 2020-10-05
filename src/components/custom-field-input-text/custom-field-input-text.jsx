@@ -4,8 +4,7 @@ import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 
 const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref) {
-  const defaultRef = useRef(null);
-  const inputRef = props.inputRef || defaultRef;
+  const inputRef = useRef(null);
 
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
 
@@ -61,7 +60,6 @@ CustomFieldInputText.propTypes = {
   disabled: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.oneOfType([
     PropTypes.number,
@@ -89,7 +87,6 @@ CustomFieldInputText.defaultProps = {
   defaultValue: undefined,
   disabled: false,
   errorText: '',
-  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: () => {},
