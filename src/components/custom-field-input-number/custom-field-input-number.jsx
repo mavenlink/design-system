@@ -10,8 +10,7 @@ const apiLimits = {
 };
 
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
-  const fallbackRef = useRef(null);
-  const inputRef = props.inputRef || fallbackRef;
+  const inputRef = useRef(null);
 
   const [checkedValidity, setCheckedValidity] = useState(false);
   const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, checkedValidity);
@@ -31,8 +30,14 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       const providedValue = props.value ? String(props.value) : '';
       return providedValue !== this.value;
     },
+    focus: () => {
+      return inputRef.current.focus();
+    },
     id: props.id,
     name: props.name,
+    get validity() {
+      return inputRef.current.validity;
+    },
     get value() {
       return inputRef.current.value;
     },
@@ -68,7 +73,6 @@ CustomFieldInputNumber.propTypes = {
   disabled: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  inputRef: PropTypes.shape({ current: PropTypes.any }),
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onBlur: PropTypes.func,
@@ -84,7 +88,6 @@ CustomFieldInputNumber.defaultProps = {
   className: styles['custom-field-input-text'],
   disabled: false,
   errorText: '',
-  inputRef: undefined,
   name: undefined,
   onBlur: () => {},
   placeholder: undefined,

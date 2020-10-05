@@ -72,6 +72,16 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
+  describe('focus ref API', () => {
+    it('focuses the input', () => {
+      const ref = createRef();
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
+      expect(screen.getByLabelText('Test label')).not.toBe(document.activeElement);
+      ref.current.focus();
+      expect(screen.getByLabelText('Test label')).toBe(document.activeElement);
+    });
+  });
+
   describe('id API', () => {
     it('sets the id attribute', () => {
       render(<CustomFieldInputNumber {...requiredProps} id="test-id" />);
@@ -110,6 +120,14 @@ describe('CustomFieldInputNumber', () => {
     it('unsets the required attribute', () => {
       render(<CustomFieldInputNumber {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
+    });
+  });
+
+  describe('validity ref API', () => {
+    it('is the DOM validity state', () => {
+      const ref = createRef();
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
+      expect(ref.current.validity).toBe(screen.getByLabelText('Test label').validity);
     });
   });
 
@@ -157,14 +175,6 @@ describe('CustomFieldInputNumber', () => {
       const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} label="foo" onBlur={onBlur} />);
       fireEvent.blur(getByLabelText('foo'));
       expect(onBlur.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('inputRef API', () => {
-    it('sets the ref on the input', () => {
-      const inputRef = createRef();
-      render(<CustomFieldInputNumber {...requiredProps} inputRef={inputRef} />);
-      expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
     });
   });
 

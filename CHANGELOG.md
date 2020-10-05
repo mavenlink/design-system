@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
   - Minor: `Calendar` no longer triggers a selection on year view change
+  - Major: Deprecate `inputRef` on CustomFieldInputNumber
 </details>
 
 ## v0.45.0
