@@ -7,7 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Explicitly set `FormControl` label to `display: inline`.
+  - Patch: Explicitly set `FormControl` label to `display: inline`
+  - Patch: Use the correct MDS color for the "(Required)" part of `FormControl` labels
 </details>
 
 ## v0.46.0
