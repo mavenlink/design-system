@@ -48,6 +48,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   const valueRef = isEditing ? numberRef : componentRef;
 
   function handleOnBlur(event) {
+    props.onBlur();
     if (numberRef.current.validity.valid) {
       setInput(event.target.value === '' ? undefined : parseFloat(event.target.value));
       setIsEditing(false);
@@ -146,6 +147,7 @@ CustomFieldInputCurrency.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   // onChange: Do not expose an onChange handler. See commit for details.
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -159,6 +161,7 @@ CustomFieldInputCurrency.defaultProps = {
   disabled: false,
   errorText: undefined,
   name: undefined,
+  onBlur: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,

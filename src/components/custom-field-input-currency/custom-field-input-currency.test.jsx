@@ -98,6 +98,16 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('onBlur API', () => {
+    it('accepts an onBlur event', () => {
+      const onBlur = jest.fn();
+      render(<CustomFieldInputCurrency {...requiredProps} onBlur={onBlur} />);
+      userEvent.click(screen.getByLabelText('currency'));
+      fireEvent.blur(screen.getByLabelText('currency'));
+      expect(onBlur.mock.calls.length).toEqual(1);
+    });
+  });
+
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
       render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
