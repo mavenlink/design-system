@@ -4,6 +4,7 @@
 
 .label {
   color: var(--mds-grey-54);
+  display: inline;
   font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
   font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
 }
