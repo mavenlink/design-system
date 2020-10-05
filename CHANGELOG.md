@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Major: Deprecate `inputRef` on CustomFieldInputNumber
 </details>
+
+## v0.46.0
+  - Major: Deprecate `inputRef` on CustomFieldInputNumber
 
 ## v0.45.0
   - Minor: Add maxLength attribute support to text and abstract custom fields
