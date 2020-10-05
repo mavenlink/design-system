@@ -21,7 +21,7 @@
 
 .invalid-required {
   composes: required;
-  color: var(--mds-red-100);
+  color: var(--mds-red-text);
 }
 
 .control-container {
