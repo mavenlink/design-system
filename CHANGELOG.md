@@ -22,7 +22,6 @@
   - Minor: Add new `Select` component
   - Minor: Refactor `CustomFieldInputSingleChoice` to use `Select`
   - Minor: Add new `setSelected` and `setVisible` methods to `ListOption` ref API
-</details>
 
 ## v0.43.3
   - Minor: Add submitText prop to Form
