@@ -8,13 +8,14 @@
   -webkit-appearance: none;
 }
 
-.date-input input {
+.date-input-input {
+  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   font: var(--mds-type-content);
-  cursor: pointer;
 }
 
 .input {
   composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+  font: var(--mds-type-content);
 }
 
 .input-invalid {

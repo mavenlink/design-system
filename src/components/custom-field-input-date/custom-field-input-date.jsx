@@ -220,6 +220,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
           key={`${props.id}-editing`}
           min={formatDateString(props.min)}
           max={formatDateString(props.max)}
+          inputClassName={dateStyles['date-input-input']}
           inputRef={inputRef}
           onChange={handleOnChange}
           step={1}
