@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.46.1
   - Patch: Explicitly set `FormControl` label to `display: inline`
   - Patch: Use the correct MDS color for the "(Required)" part of `FormControl` labels
-</details>
 
 ## v0.46.0
   - Major: Deprecate `inputRef` on CustomFieldInputNumber
