@@ -93,6 +93,7 @@ function onSubmit(event) {
         id="date-field"
         label="Custom Field Date"
         name="date-name"
+        onChange={onChange}
         ref={refs[3]}
       />
       <SingleChoice
