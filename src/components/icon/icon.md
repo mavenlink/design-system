@@ -3,14 +3,14 @@ It is designed to be accessible and easy-to-use.
 
 ## Label Support
 
-| Element | Label |
-| --- | --- |
-| SVG | Provided by `label` or `labelledBy` props |
+| Focused element | Screen reader |
+| --------------- | ------------- |
+| SVG             | Description of the usage of the icon |
 
-## Keyboard functionality
+## Keyboard Support
 
 The `<Icon>` component does not support any interaction.
-For a interactive icon component, @see [`<IconButton>`](#/Components/IconButton)
+For an interactive icon component, @see [`<IconButton>`](#/Components/IconButton)
 
 ## Example
 

@@ -38,17 +38,11 @@ The code examples should be shareable.
 | --- | --------------- | -------- |
 |     |                 |          |
 
-## Keyboard Support
-
-| Button | Element | Function |
-| ------ | ------- | -------- |
-|        |         |          |
-
 ## Label Support
 
-| Element | Label |
-| ------- | ----- |
-|         |       |
+| Focused element | Screen reader |
+| --------------- | ------------- |
+|                 |               |
 
 ## Props API Examples
 

@@ -1,18 +1,18 @@
 The `IconButton` component encapsulates the requirements for using an icon as a button.
-It is recommened to apply some padding to the icon as a means of increasing the size of the button for easier usage.
+It is recommended to apply some padding to the icon as a means of increasing the size of the button for easier usage.
 
 ## Keyboard Support
 
 | Key | Focused element | Function |
-| --- | --- | --- |
-| Enter | Icon | Invokes the `onPress` handler |
-| Space | Icon | Invokes the `onPress` handler |
+| --- | --------------- | -------- |
+| Enter | SVG           | Invokes the `onPress` handler |
+| Space | SVG           | Invokes the `onPress` handler |
 
 ## Label Support
 
 | Focused element | Screen Reader |
-| --- | --- |
-| Icon | A description of the `onPress` handler |
+| --------------- | ------------- |
+| SVG             | A description of the `onPress` handler |
 
 ```css { "file": "./icon-button.md.css" }
 ```

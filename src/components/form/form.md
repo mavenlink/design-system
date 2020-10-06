@@ -5,14 +5,14 @@ The form component allows a parent component to listen to value changes with a `
 ## Keyboard Support
 
 | Key | Focused element | Function |
-| --- | --- |
-| Enter | Save button | Submits the form |
+| --- | --------------- | -------- |
+| Enter | Save button   | Submits the form |
 
 ## Label Support
 
-| Element | Label |
-| --- | --- |
-| Save button | Save |
+| Focused element | Screen reader |
+| --------------- | ------------- |
+| Save button     | Save          |
 
 ## Examples
 
