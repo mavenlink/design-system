@@ -47,7 +47,7 @@ import clear from '@mavenlink/design-system/src/svgs/clear.svg';
 import styles from './icon-button.md.css';
 
 <div className={styles['adv-example']}>
-  <input id="adv-ex-input" label="the input" />
+  <input aria-label="the input" id="adv-ex-input" />
   <IconButton
     className={styles['clear-button']}
     label="clear"

@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Fix Icon: apply `id` to title element for correct labelledBy behavior
+  - Fix IconButton: apply `id` to title element for correct labelledBy behavior
 </details>
 
 ## v0.46.1
