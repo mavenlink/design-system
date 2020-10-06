@@ -12,6 +12,13 @@
   - Major: Deprecate `inputRef` on CustomFieldInputNumber
 </details>
 
+## v0.46.1
+  - Patch: Explicitly set `FormControl` label to `display: inline`
+  - Patch: Use the correct MDS color for the "(Required)" part of `FormControl` labels
+
+## v0.46.0
+  - Major: Deprecate `inputRef` on CustomFieldInputNumber
+
 ## v0.45.0
   - Minor: Add maxLength attribute support to text and abstract custom fields
 

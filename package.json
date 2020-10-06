@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.45.0",
+  "version": "0.46.1",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "scripts": {
