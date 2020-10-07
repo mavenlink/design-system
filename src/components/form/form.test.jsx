@@ -19,6 +19,61 @@ describe('<Form />', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('autoSave prop API', () => {
+    it('can be set', () => {
+      const onSubmitSpy = jest.fn();
+      const ref = createRef();
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form autoSave={true} onSubmit={onSubmitSpy} ref={ref} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
+      expect(screen.queryByText('Save')).not.toBeInTheDocument();
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        data: {
+          'input-test-1': refs[0].current,
+        },
+        target: ref.current,
+      });
+    });
+
+    it('can be unset', () => {
+      const onSubmitSpy = jest.fn();
+      const ref = createRef();
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form autoSave={false} onSubmit={onSubmitSpy} ref={ref} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
+      expect(onSubmitSpy).not.toHaveBeenCalled();
+
+      expect(screen.queryByText('Save')).toBeInTheDocument();
+      userEvent.click(screen.getByText('Save'));
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        data: {
+          'input-test-1': refs[0].current,
+        },
+        target: ref.current,
+      });
+    });
+  });
+
   describe('checkValidity ref API', () => {
     it('checks for some invalid control', () => {
       const ref = createRef();

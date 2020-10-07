@@ -19,6 +19,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
     props.onChange(event);
     setValid(ref.current.checkValidity());
     setDirty(ref.current.dirty);
+    if (props.autoSave) onSubmit(event);
   }
 
   function onSubmit(event) {
@@ -68,7 +69,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   return (
     <form ref={formRef} onSubmit={onSubmit} onChange={onChange}>
       {props.children({ onChange })}
-      {!props.readOnly &&
+      {!props.readOnly && !props.autoSave &&
         <div className={styles['buttons-container']}>
           <Button
             className={styles['primary-button']}
@@ -85,17 +86,19 @@ const Form = React.forwardRef((props, forwardedRef) => {
 });
 
 Form.propTypes = {
-  submitText: PropTypes.string,
+  autoSave: PropTypes.bool,
   children: PropTypes.func.isRequired,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   readOnly: PropTypes.bool,
-  refs: PropTypes.arrayOf(
-    PropTypes.shape({ current: PropTypes.any }).isRequired,
-  ).isRequired,
+  refs: PropTypes.arrayOf((
+    PropTypes.shape({ current: PropTypes.any }).isRequired
+  )).isRequired,
+  submitText: PropTypes.string,
 };
 
 Form.defaultProps = {
+  autoSave: false,
   submitText: 'Save',
   onChange: () => {},
   onSubmit: () => {},

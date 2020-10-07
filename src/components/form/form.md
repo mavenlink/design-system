@@ -115,3 +115,27 @@ function onSubmit(event) {
   )}
 </Form>
 ```
+
+### Example with autoSave
+
+The `autoSave` prop determines the frequency of calling `onSubmit`.
+By default, the `onSubmit` callback only gets invoked when the form is submitted.
+However, setting `autoSave` will invoke the callback when there changes detected.
+
+```jsx
+import Form from '@mavenlink/design-system/src/components/form/form.jsx';
+
+const refs = [
+  React.createRef(),
+  React.createRef(),
+];
+
+<Form autoSave refs={refs} onSubmit={() => alert('Submitted the form!')}>
+  {() => (
+    <React.Fragment>
+      <input defaultValue="Example for a persisted value" ref={refs[0]} />
+      <input ref={refs[1]} />
+    </React.Fragment>
+  )}
+</Form>
+```
