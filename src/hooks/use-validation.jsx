@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 
-export default function useValidation(readOnly, helpText, inputRef, checkedValidity) {
+export default function useValidation(readOnly, errorText, inputRef) {
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
     if (!inputRef.current) return;
 
-    if (!inputRef.current.validity.valid && !inputRef.current.validity.customError) {
-      setValidationMessage(inputRef.current.validationMessage);
+    if (errorText) {
+      inputRef.current.setCustomValidity(errorText);
+      setValidationMessage(errorText);
       return;
     }
 
-    if (!readOnly && helpText) {
-      inputRef.current.setCustomValidity(helpText);
-      setValidationMessage(helpText);
+    inputRef.current.setCustomValidity('');
+    if (!inputRef.current.validity.valid) {
+      setValidationMessage(inputRef.current.validationMessage);
     } else {
-      inputRef.current.setCustomValidity('');
       setValidationMessage('');
     }
-  }, [readOnly, helpText, checkedValidity]);
+  });
 
   return validationMessage;
 }

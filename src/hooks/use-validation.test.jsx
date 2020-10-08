@@ -20,11 +20,6 @@ describe('useValidation', () => {
       expect(result.current).toBe('Welcome to Zombocom');
     });
 
-    it('prioritizes native validation errors over contextual ones', () => {
-      const { result } = renderHook(() => useValidation(false, 'hey listen', mockRef('yo')));
-      expect(result.current).toBe('yo');
-    });
-
     it('is dependent on the checked validity', () => {
       const initialProps = {
         readOnly: false,
@@ -50,11 +45,6 @@ describe('useValidation', () => {
   });
 
   describe('contextual validation', () => {
-    it('has no validation message for a readOnly field', () => {
-      const { result } = renderHook(() => useValidation(true, 'yo', mockRef()));
-      expect(result.current).toBe('');
-    });
-
     it('provides the contextual error when one exists', () => {
       const { result } = renderHook(() => useValidation(false, 'yo', mockRef()));
       expect(result.current).toBe('yo');
