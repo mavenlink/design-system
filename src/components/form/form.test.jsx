@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Form from './form.jsx';
@@ -20,7 +21,7 @@ describe('<Form />', () => {
   });
 
   describe('autoSave prop API', () => {
-    it('can be set', () => {
+    it('can be set', async () => {
       const onSubmitSpy = jest.fn();
       const ref = createRef();
       const refs = [
@@ -35,14 +36,18 @@ describe('<Form />', () => {
         </Form>
       ));
 
-      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
       expect(screen.queryByText('Save')).not.toBeInTheDocument();
+      await userEvent.type(screen.getByLabelText('input test 1'), 'unique value', { delay: 200 });
+      await userEvent.type(screen.getByLabelText('input test 1'), '!', { delay: 300 });
+      await waitFor(() =>
+        expect(onSubmitSpy.mock.calls.length).toBe(2)
+      );
       expect(onSubmitSpy).toHaveBeenCalledWith({
         data: {
           'input-test-1': refs[0].current,
         },
         target: ref.current,
-      });
+      })
     });
 
     it('can be unset', () => {

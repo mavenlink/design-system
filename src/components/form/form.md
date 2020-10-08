@@ -130,12 +130,35 @@ const refs = [
   React.createRef(),
 ];
 
-<Form autoSave refs={refs} onSubmit={() => alert('Submitted the form!')}>
-  {() => (
+function TestComponent() {
+  const [count, setCount] = React.useState(0);
+  const [data, setData] = React.useState({
+    first: 'Example for a persisted value',
+    second: '',
+  });
+
+  function onSubmit(event) {
+    setCount(count + 1);
+    setData({
+      first: event.data.first.value,
+      second: event.data.second.value,
+    })
+  }
+
+  return (
     <React.Fragment>
-      <input defaultValue="Example for a persisted value" ref={refs[0]} />
-      <input ref={refs[1]} />
+      <span>Saved count: {count}</span>
+      <Form autoSave refs={refs} onSubmit={onSubmit}>
+        {() => (
+          <React.Fragment>
+            <input name="first" defaultValue={data.first} ref={refs[0]} />
+            <input name="second" defaultValue={data.second} ref={refs[1]} />
+          </React.Fragment>
+        )}
+      </Form>
     </React.Fragment>
-  )}
-</Form>
+  );
+}
+
+<TestComponent />
 ```

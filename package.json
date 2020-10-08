@@ -70,6 +70,7 @@
     "webpack": "^4.28.3"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.6.2"
   }
 }
