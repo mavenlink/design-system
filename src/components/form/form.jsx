@@ -17,14 +17,6 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [dirty, setDirty] = useState(false);
   const [valid, setValid] = useState(true);
 
-  function onChange(event) {
-    props.onChange(event);
-    setValid(ref.current.checkValidity());
-    setDirty(ref.current.dirty);
-
-    if (props.autoSave) onDebouncedSubmit();
-  }
-
   const onDebouncedSubmit = useCallback(debounce(() => {
     if (ref.current.checkValidity() && ref.current.dirty) {
       props.onSubmit({
@@ -42,6 +34,14 @@ const Form = React.forwardRef((props, forwardedRef) => {
       });
     }
   }, 300, { leading: !props.autoSave, trailing: props.autoSave }), [props.onSubmit]);
+
+  function onChange(event) {
+    props.onChange(event);
+    setValid(ref.current.checkValidity());
+    setDirty(ref.current.dirty);
+
+    if (props.autoSave) onDebouncedSubmit();
+  }
 
   function onSubmit(event) {
     event.preventDefault();
