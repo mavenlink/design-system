@@ -7,12 +7,14 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.47.0
   - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
   - Minor: `Calendar` no longer triggers a selection on year view change
   - Major: Deprecate `inputRef` on CustomFieldInputNumber
   - Fix Icon: apply `id` to title element for correct labelledBy behavior
   - Fix IconButton: apply `id` to title element for correct labelledBy behavior
-</details>
 
 ## v0.46.1
   - Patch: Explicitly set `FormControl` label to `display: inline`
