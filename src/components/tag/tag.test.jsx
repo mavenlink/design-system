@@ -101,7 +101,7 @@ describe('Tag', () => {
 
     it('sets the clear button ID', () => {
       render(<Tag {...requiredProps} id="unique-id" />);
-      expect(screen.getByRole('button')).toHaveAttribute('id', 'unique-id-button');
+      expect(screen.getByLabelText('Remove Test Title')).toBeInTheDocument();
     });
   });
 

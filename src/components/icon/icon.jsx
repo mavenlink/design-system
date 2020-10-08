@@ -11,11 +11,10 @@ export default function Icon(props) {
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
-      id={props.id}
       role="img"
       width={width}
     >
-      <title>{props.label}</title>
+      <title id={props.id}>{props.label}</title>
       <use xlinkHref={`#${props.icon.id}`} />
     </svg>
   );

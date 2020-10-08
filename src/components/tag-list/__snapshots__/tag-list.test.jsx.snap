@@ -30,12 +30,13 @@ exports[`TagList renders a TagList 1`] = `
             aria-labelledby="test-tag-fake-button test-tag-fake-content"
             class="icon"
             height="8"
-            id="test-tag-fake-button"
             role="button"
             tabindex="-1"
             width="8"
           >
-            <title>
+            <title
+              id="test-tag-fake-button"
+            >
               Remove
             </title>
             <use

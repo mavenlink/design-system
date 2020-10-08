@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import { render, screen } from '@testing-library/react';
 import Icon from './icon.jsx';
 
@@ -48,10 +50,16 @@ describe('Icon', () => {
 
   describe('id API', () => {
     it('can be set', () => {
+      const ref = createRef();
+
       render((
-        <Icon {...requiredProps} id="unique-id" />
+        <React.Fragment>
+          <input aria-labelledby="unique-id" ref={ref} />
+          <Icon {...requiredProps} label="unique label" id="unique-id" />
+        </React.Fragment>
       ));
-      expect(screen.getByRole('img')).toHaveAttribute('id', 'unique-id');
+
+      expect(screen.getByLabelText('unique label')).toBe(ref.current);
     });
   });
 

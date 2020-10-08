@@ -10,6 +10,8 @@
   - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
   - Minor: `Calendar` no longer triggers a selection on year view change
   - Major: Deprecate `inputRef` on CustomFieldInputNumber
+  - Fix Icon: apply `id` to title element for correct labelledBy behavior
+  - Fix IconButton: apply `id` to title element for correct labelledBy behavior
 </details>
 
 ## v0.46.1
