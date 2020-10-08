@@ -62,8 +62,16 @@ describe('<IconButton />', () => {
 
   describe('id prop API', () => {
     it('can be set', () => {
-      render(<IconButton {...requiredProps} id="unique-id" />);
-      expect(screen.getByRole('button')).toHaveAttribute('id', 'unique-id');
+      const ref = createRef();
+
+      render((
+        <React.Fragment>
+          <input aria-labelledby="unique-id" ref={ref} />
+          <IconButton {...requiredProps} label="unique label" id="unique-id" />
+        </React.Fragment>
+      ));
+
+      expect(screen.getByLabelText('unique label')).toBe(ref.current);
     });
   });
 

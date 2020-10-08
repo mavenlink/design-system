@@ -25,12 +25,13 @@ exports[`Tag renders a tag component 1`] = `
           aria-labelledby="test-id-button test-id-content"
           class="icon"
           height="8"
-          id="test-id-button"
           role="button"
           tabindex="-1"
           width="8"
         >
-          <title>
+          <title
+            id="test-id-button"
+          >
             Remove
           </title>
           <use
