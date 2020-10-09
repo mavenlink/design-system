@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Form from './form.jsx';
@@ -17,6 +18,63 @@ describe('<Form />', () => {
     render(<Form {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
+  });
+
+  describe('autoSave prop API', () => {
+    it('can be set', async () => {
+      const onSubmitSpy = jest.fn();
+      const ref = createRef();
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form autoSave={true} onSubmit={onSubmitSpy} ref={ref} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      expect(screen.queryByText('Save')).not.toBeInTheDocument();
+      await userEvent.type(screen.getByLabelText('input test 1'), 'unique value', { delay: 200 });
+      await userEvent.type(screen.getByLabelText('input test 1'), '!', { delay: 300 });
+      await waitFor(() => expect(onSubmitSpy.mock.calls.length).toBe(2));
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        data: {
+          'input-test-1': refs[0].current,
+        },
+        target: ref.current,
+      });
+    });
+
+    it('can be unset', () => {
+      const onSubmitSpy = jest.fn();
+      const ref = createRef();
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form autoSave={false} onSubmit={onSubmitSpy} ref={ref} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
+      expect(onSubmitSpy).not.toHaveBeenCalled();
+
+      expect(screen.queryByText('Save')).toBeInTheDocument();
+      userEvent.click(screen.getByText('Save'));
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        data: {
+          'input-test-1': refs[0].current,
+        },
+        target: ref.current,
+      });
+    });
   });
 
   describe('checkValidity ref API', () => {
