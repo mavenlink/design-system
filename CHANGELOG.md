@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Implement `Form#autoSave` prop API
 </details>
+
+## v0.48.0
+  - Minor: Implement `Form#autoSave` prop API
 
 ## v0.47.0
   - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
