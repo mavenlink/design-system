@@ -19,6 +19,7 @@ import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 const Select = forwardRef(function Select(props, ref) {
+  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -26,7 +27,7 @@ const Select = forwardRef(function Select(props, ref) {
   const backupRef = useRef();
   const selfRef = ref || backupRef;
 
-  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
+  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
   const caretIcon = (<Icon
     className={styles['input-icon']}
     icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
@@ -111,6 +112,13 @@ const Select = forwardRef(function Select(props, ref) {
   }));
 
   useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useEffect(() => {
+    if (!didMount) return;
+
+    validate();
     props.onChange({ target: selfRef.current });
   }, [value]);
 
