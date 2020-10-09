@@ -16,11 +16,13 @@
    move all items from the "unreleased" section to it;
    stage these changes.
 
-3. Publish to NPM with `yarn publish`. Note: this will create a commit with the staged changelogs and semver change.
+1. Publish to NPM with `yarn publish`. Note: this will create a commit and tag with the staged changelogs and semver change.
 
-4. Create a PR
+1. `git push --tags` to persist your new version tag to the remote.
 
-5. After merging the PR, tag a new release
+1. Create a PR
+
+1. After merging the PR, tag a new release
 
    [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/).
      - Copy over the changelog section title as the release title
