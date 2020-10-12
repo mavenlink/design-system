@@ -1,5 +1,7 @@
+import debounce from 'lodash.debounce';
 import PropTypes from 'prop-types';
 import React, {
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -15,27 +17,35 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [dirty, setDirty] = useState(false);
   const [valid, setValid] = useState(true);
 
+  const onDebouncedSubmit = useCallback(debounce(() => {
+    if (ref.current.checkValidity() && ref.current.dirty) {
+      props.onSubmit({
+        target: ref.current,
+        data: props.refs.reduce((data, controlRef) => {
+          if (controlRef.current) {
+            return {
+              ...data,
+              [controlRef.current.name]: controlRef.current,
+            };
+          }
+
+          return data;
+        }, {}),
+      });
+    }
+  }, 300, { leading: !props.autoSave, trailing: props.autoSave }), [props.onSubmit]);
+
   function onChange(event) {
     props.onChange(event);
     setValid(ref.current.checkValidity());
     setDirty(ref.current.dirty);
+
+    if (props.autoSave) onDebouncedSubmit();
   }
 
   function onSubmit(event) {
     event.preventDefault();
-    props.onSubmit({
-      target: ref.current,
-      data: props.refs.reduce((data, controlRef) => {
-        if (controlRef.current) {
-          return {
-            ...data,
-            [controlRef.current.name]: controlRef.current,
-          };
-        }
-
-        return data;
-      }, {}),
-    });
+    onDebouncedSubmit();
   }
 
   useEffect(() => {
@@ -68,7 +78,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   return (
     <form ref={formRef} onSubmit={onSubmit} onChange={onChange}>
       {props.children({ onChange })}
-      {!props.readOnly &&
+      {!props.readOnly && !props.autoSave &&
         <div className={styles['buttons-container']}>
           <Button
             className={styles['primary-button']}
@@ -85,17 +95,19 @@ const Form = React.forwardRef((props, forwardedRef) => {
 });
 
 Form.propTypes = {
-  submitText: PropTypes.string,
+  autoSave: PropTypes.bool,
   children: PropTypes.func.isRequired,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   readOnly: PropTypes.bool,
-  refs: PropTypes.arrayOf(
-    PropTypes.shape({ current: PropTypes.any }).isRequired,
-  ).isRequired,
+  refs: PropTypes.arrayOf((
+    PropTypes.shape({ current: PropTypes.any }).isRequired
+  )).isRequired,
+  submitText: PropTypes.string,
 };
 
 Form.defaultProps = {
+  autoSave: false,
   submitText: 'Save',
   onChange: () => {},
   onSubmit: () => {},

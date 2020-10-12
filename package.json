@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.47.0",
+  "version": "0.48.0",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "scripts": {
@@ -70,6 +70,7 @@
     "webpack": "^4.28.3"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.6.2"
   }
 }

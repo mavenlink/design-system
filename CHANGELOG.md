@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.48.0
+  - Minor: Implement `Form#autoSave` prop API
+
 ## v0.47.0
   - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
   - Minor: `Calendar` no longer triggers a selection on year view change
