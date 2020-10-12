@@ -220,7 +220,7 @@ Select.defaultProps = {
   children: undefined,
   className: styles.container,
   displayValueEvaluator: value => value,
-  errorText: undefined,
+  errorText: '',
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
