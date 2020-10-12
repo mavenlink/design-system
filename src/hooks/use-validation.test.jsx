@@ -46,22 +46,23 @@ describe('useValidation', () => {
     });
   });
 
-  // FIXME we should test that calling validate will set the validationMessage;
-  xdescribe('validate', () => {
-    it('', () => {
+  describe('validate', () => {
+    it('sets the validation message only after validate is called', () => {
       const mockedRef = mockRef();
+
+      mockedRef.current.validity.valid = false;
+      mockedRef.current.validationMessage = 'no good';
 
       const { result } = renderHook(() => useValidation('', mockedRef));
       const validate = result.current[1];
 
+      expect(result.current[0]).toEqual('');
+
       act(() => {
-        mockedRef.current.validity.valid = false;
-        mockedRef.current.validity.validationMessage = 'no bueno';
+        validate();
       });
 
-      validate();
-
-      expect(result.current[0]).toEqual('no bueno');
+      expect(result.current[0]).toEqual('no good');
     });
   });
 });
