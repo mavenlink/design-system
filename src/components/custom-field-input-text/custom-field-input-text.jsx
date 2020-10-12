@@ -15,6 +15,9 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
     },
     id: props.id,
     name: props.name,
+    get valid() {
+      return inputRef.current.checkValidity();
+    },
     get value() {
       return inputRef.current.value;
     },

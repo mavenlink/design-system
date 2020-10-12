@@ -67,4 +67,13 @@ describe('CustomFieldInputText', () => {
       expect(inputRef.current.value).toBe('test-value');
     });
   });
+
+  describe('validity API', () => {
+    it('indicates if the native HTML input is valid', () => {
+      const ref = createRef(null);
+      render(<CustomFieldInputText id="test-input" label="Test label" ref={ref} required value="" />);
+      expect(ref.current.valid).not.toBeUndefined();
+      expect(ref.current.valid).toEqual(false);
+    });
+  });
 });

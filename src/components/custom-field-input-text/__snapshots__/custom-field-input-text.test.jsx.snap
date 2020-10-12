@@ -38,6 +38,7 @@ Object {
   "dirty": false,
   "id": "test-input",
   "name": "field-id",
+  "valid": true,
   "value": "",
 }
 `;
