@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import Pathline from 'rsg-components/Pathline'; // eslint-disable-line import/extensions
 import styles from './react-component.css';
 
@@ -13,6 +13,23 @@ export default function ReactComponent({
   tabButtons,
   tabBody,
 }) {
+  const [examplesToShow, setExamplesToShow] = useState({ ...examples });
+  const [toggleCode, setToggleCode] = useState(false);
+
+  const onToggleCodeClick = () => {
+    setToggleCode(!toggleCode);
+    setExamplesToShow({
+      ...examplesToShow,
+      props: {
+        ...examplesToShow.props,
+        settings: {
+          showcode: false,
+        },
+        exampleMode: toggleCode ? 'expand' : 'hide',
+      },
+    });
+  };
+
   return (
     <div className={styles.root} id={`${name}-container`}>
       <header className={styles.header}>
@@ -25,8 +42,9 @@ export default function ReactComponent({
           {docs}
         </div>
       )}
+      <button onClick={onToggleCodeClick}>Toggle Code</button>
       <div className={styles.examples}>
-        {examples}
+        {examplesToShow}
       </div>
       {tabButtons && (
         <div className={styles.tabs}>
