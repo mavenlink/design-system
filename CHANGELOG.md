@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
 </details>
 
 ## v0.48.0
