@@ -18,7 +18,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [valid, setValid] = useState(true);
 
   const onDebouncedSubmit = useCallback(debounce(() => {
-    if (ref.current.checkValidity() && ref.current.dirty) {
+    if (ref.current && ref.current.checkValidity() && ref.current.dirty) {
       props.onSubmit({
         target: ref.current,
         data: props.refs.reduce((data, controlRef) => {
