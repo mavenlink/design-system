@@ -33,7 +33,7 @@ const Select = forwardRef(function Select(props, ref) {
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = value ? props.displayValueEvaluator(value || props.value) : '';
+  const defaultValue = value ? props.displayValueEvaluator(value) : '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
