@@ -8,6 +8,8 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
+  - Patch: Fix bug where `Select` and `CustomFieldInputString` showed errors on first render when html invalid.
+  - Patch: `Select`, `CustomFieldInputSingleChoice` maintains correct input value state when closing dropdown
 </details>
 
 ## v0.48.0

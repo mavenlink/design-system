@@ -6,7 +6,12 @@ import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-
 const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref) {
   const inputRef = useRef(null);
 
-  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef);
+  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
+
+  function onChange(event) {
+    validate();
+    props.onChange(event);
+  }
 
   useImperativeHandle(ref, () => ({
     get dirty() {
@@ -33,7 +38,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
       maxLength={props.maxLength}
       name={props.name}
       onBlur={props.onBlur}
-      onChange={props.onChange}
+      onChange={onChange}
       onClick={props.onClick}
       onFocus={props.onFocus}
       onKeyDown={props.onKeyDown}

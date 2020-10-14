@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import useValidation from './use-validation.jsx';
 
 describe('useValidation', () => {
@@ -13,69 +13,56 @@ describe('useValidation', () => {
     },
   });
 
-  describe('native validation', () => {
-    it('responds with the native validation error message', () => {
+  describe('inputRef validation', () => {
+    it('does not set a validation message on initial render when invalid', () => {
       const mockInputRef = mockRef('Welcome to Zombocom');
-      const { result } = renderHook(() => useValidation(false, '', mockInputRef));
-      expect(result.current).toBe('Welcome to Zombocom');
-    });
-
-    it('prioritizes native validation errors over contextual ones', () => {
-      const { result } = renderHook(() => useValidation(false, 'hey listen', mockRef('yo')));
-      expect(result.current).toBe('yo');
-    });
-
-    it('is dependent on the checked validity', () => {
-      const initialProps = {
-        readOnly: false,
-        helpText: '',
-        inputRef: mockRef(),
-        checkedValidity: true,
-      };
-
-      const { result, rerender } = renderHook(props => (
-        useValidation(props.readOnly, props.helpText, props.inputRef, props.checkedValidity)
-      ), { initialProps });
-
-      expect(result.current).toBe('');
-
-      rerender({
-        ...initialProps,
-        inputRef: mockRef('yo'),
-        checkedValidity: false,
-      });
-
-      expect(result.current).toBe('yo');
+      const { result } = renderHook(() => useValidation('', mockInputRef));
+      expect(result.current[0]).toBe('');
     });
   });
 
-  describe('contextual validation', () => {
-    it('has no validation message for a readOnly field', () => {
-      const { result } = renderHook(() => useValidation(true, 'yo', mockRef()));
-      expect(result.current).toBe('');
+  describe('errorText', () => {
+    it('provides the error text', () => {
+      const { result } = renderHook(() => useValidation('yo', mockRef()));
+      expect(result.current[0]).toBe('yo');
     });
 
-    it('provides the contextual error when one exists', () => {
-      const { result } = renderHook(() => useValidation(false, 'yo', mockRef()));
-      expect(result.current).toBe('yo');
-    });
-
-    it('sets the custom validity to the contextual error', () => {
+    it('sets the custom validity to the error text', () => {
       const ref = mockRef();
-      renderHook(() => useValidation(false, 'yo', ref));
+      renderHook(() => useValidation('yo', ref));
       expect(ref.current.setCustomValidity.mock.calls.length > 0).toBe(true);
     });
 
-    it('does not set the custom validity when there is no error', () => {
+    it('does not set the custom validity when there is no error text', () => {
       const ref = mockRef();
-      renderHook(() => useValidation(false, '', ref));
+      renderHook(() => useValidation('', ref));
       expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
     });
 
-    it('unsets custom validity when an an error is removed', () => {
+    it('unsets custom validity when the error text is removed', () => {
       const ref = mockRef('this is an error', { customError: true });
-      renderHook(() => useValidation(false, '', ref));
+      renderHook(() => useValidation('', ref));
       expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
+    });
+  });
+
+  describe('validate', () => {
+    it('sets the validation message only after validate is called', () => {
+      const mockedRef = mockRef();
+
+      mockedRef.current.validity.valid = false;
+      mockedRef.current.validationMessage = 'no good';
+
+      const { result } = renderHook(() => useValidation('', mockedRef));
+      const validate = result.current[1];
+
+      expect(result.current[0]).toEqual('');
+
+      act(() => {
+        validate();
+      });
+
+      expect(result.current[0]).toEqual('no good');
     });
   });
 });
