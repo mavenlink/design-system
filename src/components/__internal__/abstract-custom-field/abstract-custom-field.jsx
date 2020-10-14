@@ -54,6 +54,11 @@ export default function AbstractCustomField(props) {
     return undefined;
   };
 
+  const inputClassName = () => {
+    if (invalidDueToProps) return styles['input-invalid'];
+    return props.inputClassName || styles.input;
+  };
+
   useEffect(() => {
     if (!props.value && props.inputRef && props.inputRef.current) {
       props.inputRef.current.value = props.defaultValue ? props.defaultValue : ''; // eslint-disable-line no-param-reassign
@@ -78,7 +83,7 @@ export default function AbstractCustomField(props) {
         aria-invalid={invalidDueToProps ? 'true' : undefined}
         aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
-        className={props.inputClassName || styles.input}
+        className={inputClassName()}
         disabled={props.disabled}
         id={props.id}
         role={props.inputRole}
