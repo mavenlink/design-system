@@ -13,7 +13,7 @@ const useDropdownClose = (ref, opened, onClose) => {
     document.addEventListener('mousedown', onEvent);
     document.addEventListener('focusin', onEvent);
 
-    return () => {
+    return () => { // eslint-disable-line consistent-return
       document.removeEventListener('mousedown', onEvent);
       document.removeEventListener('focusin', onEvent);
     };
