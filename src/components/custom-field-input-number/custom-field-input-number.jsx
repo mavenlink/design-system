@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
@@ -12,18 +12,14 @@ const apiLimits = {
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
   const inputRef = useRef(null);
 
-  const [checkedValidity, setCheckedValidity] = useState(false);
-  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, checkedValidity);
+  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
 
-  function handleOnKeyUp(event) {
-    setCheckedValidity(!event.target.checkValidity());
+  function onChange() {
+    // Do not expose this onChange to any parent component.
+    // According to the HTML spec, the event.target.value is
+    // an empty string when the input is invalid.
+    validate();
   }
-
-  useEffect(() => {
-    if (!inputRef.current) return;
-
-    setCheckedValidity(!inputRef.current.validity.valid);
-  });
 
   useImperativeHandle(ref, () => ({
     get dirty() {
@@ -58,7 +54,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       min={apiLimits.min}
       name={props.name}
       onBlur={props.onBlur}
-      onKeyUp={handleOnKeyUp}
+      onChange={onChange}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}

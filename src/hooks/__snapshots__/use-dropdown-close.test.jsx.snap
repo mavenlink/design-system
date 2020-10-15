@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useDropdownClose can be used in a component 1`] = `
+<body>
+  <div>
+    <div
+      tabindex="0"
+    >
+      closed
+    </div>
+  </div>
+</body>
+`;

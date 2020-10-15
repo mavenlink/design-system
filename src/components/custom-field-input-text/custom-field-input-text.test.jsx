@@ -30,14 +30,6 @@ describe('CustomFieldInputText', () => {
   });
 
   describe('errorText API', () => {
-    it('can have an error state through a native validation', () => {
-      // I am not sure what is the best way to represent this in a test.
-      // However, at the moment, there are end-to-end tests in the Number component tests.
-      render(<CustomFieldInputText {...requiredProps} errorText="yo" />);
-      expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByText('Invalid custom field')).toBeInTheDocument();
-    });
-
     it('can have an error state through a custom validation', () => {
       render(<CustomFieldInputText {...requiredProps} errorText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
@@ -65,6 +57,20 @@ describe('CustomFieldInputText', () => {
 
       userEvent.type(screen.getByLabelText('Test label'), 'test-value');
       expect(inputRef.current.value).toBe('test-value');
+    });
+  });
+
+  describe('validations', () => {
+    it('initially, it does not show errors for html-invalidity. It shows errors for html-invalidity after user interaction', () => {
+      render(<CustomFieldInputText {...requiredProps} required />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.queryByText('Invalid custom field')).not.toBeInTheDocument();
+      userEvent.type(screen.getByLabelText('Test label'), '123');
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.queryByText('Invalid custom field')).not.toBeInTheDocument();
+      userEvent.type(screen.getByLabelText('Test label'), '{backspace}{backspace}{backspace}');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.queryByText('Invalid custom field')).toBeInTheDocument();
     });
   });
 });
