@@ -7,10 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.48.1
   - Patch: Fix bug where `Select` and `CustomFieldInputString` showed errors on first render when html invalid.
   - Patch: `Select`, `CustomFieldInputSingleChoice` maintains correct input value state when closing dropdown
   - Patch: `Form` now checks for `ref.current` before invoking debounced onSubmit callback
-</details>
 
 ## v0.48.0
   - Minor: Implement `Form#autoSave` prop API
