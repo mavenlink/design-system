@@ -33,7 +33,8 @@
   background-color: var(--mds-grey-3);
 }
 
-.input:invalid {
+.input-invalid {
+  composes: input-styles;
   border-color: var(--mds-red-100);
   padding-right: var(--spacing-x-large);
 }

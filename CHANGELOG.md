@@ -10,6 +10,11 @@
   - Patch: Fix timezone issue with `CustomFieldInputDate`
 </details>
 
+## v0.48.1
+  - Patch: Fix bug where `Select` and `CustomFieldInputString` showed errors on first render when html invalid.
+  - Patch: `Select`, `CustomFieldInputSingleChoice` maintains correct input value state when closing dropdown
+  - Patch: `Form` now checks for `ref.current` before invoking debounced onSubmit callback
+
 ## v0.48.0
   - Minor: Implement `Form#autoSave` prop API
 
