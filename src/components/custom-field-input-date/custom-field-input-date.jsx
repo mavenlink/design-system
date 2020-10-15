@@ -36,7 +36,8 @@ function presentDateString(dateString) {
     return '';
   }
 
-  const date = new Date(Date.parse(dateString));
+  const timezone = new Date().toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2];
+  const date = new Date(`${dateString}  00:00:00 ${timezone}`);
   return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' });
 }
 
