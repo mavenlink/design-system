@@ -1,10 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import Input from './input.jsx';
 
 describe('Input', () => {
+  const requiredProps = {
+    id: 'foo',
+    label: 'the label',
+  };
+
   it('has defaults', () => {
     const tree = renderer
       .create((
@@ -41,24 +45,6 @@ describe('Input', () => {
         />
       ));
       expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
-    });
-  });
-
-  describe('defaultValue API', () => {
-    it('sets input value but input remains uncontrolled', () => {
-      render((
-        <Input
-          id="foo"
-          defaultValue="this is a test value"
-          label="the label"
-        />
-      ));
-
-      expect(screen.getByLabelText('the label')).toHaveValue('this is a test value');
-
-      userEvent.type(screen.getByLabelText('the label'), ' plus some more text');
-
-      expect(screen.getByLabelText('the label')).toHaveValue('this is a test value plus some more text');
     });
   });
 
@@ -297,6 +283,24 @@ describe('Input', () => {
         />
       ));
       expect(screen.getByLabelText('the label')).toHaveValue('test-value');
+    });
+
+    it('updates the value', () => {
+      const { rerender } = render((
+        <Input
+          {...requiredProps}
+          value="test value"
+        />
+      ));
+
+      rerender((
+        <Input
+          {...requiredProps}
+          value="another value"
+        />
+      ));
+
+      expect(screen.getByLabelText('the label')).toHaveValue('another value');
     });
   });
 
