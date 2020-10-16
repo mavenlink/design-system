@@ -18,10 +18,6 @@
   color: var(--mds-grey-54);
 }
 
-.input:disabled {
-  background-color: var(--mds-grey-3);
-}
-
 .input:read-only {
   background-color: var(--mds-grey-3);
 }

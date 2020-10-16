@@ -54,7 +54,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, props.invalid, props.readOnly)}
         defaultValue={props.value}
-        disabled={props.disabled}
         id={props.id}
         maxLength={props.maxLength}
         name={props.name}
@@ -85,7 +84,6 @@ Input.propTypes = {
   className: PropTypes.string,
   cssContainer: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
@@ -113,7 +111,6 @@ Input.defaultProps = {
   cssContainer: styles.container,
   cssLabel: undefined,
   defaultValue: undefined,
-  disabled: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: undefined,

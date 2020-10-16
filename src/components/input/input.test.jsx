@@ -32,13 +32,6 @@ describe('Input', () => {
     });
   });
 
-  describe('disabled API', () => {
-    it('sets the disabled attribute', () => {
-      render(<Input {...requiredProps} disabled />);
-      expect(screen.getByLabelText('the label')).toBeDisabled();
-    });
-  });
-
   describe('id API', () => {
     it('sets the ID', () => {
       render(<Input {...requiredProps} id="test-id" />);
