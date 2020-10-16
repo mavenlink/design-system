@@ -22,6 +22,13 @@ describe('Input', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('autoFocus API', () => {
+    it('sets the autoFocus attribute', () => {
+      render(<Input {...requiredProps} autoFocus />);
+      expect(screen.getByLabelText('the label')).toHaveFocus();
+    });
+  });
+
   describe('className API', () => {
     it('sets <input> className', () => {
       render(<Input {...requiredProps} className="test-class" />);
@@ -77,6 +84,13 @@ describe('Input', () => {
       const ref = createRef();
       render(<Input {...requiredProps} id="unique-id" ref={ref} />);
       expect(ref.current.id).toBe('unique-id');
+    });
+  });
+
+  describe('label API', () => {
+    it('can be set', () => {
+      render(<Input {...requiredProps} label="Unique label" />);
+      expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
     });
   });
 
@@ -156,6 +170,14 @@ describe('Input', () => {
     it('sets the readOnly attribute', () => {
       render(<Input {...requiredProps} readOnly />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('readonly');
+    });
+  });
+
+  describe('ref API', () => {
+    it('can be set', () => {
+      const ref = React.createRef();
+      render(<Input {...requiredProps} ref={ref} value="test value" />);
+      expect(ref.current.value).toEqual('test value');
     });
   });
 
@@ -253,21 +275,6 @@ describe('Input', () => {
       expect(ref.current.value).toBe('unique value');
       userEvent.type(screen.getByLabelText('the label'), '!');
       expect(ref.current.value).toBe('unique value!');
-    });
-  });
-
-  describe('ref API', () => {
-    it('can be set', () => {
-      const ref = React.createRef();
-      render(<Input {...requiredProps} ref={ref} value="test value" />);
-      expect(ref.current.value).toEqual('test value');
-    });
-  });
-
-  describe('autoFocus API', () => {
-    it('sets the autoFocus attribute', () => {
-      render(<Input {...requiredProps} autoFocus />);
-      expect(screen.getByLabelText('the label')).toHaveFocus();
     });
   });
 });
