@@ -86,7 +86,7 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
     >
       <span
         id={contentId}
-        className={styles.content}
+        className={props.classNameText}
         ref={contentRef}
         role="gridcell"
         tabIndex={isActive && tabActiveStates[0] ? '0' : '-1'}
@@ -122,6 +122,7 @@ Tag.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   classNameReadOnly: PropTypes.string,
+  classNameText: PropTypes.string,
   defaultActive: PropTypes.bool,
   id: PropTypes.string.isRequired,
   onRemove: PropTypes.func,
@@ -131,6 +132,7 @@ Tag.propTypes = {
 Tag.defaultProps = {
   className: styles.tag,
   classNameReadOnly: styles['read-only-tag'],
+  classNameText: styles.content,
   defaultActive: true,
   onRemove: () => {},
   readOnly: false,
