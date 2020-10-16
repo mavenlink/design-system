@@ -28,3 +28,12 @@ exports[`Input has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`Input has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "foo",
+  "name": undefined,
+  "value": "",
+}
+`;

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import {
   fireEvent,
   render,
@@ -14,8 +16,10 @@ describe('Input', () => {
   };
 
   it('has defaults', () => {
-    render(<Input {...requiredProps} />);
+    const ref = createRef();
+    render(<Input {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('className API', () => {
@@ -32,10 +36,47 @@ describe('Input', () => {
     });
   });
 
+  describe('dirty API', () => {
+    it('is unset without any changes', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} ref={ref} />);
+      expect(ref.current.dirty).toBe(false);
+    });
+
+    it('is set with any changes', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} ref={ref} />);
+      userEvent.type(screen.getByLabelText('the label'), 'a');
+      expect(ref.current.dirty).toBe(true);
+    });
+
+    it('is unset with changes back to initial state', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} ref={ref} />);
+      userEvent.type(screen.getByLabelText('the label'), 'a');
+      userEvent.type(screen.getByLabelText('the label'), '{backspace}');
+      expect(ref.current.dirty).toBe(false);
+    });
+
+    it('is unset with changes and new value prop', () => {
+      const ref = createRef();
+      const { rerender } = render(<Input {...requiredProps} ref={ref} />);
+      userEvent.type(screen.getByLabelText('the label'), 'a');
+      rerender(<Input {...requiredProps} ref={ref} value="a" />);
+      expect(ref.current.dirty).toBe(false);
+    });
+  });
+
   describe('id API', () => {
     it('sets the ID', () => {
       render(<Input {...requiredProps} id="test-id" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('id', 'test-id');
+    });
+
+    it('is set on the ref', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} id="unique-id" ref={ref} />);
+      expect(ref.current.id).toBe('unique-id');
     });
   });
 
@@ -50,6 +91,12 @@ describe('Input', () => {
     it('sets the name attribute', () => {
       render(<Input {...requiredProps} name="test-name" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('name', 'test-name');
+    });
+
+    it('is set on the ref', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} name="unique-name" ref={ref} />);
+      expect(ref.current.name).toBe('unique-name');
     });
   });
 
@@ -198,6 +245,14 @@ describe('Input', () => {
       const { rerender } = render(<Input {...requiredProps} value="test value" />);
       rerender(<Input {...requiredProps} value="another value" />);
       expect(screen.getByLabelText('the label')).toHaveValue('another value');
+    });
+
+    it('set on the ref', () => {
+      const ref = createRef();
+      render(<Input {...requiredProps} ref={ref} value="unique value" />);
+      expect(ref.current.value).toBe('unique value');
+      userEvent.type(screen.getByLabelText('the label'), '!');
+      expect(ref.current.value).toBe('unique value!');
     });
   });
 

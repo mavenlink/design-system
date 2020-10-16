@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {
   forwardRef,
   useEffect,
+  useImperativeHandle,
   useRef,
 } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
@@ -19,8 +20,9 @@ function getClassName(className, validationMessage) {
 const Input = forwardRef(function Input(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
+  const inputRef = useRef();
   const [didMount] = useDidMount();
-  const [validationMessage, validate] = useValidation(props.validationMessage, ref);
+  const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
   function onBlur(event) {
     validate();
@@ -38,8 +40,20 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     // The MDS Input is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
-    ref.current.value = props.value;
+    inputRef.current.value = props.value;
   }, [props.value]);
+
+  useImperativeHandle(ref, () => ({
+    get dirty() {
+      const providedValue = props.value || '';
+      return providedValue !== this.value;
+    },
+    id: props.id,
+    name: props.name,
+    get value() {
+      return inputRef.current.value;
+    },
+  }));
 
   return (
     <FormControl
@@ -65,7 +79,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={ref}
+        ref={inputRef}
         required={props.required}
         type={props.type}
       />
