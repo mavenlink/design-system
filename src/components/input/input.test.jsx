@@ -19,103 +19,54 @@ describe('Input', () => {
 
   describe('className API', () => {
     it('sets <input> className', () => {
-      render((
-        <Input
-          id="foo"
-          className="test-class"
-          label="the label"
-          invalid
-        />
-      ));
+      render(<Input {...requiredProps} className="test-class" />);
       expect(screen.getByLabelText('the label')).toHaveClass('test-class');
     });
   });
 
   describe('cssContainer API', () => {
     it('sets input container className', () => {
-      render((
-        <Input
-          id="foo"
-          cssContainer="test-class"
-          label="the label"
-          invalid
-        />
-      ));
+      render(<Input {...requiredProps} cssContainer="test-class" />);
       expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
     });
   });
 
   describe('disabled API', () => {
     it('sets the disabled attribute', () => {
-      render((
-        <Input
-          id="foo"
-          disabled
-          label="the label"
-        />
-      ));
+      render(<Input {...requiredProps} disabled />);
       expect(screen.getByLabelText('the label')).toBeDisabled();
     });
   });
 
   describe('id API', () => {
     it('sets the ID', () => {
-      render((
-        <Input
-          id="test-id"
-          label="the label"
-        />
-      ));
+      render(<Input {...requiredProps} id="test-id" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('id', 'test-id');
     });
   });
 
   describe('invalid API', () => {
     it('sets an invalid class', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          invalid
-        />
-      ));
+      render(<Input {...requiredProps} invalid />);
       expect(screen.getByLabelText('the label')).toHaveClass('invalid-input');
     });
 
     it('inserts an invalid icon', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          invalid
-        />
-      ));
+      render(<Input {...requiredProps} invalid />);
       expect(screen.getByRole('img')).toHaveClass('invalid-icon');
     });
   });
 
   describe('maxLength API', () => {
     it('sets the maxLength attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          maxLength={100}
-        />
-      ));
+      render(<Input {...requiredProps} maxLength={100} />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('maxlength', '100');
     });
   });
 
   describe('name API', () => {
     it('sets the name attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          name="test-name"
-        />
-      ));
+      render(<Input {...requiredProps} name="test-name" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('name', 'test-name');
     });
   });
@@ -123,13 +74,7 @@ describe('Input', () => {
   describe('onBlur API', () => {
     it('sets the onblur handler', () => {
       const onBlurSpy = jest.fn();
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onBlur={onBlurSpy}
-        />
-      ));
+      render(<Input {...requiredProps} onBlur={onBlurSpy} />);
       fireEvent.blur(screen.getByLabelText('the label'));
       expect(onBlurSpy.mock.calls.length).toEqual(1);
     });
@@ -138,13 +83,7 @@ describe('Input', () => {
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onChange={onChangeSpy}
-        />
-      ));
+      render(<Input {...requiredProps} onChange={onChangeSpy} />);
       fireEvent.change(screen.getByLabelText('the label'), { target: { value: 'new value' } });
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
@@ -153,13 +92,7 @@ describe('Input', () => {
   describe('onFocus API', () => {
     it('sets the onFocus handler', () => {
       const onFocusSpy = jest.fn();
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onFocus={onFocusSpy}
-        />
-      ));
+      render(<Input {...requiredProps} onFocus={onFocusSpy} />);
       fireEvent.focus(screen.getByLabelText('the label'));
       expect(onFocusSpy.mock.calls.length).toEqual(1);
     });
@@ -168,13 +101,7 @@ describe('Input', () => {
   describe('onInput API', () => {
     it('sets the onInput handler', () => {
       const onInputSpy = jest.fn();
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onInput={onInputSpy}
-        />
-      ));
+      render(<Input {...requiredProps} onInput={onInputSpy} />);
       fireEvent.input(screen.getByLabelText('the label'));
       expect(onInputSpy.mock.calls.length).toEqual(1);
     });
@@ -183,13 +110,7 @@ describe('Input', () => {
   describe('onKeyDown API', () => {
     it('sets the onKeyDown handler', () => {
       const onKeyDownSpy = jest.fn();
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onKeyDown={onKeyDownSpy}
-        />
-      ));
+      render(<Input {...requiredProps} onKeyDown={onKeyDownSpy} />);
       fireEvent.keyDown(screen.getByLabelText('the label'));
       expect(onKeyDownSpy.mock.calls.length).toEqual(1);
     });
@@ -197,135 +118,66 @@ describe('Input', () => {
 
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          placeholder="test-placeholder"
-        />
-      ));
+      render(<Input {...requiredProps} placeholder="test-placeholder" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('placeholder', 'test-placeholder');
     });
   });
 
   describe('readOnly API', () => {
     it('sets the readOnly attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          readOnly
-        />
-      ));
+      render(<Input {...requiredProps} readOnly />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('readonly');
     });
   });
 
   describe('required API', () => {
     it('sets the required attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          required
-        />
-      ));
+      render(<Input {...requiredProps} required />);
       expect(screen.getByLabelText('the label')).toBeRequired();
     });
   });
 
   describe('type API', () => {
     it('is set to "email"', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          type="email"
-        />
-      ));
+      render(<Input {...requiredProps} type="email" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'email');
     });
 
     it('is set to "password"', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          type="password"
-        />
-      ));
+      render(<Input {...requiredProps} type="password" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'password');
     });
 
     it('is be set to "text"', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          type="text"
-        />
-      ));
+      render(<Input {...requiredProps} type="text" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'text');
     });
   });
 
   describe('value API', () => {
     it('sets the value', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          onChange={() => {}}
-          value="test-value"
-        />
-      ));
+      render(<Input {...requiredProps} value="test-value" />);
       expect(screen.getByLabelText('the label')).toHaveValue('test-value');
     });
 
     it('updates the value', () => {
-      const { rerender } = render((
-        <Input
-          {...requiredProps}
-          value="test value"
-        />
-      ));
-
-      rerender((
-        <Input
-          {...requiredProps}
-          value="another value"
-        />
-      ));
-
+      const { rerender } = render(<Input {...requiredProps} value="test value" />);
+      rerender(<Input {...requiredProps} value="another value" />);
       expect(screen.getByLabelText('the label')).toHaveValue('another value');
     });
   });
 
   describe('ref API', () => {
-    it('is set to the inputRef property', () => {
-      const inputRef = React.createRef();
-      render(
-        <Input
-          id="foo"
-          label="the label"
-          inputRef={inputRef}
-          onChange={() => {}}
-          value="test-value"
-        />,
-      );
-      expect(inputRef.current.value).toEqual('test-value');
+    it('can be set', () => {
+      const ref = React.createRef();
+      render(<Input {...requiredProps} inputRef={ref} value="test value" />);
+      expect(ref.current.value).toEqual('test value');
     });
   });
 
   describe('autoFocus API', () => {
     it('sets the autoFocus attribute', () => {
-      render((
-        <Input
-          id="foo"
-          label="the label"
-          autoFocus
-        />
-      ));
+      render(<Input {...requiredProps} autoFocus />);
       expect(screen.getByLabelText('the label')).toHaveFocus();
     });
   });
