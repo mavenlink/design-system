@@ -170,7 +170,7 @@ describe('Input', () => {
   describe('ref API', () => {
     it('can be set', () => {
       const ref = React.createRef();
-      render(<Input {...requiredProps} inputRef={ref} value="test value" />);
+      render(<Input {...requiredProps} ref={ref} value="test value" />);
       expect(ref.current.value).toEqual('test value');
     });
   });

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {
+  forwardRef,
   useEffect,
   useRef,
 } from 'react';
@@ -18,9 +19,9 @@ function isInvalid(invalid, readOnly) {
   return invalid && !readOnly;
 }
 
-export default function Input(props) {
+const Input = forwardRef(function Input(props, forwardedRef) {
   const fallbackRef = useRef();
-  const ref = props.inputRef || fallbackRef;
+  const ref = forwardedRef || fallbackRef;
   const [didMount] = useDidMount();
 
   useEffect(() => {
@@ -69,7 +70,7 @@ export default function Input(props) {
       )}
     </FormControl>
   );
-}
+});
 
 Input.propTypes = {
   autoFocus: PropTypes.bool,
@@ -78,7 +79,6 @@ Input.propTypes = {
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  inputRef: PropTypes.shape({ current: PropTypes.any }),
   invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
@@ -107,7 +107,6 @@ Input.defaultProps = {
   defaultValue: undefined,
   disabled: undefined,
   invalid: false,
-  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: undefined,
@@ -121,3 +120,5 @@ Input.defaultProps = {
   type: 'text',
   value: undefined,
 };
+
+export default Input;
