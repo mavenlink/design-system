@@ -116,14 +116,16 @@ describe('Input', () => {
     it('can be set', () => {
       render(<Input {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeRequired();
+      expect(screen.getByLabelText('the label')).toBeInvalid();
     });
 
     it('can be unset', () => {
       render(<Input {...requiredProps} required={false} />);
       expect(screen.getByLabelText('the label')).not.toBeRequired();
+      expect(screen.getByLabelText('the label')).toBeValid();
     });
 
-    it('is not invalid on mount', () => {
+    it('is invalid on mount but does not have an error message', () => {
       render(<Input {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
       expect(screen.getByLabelText('the label')).toHaveDescription('');
@@ -133,6 +135,8 @@ describe('Input', () => {
       render(<Input {...requiredProps} required={true} />);
       userEvent.type(screen.getByLabelText('the label'), 'a');
       expect(screen.getByLabelText('the label')).toHaveValue('a');
+      expect(screen.getByLabelText('the label')).toBeValid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
       userEvent.type(screen.getByLabelText('the label'), '{backspace}');
       expect(screen.getByLabelText('the label')).toHaveValue('');
       expect(screen.getByLabelText('the label')).toBeInvalid();
@@ -144,6 +148,7 @@ describe('Input', () => {
       userEvent.tab();
       expect(document.activeElement).toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
       userEvent.tab();
       expect(document.activeElement).not.toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
@@ -173,6 +178,7 @@ describe('Input', () => {
       render(<Input {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
       expect(screen.getByLabelText('the label')).toHaveDescription('unique error');
+      expect(screen.getByLabelText('unique error')).toHaveDescription('unique error');
     });
 
     it('can be unset', () => {
