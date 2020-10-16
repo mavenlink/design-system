@@ -1,6 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import Input from './input.jsx';
 
 describe('Input', () => {
@@ -10,14 +13,8 @@ describe('Input', () => {
   };
 
   it('has defaults', () => {
-    const tree = renderer
-      .create((
-        <Input
-          id="foo"
-          label="I am a label for accessibility"
-        />
-      )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<Input {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('className API', () => {
