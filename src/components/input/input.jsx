@@ -26,6 +26,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const [didMount] = useDidMount();
   const [validationMessage, validate] = useValidation(props.validationMessage, ref);
 
+  function onBlur(event) {
+    validate();
+    props.onBlur(event);
+  }
+
   function onChange(event) {
     validate();
     props.onChange(event);
@@ -57,7 +62,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         id={props.id}
         maxLength={props.maxLength}
         name={props.name}
-        onBlur={props.onBlur}
+        onBlur={onBlur}
         onChange={onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
@@ -113,7 +118,7 @@ Input.defaultProps = {
   defaultValue: undefined,
   maxLength: undefined,
   name: undefined,
-  onBlur: undefined,
+  onBlur: () => {},
   onChange: () => {},
   onFocus: undefined,
   onInput: undefined,
