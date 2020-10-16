@@ -73,7 +73,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         <Icon
           className={styles['invalid-icon']}
           icon={cautionSvg}
-          label="Invalid input"
+          label={validationMessage}
         />
       )}
     </FormControl>

@@ -178,7 +178,7 @@ describe('Input', () => {
       render(<Input {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
       expect(screen.getByLabelText('the label')).toHaveDescription('unique error');
-      expect(screen.getByLabelText('unique error')).toHaveDescription('unique error');
+      expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
     });
 
     it('can be unset', () => {
