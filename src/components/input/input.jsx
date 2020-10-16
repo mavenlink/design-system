@@ -11,13 +11,9 @@ import styles from './input.css';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useValidation from '../../hooks/use-validation.jsx';
 
-function getClassName(className, invalid, readOnly) {
+function getClassName(className, validationMessage) {
   if (className) return className;
-  return isInvalid(invalid, readOnly) ? styles['invalid-input'] : styles.input;
-}
-
-function isInvalid(invalid, readOnly) {
-  return invalid && !readOnly;
+  return !!validationMessage ? styles['invalid-input'] : styles.input;
 }
 
 const Input = forwardRef(function Input(props, forwardedRef) {
@@ -57,7 +53,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       <input
         aria-describedby={`${props.id}Hint`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-        className={getClassName(props.className, props.invalid, props.readOnly)}
+        className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
         id={props.id}
         maxLength={props.maxLength}
@@ -73,7 +69,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         required={props.required}
         type={props.type}
       />
-      {isInvalid(props.invalid, props.readOnly) && (
+      {!!validationMessage && (
         <Icon
           className={styles['invalid-icon']}
           icon={cautionSvg}
