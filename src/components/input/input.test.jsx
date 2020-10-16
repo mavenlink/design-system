@@ -4,6 +4,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Input from './input.jsx';
 
 describe('Input', () => {
@@ -42,18 +43,6 @@ describe('Input', () => {
     it('sets the ID', () => {
       render(<Input {...requiredProps} id="test-id" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('id', 'test-id');
-    });
-  });
-
-  describe('invalid API', () => {
-    it('sets an invalid class', () => {
-      render(<Input {...requiredProps} invalid />);
-      expect(screen.getByLabelText('the label')).toHaveClass('invalid-input');
-    });
-
-    it('inserts an invalid icon', () => {
-      render(<Input {...requiredProps} invalid />);
-      expect(screen.getByRole('img')).toHaveClass('invalid-icon');
     });
   });
 
@@ -131,9 +120,30 @@ describe('Input', () => {
   });
 
   describe('required API', () => {
-    it('sets the required attribute', () => {
-      render(<Input {...requiredProps} required />);
+    it('can be set', () => {
+      render(<Input {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeRequired();
+    });
+
+    it('can be unset', () => {
+      render(<Input {...requiredProps} required={false} />);
+      expect(screen.getByLabelText('the label')).not.toBeRequired();
+    });
+
+    it('is not invalid on mount', () => {
+      render(<Input {...requiredProps} required={true} />);
+      expect(screen.getByLabelText('the label')).toBeInvalid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
+    });
+
+    it('is invalid after interactions', async () => {
+      render(<Input {...requiredProps} required={true} />);
+      userEvent.type(screen.getByLabelText('the label'), 'a');
+      expect(screen.getByLabelText('the label')).toHaveValue('a');
+      userEvent.type(screen.getByLabelText('the label'), '{backspace}');
+      expect(screen.getByLabelText('the label')).toHaveValue('');
+      expect(screen.getByLabelText('the label')).toBeInvalid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
     });
   });
 
@@ -151,6 +161,20 @@ describe('Input', () => {
     it('is be set to "text"', () => {
       render(<Input {...requiredProps} type="text" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'text');
+    });
+  });
+
+  describe('validationMessage API', () => {
+    it('can be set', () => {
+      render(<Input {...requiredProps} validationMessage="unique error" />);
+      expect(screen.getByLabelText('the label')).toBeInvalid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('unique error');
+    });
+
+    it('can be unset', () => {
+      render(<Input {...requiredProps} validationMessage="" />);
+      expect(screen.getByLabelText('the label')).toBeValid();
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
     });
   });
 

@@ -9,6 +9,7 @@ import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 import useDidMount from '../../hooks/use-did-mount.js';
+import useValidation from '../../hooks/use-validation.jsx';
 
 function getClassName(className, invalid, readOnly) {
   if (className) return className;
@@ -23,6 +24,12 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
   const [didMount] = useDidMount();
+  const [validationMessage, validate] = useValidation(props.validationMessage, ref);
+
+  function onChange(event) {
+    validate();
+    props.onChange(event);
+  }
 
   useEffect(() => {
     if (!didMount) return;
@@ -36,13 +43,14 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   return (
     <FormControl
       className={props.cssContainer}
-      error={props.invalid ? 'Invalid value.' : ''}
+      error={validationMessage}
       id={props.id}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
     >
       <input
+        aria-describedby={`${props.id}Hint`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, props.invalid, props.readOnly)}
         defaultValue={props.value}
@@ -51,7 +59,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         maxLength={props.maxLength}
         name={props.name}
         onBlur={props.onBlur}
-        onChange={props.onChange}
+        onChange={onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
         onKeyDown={props.onKeyDown}
@@ -79,7 +87,6 @@ Input.propTypes = {
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   name: PropTypes.string,
@@ -96,6 +103,7 @@ Input.propTypes = {
     'password',
     'text',
   ]),
+  validationMessage: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -106,11 +114,10 @@ Input.defaultProps = {
   cssLabel: undefined,
   defaultValue: undefined,
   disabled: undefined,
-  invalid: false,
   maxLength: undefined,
   name: undefined,
   onBlur: undefined,
-  onChange: undefined,
+  onChange: () => {},
   onFocus: undefined,
   onInput: undefined,
   onKeyDown: undefined,
@@ -118,6 +125,7 @@ Input.defaultProps = {
   readOnly: undefined,
   required: undefined,
   type: 'text',
+  validationMessage: '',
   value: undefined,
 };
 

@@ -17,6 +17,7 @@ exports[`Input has defaults 1`] = `
         class="control-container"
       >
         <input
+          aria-describedby="fooHint"
           class="input"
           id="foo"
           type="text"
