@@ -14,7 +14,7 @@ import useValidation from '../../hooks/use-validation.jsx';
 
 function getClassName(className, validationMessage) {
   if (className) return className;
-  return !!validationMessage ? styles['invalid-input'] : styles.input;
+  return validationMessage ? styles['invalid-input'] : styles.input;
 }
 
 const Input = forwardRef(function Input(props, forwardedRef) {

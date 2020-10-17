@@ -57,7 +57,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   }
 
   function handleOnFocus() {
-    if (props.disabled || props.readOnly) return;
+    if (props.readOnly) return;
 
     setIsEditing(true);
     setIsFocused(true);
