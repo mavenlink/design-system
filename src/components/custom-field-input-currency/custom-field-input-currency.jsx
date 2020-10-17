@@ -103,7 +103,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   const sharedProps = {
     className: props.className,
-    disabled: props.disabled,
     id: props.id,
     label: props.label,
     name: props.name,
@@ -129,11 +128,11 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   return (
     <CustomFieldInputText
       {...sharedProps}
-      defaultValue={formattedNumber}
       errorText={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"
+      value={formattedNumber}
     />
   );
 });
@@ -141,7 +140,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
-  disabled: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -156,7 +154,6 @@ CustomFieldInputCurrency.propTypes = {
 CustomFieldInputCurrency.defaultProps = {
   className: styles['custom-field-input-text'],
   currencyCode: 'USD',
-  disabled: false,
   errorText: undefined,
   name: undefined,
   placeholder: undefined,

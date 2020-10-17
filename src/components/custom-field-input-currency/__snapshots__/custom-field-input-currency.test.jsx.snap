@@ -4,13 +4,12 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
 <body>
   <div>
     <div
-      class="custom-field-input-text"
+      class="container"
       role="presentation"
     >
       <label
         class="label"
         for="currency"
-        id="currency-label"
       >
         currency
       </label>
@@ -18,15 +17,12 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
         class="control-container"
       >
         <input
-          class="input"
+          aria-describedby="currencyHint"
+          class="custom-field-input-text"
           id="currency"
           name="some-field-id"
-          style="--numIcon: 0;"
           type="text"
           value=""
-        />
-        <div
-          class="icon-container"
         />
       </div>
     </div>

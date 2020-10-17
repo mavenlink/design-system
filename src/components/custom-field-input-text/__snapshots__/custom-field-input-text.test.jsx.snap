@@ -4,12 +4,12 @@ exports[`CustomFieldInputText has defaults 1`] = `
 <body>
   <div>
     <div
+      class="container"
       role="presentation"
     >
       <label
         class="label"
         for="test-input"
-        id="test-input-label"
       >
         Test label
       </label>
@@ -17,15 +17,12 @@ exports[`CustomFieldInputText has defaults 1`] = `
         class="control-container"
       >
         <input
+          aria-describedby="test-inputHint"
           class="input"
           id="test-input"
           name="field-id"
-          style="--numIcon: 0;"
           type="text"
           value=""
-        />
-        <div
-          class="icon-container"
         />
       </div>
     </div>

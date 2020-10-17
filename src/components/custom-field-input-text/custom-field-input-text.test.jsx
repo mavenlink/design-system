@@ -20,7 +20,7 @@ describe('CustomFieldInputText', () => {
   describe('dirty ref API', () => {
     it('updates on user interactions', () => {
       const ref = createRef();
-      render(<CustomFieldInputText {...requiredProps} ref={ref} defaultValue="ab" />);
+      render(<CustomFieldInputText {...requiredProps} ref={ref} value="ab" />);
       expect(ref.current.dirty).toEqual(false);
       userEvent.type(screen.getByLabelText('Test label'), '{backspace}');
       expect(ref.current.dirty).toEqual(true);
@@ -33,7 +33,7 @@ describe('CustomFieldInputText', () => {
     it('can have an error state through a custom validation', () => {
       render(<CustomFieldInputText {...requiredProps} errorText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByText('Invalid custom field')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('Custom validation message');
     });
 
     it('can have no error state', () => {
@@ -64,13 +64,13 @@ describe('CustomFieldInputText', () => {
     it('initially, it does not show errors for html-invalidity. It shows errors for html-invalidity after user interaction', () => {
       render(<CustomFieldInputText {...requiredProps} required />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.queryByText('Invalid custom field')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '123');
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(screen.queryByText('Invalid custom field')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '{backspace}{backspace}{backspace}');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.queryByText('Invalid custom field')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
   });
 });
