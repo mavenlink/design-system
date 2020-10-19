@@ -10,6 +10,18 @@ describe('AbstractCustomField', () => {
     id: 'test-id',
   };
 
+  describe('autoComplete API', () => {
+    it('can be autoComplete on', () => {
+      render(<AbstractCustomField {...sharedProps} autoComplete="on" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('autocomplete', 'on');
+    });
+
+    it('can be autoComplete off', () => {
+      render(<AbstractCustomField {...sharedProps} autoComplete="off" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('autocomplete', 'off');
+    });
+  });
+
   describe('aria props', () => {
     const ariaProps = { autocomplete: 'list', haspopup: 'listbox', controls: 'test-dropdown' };
 
