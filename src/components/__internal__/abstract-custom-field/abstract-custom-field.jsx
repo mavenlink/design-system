@@ -117,7 +117,7 @@ export default function AbstractCustomField(props) {
 }
 
 AbstractCustomField.propTypes = {
-  autoComplete: PropTypes.oneOf(["off", "on"]),
+  autoComplete: PropTypes.oneOf(['off', 'on']),
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
     controls: PropTypes.string,
@@ -173,7 +173,7 @@ AbstractCustomField.propTypes = {
 };
 
 AbstractCustomField.defaultProps = {
-  autoComplete: "on",
+  autoComplete: 'on',
   ariaProps: {},
   className: undefined,
   inputClassName: undefined,
