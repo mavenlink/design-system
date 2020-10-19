@@ -15,6 +15,10 @@
   - Major: Deprecate unused props API `Input`: `invalid`, `defaultValue`
 </details>
 
+## v0.48.2
+  - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
+  - Patch: Fix timezone issue with `CustomFieldInputDate`
+
 ## v0.48.1
   - Patch: Fix bug where `Select` and `CustomFieldInputString` showed errors on first render when html invalid.
   - Patch: `Select`, `CustomFieldInputSingleChoice` maintains correct input value state when closing dropdown
