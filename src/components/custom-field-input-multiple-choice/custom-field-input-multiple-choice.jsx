@@ -164,6 +164,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
                 aria-expanded={renderPopup}
                 aria-haspopup="listbox"
                 aria-labelledby={`${props.id}-label`}
+                autoComplete="off"
                 role="combobox"
                 className={styles['autocomplete-input']}
                 id={`${props.id}-autocomple`}
