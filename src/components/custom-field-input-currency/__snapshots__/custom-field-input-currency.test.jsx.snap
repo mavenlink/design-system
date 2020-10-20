@@ -18,6 +18,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
         class="control-container"
       >
         <input
+          autocomplete="on"
           class="input"
           id="currency"
           name="some-field-id"

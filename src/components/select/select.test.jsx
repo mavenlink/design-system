@@ -91,7 +91,7 @@ describe('src/components/select/select', () => {
     it('has aria-haspopup, role is combobox, aria-autocomplete is list, and aria-controls references the list box id', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
       expect(screen.getByLabelText('Test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'list');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'none');
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-controls', 'test-id-single-choice-listbox');
     });
 
