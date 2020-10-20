@@ -155,7 +155,7 @@ describe('src/components/listbox/listbox', () => {
   });
 
   describe('onChange API', () => {
-    it('informs when a selection is made', () => {
+    it('is called with a new selection', () => {
       const ref = createRef();
       const refs = [createRef(), createRef()];
       const onChange = jest.fn();
@@ -170,6 +170,23 @@ describe('src/components/listbox/listbox', () => {
       userEvent.click(screen.getByText('Hey'));
       expect(onChange.mock.calls.length).toBe(1);
       expect(onChange.mock.calls[0][0]).toEqual({ target: expect.objectContaining({ value: 'hey' }) });
+    });
+
+    it('is called with a re-selection', () => {
+      const ref = createRef();
+      const refs = [createRef(), createRef()];
+      const onChange = jest.fn();
+
+      render((
+        <Listbox {...requiredProps} ref={ref} refs={refs} onChange={onChange} value={refs[0]}>
+          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Hello'));
+      expect(onChange.mock.calls.length).toBe(1);
+      expect(onChange.mock.calls[0][0]).toEqual({ target: expect.objectContaining({ value: 'hello' }) });
     });
 
     it('is not called on mount', () => {

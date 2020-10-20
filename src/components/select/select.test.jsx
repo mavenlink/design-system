@@ -427,5 +427,12 @@ describe('src/components/select/select', () => {
       userEvent.click(screen.getByLabelText('outside'));
       expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('');
     });
+
+    it('closes even when the choice is already selected', async () => {
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('foo');
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
+      userEvent.click(screen.getByRole('option', { name: 'foo' }));
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveFocus();
+    });
   });
 });
