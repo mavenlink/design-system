@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Add `autoComplete` prop to `AbstractCustomField`
   - Minor: Set `autoComplete="off"` for `Select` component
+  - Patch: Turn off autofill behavior in `CustomFieldInputMultipleChoice`
 </details>
 
 ## v0.48.2
