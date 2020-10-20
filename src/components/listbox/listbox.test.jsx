@@ -8,7 +8,6 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderer from 'react-test-renderer';
 import Listbox from './listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
@@ -19,8 +18,10 @@ describe('src/components/listbox/listbox', () => {
   };
 
   it('has defaults', () => {
-    const tree = renderer.create(<Listbox {...requiredProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const ref = createRef();
+    render(<Listbox {...requiredProps} ref={ref} />);
+    expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
