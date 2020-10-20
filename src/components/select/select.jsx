@@ -167,11 +167,12 @@ const Select = forwardRef(function Select(props, ref) {
         value={searchValue || defaultValue}
         inputRole={'combobox'}
         ariaProps={{
-          autocomplete: 'list',
+          autocomplete: 'none',
           controls: `${props.id}-single-choice-listbox`,
           expanded: showOptions,
           haspopup: 'listbox',
         }}
+        autoComplete="off"
       />
       { showOptions && (
         (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (

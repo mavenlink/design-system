@@ -76,6 +76,7 @@ export default function AbstractCustomField(props) {
       required={props.required}
     >
       <input
+        autoComplete={props.autoComplete}
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={props.ariaProps.controls}
         aria-haspopup={props.ariaProps.haspopup}
@@ -116,6 +117,7 @@ export default function AbstractCustomField(props) {
 }
 
 AbstractCustomField.propTypes = {
+  autoComplete: PropTypes.oneOf(['off', 'on']),
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
     controls: PropTypes.string,
@@ -171,6 +173,7 @@ AbstractCustomField.propTypes = {
 };
 
 AbstractCustomField.defaultProps = {
+  autoComplete: 'on',
   ariaProps: {},
   className: undefined,
   inputClassName: undefined,

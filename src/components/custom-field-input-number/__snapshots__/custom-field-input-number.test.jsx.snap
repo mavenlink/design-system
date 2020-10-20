@@ -18,6 +18,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
         class="control-container"
       >
         <input
+          autocomplete="on"
           class="input"
           id="test-input"
           max="2147483648"

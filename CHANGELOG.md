@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `autoComplete` prop to `AbstractCustomField`
+  - Minor: Set `autoComplete="off"` for `Select` component
 </details>
 
 ## v0.48.2
