@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Add `autoComplete` prop to `AbstractCustomField`
   - Minor: Set `autoComplete="off"` for `Select` component
+  - Minor: Call `Listbox#onChange` with re-selections, ensure `Select` options are closed when already selected
 </details>
 
 ## v0.48.2
