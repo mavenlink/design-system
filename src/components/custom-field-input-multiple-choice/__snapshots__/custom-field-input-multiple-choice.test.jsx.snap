@@ -34,6 +34,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 aria-labelledby="test-id-label"
+                autocomplete="off"
                 class="autocomplete-input"
                 id="test-id-autocomple"
                 role="combobox"

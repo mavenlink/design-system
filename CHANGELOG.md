@@ -15,6 +15,12 @@
   - Major: Deprecate unused props API `Input`: `invalid`, `defaultValue`
 </details>
 
+## v0.49.0
+  - Minor: Add `autoComplete` prop to `AbstractCustomField`
+  - Minor: Set `autoComplete="off"` for `Select` component
+  - Minor: Call `Listbox#onChange` with re-selections, ensure `Select` options are closed when already selected
+  - Patch: Turn off autofill behavior in `CustomFieldInputMultipleChoice`
+
 ## v0.48.2
   - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
   - Patch: Fix timezone issue with `CustomFieldInputDate`

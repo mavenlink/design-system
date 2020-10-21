@@ -19,6 +19,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           class="control-container"
         >
           <input
+            autocomplete="on"
             class="input"
             id="field-date"
             style="--numIcon: 1;"
