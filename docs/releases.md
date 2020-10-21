@@ -18,7 +18,7 @@
 
 1. Publish to NPM with `yarn publish`. Note: this will create a commit and tag with the staged changelogs and semver change.
 
-1. `git push --tags` to persist your new version tag to the remote.
+1. `git push origin HEAD --set-upstream --tags` to persist your new branch and version tag to Github.
 
 1. Create a PR
 
