@@ -21,7 +21,13 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   ));
 
   const optionsWasSelected = (toggledRefIndex) => {
-    setValue(props.refs[toggledRefIndex].current.value);
+    const nextValue = props.refs[toggledRefIndex].current.value;
+    if (value === nextValue) {
+      // Simulate a value change even though internal state does not change
+      props.onChange({ target: ref.current });
+    } else {
+      setValue(nextValue);
+    }
   };
 
   function onFocus(event) {
