@@ -7,11 +7,14 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+
+</details>
+
+## v0.49.0
   - Minor: Add `autoComplete` prop to `AbstractCustomField`
   - Minor: Set `autoComplete="off"` for `Select` component
   - Minor: Call `Listbox#onChange` with re-selections, ensure `Select` options are closed when already selected
   - Patch: Turn off autofill behavior in `CustomFieldInputMultipleChoice`
-</details>
 
 ## v0.48.2
   - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
