@@ -1,69 +1,104 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
+import useDidMount from '../../hooks/use-did-mount.js';
+import useValidation from '../../hooks/use-validation.jsx';
 
-function getClassName(className, invalid, readOnly) {
+function getClassName(className, validationMessage) {
   if (className) return className;
-  return isInvalid(invalid, readOnly) ? styles['invalid-input'] : styles.input;
+  return validationMessage ? styles['invalid-input'] : styles.input;
 }
 
-function isInvalid(invalid, readOnly) {
-  return invalid && !readOnly;
-}
+const Input = forwardRef(function Input(props, forwardedRef) {
+  const fallbackRef = useRef();
+  const ref = forwardedRef || fallbackRef;
+  const inputRef = useRef();
+  const [didMount] = useDidMount();
+  const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
-export default function Input(props) {
+  function onBlur(event) {
+    validate();
+    props.onBlur(event);
+  }
+
+  function onChange(event) {
+    validate();
+    props.onChange(event);
+  }
+
+  useEffect(() => {
+    if (!didMount) return;
+
+    // The MDS Input is using an uncontrolled `<input>`.
+    // In order to set a new provided value prop, we
+    // set the internal state of the `<input>`.
+    inputRef.current.value = props.value;
+  }, [props.value]);
+
+  useImperativeHandle(ref, () => ({
+    get dirty() {
+      const providedValue = props.value || '';
+      return providedValue !== this.value;
+    },
+    id: props.id,
+    name: props.name,
+    get value() {
+      return inputRef.current.value;
+    },
+  }));
+
   return (
     <FormControl
       className={props.cssContainer}
-      error={props.invalid ? 'Invalid value.' : ''}
+      error={validationMessage}
       id={props.id}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
     >
       <input
+        aria-describedby={`${props.id}Hint`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-        className={getClassName(props.className, props.invalid, props.readOnly)}
-        defaultValue={props.defaultValue}
-        disabled={props.disabled}
+        className={getClassName(props.className, validationMessage)}
+        defaultValue={props.value}
         id={props.id}
         maxLength={props.maxLength}
         name={props.name}
-        onBlur={props.onBlur}
-        onChange={props.onChange}
+        onBlur={onBlur}
+        onChange={onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={props.inputRef}
+        ref={inputRef}
         required={props.required}
         type={props.type}
-        value={props.value}
       />
-      {isInvalid(props.invalid, props.readOnly) && (
+      {!!validationMessage && (
         <Icon
           className={styles['invalid-icon']}
           icon={cautionSvg}
-          label="Invalid input"
+          label={validationMessage}
         />
       )}
     </FormControl>
   );
-}
+});
 
 Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  inputRef: PropTypes.shape({ current: PropTypes.any }),
-  invalid: PropTypes.bool,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   name: PropTypes.string,
@@ -80,6 +115,7 @@ Input.propTypes = {
     'password',
     'text',
   ]),
+  validationMessage: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -88,14 +124,10 @@ Input.defaultProps = {
   className: undefined,
   cssContainer: styles.container,
   cssLabel: undefined,
-  defaultValue: undefined,
-  disabled: undefined,
-  invalid: false,
-  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
-  onBlur: undefined,
-  onChange: undefined,
+  onBlur: () => {},
+  onChange: () => {},
   onFocus: undefined,
   onInput: undefined,
   onKeyDown: undefined,
@@ -103,5 +135,8 @@ Input.defaultProps = {
   readOnly: undefined,
   required: undefined,
   type: 'text',
+  validationMessage: '',
   value: undefined,
 };
+
+export default Input;
