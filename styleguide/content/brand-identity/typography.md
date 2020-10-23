@@ -135,7 +135,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
 
 We offer a linter for use with [stylelint](https://stylelint.io/) to enforce typography usage. To use it, simply install this library and add the following to your stylelint configure file:
 
-```js
+```js static
 const path = require('path');
 
 module.exports = {
