@@ -96,42 +96,9 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
-  styles: {
-    Para: {
-      para: {
-        fontSize: 14,
-      },
-    },
-  },
+  styles: './styleguide.config.styles.js',
   template: {
     favicon: 'favicon.ico',
-    head: {
-      links: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Merriweather|Open+Sans',
-        },
-      ],
-    },
-  },
-  theme: {
-    color: {
-      sidebarBackground: 'white',
-    },
-    fontFamily: {
-      base: '"Open Sans", system-ui, sans-serif', // --mds-type-font-family
-    },
-    fontSize: {
-      base: 14, // --mds-type-content
-      text: 14, // --mds-type-content
-      small: 12, // --mds-type-subtext
-      h1: 22, // --mds-type-page-title
-      h2: 16, // --mds-type-subhead-1
-      h3: 16, // --mds-type-subhead-2
-      h4: 14, // --mds-type-subhead-3
-      h5: 14, // --mds-type-subhead-3
-      h6: 14, // --mds-type-subhead-3
-    },
   },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
