@@ -13,6 +13,8 @@
   - Minor: Enhance `Input` component with validation logic, ref API
   - Patch: Fix a11y descriptions for `Input` component
   - Major: Deprecate unused props API `Input`: `invalid`, `defaultValue`
+  - Minor: Add `setTabActiveStates` to `Tag` component ref API
+  - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
 </details>
 
 ## v0.49.0
