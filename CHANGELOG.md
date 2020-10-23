@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.51.0
   - Minor: Add `setTabActiveStates` to `Tag` component ref API
   - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
-</details>
 
 ## v0.50.0
   - Major: Deprecate unused props API on `CustomFieldInputText`: `ariaProps.autocomplete`, `ariaProps.haspopup`, `disabled`, `onBlur`, `onChange`, `onClick`, `onKeyDown`, `onKeyUp`
