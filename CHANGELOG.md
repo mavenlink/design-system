@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `setTabActiveStates` to `Tag` component ref API
+  - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
 </details>
 
 ## v0.50.0
