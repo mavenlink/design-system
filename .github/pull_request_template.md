@@ -17,7 +17,7 @@ In order to reduce overhead in maintaining PRs, please follow these rules:
 - [ ] Change log entry
 - [ ] Label(s)
 - [ ] Assignee(s)
-- [ ] Deployment URL: https://mavenlink.github.io/design-system/$BRANCH
+- [ ] Deployment URL: https://mavenlink.github.io/design-system/$BRANCH/
 - [ ] (When ready for review) Reviewer(s)
 - [ ] Green Bigmaven CI check
 - [ ] DevQA on Bigmaven staging (e.g. does the work need to be imported in the internal design system?)
