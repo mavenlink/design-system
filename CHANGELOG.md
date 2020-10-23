@@ -7,15 +7,17 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Add `setTabActiveStates` to `Tag` component ref API
+  - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
+</details>
+
+## v0.50.0
   - Major: Deprecate unused props API on `CustomFieldInputText`: `ariaProps.autocomplete`, `ariaProps.haspopup`, `disabled`, `onBlur`, `onChange`, `onClick`, `onKeyDown`, `onKeyUp`
   - Major: Deprecate `defaultValue` prop API on `CustomFieldInputText` in favor of `value`
   - Major: Deprecate `disabled` prop API on `CustomFieldInputCurrency`
   - Minor: Enhance `Input` component with validation logic, ref API
   - Patch: Fix a11y descriptions for `Input` component
   - Major: Deprecate unused props API `Input`: `invalid`, `defaultValue`
-  - Minor: Add `setTabActiveStates` to `Tag` component ref API
-  - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
-</details>
 
 ## v0.49.0
   - Minor: Add `autoComplete` prop to `AbstractCustomField`
