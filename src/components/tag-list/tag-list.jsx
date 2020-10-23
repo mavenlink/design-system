@@ -36,15 +36,19 @@ export default function TagList(props) {
       case 'ArrowLeft':
       case 'ArrowUp':
         if (activeIndex > 0) {
+          const newActiveIndex = activeIndex - 1;
           event.preventDefault();
-          setActiveIndex(activeIndex - 1);
+          setActiveIndex(newActiveIndex);
+          props.refs[newActiveIndex].current.setTabActiveStates([false, true]);
         }
         break;
       case 'ArrowRight':
       case 'ArrowDown':
         if (activeIndex < props.refs.length - 1) {
+          const newActiveIndex = activeIndex + 1;
           event.preventDefault();
-          setActiveIndex(activeIndex + 1);
+          setActiveIndex(newActiveIndex);
+          props.refs[newActiveIndex].current.setTabActiveStates([true, false]);
         }
         break;
       case 'End':

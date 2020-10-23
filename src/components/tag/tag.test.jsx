@@ -163,4 +163,16 @@ describe('Tag', () => {
       await waitFor(() => expect(screen.getByText('Test Title')).toHaveFocus());
     });
   });
+
+  describe('setTabActiveStates ref API', () => {
+    it('sets tabActiveStates', async () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+
+      act(() => { ref.current.setTabActiveStates([false, true]); });
+      act(() => { ref.current.setIsActive(true); });
+
+      await waitFor(() => expect(screen.getByLabelText('Remove')).toEqual(document.activeElement));
+    });
+  });
 });
