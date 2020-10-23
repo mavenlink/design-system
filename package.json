@@ -12,6 +12,7 @@
     "lint:es": "eslint '{,!(build)/**/}/*.js?(x)' --no-ignore .eslintrc.js",
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
+    "start:debug": "node --inspect-brk $(yarn bin)/styleguidist server",
     "test": "jest",
     "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand --no-cache --watch"
   },
