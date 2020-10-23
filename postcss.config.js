@@ -1,7 +1,5 @@
-const postCssPresetEnv = require('postcss-preset-env');
-
 module.exports = {
-  plugins: () => [
-    postCssPresetEnv(),
+  plugins: [
+    'postcss-preset-env',
   ],
 };
