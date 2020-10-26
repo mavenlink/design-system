@@ -88,7 +88,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
         <tr>
             <td><pre>h4</pre></td>
             <td>14px</td>
-            <td>400</td>
+            <td>600</td>
             <td><pre>--mds-type-subhead-3</pre></td>
             <td>
                 <h4 class="subhead-3">Subheads</h4>
