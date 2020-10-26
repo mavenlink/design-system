@@ -96,7 +96,7 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
-  styles: './styleguide.config.styles.js',
+  styles: path.resolve(__dirname, './styleguide.config.styles.js'),
   template: {
     favicon: 'favicon.ico',
   },
