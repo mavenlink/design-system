@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Update documentation to match typography subheads specs
+  - Major: Bundle Open Sans font via stylesheet. Upgrade by installing `fontsource-open-sans`.
 </details>
 
 ## v0.51.0
