@@ -72,6 +72,7 @@
   font: var(--mds-type-subhead-3);
   padding-bottom: var(--spacing-medium);
   padding-top: var(--spacing-medium);
+  text-align: center;
 }
 
 .date {
