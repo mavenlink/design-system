@@ -5,7 +5,12 @@ import useValidation from '../../hooks/use-validation.jsx';
 import useDidMount from '../../hooks/use-did-mount.js';
 import Icon from '../icon/icon.jsx';
 import cautionSvg from '../../svgs/caution.svg';
-import styles from '../input/input.css';
+import styles from './number.css';
+
+function getClassName(className, validationMessage) {
+  if (className) return className;
+  return validationMessage ? styles['invalid-input'] : styles.input;
+}
 
 const Number = React.forwardRef((props, ref) => {
   const inputRef = useRef();
@@ -48,7 +53,7 @@ const Number = React.forwardRef((props, ref) => {
     >
       <input
         aria-describedby={`${props.id}Hint`}
-        className={props.className}
+        className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
         id={props.id}
         placeholder={props.placeholder}
