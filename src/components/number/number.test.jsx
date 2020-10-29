@@ -21,10 +21,23 @@ describe('Number', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('label', () => {
+  describe('label API', () => {
     it('presents a label', () => {
       render(<Number {...requiredProps} />);
       expect(screen.getByLabelText('Test Component')).toBeInTheDocument();
+    });
+  });
+
+  describe('name API', () => {
+    it('presents the name on the component', () => {
+      render(<Number {...requiredProps} name="foo-bar" />);
+      expect(screen.getByLabelText('Test Component')).toHaveAttribute('name', 'foo-bar');
+    });
+
+    it('exposes the name on the ref', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} name="foo-bar" ref={ref} />);
+      expect(ref.current.name).toEqual('foo-bar');
     });
   });
 });

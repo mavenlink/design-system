@@ -18,6 +18,7 @@ exports[`Number has defaults 1`] = `
         <input
           aria-describedby="test-componentHint"
           id="test-component"
+          name=""
           type="number"
         />
       </div>
@@ -26,4 +27,8 @@ exports[`Number has defaults 1`] = `
 </body>
 `;
 
-exports[`Number has defaults 2`] = `null`;
+exports[`Number has defaults 2`] = `
+Object {
+  "name": "",
+}
+`;
