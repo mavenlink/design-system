@@ -3,9 +3,25 @@
 exports[`Number has defaults 1`] = `
 <body>
   <div>
-    <span>
-      Yo
-    </span>
+    <div
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="test-component"
+      >
+        Test Component
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          aria-describedby="test-componentHint"
+          id="test-component"
+          type="number"
+        />
+      </div>
+    </div>
   </div>
 </body>
 `;

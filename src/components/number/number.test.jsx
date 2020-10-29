@@ -7,7 +7,10 @@ import {
 import Number from './number.jsx';
 
 describe('Number', () => {
-  const requiredProps = {};
+  const requiredProps = {
+    id: 'test-component',
+    label: 'Test Component',
+  };
 
   afterEach(cleanup);
 
@@ -16,5 +19,12 @@ describe('Number', () => {
     render(<Number {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
+  });
+
+  describe('label', () => {
+    it('presents a label', () => {
+      render(<Number {...requiredProps} />);
+      expect(screen.getByLabelText('Test Component')).toBeInTheDocument();
+    });
   });
 });
