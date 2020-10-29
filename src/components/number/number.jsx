@@ -1,11 +1,22 @@
-import React, { useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
-import useValidation from '../../hooks/use-validation';
+import useValidation from '../../hooks/use-validation.jsx';
+import useDidMount from '../../hooks/use-did-mount.js';
 
 const Number = React.forwardRef((props, ref) => {
   const inputRef = useRef();
+  const [didMount] = useDidMount();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
+
+  useEffect(() => {
+    if (!didMount) return;
+
+    // The MDS Input is using an uncontrolled `<input>`.
+    // In order to set a new provided value prop, we
+    // set the internal state of the `<input>`.
+    inputRef.current.value = props.value;
+  }, [props.value]);
 
   function onBlur(event) {
     validate();
@@ -19,6 +30,9 @@ const Number = React.forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     name: props.name,
+    get value() {
+      return parseInt(inputRef.current.value, 10);
+    },
   }));
 
   return (
@@ -30,6 +44,7 @@ const Number = React.forwardRef((props, ref) => {
     >
       <input
         aria-describedby={`${props.id}Hint`}
+        defaultValue={props.value}
         id={props.id}
         placeholder={props.placeholder}
         name={props.name}
@@ -52,6 +67,7 @@ Number.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
+  value: PropTypes.number,
 };
 
 Number.defaultProps = {
@@ -61,6 +77,7 @@ Number.defaultProps = {
   placeholder: undefined,
   required: false,
   validationMessage: '',
+  value: undefined,
 };
 
 export default Number;

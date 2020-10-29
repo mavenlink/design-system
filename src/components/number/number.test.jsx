@@ -92,4 +92,25 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
     });
   });
+
+  describe('value API', () => {
+    it('sets the value', () => {
+      render(<Number {...requiredProps} value={12} />);
+      expect(screen.getByLabelText('Test Component')).toHaveValue(12);
+    });
+
+    it('updates the value', () => {
+      const { rerender } = render(<Number {...requiredProps} value={12} />);
+      rerender(<Number {...requiredProps} value={21} />);
+      expect(screen.getByLabelText('Test Component')).toHaveValue(21);
+    });
+
+    it('set on the ref', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} ref={ref} value={10101} />);
+      expect(ref.current.value).toBe(10101);
+      userEvent.type(screen.getByLabelText('Test Component'), '2');
+      expect(ref.current.value).toBe(101012);
+    });
+  });
 });

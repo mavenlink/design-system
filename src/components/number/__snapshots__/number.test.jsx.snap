@@ -19,6 +19,7 @@ exports[`Number has defaults 1`] = `
           aria-describedby="test-componentHint"
           id="test-component"
           type="number"
+          value=""
         />
       </div>
     </div>
@@ -29,5 +30,6 @@ exports[`Number has defaults 1`] = `
 exports[`Number has defaults 2`] = `
 Object {
   "name": undefined,
+  "value": NaN,
 }
 `;
