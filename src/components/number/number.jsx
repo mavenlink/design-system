@@ -43,6 +43,7 @@ const Number = React.forwardRef((props, ref) => {
       error={validationMessage}
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
       required={props.required}
     >
       <input
@@ -54,6 +55,7 @@ const Number = React.forwardRef((props, ref) => {
         onBlur={onBlur}
         onChange={onChange}
         ref={inputRef}
+        readOnly={props.readOnly}
         required={props.required}
         type="number"
       />
@@ -75,6 +77,7 @@ Number.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
   value: PropTypes.number,
@@ -85,6 +88,7 @@ Number.defaultProps = {
   onBlur: () => {},
   onChange: () => {},
   placeholder: undefined,
+  readOnly: false,
   required: false,
   validationMessage: '',
   value: undefined,

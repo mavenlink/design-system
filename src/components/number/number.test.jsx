@@ -128,4 +128,11 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toHaveDescription('');
     });
   });
+
+  describe('readOnly API', () => {
+    it('sets the readOnly attribute', () => {
+      render(<Number {...requiredProps} readOnly />);
+      expect(screen.getByLabelText('Test Component')).toHaveAttribute('readonly');
+    });
+  });
 });
