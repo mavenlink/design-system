@@ -135,4 +135,11 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toHaveAttribute('readonly');
     });
   });
+
+  describe('className API', () => {
+    it('sets <input> className', () => {
+      render(<Number {...requiredProps} className="test-class" />);
+      expect(screen.getByLabelText('Test Component')).toHaveClass('test-class');
+    });
+  });
 });

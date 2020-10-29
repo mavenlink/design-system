@@ -48,6 +48,7 @@ const Number = React.forwardRef((props, ref) => {
     >
       <input
         aria-describedby={`${props.id}Hint`}
+        className={props.className}
         defaultValue={props.value}
         id={props.id}
         placeholder={props.placeholder}
@@ -71,6 +72,7 @@ const Number = React.forwardRef((props, ref) => {
 });
 
 Number.propTypes = {
+  className: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -84,6 +86,7 @@ Number.propTypes = {
 };
 
 Number.defaultProps = {
+  className: undefined,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
