@@ -4,8 +4,8 @@ import {
   screen,
   cleanup,
 } from '@testing-library/react';
-import Number from './number.jsx';
 import userEvent from '@testing-library/user-event';
+import Number from './number.jsx';
 
 describe('Number', () => {
   const requiredProps = {
@@ -111,6 +111,21 @@ describe('Number', () => {
       expect(ref.current.value).toBe(10101);
       userEvent.type(screen.getByLabelText('Test Component'), '2');
       expect(ref.current.value).toBe(101012);
+    });
+  });
+
+  describe('validationMessage API', () => {
+    it('can be set', () => {
+      render(<Number {...requiredProps} validationMessage="unique error" />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+      expect(screen.getByLabelText('Test Component')).toHaveDescription('unique error');
+      expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
+    });
+
+    it('can be unset', () => {
+      render(<Number {...requiredProps} validationMessage="" />);
+      expect(screen.getByLabelText('Test Component')).toBeValid();
+      expect(screen.getByLabelText('Test Component')).toHaveDescription('');
     });
   });
 });

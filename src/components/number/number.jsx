@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDidMount from '../../hooks/use-did-mount.js';
+import Icon from '../icon/icon.jsx';
+import cautionSvg from '../../svgs/caution.svg';
+import styles from '../input/input.css';
 
 const Number = React.forwardRef((props, ref) => {
   const inputRef = useRef();
@@ -12,7 +15,7 @@ const Number = React.forwardRef((props, ref) => {
   useEffect(() => {
     if (!didMount) return;
 
-    // The MDS Input is using an uncontrolled `<input>`.
+    // The MDS Number is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
     inputRef.current.value = props.value;
@@ -54,6 +57,13 @@ const Number = React.forwardRef((props, ref) => {
         required={props.required}
         type="number"
       />
+      {!!validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          label={validationMessage}
+        />
+      )}
     </FormControl>
   );
 });
