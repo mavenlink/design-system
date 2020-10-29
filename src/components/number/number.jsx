@@ -1,6 +1,6 @@
 import React, { useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
-import FormControl from '../form-control/form-control';
+import FormControl from '../form-control/form-control.jsx';
 
 const Number = React.forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
@@ -12,6 +12,7 @@ const Number = React.forwardRef((props, ref) => {
       <input
         aria-describedby={`${props.id}Hint`}
         id={props.id}
+        placeholder={props.placeholder}
         name={props.name}
         type="number"
       />
@@ -23,10 +24,12 @@ Number.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 Number.defaultProps = {
-  name: '',
+  name: undefined,
+  placeholder: undefined,
 };
 
 export default Number;

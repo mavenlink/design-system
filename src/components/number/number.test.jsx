@@ -40,4 +40,11 @@ describe('Number', () => {
       expect(ref.current.name).toEqual('foo-bar');
     });
   });
+
+  describe('placeholder API', () => {
+    it('allows setting placeholder text', () => {
+      render(<Number {...requiredProps} placeholder="Hello!" />);
+      expect(screen.getByLabelText('Test Component')).toHaveAttribute('placeholder', 'Hello!');
+    });
+  });
 });
