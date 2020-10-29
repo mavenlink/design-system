@@ -17,6 +17,7 @@ exports[`Number has defaults 1`] = `
       >
         <input
           aria-describedby="test-componentHint"
+          class="input"
           id="test-component"
           type="number"
           value=""
