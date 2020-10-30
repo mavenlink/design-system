@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Ensure `Calendar` day headings are center aligned
 </details>
+
+## v0.51.1
+  - Patch: Ensure `Calendar` day headings are center aligned
 
 ## v0.51.0
   - Minor: Add `setTabActiveStates` to `Tag` component ref API
