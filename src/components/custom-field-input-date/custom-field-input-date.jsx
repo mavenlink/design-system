@@ -146,7 +146,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     const dateMilliseconds = Date.parse(currentValue);
     const date = new Date(dateMilliseconds);
 
-    if (date > apiLimits.max || date < apiLimits.min) {
+    if (date > props.max || date < props.min) {
       return `Date must be between ${toLocaleDate(apiLimits.min)} and ${toLocaleDate(apiLimits.max)}`;
     }
     return props.errorText;
@@ -287,8 +287,8 @@ CustomFieldInputDate.propTypes = {
 CustomFieldInputDate.defaultProps = {
   disabled: false,
   errorText: '',
-  min: undefined,
-  max: undefined,
+  min: apiLimits.min,
+  max: apiLimits.max,
   onChange: () => {},
   placeholder: undefined,
   required: false,
