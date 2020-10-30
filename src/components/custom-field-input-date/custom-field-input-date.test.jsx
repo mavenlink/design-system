@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -252,6 +253,18 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const inputRef = createRef(null);
       render(<CustomFieldInputDate {...requiredProps} id="test-input" label="Test label" ref={inputRef} value="2016-07-18" />);
       expect(inputRef.current.value).toBe('2016-07-18');
+    });
+  });
+
+  describe('API limits', () => {
+    xit('shows the expected error text when a date is out of range', () => {
+      const inputRef = createRef(null);
+      render(<CustomFieldInputDate {...requiredProps} ref={inputRef} id="test-input" value="2020-09-09" disabled={false} />);
+
+      act(() => { userEvent.click(screen.getByDisplayValue('Sep 9, 2020')); })
+      act(async () => { userEvent.type(screen.getByDisplayValue('2020-09-09'), '12/12/1'); });
+
+      expect(screen.getByText('Date must be between Dec 31, 1899 and Dec 30, 2050')).toBeInTheDocument();
     });
   });
 });

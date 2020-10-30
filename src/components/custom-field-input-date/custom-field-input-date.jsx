@@ -8,6 +8,11 @@ import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import Calendar from '../calendar/calendar.jsx';
 
+const apiLimits = {
+  min: new Date('1900-01-01'),
+  max: new Date('2050-12-31'),
+};
+
 const isValidInput = (value) => {
   if (value === '' || value === undefined) {
     return true;
@@ -129,11 +134,21 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     setCurrentValue(event.target.value);
   };
 
+  const toLocaleDate = (date) => {
+    return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' })
+  };
+
   const errorText = () => {
     if (!isValid && !isValidInput(props.value)) {
       return `"${props.value}" is an invalid date`;
     }
 
+    const dateMilliseconds = Date.parse(currentValue);
+    const date = new Date(dateMilliseconds);
+
+    if (date > apiLimits.max || date < apiLimits.min) {
+      return `Date must be between ${toLocaleDate(apiLimits.min)} and ${toLocaleDate(apiLimits.max)}`;
+    }
     return props.errorText;
   };
 
@@ -216,11 +231,11 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         <AbstractCustomField
           {...sharedProps}
           defaultValue={currentValue}
-          errorText={errorText()}
+          errorText={isValid ? '' : errorText()}
           id={props.id}
           key={`${props.id}-editing`}
-          min={formatDateString(props.min)}
-          max={formatDateString(props.max)}
+          min={formatDateString(apiLimits.min)}
+          max={formatDateString(apiLimits.max)}
           inputClassName={dateStyles['date-input-input']}
           inputRef={inputRef}
           onChange={handleOnChange}
