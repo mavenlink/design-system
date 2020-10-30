@@ -32,34 +32,36 @@ export default function TagList(props) {
   }
 
   function onKeyDown(event) {
-    switch (event.key) {
-      case 'ArrowLeft':
-      case 'ArrowUp':
-        if (activeIndex > 0) {
-          const newActiveIndex = activeIndex - 1;
+    if (event.target.tagName !== 'INPUT') {
+      switch (event.key) {
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          if (activeIndex > 0) {
+            const newActiveIndex = activeIndex - 1;
+            event.preventDefault();
+            setActiveIndex(newActiveIndex);
+            props.refs[newActiveIndex].current.setTabActiveStates([false, true]);
+          }
+          break;
+        case 'ArrowRight':
+        case 'ArrowDown':
+          if (activeIndex < props.refs.length - 1) {
+            const newActiveIndex = activeIndex + 1;
+            event.preventDefault();
+            setActiveIndex(newActiveIndex);
+            props.refs[newActiveIndex].current.setTabActiveStates([true, false]);
+          }
+          break;
+        case 'End':
           event.preventDefault();
-          setActiveIndex(newActiveIndex);
-          props.refs[newActiveIndex].current.setTabActiveStates([false, true]);
-        }
-        break;
-      case 'ArrowRight':
-      case 'ArrowDown':
-        if (activeIndex < props.refs.length - 1) {
-          const newActiveIndex = activeIndex + 1;
+          setActiveIndex(props.refs.length - 1);
+          break;
+        case 'Home':
           event.preventDefault();
-          setActiveIndex(newActiveIndex);
-          props.refs[newActiveIndex].current.setTabActiveStates([true, false]);
-        }
-        break;
-      case 'End':
-        event.preventDefault();
-        setActiveIndex(props.refs.length - 1);
-        break;
-      case 'Home':
-        event.preventDefault();
-        setActiveIndex(0);
-        break;
-      default:
+          setActiveIndex(0);
+          break;
+        default:
+      }
     }
   }
 
