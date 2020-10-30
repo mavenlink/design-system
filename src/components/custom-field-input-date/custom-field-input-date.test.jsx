@@ -261,7 +261,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const inputRef = createRef(null);
       render(<CustomFieldInputDate {...requiredProps} ref={inputRef} id="test-input" value="2020-09-09" disabled={false} />);
 
-      act(() => { userEvent.click(screen.getByDisplayValue('Sep 9, 2020')); })
+      act(() => { userEvent.click(screen.getByDisplayValue('Sep 9, 2020')); });
       act(async () => { userEvent.type(screen.getByDisplayValue('2020-09-09'), '12/12/1'); });
 
       expect(screen.getByText('Date must be between Dec 31, 1899 and Dec 30, 2050')).toBeInTheDocument();

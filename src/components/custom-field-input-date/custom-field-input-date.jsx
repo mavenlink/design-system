@@ -135,7 +135,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   };
 
   const toLocaleDate = (date) => {
-    return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' })
+    return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' });
   };
 
   const errorText = () => {
