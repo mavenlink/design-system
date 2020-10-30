@@ -9,8 +9,8 @@ import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import Calendar from '../calendar/calendar.jsx';
 
 const apiLimits = {
-  min: new Date('1900-01-01'),
-  max: new Date('2050-12-31'),
+  min: '1900-01-01',
+  max: '2050-12-31',
 };
 
 const isValidInput = (value) => {
@@ -74,6 +74,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const [expanded, setExpanded] = useState(false);
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
   const [initialValue, setInitialValue] = useState(true);
+  const minDate = new Date(Date.parse(props.min));
+  const maxDate = new Date(Date.parse(props.max));
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -146,8 +148,8 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
     const dateMilliseconds = Date.parse(currentValue);
     const date = new Date(dateMilliseconds);
 
-    if (date > props.max || date < props.min) {
-      return `Date must be between ${toLocaleDate(apiLimits.min)} and ${toLocaleDate(apiLimits.max)}`;
+    if (date > maxDate || date < minDate) {
+      return `Date must be between ${toLocaleDate(minDate)} and ${toLocaleDate(maxDate)}`;
     }
     return props.errorText;
   };
