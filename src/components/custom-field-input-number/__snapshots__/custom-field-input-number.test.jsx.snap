@@ -20,6 +20,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
           class="custom-field-input-text"
           id="test-input"
           name="field-id"
+          step="1"
           type="number"
           value=""
         />
@@ -36,6 +37,6 @@ Object {
   "id": "test-input",
   "name": "field-id",
   "validity": false,
-  "value": NaN,
+  "value": "NaN",
 }
 `;

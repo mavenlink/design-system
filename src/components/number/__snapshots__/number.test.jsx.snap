@@ -32,6 +32,7 @@ exports[`Number has defaults 2`] = `
 Object {
   "dirty": true,
   "name": undefined,
+  "setCustomValidity": [Function],
   "validity": false,
   "value": NaN,
 }

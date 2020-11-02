@@ -60,6 +60,13 @@ describe('Number', () => {
     });
   });
 
+  describe('step API', () => {
+    it('sets the step', () => {
+      render(<Number {...requiredProps} step={0.1} />);
+      expect(screen.getByLabelText('Test Component')).toHaveAttribute('step', '0.1');
+    });
+  });
+
   describe('placeholder API', () => {
     it('allows setting placeholder text', () => {
       render(<Number {...requiredProps} placeholder="Hello!" />);

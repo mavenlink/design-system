@@ -33,7 +33,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       return inputRef.current.validity;
     },
     get value() {
-      return inputRef.current.value;
+      return String(inputRef.current.value);
     },
   }));
 

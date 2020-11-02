@@ -72,6 +72,7 @@ const Number = React.forwardRef((props, ref) => {
         ref={inputRef}
         readOnly={props.readOnly}
         required={props.required}
+        step={props.step}
         type="number"
       />
       {!!validationMessage && (
@@ -95,6 +96,7 @@ Number.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  step: PropTypes.number,
   validationMessage: PropTypes.string,
   value: PropTypes.number,
 };
@@ -107,6 +109,7 @@ Number.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  step: undefined,
   validationMessage: '',
   value: undefined,
 };
