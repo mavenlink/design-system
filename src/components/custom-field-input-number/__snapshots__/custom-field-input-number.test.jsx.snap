@@ -4,13 +4,11 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
 <body>
   <div>
     <div
-      class="custom-field-input-text"
       role="presentation"
     >
       <label
         class="label"
         for="test-input"
-        id="test-input-label"
       >
         Test label
       </label>
@@ -18,19 +16,12 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
         class="control-container"
       >
         <input
-          autocomplete="on"
-          class="input"
+          aria-describedby="test-inputHint"
+          class="custom-field-input-text"
           id="test-input"
-          max="2147483648"
-          min="-2147483648"
           name="field-id"
-          step="1"
-          style="--numIcon: 0;"
           type="number"
           value=""
-        />
-        <div
-          class="icon-container"
         />
       </div>
     </div>
@@ -40,11 +31,11 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
 
 exports[`CustomFieldInputNumber has defaults 2`] = `
 Object {
-  "dirty": false,
+  "dirty": true,
   "focus": [Function],
   "id": "test-input",
   "name": "field-id",
-  "validity": ValidityState {},
-  "value": "",
+  "validity": false,
+  "value": NaN,
 }
 `;
