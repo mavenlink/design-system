@@ -31,6 +31,7 @@ exports[`Number has defaults 1`] = `
 exports[`Number has defaults 2`] = `
 Object {
   "dirty": true,
+  "focus": [Function],
   "name": undefined,
   "setCustomValidity": [Function],
   "validity": ValidityState {},

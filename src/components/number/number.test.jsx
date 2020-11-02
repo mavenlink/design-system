@@ -43,6 +43,14 @@ describe('Number', () => {
       userEvent.type(screen.getByLabelText('Test Component'), '1');
       expect(ref.current.dirty).toBe(true);
     });
+
+    it('permits focusing', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} ref={ref} />);
+      expect(document.activeElement).not.toBe(screen.getByLabelText('Test Component'));
+      ref.current.focus();
+      expect(document.activeElement).toBe(screen.getByLabelText('Test Component'));
+    });
   });
 
   describe('name API', () => {

@@ -40,15 +40,18 @@ const Number = React.forwardRef((props, ref) => {
     get dirty() {
       return props.value !== this.value;
     },
+    focus() {
+      inputRef.current.focus();
+    },
     name: props.name,
+    setCustomValidity(error) {
+      inputRef.current.setCustomValidity(error);
+    },
     get value() {
       return parseInt(inputRef.current.value, 10);
     },
     get validity() {
       return inputRef.current.validity;
-    },
-    setCustomValidity(error) {
-      inputRef.current.setCustomValidity(error);
     },
   }));
 
