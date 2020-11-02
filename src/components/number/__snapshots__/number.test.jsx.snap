@@ -30,7 +30,9 @@ exports[`Number has defaults 1`] = `
 
 exports[`Number has defaults 2`] = `
 Object {
+  "dirty": true,
   "name": undefined,
+  "validity": false,
   "value": NaN,
 }
 `;

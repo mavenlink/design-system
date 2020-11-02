@@ -37,9 +37,15 @@ const Number = React.forwardRef((props, ref) => {
   }
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      return props.value !== this.value;
+    },
     name: props.name,
     get value() {
       return parseInt(inputRef.current.value, 10);
+    },
+    get validity() {
+      return !!validationMessage;
     },
   }));
 

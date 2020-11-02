@@ -29,6 +29,24 @@ describe('Number', () => {
     });
   });
 
+  describe('ref API', () => {
+    it('responds with validity', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} value={1.01} ref={ref} />);
+      expect(ref.current.validity).toBe(false);
+      userEvent.type(screen.getByLabelText('Test Component'), '1');
+      expect(ref.current.validity).toBe(true);
+    });
+
+    it('indicates if it is dirty or not', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} value={1} ref={ref} />);
+      expect(ref.current.dirty).toBe(false);
+      userEvent.type(screen.getByLabelText('Test Component'), '1');
+      expect(ref.current.dirty).toBe(true);
+    });
+  });
+
   describe('name API', () => {
     it('presents the name on the component', () => {
       render(<Number {...requiredProps} name="foo-bar" />);
