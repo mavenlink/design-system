@@ -22,6 +22,13 @@ describe('Number', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('disabled API', () => {
+    it('permits disabling', () => {
+      render(<Number {...requiredProps} disabled />);
+      expect(screen.getByLabelText('Test Component')).toBeDisabled();
+    });
+  });
+
   describe('label API', () => {
     it('presents a label', () => {
       render(<Number {...requiredProps} />);

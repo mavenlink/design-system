@@ -32,6 +32,9 @@ const Number = React.forwardRef((props, ref) => {
   }
 
   function onChange(event) {
+    // Do not expose this onChange to any parent component.
+    // According to the HTML spec, the event.target.value is
+    // an empty string when the input is invalid.
     validate();
     props.onChange(event);
   }
@@ -67,6 +70,7 @@ const Number = React.forwardRef((props, ref) => {
         aria-describedby={`${props.id}Hint`}
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
+        disabled={props.disabled}
         id={props.id}
         placeholder={props.placeholder}
         name={props.name}
@@ -91,6 +95,7 @@ const Number = React.forwardRef((props, ref) => {
 
 Number.propTypes = {
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -106,6 +111,7 @@ Number.propTypes = {
 
 Number.defaultProps = {
   className: undefined,
+  disabled: false,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},

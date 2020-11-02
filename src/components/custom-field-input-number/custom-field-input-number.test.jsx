@@ -19,8 +19,8 @@ describe('CustomFieldInputNumber', () => {
 
   describe('className API', () => {
     it('prioritizes className prop', () => {
-      const { container } = render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
-      expect(container.firstChild).toHaveClass('prioritize-me');
+      render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
+      expect(screen.getByLabelText('Test label')).toHaveClass('prioritize-me');
     });
   });
 
