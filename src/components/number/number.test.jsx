@@ -30,12 +30,10 @@ describe('Number', () => {
   });
 
   describe('ref API', () => {
-    it('responds with validity', () => {
+    it('responds with validity from the DOM', () => {
       const ref = createRef();
       render(<Number {...requiredProps} value={1.01} ref={ref} />);
-      expect(ref.current.validity).toBe(false);
-      userEvent.type(screen.getByLabelText('Test Component'), '1');
-      expect(ref.current.validity).toBe(true);
+      expect(ref.current.validity).toBe(screen.getByLabelText('Test Component').validity);
     });
 
     it('indicates if it is dirty or not', () => {

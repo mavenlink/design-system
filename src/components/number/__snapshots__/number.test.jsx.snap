@@ -33,7 +33,7 @@ Object {
   "dirty": true,
   "name": undefined,
   "setCustomValidity": [Function],
-  "validity": false,
+  "validity": ValidityState {},
   "value": NaN,
 }
 `;

@@ -36,7 +36,7 @@ Object {
   "focus": [Function],
   "id": "test-input",
   "name": "field-id",
-  "validity": false,
+  "validity": ValidityState {},
   "value": "NaN",
 }
 `;

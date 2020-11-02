@@ -45,7 +45,7 @@ const Number = React.forwardRef((props, ref) => {
       return parseInt(inputRef.current.value, 10);
     },
     get validity() {
-      return !!validationMessage;
+      return inputRef.current.validity;
     },
     setCustomValidity(error) {
       inputRef.current.setCustomValidity(error);

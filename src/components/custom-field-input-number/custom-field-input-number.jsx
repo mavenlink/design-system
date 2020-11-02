@@ -37,12 +37,10 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
     },
   }));
 
-  const value = props.value === undefined ? '' : props.value.toString();
-
   return (
     <Number
       className={props.className}
-      defaultValue={value}
+      value={props.value}
       disabled={props.disabled}
       errorText={validationMessage}
       id={props.id}
