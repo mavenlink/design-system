@@ -99,6 +99,14 @@ module.exports = {
   styles: path.resolve(__dirname, './styleguide.config.styles.js'),
   template: {
     favicon: 'favicon.ico',
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap',
+        },
+      ],
+    },
   },
   title: 'Mavenlink Design System',
   usageMode: 'expand',
