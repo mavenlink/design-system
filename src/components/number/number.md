@@ -1,3 +1,23 @@
+## Purpose
+
+We want to provide an accessible, fully integrated input component that captures a single numeric value.
+
+## Keyboard Support
+
+| Key | Focused element | Function |
+| --- | --------------- | -------- |
+| Up  |  the input      | add one step |
+| Down  |  the input    | subtract one step |
+
+## Label Support
+
+| Focused element | Screen reader |
+| --------------- | ------------- |
+|  the input      | the label     |
+|  the error icon | the error message |
+
+## Props API Examples
+
 ```js
 <Number id="ex-1" label="Default example" />
 ```
@@ -13,6 +33,8 @@
 ```js
 <Number id="ex-4" label="Read-only / disabled example" readOnly />
 ```
+
+## Ref API Example
 
 ```js
 import Number from '@mavenlink/design-system/src/components/number/number.jsx';
