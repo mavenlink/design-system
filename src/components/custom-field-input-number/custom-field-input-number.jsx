@@ -32,7 +32,6 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
     <Number
       className={props.className}
       value={props.value}
-      disabled={props.disabled}
       validationMessage={props.errorText}
       id={props.id}
       label={props.label}
@@ -41,7 +40,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       name={props.name}
       onBlur={props.onBlur}
       placeholder={props.placeholder}
-      readOnly={props.readOnly}
+      readOnly={props.readOnly || props.disabled}
       ref={inputRef}
       required={props.required}
       step={props.step}

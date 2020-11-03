@@ -39,12 +39,12 @@ describe('CustomFieldInputNumber', () => {
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<CustomFieldInputNumber {...requiredProps} disabled />);
-      expect(screen.getByLabelText('Test label')).toBeDisabled();
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('readOnly');
     });
 
     it('can be enabled', () => {
       render(<CustomFieldInputNumber {...requiredProps} />);
-      expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+      expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readOnly');
     });
   });
 
