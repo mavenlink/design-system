@@ -14,10 +14,26 @@
 <Number id="ex-4" label="Read-only / disabled example" readOnly />
 ```
 
-The number component exposes a specific ref api. It provides the following through the ref provided to it:
+```js
+import Number from '@mavenlink/design-system/src/components/number/number.jsx';
 
-* `dirty`, indicating if the value it has changed to is different than the one provided to it
-* `focus`, allowing a parent component to apply focus to the input field itself
-* `name`, the name provided to the component
-* `value`, providing the integer value of the component
-* `validity`, the validity object on the input itself
+function TestComponent() {
+  const ref = React.useRef();
+  const [current, setCurrent] = React.useState({});
+
+  function onChange() {
+    setCurrent(ref.current);
+  }
+  
+  return(
+    <div onChange={onChange}>
+      <Number id="test-id-1" label="Some number" ref={ref} />
+      <ul>
+        {Object.keys(current).map(k => <li>{k}: {JSON.stringify(current[k])}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+<TestComponent />
+```
