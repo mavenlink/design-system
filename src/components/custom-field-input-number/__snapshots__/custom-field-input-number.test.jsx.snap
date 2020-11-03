@@ -34,11 +34,11 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
 
 exports[`CustomFieldInputNumber has defaults 2`] = `
 Object {
-  "dirty": true,
+  "dirty": false,
   "focus": [Function],
   "id": "test-input",
   "name": "field-id",
   "validity": ValidityState {},
-  "value": "null",
+  "value": "undefined",
 }
 `;

@@ -6,6 +6,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
+import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number';
 
 describe('Number', () => {
   const requiredProps = {
@@ -47,6 +48,12 @@ describe('Number', () => {
       expect(ref.current.dirty).toBe(false);
       userEvent.type(screen.getByLabelText('Test Component'), '1');
       expect(ref.current.dirty).toBe(true);
+    });
+
+    it('is not dirty on render', () => {
+      const ref = createRef();
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
+      expect(ref.current.dirty).toEqual(false);
     });
 
     it('permits focusing', () => {

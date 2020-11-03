@@ -33,10 +33,10 @@ exports[`Number has defaults 1`] = `
 
 exports[`Number has defaults 2`] = `
 Object {
-  "dirty": true,
+  "dirty": false,
   "focus": [Function],
   "name": undefined,
   "validity": ValidityState {},
-  "value": null,
+  "value": undefined,
 }
 `;
