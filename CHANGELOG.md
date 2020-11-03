@@ -11,6 +11,9 @@
   - Major: Bundle Open Sans font via stylesheet. Upgrade by installing `fontsource-open-sans`.
 </details>
 
+## v0.51.1
+  - Patch: Ensure `Calendar` day headings are center aligned
+
 ## v0.51.0
   - Minor: Add `setTabActiveStates` to `Tag` component ref API
   - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
