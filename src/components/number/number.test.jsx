@@ -35,6 +35,13 @@ describe('Number', () => {
     });
   });
 
+  describe('id API', () => {
+    it('sets the ID', () => {
+      render(<Number {...requiredProps} id="what-up-son" />);
+      expect(screen.getByLabelText('Test Component')).toHaveAttribute('id', 'what-up-son');
+    });
+  });
+
   describe('ref API', () => {
     it('responds with validity from the DOM', () => {
       const ref = createRef();
@@ -94,6 +101,25 @@ describe('Number', () => {
     it('sets the step', () => {
       render(<Number {...requiredProps} step={0.1} />);
       expect(screen.getByLabelText('Test Component')).toHaveAttribute('step', '0.1');
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('can set an onBlur event', () => {
+      const onBlur = jest.fn();
+      render(<Number {...requiredProps} onBlur={onBlur} />);
+      fireEvent.focus(screen.getByLabelText('Test Component'));
+      fireEvent.blur(screen.getByLabelText('Test Component'));
+      expect(onBlur.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('onChange API', () => {
+    it('can set an onChange event', () => {
+      const onChange = jest.fn();
+      render(<Number {...requiredProps} onChange={onChange} />);
+      userEvent.type(screen.getByLabelText('Test Component'), '1');
+      expect(onChange.mock.calls.length).toEqual(1);
     });
   });
 
