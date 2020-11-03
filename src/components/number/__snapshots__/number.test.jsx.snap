@@ -36,7 +36,6 @@ Object {
   "dirty": true,
   "focus": [Function],
   "name": undefined,
-  "setCustomValidity": [Function],
   "validity": ValidityState {},
   "value": NaN,
 }

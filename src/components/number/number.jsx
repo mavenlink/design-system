@@ -52,9 +52,6 @@ const Number = React.forwardRef((props, ref) => {
       inputRef.current.focus();
     },
     name: props.name,
-    setCustomValidity(error) {
-      inputRef.current.setCustomValidity(error);
-    },
     get value() {
       return parseInt(inputRef.current.value, 10);
     },
