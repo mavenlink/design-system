@@ -37,6 +37,6 @@ Object {
   "focus": [Function],
   "name": undefined,
   "validity": ValidityState {},
-  "value": NaN,
+  "value": null,
 }
 `;

@@ -41,7 +41,6 @@ export default function FormControl(props) {
           id={`${props.id}Hint`}
           className={styles['error-message']}
           aria-live="polite"
-          data-testid="error-message"
         >
           {props.error}
         </span>

@@ -58,12 +58,12 @@ describe('CustomFieldInputNumber', () => {
       const { rerender } = render(<CustomFieldInputNumber {...requiredProps} errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
       rerender(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.getByTestId('error-message')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
     });
 
     it('shows the provided errorText when true', () => {
       render(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.getByTestId('error-message')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
     });
 
     it('does not show errorText when it does not exist', () => {
