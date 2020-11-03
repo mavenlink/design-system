@@ -99,7 +99,7 @@ describe('Number', () => {
 
   describe('required API', () => {
     it('can be set', () => {
-      render(<Number {...requiredProps} placeholder="Hello!" required />);
+      render(<Number {...requiredProps} required />);
       expect(screen.getByLabelText('Test Component')).toBeRequired();
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
       fireEvent.focus(screen.getByLabelText('Test Component'));
@@ -193,6 +193,11 @@ describe('Number', () => {
     it('sets the readOnly attribute', () => {
       render(<Number {...requiredProps} readOnly />);
       expect(screen.getByLabelText('Test Component')).toHaveAttribute('readonly');
+    });
+
+    it('can be unset', () => {
+      render(<Number {...requiredProps} readOnly={false} />);
+      expect(screen.getByLabelText('Test Component')).not.toHaveAttribute('readonly');
     });
   });
 
