@@ -12,6 +12,11 @@ function getClassName(className, validationMessage) {
   return validationMessage ? styles['invalid-input'] : styles.input;
 }
 
+const apiLimits = {
+  max: 2 ** 31,
+  min: -(2 ** 31),
+};
+
 const Number = React.forwardRef((props, ref) => {
   const inputRef = useRef();
   const [didMount] = useDidMount();
@@ -72,10 +77,12 @@ const Number = React.forwardRef((props, ref) => {
         defaultValue={props.value}
         disabled={props.disabled}
         id={props.id}
-        placeholder={props.placeholder}
+        max={apiLimits.max}
+        min={apiLimits.min}
         name={props.name}
         onBlur={onBlur}
         onChange={onChange}
+        placeholder={props.placeholder}
         ref={inputRef}
         readOnly={props.readOnly}
         required={props.required}
@@ -118,7 +125,7 @@ Number.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  step: undefined,
+  step: 1,
   validationMessage: '',
   value: undefined,
 };

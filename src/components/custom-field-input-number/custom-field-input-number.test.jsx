@@ -164,7 +164,7 @@ describe('CustomFieldInputNumber', () => {
       const validityText = 'Constraints not satisfied';
       render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByText(validityText)).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription(validityText);
     });
   });
 

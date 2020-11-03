@@ -150,6 +150,11 @@ describe('Number', () => {
       userEvent.type(screen.getByLabelText('Test Component'), '2');
       expect(ref.current.value).toBe(101012);
     });
+
+    it('indicates if it is invalid on mount', () => {
+      render(<Number {...requiredProps} value={1.01} />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+    });
   });
 
   describe('validationMessage API', () => {
