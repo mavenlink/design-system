@@ -2,7 +2,7 @@ import React, { createRef } from 'react';
 import {
   render,
   screen,
-  cleanup,
+  fireEvent,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
@@ -12,8 +12,6 @@ describe('Number', () => {
     id: 'test-component',
     label: 'Test Component',
   };
-
-  afterEach(cleanup);
 
   it('has defaults', () => {
     const ref = createRef();
@@ -31,8 +29,8 @@ describe('Number', () => {
 
   describe('label API', () => {
     it('presents a label', () => {
-      render(<Number {...requiredProps} />);
-      expect(screen.getByLabelText('Test Component')).toBeInTheDocument();
+      render(<Number {...requiredProps} label="Hey a label" />);
+      expect(screen.getByLabelText('Hey a label')).toBeInTheDocument();
     });
   });
 
@@ -57,6 +55,18 @@ describe('Number', () => {
       expect(document.activeElement).not.toBe(screen.getByLabelText('Test Component'));
       ref.current.focus();
       expect(document.activeElement).toBe(screen.getByLabelText('Test Component'));
+    });
+
+    it('responds with the name', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} name="foobar" ref={ref} />);
+      expect(ref.current.name).toEqual('foobar');
+    });
+
+    it('responds with the value', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} value={101} ref={ref} />);
+      expect(ref.current.value).toEqual(101);
     });
   });
 
@@ -92,12 +102,18 @@ describe('Number', () => {
       render(<Number {...requiredProps} placeholder="Hello!" required />);
       expect(screen.getByLabelText('Test Component')).toBeRequired();
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
+      fireEvent.focus(screen.getByLabelText('Test Component'));
+      fireEvent.blur(screen.getByLabelText('Test Component'));
+      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
     });
 
     it('can be unset', () => {
       render(<Number {...requiredProps} required={false} />);
       expect(screen.getByLabelText('Test Component')).not.toBeRequired();
       expect(screen.getByLabelText('Test Component')).toBeValid();
+      fireEvent.focus(screen.getByLabelText('Test Component'));
+      fireEvent.blur(screen.getByLabelText('Test Component'));
+      expect(screen.getByLabelText('Test Component')).not.toHaveDescription('Constraints not satisfied');
     });
 
     it('is invalid on mount but does not have an error message', () => {
@@ -154,6 +170,7 @@ describe('Number', () => {
     it('indicates if it is invalid on mount', () => {
       render(<Number {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
+      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
     });
   });
 
