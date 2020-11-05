@@ -7,9 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Ensure `Calendar` day headings are center aligned
+  - Patch: Fix keydown events in `TagList` from child `Input` being consumed and cancelled
   - Minor: Create new `Number` component and integrate it with `CustomFieldInputNumber`
 </details>
+
+## v0.51.1
+  - Patch: Ensure `Calendar` day headings are center aligned
 
 ## v0.51.0
   - Minor: Add `setTabActiveStates` to `Tag` component ref API
