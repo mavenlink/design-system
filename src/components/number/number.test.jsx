@@ -6,7 +6,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
-import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number';
+import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 
 describe('Number', () => {
   const requiredProps = {
