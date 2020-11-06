@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CustomFieldInputNumber has defaults 1`] = `
+exports[`Number has defaults 1`] = `
 <body>
   <div>
     <div
@@ -8,20 +8,19 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
     >
       <label
         class="label"
-        for="test-input"
+        for="test-component"
       >
-        Test label
+        Test Component
       </label>
       <div
         class="control-container"
       >
         <input
-          aria-describedby="test-inputHint"
-          class="custom-field-input-text"
-          id="test-input"
+          aria-describedby="test-componentHint"
+          class="input"
+          id="test-component"
           max="2147483648"
           min="-2147483648"
-          name="field-id"
           step="1"
           type="number"
           value=""
@@ -32,13 +31,12 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
 </body>
 `;
 
-exports[`CustomFieldInputNumber has defaults 2`] = `
+exports[`Number has defaults 2`] = `
 Object {
   "dirty": false,
   "focus": [Function],
-  "id": "test-input",
-  "name": "field-id",
+  "name": undefined,
   "validity": ValidityState {},
-  "value": "undefined",
+  "value": undefined,
 }
 `;

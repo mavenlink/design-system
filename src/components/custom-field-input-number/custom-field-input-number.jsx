@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
-import useValidation from '../../hooks/use-validation.jsx';
-import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
+import Number from '../number/number.jsx';
 
 const apiLimits = {
   max: 2 ** 31,
@@ -12,19 +11,9 @@ const apiLimits = {
 const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props, ref) {
   const inputRef = useRef(null);
 
-  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
-
-  function onChange() {
-    // Do not expose this onChange to any parent component.
-    // According to the HTML spec, the event.target.value is
-    // an empty string when the input is invalid.
-    validate();
-  }
-
   useImperativeHandle(ref, () => ({
     get dirty() {
-      const providedValue = props.value ? String(props.value) : '';
-      return providedValue !== this.value;
+      return inputRef.current.dirty;
     },
     focus: () => {
       return inputRef.current.focus();
@@ -35,28 +24,24 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       return inputRef.current.validity;
     },
     get value() {
-      return inputRef.current.value;
+      return String(inputRef.current.value);
     },
   }));
 
-  const value = props.value === undefined ? '' : props.value.toString();
-
   return (
-    <AbstractCustomField
+    <Number
       className={props.className}
-      defaultValue={value}
-      disabled={props.disabled}
-      errorText={validationMessage}
+      value={props.value}
+      validationMessage={props.errorText}
       id={props.id}
-      inputRef={inputRef}
       label={props.label}
       max={apiLimits.max}
       min={apiLimits.min}
       name={props.name}
       onBlur={props.onBlur}
-      onChange={onChange}
       placeholder={props.placeholder}
-      readOnly={props.readOnly}
+      readOnly={props.readOnly || props.disabled}
+      ref={inputRef}
       required={props.required}
       step={props.step}
       type="number"
