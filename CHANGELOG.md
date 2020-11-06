@@ -11,6 +11,9 @@
   - Patch: Update documentation to download Open Sans 400 and 600 fonts
 </details>
 
+## v0.51.2
+  - Patch: Fix keydown events in `TagList` from child `Input` being consumed and cancelled
+
 ## v0.51.1
   - Patch: Ensure `Calendar` day headings are center aligned
 
