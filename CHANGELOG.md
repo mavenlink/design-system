@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.51.3
   - Patch: Update documentation to match typography subheads specs
   - Patch: Update documentation to download Open Sans 400 and 600 fonts
-</details>
 
 ## v0.51.2
   - Patch: Fix keydown events in `TagList` from child `Input` being consumed and cancelled
