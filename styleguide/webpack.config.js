@@ -1,6 +1,5 @@
 /* eslint-disable import/no-commonjs */
 
-const postCssPresetEnv = require('postcss-preset-env');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
@@ -41,11 +40,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader', options: { importLoaders: 1, modules: true } },
-          { loader: 'postcss-loader', options: { plugins: () => [postCssPresetEnv()] } },
+          { loader: 'postcss-loader' },
         ],
       },
     ],
