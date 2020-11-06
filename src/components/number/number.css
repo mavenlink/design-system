@@ -3,39 +3,13 @@
 @import "../../styles/typography.css";
 
 .input {
-  border: 1px solid var(--mds-grey-12);
-  border-radius: 3px;
-  box-sizing: border-box;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  height: 32px;
-  margin: 0;
-  padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
-  width: 100%;
-}
-
-.input::placeholder {
-  color: var(--mds-grey-54);
-}
-
-.input:read-only {
-  background-color: var(--mds-grey-3);
+  composes: input from '../input/input.css';
 }
 
 .invalid-icon {
-  box-sizing: border-box;
-  pointer-events: none;
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
+  composes: invalid-icon from '../input/input.css';
 }
 
 .invalid-input {
-  composes: input;
-  border-color: var(--mds-red-100);
-}
-
-.invalid-input:hover {
-  border-color: var(--mds-red-100);
+  composes: invalid-input from '../input/input.css';
 }
