@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, {
-  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -16,7 +15,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [dirty, setDirty] = useState(false);
   const [valid, setValid] = useState(true);
 
-  const onRegularSubmit = useCallback(() => {
+  const onRegularSubmit = () => {
     if (ref.current && ref.current.checkValidity() && ref.current.dirty) {
       props.onSubmit({
         target: ref.current,
@@ -32,7 +31,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
         }, {}),
       });
     }
-  }, [props.onSubmit]);
+  };
 
   function onChange(event) {
     props.onChange(event);
