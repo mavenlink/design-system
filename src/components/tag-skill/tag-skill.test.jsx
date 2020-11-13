@@ -9,7 +9,7 @@ describe('TagSkill', () => {
   };
 
   it('has default', () => {
-    render(<TagSkill {...requiredProps} />)
+    render(<TagSkill {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
   });
 
