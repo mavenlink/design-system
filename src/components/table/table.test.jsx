@@ -1,5 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import {
   Table,
   TableHeader,
@@ -9,8 +9,8 @@ import {
   TableCell,
 } from './index.js';
 
-function render() {
-  return renderer.create(
+test('rendering', () => {
+  render((
     <Table>
       <TableHeader>
         <TableHeaderCell>id</TableHeaderCell>
@@ -26,11 +26,7 @@ function render() {
           <TableCell>Bob Marley</TableCell>
         </TableRow>
       </TableBody>
-    </Table>,
-  );
-}
-
-test('rendering', () => {
-  const tree = render();
-  expect(tree.toJSON()).toMatchSnapshot();
+    </Table>
+  ));
+  expect(document.body).toMatchSnapshot();
 });

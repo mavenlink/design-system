@@ -1,7 +1,6 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
   act,
   fireEvent,
@@ -18,8 +17,8 @@ describe('src/components/list-option/list-option', () => {
   };
 
   it('renders defaults', () => {
-    const tree = renderer.create(<ListOption {...requiredProps} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<ListOption {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('children API', () => {
