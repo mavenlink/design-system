@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import TagSkill from './tag-skill.jsx';
 
@@ -10,7 +9,8 @@ describe('TagSkill', () => {
   };
 
   it('has default', () => {
-    expect(renderer.create(<TagSkill {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<TagSkill {...requiredProps} />)
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('id API', () => {
