@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Remove debounce functionality from form component when `autoSave` is set to true
 </details>
 
 ## v0.52.0
