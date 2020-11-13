@@ -1,4 +1,3 @@
-import debounce from 'lodash.debounce';
 import PropTypes from 'prop-types';
 import React, {
   useCallback,
@@ -17,7 +16,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [dirty, setDirty] = useState(false);
   const [valid, setValid] = useState(true);
 
-  const onDebouncedSubmit = useCallback(debounce(() => {
+  const onRegularSubmit = useCallback(() => {
     if (ref.current && ref.current.checkValidity() && ref.current.dirty) {
       props.onSubmit({
         target: ref.current,
@@ -33,19 +32,19 @@ const Form = React.forwardRef((props, forwardedRef) => {
         }, {}),
       });
     }
-  }, 300, { leading: !props.autoSave, trailing: props.autoSave }), [props.onSubmit]);
+  }, [props.onSubmit]);
 
   function onChange(event) {
     props.onChange(event);
     setValid(ref.current.checkValidity());
     setDirty(ref.current.dirty);
 
-    if (props.autoSave) onDebouncedSubmit();
+    if (props.autoSave) onRegularSubmit();
   }
 
   function onSubmit(event) {
     event.preventDefault();
-    onDebouncedSubmit();
+    onRegularSubmit();
   }
 
   useEffect(() => {
