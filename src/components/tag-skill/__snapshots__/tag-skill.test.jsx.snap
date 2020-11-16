@@ -1,40 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TagSkill has default 1`] = `
-<div
-  className="read-only-tag"
-  id="test-id"
-  role="row"
->
-  <span
-    className="content"
-    id="test-id-content"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="gridcell"
-    tabIndex="0"
-  >
-    <span
-      className="row"
+<body>
+  <div>
+    <div
+      class="read-only-tag"
+      id="test-id"
+      role="row"
     >
-      Egg
       <span
-        className="level"
+        class="content"
+        id="test-id-content"
+        role="gridcell"
+        tabindex="0"
       >
-        <svg
-          height={9}
-          role="img"
-          width={12}
+        <span
+          class="row"
         >
-          <title>
-            No level
-          </title>
-          <use
-            xlinkHref="#tick.svg"
-          />
-        </svg>
+          Egg
+          <span
+            class="level"
+          >
+            <svg
+              height="9"
+              role="img"
+              width="12"
+            >
+              <title>
+                No level
+              </title>
+              <use
+                xlink:href="#tick.svg"
+              />
+            </svg>
+          </span>
+        </span>
       </span>
-    </span>
-  </span>
-</div>
+    </div>
+  </div>
+</body>
 `;

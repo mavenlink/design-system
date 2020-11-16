@@ -1,56 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering 1`] = `
-<table
-  className="table"
->
-  <thead
-    className="head"
-  >
-    <tr>
-      <th
-        className="headerCell"
-      >
-        id
-      </th>
-      <th
-        className="headerCell"
-      >
-        name
-      </th>
-    </tr>
-  </thead>
-  <tbody
-    className="body"
-  >
-    <tr
-      className="row"
+<body>
+  <div>
+    <table
+      class="table"
     >
-      <td
-        className="cell"
+      <thead
+        class="head"
       >
-        1
-      </td>
-      <td
-        className="cell"
+        <tr>
+          <th
+            class="headerCell"
+          >
+            id
+          </th>
+          <th
+            class="headerCell"
+          >
+            name
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="body"
       >
-        Bob Ross
-      </td>
-    </tr>
-    <tr
-      className="row"
-    >
-      <td
-        className="cell"
-      >
-        2
-      </td>
-      <td
-        className="cell"
-      >
-        Bob Marley
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <tr
+          class="row"
+        >
+          <td
+            class="cell"
+          >
+            1
+          </td>
+          <td
+            class="cell"
+          >
+            Bob Ross
+          </td>
+        </tr>
+        <tr
+          class="row"
+        >
+          <td
+            class="cell"
+          >
+            2
+          </td>
+          <td
+            class="cell"
+          >
+            Bob Marley
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
 `;

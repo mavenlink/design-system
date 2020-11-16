@@ -1,16 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Button from './button.jsx';
 
 describe('Button', () => {
   it('has defaults', () => {
-    const tree = renderer.create((
+    render((
       <Button>
         Hello world!
       </Button>
-    )).toJSON();
-    expect(tree).toMatchSnapshot();
+    ));
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('className API', () => {

@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Section renders a section component 1`] = `
-<section
-  className="section"
->
-  <h2
-    className="subheading"
-  >
-    Test Title
-  </h2>
-</section>
+<body>
+  <div>
+    <section
+      class="section"
+    >
+      <h2
+        class="subheading"
+      >
+        Test Title
+      </h2>
+    </section>
+  </div>
+</body>
 `;

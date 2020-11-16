@@ -1,15 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import PageHeader from './page-header.jsx';
 
 describe('PageHeader', () => {
   it('has defaults', () => {
-    const tree = renderer
-      .create((
-        <PageHeader title="Defaults" />
-      )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<PageHeader title="Defaults" />);
+    expect(document.body).toMatchSnapshot();
   });
 
   it('has a title', () => {
