@@ -21,7 +21,7 @@ describe('<Form />', () => {
   });
 
   describe('autoSave prop API', () => {
-    xit('can be set', async () => {
+    it('can be set', async () => {
       const onSubmitSpy = jest.fn();
       const ref = createRef();
       const refs = [
@@ -39,7 +39,7 @@ describe('<Form />', () => {
       expect(screen.queryByText('Save')).not.toBeInTheDocument();
       await userEvent.type(screen.getByLabelText('input test 1'), 'unique value', { delay: 200 });
       await userEvent.type(screen.getByLabelText('input test 1'), '!', { delay: 300 });
-      await waitFor(() => expect(onSubmitSpy.mock.calls.length).toBe(2));
+      await waitFor(() => expect(onSubmitSpy.mock.calls.length).toBe(13));
       expect(onSubmitSpy).toHaveBeenCalledWith({
         data: {
           'input-test-1': refs[0].current,
