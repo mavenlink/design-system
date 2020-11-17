@@ -58,7 +58,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   }
 
   function handleOnFocus() {
-    if (props.disabled || props.readOnly) return;
+    if (props.readOnly) return;
 
     setIsEditing(true);
     setIsFocused(true);
@@ -91,8 +91,14 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
       }
 
       if (isEditing) {
+        const value = valueRef.current.value;
+
+        if (isNaN(value)) {
+          return undefined;
+        }
+
         numberValue = parseFloat(
-          valueRef.current.value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
+          value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
         );
       } else {
         numberValue = parseInt(valueRef.current.value.replace(/[^0-9-]/g, ''), 10);
@@ -104,7 +110,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   const sharedProps = {
     className: props.className,
-    disabled: props.disabled,
     id: props.id,
     label: props.label,
     name: props.name,
@@ -130,11 +135,11 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   return (
     <CustomFieldInputText
       {...sharedProps}
-      defaultValue={formattedNumber}
       errorText={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"
+      value={formattedNumber}
     />
   );
 });
@@ -142,7 +147,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 CustomFieldInputCurrency.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
-  disabled: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -158,7 +162,6 @@ CustomFieldInputCurrency.propTypes = {
 CustomFieldInputCurrency.defaultProps = {
   className: styles['custom-field-input-text'],
   currencyCode: 'USD',
-  disabled: false,
   errorText: undefined,
   name: undefined,
   onBlur: () => {},

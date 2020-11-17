@@ -19,6 +19,7 @@ import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
 const Select = forwardRef(function Select(props, ref) {
+  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -26,14 +27,14 @@ const Select = forwardRef(function Select(props, ref) {
   const backupRef = useRef();
   const selfRef = ref || backupRef;
 
-  const validationMessage = useValidation(props.readOnly, props.errorText, inputRef, false);
+  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
   const caretIcon = (<Icon
     className={styles['input-icon']}
     icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
     label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
   />);
 
-  const defaultValue = value ? props.displayValueEvaluator(value || props.value) : '';
+  const defaultValue = value ? props.displayValueEvaluator(value) : '';
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -111,6 +112,13 @@ const Select = forwardRef(function Select(props, ref) {
   }));
 
   useEffect(() => {
+    setDidMount(true);
+  }, []);
+
+  useEffect(() => {
+    if (!didMount) return;
+
+    validate();
     props.onChange({ target: selfRef.current });
   }, [value]);
 
@@ -159,11 +167,12 @@ const Select = forwardRef(function Select(props, ref) {
         value={searchValue || defaultValue}
         inputRole={'combobox'}
         ariaProps={{
-          autocomplete: 'list',
+          autocomplete: 'none',
           controls: `${props.id}-single-choice-listbox`,
           expanded: showOptions,
           haspopup: 'listbox',
         }}
+        autoComplete="off"
       />
       { showOptions && (
         (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
@@ -212,7 +221,7 @@ Select.defaultProps = {
   children: undefined,
   className: styles.container,
   displayValueEvaluator: value => value,
-  errorText: undefined,
+  errorText: '',
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,

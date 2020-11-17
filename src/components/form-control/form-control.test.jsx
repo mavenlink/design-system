@@ -1,7 +1,6 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
   fireEvent,
   render,
@@ -17,7 +16,8 @@ describe('<FormControl>', () => {
   };
 
   it('has defaults', () => {
-    expect(renderer.create(<FormControl {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<FormControl {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   it('requires either an id or a labelId', () => {

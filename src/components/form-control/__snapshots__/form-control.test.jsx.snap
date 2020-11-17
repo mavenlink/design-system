@@ -1,22 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FormControl> has defaults 1`] = `
-<div
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="test-id"
-  >
-    Test label
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      id="test-id"
-    />
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="test-id"
+      >
+        Test label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          id="test-id"
+        />
+      </div>
+    </div>
   </div>
-</div>
+</body>
 `;

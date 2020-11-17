@@ -19,8 +19,8 @@ describe('CustomFieldInputNumber', () => {
 
   describe('className API', () => {
     it('prioritizes className prop', () => {
-      const { container } = render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
-      expect(container.firstChild).toHaveClass('prioritize-me');
+      render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
+      expect(screen.getByLabelText('Test label')).toHaveClass('prioritize-me');
     });
   });
 
@@ -39,12 +39,12 @@ describe('CustomFieldInputNumber', () => {
   describe('disabled API', () => {
     it('can be disabled', () => {
       render(<CustomFieldInputNumber {...requiredProps} disabled />);
-      expect(screen.getByLabelText('Test label')).toBeDisabled();
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('readOnly');
     });
 
     it('can be enabled', () => {
       render(<CustomFieldInputNumber {...requiredProps} />);
-      expect(screen.getByLabelText('Test label')).not.toBeDisabled();
+      expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readOnly');
     });
   });
 
@@ -58,12 +58,12 @@ describe('CustomFieldInputNumber', () => {
       const { rerender } = render(<CustomFieldInputNumber {...requiredProps} errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
       rerender(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.queryByText("Here's some help text!")).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
     });
 
     it('shows the provided errorText when true', () => {
       render(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.getByText("Here's some help text!")).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
     });
 
     it('does not show errorText when it does not exist', () => {
@@ -163,9 +163,8 @@ describe('CustomFieldInputNumber', () => {
     it('is invalid on a decimal number', () => {
       const validityText = 'Constraints not satisfied';
       render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
-
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByText(validityText)).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveDescription(validityText);
     });
   });
 

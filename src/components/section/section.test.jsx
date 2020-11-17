@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import Section from './section.jsx';
 
@@ -9,11 +8,8 @@ describe('Section', () => {
   };
 
   it('renders a section component', () => {
-    const tree = renderer
-      .create((
-        <Section title="Test Title" />
-      )).toJSON();
-    expect(tree).toMatchSnapshot();
+    render(<Section title="Test Title" />);
+    expect(document.body).toMatchSnapshot();
   });
 
   it('uses a title', () => {

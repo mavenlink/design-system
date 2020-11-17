@@ -50,10 +50,10 @@ describe('CustomFieldInputCurrency', () => {
 
     it('presents contextual error state', () => {
       const errorText = 'What do you want from us monster!?';
-      render(<CustomFieldInputCurrency {...requiredProps} value={350} errorText={errorText} error={true} />);
+      render(<CustomFieldInputCurrency {...requiredProps} value={350} errorText={errorText} />);
 
       expect(screen.getByLabelText('currency')).toBeInvalid();
-      expect(screen.getByText(errorText)).toBeInTheDocument();
+      expect(screen.getByLabelText('currency')).toHaveDescription(errorText);
     });
   });
 
@@ -69,24 +69,6 @@ describe('CustomFieldInputCurrency', () => {
       expect(ref.current.dirty).toEqual(true);
       userEvent.type(screen.getByLabelText('currency'), '{backspace}');
       expect(ref.current.dirty).toEqual(false);
-    });
-  });
-
-  describe('disabled API', () => {
-    it('respects the disabled prop', () => {
-      render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
-      expect(screen.getByLabelText('currency')).toBeDisabled();
-    });
-
-    it('does not enter edit mode on focus', () => {
-      render(<CustomFieldInputCurrency {...requiredProps} disabled={true} />);
-      fireEvent.focus(screen.getByLabelText('currency'));
-      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'text');
-    });
-
-    it('respects the enabled prop', () => {
-      render(<CustomFieldInputCurrency {...requiredProps} disabled={false} />);
-      expect(screen.getByLabelText('currency')).not.toBeDisabled();
     });
   });
 

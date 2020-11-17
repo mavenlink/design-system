@@ -22,7 +22,6 @@ const IconButton = forwardRef(function IconButton(props, ref) {
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
-      id={props.id}
       onClick={props.onPress}
       onKeyDown={onKeyDown}
       ref={ref}
@@ -30,7 +29,7 @@ const IconButton = forwardRef(function IconButton(props, ref) {
       tabIndex={tabIndex}
       width={width}
     >
-      <title>{props.label}</title>
+      <title id={props.id}>{props.label}</title>
       <use xlinkHref={`#${props.icon.id}`} />
     </svg>
   );

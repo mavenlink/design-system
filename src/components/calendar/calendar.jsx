@@ -198,12 +198,6 @@ function Calendar(props) {
 
   function changeYear(newYear) {
     setYear(newYear.target.current.value.getFullYear());
-    const newYearDate = new Date(
-      newYear.target.current.value.getFullYear(),
-      focusedDate.getMonth(),
-      focusedDate.getDate(),
-    );
-    handleDateSelection(newYearDate);
     setYearView(false);
   }
 

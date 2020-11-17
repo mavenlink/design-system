@@ -101,7 +101,7 @@ describe('Tag', () => {
 
     it('sets the clear button ID', () => {
       render(<Tag {...requiredProps} id="unique-id" />);
-      expect(screen.getByRole('button')).toHaveAttribute('id', 'unique-id-button');
+      expect(screen.getByLabelText('Remove Test Title')).toBeInTheDocument();
     });
   });
 
@@ -161,6 +161,18 @@ describe('Tag', () => {
       act(() => { ref.current.setIsActive(true); });
 
       await waitFor(() => expect(screen.getByText('Test Title')).toHaveFocus());
+    });
+  });
+
+  describe('setTabActiveStates ref API', () => {
+    it('sets tabActiveStates', async () => {
+      const ref = createRef();
+      render(<Tag {...requiredProps} ref={ref} />);
+
+      act(() => { ref.current.setTabActiveStates([false, true]); });
+      act(() => { ref.current.setIsActive(true); });
+
+      await waitFor(() => expect(screen.getByLabelText('Remove')).toEqual(document.activeElement));
     });
   });
 });

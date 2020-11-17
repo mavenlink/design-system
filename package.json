@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.45.0",
+  "version": "0.52.0",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "lint:es": "eslint '{,!(build)/**/}/*.js?(x)' --no-ignore .eslintrc.js",
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
+    "start:debug": "node --inspect-brk $(yarn bin)/styleguidist server",
     "test": "jest",
     "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand --no-cache --watch"
   },
@@ -46,11 +47,11 @@
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^2.0.0",
     "eslint-plugin-cypress": "^2.2.0",
-    "file-loader": "^3.0.1",
+    "file-loader": "^6.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.5.0",
+    "postcss-loader": "^4.0.4",
+    "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.5.6",
@@ -70,6 +71,8 @@
     "webpack": "^4.28.3"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.6.2"
-  }
+  },
+  "peerDependencies": {}
 }

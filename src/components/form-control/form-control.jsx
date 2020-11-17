@@ -37,7 +37,11 @@ export default function FormControl(props) {
         {props.children}
       </div>
       {isInvalid(props.error, props.readOnly) && (
-        <span id={`${props.id}Hint`} className={styles['error-message']} aria-live="polite" >
+        <span
+          id={`${props.id}Hint`}
+          className={styles['error-message']}
+          aria-live="polite"
+        >
           {props.error}
         </span>
       )}

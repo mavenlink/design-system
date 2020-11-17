@@ -1,23 +1,23 @@
 import { useEffect } from 'react';
 
-const useDropdownClose = (ref, dropdownOpen, handleDropdownClose) => {
-  function handleClickOutside(event) {
-    if ((ref.current && !ref.current.contains(event.target))) {
-      handleDropdownClose();
+const useDropdownClose = (ref, opened, onClose) => {
+  function onEvent(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      onClose();
     }
   }
 
   useEffect(() => {
-    if (dropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('focusin', handleClickOutside);
-    }
+    if (!opened) return;
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('focusin', handleClickOutside);
+    document.addEventListener('mousedown', onEvent);
+    document.addEventListener('focusin', onEvent);
+
+    return () => { // eslint-disable-line consistent-return
+      document.removeEventListener('mousedown', onEvent);
+      document.removeEventListener('focusin', onEvent);
     };
-  }, [ref.current, dropdownOpen]);
+  });
 };
 
 export default useDropdownClose;

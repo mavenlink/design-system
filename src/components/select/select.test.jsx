@@ -3,7 +3,6 @@ import {
   fireEvent,
   render,
   screen,
-  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ListOption from '../list-option/list-option.jsx';
@@ -92,7 +91,7 @@ describe('src/components/select/select', () => {
     it('has aria-haspopup, role is combobox, aria-autocomplete is list, and aria-controls references the list box id', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
       expect(screen.getByLabelText('Test label', { selector: '[aria-haspopup="listbox"]' })).toBeInTheDocument();
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'list');
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'none');
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveAttribute('aria-controls', 'test-id-single-choice-listbox');
     });
 
@@ -388,52 +387,52 @@ describe('src/components/select/select', () => {
   });
 
   describe('dropdown close behavior', () => {
-    it('closes the dropdown when clicking outside', async () => {
-      render(
-        <div>
-          <span>CLOSE</span>
-          <Select {...requiredProps}>{baseListOptionElements}</Select>
-        </div>,
-      );
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByText('foo')).toBeInTheDocument();
-      userEvent.click(screen.getByText('CLOSE'));
-      await waitFor(() => expect(screen.queryByText('foo')).not.toBeInTheDocument());
+    beforeEach(() => {
+      render((
+        <React.Fragment>
+          <Select {...requiredProps} value={baseListOptions[0]}>{baseListOptionElements}</Select>
+          <input aria-label="outside" />
+        </React.Fragment>
+      ));
     });
 
-    it('closes the dropdown when tabbing away', async () => {
-      render(
-        <div>
-          <Select {...requiredProps}>{baseListOptionElements}</Select>
-          <input />
-        </div>,
-      );
-
+    it('closes the dropdown when clicking outside', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('foo')).toBeInTheDocument();
-
-      userEvent.tab();
-      userEvent.tab();
-
-      await waitFor(() => expect(screen.queryByText('foo')).not.toBeInTheDocument());
+      userEvent.click(screen.getByLabelText('outside'));
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
     });
 
-    it('resets the inputs state', async () => {
-      render(
-        <div>
-          <span>CLOSE</span>
-          <Select {...requiredProps}>{baseListOptionElements}</Select>
-        </div>,
-      );
-
-      expect(screen.getByLabelText('Test label')).toHaveValue('');
-      userEvent.type(screen.getByLabelText('Test label'), 'fo');
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('fo');
+    it('closes the dropdown when tabbing away', () => {
+      userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('foo')).toBeInTheDocument();
-      userEvent.click(screen.getByText('CLOSE'));
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+    });
 
-      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue(''));
+    it('sets the input state to the last known choice', () => {
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('foo');
+      userEvent.type(screen.getByRole('combobox', { name: 'Test label' }), '{backspace}');
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('fo');
+      userEvent.click(screen.getByLabelText('outside'));
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('foo');
+    });
+
+    it('leaves the input state as blank', async () => {
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('foo');
+      userEvent.type(screen.getByRole('combobox', { name: 'Test label' }), '{backspace}{backspace}{backspace}');
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('');
+      userEvent.click(screen.getByLabelText('outside'));
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('');
+    });
+
+    it('closes even when the choice is already selected', async () => {
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveValue('foo');
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
+      userEvent.click(screen.getByRole('option', { name: 'foo' }));
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveFocus();
     });
   });
 });

@@ -8,18 +8,21 @@
 
 ## How-to
 
-1. Create a release branch (format: `release-x.y.z`) from latest master.
+1. Create a release branch (format: `vX.Y.Z`) from latest master.
 
 1. Update the changelog:
 
-   move all items from the "unreleased" section to a new section titled with the new version number;
-   commit this change.
+   make a new section titled `vX.Y.Z`;
+   move all items from the "unreleased" section to it;
+   stage these changes.
 
-3. Publish to NPM with `yarn publish`
+1. Publish to NPM with `yarn publish`. Note: this will create a commit and tag with the staged changelogs and semver change.
 
-4. Create a PR
+1. `git push origin HEAD --set-upstream --tags` to persist your new branch and version tag to Github.
 
-5. After merging the PR, tag a new release
+1. Create a PR
+
+1. After merging the PR, tag a new release
 
    [Draft and publish a new release in Github](https://help.github.com/articles/creating-releases/).
      - Copy over the changelog section title as the release title

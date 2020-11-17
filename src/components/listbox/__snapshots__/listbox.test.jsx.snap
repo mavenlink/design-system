@@ -1,12 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/listbox/listbox has defaults 1`] = `
-<ul
-  aria-labelledby="test-label-id"
-  className="container"
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  role="listbox"
-/>
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      class="container"
+      role="listbox"
+    >
+      <li
+        aria-selected="false"
+        class="option"
+        role="option"
+        tabindex="0"
+      >
+        Hello
+      </li>
+      <li
+        aria-selected="false"
+        class="option"
+        role="option"
+        tabindex="-1"
+      >
+        Hey
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      class="container"
+      role="listbox"
+    />
+  </div>
+</body>
+`;
+
+exports[`src/components/listbox/listbox has defaults 2`] = `
+Object {
+  "focus": [Function],
+  "value": undefined,
+}
 `;

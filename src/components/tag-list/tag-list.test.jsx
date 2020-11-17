@@ -106,6 +106,22 @@ describe('TagList', () => {
         fireEvent.keyDown(document.activeElement, { key: 'Home' });
         await waitFor(() => expect(screen.getByText('Test Child 1')).toHaveFocus());
       });
+
+      it('focuses the remove icon when navigating left to fresh tags', async () => {
+        const refs = [createRef(), createRef(), createRef()];
+        render((
+          <TagList {...requiredProps} refs={refs}>
+            <Tag id="test-tag-1" ref={refs[0]}>Test Child 1</Tag>
+            <Tag id="test-tag-2" ref={refs[1]}>Test Child 2</Tag>
+            <Tag id="test-tag-3" ref={refs[2]}>Test Child 3</Tag>
+          </TagList>
+        ));
+
+        userEvent.click(screen.getByText('Test Child 3'));
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
+        await waitFor(() => expect(screen.getAllByRole('button')[1]).toHaveFocus());
+      });
     });
 
     describe('click focusing', () => {

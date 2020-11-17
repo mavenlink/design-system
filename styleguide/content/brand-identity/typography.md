@@ -88,7 +88,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
         <tr>
             <td><pre>h4</pre></td>
             <td>14px</td>
-            <td>400</td>
+            <td>600</td>
             <td><pre>--mds-type-subhead-3</pre></td>
             <td>
                 <h4 class="subhead-3">Subheads</h4>
@@ -135,7 +135,7 @@ To aid in our accessibility efforts and ensure that our users get a delightful e
 
 We offer a linter for use with [stylelint](https://stylelint.io/) to enforce typography usage. To use it, simply install this library and add the following to your stylelint configure file:
 
-```js
+```js static
 const path = require('path');
 
 module.exports = {

@@ -1,25 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input has defaults 1`] = `
-<div
-  className="container"
-  onKeyDown={[Function]}
-  role="presentation"
->
-  <label
-    className="label"
-    htmlFor="foo"
-  >
-    I am a label for accessibility
-  </label>
-  <div
-    className="control-container"
-  >
-    <input
-      className="input"
-      id="foo"
-      type="text"
-    />
+<body>
+  <div>
+    <div
+      class="container"
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="foo"
+      >
+        the label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          aria-describedby="fooHint"
+          class="input"
+          id="foo"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
   </div>
-</div>
+</body>
+`;
+
+exports[`Input has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "foo",
+  "name": undefined,
+  "value": "",
+}
 `;

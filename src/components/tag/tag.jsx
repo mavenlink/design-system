@@ -70,6 +70,11 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
   }, [focusQueued, isActive, ...tabActiveStates]);
 
   useImperativeHandle(ref, () => ({
+    setTabActiveStates: (array) => {
+      if (!props.readOnly) {
+        setTabActiveStates(array);
+      }
+    },
     setIsActive: (bool) => {
       setFocusQueued(bool);
       setIsActive(bool);

@@ -20,10 +20,11 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
           class="control-container"
         >
           <input
-            aria-autocomplete="list"
+            aria-autocomplete="none"
             aria-controls="test-id-single-choice-listbox"
             aria-expanded="false"
             aria-haspopup="listbox"
+            autocomplete="off"
             class="input"
             id="test-id"
             name="field-id"

@@ -48,9 +48,20 @@ id: ${ref.current.id}`
 ```js
 <CustomFieldInputDate
     id="my-birthday-4"
-    label="Juanca's Birthday"
+    label="Juanca's Birthday Error"
     value="03/03/1990"
     name="custom-field-4"
     errorText="Error help."
+/>
+```
+
+##### Placeholder:
+
+```js
+<CustomFieldInputDate
+    id="tbd-date-1"
+    label="Pick a date!"
+    name="date-tbd"
+    placeholder="Please select a date"
 />
 ```

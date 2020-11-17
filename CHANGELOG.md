@@ -7,8 +7,64 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Major: Deprecate `inputRef` on CustomFieldInputNumber
 </details>
+
+## v0.52.0
+  - Major: Create new `Number` component and integrate it with `CustomFieldInputNumber`
+
+## v0.51.3
+  - Patch: Update documentation to match typography subheads specs
+  - Patch: Update documentation to download Open Sans 400 and 600 fonts
+
+## v0.51.2
+  - Patch: Fix keydown events in `TagList` from child `Input` being consumed and cancelled
+
+## v0.51.1
+  - Patch: Ensure `Calendar` day headings are center aligned
+
+## v0.51.0
+  - Minor: Add `setTabActiveStates` to `Tag` component ref API
+  - Patch: Use new `setTabActiveStates` in `TagList` component to set the correct active child when using keyboard nav
+
+## v0.50.0
+  - Major: Deprecate unused props API on `CustomFieldInputText`: `ariaProps.autocomplete`, `ariaProps.haspopup`, `disabled`, `onBlur`, `onChange`, `onClick`, `onKeyDown`, `onKeyUp`
+  - Major: Deprecate `defaultValue` prop API on `CustomFieldInputText` in favor of `value`
+  - Major: Deprecate `disabled` prop API on `CustomFieldInputCurrency`
+  - Minor: Enhance `Input` component with validation logic, ref API
+  - Patch: Fix a11y descriptions for `Input` component
+  - Major: Deprecate unused props API `Input`: `invalid`, `defaultValue`
+
+## v0.49.0
+  - Minor: Add `autoComplete` prop to `AbstractCustomField`
+  - Minor: Set `autoComplete="off"` for `Select` component
+  - Minor: Call `Listbox#onChange` with re-selections, ensure `Select` options are closed when already selected
+  - Patch: Turn off autofill behavior in `CustomFieldInputMultipleChoice`
+
+## v0.48.2
+  - Minor: Add Toggle Code button to all component examples in order to better accessibility QA
+  - Patch: Fix timezone issue with `CustomFieldInputDate`
+
+## v0.48.1
+  - Patch: Fix bug where `Select` and `CustomFieldInputString` showed errors on first render when html invalid.
+  - Patch: `Select`, `CustomFieldInputSingleChoice` maintains correct input value state when closing dropdown
+  - Patch: `Form` now checks for `ref.current` before invoking debounced onSubmit callback
+
+## v0.48.0
+  - Minor: Implement `Form#autoSave` prop API
+
+## v0.47.0
+  - Minor: `CustomFieldInputDate` supports placeholder, truncates month to 3 characters, and uses Open Sans
+  - Minor: `Calendar` no longer triggers a selection on year view change
+  - Major: Deprecate `inputRef` on CustomFieldInputNumber
+  - Fix Icon: apply `id` to title element for correct labelledBy behavior
+  - Fix IconButton: apply `id` to title element for correct labelledBy behavior
+
+## v0.46.1
+  - Patch: Explicitly set `FormControl` label to `display: inline`
+  - Patch: Use the correct MDS color for the "(Required)" part of `FormControl` labels
+
+## v0.46.0
+  - Major: Deprecate `inputRef` on CustomFieldInputNumber
 
 ## v0.45.0
   - Minor: Add maxLength attribute support to text and abstract custom fields

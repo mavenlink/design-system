@@ -2,78 +2,60 @@ The Custom Field Input Text component represents the UI for a custom field of ty
 It is also used as the basis for the Custom Field Input Number components (and probably others).
 It has no underlying validations besides developer intent (see Error example for more information).
 
-##### Basic usage:
+### Examples
 
 ```js
-<CustomFieldInputText
-  id="basic-test-1"
-  label="Example 1"
-/>
+import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+
+<CustomFieldInputText id="ex-1" label="Default example" />
 ```
 
 ```js
-<CustomFieldInputText
-  defaultValue="This uses an uncontrolled value"
-  id="basic-test-2"
-  label="Example 1"
-/>
+import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+
+<CustomFieldInputText id="ex-2" label="Required example" required />
 ```
 
 ```js
-<CustomFieldInputText
-  id="basic-test-3"
-  label="Example 1"
-  value="This uses a controlled value"
-/>
-```
+import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 
-##### Disabled state:
+<CustomFieldInputText id="ex-3" label="Server error example" errorText="The server returned an error." />
+```
 
 ```js
-<CustomFieldInputText
-  disabled
-  defaultValue="This value cannot be changed"
-  id="test-id-2"
-  label="Example 2"
-/>
+import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+
+<CustomFieldInputText id="ex-4" label="Read-only / disabled example" readOnly />
 ```
 
-##### Errored state:
+### Ref usage:
 
-The `errorText` property indicates the error state of the component.
-The underlying `input` element will be invalid due to the custom error provided.
-
-```js
-<CustomFieldInputText
-  errorText="Custom error message here."
-  id="test-id-3"
-  label="Example 3"
-/>
-```
-----
-##### Ref usage:
-
-All CustomFieldInput* use `forwardRef` and `useImperativeHandle` to provide an API similar to the DOM native for determining their value.
+The component uses `forwardRef` and `useImperativeHandle` to provide an API similar to the DOM native for determining their value.
 Below is an example of this usage:
 
 ```jsx
+import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+
 function TestComponent() {
-  const inputRef = React.useRef(null);
-  const [value, setValue] = React.useState('');
+  const ref = React.useRef();
+  const [current, setCurrent] = React.useState({});
 
   const onChange = () => {
-    setValue(inputRef.current.value);
+    setCurrent(ref.current);
   }
 
   return (
-    <div>
+    <div onChange={onChange}>
       <CustomFieldInputText
         id="test-id-4"
         label="Example 4"
-        onChange={onChange}
-        ref={inputRef}
+        ref={ref}
       />
-      <span>Value is: {value}</span>
+      <ul>
+        {Object.keys(current).map(key => (
+          <li>{key}: {JSON.stringify(current[key])}</li>
+        ))}
+      </ul>
     </div>
   )
 }

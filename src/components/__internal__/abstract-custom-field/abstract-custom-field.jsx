@@ -54,6 +54,11 @@ export default function AbstractCustomField(props) {
     return undefined;
   };
 
+  const inputClassName = () => {
+    if (invalidDueToProps) return styles['input-invalid'];
+    return props.inputClassName || styles.input;
+  };
+
   useEffect(() => {
     if (!props.value && props.inputRef && props.inputRef.current) {
       props.inputRef.current.value = props.defaultValue ? props.defaultValue : ''; // eslint-disable-line no-param-reassign
@@ -71,6 +76,7 @@ export default function AbstractCustomField(props) {
       required={props.required}
     >
       <input
+        autoComplete={props.autoComplete}
         aria-autocomplete={props.ariaProps.autocomplete}
         aria-controls={props.ariaProps.controls}
         aria-haspopup={props.ariaProps.haspopup}
@@ -78,7 +84,7 @@ export default function AbstractCustomField(props) {
         aria-invalid={invalidDueToProps ? 'true' : undefined}
         aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
         defaultValue={props.defaultValue}
-        className={props.inputClassName || styles.input}
+        className={inputClassName()}
         disabled={props.disabled}
         id={props.id}
         role={props.inputRole}
@@ -111,6 +117,7 @@ export default function AbstractCustomField(props) {
 }
 
 AbstractCustomField.propTypes = {
+  autoComplete: PropTypes.oneOf(['off', 'on']),
   ariaProps: PropTypes.shape({
     autocomplete: PropTypes.string,
     controls: PropTypes.string,
@@ -166,6 +173,7 @@ AbstractCustomField.propTypes = {
 };
 
 AbstractCustomField.defaultProps = {
+  autoComplete: 'on',
   ariaProps: {},
   className: undefined,
   inputClassName: undefined,
