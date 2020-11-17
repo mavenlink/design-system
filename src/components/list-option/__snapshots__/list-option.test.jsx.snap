@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`src/components/list-option/list-option renders defaults 1`] = `
-<li
-  aria-selected={false}
-  className="option"
-  onClick={[Function]}
-  onKeyDown={[Function]}
-  role="option"
-  tabIndex="0"
->
-  Test option
-</li>
+<body>
+  <div>
+    <li
+      aria-selected="false"
+      class="option"
+      role="option"
+      tabindex="0"
+    >
+      Test option
+    </li>
+  </div>
+</body>
 `;

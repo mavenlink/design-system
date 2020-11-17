@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Section Row renders a section-row component 1`] = `
-<div
-  className="section-row"
-/>
+<body>
+  <div>
+    <div
+      class="section-row"
+    />
+  </div>
+</body>
 `;
