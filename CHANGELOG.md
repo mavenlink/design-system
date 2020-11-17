@@ -10,6 +10,9 @@
   - Patch: Fix issue with custom field input date in Safari
 </details>
 
+## v0.52.1
+  - Remove debounce functionality from form component when `autoSave` is set to true
+
 ## v0.52.0
   - Major: Create new `Number` component and integrate it with `CustomFieldInputNumber`
 
