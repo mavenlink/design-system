@@ -7,7 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Fix issue with custom field input date in Safari
+  - Patch: Fix issue with custom field input date in Safari, Firefox
 </details>
 
 ## v0.52.1
