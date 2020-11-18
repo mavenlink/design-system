@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Fix issue with custom field input date in Safari, Firefox
 </details>
+
+## v0.52.2
+  - Patch: Fix issue with custom field input date in Safari, Firefox
 
 ## v0.52.1
   - Remove debounce functionality from form component when `autoSave` is set to true
