@@ -32,7 +32,7 @@ const onButtonClicked = () => {
 <React.Fragment>
   <button onClick={onButtonClicked}>Toggle Popover</button>
   <Popover ref={popoverRef} title="Popover Title" top={window.innerHeight / 2} left={window.innerWidth / 2}>
-    <button tabIndex={-1}>A test button</button>
+    <button tabIndex={0}>A test button</button>
     <SectionRow>
       <span>Some nested content</span>
       <span>Some more nested content</span>
