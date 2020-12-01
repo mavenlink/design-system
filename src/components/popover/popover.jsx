@@ -61,27 +61,27 @@ const Popover = forwardRef(function Popover(props, ref) {
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <section
       aria-labelledby="popover-heading"
       className={styles.container}
-      onClick={(event) => { event.stopPropagation(); }}
       ref={sectionRef}
       role="dialog"
       style={{ left: `${props.left}px`, top: `${props.top}px` }}
     >
-      <div className={styles['heading-container']} id="popover-heading">
-        <h1 className={styles.heading}>{props.title}</h1>
-        <IconButton
-          active={true}
-          className={styles['close-button']}
-          icon={iconClear}
-          label={'Close popover'}
-          onPress={() => { setOpen(false); }}
-          ref={closeIconRef}
-        />
+      <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
+        <div className={styles['heading-container']} id="popover-heading">
+          <h1 className={styles.heading}>{props.title}</h1>
+          <IconButton
+            active={true}
+            className={styles['close-button']}
+            icon={iconClear}
+            label={'Close popover'}
+            onPress={() => { setOpen(false); }}
+            ref={closeIconRef}
+          />
+        </div>
+        {props.children}
       </div>
-      {props.children}
     </section>
   );
 });
