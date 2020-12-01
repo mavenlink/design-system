@@ -14,7 +14,14 @@ const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
   const backupRef = useRef();
+  const sectionRef = useRef();
   const selfRef = ref || backupRef;
+
+  const onFocusIn = (event) => {
+    if (open && event.target instanceof HTMLElement && !sectionRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
 
   const onWindowClick = () => {
     if (open) {
@@ -24,6 +31,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 
   useEffect(() => {
     window.addEventListener('click', onWindowClick);
+    window.addEventListener('focusin', onFocusIn);
 
     if (closeIconRef.current && open) {
       closeIconRef.current.focus();
@@ -35,6 +43,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 
     return () => {
       window.removeEventListener('click', onWindowClick);
+      window.removeEventListener('focusin', onFocusIn);
     };
   }, [open]);
 
@@ -57,6 +66,7 @@ const Popover = forwardRef(function Popover(props, ref) {
       aria-labelledby="popover-heading"
       className={styles.container}
       onClick={(event) => { event.stopPropagation(); }}
+      ref={sectionRef}
       role="dialog"
       style={{ left: `${props.left}px`, top: `${props.top}px` }}
     >
