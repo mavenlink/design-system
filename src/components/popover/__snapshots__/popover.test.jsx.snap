@@ -5,3 +5,9 @@ exports[`Popover has defaults 1`] = `
   <div />
 </body>
 `;
+
+exports[`Popover has defaults 2`] = `
+Object {
+  "open": false,
+}
+`;

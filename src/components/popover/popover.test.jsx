@@ -18,8 +18,13 @@ describe('Popover', () => {
   }
 
   it('has defaults', () => {
+    const popoverRef = React.createRef();
+
     render(<Popover title="Defaults" />);
     expect(document.body).toMatchSnapshot();
+
+    render(<Popover ref={popoverRef} title="Defaults with ref" />);
+    expect(popoverRef.current).toMatchSnapshot();
   });
 
   it('has a title', () => {
