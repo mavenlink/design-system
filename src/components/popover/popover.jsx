@@ -66,7 +66,6 @@ const Popover = forwardRef(function Popover(props, ref) {
       className={styles.container}
       ref={sectionRef}
       role="dialog"
-      style={{ left: `${props.left}px`, top: `${props.top}px` }}
     >
       <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
         <div className={styles['heading-container']} id="popover-heading">
@@ -88,17 +87,13 @@ const Popover = forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   children: PropTypes.node,
-  left: PropTypes.number,
   onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
-  top: PropTypes.number,
 };
 
 Popover.defaultProps = {
   children: undefined,
-  left: undefined,
   onClose: () => {},
-  top: undefined,
 };
 
 export default Popover;

@@ -41,14 +41,6 @@ describe('Popover', () => {
     expect(screen.getByText('More text'));
   });
 
-  it('sets left and top', () => {
-    render(<PopoverWithToggle title="Another title" left={100} top={200} />);
-
-    userEvent.click(screen.getByText('Open Popover'));
-    expect(screen.getByRole('dialog')).toHaveStyle('left: 100px');
-    expect(screen.getByRole('dialog')).toHaveStyle('top: 200px');
-  });
-
   it('can be toggled open/closed', () => {
     render(<PopoverWithToggle title="Another title" />);
 
