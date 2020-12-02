@@ -11,7 +11,7 @@ import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 
 const Popover = forwardRef(function Popover(props, ref) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(props.startOpen);
   const closeIconRef = useRef();
   const backupRef = useRef();
   const sectionRef = useRef();
@@ -88,12 +88,14 @@ const Popover = forwardRef(function Popover(props, ref) {
 Popover.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
+  startOpen: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
 Popover.defaultProps = {
   children: undefined,
   onClose: () => {},
+  startOpen: false,
 };
 
 export default Popover;
