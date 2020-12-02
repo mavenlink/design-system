@@ -16,7 +16,7 @@
   border: 1px solid var(--mds-grey-12);
   box-shadow: var(--spacing-small) var(--spacing-small) var(--spacing-small) var(--mds-grey-8);
   padding: var(--spacing-large);
-  position: fixed;
+  position: absolute;
   z-index: 10;
 }
 
