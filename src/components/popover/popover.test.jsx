@@ -45,37 +45,36 @@ describe('Popover', () => {
     render(<PopoverWithToggle title="Another title" />);
 
     userEvent.click(screen.getByText('Open Popover'));
-    expect(screen.getByText('Another title').tagName).toEqual('H1');
+    expect(screen.getByText('Another title')).toBeInTheDocument();
 
     userEvent.click(screen.getByText('Close Popover'));
-    expect(screen.queryByText('Another title')).toEqual(null);
+    expect(screen.queryByText('Another title')).not.toBeInTheDocument();
   });
 
   it('can be closed by clicking elsewhere in the window', () => {
     render(<PopoverWithToggle title="Another title" />);
 
     userEvent.click(screen.getByText('Open Popover'));
-    expect(screen.getByText('Another title').tagName).toEqual('H1');
+    expect(screen.getByText('Another title')).toBeInTheDocument();
 
     userEvent.click(screen.getByText('Some text'));
-    expect(screen.queryByText('Another title')).toEqual(null);
+    expect(screen.queryByText('Another title')).not.toBeInTheDocument();
   });
 
   it('can be closed by focusing outside', () => {
     render(<PopoverWithToggle title="Another title" />);
 
     userEvent.click(screen.getByText('Open Popover'));
-    expect(screen.getByText('Another title').tagName).toEqual('H1');
 
     fireEvent.focusIn(screen.getByText('Close Popover'));
-    expect(screen.queryByText('Another title')).toEqual(null);
+    expect(screen.queryByText('Another title')).not.toBeInTheDocument();
   });
 
   it('opens with focus on the close iconbutton', () => {
     render(<PopoverWithToggle title="Another title" />);
 
     userEvent.click(screen.getByText('Open Popover'));
-    expect(document.activeElement.tagName).toEqual('svg');
+    expect(document.activeElement).toContainElement(screen.getByTitle('Close popover'));
   });
 
   it('can be closed by activating the close iconbutton', () => {
