@@ -34,7 +34,7 @@ describe('Popover', () => {
     render(<PopoverWithToggle title="Another title" />);
 
     userEvent.click(screen.getByText('Open Popover'));
-    expect(screen.getByText('Another title').tagName).toEqual('H1');
+    expect(screen.getByRole('dialog', { name: 'Another title' })).toBeInTheDocument();
   });
 
   it('renders children', () => {
@@ -69,7 +69,9 @@ describe('Popover', () => {
 
     userEvent.click(screen.getByText('Open Popover'));
 
-    fireEvent.focusIn(screen.getByText('Close Popover'));
+    userEvent.tab();
+    userEvent.tab();
+    expect(screen.getByText('Open Popover')).toHaveFocus();
     expect(screen.queryByText('Another title')).not.toBeInTheDocument();
   });
 
