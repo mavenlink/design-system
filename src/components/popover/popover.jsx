@@ -18,7 +18,7 @@ const Popover = forwardRef(function Popover(props, ref) {
   const selfRef = ref || backupRef;
 
   const onFocusIn = (event) => {
-    if (open && event.target instanceof HTMLElement && !sectionRef.current.contains(event.target)) {
+    if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
