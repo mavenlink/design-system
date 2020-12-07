@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.53.1
+  - Patch: Specific imports for the `Popover` documentation
+
 ## v0.53.0
   - Minor: Add new `Popover` component
 
