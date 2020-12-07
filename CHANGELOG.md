@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: Add new `Popover` component
 </details>
+
+## v0.53.0
+  - Minor: Add new `Popover` component
 
 ## v0.52.2
   - Patch: Fix issue with custom field input date in Safari, Firefox
