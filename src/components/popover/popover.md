@@ -5,6 +5,8 @@ The `Popover` component provides a ref for getting and setting the `open` state,
 `Popover`s will close if a `click` or `focusin` event reaches the root `window` (the popover ignores these events if they originate from within it), so click/focus events that should not close the `Popover` should have `stopPropogation` called on them.
 
 ```js
+import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
+
 const popoverRef = React.createRef();
 
 const onButtonClicked = (event) => {
@@ -31,7 +33,8 @@ const onButtonFocused = (event) => {
 `Popover` contents should generally be a mix of informational and interactive components. Interactive components should be in the user focus flow, usually by making sure they have a `tabIndex={0}`.
 
 ```js
-import SectionRow from '../section-row/section-row.jsx';
+import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
+import SectionRow from '@mavenlink/design-system/src/components/section-row/section-row.jsx';
 
 const popoverRef = React.createRef();
 
