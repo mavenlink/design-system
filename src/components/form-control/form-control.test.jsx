@@ -27,7 +27,7 @@ describe('<FormControl>', () => {
 
     render(<FormControl {...requiredProps} id={undefined} labelId={undefined} />);
     expect(console.error.mock.calls[0][2]).toEqual('Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.');
-    expect(console.error.mock.calls[1][2]).toEqual('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.')
+    expect(console.error.mock.calls[1][2]).toEqual('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.');
 
     console.error = originalConsoleError;
     /* eslint-enable no-console */
