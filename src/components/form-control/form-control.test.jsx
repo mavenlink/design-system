@@ -26,8 +26,8 @@ describe('<FormControl>', () => {
     console.error = jest.fn();
 
     render(<FormControl {...requiredProps} id={undefined} labelId={undefined} />);
-    expect(console.error).toHaveBeenNthCalledWith(1, 'Warning: Failed prop type: Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.\n    in FormControl');
-    expect(console.error).toHaveBeenNthCalledWith(2, 'Warning: Failed prop type: Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.\n    in FormControl');
+    expect(console.error.mock.calls[0][2]).toEqual('Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.');
+    expect(console.error.mock.calls[1][2]).toEqual('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.')
 
     console.error = originalConsoleError;
     /* eslint-enable no-console */
