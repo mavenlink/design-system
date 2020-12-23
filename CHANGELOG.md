@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Patch: Make `title` prop no longer required for `Section`
 </details>
 
 ## v0.53.1
