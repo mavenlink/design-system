@@ -9,6 +9,21 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.53.2
+  - Patch: Make `title` prop no longer required for `Section`
+
+## v0.53.1
+  - Patch: Specific imports for the `Popover` documentation
+
+## v0.53.0
+  - Minor: Add new `Popover` component
+
+## v0.52.2
+  - Patch: Fix issue with custom field input date in Safari, Firefox
+
+## v0.52.1
+  - Remove debounce functionality from form component when `autoSave` is set to true
+
 ## v0.52.0
   - Major: Create new `Number` component and integrate it with `CustomFieldInputNumber`
 

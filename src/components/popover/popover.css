@@ -1,0 +1,32 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
+
+.close-button {
+  composes: button from '../icon-button/icon-button.css';
+  height: 12px;
+  margin-left: var(--spacing-large);
+  padding: var(--spacing-small);
+  padding-top: 5px;
+  width: 12px;
+}
+
+.container {
+  background-color: var(--white);
+  border: 1px solid var(--mds-grey-12);
+  box-shadow: var(--spacing-small) var(--spacing-small) var(--spacing-small) var(--mds-grey-8);
+  padding: var(--spacing-large);
+  position: absolute;
+  z-index: 10;
+}
+
+.heading {
+  font: var(--mds-type-subhead-1);
+  margin-bottom: var(--spacing-large);
+  margin-top: 0;
+}
+
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+}

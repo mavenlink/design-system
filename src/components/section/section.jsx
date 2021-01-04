@@ -5,7 +5,9 @@ import styles from './section.css';
 export default function Section(props) {
   return (
     <section className={styles.section}>
-      <h2 className={styles.subheading}>{props.title}</h2>
+      {props.title &&
+        <h2 className={styles.subheading}>{props.title}</h2>
+      }
       {props.description && <p className={styles.description}>{props.description}</p>}
       {props.children}
     </section>
@@ -15,10 +17,11 @@ export default function Section(props) {
 Section.propTypes = {
   children: PropTypes.node,
   description: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 Section.defaultProps = {
   children: undefined,
   description: undefined,
+  title: undefined,
 };
