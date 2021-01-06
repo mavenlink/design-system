@@ -10,6 +10,9 @@
   - Patch: Fix styling bug concerning save button on Form component
 </details>
 
+## v0.53.2
+  - Patch: Make `title` prop no longer required for `Section`
+
 ## v0.53.1
   - Patch: Specific imports for the `Popover` documentation
 

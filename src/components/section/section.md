@@ -1,4 +1,4 @@
-`Section`s can be used to semantically group controls, information, and inputs. `Section`s get the `region` ARIA role by default, and the `title` prop is required to support accessibility with a contained heading. For now, the `Section` component should only be used in Custom Apps, while the "page layout" spec is still in flux.
+`Section`s can be used to semantically group controls, information, and inputs. `Section`s get the `region` ARIA role by default, and the `title` prop is needed to support accessibility with a contained heading (though `title` is not required, to support accessibility-agnostic use-cases). For now, the `Section` component should only be used in Custom Apps, while the "page layout" spec is still in flux.
 
 For rows that should contain more than one full-length component, a `SectionRow` should be used to wrap thse children.
 
