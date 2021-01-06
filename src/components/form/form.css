@@ -2,8 +2,7 @@
 
 .buttons-container {
   display: flex;
-  margin-left: var(--spacing-x-large);
-  margin-top: var(--spacing-medium);
+  margin-top: var(--spacing-x-large);
   max-width: 250px;
 }
 
