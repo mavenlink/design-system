@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Fix styling bug concerning save button on Form component
 </details>
+
+## v0.53.3
+  - Patch: Fix styling bug concerning save button on Form component
 
 ## v0.53.2
   - Patch: Make `title` prop no longer required for `Section`
