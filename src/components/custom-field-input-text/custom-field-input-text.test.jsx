@@ -43,6 +43,19 @@ describe('CustomFieldInputText', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('calls the onChange prop', () => {
+      const onChangeSpy = jest.fn(event => event.persist());
+      render(<CustomFieldInputText {...requiredProps} onChange={onChangeSpy} />);
+      userEvent.type(screen.getByLabelText('Test label'), 'a');
+      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: 'a'
+        }),
+      }));
+    })
+  });
+
   describe('value API', () => {
     it('sets the value attribute', () => {
       render(<CustomFieldInputText {...requiredProps} value="test-value" />);
