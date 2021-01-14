@@ -75,6 +75,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
     }
   });
 
+  useEffect(() => {
+    setInput(subunitToUnit(props.value, props.currencyCode));
+  }, [props.value]);
+
   useImperativeHandle(ref, () => ({
     get dirty() {
       const currentValue = this.value ? this.value[0] : this.value;

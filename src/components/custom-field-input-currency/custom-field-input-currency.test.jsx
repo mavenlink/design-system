@@ -174,6 +174,13 @@ describe('CustomFieldInputCurrency', () => {
       userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveValue(0.01);
     });
+
+    it('can be updated', () => {
+      const { rerender } = render(<CustomFieldInputCurrency {...requiredProps} value={0} />);
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
+      rerender(<CustomFieldInputCurrency {...requiredProps} value={100} />);
+      expect(screen.getByLabelText('currency')).toHaveValue('$1.00');
+    });
   });
 
   describe('value ref API', () => {
