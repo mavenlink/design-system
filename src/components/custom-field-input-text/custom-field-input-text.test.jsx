@@ -50,10 +50,10 @@ describe('CustomFieldInputText', () => {
       userEvent.type(screen.getByLabelText('Test label'), 'a');
       expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
         target: expect.objectContaining({
-          value: 'a'
+          value: 'a',
         }),
       }));
-    })
+    });
   });
 
   describe('value API', () => {
