@@ -80,6 +80,19 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('calls the handler', () => {
+      const onChangeSpy = jest.fn();
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} onChange={onChangeSpy} />);
+      userEvent.type(getByLabelText('currency'), '1234');
+      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: [123400, 'USD'],
+        }),
+      }));
+    });
+  });
+
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
       render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);

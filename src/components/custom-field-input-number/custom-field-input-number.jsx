@@ -60,7 +60,7 @@ CustomFieldInputNumber.propTypes = {
   onBlur: PropTypes.func,
   /**
    * The handle is invoked for every native onchange event.
-   * According to the HTML spec, the event.target.value is
+   * **Beware:** According to the HTML spec, the `event.target.value` is
    * an empty string when the input is invalid.
    */
   onChange: PropTypes.func,

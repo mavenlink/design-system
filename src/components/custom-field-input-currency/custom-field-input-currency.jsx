@@ -39,13 +39,15 @@ function formatValue(unitValue, currencyCode) {
   }).format(unitValue);
 }
 
-const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, ref) {
+const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
+  const backupRef = useRef();
+  const ref = forwardedRef || backupRef;
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
@@ -61,6 +63,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
     setIsEditing(true);
     setIsFocused(true);
+  }
+
+  function onChange() {
+    props.onChange({ target: ref.current })
   }
 
   useEffect(() => {
@@ -128,6 +134,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
       <CustomFieldInputNumber
         {...sharedProps}
         onBlur={handleOnBlur}
+        onChange={onChange}
         ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         value={input}
@@ -154,7 +161,11 @@ CustomFieldInputCurrency.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  // onChange: Do not expose an onChange handler. See commit for details.
+  /**
+   * The handle is invoked for every native onchange event.
+   * The handle will be invoked with the forwarded ref.
+   */
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -166,6 +177,7 @@ CustomFieldInputCurrency.defaultProps = {
   currencyCode: 'USD',
   errorText: undefined,
   name: undefined,
+  onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
