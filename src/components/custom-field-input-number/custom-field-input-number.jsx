@@ -59,7 +59,7 @@ CustomFieldInputNumber.propTypes = {
   name: PropTypes.string,
   onBlur: PropTypes.func,
   /**
-   * The handle is invoked for every native onchange event.
+   * The handler is invoked for every native onchange event.
    * **Beware:** According to the HTML spec, the `event.target.value` is
    * an empty string when the input is invalid.
    */

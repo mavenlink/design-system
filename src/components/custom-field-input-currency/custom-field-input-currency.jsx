@@ -66,7 +66,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   }
 
   function onChange() {
-    props.onChange({ target: ref.current })
+    props.onChange({ target: ref.current });
   }
 
   useEffect(() => {
@@ -162,8 +162,8 @@ CustomFieldInputCurrency.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   /**
-   * The handle is invoked for every native onchange event.
-   * The handle will be invoked with the forwarded ref.
+   * The handler is invoked for every native onchange event.
+   * The handler will be invoked with the forwarded ref.
    */
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
