@@ -9,6 +9,8 @@
   - Append new items to make git merging easier.
   - Patch: Ensure Currency component can update its value given new `value` prop
   - Minor: Add `onChange` prop to CustomFieldInputText component
+  - Minor: Add `onChange` prop to CustomFieldInputNumber component
+  - Minor: Add `onChange` prop to CustomFieldInputCurrency component
 </details>
 
 ## v0.53.3

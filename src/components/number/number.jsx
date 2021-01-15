@@ -106,6 +106,10 @@ Number.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onBlur: PropTypes.func,
+  /** The handle is invoked for every native onchange event.
+   * **Beware:** According to the HTML spec, the `event.target.value` is
+   * an empty string when the input is invalid.
+   */
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
