@@ -77,6 +77,14 @@ describe('<Form />', () => {
     });
   });
 
+  describe('buttonContainerClassName API', () => {
+    it('accepts a buttonContainerClassName', () => {
+      const className = 'foo-bar';
+      render(<Form {...requiredProps} submitText="YOLO SWAG" buttonContainerClassName={className} />);
+      expect(screen.getByText('YOLO SWAG').parentElement).toHaveClass('foo-bar');
+    });
+  });
+
   describe('checkValidity ref API', () => {
     it('checks for some invalid control', () => {
       const ref = createRef();
