@@ -80,6 +80,19 @@ describe('CustomFieldInputCurrency', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('calls the handler', () => {
+      const onChangeSpy = jest.fn();
+      const { getByLabelText } = render(<CustomFieldInputCurrency {...requiredProps} onChange={onChangeSpy} />);
+      userEvent.type(getByLabelText('currency'), '1234');
+      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: [123400, 'USD'],
+        }),
+      }));
+    });
+  });
+
   describe('readOnly API', () => {
     it('respects the readOnly prop', () => {
       render(<CustomFieldInputCurrency {...requiredProps} readOnly={true} />);
@@ -173,6 +186,13 @@ describe('CustomFieldInputCurrency', () => {
       expect(screen.getByLabelText('currency')).toHaveValue('$0.01');
       userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveValue(0.01);
+    });
+
+    it('can be updated', () => {
+      const { rerender } = render(<CustomFieldInputCurrency {...requiredProps} value={0} />);
+      expect(screen.getByLabelText('currency')).toHaveValue('$0.00');
+      rerender(<CustomFieldInputCurrency {...requiredProps} value={100} />);
+      expect(screen.getByLabelText('currency')).toHaveValue('$1.00');
     });
   });
 

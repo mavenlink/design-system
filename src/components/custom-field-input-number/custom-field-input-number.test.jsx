@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomFieldInputNumber from './custom-field-input-number.jsx';
 
@@ -16,7 +16,6 @@ describe('CustomFieldInputNumber', () => {
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
   });
-
   describe('className API', () => {
     it('prioritizes className prop', () => {
       render(<CustomFieldInputNumber {...requiredProps} className="prioritize-me" />);
@@ -103,6 +102,31 @@ describe('CustomFieldInputNumber', () => {
     });
   });
 
+  describe('onBlur API', () => {
+    it('calls the handler', () => {
+      const onBlurSpy = jest.fn(event => event.persist());
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} onBlur={onBlurSpy} />);
+      userEvent.click(getByLabelText('Test label'));
+      userEvent.tab();
+      expect(onBlurSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({}),
+      }));
+    });
+  });
+
+  describe('onChange API', () => {
+    it('calls the handler', () => {
+      const onChangeSpy = jest.fn(event => event.persist());
+      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} onChange={onChangeSpy} />);
+      userEvent.type(getByLabelText('Test label'), '1234');
+      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: '1234',
+        }),
+      }));
+    });
+  });
+
   describe('placeholder API', () => {
     it('sets the placeholder attribute', () => {
       const placeholder = 'This is placeholder input';
@@ -165,15 +189,6 @@ describe('CustomFieldInputNumber', () => {
       render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription(validityText);
-    });
-  });
-
-  describe('events API', () => {
-    it('accepts an onBlur event', () => {
-      const onBlur = jest.fn();
-      const { getByLabelText } = render(<CustomFieldInputNumber {...requiredProps} label="foo" onBlur={onBlur} />);
-      fireEvent.blur(getByLabelText('foo'));
-      expect(onBlur.mock.calls.length).toEqual(1);
     });
   });
 

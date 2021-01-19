@@ -39,6 +39,7 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       min={apiLimits.min}
       name={props.name}
       onBlur={props.onBlur}
+      onChange={props.onChange}
       placeholder={props.placeholder}
       readOnly={props.readOnly || props.disabled}
       ref={inputRef}
@@ -57,7 +58,12 @@ CustomFieldInputNumber.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   onBlur: PropTypes.func,
-  // onChange: Do not expose the onChange handler. See commit for details.
+  /**
+   * The handler is invoked for every native onchange event.
+   * **Beware:** According to the HTML spec, the `event.target.value` is
+   * an empty string when the input is invalid.
+   */
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -71,6 +77,7 @@ CustomFieldInputNumber.defaultProps = {
   errorText: '',
   name: undefined,
   onBlur: () => {},
+  onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
