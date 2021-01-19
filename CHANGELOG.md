@@ -7,11 +7,14 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+
+</details>
+
+## v0.54.0
   - Patch: Ensure Currency component can update its value given new `value` prop
   - Minor: Add `onChange` prop to CustomFieldInputText component
   - Minor: Add `onChange` prop to CustomFieldInputNumber component
   - Minor: Add `onChange` prop to CustomFieldInputCurrency component
-</details>
 
 ## v0.53.3
   - Patch: Fix styling bug concerning save button on Form component
