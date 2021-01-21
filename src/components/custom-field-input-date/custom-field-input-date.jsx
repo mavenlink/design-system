@@ -152,7 +152,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
   const openCalendar = () => {
-    if (!props.disabled) {
+    if (!props.readOnly) {
       setExpanded(!expanded);
       setIsEditing(!isEditing);
     }
@@ -160,7 +160,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 
   function onInputClick(event) {
     event.preventDefault();
-    if (!props.disabled) {
+    if (!props.readOnly) {
       setExpanded(true);
       setIsEditing(true);
     }
@@ -169,7 +169,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   function onInputKeyDown(event) {
     if (event.key === 'Enter' || event.key === 'Space') {
       event.preventDefault();
-      if (!props.disabled) {
+      if (!props.readOnly) {
         setShouldFocusInput(true);
         setExpanded(!expanded);
         setIsEditing(!isEditing);
@@ -185,7 +185,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   }
 
   function calendarIcon() {
-    if (props.disabled) {
+    if (props.readOnly) {
       return (
         <Icon
           icon={calendarSvg}
@@ -208,7 +208,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
   const sharedProps = {
     className: dateStyles['date-input'],
     inputClassName: props.errorText ? dateStyles['input-invalid'] : dateStyles.input,
-    disabled: props.disabled,
     icon: calendarIcon(),
     label: props.label,
     required: props.required,
@@ -244,6 +243,7 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
         key={`${props.id}-readonly`}
         inputRef={componentRef}
         placeholder={props.placeholder}
+        readOnly={props.readOnly}
         type="text"
       />
     );
@@ -263,7 +263,6 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
 });
 
 CustomFieldInputDate.propTypes = {
-  disabled: PropTypes.bool,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -272,17 +271,18 @@ CustomFieldInputDate.propTypes = {
   placeholder: PropTypes.string, /* eslint-disable-line react/no-unused-prop-types */
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   value: PropTypes.string,
 };
 
 CustomFieldInputDate.defaultProps = {
-  disabled: false,
   errorText: '',
   min: undefined,
   max: undefined,
   onChange: () => {},
   placeholder: undefined,
+  readOnly: false,
   required: false,
   value: '',
 };
