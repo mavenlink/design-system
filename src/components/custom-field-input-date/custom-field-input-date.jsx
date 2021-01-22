@@ -66,12 +66,15 @@ const isValueValid = (value, error, isInputValid = false) => {
   return isValidInput(value);
 };
 
+function parseValue(value) {
+  return validDate(value) ? formatDateString(value) : value;
+}
+
 const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
   const componentRef = useRef(null);
   const inputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(false);
-  const value = validDate(props.value) ? formatDateString(props.value) : props.value;
-  const [currentValue, setCurrentValue] = useState(value);
+  const [currentValue, setCurrentValue] = useState(parseValue(props.value));
   const [isValid, setIsValid] = useState(isValueValid(currentValue, props.errorText, true));
   const [expanded, setExpanded] = useState(false);
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
@@ -125,6 +128,10 @@ const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref
       setInitialValue(false);
     }
   }, [currentValue]);
+
+  useEffect(() => {
+    setCurrentValue(parseValue(props.value));
+  }, [props.value]);
 
   const handleOnChange = (event) => {
     if (inputRef.current) {

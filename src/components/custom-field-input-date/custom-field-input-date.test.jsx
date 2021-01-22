@@ -83,6 +83,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
       expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
+
+    it('updates its value', () => {
+      const { rerender } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
+      expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
+      rerender(<CustomFieldInputDate {...requiredProps} value="07-19-2017" />);
+      expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 19, 2017');
+    });
   });
 
   describe('error API', () => {
