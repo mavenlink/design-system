@@ -126,7 +126,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
 
-
     it('is not read-only', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} readOnly={false} />);
       expect(getByLabelText('Field Date')).not.toHaveAttribute('readonly');
