@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: feature(CustomFieldInputDate): rerender based on `value` prop
+  - Major: feature(CustomFieldInputDate): replace `disabled` prop with `readOnly` prop
 </details>
 
 ## v0.55.0
