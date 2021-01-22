@@ -224,8 +224,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('Sep 14, 2016');
     });
 
-    it('does not open when disabled', () => {
-      render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" disabled />);
+    it('does not open', () => {
+      render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" readOnly />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
       userEvent.click(screen.getByTitle('Field Date calendar'));
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
