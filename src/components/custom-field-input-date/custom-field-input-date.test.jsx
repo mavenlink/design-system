@@ -83,17 +83,12 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
       expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
-  });
 
-  describe('disabled API', () => {
-    it('permits itself to be disabled', () => {
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} disabled={true} />);
-      expect(getByLabelText('Field Date')).toBeDisabled();
-    });
-
-    it('permits itself to be enabled', () => {
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} disabled={false} />);
-      expect(getByLabelText('Field Date')).not.toBeDisabled();
+    it('updates its value', () => {
+      const { rerender } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
+      expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
+      rerender(<CustomFieldInputDate {...requiredProps} value="07-19-2017" />);
+      expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 19, 2017');
     });
   });
 
@@ -118,6 +113,30 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" errorText="Bad Date!" />);
       expect(screen.getByLabelText('Field Date')).not.toBeValid();
       expect(screen.getByText('Bad Date!')).toBeInTheDocument();
+    });
+  });
+
+  describe('readOnly API', () => {
+    it('is read-only', () => {
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} readOnly={true} />);
+      expect(getByLabelText('Field Date')).toHaveAttribute('readonly');
+    });
+
+    it('does not open the calendar', () => {
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} readOnly={true} value="07/18/2016" />);
+      userEvent.click(getByLabelText('Field Date'));
+      expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
+      expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
+    });
+
+    it('does not display the helpText', () => {
+      render(<CustomFieldInputDate {...requiredProps} readOnly={true} helpText="Foo" error={true} />);
+      expect(screen.queryByText('Foo')).not.toBeInTheDocument();
+    });
+
+    it('is not read-only', () => {
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} readOnly={false} />);
+      expect(getByLabelText('Field Date')).not.toHaveAttribute('readonly');
     });
   });
 
@@ -213,8 +232,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('Sep 14, 2016');
     });
 
-    it('does not open when disabled', () => {
-      render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" disabled />);
+    it('does not open', () => {
+      render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" readOnly />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
       userEvent.click(screen.getByTitle('Field Date calendar'));
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
@@ -237,13 +256,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(onChange.mock.calls.length).toBe(1);
       expect(onChange).toHaveBeenLastCalledWith({ target: ref.current });
-    });
-  });
-
-  describe('when the component is readOnly', () => {
-    it('does not display the helpText', () => {
-      render(<CustomFieldInputDate {...requiredProps} readOnly={true} helpText="Foo" error={true} />);
-      expect(screen.queryByText('Foo')).not.toBeInTheDocument();
     });
   });
 
