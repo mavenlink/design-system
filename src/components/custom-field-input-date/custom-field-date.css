@@ -16,6 +16,7 @@
 .input {
   composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   font: var(--mds-type-content);
+  padding-right: var(--spacing-x-large);
 }
 
 .input-invalid {
