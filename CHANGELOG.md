@@ -7,7 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Fix styling inconsistency with the Date custom field
+  - Patch: Ensure date input does not overflow under the calendar icon
 </details>
 
 ## v0.56.0
