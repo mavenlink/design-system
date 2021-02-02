@@ -4,7 +4,7 @@ import styles from './page-header.css';
 
 export default function PageHeader(props) {
   return (
-    <header className={styles.container}>
+    <header className={props.className}>
       <h1 className={styles.heading}>{props.title}</h1>
       {props.description && (
         <p className={styles.description}>{props.description}</p>
@@ -14,10 +14,12 @@ export default function PageHeader(props) {
 }
 
 PageHeader.propTypes = {
+  className: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 PageHeader.defaultProps = {
+  className: undefined,
   description: undefined,
 };

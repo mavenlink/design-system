@@ -1,10 +1,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography-v2.css';
 
-.container {
-  margin: var(--spacing-x-large);
-}
-
 .heading {
   font: var(--mds-type-page-title);
   margin: 0;

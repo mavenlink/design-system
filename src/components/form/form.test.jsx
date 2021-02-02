@@ -21,7 +21,7 @@ describe('<Form />', () => {
   });
 
   describe('autoSave prop API', () => {
-    it('can be set', async () => {
+    xit('can be set', async () => {
       const onSubmitSpy = jest.fn();
       const ref = createRef();
       const refs = [
