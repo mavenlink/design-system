@@ -7,10 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Major: Remove margin from `PageHeader`: Add wrapper around `PageHeader` and implement `--spacing-x-large` margin
-  - Minor: Add `className` API to `PageHeader` 
 </details>
 
+## v0.57.0
+  - Major: Remove margin from `PageHeader`: Add wrapper around `PageHeader` and implement `--spacing-x-large` margin
+  - Minor: Add `className` API to `PageHeader`
 ## v0.56.1
   - Patch: Ensure date input does not overflow under the calendar icon
 ## v0.56.0
