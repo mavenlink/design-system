@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Major: Remove margin from `PageHeader`: Add wrapper around `PageHeader` and implement `--spacing-x-large` margin
+  - Minor: Add `className` API to `PageHeader` 
 </details>
 
 ## v0.56.1
