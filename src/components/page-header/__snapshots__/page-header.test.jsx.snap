@@ -3,13 +3,11 @@
 exports[`PageHeader has defaults 1`] = `
 <body>
   <div>
-    <header
-      class="container"
-    >
+    <header>
       <h1
         class="heading"
       >
-        Defaults
+        Title
       </h1>
     </header>
   </div>
