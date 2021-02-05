@@ -2,7 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
-import useDidMount from '../../hooks/use-did-mount.js';
+import useMounted from '../../hooks/use-mounted.js';
 import Icon from '../icon/icon.jsx';
 import cautionSvg from '../../svgs/caution.svg';
 import styles from './number.css';
@@ -19,11 +19,11 @@ const apiLimits = {
 
 const Number = React.forwardRef((props, ref) => {
   const inputRef = useRef();
-  const [didMount] = useDidMount();
+  const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
   useEffect(() => {
-    if (!didMount) return;
+    if (!mounted.current) return;
 
     // The MDS Number is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we

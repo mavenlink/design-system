@@ -271,10 +271,15 @@ describe('Input', () => {
 
     it('set on the ref', () => {
       const ref = createRef();
-      render(<Input {...requiredProps} ref={ref} value="unique value" />);
+      const { rerender } = render(<Input {...requiredProps} ref={ref} value="unique value" />);
       expect(ref.current.value).toBe('unique value');
       userEvent.type(screen.getByLabelText('the label'), '!');
       expect(ref.current.value).toBe('unique value!');
+
+      rerender(<Input {...requiredProps} ref={ref} value={undefined} />);
+      expect(ref.current.value).toBe('');
+      userEvent.type(screen.getByLabelText('the label'), '!');
+      expect(ref.current.value).toBe('!');
     });
   });
 });
