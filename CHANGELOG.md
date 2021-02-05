@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: Implement updatable `value` API on Select component
+  - Minor: Implement updatable `value` API on CustomFieldInputSingleChoice component
 </details>
 
 ## v0.57.0

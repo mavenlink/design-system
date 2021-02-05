@@ -116,6 +116,10 @@ const Select = forwardRef(function Select(props, ref) {
   }, []);
 
   useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  useEffect(() => {
     if (!didMount) return;
 
     validate();

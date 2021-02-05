@@ -97,6 +97,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('value API', () => {
+    const choices = [{
+      id: 1,
+      label: 'Some selection',
+    }, {
+      id: 2,
+      label: 'A new selection',
+    }];
+
     it('accepts a value', () => {
       const value = { id: 1, label: 'Some selection' };
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
@@ -104,12 +112,19 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('provided value sets the corresponding list item as selected', () => {
-      const value = { id: 1, label: 'hello' };
-      const choices = [value];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} value={choices[0]} />);
       userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('Some selection')).toHaveAttribute('aria-selected', 'true');
+    });
 
-      expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
+    it('updates its value', () => {
+      const { rerender } = render(<CustomFieldInputSingleChoice
+        {...requiredProps}
+        choices={choices}
+        value={choices[0]}
+      />);
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} value={choices[1]} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('A new selection');
     });
   });
 

@@ -320,6 +320,12 @@ describe('src/components/select/select', () => {
 
       expect(screen.getByText('bar')).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('updates its value', () => {
+      const { rerender } = render(<Select {...requiredProps} value="foo">{baseListOptionElements}</Select>);
+      rerender(<Select {...requiredProps} value="bar">{baseListOptionElements}</Select>);
+      expect(screen.getByLabelText('Test label')).toHaveValue('bar');
+    });
   });
 
   describe('clear', () => {
