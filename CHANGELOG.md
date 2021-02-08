@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Minor: Implement updatable `value` API on Select component
   - Minor: Implement updatable `value` API on CustomFieldInputSingleChoice component
+  - Minor: Replace `useDidMount` (state update) with `useMounted` (ref)
 </details>
 
 ## v0.57.0
