@@ -2,6 +2,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
   },
+  setupFiles: [require.resolve('cross-fetch/polyfill')],
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect.js',
     '<rootDir>/jest.config.setup.files.after.env.js',

@@ -1,4 +1,3 @@
-import 'cross-fetch/polyfill'; // eslint-disable-line import/extensions
 import jestServer from './src/mocks/jest-server.js';
 
 /* eslint-disable no-undef */
