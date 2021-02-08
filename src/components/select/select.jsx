@@ -17,12 +17,13 @@ import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import useMounted from '../../hooks/use-mounted.js';
 
 const Select = forwardRef(function Select(props, ref) {
-  const [didMount, setDidMount] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState(undefined);
+  const mounted = useMounted();
   const inputRef = useRef();
   const backupRef = useRef();
   const selfRef = ref || backupRef;
@@ -112,15 +113,13 @@ const Select = forwardRef(function Select(props, ref) {
   }));
 
   useEffect(() => {
-    setDidMount(true);
-  }, []);
+    if (!mounted.current) return;
 
-  useEffect(() => {
     setValue(props.value);
   }, [props.value]);
 
   useEffect(() => {
-    if (!didMount) return;
+    if (!mounted.current) return;
 
     validate();
     props.onChange({ target: selfRef.current });
