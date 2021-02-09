@@ -390,6 +390,14 @@ describe('src/components/select/select', () => {
 
       expect(changeValue).toEqual('bar');
     });
+
+    it('is not called when provided a new value prop', () => {
+      const onChangeSpy = jest.fn();
+      const { rerender } = render(<Select {...requiredProps} onChange={onChangeSpy} value="10" />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      rerender(<Select {...requiredProps} onChange={onChangeSpy} value="11" />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+    });
   });
 
   describe('dropdown close behavior', () => {

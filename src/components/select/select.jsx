@@ -122,6 +122,9 @@ const Select = forwardRef(function Select(props, ref) {
     if (!mounted.current) return;
 
     validate();
+
+    if (props.value === value) return;
+
     props.onChange({ target: selfRef.current });
   }, [value]);
 
