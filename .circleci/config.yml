@@ -48,7 +48,7 @@ jobs:
           image: "cypress"
           version: "14"
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test --runInBand
       - run:
           command: yarn start
           background: true
