@@ -22,6 +22,7 @@ module.exports = {
   pagePerSection: true,
   require: [
     path.join(__dirname, 'styleguide/content/content.css'),
+    path.join(__dirname, 'styleguide/utils/include-msw.js'),
   ],
   sections: [
     {
