@@ -168,5 +168,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(changeValue).toStrictEqual([2]);
     });
+
+    it('is not called when provided a new value prop', () => {
+      const onChangeSpy = jest.fn();
+      const { rerender } = render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} onChange={onChangeSpy} value={choices[0]} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} onChange={onChangeSpy} value={choices[1]} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+    });
   });
 });
