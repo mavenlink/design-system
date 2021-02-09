@@ -320,6 +320,12 @@ describe('src/components/select/select', () => {
 
       expect(screen.getByText('bar')).toHaveAttribute('aria-selected', 'true');
     });
+
+    it('updates its value', () => {
+      const { rerender } = render(<Select {...requiredProps} value="foo">{baseListOptionElements}</Select>);
+      rerender(<Select {...requiredProps} value="bar">{baseListOptionElements}</Select>);
+      expect(screen.getByLabelText('Test label')).toHaveValue('bar');
+    });
   });
 
   describe('clear', () => {
@@ -383,6 +389,14 @@ describe('src/components/select/select', () => {
       userEvent.click(screen.getByText('bar'));
 
       expect(changeValue).toEqual('bar');
+    });
+
+    it('is not called when provided a new value prop', () => {
+      const onChangeSpy = jest.fn();
+      const { rerender } = render(<Select {...requiredProps} onChange={onChangeSpy} value="10" />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      rerender(<Select {...requiredProps} onChange={onChangeSpy} value="11" />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
     });
   });
 

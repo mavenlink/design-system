@@ -4,10 +4,10 @@ export default function useValidation(errorText, inputRef) {
   const [validationMessage, setValidationMessage] = useState('');
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.setCustomValidity(errorText);
-      setValidationMessage(errorText);
-    }
+    if (!inputRef.current) return;
+
+    inputRef.current.setCustomValidity(errorText);
+    setValidationMessage(errorText);
   }, [errorText]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function useValidation(errorText, inputRef) {
     if (!inputRef.current.validity.valid) {
       setValidationMessage(inputRef.current.validationMessage);
     } else {
-      setValidationMessage('');
+      setValidationMessage(errorText);
     }
   };
 
