@@ -41,6 +41,11 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
   const renderPopup = !props.readOnly && expanded;
   const backupRef = useRef();
   const selfRef = ref || backupRef;
+  const ids = {
+    label: `${props.id}-label`,
+    listbox: `${props.id}-listbox`,
+    textbox: `${props.id}-autocomplete`,
+  }
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
@@ -129,8 +134,8 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
       <FormControl
         error={props.errorText}
         label={props.label}
-        labelId={`${props.id}-label`}
-        id={`${props.id}-autocomple`}
+        labelId={ids.label}
+        id={ids.textbox}
         onKeyDown={onKeyDown}
         readOnly={props.readOnly}
       >
@@ -142,7 +147,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
           <TagList
             className={styles['tag-list']}
             id={props.id}
-            labelledBy={`${props.id}-label`}
+            labelledBy={ids.label}
             refs={valueRefs}
           >
             {value.map((choice, index) => (
@@ -160,14 +165,14 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
             {!props.readOnly && (
               <input
                 aria-autocomplete="list"
-                aria-controls={`${props.id}-multi-choice-listbox`}
+                aria-controls={ids.listbox}
                 aria-expanded={renderPopup}
                 aria-haspopup="listbox"
-                aria-labelledby={`${props.id}-label`}
+                aria-labelledby={ids.label}
                 autoComplete="off"
                 role="combobox"
                 className={styles['autocomplete-input']}
-                id={`${props.id}-autocomple`}
+                id={ids.textbox}
                 onChange={onAutocompleteChange}
                 ref={autocompleteRef}
                 value={autocompleteValue}
@@ -206,8 +211,8 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
         { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
           <Listbox
             className={styles['popup-container']}
-            id={`${props.id}-multi-choice-listbox`}
-            labelledBy={`${props.id}-label`}
+            id={ids.listbox}
+            labelledBy={ids.label}
             refs={choicesRefs}
           >
             {visibleChoices.map((choice, index) => (
