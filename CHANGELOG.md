@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Minor: `ref.value` for CustomFieldInputNumber now returns its type as Integer
 </details>
 
 ## v0.58.0

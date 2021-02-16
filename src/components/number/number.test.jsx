@@ -75,6 +75,12 @@ describe('Number', () => {
       render(<Number {...requiredProps} value={101} ref={ref} />);
       expect(ref.current.value).toEqual(101);
     });
+
+    it('responds with the undefined as value when not defined', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} ref={ref} />);
+      expect(ref.current.value).toEqual(undefined);
+    });
   });
 
   describe('name API', () => {
