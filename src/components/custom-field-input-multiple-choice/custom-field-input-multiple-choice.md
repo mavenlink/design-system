@@ -90,10 +90,11 @@ const value = [
 ];
 
 <CustomFieldInputMultipleChoice
-  id="123"
-  label="This custom field has a lot of choices"
-  value={value}
   choices={choices}
+  id="example-lotsa"
+  label="This custom field has a lot of choices"
+  name="example-lotsa"
+  value={value}
 />
 ```
 
@@ -102,8 +103,9 @@ const value = [
 ```js
 <CustomFieldInputMultipleChoice
   choices={[]}
-  id="read-only-example-1"
+  id="example-readonly"
   label="This custom field is read-only"
+  name="example-readonly"
   readOnly
   value={[
     { id: 1, label: 'First Choice' },
@@ -125,8 +127,9 @@ const choices = [
 <CustomFieldInputMultipleChoice
   choices={choices}
   errorText="If you're not first, you're last!"
-  id="invalid-example-1"
+  id="example-invalid"
   label="This custom field is invalid"
+  name="example-invalid"
   value={[choices[1]]}
 />
 ```
