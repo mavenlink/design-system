@@ -170,7 +170,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
               aria-labelledby={ids.label}
               autoComplete="off"
               role="combobox"
-              className={styles['autocomplete-input']}
+              className={styles.combobox}
               id={ids.textbox}
               onChange={onAutocompleteChange}
               placeholder={value.length === 0 ? props.placeholder : undefined}
