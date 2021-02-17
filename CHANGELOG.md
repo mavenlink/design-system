@@ -7,6 +7,9 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - feature(custom-field-input-multiple-choice): Implement `className` API
+  - fix(custom-field-input-multiple-choice): Ensure read-only styled combobox has same background as the tag-list
+  - feature(custom-field-input-multiple-choice): implement `placeholder` API
 </details>
 
 ## v0.58.0
