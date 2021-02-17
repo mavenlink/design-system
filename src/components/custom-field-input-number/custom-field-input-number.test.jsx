@@ -158,7 +158,7 @@ describe('CustomFieldInputNumber', () => {
   describe('value API', () => {
     it('is valid on a positive integer', () => {
       const ref = createRef();
-      render(<CustomFieldInputNumber ref={ref} {...requiredProps} value={1} />);
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} value={1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveValue(1);
       expect(ref.current.value).toEqual(1);
