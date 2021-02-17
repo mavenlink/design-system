@@ -1,7 +1,41 @@
 The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
 Its accessibility interactions are inherited from [`TagList`](#/Components/TagList) and [`Tag`](#/Components/Tag) components.
 
-### Default state examples
+### Examples
+
+```js
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  id="example-readonly"
+  label="This custom field is read-only"
+  name="example-readonly"
+  readOnly
+  value={choices.slice(0, 2)}
+/>
+```
+
+```js
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  errorText="If you're not first, you're last!"
+  id="example-invalid"
+  label="This custom field is invalid"
+  name="example-invalid"
+  value={[choices[1]]}
+/>
+```
 
 ```js
 const choices = [
@@ -95,41 +129,5 @@ const value = [
   label="This custom field has a lot of choices"
   name="example-lotsa"
   value={value}
-/>
-```
-
-### Read-only state examples
-
-```js
-<CustomFieldInputMultipleChoice
-  choices={[]}
-  id="example-readonly"
-  label="This custom field is read-only"
-  name="example-readonly"
-  readOnly
-  value={[
-    { id: 1, label: 'First Choice' },
-    { id: 2, label: 'Second Choice' },
-    { id: 3, label: 'Third Choice' },
-  ]}
-/>
-```
-
-### Invalid state examples
-
-```jsx
-const choices = [
-    { id: 1, label: 'First Choice' },
-    { id: 2, label: 'Second Choice' },
-    { id: 3, label: 'Third Choice' },
-];
-
-<CustomFieldInputMultipleChoice
-  choices={choices}
-  errorText="If you're not first, you're last!"
-  id="example-invalid"
-  label="This custom field is invalid"
-  name="example-invalid"
-  value={[choices[1]]}
 />
 ```
