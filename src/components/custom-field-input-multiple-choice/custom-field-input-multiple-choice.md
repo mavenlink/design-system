@@ -12,6 +12,22 @@ const choices = [
 
 <CustomFieldInputMultipleChoice
   choices={choices}
+  id="example-empty"
+  label="This custom field is empty"
+  name="example-empty"
+  placeholder="This is an empty multi-choice field"
+/>
+```
+
+```js
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
   id="example-readonly"
   label="This custom field is read-only"
   name="example-readonly"

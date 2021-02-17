@@ -267,24 +267,51 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('placeholder API', () => {
+    it('can be `undefined`', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder={undefined} />);
+      expect(screen.getByRole('combobox')).not.toHaveAttribute('placeholder');
+    });
+
+    it('can be set (and shown)', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder="Le placeholder" />);
+      expect(screen.getByRole('combobox')).toHaveAttribute('placeholder', 'Le placeholder');
+    });
+
+    it('can be set (and not shown)', () => {
+      const choices = [
+        { id: 1, label: 'Le choice' },
+      ];
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        placeholder="Le placeholder"
+        value={choices}
+      />));
+      expect(screen.getByRole('combobox')).not.toHaveAttribute('placeholder');
+    });
+  });
+
   describe('readOnly API', () => {
-    it('does not have the clear button on its tags', () => {
+    it('can be set to `true`', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={true}
         value={[requiredProps.choices[0]]}
       />));
 
+      expect(screen.getByRole('combobox')).toHaveAttribute('readOnly', '');
       expect(screen.queryByRole('button')).toBeNull();
     });
 
-    it('has the clear button on its tags', () => {
+    it('can be set to `false`', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={false}
         value={[requiredProps.choices[0]]}
       />));
 
+      expect(screen.getByRole('combobox')).not.toHaveAttribute('readOnly', '');
       expect(screen.getByRole('button', { name: 'Remove Choice 1' })).toBeInTheDocument();
     });
   });

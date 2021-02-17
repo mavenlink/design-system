@@ -162,22 +162,22 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
                 {choice.label}
               </Tag>
             ))}
-            {!props.readOnly && (
-              <input
-                aria-autocomplete="list"
-                aria-controls={ids.listbox}
-                aria-expanded={renderPopup}
-                aria-haspopup="listbox"
-                aria-labelledby={ids.label}
-                autoComplete="off"
-                role="combobox"
-                className={styles['autocomplete-input']}
-                id={ids.textbox}
-                onChange={onAutocompleteChange}
-                ref={autocompleteRef}
-                value={autocompleteValue}
-              />
-            )}
+            <input
+              aria-autocomplete="list"
+              aria-controls={ids.listbox}
+              aria-expanded={renderPopup}
+              aria-haspopup="listbox"
+              aria-labelledby={ids.label}
+              autoComplete="off"
+              role="combobox"
+              className={styles['autocomplete-input']}
+              id={ids.textbox}
+              onChange={onAutocompleteChange}
+              placeholder={value.length === 0 ? props.placeholder : undefined}
+              readOnly={props.readOnly}
+              ref={autocompleteRef}
+              value={autocompleteValue}
+            />
           </TagList>
           <div className={styles['icons-container']}>
             {!props.readOnly && props.errorText && (
@@ -244,6 +244,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   value: PropTypes.arrayOf(ChoiceType),
 };
@@ -251,6 +252,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 CustomFieldInputMultipleChoice.defaultProps = {
   errorText: undefined,
   onChange: () => {},
+  placeholder: undefined,
   readOnly: false,
   value: [],
 };
