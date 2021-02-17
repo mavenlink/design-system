@@ -83,7 +83,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         userEvent.tab();
         expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
         expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-        userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), 'Choi', { skipClick: true });
+        await userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), 'Choi', { skipClick: true });
         expect(screen.queryByRole('listbox')).toBeInTheDocument();
       });
 
@@ -423,7 +423,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       );
 
       expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
-      userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), '1');
+      await userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), '1');
       expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('1');
       expect(screen.getByText('Choice 1')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
