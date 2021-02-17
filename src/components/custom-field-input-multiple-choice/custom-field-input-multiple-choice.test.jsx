@@ -109,6 +109,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('className API', () => {
+    it('can be set', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} className="unique-class" />);
+      expect(document.querySelector('.unique-class')).toBeInTheDocument();
+    });
+  });
+
   describe('dirty ref API', () => {
     it('updates on user interactions', () => {
       const ref = createRef();

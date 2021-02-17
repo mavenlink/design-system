@@ -22,7 +22,8 @@ import NoOptions from '../no-options/no-options.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 
-function getClassName(readOnly, errorText) {
+function getClassName(className, readOnly, errorText) {
+  if (className) return className;
   if (readOnly) return styles['read-only-container'];
   if (errorText) return styles['invalid-container'];
 
@@ -37,7 +38,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const visibleChoices = getVisibleChoices();
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = getClassName(props.readOnly, props.errorText);
+  const classContainer = getClassName(props.className, props.readOnly, props.errorText);
   const renderPopup = !props.readOnly && expanded;
   const backupRef = useRef();
   const selfRef = ref || backupRef;
@@ -239,6 +240,7 @@ const ChoiceType = PropTypes.shape({
 
 CustomFieldInputMultipleChoice.propTypes = {
   choices: PropTypes.arrayOf(ChoiceType).isRequired,
+  className: PropTypes.string,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -250,6 +252,7 @@ CustomFieldInputMultipleChoice.propTypes = {
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
+  className: undefined,
   errorText: undefined,
   onChange: () => {},
   placeholder: undefined,
