@@ -16,6 +16,9 @@ module.exports = {
     jsx$: 'babel-jest',
     svg$: '<rootDir>/jest.config.transform.svg.js',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(@bloodyaugust/use-fetch)/)',
+  ],
   verbose: true,
   globalSetup: './jest.config.globalSetup.js',
 };

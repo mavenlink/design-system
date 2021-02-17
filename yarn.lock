@@ -1040,6 +1040,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bloodyaugust/use-fetch@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@bloodyaugust/use-fetch/-/use-fetch-1.0.0.tgz#23ab920db831eb81147b40619c897668209d6e75"
+  integrity sha512-mLhr3bzMlPNjJHbF45AkIr5bJYvfklrqJ+P+sQ11fw4wsmBBDNtcTUlGPyV9VxFUx0e9RQgyxjZcBJqUHHH78g==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
