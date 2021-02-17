@@ -7,30 +7,35 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import useFetch from '@bloodyaugust/use-fetch';
 import Select from '../select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import mockConstants from '../../mocks/mock-constants.js';
+
+const { API_ROOT } = mockConstants;
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
+  const [choices, setChoices] = useState([]);
+  const [listOptionRefs, setListOptionRefs] = useState([]);
   const [value, setValue] = useState(props.value);
   const backupRef = useRef();
   const selfRef = ref || backupRef;
-
-  const listOptionRefs = props.choices.map(() => createRef());
+  const { execute } = useFetch();
 
   function selectOnChangeHandler(event) {
     if (event.target.value) {
-      setValue(props.choices.find(choice => choice.id === event.target.value.id));
+      setValue(choices.find(choice => choice.id === event.target.value.id));
     } else {
       setValue(undefined);
     }
   }
 
   const listOptions = () => {
-    const choices = {};
-    props.choices.forEach((item, index) => { choices[item.id] = { ...item, index }; });
+    const mungedChoices = {};
+    choices.forEach((item, index) => { mungedChoices[item.id] = { ...item, index }; });
 
-    return props.choices
-      .map(item => choices[item.id])
+    return choices
+      .map(item => mungedChoices[item.id])
       .map(item => (
         <ListOption
           key={item.id}
@@ -62,23 +67,54 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     props.onChange({ target: selfRef.current });
   }, [value]);
 
+  useEffect(() => {
+    const getChoices = async () => {
+      await execute(`${API_ROOT}/custom_field_choices`)
+        .then(({ json, mounted }) => {
+          if (mounted) {
+            const mungedChoices = json.results.map((result) => {
+              return {
+                id: result.id,
+                label: json.custom_field_choices[result.key].label,
+              };
+            });
+
+            setChoices(mungedChoices);
+            setListOptionRefs(mungedChoices.map(() => createRef()));
+          }
+        })
+        .catch((error) => {
+          if (error.error.type !== 'aborted') {
+            throw error;
+          }
+        });
+    };
+
+    getChoices();
+  }, []);
+
   return (
-    <Select
-      className={props.className}
-      displayValueEvaluator={selectValue => selectValue.label}
-      errorText={props.errorText}
-      id={props.id}
-      label={props.label}
-      listOptionRefs={listOptionRefs}
-      name={props.name}
-      onChange={selectOnChangeHandler}
-      placeholder={props.placeholder}
-      readOnly={props.readOnly}
-      required={props.required}
-      value={value}
-    >
-      { listOptions() }
-    </Select>
+    <React.Fragment>
+      <Select
+        className={props.className}
+        displayValueEvaluator={selectValue => selectValue.label}
+        errorText={props.errorText}
+        id={props.id}
+        label={props.label}
+        listOptionRefs={listOptionRefs}
+        name={props.name}
+        onChange={selectOnChangeHandler}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        required={props.required}
+        value={value}
+      >
+        { listOptions() }
+      </Select>
+      {choices.length === 0 &&
+        <span>Loading...</span>
+      }
+    </React.Fragment>
   );
 });
 
@@ -89,7 +125,6 @@ const ChoiceType = PropTypes.shape({
 
 CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
-  choices: PropTypes.arrayOf(ChoiceType),
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -102,7 +137,6 @@ CustomFieldInputSingleChoice.propTypes = {
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
-  choices: [],
   className: undefined,
   onChange: () => {},
   placeholder: undefined,

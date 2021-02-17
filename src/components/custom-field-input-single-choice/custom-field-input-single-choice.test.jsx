@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
@@ -29,15 +30,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('dirty ref API', () => {
-    it('updates on user interactions', () => {
-      const choices = [{
-        id: 1,
-        label: 'foo',
-      }];
+    it('updates on user interactions', async () => {
       const ref = createRef();
-      render(<CustomFieldInputSingleChoice {...requiredProps} choices={choices} ref={ref} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('foo'));
+      userEvent.click(screen.getByText('Foo'));
       expect(ref.current.dirty).toEqual(true);
       userEvent.click(screen.getByText('Remove selected choice'));
       expect(ref.current.dirty).toEqual(false);
@@ -103,13 +103,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
     });
 
-    it('provided value sets the corresponding list item as selected', () => {
-      const value = { id: 1, label: 'hello' };
-      const choices = [value];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} />);
+    it('provided value sets the corresponding list item as selected', async () => {
+      const value = { id: 1, label: 'Bar' };
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
       userEvent.click(screen.getByLabelText('Test label'));
 
-      expect(screen.getByText('hello')).toHaveAttribute('aria-selected', 'true');
+      expect(screen.getByText('Bar')).toHaveAttribute('aria-selected', 'true');
     });
   });
 
@@ -126,32 +128,37 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('onChange API', () => {
-    const choices = [{
-      id: 1,
-      label: 'broke my heart',
-    }, {
-      id: 2,
-      label: "now I'm aching for you",
-    }];
-
-    it('calls onChange when a new value is selected', () => {
+    it('calls onChange when a new value is selected', async () => {
       let changeValue = '';
       const onChange = (event) => {
         changeValue = event.target.value;
       };
 
-      render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" choices={choices} onChange={onChange} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" onChange={onChange} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
       userEvent.click(screen.getByLabelText('Oh La Mort'));
-      userEvent.click(screen.getByText('broke my heart'));
+      userEvent.click(screen.getByText('Bar'));
 
       expect(changeValue).toStrictEqual([1]);
 
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       userEvent.click(screen.getByLabelText('Oh La Mort'));
-      userEvent.click(screen.getByText('now I\'m aching for you'));
+      userEvent.click(screen.getByText('Foo'));
 
-      expect(changeValue).toStrictEqual([2]);
+      expect(changeValue).toStrictEqual([0]);
+    });
+  });
+
+  describe('self choice fetching', () => {
+    it('fetches choices on mount', async () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Foo'));
     });
   });
 });
