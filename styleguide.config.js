@@ -5,7 +5,10 @@ const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
 
 module.exports = {
-  assetsDir: path.join(__dirname, 'styleguide/assets'),
+  assetsDir: [
+    path.join(__dirname, 'styleguide/assets'),
+    path.join(__dirname, 'node_modules/msw/lib/iife'),
+  ],
   exampleMode: 'expand',
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
