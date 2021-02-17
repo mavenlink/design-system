@@ -1,7 +1,9 @@
 import jestServer from './src/mocks/jest-server.js';
 
 /* eslint-disable no-undef */
-beforeAll(() => jestServer.listen());
+beforeAll(() => jestServer.listen({
+  onUnhandledRequest: 'error',
+}));
 afterEach(() => jestServer.resetHandlers());
 afterAll(() => jestServer.close());
 /* eslint-enable no-undef */
