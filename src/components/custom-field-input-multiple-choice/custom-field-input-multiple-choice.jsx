@@ -29,7 +29,7 @@ function getClassName(readOnly, errorText) {
   return styles['read-write-container'];
 }
 
-const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
+const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const autocompleteRef = useRef();
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
@@ -45,7 +45,7 @@ const CustomFieldInputMultipleChoice = forwardRef((props, ref) => {
     label: `${props.id}-label`,
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
-  }
+  };
 
   const wrapperRef = useRef(null);
   const handleDropdownClose = () => {
