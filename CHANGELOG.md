@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.59.0
+  - Major: `ref.value` for CustomFieldInputNumber now returns its type as Integer. To upgrade replace value with String(value)
+
 ## v0.58.0
   - Minor: Implement updatable `value` API on Select component
   - Minor: Implement updatable `value` API on CustomFieldInputSingleChoice component
