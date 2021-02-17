@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - Major: Add self-loading of choices to `CustomFieldSingleChoice`
+  - Major: Remove `choices` from props API of `CustomFieldSingleChoice`
 </details>
 
 ## v0.57.0
