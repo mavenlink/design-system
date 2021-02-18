@@ -1,9 +1,24 @@
-The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
-Its accessibility interactions are inherited from [`TagList`](#/Components/TagList) and [`Tag`](#/Components/Tag) components.
+## Purpose
 
-### Examples
+The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
+
+## Keyboard Support
+
+| Key | Focused element | Function |
+| --- | --------------- | -------- |
+|     |                 |          |
+
+## Label Support
+
+| Focused element | Screen reader |
+| --------------- | ------------- |
+|                 |               |
+
+## Props API Examples
 
 ```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
 const choices = [
   { id: 1, label: 'First Choice' },
   { id: 2, label: 'Second Choice' },
@@ -21,6 +36,8 @@ const choices = [
 ```
 
 ```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
 const choices = [
   { id: 1, label: 'First Choice' },
   { id: 2, label: 'Second Choice' },
@@ -38,6 +55,8 @@ const choices = [
 ```
 
 ```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
 const choices = [
   { id: 1, label: 'First Choice' },
   { id: 2, label: 'Second Choice' },
@@ -55,6 +74,8 @@ const choices = [
 ```
 
 ```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
 const choices = [
   { id: 1, label: 'command (abstract role)' },
   { id: 2, label: 'composite (abstract role)' },
@@ -148,3 +169,5 @@ const value = [
   value={value}
 />
 ```
+
+## Ref API Example
