@@ -17,20 +17,20 @@ const handlers = [
         },
         results: [
           {
-            key: 'foo',
+            key: 'custom_field_choices',
             id: 0,
           },
           {
-            key: 'bar',
+            key: 'custom_field_choices',
             id: 1,
           },
         ],
         custom_field_choices: {
-          foo: {
+          0: {
             custom_field_id: 0,
             label: 'Foo',
           },
-          bar: {
+          1: {
             custom_field_id: 0,
             label: 'Bar',
           },

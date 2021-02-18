@@ -69,13 +69,13 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   useEffect(() => {
     const getChoices = async () => {
-      await execute(`${API_ROOT}/custom_field_choices`)
+      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.id}`)
         .then(({ json, mounted }) => {
           if (mounted) {
             const mungedChoices = json.results.map((result) => {
               return {
                 id: result.id,
-                label: json.custom_field_choices[result.key].label,
+                label: json[result.key][result.id].label,
               };
             });
 

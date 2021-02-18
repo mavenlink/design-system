@@ -6,9 +6,15 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import jestServer from '../../mocks/jest-server.js';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
+import mockHandlers from './mock-handlers.js';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
+  beforeEach(() => {
+    jestServer.use(...mockHandlers);
+  });
+
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
