@@ -73,6 +73,8 @@ const choices = [
 />
 ```
 
+## Ref API Example
+
 ```js
 import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
 
@@ -161,13 +163,32 @@ const value = [
   choices[49],
 ];
 
-<CustomFieldInputMultipleChoice
-  choices={choices}
-  id="example-lotsa"
-  label="This custom field has a lot of choices"
-  name="example-lotsa"
-  value={value}
-/>
-```
+function TestComponent() {
+  const ref = React.useRef();
+  const [target, setTarget] = React.useState({});
 
-## Ref API Example
+  function onChange(event) {
+    setTarget(event.target)
+  }
+
+  return (
+    <React.Fragment>
+      <CustomFieldInputMultipleChoice
+        choices={choices}
+        id="example-lotsa"
+        label="This custom field has a lot of choices"
+        name="example-lotsa"
+        onChange={onChange}
+        value={value}
+      />
+      <ul>
+        {Object.keys(target).map(key => (
+          <li>{key}: {JSON.stringify(target[key])}</li>
+        ))}
+      </ul>
+    </React.Fragment>
+  );
+}
+
+<TestComponent />
+```
