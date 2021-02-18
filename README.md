@@ -92,5 +92,6 @@ We periodically update and upgrade styles. We have also created linters to help 
 - [Code of conduct](./docs/code_of_conduct.md)
 - [Contributing](./docs/contributing.md)
 - [Component Design Principles](./docs/principles.md)
+- [Testing a Changes in Bigmaven Before Release](./docs/bigmaven-testing.md)
 - [Making a New Release](./docs/releases.md)
 - [Testing Philosophy](./docs/testing.md)
