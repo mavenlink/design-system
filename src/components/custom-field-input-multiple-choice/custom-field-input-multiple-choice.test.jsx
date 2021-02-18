@@ -323,6 +323,47 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('required API', () => {
+    it('can be set to `true`', () => {
+      const choices = [
+        { id: 1, label: 'Le choice' },
+      ];
+
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        required={true}
+      />));
+
+      expect(screen.getByRole('combobox')).toHaveAttribute('required', '');
+      expect(screen.getByRole('combobox')).toBeInvalid();
+      expect(screen.getByRole('combobox')).not.toHaveDescription('Constraints not satisfied');
+      userEvent.click(screen.getByRole('combobox'));
+      userEvent.tab();
+      expect(screen.getByRole('combobox')).toBeInvalid();
+      expect(screen.getByRole('combobox')).toHaveDescription('Constraints not satisfied');
+      userEvent.click(screen.getByRole('combobox'));
+      userEvent.click(screen.getByRole('option', { name: 'Le choice' }));
+      expect(screen.getByRole('combobox')).not.toHaveDescription('Constraints not satisfied');
+      expect(screen.getByRole('combobox')).toBeValid();
+    });
+
+    it('can be set to `false`', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        readOnly={false}
+        value={[requiredProps.choices[0]]}
+      />));
+
+      expect(screen.getByRole('combobox')).not.toHaveAttribute('required');
+      expect(screen.getByRole('combobox')).toBeValid();
+      expect(screen.getByRole('combobox')).not.toHaveDescription('Constraints not satisfied');
+      userEvent.click(screen.getByRole('combobox'));
+      userEvent.tab();
+      expect(screen.getByRole('combobox')).not.toHaveDescription('Constraints not satisfied');
+    });
+  });
+
   describe('selecting a choice', () => {
     it('removes the choice from the list of choices', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);

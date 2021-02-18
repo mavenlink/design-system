@@ -10,6 +10,7 @@
   - feature(custom-field-input-multiple-choice): Implement `className` API
   - fix(custom-field-input-multiple-choice): Ensure read-only styled combobox has same background as the tag-list
   - feature(custom-field-input-multiple-choice): implement `placeholder` API
+  - feature(custom-field-input-multiple-choice): implement `required` API
 </details>
 
 ## v0.58.0

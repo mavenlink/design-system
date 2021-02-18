@@ -16,6 +16,7 @@ const choices = [
   label="This custom field is empty"
   name="example-empty"
   placeholder="This is an empty multi-choice field"
+  required
 />
 ```
 

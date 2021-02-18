@@ -2,6 +2,7 @@ import React, {
   createRef,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useRef,
   useState,
   forwardRef,
@@ -21,6 +22,8 @@ import Tag from '../tag/tag.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import useMounted from '../../hooks/use-mounted.js';
+import useValidation from '../../hooks/use-validation.jsx';
 
 function getClassName(className, readOnly, errorText) {
   if (className) return className;
@@ -35,20 +38,23 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [validationMessage, validate] = useValidation(props.errorText, autocompleteRef);
   const visibleChoices = getVisibleChoices();
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = getClassName(props.className, props.readOnly, props.errorText);
+  const classContainer = getClassName(props.className, props.readOnly, validationMessage);
   const renderPopup = !props.readOnly && expanded;
   const backupRef = useRef();
   const selfRef = ref || backupRef;
   const ids = {
+    errorMessage: `${props.id}-autocompleteHint`,
     label: `${props.id}-label`,
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
   };
-
+  const mounted = useMounted();
   const wrapperRef = useRef(null);
+
   const handleDropdownClose = () => {
     setExpanded(false);
     setAutocompleteValue('');
@@ -85,6 +91,10 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     autocompleteRef.current.focus();
   }
 
+  function onAutocompleteBlur() {
+    validate();
+  }
+
   function onAutocompleteChange(event) {
     setExpanded(true);
     setAutocompleteValue(event.target.value);
@@ -115,6 +125,10 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     props.onChange({ target: selfRef.current });
   }, [value]);
 
+  useLayoutEffect(() => {
+    if (mounted.current) validate();
+  }, [value]);
+
   useEffect(() => {
     setValue(props.value);
   }, [props.value.map(choice => choice.id).join('')]);
@@ -133,7 +147,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   return (
     <div ref={wrapperRef} className={styles['component-root']}>
       <FormControl
-        error={props.errorText}
+        error={validationMessage}
         label={props.label}
         labelId={ids.label}
         id={ids.textbox}
@@ -166,6 +180,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             <input
               aria-autocomplete="list"
               aria-controls={ids.listbox}
+              aria-describedby={ids.errorMessage}
               aria-expanded={renderPopup}
               aria-haspopup="listbox"
               aria-labelledby={ids.label}
@@ -173,15 +188,17 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
               role="combobox"
               className={styles.combobox}
               id={ids.textbox}
+              onBlur={onAutocompleteBlur}
               onChange={onAutocompleteChange}
               placeholder={value.length === 0 ? props.placeholder : undefined}
               readOnly={props.readOnly}
+              required={props.required ? value.length === 0 : false}
               ref={autocompleteRef}
               value={autocompleteValue}
             />
           </TagList>
           <div className={styles['icons-container']}>
-            {!props.readOnly && props.errorText && (
+            {!props.readOnly && validationMessage && (
               <div className={styles['icon-container']}>
                 <Icon
                   className={styles.icon}
@@ -248,15 +265,17 @@ CustomFieldInputMultipleChoice.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
+  required: PropTypes.bool,
   value: PropTypes.arrayOf(ChoiceType),
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
   className: undefined,
-  errorText: undefined,
+  errorText: '',
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
+  required: false,
   value: [],
 };
 
