@@ -6,13 +6,21 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 
 | Key | Focused element | Function |
 | --- | --------------- | -------- |
-|     |                 |          |
+| Arrows | Selected choice | Moves focuses between selected choices |
+| Enter, Space | Selected choice remove button | Removes the selected choice |
+| Escape | Any element | Closes autocomplete list |
+| Typing | Autocomplete textbox | Opens the available choices listbox |
+| Enter | Available choice | Selects the choice |
 
 ## Label Support
 
 | Focused element | Screen reader |
 | --------------- | ------------- |
-|                 |               |
+| Selected choice | Choice label |
+| Selected choice remove button | Remove <choice label> |
+| Autocomplete textbox | Field label and any validation state |
+| Remove button | Remove all selected choices on <field label> |
+| Available choice | Choice label |
 
 ## Props API Examples
 
