@@ -9,7 +9,7 @@ import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
-import useDidMount from '../../hooks/use-did-mount.js';
+import useMounted from '../../hooks/use-mounted.js';
 import useValidation from '../../hooks/use-validation.jsx';
 
 function getClassName(className, validationMessage) {
@@ -21,7 +21,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
   const inputRef = useRef();
-  const [didMount] = useDidMount();
+  const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
   function onBlur(event) {
@@ -35,12 +35,12 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }
 
   useEffect(() => {
-    if (!didMount) return;
+    if (!mounted.current) return;
 
     // The MDS Input is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
-    inputRef.current.value = props.value;
+    inputRef.current.value = props.value || '';
   }, [props.value]);
 
   useImperativeHandle(ref, () => ({

@@ -11,11 +11,21 @@
   - Major: Remove `choices` from props API of `CustomFieldSingleChoice`
 </details>
 
+## v0.59.0
+  - Major: `ref.value` for CustomFieldInputNumber now returns its type as Integer. To upgrade replace value with String(value)
+
+## v0.58.0
+  - Minor: Implement updatable `value` API on Select component
+  - Minor: Implement updatable `value` API on CustomFieldInputSingleChoice component
+  - Minor: Replace `useDidMount` (state update) with `useMounted` (ref)
+
 ## v0.57.0
   - Major: Remove margin from `PageHeader`: Add wrapper around `PageHeader` and implement `--spacing-x-large` margin
   - Minor: Add `className` API to `PageHeader`
+
 ## v0.56.1
   - Patch: Ensure date input does not overflow under the calendar icon
+
 ## v0.56.0
   - Minor: feature(CustomFieldInputDate): rerender based on `value` prop
   - Major: feature(CustomFieldInputDate): replace `disabled` prop with `readOnly` prop

@@ -116,8 +116,17 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
       userEvent.click(screen.getByLabelText('Test label'));
-
       expect(screen.getByText('Bar')).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('updates its value', () => {
+      const { rerender } = render(<CustomFieldInputSingleChoice
+        {...requiredProps}
+        value={{ id: 1, label: 'Bar' }}
+      />);
+
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={{ id: 0, label: 'Foo' }} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
     });
   });
 
@@ -154,6 +163,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByText('Foo'));
 
       expect(changeValue).toStrictEqual([0]);
+    });
+
+    it('is not called when provided a new value prop', () => {
+      const onChangeSpy = jest.fn();
+      const { rerender } = render(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={{ id: 0, label: 'Foo' }} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={{ id: 1, label: 'Bar' }} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
     });
   });
 

@@ -64,6 +64,12 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   }));
 
   useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  useEffect(() => {
+    if (props.value === value) return;
+
     props.onChange({ target: selfRef.current });
   }, [value]);
 
