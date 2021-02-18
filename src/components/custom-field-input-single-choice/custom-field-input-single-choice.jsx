@@ -124,6 +124,7 @@ const ChoiceType = PropTypes.shape({
 });
 
 CustomFieldInputSingleChoice.propTypes = {
+  /** Needs to be the Custom Field ID from the database for self-loading of choices */
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
