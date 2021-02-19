@@ -22,6 +22,15 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 | Remove button | Remove all selected choices on <field label> |
 | Available choice | Choice label |
 
+## Test Queries
+
+| Query | Element |
+| ----- | -------- |
+| `*Autcompleter` | The autocompleter input |
+| `*AvailableChoice` | A particular choice in the popup |
+| `*RemoveButton` | Either the remove all button or remove choice button |
+| `*SelectedChoice` | A particular selected choice |
+
 ## Props API Examples
 
 ```js

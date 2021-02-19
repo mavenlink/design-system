@@ -47,6 +47,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const backupRef = useRef();
   const selfRef = ref || backupRef;
   const ids = {
+    emptyMessage: `${props.id}-empty`,
     errorMessage: `${props.id}-autocompleteHint`,
     label: `${props.id}-label`,
     listbox: `${props.id}-listbox`,
@@ -180,7 +181,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             <input
               aria-autocomplete="list"
               aria-controls={ids.listbox}
-              aria-describedby={ids.errorMessage}
+              aria-describedby={`${ids.errorMessage} ${ids.emptyMessage}`}
               aria-expanded={renderPopup}
               aria-haspopup="listbox"
               aria-labelledby={ids.label}
@@ -226,7 +227,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             </div>
           </div>
         </div>
-        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} />) : (
+        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} id={ids.emptyMessage} />) : (
           <Listbox
             className={styles['popup-container']}
             id={ids.listbox}
