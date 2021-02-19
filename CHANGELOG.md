@@ -9,8 +9,8 @@
   - Append new items to make git merging easier.
 </details>
 
-## v0.60.0
-  - Minor: `undefined` coerces to `null` to avoid browser warnings when clearing Number component's input 
+## v0.59.1
+  - Patch: `undefined` coerces to `null` to avoid browser warnings when clearing Number component's input 
 
 ## v0.59.0
   - Major: `ref.value` for CustomFieldInputNumber now returns its type as Integer. To upgrade replace value with String(value)
