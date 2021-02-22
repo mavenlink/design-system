@@ -39,6 +39,6 @@ Object {
   "id": "test-input",
   "name": "field-id",
   "validity": ValidityState {},
-  "value": "undefined",
+  "value": undefined,
 }
 `;
