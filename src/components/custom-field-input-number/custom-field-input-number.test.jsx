@@ -157,9 +157,17 @@ describe('CustomFieldInputNumber', () => {
 
   describe('value API', () => {
     it('is valid on a positive integer', () => {
-      render(<CustomFieldInputNumber {...requiredProps} value={1} />);
+      const ref = createRef();
+      render(<CustomFieldInputNumber {...requiredProps} ref={ref} value={1} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveValue(1);
+      expect(ref.current.value).toEqual(1);
+    });
+
+    it('responds with the undefined as value when not defined', () => {
+      const ref = createRef();
+      render(<CustomFieldInputNumber ref={ref} {...requiredProps} />);
+      expect(ref.current.value).toEqual(undefined);
     });
 
     it('is valid on zero', () => {
@@ -217,7 +225,7 @@ describe('CustomFieldInputNumber', () => {
       render(<CustomFieldInputNumber {...requiredProps} ref={inputRef} />);
 
       userEvent.type(screen.getByLabelText('Test label'), '1234');
-      expect(inputRef.current.value).toBe('1234');
+      expect(inputRef.current.value).toBe(1234);
     });
   });
 });
