@@ -1,4 +1,5 @@
 import {
+  findByRole,
   getByRole,
   queryByRole,
   screen,
@@ -23,6 +24,11 @@ export function getRemoveButton(fieldLabel, choiceLabel) {
   }
 
   return screen.getByText(`Remove all selected choices on ${fieldLabel}`);
+}
+
+export async function findBySelectedChoice(fieldLabel, choiceLabel) {
+  const taglist = screen.getByRole('grid', { name: fieldLabel });
+  return findByRole(taglist, 'gridcell', { name: choiceLabel });
 }
 
 export function getSelectedChoice(fieldLabel, choiceLabel) {
