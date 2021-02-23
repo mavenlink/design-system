@@ -4,6 +4,10 @@ import {
   screen,
 } from '@testing-library/react';
 
+export async function findAutocompleter(fieldLabel) {
+  return screen.findByRole('combobox', { name: fieldLabel });
+}
+
 export function getAutocompleter(fieldLabel) {
   return screen.getByRole('combobox', { name: fieldLabel });
 }
