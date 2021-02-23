@@ -284,6 +284,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(getAutocompleter('test label')).toHaveAttribute('readOnly', '');
       expect(queryRemoveButton('test label')).not.toBeInTheDocument();
+      userEvent.click(getAutocompleter('test label'));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
     it('can be set to `false`', () => {

@@ -43,7 +43,6 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
   const classContainer = getClassName(props.className, props.readOnly, validationMessage);
-  const renderPopup = !props.readOnly && expanded;
   const backupRef = useRef();
   const selfRef = ref || backupRef;
   const ids = {
@@ -103,6 +102,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
 
   function onClick(event) {
     if (event.defaultPrevented) return;
+    if (props.readOnly) return;
 
     setExpanded(true);
   }
@@ -182,7 +182,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
               aria-autocomplete="list"
               aria-controls={ids.listbox}
               aria-describedby={`${ids.errorMessage} ${ids.emptyMessage}`}
-              aria-expanded={renderPopup}
+              aria-expanded={expanded}
               aria-haspopup="listbox"
               aria-labelledby={ids.label}
               autoComplete="off"
@@ -227,7 +227,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             </div>
           </div>
         </div>
-        { renderPopup && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} id={ids.emptyMessage} />) : (
+        {expanded && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} id={ids.emptyMessage} />) : (
           <Listbox
             className={styles['popup-container']}
             id={ids.listbox}
