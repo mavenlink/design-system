@@ -76,8 +76,8 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
           if (mounted) {
             const mungedChoices = json.results.map((result) => {
               return {
+                ...json[result.key][result.id],
                 id: result.id,
-                label: json[result.key][result.id].label,
               };
             });
 
@@ -86,7 +86,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
           }
         })
         .catch((error) => {
-          if (error.error.type !== 'aborted') {
+          if (error.error && error.error.type !== 'aborted') {
             throw error;
           }
         });
