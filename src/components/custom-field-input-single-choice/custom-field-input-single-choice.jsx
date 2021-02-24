@@ -31,15 +31,11 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   }
 
   const listOptions = () => {
-    const mungedChoices = {};
-    choices.forEach((item, index) => { mungedChoices[item.id] = { ...item, index }; });
-
     return choices
-      .map(item => mungedChoices[item.id])
-      .map(item => (
+      .map((item, index) => (
         <ListOption
           key={item.id}
-          ref={listOptionRefs[item.index]}
+          ref={listOptionRefs[index]}
           selected={value && item.id === value.id}
           value={{
             id: item.id,
