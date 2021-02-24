@@ -5,6 +5,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="default-example-1"
+  customFieldID={0}
   label="Default Example 1"
   name="default-1"
   placeholder="This is a single choice field"
@@ -14,9 +15,10 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="default-example-2"
+  customFieldID={1}
   label="Default Example 2"
   name="default-2"
-  value={{ id: 0, label: 'Foo' }}
+  value={{ id: 2, label: 'Fizz' }}
 />
 ```
 
@@ -25,6 +27,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="read-only-example-1"
+  customFieldID={0}
   label="Read Only Example 1"
   name="read-only-1"
   readOnly
@@ -34,6 +37,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="read-only-example-2"
+  customFieldID={0}
   label="Read Only Example 2"
   name="read-only-2"
   readOnly
@@ -56,6 +60,7 @@ function TestComponent() {
     <div>
       <CustomFieldInputSingleChoice
         id="editable-example-1"
+        customFieldID={0}
         label="Editable Example 1"
         name="editable-1"
         ref={inputRef}
@@ -73,6 +78,7 @@ function TestComponent() {
 ```js
 <CustomFieldInputSingleChoice
   id="editable-example-2"
+  customFieldID={0}
   label="Editable Example 2"
   name="editable-2"
   value={{ id: 0, label: 'Foo' }}
@@ -83,6 +89,7 @@ function TestComponent() {
 ```jsx
 <CustomFieldInputSingleChoice
   id="error-example-1"
+  customFieldID={0}
   label="Error Example 1"
   name="error-1"
   value={{ id: 0, label: 'Foo' }}

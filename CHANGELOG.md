@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - Major: Add self-loading of choices to `CustomFieldSingleChoice`
   - Major: Remove `choices` from props API of `CustomFieldSingleChoice`
+  - Minor: Add `customFieldID` prop to `CustomFieldSingleChoice`
 </details>
 
 ## v0.59.0

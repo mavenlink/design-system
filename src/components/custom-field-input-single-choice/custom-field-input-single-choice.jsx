@@ -71,7 +71,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   useEffect(() => {
     const getChoices = async () => {
-      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.id}`)
+      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
         .then(({ json, mounted }) => {
           if (mounted) {
             const mungedChoices = json.results.map((result) => {
@@ -125,9 +125,10 @@ const ChoiceType = PropTypes.shape({
 });
 
 CustomFieldInputSingleChoice.propTypes = {
-  /** Needs to be the Custom Field ID from the database for self-loading of choices */
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  /** Needs to be the Custom Field ID from the database for self-loading of choices */
+  customFieldID: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,

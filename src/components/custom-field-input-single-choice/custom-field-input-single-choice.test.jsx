@@ -17,6 +17,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   const requiredProps = {
     id: 'test-id',
+    customFieldID: 0,
     label: 'Test label',
     name: 'field-id',
   };
@@ -32,6 +33,17 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('prioritizes className prop', () => {
       const { container } = render(<CustomFieldInputSingleChoice {...requiredProps} className="prioritize-me" />);
       expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  });
+
+  describe('customFieldID API', () => {
+    it('uses the set customFieldID to fetch choices', async () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={1} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Fizz'));
     });
   });
 
