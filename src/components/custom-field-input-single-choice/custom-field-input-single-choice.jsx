@@ -16,7 +16,7 @@ const { API_ROOT } = mockConstants;
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
   const [choices, setChoices] = useState([]);
-  const [listOptionRefs, setListOptionRefs] = useState([]);
+  const listOptionRefs = choices.map(() => createRef());
   const [value, setValue] = useState(props.value);
   const backupRef = useRef();
   const selfRef = ref || backupRef;
@@ -82,7 +82,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
             });
 
             setChoices(mungedChoices);
-            setListOptionRefs(mungedChoices.map(() => createRef()));
           }
         })
         .catch((error) => {
