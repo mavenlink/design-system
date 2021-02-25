@@ -20,10 +20,15 @@ describe('src/mocks/jest-server', () => {
     expect(body).toEqual('Hello from MSW!');
   });
 
-  // This test exists to prove that MSW will fail tests that try to request against an unhandled endpoint. Un-"x"-it if you need to confirm the failure.
-  xit('errors on unhandled requests', async () => {
-    const body = await (await fetch('http://localhost/null')).text();
+  it('errors on unhandled requests', async () => {
+    let expectedError;
 
-    expect(body).toEqual('');
+    try {
+      await (await fetch('http://localhost/null')).text();
+    } catch (error) {
+      expectedError = error;
+    }
+
+    expect(expectedError.message).toContain('Error: captured a request without a matching request handler');
   });
 });
