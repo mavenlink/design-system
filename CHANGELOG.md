@@ -7,11 +7,13 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feature(custom-field-input-multiple-choice): Implement `className` API
-  - fix(custom-field-input-multiple-choice): Ensure read-only styled combobox has same background as the tag-list
-  - feature(custom-field-input-multiple-choice): implement `placeholder` API
-  - feature(custom-field-input-multiple-choice): implement `required` API
 </details>
+
+## v0.60.0
+- feature(custom-field-input-multiple-choice): Implement `className` API
+- fix(custom-field-input-multiple-choice): Ensure read-only styled combobox has same background as the tag-list
+- feature(custom-field-input-multiple-choice): implement `placeholder` API
+- feature(custom-field-input-multiple-choice): implement `required` API
 
 ## v0.59.1
   - Patch: `undefined` coerces to `null` to avoid browser warnings when clearing Number component's input 
