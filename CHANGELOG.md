@@ -10,6 +10,8 @@
   - Major: Add self-loading of choices to `CustomFieldSingleChoice`
   - Major: Remove `choices` from props API of `CustomFieldSingleChoice`
   - Minor: Add `customFieldID` prop to `CustomFieldSingleChoice`
+  - Major: Change `value` prop of `CustomFieldSingleChoice` to accept an array of IDs
+  - Minor: Bugfix for `ListOption` to change class based on selected state, not selected prop only
 </details>
 
 ## v0.59.0

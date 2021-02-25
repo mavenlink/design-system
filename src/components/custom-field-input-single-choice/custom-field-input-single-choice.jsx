@@ -13,6 +13,7 @@ import ListOption from '../list-option/list-option.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
 
 const { API_ROOT } = mockConstants;
+const defaultValue = [-1];
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
   const [choices, setChoices] = useState([]);
@@ -24,9 +25,9 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   function selectOnChangeHandler(event) {
     if (event.target.value) {
-      setValue(choices.find(choice => choice.id === event.target.value.id));
+      setValue([event.target.value.id]);
     } else {
-      setValue(undefined);
+      setValue(defaultValue);
     }
   }
 
@@ -36,11 +37,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         <ListOption
           key={item.id}
           ref={listOptionRefs[index]}
-          selected={value && item.id === value.id}
-          value={{
-            id: item.id,
-            label: item.label,
-          }}
+          value={item}
         >
           {item.label}
         </ListOption>
@@ -49,22 +46,22 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      const providedValue = props.value ? props.value.id : undefined;
+      const providedValue = props.value[0] !== -1 ? props.value[0] : undefined;
       return providedValue !== this.value[0];
     },
     id: props.id,
     name: props.name,
     get value() {
-      return value ? [value.id] : [];
+      return value[0] === -1 ? [] : value;
     },
   }));
 
   useEffect(() => {
     setValue(props.value);
-  }, [props.value]);
+  }, [...props.value]);
 
   useEffect(() => {
-    if (props.value === value) return;
+    if (JSON.stringify(props.value) === JSON.stringify(value)) return;
 
     props.onChange({ target: selfRef.current });
   }, [value]);
@@ -108,7 +105,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
-        value={value}
+        value={value[0] !== -1 ? choices.find(choice => choice.id === value[0]) : undefined}
       >
         { listOptions() }
       </Select>
@@ -117,11 +114,6 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
       }
     </React.Fragment>
   );
-});
-
-const ChoiceType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
 });
 
 CustomFieldInputSingleChoice.propTypes = {
@@ -135,7 +127,7 @@ CustomFieldInputSingleChoice.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: ChoiceType,
+  value: PropTypes.arrayOf(PropTypes.number),
   errorText: PropTypes.string,
 };
 
@@ -145,7 +137,7 @@ CustomFieldInputSingleChoice.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  value: undefined,
+  value: defaultValue,
   errorText: undefined,
 };
 

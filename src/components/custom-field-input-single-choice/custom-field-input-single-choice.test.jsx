@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -115,42 +116,49 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   });
 
   describe('value API', () => {
-    it('accepts a value', () => {
-      const value = { id: 1, label: 'Some selection' };
+    it('accepts a value', async () => {
+      const value = [0];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('Some selection');
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
+      expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
     });
 
     it('provided value sets the corresponding list item as selected', async () => {
-      const value = { id: 1, label: 'Bar' };
+      const value = [0];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByText('Bar')).toHaveAttribute('aria-selected', 'true');
+
+      expect(screen.getByText('Foo')).toHaveAttribute('aria-selected', 'true');
     });
 
-    it('updates its value', () => {
+    it('updates its value', async () => {
       const { rerender } = render(<CustomFieldInputSingleChoice
         {...requiredProps}
-        value={{ id: 1, label: 'Bar' }}
+        value={[0]}
       />);
 
-      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={{ id: 0, label: 'Foo' }} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[1]} />);
+
+      expect(screen.getByLabelText('Test label')).toHaveValue('Bar');
     });
   });
 
   describe('forwardRef API', () => {
-    it('can be used to get value as array of selected id', () => {
+    it('can be used to get value as array of selected id', async () => {
       const inputRef = createRef(null);
-      const value = { id: 1, label: 'hello' };
-      const choices = [value];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} choices={choices} ref={inputRef} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={[0]} ref={inputRef} />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(inputRef.current.value).toStrictEqual([Number(value.id)]);
+      expect(inputRef.current.value).toStrictEqual([0]);
     });
   });
 
@@ -179,9 +187,9 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
     it('is not called when provided a new value prop', () => {
       const onChangeSpy = jest.fn();
-      const { rerender } = render(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={{ id: 0, label: 'Foo' }} />);
+      const { rerender } = render(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={[0]} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
-      rerender(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={{ id: 1, label: 'Bar' }} />);
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} onChange={onChangeSpy} value={[1]} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
     });
   });

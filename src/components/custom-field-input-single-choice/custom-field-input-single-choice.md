@@ -18,7 +18,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   customFieldID={1}
   label="Default Example 2"
   name="default-2"
-  value={{ id: 2, label: 'Fizz' }}
+  value={[2]}
 />
 ```
 
@@ -41,7 +41,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
   label="Read Only Example 2"
   name="read-only-2"
   readOnly
-  value={{ id: 0, label: 'Foo' }}
+  value={[0]}
 />
 ```
 
@@ -49,11 +49,12 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 
 ```js
 function TestComponent() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState([]);
   const inputRef = React.useRef();
+  const dirty = inputRef.current ? inputRef.current.dirty : false;
 
-  function buttonOnClickHandler() {
-    setValue(inputRef.current.value);
+  function onChangeHandler(event) {
+    setValue(event.target.value);
   }
 
   return(
@@ -63,11 +64,12 @@ function TestComponent() {
         customFieldID={0}
         label="Editable Example 1"
         name="editable-1"
+        onChange={onChangeHandler}
         ref={inputRef}
-        value={{ id: 0, label: 'Foo' }}
+        value={[0]}
       />
-      <button onClick={buttonOnClickHandler}>Get Value</button>
-      <div><span>{value}</span></div>
+      <div>Value: <span>{JSON.stringify(value)}</span></div>
+      <div>Dirty: <span>{dirty ? 'true' : 'false'}</span></div>
     </div>
   )
 }
@@ -81,7 +83,7 @@ function TestComponent() {
   customFieldID={0}
   label="Editable Example 2"
   name="editable-2"
-  value={{ id: 0, label: 'Foo' }}
+  value={[0]}
 />
 ```
 
@@ -92,7 +94,7 @@ function TestComponent() {
   customFieldID={0}
   label="Error Example 1"
   name="error-1"
-  value={{ id: 0, label: 'Foo' }}
+  value={[0]}
   errorText="Error help."
 />
 ```
