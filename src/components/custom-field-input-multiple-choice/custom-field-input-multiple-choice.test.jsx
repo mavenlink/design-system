@@ -1,11 +1,19 @@
 import React, { createRef } from 'react';
 import {
-  fireEvent,
   render,
   screen,
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import {
+  getAutocompleter,
+  getAvailableChoice,
+  getRemoveButton,
+  getSelectedChoice,
+  queryAvailableChoice,
+  querySelectedChoice,
+  queryRemoveButton,
+} from './test-queries.js';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
@@ -29,90 +37,58 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('autocompleter popup', () => {
-    describe('input', () => {
-      it('focuses on click', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
-      });
-
-      it('filters visible choices on value', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
-        expect(screen.getByText('Choice 1')).toBeInTheDocument();
-        expect(screen.getByText('Choice 2')).toBeInTheDocument();
-        userEvent.type(document.activeElement, '1');
-        expect(screen.getByText('Choice 1')).toBeInTheDocument();
-        expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
-      });
-
-      it('is cleared on selection', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByText('Choice 1')).toBeInTheDocument();
-        expect(screen.getByText('Choice 2')).toBeInTheDocument();
-        userEvent.type(document.activeElement, '1');
-        userEvent.click(screen.getByText('Choice 1'));
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
-      });
-
-      describe('accessibility', () => {
-        it('has aria-haspopup, aria-autocomplete is list, and aria-controls references the list box id', () => {
-          render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-haspopup', 'listbox');
-          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-autocomplete', 'list');
-          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-controls', 'test-id-multi-choice-listbox');
-        });
-
-        it('has aria-expanded ', () => {
-          render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'false');
-          userEvent.click(screen.getByText('test label'));
-          expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveAttribute('aria-expanded', 'true');
-        });
-      });
+  describe('autocomplete behavior', () => {
+    it('focuses the input on click', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(screen.getByText('test label'));
+      expect(getAutocompleter('test label')).toHaveFocus();
     });
 
-    describe('popup', () => {
-      it('opens on click', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.queryByRole('listbox')).toBeInTheDocument();
-      });
+    it('filters visible choices on autocompleter value', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(getAutocompleter('test label'));
+      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Choice 2')).toBeInTheDocument();
+      userEvent.type(document.activeElement, '1');
+      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(queryAvailableChoice('test label', 'Choice 2')).not.toBeInTheDocument();
+    });
 
-      it('opens on typing', async () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        userEvent.tab();
-        expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-        userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), 'Choi', { skipClick: true });
-        expect(screen.queryByRole('listbox')).toBeInTheDocument();
-      });
+    it('is clears the autocompleter on selection', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.type(getAutocompleter('test label'), '1');
+      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
+      expect(getAutocompleter('test label')).toHaveValue('');
+    });
 
-      it('closes on escape key', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.queryByRole('listbox')).toBeInTheDocument();
-        fireEvent.keyDown(document.activeElement, { key: 'Escape' });
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      });
+    it('opens on typing', async () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.tab();
+      expect(getAutocompleter('test label')).toHaveFocus();
+      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
+      await userEvent.type(getAutocompleter('test label'), 'Choi', { skipClick: true });
+      expect(getAvailableChoice('test label', 'Choice 2')).toBeInTheDocument();
+    });
 
-      it('informs the user when no choice is available', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.getByText('No options available.')).toBeInTheDocument();
-      });
+    it('closes on escape key', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      userEvent.click(getAutocompleter('test label'));
+      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'true');
+      userEvent.type(document.activeElement, '{esc}');
+      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
+    });
 
-      it('does not open when read-only', () => {
-        render(<CustomFieldInputMultipleChoice {...requiredProps} readOnly />);
-        userEvent.click(screen.getByText('test label'));
-        expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      });
+    it('informs the user when no choice is available', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
+      userEvent.click(getAutocompleter('test label'));
+      expect(getAutocompleter('test label')).toHaveDescription('No options available.');
+    });
+  });
+
+  describe('className API', () => {
+    it('can be set', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} className="unique-class" />);
+      expect(document.querySelector('.unique-class')).toBeInTheDocument();
     });
   });
 
@@ -120,11 +96,11 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('updates on user interactions', () => {
       const ref = createRef();
       render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
-      userEvent.click(screen.getByRole('combobox'));
+      userEvent.click(getAutocompleter('test label'));
       expect(ref.current.dirty).toEqual(false);
-      userEvent.click(screen.getByText('Choice 1'));
+      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
       expect(ref.current.dirty).toEqual(true);
-      userEvent.click(screen.getByText('Remove all selected choices on test label'));
+      userEvent.click(getRemoveButton('test label'));
       expect(ref.current.dirty).toEqual(false);
     });
   });
@@ -136,12 +112,12 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         value={requiredProps.choices}
       />));
 
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
-      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
 
-      userEvent.click(screen.getByRole('button', { name: 'Remove Choice 1' }));
-      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
-      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+      userEvent.click(getRemoveButton('test label', 'Choice 1'));
+      expect(querySelectedChoice('test label', 'Choice 1')).not.toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
     });
 
     it('does not expand the popup', () => {
@@ -151,7 +127,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      userEvent.click(screen.getByRole('button', { name: 'Remove Choice 1' }));
+      userEvent.click(getRemoveButton('test label', 'Choice 1'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
@@ -161,12 +137,12 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         value={requiredProps.choices}
       />));
 
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
-      expect(screen.getByText('Choice 2')).toBeInTheDocument();
-      userEvent.click(screen.getByRole('button', { name: 'Remove all selected choices on test label' }));
-      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
-      expect(screen.queryByText('Choice 2')).not.toBeInTheDocument();
-      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+      expect(getSelectedChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
+      userEvent.click(getRemoveButton('test label'));
+      expect(querySelectedChoice('test label', 'Choice 1')).not.toBeInTheDocument();
+      expect(querySelectedChoice('test label', 'Choice 2')).not.toBeInTheDocument();
+      expect(getAutocompleter('test label')).toHaveFocus();
     });
   });
 
@@ -182,22 +158,17 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
-      expect(screen.getByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Answer to everything')).toBeInTheDocument();
     });
 
     it('does not show a selected choice', () => {
-      const choices = [{
-        id: 42,
-        label: 'Answer to everything',
-      }];
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        choices={choices}
-        value={choices}
+        value={[requiredProps.choices[0]]}
       />));
 
       userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
+      expect(queryAvailableChoice('test label', 'Choice 1')).not.toBeInTheDocument();
     });
 
     it('does not show a selected choice when the selection is not set up on initial render', () => {
@@ -211,7 +182,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('option', { name: 'Answer to everything' })).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Answer to everything')).toBeInTheDocument();
 
       rerender(<CustomFieldInputMultipleChoice
         {...requiredProps}
@@ -221,13 +192,14 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
-      expect(screen.getByText('Answer to everything')).toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Answer to everything')).toBeInTheDocument();
     });
   });
 
   describe('errorText API', () => {
     it('can bet set', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} errorText="This is an error message." />);
+      expect(getAutocompleter('test label')).toHaveDescription('This is an error message.');
       expect(screen.queryByText('This is an error message.')).toBeInTheDocument();
     });
 
@@ -261,8 +233,8 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         value={requiredProps.choices}
       />));
 
-      expect(screen.getByText('Choice 1').parentElement).toHaveAttribute('id', '123-1');
-      expect(screen.getByText('Choice 2').parentElement).toHaveAttribute('id', '123-2');
+      expect(getSelectedChoice('test label', 'Choice 1').parentElement).toHaveAttribute('id', '123-1');
+      expect(getSelectedChoice('test label', 'Choice 2').parentElement).toHaveAttribute('id', '123-2');
     });
   });
 
@@ -271,28 +243,101 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((<CustomFieldInputMultipleChoice {...requiredProps} label="Unique label" />));
 
       expect(screen.getByLabelText('Unique label', { selector: '[role="grid"]' })).toBeInTheDocument();
+      expect(screen.getByLabelText('Unique label', { selector: '[role="combobox"]' })).toBeInTheDocument();
+      userEvent.click(getAutocompleter('Unique label'));
+      expect(screen.getByLabelText('Unique label', { selector: '[role="listbox"]' })).toBeInTheDocument();
+    });
+  });
+
+  describe('placeholder API', () => {
+    it('can be `undefined`', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder={undefined} />);
+      expect(getAutocompleter('test label')).not.toHaveAttribute('placeholder');
+    });
+
+    it('can be set (and shown)', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder="Le placeholder" />);
+      expect(getAutocompleter('test label')).toHaveAttribute('placeholder', 'Le placeholder');
+    });
+
+    it('can be set (and not shown)', () => {
+      const choices = [
+        { id: 1, label: 'Le choice' },
+      ];
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        placeholder="Le placeholder"
+        value={choices}
+      />));
+      expect(getAutocompleter('test label')).not.toHaveAttribute('placeholder');
     });
   });
 
   describe('readOnly API', () => {
-    it('does not have the clear button on its tags', () => {
+    it('can be set to `true`', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={true}
         value={[requiredProps.choices[0]]}
       />));
 
-      expect(screen.queryByRole('button')).toBeNull();
+      expect(getAutocompleter('test label')).toHaveAttribute('readOnly', '');
+      expect(queryRemoveButton('test label')).not.toBeInTheDocument();
+      userEvent.click(getAutocompleter('test label'));
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('has the clear button on its tags', () => {
+    it('can be set to `false`', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={false}
         value={[requiredProps.choices[0]]}
       />));
 
+      expect(getAutocompleter('test label')).not.toHaveAttribute('readOnly', '');
       expect(screen.getByRole('button', { name: 'Remove Choice 1' })).toBeInTheDocument();
+    });
+  });
+
+  describe('required API', () => {
+    it('can be set to `true`', () => {
+      const choices = [
+        { id: 1, label: 'Le choice' },
+      ];
+
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        choices={choices}
+        required={true}
+      />));
+
+      expect(getAutocompleter('test label')).toHaveAttribute('required', '');
+      expect(getAutocompleter('test label')).toBeInvalid();
+      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      userEvent.click(getAutocompleter('test label'));
+      userEvent.tab();
+      expect(getAutocompleter('test label')).toBeInvalid();
+      expect(getAutocompleter('test label')).toHaveDescription('Constraints not satisfied');
+      userEvent.click(getAutocompleter('test label'));
+      userEvent.click(getAvailableChoice('test label', 'Le choice'));
+      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      expect(getAutocompleter('test label')).toBeValid();
+    });
+
+    it('can be set to `false`', () => {
+      render((<CustomFieldInputMultipleChoice
+        {...requiredProps}
+        readOnly={false}
+        value={[requiredProps.choices[0]]}
+      />));
+
+      expect(getAutocompleter('test label')).not.toHaveAttribute('required');
+      expect(getAutocompleter('test label')).toBeValid();
+      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      userEvent.click(getAutocompleter('test label'));
+      userEvent.tab();
+      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
     });
   });
 
@@ -314,7 +359,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
-      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveFocus();
+      expect(getAutocompleter('test label')).toHaveFocus();
     });
 
     it('sorts the choices based on ID', () => {
@@ -351,12 +396,12 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(testRef.current.value).toStrictEqual([]);
 
       userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
 
       expect(testRef.current.value).toStrictEqual([1]);
 
       userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+      userEvent.click(getAvailableChoice('test label', 'Choice 2'));
 
       expect(testRef.current.value).toStrictEqual([1, 2]);
     });
@@ -377,13 +422,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
       expect(componentValue).toStrictEqual([]);
 
-      userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
+      userEvent.click(getAutocompleter('test label'));
+      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
 
       expect(componentValue).toStrictEqual([1]);
 
-      userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
+      userEvent.click(getAutocompleter('test label'));
+      userEvent.click(getAvailableChoice('test label', 'Choice 2'));
 
       expect(componentValue).toStrictEqual([1, 2]);
     });
@@ -398,10 +443,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
-      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(getAutocompleter('test label'));
+      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
-      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+      await waitFor(() => {
+        if (screen.queryByText('Choice 1')) throw new Error('Expected popup to be closed.');
+      });
+      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
     });
 
     it('closes the dropdown when tabbing away', async () => {
@@ -412,13 +460,16 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
-      userEvent.click(screen.getByLabelText('test label', { selector: 'input' }));
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      userEvent.click(getAutocompleter('test label'));
+      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
 
       userEvent.tab();
       userEvent.tab();
 
-      await waitFor(() => expect(screen.queryByText('Choice 1')).not.toBeInTheDocument());
+      await waitFor(() => {
+        if (screen.queryByText('Choice 1')) throw new Error('Expected popup to be closed.');
+      });
+      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
     });
 
     it('resets the inputs state', async () => {
@@ -429,13 +480,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
-      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('');
-      userEvent.type(screen.getByLabelText('test label', { selector: 'input' }), '1');
-      expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue('1');
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
+      expect(getAutocompleter('test label')).toHaveValue('');
+      await userEvent.type(getAutocompleter('test label'), '1');
+      expect(getAutocompleter('test label')).toHaveValue('1');
+      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
 
-      await waitFor(() => expect(screen.getByLabelText('test label', { selector: 'input' })).toHaveValue(''));
+      await waitFor(() => expect(getAutocompleter('test label')).toHaveValue(''));
     });
   });
 });

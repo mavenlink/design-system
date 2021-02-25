@@ -28,7 +28,11 @@ const Number = React.forwardRef((props, ref) => {
     // The MDS Number is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
-    inputRef.current.value = props.value;
+    if (props.value === undefined) {
+      inputRef.current.value = null;
+    } else {
+      inputRef.current.value = props.value;
+    }
   }, [props.value]);
 
   function onBlur(event) {

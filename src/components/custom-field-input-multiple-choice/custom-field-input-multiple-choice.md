@@ -1,9 +1,100 @@
-The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
-Its accessibility interactions are inherited from [`TagList`](#/Components/TagList) and [`Tag`](#/Components/Tag) components.
+## Purpose
 
-### Default state examples
+The `CustomFieldInputMultipleChoice` component represents the UI for a custom field of type multi choice from Mavenlink's API.
+
+## Keyboard Support
+
+| Key | Focused element | Function |
+| --- | --------------- | -------- |
+| Arrows | Selected choice | Moves focuses between selected choices |
+| Enter, Space | Selected choice remove button | Removes the selected choice |
+| Escape | Any element | Closes autocomplete list |
+| Typing | Autocomplete textbox | Opens the available choices listbox |
+| Enter | Available choice | Selects the choice |
+
+## Label Support
+
+| Focused element | Screen reader |
+| --------------- | ------------- |
+| Selected choice | Choice label |
+| Selected choice remove button | Remove <choice label> |
+| Autocomplete textbox | Field label and any validation state |
+| Remove button | Remove all selected choices on <field label> |
+| Available choice | Choice label |
+
+## Test Queries
+
+| Query | Element |
+| ----- | -------- |
+| `*Autcompleter` | The autocompleter input |
+| `*AvailableChoice` | A particular choice in the popup |
+| `*RemoveButton` | Either the remove all button or remove choice button |
+| `*SelectedChoice` | A particular selected choice |
+
+## Props API Examples
 
 ```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  id="example-empty"
+  label="This custom field is empty"
+  name="example-empty"
+  placeholder="This is an empty multi-choice field"
+  required
+/>
+```
+
+```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  id="example-readonly"
+  label="This custom field is read-only"
+  name="example-readonly"
+  readOnly
+  value={choices.slice(0, 2)}
+/>
+```
+
+```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
+const choices = [
+  { id: 1, label: 'First Choice' },
+  { id: 2, label: 'Second Choice' },
+  { id: 3, label: 'Third Choice' },
+];
+
+<CustomFieldInputMultipleChoice
+  choices={choices}
+  errorText="If you're not first, you're last!"
+  id="example-invalid"
+  label="This custom field is invalid"
+  name="example-invalid"
+  value={[choices[1]]}
+/>
+```
+
+## Ref API Example
+
+```js
+import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+
 const choices = [
   { id: 1, label: 'command (abstract role)' },
   { id: 2, label: 'composite (abstract role)' },
@@ -89,44 +180,32 @@ const value = [
   choices[49],
 ];
 
-<CustomFieldInputMultipleChoice
-  id="123"
-  label="This custom field has a lot of choices"
-  value={value}
-  choices={choices}
-/>
-```
+function TestComponent() {
+  const ref = React.useRef();
+  const [target, setTarget] = React.useState({});
 
-### Read-only state examples
+  function onChange(event) {
+    setTarget(event.target)
+  }
 
-```js
-<CustomFieldInputMultipleChoice
-  choices={[]}
-  id="read-only-example-1"
-  label="This custom field is read-only"
-  readOnly
-  value={[
-    { id: 1, label: 'First Choice' },
-    { id: 2, label: 'Second Choice' },
-    { id: 3, label: 'Third Choice' },
-  ]}
-/>
-```
+  return (
+    <React.Fragment>
+      <CustomFieldInputMultipleChoice
+        choices={choices}
+        id="example-lotsa"
+        label="This custom field has a lot of choices"
+        name="example-lotsa"
+        onChange={onChange}
+        value={value}
+      />
+      <ul>
+        {Object.keys(target).map(key => (
+          <li>{key}: {JSON.stringify(target[key])}</li>
+        ))}
+      </ul>
+    </React.Fragment>
+  );
+}
 
-### Invalid state examples
-
-```jsx
-const choices = [
-    { id: 1, label: 'First Choice' },
-    { id: 2, label: 'Second Choice' },
-    { id: 3, label: 'Third Choice' },
-];
-
-<CustomFieldInputMultipleChoice
-  choices={choices}
-  errorText="If you're not first, you're last!"
-  id="invalid-example-1"
-  label="This custom field is invalid"
-  value={[choices[1]]}
-/>
+<TestComponent />
 ```
