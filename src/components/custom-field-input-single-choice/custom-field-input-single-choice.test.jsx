@@ -147,6 +147,19 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       expect(screen.getByLabelText('Test label')).toHaveValue('Bar');
     });
+
+    it('handles empty array without errors', async () => {
+      const { rerender } = render(<CustomFieldInputSingleChoice
+        {...requiredProps}
+        value={[0]}
+      />);
+
+      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[]} />);
+
+      expect(screen.getByLabelText('Test label')).toHaveValue('');
+    });
   });
 
   describe('forwardRef API', () => {
