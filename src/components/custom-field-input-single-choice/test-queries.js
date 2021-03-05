@@ -19,5 +19,5 @@ export function selectChoice(fieldLabel, choiceText) {
 }
 
 export async function waitForChoices() {
-  await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+  await waitForElementToBeRemoved(() => screen.queryAllByText('Loading...'));
 }
