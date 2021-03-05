@@ -13,7 +13,7 @@ import ListOption from '../list-option/list-option.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
 
 const { API_ROOT } = mockConstants;
-const defaultValue = [-1];
+const defaultValue = ['-1'];
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
   const [choices, setChoices] = useState([]);
@@ -46,13 +46,13 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      const providedValue = props.value[0] !== -1 ? props.value[0] : undefined;
+      const providedValue = props.value[0] !== defaultValue[0] ? props.value[0] : undefined;
       return providedValue !== this.value[0];
     },
     id: props.id,
     name: props.name,
     get value() {
-      return value[0] === -1 ? [] : value;
+      return value[0] === defaultValue[0] ? [] : value;
     },
   }));
 
@@ -122,14 +122,14 @@ CustomFieldInputSingleChoice.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   /** Needs to be the Custom Field ID from the database for self-loading of choices */
-  customFieldID: PropTypes.number.isRequired,
+  customFieldID: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: PropTypes.arrayOf(PropTypes.number),
+  value: PropTypes.arrayOf(PropTypes.string),
   errorText: PropTypes.string,
 };
 

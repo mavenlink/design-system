@@ -5,18 +5,18 @@ const { API_ROOT } = mockConstants;
 
 const choices = [
   {
-    custom_field_id: 0,
-    id: 0,
+    custom_field_id: '0',
+    id: '0',
     label: 'Foo',
   },
   {
-    custom_field_id: 0,
-    id: 1,
+    custom_field_id: '0',
+    id: '1',
     label: 'Bar',
   },
   {
-    custom_field_id: 1,
-    id: 2,
+    custom_field_id: '1',
+    id: '2',
     label: 'Fizz',
   },
 ];
@@ -25,7 +25,7 @@ const handlers = [
   rest.get(`${API_ROOT}/custom_field_choices`, (request, response, context) => {
     const customFieldID = request.url.searchParams.get('for_custom_fields');
     const matchingChoices = choices.filter((choice) => {
-      return choice.custom_field_id === parseInt(customFieldID, 10);
+      return choice.custom_field_id === customFieldID;
     });
     const customFieldChoices = {};
 

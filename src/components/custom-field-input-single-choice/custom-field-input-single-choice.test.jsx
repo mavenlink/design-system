@@ -17,7 +17,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   const requiredProps = {
     id: 'test-id',
-    customFieldID: 0,
+    customFieldID: '0',
     label: 'Test label',
     name: 'field-id',
   };
@@ -38,7 +38,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('customFieldID API', () => {
     it('uses the set customFieldID to fetch choices', async () => {
-      render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={1} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={'1'} />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
@@ -116,7 +116,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value = [0];
+      const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
@@ -125,7 +125,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     });
 
     it('provided value sets the corresponding list item as selected', async () => {
-      const value = [0];
+      const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
@@ -138,12 +138,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('updates its value', async () => {
       const { rerender } = render(<CustomFieldInputSingleChoice
         {...requiredProps}
-        value={[0]}
+        value={['0']}
       />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
-      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[1]} />);
+      rerender(<CustomFieldInputSingleChoice {...requiredProps} value={['1']} />);
 
       expect(screen.getByLabelText('Test label')).toHaveValue('Bar');
     });
@@ -151,7 +151,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('handles empty array without errors', async () => {
       const { rerender } = render(<CustomFieldInputSingleChoice
         {...requiredProps}
-        value={[0]}
+        value={['0']}
       />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
@@ -165,12 +165,12 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
   describe('forwardRef API', () => {
     it('can be used to get value as array of selected id', async () => {
       const inputRef = createRef(null);
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={[0]} ref={inputRef} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} ref={inputRef} />);
 
       await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(inputRef.current.value).toStrictEqual([0]);
+      expect(inputRef.current.value).toStrictEqual(['0']);
     });
   });
 
@@ -188,13 +188,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('Bar'));
 
-      expect(changeValue).toStrictEqual([1]);
+      expect(changeValue).toStrictEqual(['1']);
 
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       userEvent.click(screen.getByLabelText('Oh La Mort'));
       userEvent.click(screen.getByText('Foo'));
 
-      expect(changeValue).toStrictEqual([0]);
+      expect(changeValue).toStrictEqual(['0']);
     });
   });
 
