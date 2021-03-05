@@ -3,12 +3,16 @@ import {
   fireEvent,
   render,
   screen,
-  waitForElementToBeRemoved,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
 import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx';
 import mockHandlers from './mock-handlers.js';
+import {
+  clearChoice,
+  openChoices,
+  selectChoice,
+  waitForChoices,
+} from './test-queries.js';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   beforeEach(() => {
@@ -40,10 +44,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('uses the set customFieldID to fetch choices', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={'1'} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Fizz'));
+      await waitForChoices();
+      selectChoice('Test label', 'Fizz');
     });
   });
 
@@ -52,12 +54,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const ref = createRef();
       render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      await waitForChoices();
+      selectChoice('Test label', 'Foo');
 
-      userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Foo'));
       expect(ref.current.dirty).toEqual(true);
-      userEvent.click(screen.getByText('Remove selected choice'));
+
+      clearChoice();
+
       expect(ref.current.dirty).toEqual(false);
     });
   });
@@ -119,7 +122,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      await waitForChoices();
 
       expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
     });
@@ -128,9 +131,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
-
-      userEvent.click(screen.getByLabelText('Test label'));
+      await waitForChoices();
+      openChoices('Test label');
 
       expect(screen.getByText('Foo')).toHaveAttribute('aria-selected', 'true');
     });
@@ -141,7 +143,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      await waitForChoices();
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={['1']} />);
 
@@ -154,7 +156,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      await waitForChoices();
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[]} />);
 
@@ -167,9 +169,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const inputRef = createRef(null);
       render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} ref={inputRef} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
+      await waitForChoices();
 
-      userEvent.click(screen.getByLabelText('Test label'));
       expect(inputRef.current.value).toStrictEqual(['0']);
     });
   });
@@ -183,16 +184,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" onChange={onChange} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
-
-      userEvent.click(screen.getByLabelText('Oh La Mort'));
-      userEvent.click(screen.getByText('Bar'));
+      await waitForChoices();
+      selectChoice('Oh La Mort', 'Bar');
 
       expect(changeValue).toStrictEqual(['1']);
 
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
-      userEvent.click(screen.getByLabelText('Oh La Mort'));
-      userEvent.click(screen.getByText('Foo'));
+
+      selectChoice('Oh La Mort', 'Foo');
 
       expect(changeValue).toStrictEqual(['0']);
     });
@@ -202,10 +201,8 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('fetches choices on mount', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} />);
 
-      await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Foo'));
+      await waitForChoices();
+      selectChoice('Test label', 'Foo');
     });
   });
 });
