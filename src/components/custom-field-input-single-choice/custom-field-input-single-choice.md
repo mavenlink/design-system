@@ -5,6 +5,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="default-example-1"
+  customFieldID="0"
   label="Default Example 1"
   name="default-1"
   placeholder="This is a single choice field"
@@ -14,9 +15,10 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="default-example-2"
+  customFieldID="1"
   label="Default Example 2"
   name="default-2"
-  value={{ id: 1, label: 'I am a value' }}
+  value={['2']}
 />
 ```
 
@@ -25,6 +27,7 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="read-only-example-1"
+  customFieldID="0"
   label="Read Only Example 1"
   name="read-only-1"
   readOnly
@@ -34,38 +37,39 @@ The `CustomFieldInputSingleChoice` component represents the UI for a custom fiel
 ```js
 <CustomFieldInputSingleChoice
   id="read-only-example-2"
+  customFieldID="0"
   label="Read Only Example 2"
   name="read-only-2"
   readOnly
-  value={{ id: 2, label: 'I am a value' }}
+  value={['0']}
 />
 ```
 
 ### Editable examples
 
 ```js
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map((i, index) => ({ id: index, label: i }));
-
 function TestComponent() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState([]);
   const inputRef = React.useRef();
+  const dirty = inputRef.current ? inputRef.current.dirty : false;
 
-  function buttonOnClickHandler() {
-    setValue(inputRef.current.value);
+  function onChangeHandler(event) {
+    setValue(event.target.value);
   }
 
   return(
     <div>
       <CustomFieldInputSingleChoice
-        choices={choices}
         id="editable-example-1"
+        customFieldID="0"
         label="Editable Example 1"
         name="editable-1"
+        onChange={onChangeHandler}
         ref={inputRef}
-        value={choices[3]}
+        value={['0']}
       />
-      <button onClick={buttonOnClickHandler}>Get Value</button>
-      <div><span>{value}</span></div>
+      <div>Value: <span>{JSON.stringify(value)}</span></div>
+      <div>Dirty: <span>{dirty ? 'true' : 'false'}</span></div>
     </div>
   )
 }
@@ -74,27 +78,23 @@ function TestComponent() {
 ```
 
 ```js
-const choices = ['hi', 'hi', 'hi'].map((i, index) => ({ id: index, label: i }));
-
 <CustomFieldInputSingleChoice
   id="editable-example-2"
+  customFieldID="0"
   label="Editable Example 2"
   name="editable-2"
-  choices={choices}
-  value={choices[0]}
+  value={['0']}
 />
 ```
 
 ##### Error:
 ```jsx
-const choices = ['yes', 'no', 'maybe', "I don't know", 'Can you repeat the question?'].map((i, index) => ({ id: index, label: i }));
-
 <CustomFieldInputSingleChoice
   id="error-example-1"
+  customFieldID="0"
   label="Error Example 1"
   name="error-1"
-  choices={choices}
-  value={choices[1]}
+  value={['0']}
   errorText="Error help."
 />
 ```

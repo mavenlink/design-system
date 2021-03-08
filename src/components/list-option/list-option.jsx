@@ -23,7 +23,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const [selected, setSelected] = useState(props.selected);
   const [visible, setVisible] = useState(true);
   const rootRef = useRef();
-  const selectedClassName = props.selected ? styles.selected : styles.option;
+  const selectedClassName = selected ? styles.selected : styles.option;
   const className = getClassName(props.className ? props.className : selectedClassName, visible);
 
   function onClick() {
