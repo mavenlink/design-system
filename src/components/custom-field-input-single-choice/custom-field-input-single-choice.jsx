@@ -8,8 +8,9 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '@bloodyaugust/use-fetch';
-import Select from '../select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import Loader from '../loader/loader.jsx';
+import Select from '../select/select.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
 
 const { API_ROOT } = mockConstants;
@@ -109,11 +110,11 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         required={props.required}
         value={value[0] !== -1 ? choices.find(choice => choice.id === value[0]) : undefined}
       >
-        { listOptions() }
+        {choices.length === 0
+          ? <Loader inline />
+          : listOptions()
+        }
       </Select>
-      {choices.length === 0 &&
-        <span>Loading...</span>
-      }
     </React.Fragment>
   );
 });

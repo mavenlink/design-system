@@ -9,14 +9,14 @@ import CustomFieldInputSingleChoice from './custom-field-input-single-choice.jsx
 import mockHandlers from './mock-handlers.js';
 import {
   clearChoice,
-  openChoices,
+  getSingleChoiceRootByName,
   selectChoice,
   waitForChoices,
 } from './test-queries.js';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   beforeEach(() => {
-    jestServer.use(...mockHandlers);
+    jestServer.use(...mockHandlers());
   });
 
   const requiredProps = {
@@ -44,7 +44,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('uses the set customFieldID to fetch choices', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={'1'} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
       selectChoice('Test label', 'Fizz');
     });
   });
@@ -122,17 +122,16 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
 
-      expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
+      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo');
     });
 
     it('provided value sets the corresponding list item as selected', async () => {
       const value = ['0'];
       render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
 
-      await waitForChoices();
-      openChoices('Test label');
+      await waitForChoices('Test label');
 
       expect(screen.getByText('Foo')).toHaveAttribute('aria-selected', 'true');
     });
@@ -143,11 +142,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={['1']} />);
 
-      expect(screen.getByLabelText('Test label')).toHaveValue('Bar');
+      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Bar');
     });
 
     it('handles empty array without errors', async () => {
@@ -156,11 +155,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[]} />);
 
-      expect(screen.getByLabelText('Test label')).toHaveValue('');
+      expect(getSingleChoiceRootByName('Test label')).toHaveValue('');
     });
   });
 
@@ -169,7 +168,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const inputRef = createRef(null);
       render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} ref={inputRef} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
 
       expect(inputRef.current.value).toStrictEqual(['0']);
     });
@@ -184,7 +183,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" onChange={onChange} />);
 
-      await waitForChoices();
+      await waitForChoices('Oh La Mort');
       selectChoice('Oh La Mort', 'Bar');
 
       expect(changeValue).toStrictEqual(['1']);
@@ -201,7 +200,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('fetches choices on mount', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label');
       selectChoice('Test label', 'Foo');
     });
   });

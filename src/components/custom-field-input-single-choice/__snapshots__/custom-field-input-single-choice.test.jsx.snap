@@ -53,9 +53,6 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         </div>
       </div>
     </div>
-    <span>
-      Loading...
-    </span>
   </div>
 </body>
 `;
