@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v.0.62.0
   - Minor: Make `CustomFieldInputSingleChoice` use the `Loader` component while loading, placed inside the choices dropdown
   - Major: Move `CustomFieldInputSingleChoice` mock handlers to function format to support delay
-</details>
 
 ## v0.61.0
   - Major: Add self-loading of choices to `CustomFieldSingleChoice`
