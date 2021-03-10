@@ -8,8 +8,12 @@ export function clearChoice() {
   userEvent.click(screen.getByText('Remove selected choice'));
 }
 
-export function openChoices(fieldLabel) {
-  userEvent.click(screen.getByLabelText(fieldLabel));
+export function getSingleChoiceRootByName(fieldName) {
+  return screen.getByRole('combobox', { name: fieldName });
+}
+
+export function openChoices(fieldName) {
+  userEvent.click(screen.getByRole('combobox', { name: fieldName }));
 }
 
 export function selectChoice(fieldLabel, choiceText) {
@@ -18,6 +22,7 @@ export function selectChoice(fieldLabel, choiceText) {
   userEvent.click(screen.getByText(choiceText));
 }
 
-export async function waitForChoices() {
-  await waitForElementToBeRemoved(() => screen.queryAllByText('Loading...'));
+export async function waitForChoices(fieldName) {
+  openChoices(fieldName);
+  await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
 }
