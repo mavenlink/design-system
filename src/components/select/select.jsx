@@ -22,6 +22,7 @@ import useMounted from '../../hooks/use-mounted.js';
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [hasBeenFocused, setBeenFocused] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
   const inputRef = useRef();
@@ -121,12 +122,21 @@ const Select = forwardRef(function Select(props, ref) {
   useEffect(() => {
     if (!mounted.current) return;
 
+    if (!hasBeenFocused) {
+      return;
+    }
+
     validate();
 
     if (props.value === value) return;
 
     props.onChange({ target: selfRef.current });
   }, [value]);
+
+  function handleFocus() {
+    setBeenFocused(true);
+    validate();
+  }
 
   useEffect(function updateOptionVisibility() {
     if (searchValue) {
@@ -171,6 +181,7 @@ const Select = forwardRef(function Select(props, ref) {
         required={props.required}
         errorText={validationMessage}
         value={searchValue || defaultValue}
+        onFocus={handleFocus}
         inputRole={'combobox'}
         ariaProps={{
           autocomplete: 'none',
