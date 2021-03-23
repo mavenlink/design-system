@@ -1,16 +1,15 @@
 @import '../../styles/colors-v2.css';
 @import "../../styles/spacing.css";
-@import "../../styles/typography.css";
+@import "../../styles/typography-v2.css";
 
 .input {
   border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
   box-sizing: border-box;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-content);
   height: 32px;
   margin: 0;
-  padding: 6px var(--spacing-x-large) 7px var(--spacing-medium);
+  padding: 0 var(--spacing-x-large) 0 var(--spacing-medium);
   width: 100%;
 }
 
