@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Patch: Ensure MDS inputs use MDS fonts
-  - Patch: Ensure MDS inputs have a height of 32px
 </details>
+
+## v0.62.1
+- Patch: Ensure MDS inputs use MDS fonts
+- Patch: Ensure MDS inputs have a height of 32px
 
 ## v.0.62.0
   - Minor: Make `CustomFieldInputSingleChoice` use the `Loader` component while loading, placed inside the choices dropdown
