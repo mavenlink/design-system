@@ -10,7 +10,7 @@
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font: var(--mds-type-content);
-  height: 32px;
+  height: var(--spacing-x-large);
   padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
   padding-left: var(--spacing-medium);
   width: 100%;
