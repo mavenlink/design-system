@@ -19,6 +19,51 @@ const choices = [
     id: '2',
     label: 'Fizz',
   },
+  {
+    custom_field_id: '1',
+    id: '3',
+    label: 'Fizz (3)',
+  },
+  {
+    custom_field_id: '1',
+    id: '4',
+    label: 'Fizz (4)',
+  },
+  {
+    custom_field_id: '1',
+    id: '5',
+    label: 'Fizz (5)',
+  },
+  {
+    custom_field_id: '1',
+    id: '6',
+    label: 'Fizz (6)',
+  },
+  {
+    custom_field_id: '1',
+    id: '7',
+    label: 'Fizz (7)',
+  },
+  {
+    custom_field_id: '1',
+    id: '8',
+    label: 'Fizz (8)',
+  },
+  {
+    custom_field_id: '1',
+    id: '9',
+    label: 'Fizz (9)',
+  },
+  {
+    custom_field_id: '1',
+    id: '10',
+    label: 'Fizz (10)',
+  },
+  {
+    custom_field_id: '1',
+    id: '11',
+    label: 'This is a really long choice label (like really, really long)',
+  },
 ];
 
 export default function handlers(delay = 0) {

@@ -1041,9 +1041,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@bloodyaugust/use-fetch@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@bloodyaugust/use-fetch/-/use-fetch-1.0.0.tgz#23ab920db831eb81147b40619c897668209d6e75"
-  integrity sha512-mLhr3bzMlPNjJHbF45AkIr5bJYvfklrqJ+P+sQ11fw4wsmBBDNtcTUlGPyV9VxFUx0e9RQgyxjZcBJqUHHH78g==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@bloodyaugust/use-fetch/-/use-fetch-1.1.0.tgz#871ee73d2886b6e766b4fbf10c5b1fd4c6e257ac"
+  integrity sha512-c+MY30rYOvR8sNUuD+Hw/qN/bf1vW0i0UatjHX+jrKyfjWwu05h4TQhDD0FW5sP/q5bFKcDfYAJgYDiUXVCG7Q==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"

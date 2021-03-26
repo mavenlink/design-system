@@ -5,30 +5,33 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import jestServer from '../../mocks/jest-server.js';
+import mockHandlers from '../custom-field-input-single-choice/mock-handlers.js';
 import {
   getAutocompleter,
   getAvailableChoice,
   getRemoveButton,
   getSelectedChoice,
+  openChoices,
   queryAvailableChoice,
   querySelectedChoice,
   queryRemoveButton,
+  waitForChoices,
+  waitForChoicesNoOpen,
 } from './test-queries.js';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
 
 describe('<CustomFieldInputMultipleChoice>', () => {
   const requiredProps = {
-    choices: [{
-      id: 1,
-      label: 'Choice 1',
-    }, {
-      id: 2,
-      label: 'Choice 2',
-    }],
+    customFieldID: '0',
     id: 'test-id',
     label: 'test label',
     name: 'field-id',
   };
+
+  beforeEach(() => {
+    jestServer.use(...mockHandlers());
+  });
 
   it('has defaults', () => {
     const ref = createRef();
@@ -40,24 +43,25 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   describe('autocomplete behavior', () => {
     it('focuses the input on click', () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.click(screen.getByText('test label'));
+      openChoices('test label');
       expect(getAutocompleter('test label')).toHaveFocus();
     });
 
-    it('filters visible choices on autocompleter value', () => {
+    it('filters visible choices on autocompleter value', async () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.click(getAutocompleter('test label'));
-      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
-      expect(getAvailableChoice('test label', 'Choice 2')).toBeInTheDocument();
-      userEvent.type(document.activeElement, '1');
-      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
-      expect(queryAvailableChoice('test label', 'Choice 2')).not.toBeInTheDocument();
+      await waitForChoices('test label');
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Bar')).toBeInTheDocument();
+      userEvent.type(document.activeElement, 'F');
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
+      expect(queryAvailableChoice('test label', 'Bar')).not.toBeInTheDocument();
     });
 
-    it('is clears the autocompleter on selection', () => {
+    it('clears the autocompleter on selection', async () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
-      userEvent.type(getAutocompleter('test label'), '1');
-      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
+      userEvent.type(getAutocompleter('test label'), 'F');
+      await waitForChoices('test label');
+      userEvent.click(getAvailableChoice('test label', 'Foo'));
       expect(getAutocompleter('test label')).toHaveValue('');
     });
 
@@ -66,8 +70,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       userEvent.tab();
       expect(getAutocompleter('test label')).toHaveFocus();
       expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
-      await userEvent.type(getAutocompleter('test label'), 'Choi', { skipClick: true });
-      expect(getAvailableChoice('test label', 'Choice 2')).toBeInTheDocument();
+      await userEvent.type(getAutocompleter('test label'), 'Fo', { skipClick: true });
+      await waitForChoicesNoOpen();
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
     });
 
     it('closes on escape key', () => {
@@ -78,9 +83,9 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('informs the user when no choice is available', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} />);
-      userEvent.click(getAutocompleter('test label'));
+    it('informs the user when no choice is available', async () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} customFieldID="-1" />);
+      await waitForChoices('test label');
       expect(getAutocompleter('test label')).toHaveDescription('No options available.');
     });
   });
@@ -93,12 +98,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   });
 
   describe('dirty ref API', () => {
-    it('updates on user interactions', () => {
+    it('updates on user interactions', async () => {
       const ref = createRef();
       render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} />);
       userEvent.click(getAutocompleter('test label'));
+      await waitForChoices('test label');
       expect(ref.current.dirty).toEqual(false);
-      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
+      userEvent.click(getAvailableChoice('test label', 'Foo'));
       expect(ref.current.dirty).toEqual(true);
       userEvent.click(getRemoveButton('test label'));
       expect(ref.current.dirty).toEqual(false);
@@ -106,93 +112,45 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   });
 
   describe('deselecting a choice', () => {
-    it('removes the choice value when pressing the remove button', () => {
+    it('removes the choice value when pressing the remove button', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        value={requiredProps.choices}
+        value={['0', '1']}
       />));
 
-      expect(getSelectedChoice('test label', 'Choice 1')).toBeInTheDocument();
-      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
+      // Why does await waitForChoices fail these tests?
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
+      expect(getSelectedChoice('test label', 'Bar')).toBeInTheDocument();
 
-      userEvent.click(getRemoveButton('test label', 'Choice 1'));
-      expect(querySelectedChoice('test label', 'Choice 1')).not.toBeInTheDocument();
-      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
+      userEvent.click(getRemoveButton('test label', 'Foo'));
+      expect(querySelectedChoice('test label', 'Foo')).not.toBeInTheDocument();
+      expect(getSelectedChoice('test label', 'Bar')).toBeInTheDocument();
     });
 
-    it('does not expand the popup', () => {
+    it('does not expand the popup', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        value={requiredProps.choices}
+        value={['0', '1']}
       />));
 
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      userEvent.click(getRemoveButton('test label', 'Choice 1'));
+      userEvent.click(getRemoveButton('test label', 'Foo'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('removes all choices when pressing the clear button and focuses the input', () => {
+    it('removes all choices when pressing the clear button and focuses the input', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        value={requiredProps.choices}
+        value={['0', '1']}
       />));
 
-      expect(getSelectedChoice('test label', 'Choice 1')).toBeInTheDocument();
-      expect(getSelectedChoice('test label', 'Choice 2')).toBeInTheDocument();
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
+      expect(getSelectedChoice('test label', 'Bar')).toBeInTheDocument();
       userEvent.click(getRemoveButton('test label'));
-      expect(querySelectedChoice('test label', 'Choice 1')).not.toBeInTheDocument();
-      expect(querySelectedChoice('test label', 'Choice 2')).not.toBeInTheDocument();
+      expect(querySelectedChoice('test label', 'Foo')).not.toBeInTheDocument();
+      expect(querySelectedChoice('test label', 'Bar')).not.toBeInTheDocument();
       expect(getAutocompleter('test label')).toHaveFocus();
-    });
-  });
-
-  describe('choices API', () => {
-    it('can be set', () => {
-      render((<CustomFieldInputMultipleChoice
-        {...requiredProps}
-        choices={[{
-          id: 42,
-          label: 'Answer to everything',
-        }]}
-      />));
-
-      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
-      userEvent.click(screen.getByText('test label'));
-      expect(getAvailableChoice('test label', 'Answer to everything')).toBeInTheDocument();
-    });
-
-    it('does not show a selected choice', () => {
-      render((<CustomFieldInputMultipleChoice
-        {...requiredProps}
-        value={[requiredProps.choices[0]]}
-      />));
-
-      userEvent.click(screen.getByText('test label'));
-      expect(queryAvailableChoice('test label', 'Choice 1')).not.toBeInTheDocument();
-    });
-
-    it('does not show a selected choice when the selection is not set up on initial render', () => {
-      const choices = [{
-        id: 42,
-        label: 'Answer to everything',
-      }];
-      const { rerender } = render((<CustomFieldInputMultipleChoice
-        {...requiredProps}
-        choices={choices}
-      />));
-
-      userEvent.click(screen.getByText('test label'));
-      expect(getAvailableChoice('test label', 'Answer to everything')).toBeInTheDocument();
-
-      rerender(<CustomFieldInputMultipleChoice
-        {...requiredProps}
-        choices={choices}
-        value={choices}
-      />);
-
-      userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('option', { name: 'Answer to everything' })).not.toBeInTheDocument();
-      expect(getSelectedChoice('test label', 'Answer to everything')).toBeInTheDocument();
     });
   });
 
@@ -218,7 +176,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         <CustomFieldInputMultipleChoice
           {...requiredProps}
           errorText="This is an error message."
-          value={[requiredProps.choices[0]]}
+          value={['0']}
         />
       ));
       expect(screen.queryAllByRole('img')).toHaveLength(2);
@@ -226,15 +184,16 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   });
 
   describe('id API', () => {
-    it('generates unique tag ids', () => {
+    it('generates unique tag ids', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         id="123"
-        value={requiredProps.choices}
+        value={['0', '1']}
       />));
 
-      expect(getSelectedChoice('test label', 'Choice 1').parentElement).toHaveAttribute('id', '123-1');
-      expect(getSelectedChoice('test label', 'Choice 2').parentElement).toHaveAttribute('id', '123-2');
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
+      expect(getSelectedChoice('test label', 'Foo').parentElement).toHaveAttribute('id', '123-0');
+      expect(getSelectedChoice('test label', 'Bar').parentElement).toHaveAttribute('id', '123-1');
     });
   });
 
@@ -251,24 +210,20 @@ describe('<CustomFieldInputMultipleChoice>', () => {
 
   describe('placeholder API', () => {
     it('can be `undefined`', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder={undefined} />);
+      render(<CustomFieldInputMultipleChoice {...requiredProps} customFieldID="-1" placeholder={undefined} />);
       expect(getAutocompleter('test label')).not.toHaveAttribute('placeholder');
     });
 
     it('can be set (and shown)', () => {
-      render(<CustomFieldInputMultipleChoice {...requiredProps} choices={[]} placeholder="Le placeholder" />);
+      render(<CustomFieldInputMultipleChoice {...requiredProps} customFieldID="-1" placeholder="Le placeholder" />);
       expect(getAutocompleter('test label')).toHaveAttribute('placeholder', 'Le placeholder');
     });
 
     it('can be set (and not shown)', () => {
-      const choices = [
-        { id: 1, label: 'Le choice' },
-      ];
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        choices={choices}
         placeholder="Le placeholder"
-        value={choices}
+        value={['0']}
       />));
       expect(getAutocompleter('test label')).not.toHaveAttribute('placeholder');
     });
@@ -279,7 +234,6 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={true}
-        value={[requiredProps.choices[0]]}
       />));
 
       expect(getAutocompleter('test label')).toHaveAttribute('readOnly', '');
@@ -288,50 +242,48 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('can be set to `false`', () => {
+    it('can be set to `false`', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={false}
-        value={[requiredProps.choices[0]]}
+        value={['0']}
       />));
 
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
       expect(getAutocompleter('test label')).not.toHaveAttribute('readOnly', '');
-      expect(screen.getByRole('button', { name: 'Remove Choice 1' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Remove Foo' })).toBeInTheDocument();
     });
   });
 
   describe('required API', () => {
-    it('can be set to `true`', () => {
-      const choices = [
-        { id: 1, label: 'Le choice' },
-      ];
-
+    it('can be set to `true`', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        choices={choices}
         required={true}
       />));
 
       expect(getAutocompleter('test label')).toHaveAttribute('required', '');
       expect(getAutocompleter('test label')).toBeInvalid();
       expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      await waitForChoices('test label');
       userEvent.click(getAutocompleter('test label'));
       userEvent.tab();
       expect(getAutocompleter('test label')).toBeInvalid();
       expect(getAutocompleter('test label')).toHaveDescription('Constraints not satisfied');
       userEvent.click(getAutocompleter('test label'));
-      userEvent.click(getAvailableChoice('test label', 'Le choice'));
+      userEvent.click(getAvailableChoice('test label', 'Foo'));
       expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
       expect(getAutocompleter('test label')).toBeValid();
     });
 
-    it('can be set to `false`', () => {
+    it('can be set to `false`', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
         readOnly={false}
-        value={[requiredProps.choices[0]]}
+        value={['0']}
       />));
 
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
       expect(getAutocompleter('test label')).not.toHaveAttribute('required');
       expect(getAutocompleter('test label')).toBeValid();
       expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
@@ -342,51 +294,51 @@ describe('<CustomFieldInputMultipleChoice>', () => {
   });
 
   describe('selecting a choice', () => {
-    it('removes the choice from the list of choices', () => {
+    it('removes the choice from the list of choices', async () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      await waitForChoices('test label');
+      expect(screen.queryByRole('option', { name: 'Foo' })).toBeInTheDocument();
+      userEvent.click(screen.getByRole('option', { name: 'Foo' }));
       userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).toBeInTheDocument();
-      userEvent.click(screen.getByRole('option', { name: 'Choice 1' }));
-      userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('option', { name: 'Foo' })).not.toBeInTheDocument();
     });
 
-    it('adds the choice to the selected choices and focuses the auto completer', () => {
+    it('adds the choice to the selected choices and focuses the auto completer', async () => {
       render(<CustomFieldInputMultipleChoice {...requiredProps} />);
+      await waitForChoices('test label');
+      expect(screen.queryByRole('gridcell', { name: 'Foo' })).not.toBeInTheDocument();
+      userEvent.click(screen.queryByRole('option', { name: 'Foo' }));
+      expect(screen.queryByRole('option', { name: 'Foo' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).not.toBeInTheDocument();
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
-      expect(screen.queryByRole('option', { name: 'Choice 1' })).not.toBeInTheDocument();
-      userEvent.click(screen.getByText('test label'));
-      expect(screen.queryByRole('gridcell', { name: 'Choice 1' })).toBeInTheDocument();
+      expect(screen.queryByRole('gridcell', { name: 'Foo' })).toBeInTheDocument();
       expect(getAutocompleter('test label')).toHaveFocus();
     });
 
-    it('sorts the choices based on ID', () => {
+    it('sorts the choices based on ID', async () => {
       const testRef = createRef();
       render(<CustomFieldInputMultipleChoice {...requiredProps} ref={testRef} />);
+      await waitForChoices('test label');
+      userEvent.click(screen.queryByRole('option', { name: 'Bar' }));
       userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 2' }));
-      userEvent.click(screen.getByText('test label'));
-      userEvent.click(screen.queryByRole('option', { name: 'Choice 1' }));
-      expect(testRef.current.value).toEqual([1, 2]);
+      userEvent.click(screen.queryByRole('option', { name: 'Foo' }));
+      expect(testRef.current.value).toEqual(['1', '0']);
     });
   });
 
   describe('value API', () => {
-    it('generates tags', () => {
+    it('generates tags', async () => {
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
-        value={requiredProps.choices}
+        value={['0', '1']}
       />));
 
-      expect(screen.getByText('Choice 1')).toBeInTheDocument();
-      expect(screen.getByText('Choice 2')).toBeInTheDocument();
+      await waitFor(() => { expect(getSelectedChoice('test label', 'Foo')).toBeInTheDocument(); });
+      expect(screen.getByText('Bar')).toBeInTheDocument();
     });
   });
 
   describe('forwardRef API', () => {
-    it('provides access to the value', () => {
+    it('provides access to the value', async () => {
       const testRef = createRef();
       render((<CustomFieldInputMultipleChoice
         {...requiredProps}
@@ -394,21 +346,22 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       expect(testRef.current.value).toStrictEqual([]);
+      await waitForChoices('test label');
 
       userEvent.click(screen.getByText('test label'));
-      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
+      userEvent.click(getAvailableChoice('test label', 'Foo'));
 
-      expect(testRef.current.value).toStrictEqual([1]);
+      expect(testRef.current.value).toStrictEqual(['0']);
 
       userEvent.click(screen.getByText('test label'));
-      userEvent.click(getAvailableChoice('test label', 'Choice 2'));
+      userEvent.click(getAvailableChoice('test label', 'Bar'));
 
-      expect(testRef.current.value).toStrictEqual([1, 2]);
+      expect(testRef.current.value).toStrictEqual(['0', '1']);
     });
   });
 
   describe('onChange API', () => {
-    it('fires the onChange prop function when the value changes', () => {
+    it('fires the onChange prop function when the value changes', async () => {
       let componentValue = null;
 
       function onChangeHandler(event) {
@@ -421,16 +374,17 @@ describe('<CustomFieldInputMultipleChoice>', () => {
       />));
 
       expect(componentValue).toStrictEqual([]);
+      await waitForChoices('test label');
 
       userEvent.click(getAutocompleter('test label'));
-      userEvent.click(getAvailableChoice('test label', 'Choice 1'));
+      userEvent.click(getAvailableChoice('test label', 'Foo'));
 
-      expect(componentValue).toStrictEqual([1]);
+      expect(componentValue).toStrictEqual(['0']);
 
       userEvent.click(getAutocompleter('test label'));
-      userEvent.click(getAvailableChoice('test label', 'Choice 2'));
+      userEvent.click(getAvailableChoice('test label', 'Bar'));
 
-      expect(componentValue).toStrictEqual([1, 2]);
+      expect(componentValue).toStrictEqual(['0', '1']);
     });
   });
 
@@ -443,13 +397,14 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
+      await waitForChoices('test label');
       userEvent.click(getAutocompleter('test label'));
-      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
       await waitFor(() => {
-        if (screen.queryByText('Choice 1')) throw new Error('Expected popup to be closed.');
+        if (screen.queryByText('Foo')) throw new Error('Expected popup to be closed.');
       });
-      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
+      expect(screen.queryByText('Foo')).not.toBeInTheDocument();
     });
 
     it('closes the dropdown when tabbing away', async () => {
@@ -460,16 +415,17 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
+      await waitForChoices('test label');
       userEvent.click(getAutocompleter('test label'));
-      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
 
       userEvent.tab();
       userEvent.tab();
 
       await waitFor(() => {
-        if (screen.queryByText('Choice 1')) throw new Error('Expected popup to be closed.');
+        if (screen.queryByText('Foo')) throw new Error('Expected popup to be closed.');
       });
-      expect(screen.queryByText('Choice 1')).not.toBeInTheDocument();
+      expect(screen.queryByText('Foo')).not.toBeInTheDocument();
     });
 
     it('resets the inputs state', async () => {
@@ -480,10 +436,11 @@ describe('<CustomFieldInputMultipleChoice>', () => {
         </div>,
       );
 
+      await waitForChoices('test label');
       expect(getAutocompleter('test label')).toHaveValue('');
-      await userEvent.type(getAutocompleter('test label'), '1');
-      expect(getAutocompleter('test label')).toHaveValue('1');
-      expect(getAvailableChoice('test label', 'Choice 1')).toBeInTheDocument();
+      await userEvent.type(getAutocompleter('test label'), 'F');
+      expect(getAutocompleter('test label')).toHaveValue('F');
+      expect(getAvailableChoice('test label', 'Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
 
       await waitFor(() => expect(getAutocompleter('test label')).toHaveValue(''));
