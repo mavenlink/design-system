@@ -9,6 +9,10 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.62.1
+- Patch: Ensure MDS inputs use MDS fonts
+- Patch: Ensure MDS inputs have a height of 32px
+
 ## v.0.62.0
   - Minor: Make `CustomFieldInputSingleChoice` use the `Loader` component while loading, placed inside the choices dropdown
   - Major: Move `CustomFieldInputSingleChoice` mock handlers to function format to support delay

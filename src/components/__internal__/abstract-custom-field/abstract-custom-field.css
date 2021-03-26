@@ -2,16 +2,16 @@
 @import '../../../styles/colors-v2.css';
 @import '../../../styles/spacing.css';
 @import '../../../styles/typography.css';
+@import '../../../styles/typography-v2.css';
 
 .input-styles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
-  padding-top: 7px;
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
   padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
-  padding-bottom: 7px;
   padding-left: var(--spacing-medium);
   width: 100%;
 }
