@@ -182,7 +182,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
 
   useEffect(() => {
     setValue(props.value);
-  }, [props.value.join('')]);
+  }, [props.value.join(',')]);
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
