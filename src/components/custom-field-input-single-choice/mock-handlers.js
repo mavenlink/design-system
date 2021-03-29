@@ -73,24 +73,16 @@ export default function handlers(delay = 0) {
       const matchingChoices = choices.filter((choice) => {
         return choice.custom_field_id === customFieldID;
       });
-      const customFieldChoices = {};
-
-      matchingChoices.forEach((choice) => {
-        customFieldChoices[choice.id] = {
-          custom_field_id: choice.custom_field_id,
-          label: choice.label,
-        };
-      });
 
       return response(
         context.status(200),
         context.json({
-          count: 2,
+          count: choices.length,
           meta: {
-            count: 2,
+            count: choices.length,
             page_count: 1,
             page_number: 0,
-            page_size: 2,
+            page_size: choices.length,
           },
           results: matchingChoices.map((choice) => {
             return {
@@ -98,7 +90,7 @@ export default function handlers(delay = 0) {
               id: choice.id,
             };
           }),
-          custom_field_choices: customFieldChoices,
+          custom_field_choices: matchingChoices,
         }),
         context.delay(delay),
       );
