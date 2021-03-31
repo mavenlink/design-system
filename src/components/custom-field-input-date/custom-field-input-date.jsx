@@ -36,8 +36,7 @@ function presentDateString(dateString) {
     return '';
   }
 
-  const timezone = new Date().toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2];
-  let date = new Date(`${dateString}  00:00:00 ${timezone}`);
+  let date = new Date(`${dateString}  00:00:00`);
 
   if (date.toString() === 'Invalid Date') {
     // Okay, we're in Safari and we need to find a way to parse the date here
