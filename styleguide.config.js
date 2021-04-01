@@ -81,7 +81,7 @@ module.exports = {
       name: 'Design Patterns',
       sections: [{
         name: 'Basic Page Patterns',
-        content: path.join(__dirname, 'styleguide/content/design-patterns/basic-page-spacing.md'),
+        content: path.join(__dirname, 'pages/design-patterns/basic-page-spacing.md'),
       }, {
         name: 'Page Patterns',
         content: path.join(__dirname, 'pages/design-patterns/pages/index.md'),
