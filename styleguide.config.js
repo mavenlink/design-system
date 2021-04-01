@@ -1,5 +1,3 @@
-/* eslint-disable import/no-commonjs */
-
 const fs = require('fs');
 const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
@@ -100,7 +98,7 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
-  styles: path.resolve(__dirname, './styleguide.config.styles.js'),
+  styles: path.resolve(__dirname, './styleguide.styles.config.js'),
   template: {
     favicon: 'favicon.ico',
     head: {
