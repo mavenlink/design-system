@@ -23,5 +23,10 @@ module.exports = {
     heading6: {
       font: 'var(--mds-type-subhead-3)',
     },
+  },
+  List: {
+    li: {
+      font: 'var(--mds-type-content)',
+    },
   }
 };
