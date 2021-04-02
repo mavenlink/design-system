@@ -17,14 +17,20 @@ The basic anatomy of a table page type consists of the following:
 
 1. Pagination 
 
-   The pagination bar on every table page should be fixed to the bottom of the page. 
-
-<figure>
-  <img alt="Basic layout for table page types - with grid and spacing guides" src="/design-patterns/pages/images/image7.jpg" />
-  <figcaption>Basic layout for table page types - with grid and spacing guides</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for table page types - with grid and spacing guides" 
+    class="global__html__img"
+    src="/design-patterns/pages/images/image7.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for table page types - with grid and spacing guides</figcaption>
 </figure>
 
-<figure>
-  <img alt="Basic layout for table page types - guides removed" src="/design-patterns/pages/images/image5.jpg" />
-  <figcaption>Basic layout for table page types - guides removed</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for table page types - guides removed"
+    class="global__html__img"
+    src="/design-patterns/pages/images/image5.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for table page types - guides removed</figcaption>
 </figure>

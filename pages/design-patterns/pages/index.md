@@ -35,9 +35,13 @@ If this occurs,
 All base page layout standards are designed around a simple 6-column grid. 
 Designing around a grid allows us to account for current and future endeavors related to making our site more responsive/flexible while still keeping layouts consistent. 
 
-<figure>
-  <img alt="6-column grid layout for all page types" src="/design-patterns/pages/images/image8.jpg" />
-  <figcaption>6-column grid layout for all page types</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="6-column grid layout for all page types" 
+    class="global__html__img"
+    src="/design-patterns/pages/images/image8.jpg" 
+  />
+  <figcaption class="global__html__figcaption">6-column grid layout for all page types</figcaption>
 </figure>
 
 ---

@@ -1,0 +1,13 @@
+@import '../src/styles/typography-v2.css';
+
+:global(.global__html__figure) {
+  margin: 0;
+}
+
+:global(.global__html__img) {
+  width: 100%;
+}
+
+:global(.global__html__figcaption) {
+  font: var(--mds-type-subtext);
+}

@@ -16,12 +16,20 @@ The basic anatomy of a form/table hybrid page consists of the following:
    
    The pagination bar on every table/form hybrid page should be fixed to the bottom of the page. The exception to this is if the page contains multiple tables (such as the Time & Expense page inside a project)
 
-<figure>
-  <img alt="Basic layout for form/table hybrid page types - with grid and spacing guides" src="/design-patterns/pages/images/image2.jpg" />
-  <figcaption>Basic layout for form/table hybrid page types - with grid and spacing guides</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for form/table hybrid page types - with grid and spacing guides"
+    class="global__html__img"
+    src="/design-patterns/pages/images/image2.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for form/table hybrid page types - with grid and spacing guides</figcaption>
 </figure>
 
-<figure>
-  <img alt="Basic layout for form/table hybrid page types - without grid and spacing guides" src="/design-patterns/pages/images/image6.jpg" />
-  <figcaption>Basic layout for form/table hybrid page types - without grid and spacing guides</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for form/table hybrid page types - without grid and spacing guides"
+    class="global__html__img"
+    src="/design-patterns/pages/images/image6.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for form/table hybrid page types - without grid and spacing guides</figcaption>
 </figure>

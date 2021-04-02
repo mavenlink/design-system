@@ -10,12 +10,20 @@ The basic anatomy of a project view page consists of the following:
 1. Team/Budget panel/widget
 1. Upcoming Tasks panel/widget
 
-<figure>
-  <img alt="Basic layout for project view page type - without grid and spacing guides" src="/design-patterns/pages/images/image1.jpg" />
-  <figcaption>Basic layout for project view page type - without grid and spacing guides</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for project view page type - without grid and spacing guides"
+    class="global__html__img"
+    src="/design-patterns/pages/images/image1.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for project view page type - without grid and spacing guides</figcaption>
 </figure>
 
-<figure>
-  <img alt="Basic layout for project view page type - without grid and spacing guides" src="/design-patterns/pages/images/image11.jpg" />
-  <figcaption>Basic layout for project view page type - without grid and spacing guides</figcaption>
+<figure class="global__html__figure">
+  <img 
+    alt="Basic layout for project view page type - without grid and spacing guides"
+    class="global__html__img"
+    src="/design-patterns/pages/images/image11.jpg" 
+  />
+  <figcaption class="global__html__figcaption">Basic layout for project view page type - without grid and spacing guides</figcaption>
 </figure>
