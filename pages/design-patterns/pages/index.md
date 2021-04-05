@@ -39,7 +39,7 @@ Designing around a grid allows us to account for current and future endeavors re
   <img 
     alt="6-column grid layout for all page types" 
     class="global__html__img"
-    src="/design-patterns/pages/images/image8.jpg" 
+    src="design-patterns/pages/images/image8.jpg" 
   />
   <figcaption class="global__html__figcaption">6-column grid layout for all page types</figcaption>
 </figure>

@@ -14,7 +14,7 @@ The basic anatomy of a form/table hybrid page consists of the following:
   <img 
     alt="Basic layout for form/table hybrid page types - with grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image2.jpg" 
+    src="design-patterns/pages/images/image2.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for form/table hybrid page types - with grid and spacing guides</figcaption>
 </figure>
@@ -23,7 +23,7 @@ The basic anatomy of a form/table hybrid page consists of the following:
   <img 
     alt="Basic layout for form/table hybrid page types - without grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image6.jpg" 
+    src="design-patterns/pages/images/image6.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for form/table hybrid page types - without grid and spacing guides</figcaption>
 </figure>
