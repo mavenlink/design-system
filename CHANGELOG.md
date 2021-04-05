@@ -14,6 +14,7 @@
 - BREAKING CHANGE(CustomFieldMultipleChoice): removed choices from the props API
 - patch(CustomFieldInput*Choice): fix mock handlers and unnecessary data munging
 - patch(MSW): Fix mock handlers format for custom field choices
+
 ## v0.62.1
 - Patch: Ensure MDS inputs use MDS fonts
 - Patch: Ensure MDS inputs have a height of 32px
