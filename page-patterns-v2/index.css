@@ -1,0 +1,24 @@
+@import '../src/styles/colors-v2.css';
+@import '../src/styles/typography-v2.css';
+
+:global(.global__html__figure) {
+  margin: 0;
+}
+
+:global(.global__html__img) {
+  width: 100%;
+}
+
+:global(.global__html__figcaption) {
+  float: right;
+  font: var(--mds-type-subtext);
+  font-style: italic; /* stylelint-disable-line mds/typography */
+  color: var(--mds-grey-54);
+}
+
+:global(.global__html__figcaption) p {
+  /* Bug somewhere in markdown: every other <figcaption> gets a nested <p> */
+  font: var(--mds-type-subtext);
+  font-style: italic; /* stylelint-disable-line mds/typography */
+  color: var(--mds-grey-54);
+}
