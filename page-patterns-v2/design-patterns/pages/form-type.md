@@ -15,7 +15,7 @@ The basic anatomy of a form consists of the following:
   <img 
     alt="Basic layout for short form page types - with grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image10.jpg" 
+    src="design-patterns/pages/images/image10.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for short form page types - with grid and spacing guides</figcaption>
 </figure>
@@ -24,7 +24,7 @@ The basic anatomy of a form consists of the following:
   <img 
     alt="Basic layout for long form page types - with grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image4.jpg" 
+    src="design-patterns/pages/images/image4.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for long form page types - with grid and spacing guides</figcaption>
 </figure>
@@ -33,7 +33,7 @@ The basic anatomy of a form consists of the following:
   <img 
     alt="Basic layout for short form page types - without grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image2.jpg" 
+    src="design-patterns/pages/images/image2.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for short form page types - without grid and spacing guides</figcaption>
 </figure>
@@ -42,7 +42,7 @@ The basic anatomy of a form consists of the following:
   <img 
     alt="Basic layout for long form page types - without grid and spacing guides"
     class="global__html__img"
-    src="/design-patterns/pages/images/image9.jpg" 
+    src="design-patterns/pages/images/image9.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for long form page types - without grid and spacing guides</figcaption>
 </figure>

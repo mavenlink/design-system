@@ -15,7 +15,7 @@ The basic anatomy of a table page type consists of the following:
   <img 
     alt="Basic layout for table page types - with grid and spacing guides" 
     class="global__html__img"
-    src="/design-patterns/pages/images/image7.jpg" 
+    src="design-patterns/pages/images/image7.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for table page types - with grid and spacing guides</figcaption>
 </figure>
@@ -24,7 +24,7 @@ The basic anatomy of a table page type consists of the following:
   <img 
     alt="Basic layout for table page types - guides removed"
     class="global__html__img"
-    src="/design-patterns/pages/images/image5.jpg" 
+    src="design-patterns/pages/images/image5.jpg" 
   />
   <figcaption class="global__html__figcaption">Basic layout for table page types - guides removed</figcaption>
 </figure>
