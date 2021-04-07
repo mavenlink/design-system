@@ -10,6 +10,15 @@
   - feat(Textarea): Implement new `Textarea` component, with new mock handlers in styleguidist
 </details>
 
+## v0.63.1
+- fix(custom-field-input-date): does not offset value when a date with time info is given with the timezone
+
+## v0.63.0
+- feat(CustomFieldInputMultipleChoice): add self-loading of choices with customFieldID prop
+- BREAKING CHANGE(CustomFieldMultipleChoice): removed choices from the props API
+- patch(CustomFieldInput*Choice): fix mock handlers and unnecessary data munging
+- patch(MSW): Fix mock handlers format for custom field choices
+
 ## v0.62.1
 - Patch: Ensure MDS inputs use MDS fonts
 - Patch: Ensure MDS inputs have a height of 32px

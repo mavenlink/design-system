@@ -73,6 +73,11 @@ export default function handlers(delay = 0) {
       const matchingChoices = choices.filter((choice) => {
         return choice.custom_field_id === customFieldID;
       });
+      const customFieldChoices = {};
+
+      matchingChoices.forEach((choice) => {
+        customFieldChoices[choice.id] = choice;
+      });
 
       return response(
         context.status(200),
@@ -90,7 +95,7 @@ export default function handlers(delay = 0) {
               id: choice.id,
             };
           }),
-          custom_field_choices: matchingChoices,
+          custom_field_choices: customFieldChoices,
         }),
         context.delay(delay),
       );

@@ -84,6 +84,11 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
 
+    it('accepts a string in format mm-dd-yyyy HH:MM:SS', () => {
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="01-01-2020 00:00:00" />);
+      expect(getByLabelText('Field Date')).toHaveValue('Jan 1, 2020');
+    });
+
     it('updates its value', () => {
       const { rerender } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
       expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
