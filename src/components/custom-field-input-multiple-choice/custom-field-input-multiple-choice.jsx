@@ -8,6 +8,7 @@ import React, {
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import useFetch from '@bloodyaugust/use-fetch';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
@@ -17,6 +18,7 @@ import iconCaution from '../../svgs/caution.svg';
 import iconClear from '../../svgs/clear.svg';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import Loader from '../loader/loader.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import NoOptions from '../no-options/no-options.jsx';
@@ -24,6 +26,9 @@ import styles from './custom-field-input-multiple-choice.css';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
 import useValidation from '../../hooks/use-validation.jsx';
+import mockConstants from '../../mocks/mock-constants.js';
+
+const { API_ROOT } = mockConstants;
 
 function getClassName(className, readOnly, errorText) {
   if (className) return className;
@@ -36,6 +41,7 @@ function getClassName(className, readOnly, errorText) {
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const autocompleteRef = useRef();
   const [autocompleteValue, setAutocompleteValue] = useState('');
+  const [choices, setChoices] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
   const [validationMessage, validate] = useValidation(props.errorText, autocompleteRef);
@@ -54,6 +60,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   };
   const mounted = useMounted();
   const wrapperRef = useRef(null);
+  const { completed, execute } = useFetch();
 
   const handleDropdownClose = () => {
     setExpanded(false);
@@ -61,10 +68,53 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   };
   useDropdownClose(wrapperRef, expanded, handleDropdownClose);
 
+  const dropdownContents = () => {
+    if (!expanded) {
+      return undefined;
+    }
+
+    if (!completed) {
+      return (
+        <Listbox
+          className={styles['popup-container']}
+          id={ids.listbox}
+          labelledBy={ids.label}
+          refs={[]}
+        >
+          <Loader inline />
+        </Listbox>
+      );
+    }
+
+    if (visibleChoices.length === 0) {
+      return (<NoOptions className={styles['no-options']} id={ids.emptyMessage} />);
+    }
+
+    return (
+      <Listbox
+        className={styles['popup-container']}
+        id={ids.listbox}
+        labelledBy={ids.label}
+        refs={choicesRefs}
+      >
+        {visibleChoices.map((choice, index) => (
+          <ListOption
+            key={`${props.id}-${choice.id}`}
+            onSelect={onChoiceSelect}
+            ref={choicesRefs[index]}
+            value={choice.id}
+          >
+            {choice.label}
+          </ListOption>
+        ))}
+      </Listbox>
+    );
+  };
+
   function getVisibleChoices() {
-    return props.choices
+    return choices
       .filter(choice => choice.label.includes(autocompleteValue))
-      .filter(choice => !value.some(val => val.id === choice.id));
+      .filter(choice => !value.some(val => val === choice.id));
   }
 
   function onChoiceRemove(event) {
@@ -78,7 +128,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     const selectedChoiceIndex = choicesRefs.findIndex(choiceRef => choiceRef === event.target);
     const selectedChoice = visibleChoices[selectedChoiceIndex];
     setExpanded(false);
-    const newValue = [...value, selectedChoice].sort((a, b) => a.id - b.id);
+    const newValue = [...value, selectedChoice.id].sort((a, b) => a.id - b.id);
     setValue(newValue);
     setAutocompleteValue('');
     autocompleteRef.current.focus();
@@ -132,18 +182,38 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
 
   useEffect(() => {
     setValue(props.value);
-  }, [props.value.map(choice => choice.id).join('')]);
+  }, [props.value.join(',')]);
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      return props.value.map(v => v.id).join(',') !== this.value.join(',');
+      return props.value.join(',') !== this.value.join(',');
     },
     id: props.id,
     name: props.name,
     get value() {
-      return value ? value.map(v => v.id) : [];
+      return value;
     },
   }));
+
+  useEffect(() => {
+    const getChoices = async () => {
+      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
+        .then(({ json, mounted: isMounted }) => {
+          if (isMounted) {
+            const choiceObjects = json.results.map(result => json[result.key][result.id]);
+
+            setChoices(choiceObjects);
+          }
+        })
+        .catch((error) => {
+          if (error.error && error.error.type !== 'aborted') {
+            throw error;
+          }
+        });
+    };
+
+    getChoices();
+  }, []);
 
   return (
     <div ref={wrapperRef} className={styles['component-root']}>
@@ -166,18 +236,19 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             labelledBy={ids.label}
             refs={valueRefs}
           >
-            {value.map((choice, index) => (
+            {choices.length !== 0 && value.map((valueID, index) => (
               <Tag
                 defaultActive={index === 0}
-                id={`${props.id}-${choice.id}`}
-                key={`${props.id}-${choice.id}`}
+                id={`${props.id}-${valueID}`}
+                key={`${props.id}-${valueID}`}
                 onRemove={onChoiceRemove}
                 readOnly={props.readOnly}
                 ref={valueRefs[index]}
               >
-                {choice.label}
+                {choices.find(choice => choice.id === valueID).label}
               </Tag>
-            ))}
+            ))
+            }
             <input
               aria-autocomplete="list"
               aria-controls={ids.listbox}
@@ -227,38 +298,15 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             </div>
           </div>
         </div>
-        {expanded && (visibleChoices.length === 0 ? (<NoOptions className={styles['no-options']} id={ids.emptyMessage} />) : (
-          <Listbox
-            className={styles['popup-container']}
-            id={ids.listbox}
-            labelledBy={ids.label}
-            refs={choicesRefs}
-          >
-            {visibleChoices.map((choice, index) => (
-              <ListOption
-                key={`${props.id}-${choice.id}`}
-                onSelect={onChoiceSelect}
-                ref={choicesRefs[index]}
-                value={choice}
-              >
-                {choice.label}
-              </ListOption>
-            ))}
-          </Listbox>)
-        )}
+        {dropdownContents()}
       </FormControl>
     </div>
   );
 });
 
-const ChoiceType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired,
-});
-
 CustomFieldInputMultipleChoice.propTypes = {
-  choices: PropTypes.arrayOf(ChoiceType).isRequired,
   className: PropTypes.string,
+  customFieldID: PropTypes.string.isRequired,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -267,7 +315,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  value: PropTypes.arrayOf(ChoiceType),
+  value: PropTypes.arrayOf(PropTypes.string),
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
