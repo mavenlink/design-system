@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.63.1
+- fix(custom-field-input-date): does not offset value when a date with time info is given with the timezone
+
 ## v0.63.0
 - feat(CustomFieldInputMultipleChoice): add self-loading of choices with customFieldID prop
 - BREAKING CHANGE(CustomFieldMultipleChoice): removed choices from the props API
