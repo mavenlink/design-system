@@ -100,6 +100,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     focus: () => props.refs[activeIndex].current.setActive(true),
+    contains: (element) => {
+      return props.refs.some((r) => {
+        return r.current && r.current.contains(element);
+      });
+    },
     value,
   }));
 
