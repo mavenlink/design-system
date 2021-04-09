@@ -3,9 +3,11 @@
 
 :global(.global__html__figure) {
   margin: 0;
+  max-width: 1000px;
 }
 
 :global(.global__html__img) {
+  border: 1px solid var(--mds-grey-54);
   width: 100%;
 }
 
