@@ -74,14 +74,9 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
       await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
         .then(({ json, mounted }) => {
           if (mounted) {
-            const mungedChoices = json.results.map((result) => {
-              return {
-                ...json[result.key][result.id],
-                id: result.id,
-              };
-            });
+            const choiceObjects = json.results.map(result => json[result.key][result.id]);
 
-            setChoices(mungedChoices);
+            setChoices(choiceObjects);
           }
         })
         .catch((error) => {
