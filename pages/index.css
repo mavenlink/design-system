@@ -4,6 +4,7 @@
 
 :global(.global__html__figure) {
   margin: 0;
+  margin-bottom: calc(2 * var(--spacing-x-large));
   max-width: 1000px;
 }
 
@@ -25,4 +26,5 @@
   font: var(--mds-type-subtext);
   font-style: italic; /* stylelint-disable-line mds/typography */
   color: var(--mds-grey-54);
+  margin: 0 !important;
 }
