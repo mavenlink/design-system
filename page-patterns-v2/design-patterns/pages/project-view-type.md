@@ -4,8 +4,8 @@ The basic anatomy of a project view page consists of the following:
 1. Header and optional description
 1. Tabs to access other project pages
 1. Activity Feed Entry
-   1. Primary/Secondary action buttons
-   1. Tertiary action buttons
+   - Primary/Secondary action buttons
+   - Tertiary action buttons
 1. Activity Feed
 1. Team/Budget panel/widget
 1. Upcoming Tasks panel/widget

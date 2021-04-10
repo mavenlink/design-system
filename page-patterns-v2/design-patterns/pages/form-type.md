@@ -3,13 +3,13 @@ The basic anatomy of a form consists of the following:
 
 1. Header and optional description
 1. Sections 
-   1. Each section has a subheader and optional description
+   - Each section has a subheader and optional description
 1. Components
-   1. Components in a form should align horizontally with the 6-column grid
-   1. Vertical spacing between components is --mds-spacing-large
+   - Components in a form should align horizontally with the 6-column grid
+   - Vertical spacing between components is --mds-spacing-large
 1. Action Buttons
-   1. If the form is short enough that it can be seen in its entirety within the viewport, the action buttons should be placed at the bottom of the form, with the primary action button on the far left.
-   1. If the form is longer and the user must scroll down to see it all, the action buttons should be placed at the top right of the form and should be “sticky” as user scrolls down so that they are always visible. 
+   - If the form is short enough that it can be seen in its entirety within the viewport, the action buttons should be placed at the bottom of the form, with the primary action button on the far left.
+   - If the form is longer and the user must scroll down to see it all, the action buttons should be placed at the top right of the form and should be “sticky” as user scrolls down so that they are always visible. 
 
 <figure class="global__html__figure">
   <img 

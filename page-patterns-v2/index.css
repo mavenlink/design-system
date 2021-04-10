@@ -1,19 +1,24 @@
 @import '../src/styles/colors-v2.css';
+@import '../src/styles/spacing.css';
 @import '../src/styles/typography-v2.css';
 
 :global(.global__html__figure) {
   margin: 0;
+  margin-bottom: calc(2 * var(--spacing-x-large));
+  max-width: 1000px;
 }
 
 :global(.global__html__img) {
+  border: 1px solid var(--mds-grey-54);
   width: 100%;
 }
 
 :global(.global__html__figcaption) {
-  float: right;
+  color: var(--mds-grey-54);
+  display: flex;
   font: var(--mds-type-subtext);
   font-style: italic; /* stylelint-disable-line mds/typography */
-  color: var(--mds-grey-54);
+  justify-content: flex-end;
 }
 
 :global(.global__html__figcaption) p {
@@ -21,4 +26,5 @@
   font: var(--mds-type-subtext);
   font-style: italic; /* stylelint-disable-line mds/typography */
   color: var(--mds-grey-54);
+  margin: 0 !important;
 }
