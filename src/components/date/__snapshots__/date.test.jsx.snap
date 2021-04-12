@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/date/date.test.jsx has defaults 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="test-id"
+        id="test-id-label"
+      >
+        Test label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          aria-describedby="test-idHint"
+          class="input"
+          id="test-id"
+          type="date"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

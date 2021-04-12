@@ -1,0 +1,18 @@
+.input {
+  composes: input from '../input/input.css';
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.invalid-input {
+  composes: input;
+  composes: invalid-input from '../input/input.css';
+}
+
+.invalid-icon {
+  composes: invalid-icon from '../input/input.css';
+}
