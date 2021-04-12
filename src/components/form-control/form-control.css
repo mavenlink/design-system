@@ -1,12 +1,11 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
-@import '../../styles/typography.css';
+@import '../../styles/typography-v2.css';
 
 .label {
   color: var(--mds-grey-54);
   display: inline;
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-small-size); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-subtext);
 }
 
 .invalid-label {
@@ -32,6 +31,5 @@
 
 .error-message {
   color: var(--mds-red-text);
-  font-family: var(--mavenlink-type-font-family); /* stylelint-disable-line mds/typography */
-  font-size: var(--mavenlink-type-base-size); /* stylelint-disable-line mds/typography */
+  font: var(--mds-type-content);
 }
