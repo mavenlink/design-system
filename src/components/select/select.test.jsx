@@ -170,7 +170,8 @@ describe('src/components/select/select', () => {
     it('does not show errorText on first render until blurred', () => {
       render(<Select {...requiredProps} required >{baseListOptionElements}</Select>);
       expect(screen.queryByText('Constraints not satisfied')).toBeNull();
-      fireEvent.blur(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.tab();
       expect(screen.getByText('Constraints not satisfied')).toBeInTheDocument();
     });
   });
