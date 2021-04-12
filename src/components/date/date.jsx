@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, {
+  useEffect,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
@@ -10,8 +12,9 @@ import cautionSvg from '../../svgs/caution.svg';
 
 export default function Date(props) {
   const inputRef = useRef();
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const classNames = {
-    input: props.validationMessage ? styles['invalid-input'] : styles.input,
+    input: validationMessage ? styles['invalid-input'] : styles.input,
   };
   const ids = {
     input: props.id,
@@ -19,13 +22,21 @@ export default function Date(props) {
     validationMessage: `${props.id}Hint`,
   };
 
+  function onBlur() {
+    setValidationMessage(inputRef.current.validationMessage);
+  }
+
+  useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
   useLayoutEffect(() => {
-    inputRef.current.setCustomValidity(props.validationMessage);
-  }, []);
+    inputRef.current.setCustomValidity(validationMessage);
+  }, [validationMessage]);
 
   return (
     <FormControl
-      error={props.validationMessage}
+      error={validationMessage}
       id={ids.input}
       labelId={ids.label}
       label={props.label}
@@ -36,16 +47,17 @@ export default function Date(props) {
         aria-describedby={ids.validationMessage}
         className={classNames.input}
         id={ids.input}
+        onBlur={onBlur}
         readOnly={props.readOnly}
         ref={inputRef}
         required={props.required}
         type="date"
       />
-      {!!props.validationMessage && (
+      {!!validationMessage && (
         <Icon
           className={styles['invalid-icon']}
           icon={cautionSvg}
-          label={props.validationMessage}
+          label={validationMessage}
         />
       )}
     </FormControl>

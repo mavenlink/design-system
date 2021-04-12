@@ -3,6 +3,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Date from './date.jsx';
 
 describe('src/components/date/date.test.jsx', () => {
@@ -47,6 +48,12 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} required={true} />);
       expect(screen.getByLabelText('Test label')).toBeRequired();
       expect(screen.getByText('(Required)')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.tab();
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
 
     it('is false', () => {
@@ -58,10 +65,26 @@ describe('src/components/date/date.test.jsx', () => {
 
   describe('validationMessage API', () => {
     it('is a string', () => {
-      render(<Date {...requiredProps} validationMessage="This is a provided error." />);
+      const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
       expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
+
+      rerender(<Date {...requiredProps} validationMessage="This is a new provided error." />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('This is a new provided error.');
+      expect(screen.getByTitle('This is a new provided error.')).toBeInTheDocument();
+    });
+
+    it('can be cleared', () => {
+      const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
+      expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
+
+      rerender(<Date {...requiredProps} validationMessage="" />);
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
     });
   });
 });
