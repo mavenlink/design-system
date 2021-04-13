@@ -3,7 +3,9 @@ import {
   getByRole,
   queryByRole,
   screen,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 export async function findAutocompleter(fieldLabel) {
   return screen.findByRole('combobox', { name: fieldLabel });
@@ -36,6 +38,10 @@ export function getSelectedChoice(fieldLabel, choiceLabel) {
   return getByRole(taglist, 'gridcell', { name: choiceLabel });
 }
 
+export function openChoices(fieldName) {
+  userEvent.click(screen.getByRole('combobox', { name: fieldName }));
+}
+
 export function queryAvailableChoice(fieldLabel, choiceLabel) {
   const listbox = screen.getByRole('listbox', { name: fieldLabel });
   return queryByRole(listbox, 'option', { name: choiceLabel });
@@ -52,4 +58,13 @@ export function queryRemoveButton(fieldLabel, choiceLabel) {
 export function querySelectedChoice(fieldLabel, choiceLabel) {
   const taglist = screen.getByRole('grid', { name: fieldLabel });
   return queryByRole(taglist, 'gridcell', { name: choiceLabel });
+}
+
+export async function waitForChoices(fieldName) {
+  openChoices(fieldName);
+  await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
+}
+
+export async function waitForChoicesNoOpen() {
+  await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
 }
