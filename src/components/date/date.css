@@ -1,5 +1,10 @@
+@import '../../styles/spacing.css';
+
 .input {
+  --size-of-icons-container: 37px;
+
   composes: input from '../input/input.css';
+  padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium))
 }
 
 .input::-webkit-inner-spin-button,
@@ -13,6 +18,17 @@
   composes: invalid-input from '../input/input.css';
 }
 
+.icons {
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--spacing-small);
+  position: absolute;
+  right: var(--spacing-medium);
+  transform: translateY(-50%);
+  top: 50%;
+}
+
 .invalid-icon {
-  composes: invalid-icon from '../input/input.css';
+  pointer-events: none;
 }

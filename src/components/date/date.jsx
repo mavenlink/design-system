@@ -5,10 +5,42 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import calendarSvg from '../../svgs/calendar.svg';
+import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
+import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './date.css';
-import cautionSvg from '../../svgs/caution.svg';
+
+/* eslint-disable react/prop-types */
+function ControlIcons(props) {
+  return (
+    <div className={styles.icons}>
+      {!!props.validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          label={props.validationMessage}
+        />
+      )}
+      {props.readOnly ? (
+        <Icon
+          icon={calendarSvg}
+          title={props.label}
+          label={`${props.label} calendar icon`}
+        />
+      ) : (
+        <IconButton
+          onPress={props.onPress}
+          icon={calendarSvg}
+          title={props.label}
+          label={`${props.label} calendar button`}
+        />
+      )}
+    </div>
+  );
+}
+/* eslint-enable react/prop-types */
 
 export default function Date(props) {
   const inputRef = useRef();
@@ -24,6 +56,9 @@ export default function Date(props) {
 
   function onBlur() {
     setValidationMessage(inputRef.current.validationMessage);
+  }
+
+  function onIconPress() {
   }
 
   useEffect(() => {
@@ -53,13 +88,12 @@ export default function Date(props) {
         required={props.required}
         type="date"
       />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          label={validationMessage}
-        />
-      )}
+      <ControlIcons
+        label={props.label}
+        onPress={onIconPress}
+        readOnly={props.readOnly}
+        validationMessage={validationMessage}
+      />
     </FormControl>
   );
 }

@@ -2,6 +2,7 @@
 
 A form control for interacting with date data.
 The component leverages native date controls for a familiar date-typing experience within each browser.
+In addition, it provides its own calendar popup for an easy-to-use visual experience to set a date.
 
 ## Keyboard Support
 
