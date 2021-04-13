@@ -44,6 +44,36 @@ describe('src/components/date/date.test.jsx', () => {
     });
   });
 
+  describe('max API', () => {
+    it('is date-only', () => {
+      render(<Date {...requiredProps} max="2000-01-01" />);
+      userEvent.type(screen.getByLabelText('Test label'), '2000-01-01');
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      userEvent.clear(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), '2000-01-02');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      userEvent.tab();
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+    });
+  });
+
+  describe('min API', () => {
+    it('is date-only', () => {
+      render(<Date {...requiredProps} min="2000-01-01" />);
+      userEvent.type(screen.getByLabelText('Test label'), '2000-01-01');
+      expect(screen.getByLabelText('Test label')).toBeValid();
+      userEvent.clear(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), '1999-12-31');
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      userEvent.tab();
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+    });
+  });
+
   describe('readOnly API', () => {
     it('is true', () => {
       render(<Date {...requiredProps} readOnly={true} />);
@@ -89,7 +119,7 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByTitle('This is a new provided error.')).toBeInTheDocument();
     });
 
-    it('can be cleared', () => {
+    it('is cleared', () => {
       const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');

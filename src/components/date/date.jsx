@@ -61,6 +61,9 @@ export default function Date(props) {
   };
 
   function onBlur() {
+    // Given the validation spec, any provided validation messages are cleared on blur.
+    // If the native node is still invalid then re-render with the native validation messages.
+    inputRef.current.setCustomValidity('');
     setValidationMessage(inputRef.current.validationMessage);
   }
 
@@ -90,6 +93,8 @@ export default function Date(props) {
           aria-describedby={ids.validationMessage}
           className={classNames.input}
           id={ids.input}
+          max={props.max}
+          min={props.min}
           onBlur={onBlur}
           readOnly={props.readOnly}
           ref={inputRef}
@@ -115,12 +120,18 @@ export default function Date(props) {
 Date.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  /** The latest date to accept in date-only format (i.e. yyyy-mm-dd) */
+  max: PropTypes.string,
+  /** The earliest date to accept in date-only format (i.e. yyyy-mm-dd) */
+  min: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
 };
 
 Date.defaultProps = {
+  max: undefined,
+  min: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',
