@@ -44,6 +44,7 @@ function ControlIcons(props) {
 /* eslint-enable react/prop-types */
 
 export default function Date(props) {
+  const containerRef = useRef();
   const inputRef = useRef();
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
@@ -60,7 +61,9 @@ export default function Date(props) {
     validationMessage: `${props.id}Hint`,
   };
 
-  function onBlur() {
+  function onBlur(event) {
+    if (containerRef.current.contains(event.relatedTarget)) return;
+
     // Given the validation spec, any provided validation messages are cleared on blur.
     // If the native node is still invalid then re-render with the native validation messages.
     inputRef.current.setCustomValidity('');
@@ -80,7 +83,11 @@ export default function Date(props) {
   }, [validationMessage]);
 
   return (
-    <div className={classNames.layouts.container}>
+    <div
+      className={classNames.layouts.container}
+      onBlur={onBlur}
+      ref={containerRef}
+    >
       <FormControl
         error={validationMessage}
         id={ids.input}
@@ -95,7 +102,6 @@ export default function Date(props) {
           id={ids.input}
           max={props.max}
           min={props.min}
-          onBlur={onBlur}
           readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}

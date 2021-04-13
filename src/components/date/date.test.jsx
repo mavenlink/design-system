@@ -30,6 +30,19 @@ describe('src/components/date/date.test.jsx', () => {
     expect(screen.queryByText(today)).not.toBeInTheDocument();
   });
 
+  it('validates on when the component loses focus', () => {
+    render(<Date {...requiredProps} required={true} />);
+    expect(screen.getByLabelText('Test label')).toBeRequired();
+    expect(screen.getByText('(Required)')).toBeInTheDocument();
+    expect(screen.getByLabelText('Test label')).toBeInvalid();
+    expect(screen.getByLabelText('Test label')).toHaveDescription('');
+    userEvent.click(screen.getByLabelText('Test label'));
+    userEvent.tab();
+    userEvent.tab();
+    expect(screen.getByLabelText('Test label')).toBeInvalid();
+    expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+  });
+
   describe('id API', () => {
     it('is a string', () => {
       render(<Date {...requiredProps} id="unique-id" />);
@@ -53,7 +66,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.type(screen.getByLabelText('Test label'), '2000-01-02');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
-      userEvent.tab();
+      userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
@@ -68,7 +81,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.type(screen.getByLabelText('Test label'), '1999-12-31');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
-      userEvent.tab();
+      userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
@@ -94,7 +107,7 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.tab();
+      userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
