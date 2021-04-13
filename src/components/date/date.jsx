@@ -120,9 +120,9 @@ export default function Date(props) {
 Date.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  /** The latest date to accept in date-only format (i.e. yyyy-mm-dd) */
+  /** The latest date to accept in full-date format (i.e. yyyy-mm-dd) */
   max: PropTypes.string,
-  /** The earliest date to accept in date-only format (i.e. yyyy-mm-dd) */
+  /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,

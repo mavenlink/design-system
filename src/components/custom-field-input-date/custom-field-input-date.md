@@ -1,4 +1,5 @@
-A simple date field for custom fields. Permits a variety of formats and allows custom validation.
+A form control to be specifically used for custom field date types. 
+It composes the MDS Date component. 
 
 ##### Basic usage:
 
