@@ -10,6 +10,9 @@
   - Minor: When required, the select should not show error text on initial render
 </details>
 
+## v0.63.2
+- fix(select): Only shows errors after blur
+
 ## v0.63.1
 - fix(custom-field-input-date): does not offset value when a date with time info is given with the timezone
 
