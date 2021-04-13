@@ -1,4 +1,9 @@
 @import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.container {
+  position: relative;
+}
 
 .input {
   --size-of-icons-container: 37px;
@@ -31,4 +36,10 @@
 
 .invalid-icon {
   pointer-events: none;
+}
+
+.calendar-container {
+  position: absolute;
+  background-color: var(--white);
+  z-index: 2147483647;
 }

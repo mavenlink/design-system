@@ -17,6 +17,19 @@ describe('src/components/date/date.test.jsx', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  it('has a calendar', () => {
+    const today = (new window.Date()).toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+    });
+
+    render(<Date {...requiredProps} />);
+    userEvent.click(screen.getByTitle('Test label calendar button'));
+    expect(screen.getByText(today)).toBeInTheDocument();
+    userEvent.click(screen.getByTitle('Test label calendar button'));
+    expect(screen.queryByText(today)).not.toBeInTheDocument();
+  });
+
   describe('id API', () => {
     it('is a string', () => {
       render(<Date {...requiredProps} id="unique-id" />);
