@@ -99,8 +99,16 @@ describe('src/components/date/date.test.jsx', () => {
 
   describe('readOnly API', () => {
     it('is true', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+      });
+
       render(<Date {...requiredProps} readOnly={true} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('readonly');
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
     });
 
     it('is false', () => {

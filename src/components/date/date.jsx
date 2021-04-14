@@ -89,6 +89,7 @@ export default function Date(props) {
   }
 
   function onInputClick() {
+    if (props.readOnly) return;
     setExpanded(true);
   }
 
