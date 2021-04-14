@@ -9,7 +9,7 @@
   --size-of-icons-container: 37px;
 
   composes: input from '../input/input.css';
-  padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium))
+  padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
 }
 
 .input::-webkit-inner-spin-button,
