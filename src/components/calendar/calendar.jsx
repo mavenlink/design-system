@@ -37,6 +37,10 @@ function getHeadCell(iterator) {
 }
 
 function isSameDate(date1, date2) {
+  if ((!date1 && date2) || (date1 && !date2)) {
+    return false;
+  }
+
   return (
     date1.getFullYear() === date2.getFullYear()
     && date1.getMonth() === date2.getMonth()
@@ -78,7 +82,7 @@ function Calendar(props) {
   let refs = {};
 
   useEffect(() => {
-    if (selectedDate && defaultDate && !isSameDate(selectedDate, defaultDate)) {
+    if (defaultDate && !isSameDate(selectedDate, defaultDate)) {
       setSelectedDate(defaultDate);
       setFocusedDate(defaultDate);
 
