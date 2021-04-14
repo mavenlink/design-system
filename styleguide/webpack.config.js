@@ -15,7 +15,12 @@ module.exports = {
       {
         test: /\.(jpeg|ico)$/,
         exclude: /node_modules/,
-        loader: 'url-loader?limit=10000',
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+          },
+        }],
       },
       {
         test: /\.svg$/,
@@ -23,7 +28,7 @@ module.exports = {
           /src\/svgs\//,
         ],
         use: [
-          { loader: 'svg-sprite-loader' },
+          { loader: 'svg-sprite-loader', options: {} },
           { loader: 'svgo-loader' },
         ],
       },
