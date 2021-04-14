@@ -43,11 +43,20 @@ function ControlIcons(props) {
 }
 /* eslint-enable react/prop-types */
 
+function toFullDateFormat(date) {
+  return date ? date.toISOString().slice(0, 10) : undefined;
+}
+
+function fromFullDateFormat(string) {
+  return new window.Date(`${string}T00:00:00`);
+}
+
 export default function Date(props) {
   const containerRef = useRef();
   const inputRef = useRef();
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
+  const [value, setValue] = useState(undefined);
   const classNames = {
     layouts: {
       container: styles.container,
@@ -70,8 +79,25 @@ export default function Date(props) {
     setValidationMessage(inputRef.current.validationMessage);
   }
 
+  function onInputChange() {
+    const newDate = fromFullDateFormat(inputRef.current.value);
+    if (newDate.toDateString() === 'Invalid Date') {
+      setValue(undefined);
+    } else {
+      setValue(newDate);
+    }
+  }
+
+  function onInputClick() {
+    setExpanded(true);
+  }
+
   function onIconPress() {
     setExpanded(!expanded);
+  }
+
+  function onCalendarChange(newDate) {
+    setValue(newDate);
   }
 
   useEffect(() => {
@@ -99,9 +125,12 @@ export default function Date(props) {
         <input
           aria-describedby={ids.validationMessage}
           className={classNames.input}
+          defaultValue={toFullDateFormat(value)}
           id={ids.input}
           max={props.max}
           min={props.min}
+          onChange={onInputChange}
+          onClick={onInputClick}
           readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}
@@ -116,7 +145,7 @@ export default function Date(props) {
       </FormControl>
       {expanded && (
         <div className={classNames.layouts.calendar}>
-          <Calendar />
+          <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
         </div>
       )}
     </div>

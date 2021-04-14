@@ -37,10 +37,20 @@ describe('src/components/date/date.test.jsx', () => {
     expect(screen.getByLabelText('Test label')).toBeInvalid();
     expect(screen.getByLabelText('Test label')).toHaveDescription('');
     userEvent.click(screen.getByLabelText('Test label'));
-    userEvent.tab();
-    userEvent.tab();
+    userEvent.tab({ shift: true });
     expect(screen.getByLabelText('Test label')).toBeInvalid();
     expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+  });
+
+  it('updates the calendar when the user types', async () => {
+    const localizedDate = (new window.Date('1999-01-01')).toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+    });
+
+    render(<Date {...requiredProps} />);
+    userEvent.type(screen.getByLabelText('Test label'), '1999-01-01');
+    expect(await screen.findByText(localizedDate)).toBeInTheDocument();
   });
 
   describe('id API', () => {
