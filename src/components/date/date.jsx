@@ -97,6 +97,7 @@ export default function Date(props) {
   function onInputKeyDown(event) {
     if (props.readOnly) return;
     if (event.key === 'Enter') setExpanded(true);
+    if (event.key === 'Escape') setExpanded(false);
   }
 
   function onIconPress() {

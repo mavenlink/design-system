@@ -76,6 +76,19 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(document.body);
       expect(screen.queryByText(today)).not.toBeInTheDocument();
     });
+
+    it('closes on escape', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      render(<Date {...requiredProps} />);
+      userEvent.type(screen.getByLabelText('Test label'), '');
+      expect(screen.getByText(today)).toBeInTheDocument();
+      userEvent.type(screen.getByLabelText('Test label'), '{esc}', { skipClick: true });
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
+    });
   });
 
   describe('id API', () => {
