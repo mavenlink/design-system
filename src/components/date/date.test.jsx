@@ -17,19 +17,6 @@ describe('src/components/date/date.test.jsx', () => {
     expect(document.body).toMatchSnapshot();
   });
 
-  it('has a calendar', () => {
-    const today = (new window.Date()).toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-    });
-
-    render(<Date {...requiredProps} />);
-    userEvent.click(screen.getByTitle('Test label calendar button'));
-    expect(screen.getByText(today)).toBeInTheDocument();
-    userEvent.click(screen.getByTitle('Test label calendar button'));
-    expect(screen.queryByText(today)).not.toBeInTheDocument();
-  });
-
   it('validates on when the component loses focus', () => {
     render(<Date {...requiredProps} required={true} />);
     expect(screen.getByLabelText('Test label')).toBeRequired();
@@ -51,6 +38,31 @@ describe('src/components/date/date.test.jsx', () => {
     render(<Date {...requiredProps} />);
     userEvent.type(screen.getByLabelText('Test label'), '1999-01-01');
     expect(await screen.findByText(localizedDate)).toBeInTheDocument();
+  });
+
+  describe('calendar behavior', () => {
+    it('toggles open/close', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      render(<Date {...requiredProps} />);
+      userEvent.click(screen.getByTitle('Test label calendar button'));
+      expect(screen.getByText(today)).toBeInTheDocument();
+      userEvent.click(screen.getByTitle('Test label calendar button'));
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
+    });
+
+    it('closes on selection', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+
+      render(<Date {...requiredProps} />);
+      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByLabelText(today));
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveValue('2021-04-14');
+    });
   });
 
   describe('id API', () => {

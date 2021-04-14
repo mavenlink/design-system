@@ -104,6 +104,7 @@ export default function Date(props) {
 
   function onCalendarChange(newDate) {
     setValue(newDate);
+    setExpanded(false);
   }
 
   useEffect(() => {
