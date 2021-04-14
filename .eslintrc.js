@@ -30,7 +30,7 @@ module.exports = {
     files: [
       '.eslintrc.js',
       '.stylintrc.js',
-      'jest.config.js',
+      '*.config.js',
     ],
     rules: {
       'import/no-commonjs': 'off',
