@@ -109,11 +109,23 @@ describe('src/components/date/date.test.jsx', () => {
 
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.queryByText(today)).not.toBeInTheDocument();
+
+      userEvent.type(screen.getByLabelText('Test label'), '{enter}');
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
     });
 
     it('is false', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+      });
+
       render(<Date {...requiredProps} readOnly={false} />);
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly');
+
+      userEvent.tab();
+      userEvent.type(screen.getByLabelText('Test label'), '{enter}', { skipClick: true });
+      expect(screen.getByText(today)).toBeInTheDocument();
     });
   });
 

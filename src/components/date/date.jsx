@@ -93,6 +93,11 @@ export default function Date(props) {
     setExpanded(true);
   }
 
+  function onInputKeyDown(event) {
+    if (props.readOnly) return;
+    if (event.key === 'Enter') setExpanded(true);
+  }
+
   function onIconPress() {
     setExpanded(!expanded);
   }
@@ -132,6 +137,7 @@ export default function Date(props) {
           min={props.min}
           onChange={onInputChange}
           onClick={onInputClick}
+          onKeyDown={onInputKeyDown}
           readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}
