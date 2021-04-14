@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.64.0
+- feat(design-patterns): add various page patterns: table, form, hybrid
+
 ## v0.63.1
 - fix(custom-field-input-date): does not offset value when a date with time info is given with the timezone
 

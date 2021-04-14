@@ -1,5 +1,3 @@
-/* eslint-disable import/no-commonjs */
-
 const fs = require('fs');
 const path = require('path');
 const webpackConfig = require('./styleguide/webpack.config.js');
@@ -7,6 +5,7 @@ const webpackConfig = require('./styleguide/webpack.config.js');
 module.exports = {
   assetsDir: [
     path.join(__dirname, 'styleguide/assets'),
+    path.join(__dirname, 'pages'),
     './node_modules/msw/lib/iife',
   ],
   exampleMode: 'expand',
@@ -80,12 +79,26 @@ module.exports = {
     },
     {
       name: 'Design Patterns',
-      sections: [
-        {
-          name: 'Basic Page Patterns',
-          content: path.join(__dirname, 'styleguide/content/design-patterns/basic-page-spacing.md'),
-        },
-      ],
+      sections: [{
+        name: 'Basic Page Patterns',
+        content: path.join(__dirname, 'pages/design-patterns/basic-page-spacing.md'),
+      }, {
+        name: 'Page Patterns',
+        content: path.join(__dirname, 'pages/design-patterns/pages/index.md'),
+        sections: [{
+          name: 'Table Page Type',
+          content: path.join(__dirname, 'pages/design-patterns/pages/table-type.md'),
+        }, {
+          name: 'Form Page Type',
+          content: path.join(__dirname, 'pages/design-patterns/pages/form-type.md'),
+        }, {
+          name: 'Form/Table Hybrid Page Type',
+          content: path.join(__dirname, 'pages/design-patterns/pages/hybrid-type.md'),
+        }, {
+          name: 'Project View Page Type',
+          content: path.join(__dirname, 'pages/design-patterns/pages/project-view-type.md'),
+        }],
+      }],
     },
   ],
   skipComponentsWithoutExample: true,
@@ -100,7 +113,7 @@ module.exports = {
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
-  styles: path.resolve(__dirname, './styleguide.config.styles.js'),
+  styles: path.resolve(__dirname, './styleguide.styles.config.js'),
   template: {
     favicon: 'favicon.ico',
     head: {
