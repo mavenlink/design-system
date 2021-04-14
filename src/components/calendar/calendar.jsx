@@ -254,7 +254,7 @@ function Calendar(props) {
     const sameDateActiveDate = date === activeDate.getDate() && dateMonth === activeDate.getMonth();
     const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
     const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
-    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : null;
+    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : -1;
     const epoch = iterator.getTime();
 
     function onCellFocus(event) {
