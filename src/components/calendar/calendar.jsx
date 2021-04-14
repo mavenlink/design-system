@@ -351,6 +351,7 @@ function Calendar(props) {
 }
 
 Calendar.propTypes = {
+  /** The selected date in full-date format (i.e. yyyy-mm-dd). Defaults to today. */
   value: PropTypes.string,
   onDateSelected: PropTypes.func,
 };
