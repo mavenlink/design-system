@@ -63,6 +63,19 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.queryByText(today)).not.toBeInTheDocument();
       expect(screen.getByLabelText('Test label')).toHaveValue('2021-04-14');
     });
+
+    it('closes on blur', () => {
+      const today = (new window.Date()).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+      });
+
+      render(<Date {...requiredProps} />);
+      userEvent.click(screen.getByTitle('Test label calendar button'));
+      expect(screen.getByText(today)).toBeInTheDocument();
+      userEvent.click(document.body);
+      expect(screen.queryByText(today)).not.toBeInTheDocument();
+    });
   });
 
   describe('id API', () => {

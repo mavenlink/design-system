@@ -11,6 +11,7 @@ import Calendar from '../calendar/calendar.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
+import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './date.css';
 
 /* eslint-disable react/prop-types */
@@ -106,6 +107,8 @@ export default function Date(props) {
     setValue(newDate);
     setExpanded(false);
   }
+
+  useDropdownClose(containerRef, expanded, () => setExpanded(false));
 
   useEffect(() => {
     setValidationMessage(props.validationMessage);
