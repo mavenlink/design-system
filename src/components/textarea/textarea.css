@@ -9,7 +9,7 @@
   font: var(--mds-type-content);
   height: var(--spacing-x-large);
   margin: 0;
-  padding: 0 var(--spacing-x-large) 0 var(--spacing-medium);
+  padding: var(--spacing-small) var(--spacing-x-large) 0 var(--spacing-medium);
   width: 100%;
 }
 
@@ -26,15 +26,11 @@
   pointer-events: none;
   position: absolute;
   right: 6px;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
 }
 
 .invalid-textarea {
   composes: textarea;
-  border-color: var(--mds-red-100);
-}
-
-.invalid-textarea:hover {
   border-color: var(--mds-red-100);
 }

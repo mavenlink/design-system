@@ -2,7 +2,6 @@ import React, {
   createRef,
 } from 'react';
 import {
-  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -103,8 +102,14 @@ describe('Textarea', () => {
   describe('onBlur API', () => {
     it('sets the onblur handler', () => {
       const onBlurSpy = jest.fn();
-      render(<Textarea {...requiredProps} onBlur={onBlurSpy} />);
-      fireEvent.blur(screen.getByLabelText('the label'));
+      render(
+        <React.Fragment>
+          <Textarea {...requiredProps} onBlur={onBlurSpy} />
+          <span>Test Text</span>
+        </React.Fragment>,
+      );
+      userEvent.click(screen.getByLabelText('the label'));
+      userEvent.click(screen.getByText('Test Text'));
       expect(onBlurSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -113,8 +118,8 @@ describe('Textarea', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
       render(<Textarea {...requiredProps} onChange={onChangeSpy} />);
-      fireEvent.change(screen.getByLabelText('the label'), { target: { value: 'new value' } });
-      expect(onChangeSpy.mock.calls.length).toEqual(1);
+      userEvent.type(screen.getByLabelText('the label'), 'new value');
+      expect(onChangeSpy.mock.calls.length).toEqual(9);
     });
   });
 
@@ -145,30 +150,14 @@ describe('Textarea', () => {
       render(<Textarea {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeRequired();
       expect(screen.getByLabelText('the label')).toBeInvalid();
+      expect(screen.queryByText('Constraints not satisfied')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
     });
 
     it('can be unset', () => {
       render(<Textarea {...requiredProps} required={false} />);
       expect(screen.getByLabelText('the label')).not.toBeRequired();
       expect(screen.getByLabelText('the label')).toBeValid();
-    });
-
-    it('is invalid on mount but does not have an error message', () => {
-      render(<Textarea {...requiredProps} required={true} />);
-      expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
-    });
-
-    it('is invalid after typing', async () => {
-      render(<Textarea {...requiredProps} required={true} />);
-      userEvent.type(screen.getByLabelText('the label'), 'a');
-      expect(screen.getByLabelText('the label')).toHaveValue('a');
-      expect(screen.getByLabelText('the label')).toBeValid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
-      userEvent.type(screen.getByLabelText('the label'), '{backspace}');
-      expect(screen.getByLabelText('the label')).toHaveValue('');
-      expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
     });
 
     it('is invalid after tabbing through', async () => {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
-  useEffect,
+  useLayoutEffect,
   useRef,
   useImperativeHandle,
 } from 'react';
@@ -43,11 +43,10 @@ const Textarea = forwardRef(function Textarea({
   }
 
   function changeHandler(event) {
-    validate();
     onChange(event);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!mounted.current) return;
 
     textareaRef.current.value = value || '';
