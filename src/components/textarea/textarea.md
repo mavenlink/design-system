@@ -48,7 +48,7 @@ function TestComponent() {
     <React.Fragment>
       <Textarea onChange={changeHandler} ref={ref} id="ex-6" label="Complete usage example (with async loaded value)" value={remoteValue} />
       <div>Dirty: {ref.current ? ref.current.dirty.toString() : ''}</div>
-      <div>Value: {componentValue.replaceAll('\n', '\\n')}</div>
+      <div>Value: {componentValue.replaceAll ? componentValue.replaceAll('\n', '\\n') : ''}</div>
     </React.Fragment>
   )
 }
