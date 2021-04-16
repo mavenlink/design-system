@@ -156,6 +156,10 @@ const Date = forwardRef(function Date(props, ref) {
   }, [value]);
 
   useImperativeHandle(ref, () => ({
+    get dirty() {
+      const providedValue = props.value;
+      return providedValue !== this.value;
+    },
     id: props.id,
     name: props.name,
     get value() {

@@ -54,6 +54,7 @@ exports[`src/components/date/date.test.jsx has defaults 1`] = `
 
 exports[`src/components/date/date.test.jsx has defaults 2`] = `
 Object {
+  "dirty": false,
   "id": "test-id",
   "name": "test_name",
   "value": undefined,

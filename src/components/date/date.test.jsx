@@ -164,6 +164,18 @@ describe('src/components/date/date.test.jsx', () => {
     });
   });
 
+  describe('dirty API', () => {
+    it('is a boolean', () => {
+      const ref = createRef();
+      const { rerender } = render(<Date {...requiredProps} ref={ref} value="2020-01-01" />);
+      expect(ref.current.dirty).toBe(false);
+      userEvent.type(screen.getByLabelText('Test label'), '2021-01-01');
+      expect(ref.current.dirty).toBe(true);
+      rerender(<Date {...requiredProps} ref={ref} value="2021-01-01" />);
+      expect(ref.current.dirty).toBe(false);
+    });
+  });
+
   describe('id API', () => {
     it('is a string', () => {
       const ref = createRef();
