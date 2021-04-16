@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, {
+  forwardRef,
   useEffect,
   useLayoutEffect,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -61,7 +63,7 @@ function fromFullDateFormat(string) {
   return date;
 }
 
-export default function Date(props) {
+const Date = forwardRef(function Date(props, ref) {
   const containerRef = useRef();
   const inputRef = useRef();
   const [active, setActive] = useState(false);
@@ -153,6 +155,14 @@ export default function Date(props) {
     inputRef.current.value = editing ? toFullDateFormat(value) : toDateStringFormat(value);
   }, [value]);
 
+  useImperativeHandle(ref, () => ({
+    id: props.id,
+    name: props.name,
+    get value() {
+      return toFullDateFormat(value);
+    },
+  }));
+
   return (
     <div
       className={classNames.layouts.container}
@@ -198,7 +208,7 @@ export default function Date(props) {
       )}
     </div>
   );
-}
+});
 
 Date.propTypes = {
   id: PropTypes.string.isRequired,
@@ -223,3 +233,5 @@ Date.defaultProps = {
   validationMessage: '',
   value: undefined,
 };
+
+export default Date;

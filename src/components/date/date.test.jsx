@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import {
   render,
   screen,
@@ -22,8 +24,10 @@ describe('src/components/date/date.test.jsx', () => {
   };
 
   it('has defaults', () => {
-    render(<Date {...requiredProps} />);
+    const ref = createRef();
+    render(<Date {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   it('validates when the component loses focus', () => {
@@ -162,8 +166,10 @@ describe('src/components/date/date.test.jsx', () => {
 
   describe('id API', () => {
     it('is a string', () => {
-      render(<Date {...requiredProps} id="unique-id" />);
+      const ref = createRef();
+      render(<Date {...requiredProps} id="unique-id" ref={ref} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'unique-id');
+      expect(ref.current.id).toBe('unique-id');
     });
   });
 
@@ -206,8 +212,10 @@ describe('src/components/date/date.test.jsx', () => {
 
   describe('name API', () => {
     it('is a string', () => {
-      render(<Date {...requiredProps} name="unique_name" />);
+      const ref = createRef();
+      render(<Date {...requiredProps} name="unique_name" ref={ref} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('name', 'unique_name');
+      expect(ref.current.name).toBe('unique_name');
     });
   });
 
@@ -292,11 +300,14 @@ describe('src/components/date/date.test.jsx', () => {
     it('is a full-date string', () => {
       const date1 = getLocaleDate(new window.Date('2020-04-20'));
       const date2 = getLocaleDate(new window.Date('2020-04-21'));
+      const ref = createRef();
 
-      const { rerender } = render(<Date {...requiredProps} value={date1.editableValue} />);
+      const { rerender } = render(<Date {...requiredProps} value={date1.editableValue} ref={ref} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
-      rerender(<Date {...requiredProps} value={date2.editableValue} />);
+      expect(ref.current.value).toBe(date1.editableValue);
+      rerender(<Date {...requiredProps} value={date2.editableValue} ref={ref} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(ref.current.value).toBe(date2.editableValue);
     });
   });
 });
