@@ -231,6 +231,25 @@ describe('src/components/date/date.test.jsx', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('is a function', () => {
+      const date = getLocaleDate(new window.Date());
+      const onChangeSpy = jest.fn();
+      const ref = createRef();
+
+      render(<Date {...requiredProps} onChange={onChangeSpy} ref={ref} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByLabelText(date.calendarDate));
+
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date.displayValue);
+      expect(onChangeSpy).toBeCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: date.editableValue,
+        }),
+      }));
+    });
+  });
+
   describe('readOnly API', () => {
     it('is true', () => {
       const today = (new window.Date()).toLocaleDateString(undefined, {

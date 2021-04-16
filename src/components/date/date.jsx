@@ -63,7 +63,9 @@ function fromFullDateFormat(string) {
   return date;
 }
 
-const Date = forwardRef(function Date(props, ref) {
+const Date = forwardRef(function Date(props, forwardedRef) {
+  const backupRef = useRef();
+  const ref = forwardedRef || backupRef;
   const containerRef = useRef();
   const inputRef = useRef();
   const [active, setActive] = useState(false);
@@ -142,6 +144,10 @@ const Date = forwardRef(function Date(props, ref) {
   useEffect(() => {
     setValue(fromFullDateFormat(props.value));
   }, [props.value]);
+
+  useEffect(() => {
+    if (props.onChange) props.onChange({ target: ref.current });
+  }, [value]);
 
   useLayoutEffect(() => {
     if (active) inputRef.current.focus();
@@ -222,6 +228,7 @@ Date.propTypes = {
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
@@ -232,6 +239,7 @@ Date.propTypes = {
 Date.defaultProps = {
   max: undefined,
   min: undefined,
+  onChange: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',
