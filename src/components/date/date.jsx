@@ -44,6 +44,10 @@ function ControlIcons(props) {
 }
 /* eslint-enable react/prop-types */
 
+function toDateStringFormat(date) {
+  return date ? date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }) : undefined;
+}
+
 function toFullDateFormat(date) {
   return date ? date.toISOString().slice(0, 10) : undefined;
 }
@@ -55,6 +59,7 @@ function fromFullDateFormat(string) {
 export default function Date(props) {
   const containerRef = useRef();
   const inputRef = useRef();
+  const [editing, setEditing] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(undefined);
@@ -91,6 +96,7 @@ export default function Date(props) {
 
   function onInputClick() {
     if (props.readOnly) return;
+    setEditing(true);
     setExpanded(true);
   }
 
@@ -106,6 +112,7 @@ export default function Date(props) {
 
   function onCalendarChange(newDate) {
     setValue(newDate);
+    setEditing(false);
     setExpanded(false);
   }
 
@@ -136,7 +143,7 @@ export default function Date(props) {
         <input
           aria-describedby={ids.validationMessage}
           className={classNames.input}
-          defaultValue={toFullDateFormat(value)}
+          defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
           id={ids.input}
           max={props.max}
           min={props.min}
@@ -146,7 +153,7 @@ export default function Date(props) {
           readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}
-          type="date"
+          type={editing ? 'date' : 'text'}
         />
         <ControlIcons
           label={props.label}

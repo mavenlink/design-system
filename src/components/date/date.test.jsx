@@ -56,12 +56,13 @@ describe('src/components/date/date.test.jsx', () => {
 
     it('closes on selection', () => {
       const today = (new window.Date()).toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+      const todayText = (new window.Date()).toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' });
 
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByTitle('Test label calendar button'));
       userEvent.click(screen.getByLabelText(today));
       expect(screen.queryByText(today)).not.toBeInTheDocument();
-      expect(screen.getByLabelText('Test label')).toHaveValue('2021-04-14');
+      expect(screen.getByLabelText('Test label')).toHaveValue(todayText);
     });
 
     it('closes on blur', () => {
@@ -88,6 +89,19 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByText(today)).toBeInTheDocument();
       userEvent.type(screen.getByLabelText('Test label'), '{esc}', { skipClick: true });
       expect(screen.queryByText(today)).not.toBeInTheDocument();
+    });
+  });
+
+  describe('input behavior', () => {
+    it('is a text input', () => {
+      render(<Date {...requiredProps} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
+    });
+
+    it('is a date input', () => {
+      render(<Date {...requiredProps} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
     });
   });
 
