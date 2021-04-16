@@ -11,6 +11,7 @@ import Date from './date.jsx';
 function getLocaleDate(date) {
   return {
     calendarDate: date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }),
+    calendarHeading: date.toLocaleDateString(undefined, { year: 'numeric', month: 'long' }),
     displayValue: date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }),
     editableValue: date.toISOString().slice(0, 10),
   };
@@ -43,66 +44,53 @@ describe('src/components/date/date.test.jsx', () => {
   });
 
   it('updates the calendar when the user types', async () => {
-    const localizedDate = (new window.Date('1999-01-01')).toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-    });
+    const date = getLocaleDate(new window.Date('1999-01-01'));
 
     render(<Date {...requiredProps} />);
     userEvent.type(screen.getByLabelText('Test label'), '1999-01-01');
-    expect(await screen.findByText(localizedDate)).toBeInTheDocument();
+    expect(await screen.findByText(date.calendarHeading)).toBeInTheDocument();
   });
 
   describe('calendar behavior', () => {
     it('toggles open/close', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByTitle('Test label calendar button'));
-      expect(screen.getByText(today)).toBeInTheDocument();
+      expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.click(screen.getByTitle('Test label calendar button'));
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 
     it('closes on selection', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
-      const todayText = (new window.Date()).toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByTitle('Test label calendar button'));
-      userEvent.click(screen.getByLabelText(today));
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
-      expect(screen.getByLabelText('Test label')).toHaveValue(todayText);
+      userEvent.click(screen.getByLabelText(today.calendarDate));
+      expect(screen.queryByText(today.calendarDate)).not.toBeInTheDocument();
+      expect(screen.getByLabelText('Test label')).toHaveValue(today.displayValue);
     });
 
     it('closes on blur', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByTitle('Test label calendar button'));
-      expect(screen.getByText(today)).toBeInTheDocument();
+      expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.click(document.body);
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
       expect(document.activeElement).not.toBe(screen.getByLabelText('Test label'));
     });
 
     it('closes on escape', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
       userEvent.type(screen.getByLabelText('Test label'), '');
-      expect(screen.getByText(today)).toBeInTheDocument();
+      expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.type(screen.getByLabelText('Test label'), '{esc}', { skipClick: true });
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 
     it('does not open the native calendar picker', () => {
@@ -252,33 +240,27 @@ describe('src/components/date/date.test.jsx', () => {
 
   describe('readOnly API', () => {
     it('is true', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} readOnly={true} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('readonly');
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
 
       userEvent.type(screen.getByLabelText('Test label'), '{space}');
-      expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 
     it('is false', () => {
-      const today = (new window.Date()).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-      });
+      const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} readOnly={false} />);
       expect(screen.getByLabelText('Test label')).not.toHaveAttribute('readonly');
 
       userEvent.tab();
       userEvent.type(screen.getByLabelText('Test label'), '{space}', { skipClick: true });
-      expect(screen.getByText(today)).toBeInTheDocument();
+      expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
     });
   });
 
