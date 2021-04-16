@@ -25,7 +25,7 @@ describe('src/components/date/date.test.jsx', () => {
     expect(document.body).toMatchSnapshot();
   });
 
-  it('validates on when the component loses focus', () => {
+  it('validates when the component loses focus', () => {
     render(<Date {...requiredProps} required={true} />);
     expect(screen.getByLabelText('Test label')).toBeRequired();
     expect(screen.getByText('(Required)')).toBeInTheDocument();
@@ -121,6 +121,19 @@ describe('src/components/date/date.test.jsx', () => {
         defaultPrevented: true,
         target: expect.anything(),
       }));
+    });
+
+    xit('updates the value between input types', () => {
+      const date1 = getLocaleDate(new window.Date('2020-01-01'));
+      const date2 = getLocaleDate(new window.Date('2020-01-02'));
+      render(<Date {...requiredProps} value="2020-01-03" />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByLabelText(date1.calendarDate));
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
+      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByLabelText(date2.calendarDate));
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
     });
   });
 

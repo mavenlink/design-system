@@ -45,7 +45,7 @@ function ControlIcons(props) {
 /* eslint-enable react/prop-types */
 
 function toDateStringFormat(date) {
-  return date ? date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }) : undefined;
+  return date ? date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }) : '';
 }
 
 function toFullDateFormat(date) {
@@ -144,6 +144,10 @@ export default function Date(props) {
   useLayoutEffect(() => {
     inputRef.current.setCustomValidity(validationMessage);
   }, [validationMessage]);
+
+  useLayoutEffect(() => {
+    inputRef.current.value = editing ? toFullDateFormat(value) : toDateStringFormat(value);
+  }, [value]);
 
   return (
     <div
