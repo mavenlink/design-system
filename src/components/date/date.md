@@ -27,7 +27,7 @@ In addition, it provides its own calendar popup for an easy-to-use visual experi
 ```jsx
 import Date from '@mavenlink/design-system/src/components/date/date.jsx';
 
-<Date id="example-1" label="Example date field" name="example" required />
+<Date id="example-1" label="Example date field" name="example" placeholder="YYYY-MM-DD" required />
 ```
 
 ```jsx

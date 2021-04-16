@@ -238,6 +238,13 @@ describe('src/components/date/date.test.jsx', () => {
     });
   });
 
+  describe('placeholder API', () => {
+    it('is a string', () => {
+      render(<Date {...requiredProps} placeholder="Unique placeholder" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('placeholder', 'Unique placeholder');
+    });
+  });
+
   describe('readOnly API', () => {
     it('is true', () => {
       const today = getLocaleDate(new window.Date());

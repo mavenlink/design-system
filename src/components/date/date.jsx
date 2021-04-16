@@ -199,6 +199,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
           onChange={onInputChange}
           onClick={onInputClick}
           onKeyDown={onInputKeyDown}
+          placeholder={props.placeholder}
           readOnly={props.readOnly}
           ref={inputRef}
           required={props.required}
@@ -229,6 +230,7 @@ Date.propTypes = {
   min: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
@@ -240,6 +242,7 @@ Date.defaultProps = {
   max: undefined,
   min: undefined,
   onChange: undefined,
+  placeholder: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',
