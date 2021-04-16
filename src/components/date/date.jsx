@@ -72,7 +72,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const [value, setValue] = useState(undefined);
+  const [value, setValue] = useState(fromFullDateFormat(props.value));
   const classNames = {
     layouts: {
       container: styles.container,
