@@ -29,8 +29,7 @@ module.exports = {
     },
   }, {
     files: [
-      '.eslintrc.js',
-      '.stylintrc.js',
+      '.*.js',
       '*.config.js',
     ],
     rules: {
