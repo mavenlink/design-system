@@ -12,10 +12,8 @@
   padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
 }
 
-.input::-webkit-inner-spin-button,
 .input::-webkit-calendar-picker-indicator {
   display: none;
-  -webkit-appearance: none;
 }
 
 .invalid-input {
