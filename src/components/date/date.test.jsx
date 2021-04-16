@@ -150,6 +150,12 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
       expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
     });
+
+    it('starts editing on Space key', () => {
+      render(<Date {...requiredProps} />);
+      userEvent.type(screen.getByLabelText('Test label'), ' ');
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+    });
   });
 
   describe('dirty API', () => {

@@ -116,6 +116,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
     if (event.key === ' ') {
       event.preventDefault();
+      setEditing(true);
       setExpanded(true);
     }
 
