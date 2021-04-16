@@ -12,6 +12,7 @@ import FormControl from '../form-control/form-control.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import useMounted from '../../hooks/use-mounted.js';
 import styles from './date.css';
 
 /* eslint-disable react/prop-types */
@@ -57,6 +58,7 @@ function fromFullDateFormat(string) {
 }
 
 export default function Date(props) {
+  const mounted = useMounted();
   const containerRef = useRef();
   const inputRef = useRef();
   const [editing, setEditing] = useState(false);
@@ -125,6 +127,10 @@ export default function Date(props) {
   useEffect(() => {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
+
+  useLayoutEffect(() => {
+    if (mounted.current) inputRef.current.focus();
+  }, [editing]);
 
   useLayoutEffect(() => {
     inputRef.current.setCustomValidity(validationMessage);

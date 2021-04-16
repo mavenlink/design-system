@@ -133,6 +133,7 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+      expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
     });
 
     it('updates the value between input types', () => {
@@ -142,6 +143,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.type(screen.getByLabelText('Test label'), date1.editableValue);
       userEvent.click(screen.getByLabelText(date2.calendarDate));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
     });
   });
 
