@@ -175,6 +175,7 @@ export default function Date(props) {
           key={`${ids.input}-${editing ? 'editing' : 'display'}`}
           max={props.max}
           min={props.min}
+          name={props.name}
           onChange={onInputChange}
           onClick={onInputClick}
           onKeyDown={onInputKeyDown}
@@ -206,6 +207,7 @@ Date.propTypes = {
   max: PropTypes.string,
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
+  name: PropTypes.string.isRequired,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,

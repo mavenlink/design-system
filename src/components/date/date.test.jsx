@@ -18,6 +18,7 @@ describe('src/components/date/date.test.jsx', () => {
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
+    name: 'test_name',
   };
 
   it('has defaults', () => {
@@ -200,6 +201,13 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+    });
+  });
+
+  describe('name API', () => {
+    it('is a string', () => {
+      render(<Date {...requiredProps} name="unique_name" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('name', 'unique_name');
     });
   });
 
