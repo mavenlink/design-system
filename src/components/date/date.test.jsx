@@ -5,7 +5,6 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Date from './date.jsx';
-import IconButton from '../icon-button/icon-button';
 
 describe('src/components/date/date.test.jsx', () => {
   const requiredProps = {

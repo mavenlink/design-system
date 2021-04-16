@@ -24,6 +24,7 @@ module.exports = {
     rules: {
       'jsx-a11y/label-has-for': 'off',
       'jsx-a11y/no-noninteractive-tabindex': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
       'max-len': 'off',
     },
   }, {
