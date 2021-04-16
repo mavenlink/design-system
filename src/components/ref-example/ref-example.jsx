@@ -27,12 +27,16 @@ const RefExample = forwardRef(function RefExample(props, ref) {
     <div>
       {props.children({ onChange })}
       <table>
-        <tr>
-          {refKeys.map(key => <th key={key}>{key}</th>)}
-        </tr>
-        <tr>
-          {refKeys.map(key => <td key={key}>{JSON.stringify(ref.current[key])}</td>)}
-        </tr>
+        <thead>
+          <tr>
+            {refKeys.map(key => <th key={key}>{key}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {refKeys.map(key => <td key={key}>{JSON.stringify(ref.current[key])}</td>)}
+          </tr>
+        </tbody>
       </table>
     </div>
   );
