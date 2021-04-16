@@ -33,7 +33,7 @@ import Date from '@mavenlink/design-system/src/components/date/date.jsx';
 ```jsx
 import Date from '@mavenlink/design-system/src/components/date/date.jsx';
 
-<Date id="example-2" label="Read-only date field" readOnly />
+<Date id="example-2" label="Read-only date field" readOnly value="2020-06-06" />
 ```
 
 ```jsx

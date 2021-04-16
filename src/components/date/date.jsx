@@ -53,7 +53,12 @@ function toFullDateFormat(date) {
 }
 
 function fromFullDateFormat(string) {
-  return new window.Date(`${string}T00:00:00`);
+  const date = new window.Date(`${string}T00:00:00`);
+  if (date.toDateString() === 'Invalid Date') {
+    return undefined;
+  }
+
+  return date;
 }
 
 export default function Date(props) {
@@ -89,12 +94,7 @@ export default function Date(props) {
   }
 
   function onInputChange() {
-    const newDate = fromFullDateFormat(inputRef.current.value);
-    if (newDate.toDateString() === 'Invalid Date') {
-      setValue(undefined);
-    } else {
-      setValue(newDate);
-    }
+    setValue(fromFullDateFormat(inputRef.current.value));
   }
 
   function onInputClick(event) {
@@ -136,6 +136,10 @@ export default function Date(props) {
   useEffect(() => {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
+
+  useEffect(() => {
+    setValue(fromFullDateFormat(props.value));
+  }, [props.value]);
 
   useLayoutEffect(() => {
     if (active) inputRef.current.focus();
@@ -205,6 +209,8 @@ Date.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
+  /** A date in full-date format (i.e. yyyy-mm-dd) */
+  value: PropTypes.string,
 };
 
 Date.defaultProps = {
@@ -213,4 +219,5 @@ Date.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
+  value: undefined,
 };

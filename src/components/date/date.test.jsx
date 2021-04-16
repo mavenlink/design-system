@@ -280,4 +280,16 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
     });
   });
+
+  describe('value API', () => {
+    it('is a full-date string', () => {
+      const date1 = getLocaleDate(new window.Date('2020-04-20'));
+      const date2 = getLocaleDate(new window.Date('2020-04-21'));
+
+      const { rerender } = render(<Date {...requiredProps} value={date1.editableValue} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
+      rerender(<Date {...requiredProps} value={date2.editableValue} />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+    });
+  });
 });
