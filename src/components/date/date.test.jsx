@@ -84,6 +84,7 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByText(today)).toBeInTheDocument();
       userEvent.click(document.body);
       expect(screen.queryByText(today)).not.toBeInTheDocument();
+      expect(document.activeElement).not.toBe(screen.getByLabelText('Test label'));
     });
 
     it('closes on escape', () => {
@@ -124,16 +125,15 @@ describe('src/components/date/date.test.jsx', () => {
   });
 
   describe('input behavior', () => {
-    it('is a text input', () => {
+    it('toggles between input types', () => {
       render(<Date {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
-    });
-
-    it('is a date input', () => {
-      render(<Date {...requiredProps} />);
+      expect(document.activeElement).not.toBe(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
+      userEvent.click(document.body);
+      expect(document.activeElement).not.toBe(screen.getByLabelText('Test label'));
     });
 
     it('updates the value between input types', () => {

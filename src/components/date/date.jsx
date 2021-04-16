@@ -12,7 +12,6 @@ import FormControl from '../form-control/form-control.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import useMounted from '../../hooks/use-mounted.js';
 import styles from './date.css';
 
 /* eslint-disable react/prop-types */
@@ -58,9 +57,9 @@ function fromFullDateFormat(string) {
 }
 
 export default function Date(props) {
-  const mounted = useMounted();
   const containerRef = useRef();
   const inputRef = useRef();
+  const [active, setActive] = useState(false);
   const [editing, setEditing] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
@@ -85,6 +84,8 @@ export default function Date(props) {
     // If the native node is still invalid then re-render with the native validation messages.
     inputRef.current.setCustomValidity('');
     setValidationMessage(inputRef.current.validationMessage);
+    setActive(false);
+    setEditing(false);
   }
 
   function onInputChange() {
@@ -99,20 +100,28 @@ export default function Date(props) {
   function onInputClick(event) {
     if (props.readOnly) return;
     event.preventDefault();
+    setActive(true);
     setEditing(true);
     setExpanded(true);
   }
 
   function onInputKeyDown(event) {
+    setActive(true);
+
     if (props.readOnly) return;
+
     if (event.key === ' ') {
       event.preventDefault();
       setExpanded(true);
     }
-    if (event.key === 'Escape') setExpanded(false);
+
+    if (event.key === 'Escape') {
+      setExpanded(false);
+    }
   }
 
   function onIconPress() {
+    setActive(true);
     setExpanded(!expanded);
   }
 
@@ -129,7 +138,7 @@ export default function Date(props) {
   }, [props.validationMessage]);
 
   useLayoutEffect(() => {
-    if (mounted.current) inputRef.current.focus();
+    if (active) inputRef.current.focus();
   }, [editing]);
 
   useLayoutEffect(() => {
