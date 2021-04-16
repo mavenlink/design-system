@@ -43,3 +43,22 @@ import Date from '@mavenlink/design-system/src/components/date/date.jsx';
 ```
 
 ## Ref API Example
+
+```jsx
+import Date from '@mavenlink/design-system/src/components/date/date.jsx';
+import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+
+const ref = React.createRef();
+
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <Date 
+      id="example-1" 
+      label="Example date field" 
+      name="example" 
+      onChange={onChange} 
+      ref={ref}
+    />
+  )}
+</RefExample>
+```
