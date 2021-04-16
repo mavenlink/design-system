@@ -1,68 +1,72 @@
 A form control to be specifically used for custom field date types. 
-It composes the MDS Date component. 
+It composes the MDS Date component.
 
-##### Basic usage:
+## Props API Examples
 
-```jsx
-const ref = React.createRef();
-const onChange = function() { console.log(`
-value: ${ref.current.value}
-dirty: ${ref.current.dirty}
-name: ${ref.current.name}
-id: ${ref.current.id}`
-)};
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-    id="my-birthday-1"
-    label="Andre's Birthday"
-    value="1992-05-10"
-    name="custom-field-1"
-    ref={ref}
-    onChange={onChange}
+  id="tbd-date-1"
+  label="Pick a date!"
+  name="date-tbd"
+  placeholder="Please select a date"
 />
 ```
 
 ```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
 <CustomFieldInputDate
     id="my-birthday-2"
     label="Greyson's Birthday"
-    value="08/20/2020"
-    name="custom-field-2"
+    value="2020-08-20"
+    name="birthday[greyson]"
 />
 ```
 
-##### Disabled state:
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
+<CustomFieldInputDate
+    id="independence-day"
+    label="The Fourth"
+    value="1776-07-04"
+    name="independence_day"
+    readOnly
+/>
+```
 
 ```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
 <CustomFieldInputDate
     id="my-birthday-4"
     label="Juanca's Birthday"
-    value="03/03/1990"
-    name="custom-field-3"
-    disabled
+    value="1990-03-04"
+    name="birthday[juanca]"
+    errorText="Not Juanca's birthday."
 />
 ```
 
+## Ref API Example
 
-##### Error state:
+```jsx
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
 
-```js
-<CustomFieldInputDate
-    id="my-birthday-4"
-    label="Juanca's Birthday Error"
-    value="03/03/1990"
-    name="custom-field-4"
-    errorText="Error help."
-/>
-```
+const ref = React.createRef();
 
-##### Placeholder:
-
-```js
-<CustomFieldInputDate
-    id="tbd-date-1"
-    label="Pick a date!"
-    name="date-tbd"
-    placeholder="Please select a date"
-/>
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <CustomFieldInputDate
+      id="my-birthday-1"
+      label="Andre's Birthday"
+      value="1992-05-10"
+      name="birthday[andre]"
+      ref={ref}
+      onChange={onChange}
+    />
+  )}
+</RefExample>
 ```

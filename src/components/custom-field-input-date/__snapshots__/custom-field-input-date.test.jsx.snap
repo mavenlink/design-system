@@ -3,9 +3,10 @@
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="container"
+    >
       <div
-        class="date-input"
         role="presentation"
       >
         <label
@@ -19,15 +20,15 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           class="control-container"
         >
           <input
-            autocomplete="on"
+            aria-describedby="field-dateHint"
             class="input"
             id="field-date"
-            style="--numIcon: 1;"
+            name="field-id"
             type="text"
             value=""
           />
           <div
-            class="icon-container"
+            class="icons"
           >
             <svg
               class="button"
@@ -56,6 +57,6 @@ Object {
   "dirty": false,
   "id": "field-date",
   "name": "field-id",
-  "value": "",
+  "value": undefined,
 }
 `;
