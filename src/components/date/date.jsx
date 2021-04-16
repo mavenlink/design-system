@@ -149,6 +149,7 @@ export default function Date(props) {
           className={classNames.input}
           defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
           id={ids.input}
+          key={`${ids.input}-${editing ? 'editing' : 'display'}`}
           max={props.max}
           min={props.min}
           onChange={onInputChange}

@@ -6,6 +6,14 @@ import {
 import userEvent from '@testing-library/user-event';
 import Date from './date.jsx';
 
+function getLocaleDate(date) {
+  return {
+    calendarDate: date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }),
+    displayValue: date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }),
+    editableValue: date.toISOString().slice(0, 10),
+  };
+}
+
 describe('src/components/date/date.test.jsx', () => {
   const requiredProps = {
     id: 'test-id',
@@ -125,6 +133,15 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} />);
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+    });
+
+    it('updates the value between input types', () => {
+      const date1 = getLocaleDate(new window.Date('2020-01-01'));
+      const date2 = getLocaleDate(new window.Date('2020-01-02'));
+      render(<Date {...requiredProps} />);
+      userEvent.type(screen.getByLabelText('Test label'), date1.editableValue);
+      userEvent.click(screen.getByLabelText(date2.calendarDate));
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
     });
   });
 
