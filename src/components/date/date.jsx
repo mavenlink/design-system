@@ -94,15 +94,19 @@ export default function Date(props) {
     }
   }
 
-  function onInputClick() {
+  function onInputClick(event) {
     if (props.readOnly) return;
+    event.preventDefault();
     setEditing(true);
     setExpanded(true);
   }
 
   function onInputKeyDown(event) {
     if (props.readOnly) return;
-    if (event.key === 'Enter') setExpanded(true);
+    if (event.key === ' ') {
+      event.preventDefault();
+      setExpanded(true);
+    }
     if (event.key === 'Escape') setExpanded(false);
   }
 

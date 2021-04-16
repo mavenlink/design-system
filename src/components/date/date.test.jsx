@@ -5,6 +5,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Date from './date.jsx';
+import IconButton from '../icon-button/icon-button';
 
 describe('src/components/date/date.test.jsx', () => {
   const requiredProps = {
@@ -89,6 +90,29 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByText(today)).toBeInTheDocument();
       userEvent.type(screen.getByLabelText('Test label'), '{esc}', { skipClick: true });
       expect(screen.queryByText(today)).not.toBeInTheDocument();
+    });
+
+    it('does not open the native calendar picker', () => {
+      const onClickSpy = jest.fn(event => event.persist());
+      const onKeyDownSpy = jest.fn(event => event.persist());
+
+      render((
+        <div onClick={onClickSpy} onKeyDown={onKeyDownSpy}>
+          <Date {...requiredProps} />
+        </div>
+      ));
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), ' ');
+
+      expect(onClickSpy).toBeCalledWith(expect.objectContaining({
+        defaultPrevented: true,
+        target: expect.anything(),
+      }));
+      expect(onKeyDownSpy).toBeCalledWith(expect.objectContaining({
+        defaultPrevented: true,
+        target: expect.anything(),
+      }));
     });
   });
 
