@@ -69,7 +69,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   const containerRef = useRef();
   const inputRef = useRef();
   const [active, setActive] = useState(false);
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(undefined);
@@ -94,7 +94,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     inputRef.current.setCustomValidity('');
     setValidationMessage(inputRef.current.validationMessage);
     setActive(false);
-    setEditing(false);
+    if (!inputRef.current.validationMessage) setEditing(false);
   }
 
   function onInputChange() {
@@ -139,6 +139,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   useDropdownClose(containerRef, expanded, () => setExpanded(false));
 
   useEffect(() => {
+    setEditing(!!props.validationMessage);
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
 

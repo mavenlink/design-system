@@ -156,6 +156,19 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.type(screen.getByLabelText('Test label'), ' ');
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
     });
+
+    it('stays editing on invalid value', () => {
+      render(<Date {...requiredProps} validationMessage="Do that again." required />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+    });
   });
 
   describe('dirty API', () => {
@@ -300,11 +313,13 @@ describe('src/components/date/date.test.jsx', () => {
   describe('validationMessage API', () => {
     it('is a string', () => {
       const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
       expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
 
       rerender(<Date {...requiredProps} validationMessage="This is a new provided error." />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('This is a new provided error.');
       expect(screen.getByTitle('This is a new provided error.')).toBeInTheDocument();
@@ -312,11 +327,13 @@ describe('src/components/date/date.test.jsx', () => {
 
     it('is cleared', () => {
       const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
       expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
 
       rerender(<Date {...requiredProps} validationMessage="" />);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
     });
