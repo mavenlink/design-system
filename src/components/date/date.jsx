@@ -148,7 +148,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   }, [props.value]);
 
   useEffect(() => {
-    if (props.onChange) props.onChange({ target: ref.current });
+    if (active && props.onChange) props.onChange({ target: ref.current });
   }, [value]);
 
   useLayoutEffect(() => {
