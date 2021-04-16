@@ -22,8 +22,10 @@ import useMounted from '../../hooks/use-mounted.js';
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
+  const listBoxRef = useRef();
   const inputRef = useRef();
   const backupRef = useRef();
   const selfRef = ref || backupRef;
@@ -121,12 +123,22 @@ const Select = forwardRef(function Select(props, ref) {
   useEffect(() => {
     if (!mounted.current) return;
 
-    validate();
+    if (hasBeenBlurred) {
+      validate();
+    }
 
     if (props.value === value) return;
 
     props.onChange({ target: selfRef.current });
   }, [value]);
+
+  function handleBlur(event) {
+    if (!(listBoxRef.current && listBoxRef.current.contains(event.relatedTarget))) {
+      validate();
+    }
+
+    setBeenBlurred(true);
+  }
 
   useEffect(function updateOptionVisibility() {
     if (searchValue) {
@@ -171,6 +183,7 @@ const Select = forwardRef(function Select(props, ref) {
         required={props.required}
         errorText={validationMessage}
         value={searchValue || defaultValue}
+        onBlur={handleBlur}
         inputRole={'combobox'}
         ariaProps={{
           autocomplete: 'none',
@@ -187,6 +200,7 @@ const Select = forwardRef(function Select(props, ref) {
             id={`${props.id}-single-choice-listbox`}
             labelledBy={`${props.id}-label`}
             onChange={onSelectionChange}
+            ref={listBoxRef}
             refs={props.listOptionRefs}
             value={value}
           >
