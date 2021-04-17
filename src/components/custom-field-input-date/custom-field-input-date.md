@@ -18,10 +18,10 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-    id="my-birthday-2"
-    label="Greyson's Birthday"
-    value="2020-08-20"
-    name="birthday[greyson]"
+  id="my-birthday-2"
+  label="Greyson's Birthday"
+  name="birthday[greyson]"
+  value="2020-08-20"
 />
 ```
 
@@ -29,11 +29,11 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-    id="independence-day"
-    label="The Fourth"
-    value="1776-07-04"
-    name="independence_day"
-    readOnly
+  id="independence-day"
+  label="The Fourth"
+  name="independence_day"
+  readOnly
+  value="1776-07-04"
 />
 ```
 
@@ -41,11 +41,11 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-    id="my-birthday-4"
-    label="Juanca's Birthday"
-    value="1990-03-04"
-    name="birthday[juanca]"
-    errorText="Not Juanca's birthday."
+  errorText="Not Juanca's birthday."
+  id="my-birthday-4"
+  label="Juanca's Birthday"
+  name="birthday[juanca]"
+  value="1990-03-04"
 />
 ```
 
@@ -62,10 +62,10 @@ const ref = React.createRef();
     <CustomFieldInputDate
       id="my-birthday-1"
       label="Andre's Birthday"
-      value="1992-05-10"
       name="birthday[andre]"
-      ref={ref}
       onChange={onChange}
+      ref={ref}
+      value="1992-05-10"
     />
   )}
 </RefExample>
