@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(Textarea): Implement new `Textarea` component, with new mock handlers in styleguidist
-  - Minor: When required, the select should not show error text on initial render
 </details>
+
+## v0.65.0
+  - feat(Textarea): Implement new `Textarea` component, with new mock handlers in styleguidist
+  - fix(Select): When required, the select should not show error text on initial render
 
 ## v0.64.1
 - fix(select): Only shows errors after blur
