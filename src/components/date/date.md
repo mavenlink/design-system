@@ -1,26 +1,4 @@
-## Purpose
-
-A form control for interacting with date data.
-The component leverages native date controls for a familiar date-typing experience within each browser.
-In addition, it provides its own calendar popup for an easy-to-use visual experience to set a date.
-
-## Keyboard Support
-
-| Key | Focused element | Function |
-| --- | --------------- | -------- |
-|     |                 |          |
-
-## Label Support
-
-| Focused element | Screen reader |
-| --------------- | ------------- |
-|                 |               |
-
-## Test queries
-
-| Query | Element |
-| ----- | ------- |
-|       |         |
+For design and accessibility functionality, see [Form Controls > Date documentation](https://www.notion.so/Date-eb1b5fc8ce324cc39eaaa28772d055da).
 
 ## Props API Examples
 
