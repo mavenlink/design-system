@@ -53,6 +53,7 @@ function TestComponent() {
       label="Complex Example 1"
       name="Example 3"
       placeholder="This is a single choice field"
+      required
       listOptionRefs={listOptionRefs}
     >
       {listOptionElements}
