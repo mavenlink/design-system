@@ -11,7 +11,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   const requiredProps = {
     id: 'field-date',
     label: 'Field Date',
-    name: 'field-id',
+    name: 'field-name',
   };
 
   const changeValue = (getInputElement, value) => {

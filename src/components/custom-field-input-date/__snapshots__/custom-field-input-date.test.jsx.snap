@@ -23,7 +23,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
             aria-describedby="field-dateHint"
             class="input"
             id="field-date"
-            name="field-id"
+            name="field-name"
             type="text"
             value=""
           />
@@ -56,7 +56,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
 Object {
   "dirty": false,
   "id": "field-date",
-  "name": "field-id",
+  "name": "field-name",
   "value": undefined,
 }
 `;
