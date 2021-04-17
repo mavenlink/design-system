@@ -53,7 +53,7 @@ const ref = React.createRef();
 <RefExample ref={ref}>
   {({ onChange }) => (
     <Date 
-      id="example-1" 
+      id="example-5" 
       label="Example date field" 
       name="example" 
       onChange={onChange} 
