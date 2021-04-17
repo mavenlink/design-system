@@ -45,7 +45,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('has a name attribute; returns name prop', () => {
       const ref = createRef();
       render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
-      expect(ref.current.name).toEqual('field-id');
+      expect(ref.current.name).toEqual('field-name');
     });
 
     it('has a value attribute; returns the value in yyyy-mm-dd format', () => {
