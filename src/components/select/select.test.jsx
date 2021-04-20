@@ -171,7 +171,7 @@ describe('src/components/select/select', () => {
       render(<Select {...requiredProps} required>{baseListOptionElements}</Select>);
       expect(screen.queryByText('Constraints not satisfied')).toBeNull();
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.tab();
+      userEvent.tab({ shift: true });
       expect(screen.getByText('Constraints not satisfied')).toBeInTheDocument();
     });
   });
