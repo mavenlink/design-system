@@ -3,10 +3,20 @@ import PropTypes from 'prop-types';
 import Date from '../date/date.jsx';
 
 const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
-  return <Date {...props} ref={ref} validationMessage={props.errorText} />;
+  const classNames = {
+    ...(props.className ? { input: props.className } : {}),
+  };
+
+  return (<Date
+    {...props}
+    classNames={classNames}
+    ref={ref}
+    validationMessage={props.errorText}
+  />);
 });
 
 CustomFieldInputDate.propTypes = {
+  className: PropTypes.string,
   errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -21,6 +31,7 @@ CustomFieldInputDate.propTypes = {
 };
 
 CustomFieldInputDate.defaultProps = {
+  className: undefined,
   errorText: '',
   min: undefined,
   max: undefined,

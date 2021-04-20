@@ -55,6 +55,13 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     });
   });
 
+  describe('className API', () => {
+    it('sets the input class name', () => {
+      render(<CustomFieldInputDate {...requiredProps} className="unique-input" />);
+      expect(document.body).toMatchSnapshot();
+    });
+  });
+
   describe('dirty ref API', () => {
     it('updates on user interactions', () => {
       const ref = createRef();
