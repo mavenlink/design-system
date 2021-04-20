@@ -166,6 +166,14 @@ describe('src/components/select/select', () => {
       render(<Select {...requiredProps} errorText="not valid">{baseListOptionElements}</Select>);
       expect(screen.getByLabelText('Test label')).not.toBeValid();
     });
+
+    it('does not show errorText on first render until blurred', () => {
+      render(<Select {...requiredProps} required>{baseListOptionElements}</Select>);
+      expect(screen.queryByText('Constraints not satisfied')).toBeNull();
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.tab();
+      expect(screen.getByText('Constraints not satisfied')).toBeInTheDocument();
+    });
   });
 
   describe('filtering', () => {
