@@ -1,0 +1,13 @@
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.icons {
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--spacing-small);
+  position: absolute;
+  right: var(--spacing-medium);
+  transform: translateY(-50%);
+  top: 50%;
+}
