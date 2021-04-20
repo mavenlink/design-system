@@ -171,6 +171,25 @@ describe('src/components/date/date.test.jsx', () => {
     });
   });
 
+  describe('classNames API', () => {
+    it('sets various class names', () => {
+      render((<Date
+        {...requiredProps}
+        classNames={{
+          layout: {
+            container: 'unique-container',
+            calendar: 'unique-calendar-container',
+          },
+          input: 'unique-input',
+        }}
+      />));
+
+      expect(document.body).toMatchSnapshot();
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(document.body).toMatchSnapshot();
+    });
+  });
+
   describe('dirty API', () => {
     it('is a boolean', () => {
       const ref = createRef();

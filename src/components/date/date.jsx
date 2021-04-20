@@ -74,11 +74,13 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
   const classNames = {
-    layouts: {
+    input: validationMessage ? styles['invalid-input'] : styles.input,
+    ...props.classNames,
+    layout: {
       container: styles.container,
       calendar: styles['calendar-container'],
+      ...props.classNames.layout,
     },
-    input: validationMessage ? styles['invalid-input'] : styles.input,
   };
   const ids = {
     input: props.id,
@@ -177,7 +179,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
   return (
     <div
-      className={classNames.layouts.container}
+      className={classNames.layout.container}
       onBlur={onBlur}
       ref={containerRef}
     >
@@ -215,7 +217,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         />
       </FormControl>
       {expanded && (
-        <div className={classNames.layouts.calendar}>
+        <div className={classNames.layout.calendar}>
           <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
         </div>
       )}
@@ -224,6 +226,13 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 });
 
 Date.propTypes = {
+  classNames: PropTypes.shape({
+    input: PropTypes.string,
+    layout: PropTypes.shape({
+      container: PropTypes.string,
+      calendar: PropTypes.string,
+    }),
+  }),
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   /** The latest date to accept in full-date format (i.e. yyyy-mm-dd) */
@@ -241,6 +250,7 @@ Date.propTypes = {
 };
 
 Date.defaultProps = {
+  classNames: {},
   max: undefined,
   min: undefined,
   onChange: undefined,
