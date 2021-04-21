@@ -19,9 +19,7 @@ const RefExample = forwardRef(function RefExample(props, ref) {
     rerender();
   }
 
-  useEffect(() => {
-    rerender();
-  }, []);
+  useEffect(rerender, []);
 
   return (
     <div>

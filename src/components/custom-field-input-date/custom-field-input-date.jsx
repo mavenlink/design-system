@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Date from '../date/date.jsx';
 
 const CustomFieldInputDate = forwardRef(function CustomFieldInputDate(props, ref) {
-  const classNames = {
-    ...(props.className ? { input: props.className } : {}),
-  };
+  const classNames = props.className ? { input: props.className } : {};
 
   return (<Date
     {...props}
