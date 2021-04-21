@@ -182,6 +182,7 @@ describe('src/components/date/date.test.jsx', () => {
           },
           input: 'unique-input',
         }}
+        value="2021-04-20"
       />));
 
       expect(document.body).toMatchSnapshot();

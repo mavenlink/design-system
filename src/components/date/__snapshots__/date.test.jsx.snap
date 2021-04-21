@@ -25,7 +25,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
             id="test-id"
             name="test_name"
             type="text"
-            value=""
+            value="Apr 20, 2021"
           />
           <div
             class="icons"
@@ -77,7 +77,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
             id="test-id"
             name="test_name"
             type="date"
-            value=""
+            value="2021-04-20"
           />
           <div
             class="icons"
@@ -438,7 +438,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
                 </td>
                 <td
                   aria-label="April 20"
-                  aria-selected="false"
+                  aria-selected="true"
                   class="highlighted-date"
                   data-epoch="1618876800000"
                   role="gridcell"
