@@ -226,7 +226,14 @@ describe('<Calendar />', () => {
 
   describe('value props API', () => {
     it('can be set', () => {
-      expect(render(<Calendar {...requiredProps} value="2012-02-28" />));
+      render(<Calendar {...requiredProps} value="2012-02-28" />);
+      expect(screen.getByText('February 2012')).toBeInTheDocument();
+      expect(screen.getByLabelText('February 28')).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('is updated', () => {
+      const { rerender } = render(<Calendar {...requiredProps} value={undefined} />);
+      rerender(<Calendar {...requiredProps} value="2012-02-28" />);
       expect(screen.getByText('February 2012')).toBeInTheDocument();
       expect(screen.getByLabelText('February 28')).toHaveAttribute('aria-selected', 'true');
     });

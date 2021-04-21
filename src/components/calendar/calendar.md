@@ -1,3 +1,5 @@
+For design and accessibility functionality, see [Calendar documentation](https://www.notion.so/Calendar-b4b783521f094410a25241ff5075d109).
+
 ## Keyboard Support
 
 ### Calendar mode
