@@ -176,7 +176,7 @@ const Select = forwardRef(function Select(props, ref) {
         name={props.name}
         onChange={onSearchChange}
         onClick={onClick}
-        onKeyDown={onKeyDown}
+        onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         inputRef={inputRef}
@@ -231,6 +231,7 @@ Select.propTypes = {
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -243,6 +244,7 @@ Select.defaultProps = {
   displayValueEvaluator: value => value,
   errorText: '',
   onChange: () => {},
+  onKeyUp: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
