@@ -120,8 +120,8 @@ describe('src/components/autocompleter/autocompleter', () => {
 
       userEvent.click(screen.getByLabelText('Test label'));
 
-      expect(screen.queryByText('Fizz')).toBeInTheDocument();
-      expect(screen.queryByText('Buzz')).toBeInTheDocument();
+      expect(await screen.findByText('Fizz')).toBeInTheDocument();
+      expect(screen.getByText('Buzz')).toBeInTheDocument();
     });
   });
 
@@ -132,7 +132,7 @@ describe('src/components/autocompleter/autocompleter', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.type(document.activeElement, 'Ba');
 
-      expect(screen.queryByText('Bax')).toBeInTheDocument();
+      expect(await screen.findByText('Bax')).toBeInTheDocument();
       expect(screen.queryByText('Baz')).toBeInTheDocument();
     });
   });

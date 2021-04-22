@@ -31,8 +31,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       return `${API_ROOT}${props.apiEndpoint}?${props.searchParam}=${searchString}`;
     }
 
-    console.log(`${API_ROOT}${props.apiEndpoint}`)
-
     return `${API_ROOT}${props.apiEndpoint}`;
   }
 
