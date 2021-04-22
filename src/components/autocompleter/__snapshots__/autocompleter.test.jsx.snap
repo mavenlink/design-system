@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
+<body>
+  <div>
+    <div
+      class=""
+    >
+      <div
+        role="presentation"
+      >
+        <label
+          class="label"
+          for="test-id"
+          id="test-id-label"
+        >
+          Test label
+        </label>
+        <div
+          class="control-container"
+        >
+          <input
+            aria-autocomplete="none"
+            aria-controls="test-id-single-choice-listbox"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            autocomplete="off"
+            class="input"
+            id="test-id"
+            name="field-id"
+            placeholder=""
+            role="combobox"
+            style="--numIcon: 1;"
+            type="text"
+            value=""
+          />
+          <div
+            class="icon-container"
+          >
+            <svg
+              class="input-icon"
+              height="6"
+              role="img"
+              width="10"
+            >
+              <title>
+                Open choices listbox
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`src/components/autocompleter/autocompleter has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-id",
+  "name": "field-id",
+  "value": undefined,
+}
+`;
