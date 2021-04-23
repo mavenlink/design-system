@@ -32,10 +32,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     return `${API_ROOT}${props.apiEndpoint}`;
   }
 
-  function displayName(modelInfo) {
-    return modelInfo.title || modelInfo.name || modelInfo.full_name || modelInfo.currency;
-  }
-
   function onKeyUp(event) {
     fetchModels(event.target.value);
   }
@@ -44,7 +40,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const listOptionElements = models.map((modelInfo, index) => {
     return (
       <ListOption key={modelInfo.id} ref={listOptionRefs[index]} value={modelInfo}>
-        {displayName(modelInfo)}
+        {props.displayValueEvaluator(modelInfo)}
       </ListOption>
     );
   });
@@ -56,7 +52,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       name={props.name}
       className={props.className}
       listOptionRefs={listOptionRefs}
-      displayValueEvaluator={displayName}
+      displayValueEvaluator={props.displayValueEvaluator}
       onChange={props.onChange}
       onKeyUp={onKeyUp}
       required={props.required}
@@ -71,14 +67,18 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   );
 });
 
+function displayName(modelInfo) {
+  return modelInfo.title || modelInfo.name || modelInfo.full_name || modelInfo.currency;
+}
+
 Autocompleter.propTypes = {
   apiEndpoint: PropTypes.string.isRequired,
-  // singleSelect: PropTypes.bool,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   searchParam: PropTypes.string,
   models: PropTypes.arrayOf(PropTypes.object),
   onChange: PropTypes.func,
+  displayValueEvaluator: PropTypes.func,
   label: PropTypes.string,
   required: PropTypes.bool,
   readOnly: PropTypes.bool,
@@ -94,6 +94,7 @@ Autocompleter.defaultProps = {
   label: '',
   required: false,
   readOnly: false,
+  displayValueEvaluator: displayName,
   onChange: () => {},
   placeholder: '',
   className: '',
