@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {forwardRef, useEffect, useState} from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import Select from '../select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';

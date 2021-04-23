@@ -176,6 +176,7 @@ const Select = forwardRef(function Select(props, ref) {
         name={props.name}
         onChange={onSearchChange}
         onClick={onClick}
+        onKeyDown={onKeyDown}
         onKeyUp={props.onKeyUp}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
