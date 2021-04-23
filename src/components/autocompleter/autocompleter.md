@@ -3,7 +3,7 @@ The `Autocompleter` component is a wrapper for Select component with the additio
 `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`.
 `value` and `models` shape is expected to be an object(s) with an `id` key, and a display attribute that is one of the following: `title`, `name`, `full_name`, `currency`;
 
-For a11z, and additional prop info, see the `Select` component.
+For a11y and additional prop info, see the `Select` component.
 ### Default examples
 ```js
 import Autocompleter from './autocompleter.jsx';
