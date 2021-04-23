@@ -133,7 +133,7 @@ describe('src/components/autocompleter/autocompleter', () => {
       userEvent.type(document.activeElement, 'Ba');
 
       expect(await screen.findByText('Bax')).toBeInTheDocument();
-      expect(screen.queryByText('Baz')).toBeInTheDocument();
+      expect(screen.getByText('Baz')).toBeInTheDocument();
     });
   });
 });
