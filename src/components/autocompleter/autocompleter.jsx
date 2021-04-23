@@ -11,9 +11,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: fetch } = useFetch();
   const [models, setModels] = useState(props.models);
 
-  useEffect(() => {
-    fetchModels();
-  }, []);
+  useEffect(fetchModels, []);
 
   function fetchModels(searchString) {
     fetch(apiEndpoint(searchString))
