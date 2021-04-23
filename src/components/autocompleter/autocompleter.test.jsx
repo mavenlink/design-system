@@ -100,8 +100,8 @@ describe('src/components/autocompleter/autocompleter', () => {
       render(<Autocompleter {...requiredProps} models={models} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.queryByText('cool dude')).toBeInTheDocument();
-      expect(screen.queryByText('neato burrito')).toBeInTheDocument();
+      expect(screen.getByText('cool dude')).toBeInTheDocument();
+      expect(screen.getByText('neato burrito')).toBeInTheDocument();
     });
   });
 
