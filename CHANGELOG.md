@@ -7,8 +7,18 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - Minor: When required, the select should not show error text on initial render
 </details>
+
+## v0.66.0
+- feat(Date): implement Date component
+- refactor(CustomFieldInputDate): use new Date component as presentational layer
+
+## v0.65.0
+  - feat(Textarea): Implement new `Textarea` component, with new mock handlers in styleguidist
+  - fix(Select): When required, the select should not show error text on initial render
+
+## v0.64.1
+- fix(select): Only shows errors after blur
 
 ## v0.64.0
 - feat(design-patterns): add various page patterns: table, form, hybrid
