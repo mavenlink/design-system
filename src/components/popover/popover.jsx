@@ -3,6 +3,7 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -56,6 +57,8 @@ const Popover = forwardRef(function Popover(props, ref) {
     },
   }));
 
+  const className = useMemo(() => `${styles.container} ${styles[props.flush]}`, [props.flush]);
+
   if (!open) {
     return null;
   }
@@ -63,7 +66,7 @@ const Popover = forwardRef(function Popover(props, ref) {
   return (
     <section
       aria-labelledby="popover-heading"
-      className={styles.container}
+      className={className}
       ref={sectionRef}
       role="dialog"
     >
@@ -87,6 +90,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   children: PropTypes.node,
+  flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
   startOpen: PropTypes.bool,
   title: PropTypes.string.isRequired,
@@ -94,6 +98,7 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
   children: undefined,
+  flush: 'left',
   onClose: () => {},
   startOpen: false,
 };

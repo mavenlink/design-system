@@ -12,7 +12,7 @@ exports[`Popover has defaults 2`] = `
   <div>
     <section
       aria-labelledby="popover-heading"
-      class="container"
+      class="container left"
       role="dialog"
     >
       <div

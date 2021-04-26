@@ -1,6 +1,7 @@
 import React, { useRef, Fragment } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import styles from './popover.css';
 import Popover from './popover.jsx';
 
 describe('Popover', () => {
@@ -104,5 +105,11 @@ describe('Popover', () => {
     userEvent.click(screen.getByText('Open Popover'));
     userEvent.click(screen.getByText('More text'));
     expect(screen.getByText('Another title').tagName).toEqual('H1');
+  });
+
+  it('can flush right', () => {
+    render(<PopoverWithToggle title="Another title" flush="right"><span>More text</span></PopoverWithToggle>);
+    userEvent.click(screen.getByText('Open Popover'));
+    expect(screen.getByRole('dialog')).toHaveClass(styles.right);
   });
 });
