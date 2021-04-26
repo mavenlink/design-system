@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Checkbox from './checkbox.jsx';
 
 describe('Checkbox', () => {
@@ -54,6 +55,31 @@ describe('Checkbox', () => {
       const ref = createRef();
       render(<Checkbox {...requiredProps} name="unique-name" ref={ref} />);
       expect(ref.current.name).toBe('unique-name');
+    });
+  });
+
+  it('sets the onblur handler', () => {
+    const onBlur = jest.fn();
+    render(<Checkbox {...requiredProps} onBlur={onBlur} />);
+    fireEvent.blur(screen.getByRole('checkbox', { name }));
+    expect(onBlur.mock.calls.length).toEqual(1);
+  });
+
+  describe('onChange API', () => {
+    it('sets the onChange handler', () => {
+      const onChange = jest.fn();
+      render(<Checkbox {...requiredProps} onChange={onChange} />);
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(onChange.mock.calls.length).toEqual(1);
+    });
+  });
+
+  describe('onFocus API', () => {
+    it('sets the onFocus handler', () => {
+      const onFocus = jest.fn();
+      render(<Checkbox {...requiredProps} onFocus={onFocus} />);
+      fireEvent.focus(screen.getByRole('checkbox', { name }));
+      expect(onFocus.mock.calls.length).toEqual(1);
     });
   });
 });
