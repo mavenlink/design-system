@@ -35,7 +35,7 @@ const Popover = forwardRef(function Popover(props, ref) {
     window.addEventListener('focusin', onFocusIn);
 
     if (closeIconRef.current && open) {
-      closeIconRef.current.focus();
+      closeIconRef.current.focus({ preventScroll: true });
     }
 
     if (!open) {
