@@ -8,6 +8,7 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - feat(popover): The popover now supports flushing to the left or right. It defaults to left.
+  - fix(popover): The popover no longer forcefully scrolls the close icon into view when it opens.
 </details>
 
 ## v0.66.0
