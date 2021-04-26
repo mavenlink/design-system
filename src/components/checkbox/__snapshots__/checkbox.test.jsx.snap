@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox has defaults 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="fart"
+      >
+        You good?
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          id="fart"
+          type="checkbox"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Checkbox has defaults 2`] = `
+<input
+  id="fart"
+  type="checkbox"
+/>
+`;
