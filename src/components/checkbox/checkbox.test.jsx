@@ -122,4 +122,41 @@ describe('Checkbox', () => {
       expect(ref.current.checked).toBe(true);
     });
   });
+
+  describe('dirty api', () => {
+    it('is unset without any changes', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} ref={ref} />);
+      expect(ref.current.dirty).toBe(false);
+    });
+
+    it('is set with any changes', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} ref={ref} />);
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(ref.current.dirty).toBe(true);
+    });
+
+    it('is unset with changes back to initial state', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} ref={ref} checked />);
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(ref.current.dirty).toBe(true);
+
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(ref.current.dirty).toBe(false);
+    });
+
+    it('is unset with changes and new value prop', () => {
+      const ref = createRef();
+      const { rerender } = render(
+        <Checkbox {...requiredProps} ref={ref} checked={true} />,
+      );
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(ref.current.dirty).toBe(true);
+
+      rerender(<Checkbox {...requiredProps} ref={ref} checked={false} />);
+      expect(ref.current.dirty).toBe(false);
+    });
+  });
 });

@@ -22,7 +22,8 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       return inputRef.current.checked;
     },
     get dirty() {
-      return false;
+      const providedValue = props.checked ?? false;
+      return providedValue !== this.checked;
     },
   }));
 
