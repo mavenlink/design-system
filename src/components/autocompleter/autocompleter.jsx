@@ -91,14 +91,14 @@ Autocompleter.propTypes = {
 Autocompleter.defaultProps = {
   searchParam: 'search',
   models: [],
-  label: '',
+  label: undefined,
   required: false,
   readOnly: false,
   displayValueEvaluator: displayName,
   onChange: () => {},
-  placeholder: '',
-  className: '',
-  errorText: '',
+  placeholder: undefined,
+  className: undefined,
+  errorText: undefined,
   value: undefined,
 };
 
