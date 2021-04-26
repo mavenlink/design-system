@@ -16,6 +16,7 @@ exports[`Checkbox has defaults 1`] = `
         class="control-container"
       >
         <input
+          aria-describedby="fartHint"
           id="fart"
           type="checkbox"
         />
@@ -26,8 +27,10 @@ exports[`Checkbox has defaults 1`] = `
 `;
 
 exports[`Checkbox has defaults 2`] = `
-<input
-  id="fart"
-  type="checkbox"
-/>
+Object {
+  "checked": false,
+  "dirty": false,
+  "id": "fart",
+  "name": undefined,
+}
 `;

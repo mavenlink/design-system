@@ -89,4 +89,37 @@ describe('Checkbox', () => {
       expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
     });
   });
+
+  describe('ref api', () => {
+    it('can be set', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} ref={ref} checked />);
+      expect(ref.current.checked).toEqual(true);
+    });
+  });
+
+  describe('checked API', () => {
+    it('sets the checked value', () => {
+      render(<Checkbox {...requiredProps} checked />);
+      expect(screen.getByRole('checkbox', { name })).toBeChecked();
+    });
+
+    it('updates the value', () => {
+      const { rerender } = render(<Checkbox {...requiredProps} checked={false} />);
+      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
+      rerender(<Checkbox {...requiredProps} checked={true} />);
+      expect(screen.getByRole('checkbox', { name })).toBeChecked();
+    });
+
+    it('is set on the ref', () => {
+      const ref = createRef();
+      const { rerender } = render(<Checkbox {...requiredProps} ref={ref} checked={false} />);
+      expect(ref.current.checked).toBe(false);
+
+      userEvent.click(screen.getByRole('checkbox', { name }));
+
+      rerender(<Checkbox {...requiredProps} ref={ref} checked={true} />);
+      expect(ref.current.checked).toBe(true);
+    });
+  });
 });
