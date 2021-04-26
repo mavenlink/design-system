@@ -18,6 +18,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
         onBlur={props.onBlur}
         onChange={props.onChange}
         onFocus={props.onFocus}
+        readOnly={props.readOnly}
         ref={ref}
         type="checkbox"
       />

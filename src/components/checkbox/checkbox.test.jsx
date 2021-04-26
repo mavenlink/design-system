@@ -82,4 +82,11 @@ describe('Checkbox', () => {
       expect(onFocus.mock.calls.length).toEqual(1);
     });
   });
+
+  describe('readonly api', () => {
+    it('sets readonly', () => {
+      render(<Checkbox {...requiredProps} readOnly />);
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
+    });
+  });
 });
