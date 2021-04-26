@@ -36,4 +36,24 @@ describe('Checkbox', () => {
       expect(ref.current.id).toBe('hello-mario');
     });
   });
+
+  describe('label API', () => {
+    it('can be set', () => {
+      render(<Checkbox {...requiredProps} label="Unique label" />);
+      expect(screen.getByRole('checkbox', { name: 'Unique label' })).toBeInTheDocument();
+    });
+  });
+
+  describe('name API', () => {
+    it('sets the name attribute', () => {
+      render(<Checkbox {...requiredProps} name="test-name" />);
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('name', 'test-name');
+    });
+
+    it('is set on the ref', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} name="unique-name" ref={ref} />);
+      expect(ref.current.name).toBe('unique-name');
+    });
+  });
 });
