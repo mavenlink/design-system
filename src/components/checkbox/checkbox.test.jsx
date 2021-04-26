@@ -23,4 +23,17 @@ describe('Checkbox', () => {
       expect(screen.getByRole('checkbox', { name })).toHaveClass(className);
     });
   });
+
+  describe('id API', () => {
+    it('sets the id', () => {
+      render(<Checkbox {...requiredProps} id="hello-mario" />);
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('id', 'hello-mario');
+    });
+
+    it('is set on the ref', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} ref={ref} id="hello-mario" />);
+      expect(ref.current.id).toBe('hello-mario');
+    });
+  });
 });
