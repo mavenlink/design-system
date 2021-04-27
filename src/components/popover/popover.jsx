@@ -11,13 +11,37 @@ import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 
+const useFlush = (ref, { initialDirection = 'left', open, autoflush }) => {
+  const [flush, setFlush] = useState(initialDirection);
+
+  useLayoutEffect(() => {
+    if (!open || !autoflush || !ref.current) return;
+
+    const { right, left } = ref.current.getBoundingClientRect();
+    if (right > window.innerWidth) {
+      setFlush('right');
+    } else if (left < 0) {
+      setFlush('left');
+    } else {
+      setFlush(flush);
+    }
+  }, [open, ref.current?.getBoundingClientRect]);
+
+  return {
+    flush: {
+      left: flush === 'left' ? 0 : undefined,
+      right: flush === 'right' ? 0 : undefined,
+    },
+  };
+};
+
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(props.startOpen);
   const closeIconRef = useRef();
   const backupRef = useRef();
   const sectionRef = useRef();
   const selfRef = ref || backupRef;
-  const [flush, setFlush] = useState(props.flush);
+  const { flush } = useFlush(sectionRef, { initialDirection: props.flush, autoflush: props.autoflush, open });
 
   const onFocusIn = (event) => {
     if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
@@ -49,19 +73,6 @@ const Popover = forwardRef(function Popover(props, ref) {
     };
   }, [open]);
 
-  useLayoutEffect(() => {
-    if (!open || !props.autoflush) return;
-
-    const { right, left } = sectionRef.current.getBoundingClientRect();
-    if (right > window.innerWidth) {
-      setFlush('right');
-    } else if (left < 0) {
-      setFlush('left');
-    } else {
-      setFlush(props.flush);
-    }
-  }, [open, sectionRef.current?.getBoundingClientRect]);
-
   useImperativeHandle(selfRef, () => ({
     get open() {
       return open;
@@ -75,18 +86,13 @@ const Popover = forwardRef(function Popover(props, ref) {
     return null;
   }
 
-  const sectionStyle = {
-    left: flush === 'left' ? 0 : undefined,
-    right: flush === 'right' ? 0 : undefined,
-  };
-
   return (
     <section
       aria-labelledby="popover-heading"
       className={styles.container}
       ref={sectionRef}
       role="dialog"
-      style={sectionStyle}
+      style={flush}
     >
       <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
         <div className={styles['heading-container']} id="popover-heading">
