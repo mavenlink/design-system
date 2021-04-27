@@ -33,5 +33,6 @@ Object {
   "dirty": false,
   "id": "fart",
   "name": undefined,
+  "value": "off",
 }
 `;
