@@ -11,48 +11,26 @@ function getClassName(className, validationMessage) {
   return validationMessage ? styles['invalid-input'] : styles.input;
 }
 
-const useValidatedEvents = ({ ref, props }) => {
-  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-
-  useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
-
-  useLayoutEffect(() => {
-    ref.current.setCustomValidity(validationMessage);
-  }, [validationMessage]);
-
-  function onBlur(event) {
-    ref.current.setCustomValidity('');
-    setValidationMessage(ref.current.validationMessage);
-    props.onBlur(event);
-  }
-
-  function onChange(event) {
-    ref.current.setCustomValidity('');
-    setValidationMessage(ref.current.validationMessage);
-    props.onChange(event);
-  }
-
-  return {
-    validationMessage,
-    onChange,
-    onBlur
-  }
-}
-
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
   const inputRef = useRef();
   const mounted = useMounted();
-  const { validationMessage, onChange, onBlur } = useValidatedEvents({ ref: inputRef, props })
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   useEffect(() => {
     if (!mounted.current) return;
 
     inputRef.current.checked = props.checked ?? false;
   }, [props.checked]);
+
+  useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
+  useLayoutEffect(() => {
+    inputRef.current.setCustomValidity(validationMessage);
+  }, [validationMessage]);
 
   useImperativeHandle(ref, () => ({
     id: props.id,
@@ -70,6 +48,18 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       return providedValue !== this.checked;
     },
   }));
+
+  function onBlur(event) {
+    inputRef.current.setCustomValidity('');
+    setValidationMessage(inputRef.current.validationMessage);
+    props.onBlur(event);
+  }
+
+  function onChange(event) {
+    inputRef.current.setCustomValidity('');
+    setValidationMessage(inputRef.current.validationMessage);
+    props.onChange(event);
+  }
 
   return (
     <FormControl
