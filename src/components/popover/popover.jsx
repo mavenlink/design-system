@@ -58,6 +58,8 @@ const Popover = forwardRef(function Popover(props, ref) {
       setFlush('right');
     } else if (left < 0) {
       setFlush('left');
+    } else {
+      setFlush(props.flush);
     }
   }, [open]);
 
