@@ -4,7 +4,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
 <body>
   <div>
     <div
-      class=""
+      class="container"
     >
       <div
         role="presentation"
@@ -28,7 +28,6 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
             class="input"
             id="test-id"
             name="field-id"
-            placeholder=""
             role="combobox"
             style="--numIcon: 1;"
             type="text"
