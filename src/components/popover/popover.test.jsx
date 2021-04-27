@@ -121,4 +121,66 @@ describe('Popover', () => {
       expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
     });
   });
+
+  describe('autoflush api', () => {
+    const jsdomDefault = global.window.innerWidth;
+
+    beforeEach(() => {
+      global.window.innerWidth = 4;
+    });
+
+    afterEach(() => {
+      global.window.innerWidth = jsdomDefault;
+    });
+
+    it('flushes right when component would extend the window to the right', () => {
+      const { rerender } = render(<PopoverWithToggle title="Another title" autoflush>Fart</PopoverWithToggle>);
+      userEvent.click(screen.getByText('Open Popover'));
+
+      const section = screen.getByRole('dialog');
+      const spy = jest.fn();
+      spy.mockReturnValueOnce({ left: 0, right: 8 });
+      section.getBoundingClientRect = spy;
+
+      rerender(<PopoverWithToggle title="Another title" autoflush>Fart</PopoverWithToggle>);
+
+      expect(screen.getByRole('dialog')).toHaveStyle({ right: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
+      expect(spy.mock.calls).toHaveLength(1);
+    });
+
+    it('flushes left when component would extend the window to the left', () => {
+      const { rerender } = render(<PopoverWithToggle title="Another title" autoflush>Fart</PopoverWithToggle>);
+      userEvent.click(screen.getByText('Open Popover'));
+
+      // mock the bounding function since jsdom always retuns 0's
+      const section = screen.getByRole('dialog');
+      const spy = jest.fn();
+      spy.mockReturnValueOnce({ left: -8, right: 0 });
+      section.getBoundingClientRect = spy;
+
+      rerender(<PopoverWithToggle title="Another title" autoflush>Fart</PopoverWithToggle>);
+
+      expect(screen.getByRole('dialog')).toHaveStyle({ left: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ right: 0 });
+      expect(spy.mock.calls).toHaveLength(1);
+    });
+
+    it('flushes the originally requested direction the component is completely in view', () => {
+      const { rerender } = render(<PopoverWithToggle title="Another title" autoflush flush="right">Fart</PopoverWithToggle>);
+      userEvent.click(screen.getByText('Open Popover'));
+
+      // mock the bounding function since jsdom always retuns 0's
+      const section = screen.getByRole('dialog');
+      const spy = jest.fn();
+      spy.mockReturnValueOnce({ left: 0, right: 2 });
+      section.getBoundingClientRect = spy;
+
+      rerender(<PopoverWithToggle title="Another title" autoflush flush="right">Fart</PopoverWithToggle>);
+
+      expect(screen.getByRole('dialog')).toHaveStyle({ right: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
+      expect(spy.mock.calls).toHaveLength(1);
+    });
+  });
 });

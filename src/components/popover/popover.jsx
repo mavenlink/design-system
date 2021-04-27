@@ -60,7 +60,7 @@ const Popover = forwardRef(function Popover(props, ref) {
     } else {
       setFlush(props.flush);
     }
-  }, [open]);
+  }, [open, sectionRef.current?.getBoundingClientRect]);
 
   useImperativeHandle(selfRef, () => ({
     get open() {
