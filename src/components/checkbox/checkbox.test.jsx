@@ -130,6 +130,26 @@ describe('Checkbox', () => {
     });
   });
 
+  describe('value api', () => {
+    it('prioritizes the value provided', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} value="i-am-good-bruh" ref={ref} />);
+      expect(ref.current.value).toBe('i-am-good-bruh');
+    });
+
+    it('sets the value to on if checked', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} checked ref={ref} />);
+      expect(ref.current.value).toBe('on');
+    });
+
+    it('sets the value to off if not checked', () => {
+      const ref = createRef();
+      render(<Checkbox {...requiredProps} checked={false} ref={ref} />);
+      expect(ref.current.value).toBe('off');
+    });
+  });
+
   describe('dirty api', () => {
     it('is unset without any changes', () => {
       const ref = createRef();

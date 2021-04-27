@@ -57,6 +57,11 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   useImperativeHandle(ref, () => ({
     id: props.id,
     name: props.name,
+    get value() {
+      if(props.value) return props.value;
+
+      return inputRef.current.checked ? 'on' : 'off';
+    },
     get checked() {
       return inputRef.current.checked;
     },
@@ -113,6 +118,7 @@ Checkbox.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
+  value: PropTypes.string,
 }
 
 Checkbox.defaultProps = {
@@ -126,6 +132,7 @@ Checkbox.defaultProps = {
   readOnly: undefined,
   required: undefined,
   validationMessage: '',
+  value: undefined,
 }
 
 
