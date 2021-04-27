@@ -1,7 +1,6 @@
 import React, { useRef, Fragment } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import styles from './popover.css';
 import Popover from './popover.jsx';
 
 describe('Popover', () => {
@@ -111,13 +110,15 @@ describe('Popover', () => {
     it('can flush left', () => {
       render(<PopoverWithToggle title="Another title" flush="left"><span>More text</span></PopoverWithToggle>);
       userEvent.click(screen.getByText('Open Popover'));
-      expect(screen.getByRole('dialog')).toHaveClass(styles.left);
+      expect(screen.getByRole('dialog')).toHaveStyle({ left: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ right: 0 });
     });
 
     it('can flush right', () => {
       render(<PopoverWithToggle title="Another title" flush="right"><span>More text</span></PopoverWithToggle>);
       userEvent.click(screen.getByText('Open Popover'));
-      expect(screen.getByRole('dialog')).toHaveClass(styles.right);
+      expect(screen.getByRole('dialog')).toHaveStyle({ right: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
     });
   });
 });

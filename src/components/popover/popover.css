@@ -30,11 +30,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-}

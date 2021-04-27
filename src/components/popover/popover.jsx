@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useImperativeHandle,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -72,18 +71,22 @@ const Popover = forwardRef(function Popover(props, ref) {
     },
   }));
 
-  const className = useMemo(() => `${styles.container} ${styles[flush]}`, [flush]);
-
   if (!open) {
     return null;
   }
 
+  const sectionStyle = {
+    left: flush === 'left' ? 0 : undefined,
+    right: flush === 'right' ? 0 : undefined,
+  };
+
   return (
     <section
       aria-labelledby="popover-heading"
-      className={className}
+      className={styles.container}
       ref={sectionRef}
       role="dialog"
+      style={sectionStyle}
     >
       <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
         <div className={styles['heading-container']} id="popover-heading">
