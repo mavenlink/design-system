@@ -1,10 +1,17 @@
-import React, {forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState} from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
-import useMounted from '../../hooks/use-mounted';
-import Icon from "../icon";
-import styles from "../input/input.css";
-import cautionSvg from "../../svgs/caution.svg";
-import PropTypes from "prop-types";
+import useMounted from '../../hooks/use-mounted.js';
+import Icon from '../icon/icon.jsx';
+import styles from '../input/input.css';
+import cautionSvg from '../../svgs/caution.svg';
 
 function getClassName(className, validationMessage) {
   if (className) return className;
@@ -21,7 +28,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   useEffect(() => {
     if (!mounted.current) return;
 
-    inputRef.current.checked = props.checked ?? false;
+    inputRef.current.checked = props.checked;
   }, [props.checked]);
 
   useEffect(() => {
@@ -36,7 +43,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     id: props.id,
     name: props.name,
     get value() {
-      if(props.value) return props.value;
+      if (props.value) return props.value;
 
       return inputRef.current.checked ? 'on' : 'off';
     },
@@ -44,7 +51,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       return inputRef.current.checked;
     },
     get dirty() {
-      const providedValue = props.checked ?? false;
+      const providedValue = props.checked || false;
       return providedValue !== this.checked;
     },
   }));
@@ -109,7 +116,7 @@ Checkbox.propTypes = {
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
   value: PropTypes.string,
-}
+};
 
 Checkbox.defaultProps = {
   checked: undefined,
@@ -123,7 +130,6 @@ Checkbox.defaultProps = {
   required: undefined,
   validationMessage: '',
   value: undefined,
-}
-
+};
 
 export default Checkbox;
