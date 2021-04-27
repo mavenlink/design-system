@@ -17,6 +17,7 @@ exports[`Checkbox has defaults 1`] = `
       >
         <input
           aria-describedby="fartHint"
+          class="input"
           id="fart"
           type="checkbox"
         />

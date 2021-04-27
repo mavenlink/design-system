@@ -159,4 +159,48 @@ describe('Checkbox', () => {
       expect(ref.current.dirty).toBe(false);
     });
   });
+
+  describe('required api', () => {
+    it('can be set', () => {
+      render(<Checkbox {...requiredProps} required />);
+      expect(screen.getByRole('checkbox', { name })).toBeRequired();
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+    });
+
+    it('can be unset', () => {
+      render(<Checkbox {...requiredProps} required={false} />);
+      expect(screen.getByRole('checkbox', { name })).not.toBeRequired();
+      expect(screen.getByRole('checkbox', { name })).toBeValid();
+    });
+
+    it('is invalid on mount but does not have an error message', () => {
+      render(<Checkbox {...requiredProps} required />);
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+    });
+
+    it('is invalid after deselecting', () => {
+      render(<Checkbox {...requiredProps} required checked />);
+      expect(screen.getByRole('checkbox', { name })).toBeChecked();
+      expect(screen.getByRole('checkbox', { name })).toBeValid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('Constraints not satisfied');
+    });
+
+    it('shows validation message after tabbing through', () => {
+      render(<Checkbox {...requiredProps} required />);
+      userEvent.tab();
+      expect(document.activeElement).toBe(screen.getByRole('checkbox', { name }));
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+
+      userEvent.tab();
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('Constraints not satisfied');
+    });
+  });
 });

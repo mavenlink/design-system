@@ -1,19 +1,36 @@
-/* eslint-disable react/prop-types */
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState} from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import useMounted from '../../hooks/use-mounted';
+import Icon from "../icon";
+import styles from "../input/input.css";
+import cautionSvg from "../../svgs/caution.svg";
+import PropTypes from "prop-types";
+
+function getClassName(className, validationMessage) {
+  if (className) return className;
+  return validationMessage ? styles['invalid-input'] : styles.input;
+}
 
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
   const inputRef = useRef();
   const mounted = useMounted();
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   useEffect(() => {
     if (!mounted.current) return;
 
     inputRef.current.checked = props.checked ?? false;
   }, [props.checked]);
+
+  useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
+  useLayoutEffect(() => {
+    inputRef.current.setCustomValidity(validationMessage);
+  }, [validationMessage]);
 
   useImperativeHandle(ref, () => ({
     id: props.id,
@@ -27,25 +44,76 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     },
   }));
 
+  function onBlur(event) {
+    inputRef.current.setCustomValidity('');
+    setValidationMessage(inputRef.current.validationMessage);
+    props.onBlur(event);
+  }
+
+  function onChange(event) {
+    inputRef.current.setCustomValidity('');
+    setValidationMessage(inputRef.current.validationMessage);
+    props.onChange(event);
+  }
+
   return (
     <FormControl
+      error={validationMessage}
       id={props.id}
       label={props.label}
+      readOnly={props.readOnly}
+      required={props.required}
     >
       <input
         aria-describedby={`${props.id}Hint`}
-        className={props.className}
+        className={getClassName(props.className, validationMessage)}
+        defaultChecked={props.checked}
         id={props.id}
         name={props.name}
-        onBlur={props.onBlur}
-        onChange={props.onChange}
+        onBlur={onBlur}
+        onChange={onChange}
         onFocus={props.onFocus}
         readOnly={props.readOnly}
         ref={inputRef}
+        required={props.required}
         type="checkbox"
       />
+      {!!validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          label={validationMessage}
+        />
+      )}
     </FormControl>
   );
 });
+
+Checkbox.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  validationMessage: PropTypes.string,
+  checked: PropTypes.bool,
+}
+
+Checkbox.defaultProps = {
+  className: undefined,
+  name: undefined,
+  onBlur: () => {},
+  onChange: () => {},
+  onFocus: () => {},
+  readOnly: undefined,
+  required: undefined,
+  validationMessage: '',
+  checked: undefined,
+}
+
 
 export default Checkbox;
