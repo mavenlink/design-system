@@ -3,6 +3,7 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -17,6 +18,7 @@ const Popover = forwardRef(function Popover(props, ref) {
   const backupRef = useRef();
   const sectionRef = useRef();
   const selfRef = ref || backupRef;
+  const [flush, setFlush] = useState(props.flush);
 
   const onFocusIn = (event) => {
     if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
@@ -48,6 +50,17 @@ const Popover = forwardRef(function Popover(props, ref) {
     };
   }, [open]);
 
+  useLayoutEffect(() => {
+    if (!open || !props.autoflush) return;
+
+    const { right, left } = sectionRef.current.getBoundingClientRect();
+    if (right > window.innerWidth) {
+      setFlush('right');
+    } else if (left < 0) {
+      setFlush('left');
+    }
+  }, [open]);
+
   useImperativeHandle(selfRef, () => ({
     get open() {
       return open;
@@ -57,7 +70,7 @@ const Popover = forwardRef(function Popover(props, ref) {
     },
   }));
 
-  const className = useMemo(() => `${styles.container} ${styles[props.flush]}`, [props.flush]);
+  const className = useMemo(() => `${styles.container} ${styles[flush]}`, [flush]);
 
   if (!open) {
     return null;
@@ -89,6 +102,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 });
 
 Popover.propTypes = {
+  autoflush: PropTypes.bool,
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
@@ -97,6 +111,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
+  autoflush: false,
   children: undefined,
   flush: 'left',
   onClose: () => {},
