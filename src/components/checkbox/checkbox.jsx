@@ -68,6 +68,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
 
   return (
     <FormControl
+      className={props.cssContainer}
       error={validationMessage}
       id={props.id}
       label={props.label}
@@ -100,7 +101,9 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
 });
 
 Checkbox.propTypes = {
+  checked: PropTypes.bool,
   className: PropTypes.string,
+  cssContainer: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
@@ -110,11 +113,12 @@ Checkbox.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
-  checked: PropTypes.bool,
 }
 
 Checkbox.defaultProps = {
+  checked: undefined,
   className: undefined,
+  cssContainer: undefined,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
@@ -122,7 +126,6 @@ Checkbox.defaultProps = {
   readOnly: undefined,
   required: undefined,
   validationMessage: '',
-  checked: undefined,
 }
 
 

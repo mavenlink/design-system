@@ -25,6 +25,13 @@ describe('Checkbox', () => {
     });
   });
 
+  describe('cssContainer API', () => {
+    it('sets input container className', () => {
+      render(<Checkbox {...requiredProps} cssContainer="test-class" />);
+      expect(screen.getByRole('presentation')).toHaveClass('test-class');
+    });
+  });
+
   describe('id API', () => {
     it('sets the id', () => {
       render(<Checkbox {...requiredProps} id="hello-mario" />);
