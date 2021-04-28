@@ -1,0 +1,51 @@
+@import '../../styles/colors-v2.css';
+@import "../../styles/spacing.css";
+@import "../../styles/typography-v2.css";
+
+.icons-container {
+  composes: icons from "../form-control-icons/form-control-icons.css";
+  pointer-events: none;
+}
+
+.input {
+  border: 1px solid var(--mds-grey-12);
+  border-radius: 3px;
+  box-sizing: border-box;
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  margin: 0;
+  padding: 0 calc(var(--spacing-x-large) + var(--spacing-large)) 0 var(--spacing-medium);
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--mds-grey-54);
+}
+
+.input:read-only {
+  background-color: var(--mds-grey-3);
+}
+
+.invalid-icon {
+  box-sizing: border-box;
+  pointer-events: none;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.invalid-input {
+  composes: input;
+  border-color: var(--mds-red-100);
+}
+
+.invalid-input:hover {
+  border-color: var(--mds-red-100);
+}
+
+.percent-sign {
+  color: var(--mds-grey-38);
+  font: var(--mds-type-content);
+  user-select: none;
+}

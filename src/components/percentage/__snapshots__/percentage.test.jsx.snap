@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Percentage has defaults 1`] = `
+<body>
+  <div>
+    <div
+      class="container"
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="foo"
+      >
+        the label
+      </label>
+      <div
+        class="control-container"
+      >
+        <input
+          aria-describedby="fooHint"
+          class="input"
+          id="foo"
+          max="100"
+          min="0"
+          step="0.01"
+          type="number"
+          value=""
+        />
+        <div
+          class="icons-container"
+        >
+          <span
+            class="percent-sign"
+          >
+            %
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Percentage has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "foo",
+  "name": undefined,
+  "value": NaN,
+}
+`;
