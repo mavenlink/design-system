@@ -105,4 +105,20 @@ describe('Popover', () => {
     userEvent.click(screen.getByText('More text'));
     expect(screen.getByText('Another title').tagName).toEqual('H1');
   });
+
+  describe('flush api', () => {
+    it('can flush left', () => {
+      render(<PopoverWithToggle title="Another title" flush="left"><span>More text</span></PopoverWithToggle>);
+      userEvent.click(screen.getByText('Open Popover'));
+      expect(screen.getByRole('dialog')).toHaveStyle({ left: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ right: 0 });
+    });
+
+    it('can flush right', () => {
+      render(<PopoverWithToggle title="Another title" flush="right"><span>More text</span></PopoverWithToggle>);
+      userEvent.click(screen.getByText('Open Popover'));
+      expect(screen.getByRole('dialog')).toHaveStyle({ right: 0 });
+      expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
+    });
+  });
 });
