@@ -9,6 +9,7 @@ import React, {
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
+import useFlush from '../../hooks/use-flush.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(props.startOpen);
@@ -16,6 +17,7 @@ const Popover = forwardRef(function Popover(props, ref) {
   const backupRef = useRef();
   const sectionRef = useRef();
   const selfRef = ref || backupRef;
+  const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
 
   const onFocusIn = (event) => {
     if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
@@ -34,7 +36,7 @@ const Popover = forwardRef(function Popover(props, ref) {
     window.addEventListener('focusin', onFocusIn);
 
     if (closeIconRef.current && open) {
-      closeIconRef.current.focus();
+      closeIconRef.current.focus({ preventScroll: true });
     }
 
     if (!open) {
@@ -66,6 +68,7 @@ const Popover = forwardRef(function Popover(props, ref) {
       className={styles.container}
       ref={sectionRef}
       role="dialog"
+      style={flush}
     >
       <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
         <div className={styles['heading-container']} id="popover-heading">
@@ -86,14 +89,18 @@ const Popover = forwardRef(function Popover(props, ref) {
 });
 
 Popover.propTypes = {
+  autoflush: PropTypes.bool,
   children: PropTypes.node,
+  flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
   startOpen: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
 Popover.defaultProps = {
+  autoflush: false,
   children: undefined,
+  flush: 'left',
   onClose: () => {},
   startOpen: false,
 };

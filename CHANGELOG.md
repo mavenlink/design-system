@@ -10,6 +10,11 @@
   - feat(checkbox): A Checkbox component has been added. Like other components, it supports a ref api, readonly, required, and custom validation messages.
 </details>
 
+## v0.67.0
+- feat(popover): The popover now supports flushing to the left or right. It defaults to left.
+- feat(popover): The popover can now automatically determine which direction to flush in. It defaults to the direction provided (or left, if unprovided).
+- fix(popover): The popover no longer forcefully scrolls the close icon into view when it opens.
+
 ## v0.66.0
 - feat(Date): implement Date component
 - refactor(CustomFieldInputDate): use new Date component as presentational layer
