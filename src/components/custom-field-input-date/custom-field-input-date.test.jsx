@@ -11,7 +11,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   const requiredProps = {
     id: 'field-date',
     label: 'Field Date',
-    name: 'field-id',
+    name: 'field-name',
   };
 
   const changeValue = (getInputElement, value) => {
@@ -45,25 +45,32 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('has a name attribute; returns name prop', () => {
       const ref = createRef();
       render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
-      expect(ref.current.name).toEqual('field-id');
+      expect(ref.current.name).toEqual('field-name');
     });
 
     it('has a value attribute; returns the value in yyyy-mm-dd format', () => {
       const ref = createRef();
-      render(<CustomFieldInputDate {...requiredProps} ref={ref} value={'09/27/2020'} />);
+      render(<CustomFieldInputDate {...requiredProps} ref={ref} value="2020-09-27" />);
       expect(ref.current.value).toEqual('2020-09-27');
     });
   });
 
+  describe('className API', () => {
+    it('sets the input class name', () => {
+      render(<CustomFieldInputDate {...requiredProps} className="unique-input" />);
+      expect(document.body).toMatchSnapshot();
+    });
+  });
+
   describe('dirty ref API', () => {
-    xit('updates on user interactions', () => {
+    it('updates on user interactions', () => {
       const ref = createRef();
       render(<CustomFieldInputDate {...requiredProps} ref={ref} />);
       userEvent.click(screen.getByLabelText('Field Date'));
       expect(ref.current.dirty).toEqual(false);
-      userEvent.type(screen.getByLabelText('Field Date'), '12/12/1212');
+      userEvent.type(screen.getByLabelText('Field Date'), '1212-12-12');
       expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('Field Date'), '');
+      userEvent.clear(screen.getByLabelText('Field Date'));
       expect(ref.current.dirty).toEqual(false);
     });
   });
@@ -74,25 +81,10 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
     });
 
-    it('accepts a string in format mm/dd/yyyy', () => {
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" />);
-      expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
-    });
-
-    it('accepts a string in format mm-dd-yyyy', () => {
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
-      expect(getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
-    });
-
-    it('accepts a string in format mm-dd-yyyy HH:MM:SS', () => {
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="01-01-2020 00:00:00" />);
-      expect(getByLabelText('Field Date')).toHaveValue('Jan 1, 2020');
-    });
-
     it('updates its value', () => {
-      const { rerender } = render(<CustomFieldInputDate {...requiredProps} value="07-18-2016" />);
+      const { rerender } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
       expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 18, 2016');
-      rerender(<CustomFieldInputDate {...requiredProps} value="07-19-2017" />);
+      rerender(<CustomFieldInputDate {...requiredProps} value="2017-07-19" />);
       expect(screen.getByLabelText('Field Date')).toHaveValue('Jul 19, 2017');
     });
   });
@@ -117,7 +109,8 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('shows an error icon and the error text', () => {
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" errorText="Bad Date!" />);
       expect(screen.getByLabelText('Field Date')).not.toBeValid();
-      expect(screen.getByText('Bad Date!')).toBeInTheDocument();
+      expect(screen.getByTitle('Bad Date!')).toBeInTheDocument();
+      expect(screen.getByLabelText('Field Date')).toHaveDescription('Bad Date!');
     });
   });
 
@@ -160,7 +153,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('interaction', () => {
     describe('when focused', () => {
       it('switches to a date input when focused and opens the calendar', () => {
-        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" />);
+        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
         userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
@@ -170,14 +163,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
 
     describe('when clicked', () => {
       it('ensures the date input shows the correct value', () => {
-        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" />);
+        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
         userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveValue('2016-07-18');
       });
 
       it('focuses on the date input', () => {
-        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" />);
+        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
         expect(getByLabelText('Field Date')).toHaveAttribute('type', 'text');
         userEvent.click(getByLabelText('Field Date'));
         expect(getByLabelText('Field Date')).toHaveFocus();
@@ -188,7 +181,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       it('switches over to the text input', () => {
         render(
           <div>
-            <CustomFieldInputDate {...requiredProps} value={'07/18/2016'} />
+            <CustomFieldInputDate {...requiredProps} value="2016-07-18" />
             <input aria-label={'force-blur'} />
           </div>,
         );
@@ -200,10 +193,10 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       });
 
       it('stays in edit mode when it is invalid', () => {
-        const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="07/18/2016" error />);
-        userEvent.click(getByLabelText('Field Date'));
-        fireEvent.blur(getByLabelText('Field Date'));
-        expect(getByLabelText('Field Date')).toHaveAttribute('type', 'date');
+        render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" max="2016-01-01" />);
+        userEvent.click(screen.getByLabelText('Field Date'));
+        userEvent.click(document.body);
+        expect(screen.getByLabelText('Field Date')).toHaveAttribute('type', 'date');
       });
     });
   });
@@ -218,14 +211,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
 
-    it('opens to the correct date on click / pressing enter and closes on escape', () => {
+    it('opens to the correct date on click / pressing space and closes on escape', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
       userEvent.click(getByLabelText('Field Date'));
       expect(screen.getByText('July 2016')).toBeInTheDocument();
       fireEvent.keyDown(document.activeElement, { key: 'Escape' });
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
-      fireEvent.keyDown(getByLabelText('Field Date'), { key: 'Enter' });
+      fireEvent.keyDown(getByLabelText('Field Date'), { key: ' ' });
       expect(screen.getByText('July 2016')).toBeInTheDocument();
     });
 
@@ -240,7 +233,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('does not open', () => {
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" readOnly />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Field Date calendar'));
+      userEvent.click(screen.getByTitle('Field Date calendar icon'));
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
   });
@@ -248,10 +241,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
   describe('onChange API', () => {
     it('accepts an onChange listener', () => {
       const onChange = jest.fn();
-      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="" onChange={onChange} />);
+      const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} onChange={onChange} />);
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange).toHaveBeenLastCalledWith('2016-07-18');
+      expect(onChange).toBeCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: '2016-07-18',
+        }),
+      }));
     });
 
     it('passes an object with target pointing to the current ref when initialized with a ref', () => {

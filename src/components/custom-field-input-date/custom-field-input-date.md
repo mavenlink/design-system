@@ -1,67 +1,72 @@
-A simple date field for custom fields. Permits a variety of formats and allows custom validation.
+A form control to be specifically used for custom field date types. 
+It composes the MDS Date component.
 
-##### Basic usage:
+## Props API Examples
+
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
+<CustomFieldInputDate
+  id="tbd-date-1"
+  label="Pick a date!"
+  name="date-tbd"
+  placeholder="Please select a date"
+/>
+```
+
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
+<CustomFieldInputDate
+  id="my-birthday-2"
+  label="Greyson's Birthday"
+  name="birthday[greyson]"
+  value="2020-08-20"
+/>
+```
+
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
+<CustomFieldInputDate
+  id="independence-day"
+  label="The Fourth"
+  name="independence_day"
+  readOnly
+  value="1776-07-04"
+/>
+```
+
+```js
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+
+<CustomFieldInputDate
+  errorText="Not Juanca's birthday."
+  id="my-birthday-4"
+  label="Juanca's Birthday"
+  name="birthday[juanca]"
+  value="1990-03-04"
+/>
+```
+
+## Ref API Example
 
 ```jsx
+import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
+import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+
 const ref = React.createRef();
-const onChange = function() { console.log(`
-value: ${ref.current.value}
-dirty: ${ref.current.dirty}
-name: ${ref.current.name}
-id: ${ref.current.id}`
-)};
 
-<CustomFieldInputDate
-    id="my-birthday-1"
-    label="Andre's Birthday"
-    value="1992-05-10"
-    name="custom-field-1"
-    ref={ref}
-    onChange={onChange}
-/>
-```
-
-```js
-<CustomFieldInputDate
-    id="my-birthday-2"
-    label="Greyson's Birthday"
-    value="08/20/2020"
-    name="custom-field-2"
-/>
-```
-
-##### Disabled state:
-
-```js
-<CustomFieldInputDate
-    id="my-birthday-4"
-    label="Juanca's Birthday"
-    value="03/03/1990"
-    name="custom-field-3"
-    disabled
-/>
-```
-
-
-##### Error state:
-
-```js
-<CustomFieldInputDate
-    id="my-birthday-4"
-    label="Juanca's Birthday Error"
-    value="03/03/1990"
-    name="custom-field-4"
-    errorText="Error help."
-/>
-```
-
-##### Placeholder:
-
-```js
-<CustomFieldInputDate
-    id="tbd-date-1"
-    label="Pick a date!"
-    name="date-tbd"
-    placeholder="Please select a date"
-/>
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <CustomFieldInputDate
+      id="my-birthday-1"
+      label="Andre's Birthday"
+      name="birthday[andre]"
+      onChange={onChange}
+      ref={ref}
+      value="1992-05-10"
+    />
+  )}
+</RefExample>
 ```

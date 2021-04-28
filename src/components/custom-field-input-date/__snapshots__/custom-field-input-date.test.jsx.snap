@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
+exports[`src/components/custom-field-input-date/custom-field-input-date className API sets the input class name 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="container"
+    >
       <div
-        class="date-input"
         role="presentation"
       >
         <label
@@ -19,15 +20,67 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           class="control-container"
         >
           <input
-            autocomplete="on"
-            class="input"
+            aria-describedby="field-dateHint"
+            class="unique-input"
             id="field-date"
-            style="--numIcon: 1;"
+            name="field-name"
             type="text"
             value=""
           />
           <div
-            class="icon-container"
+            class="icons"
+          >
+            <svg
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
+            >
+              <title>
+                Field Date calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
+<body>
+  <div>
+    <div
+      class="container"
+    >
+      <div
+        role="presentation"
+      >
+        <label
+          class="label"
+          for="field-date"
+          id="field-date-label"
+        >
+          Field Date
+        </label>
+        <div
+          class="control-container"
+        >
+          <input
+            aria-describedby="field-dateHint"
+            class="input"
+            id="field-date"
+            name="field-name"
+            type="text"
+            value=""
+          />
+          <div
+            class="icons"
           >
             <svg
               class="button"
@@ -55,7 +108,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
 Object {
   "dirty": false,
   "id": "field-date",
-  "name": "field-id",
-  "value": "",
+  "name": "field-name",
+  "value": undefined,
 }
 `;

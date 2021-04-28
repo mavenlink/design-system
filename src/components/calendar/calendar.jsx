@@ -37,6 +37,10 @@ function getHeadCell(iterator) {
 }
 
 function isSameDate(date1, date2) {
+  if ((!date1 && date2) || (date1 && !date2)) {
+    return false;
+  }
+
   return (
     date1.getFullYear() === date2.getFullYear()
     && date1.getMonth() === date2.getMonth()
@@ -78,7 +82,7 @@ function Calendar(props) {
   let refs = {};
 
   useEffect(() => {
-    if (selectedDate && defaultDate && !isSameDate(selectedDate, defaultDate)) {
+    if (defaultDate && !isSameDate(selectedDate, defaultDate)) {
       setSelectedDate(defaultDate);
       setFocusedDate(defaultDate);
 
@@ -254,7 +258,7 @@ function Calendar(props) {
     const sameDateActiveDate = date === activeDate.getDate() && dateMonth === activeDate.getMonth();
     const label = iterator.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
     const selected = selectedDate ? isSameDate(iterator, selectedDate) : false;
-    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : null;
+    const tabIndex = sameDateFocusedDate || sameDateActiveDate ? 0 : -1;
     const epoch = iterator.getTime();
 
     function onCellFocus(event) {
@@ -351,6 +355,7 @@ function Calendar(props) {
 }
 
 Calendar.propTypes = {
+  /** The selected date in full-date format (i.e. yyyy-mm-dd). Defaults to today. */
   value: PropTypes.string,
   onDateSelected: PropTypes.func,
 };
