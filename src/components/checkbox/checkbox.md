@@ -6,21 +6,21 @@ Basic usage.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-1" label="Example checkbox field" name="example" checked={true} />
+<Checkbox id="example-1" label="Example checkbox!" name="example" checked={true} />
 ```
 
 Required example. The validation message only shows when the checkbox is dirty.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-2" label="Read-only checkbox field" name="example" required />
+<Checkbox id="example-2" label="Agree to Terms and Conditions" name="example" required />
 ```
 
-With a custom validation message. Messages are cleared on change but can be reset.
+With a custom validation message. Messages are cleared on blur and change.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-3" label="Invalid checkbox field" name="example" validationMessage="There is something wrong." />
+<Checkbox id="example-3" label="With a Custom Validation Error" name="example" validationMessage="There is something wrong." />
 ```
 
 ## Ref API Example

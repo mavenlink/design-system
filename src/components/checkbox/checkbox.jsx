@@ -10,13 +10,8 @@ import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import useMounted from '../../hooks/use-mounted.js';
 import Icon from '../icon/icon.jsx';
-import styles from '../input/input.css';
+import styles from './checkbox.css';
 import cautionSvg from '../../svgs/caution.svg';
-
-function getClassName(className, validationMessage) {
-  if (className) return className;
-  return validationMessage ? styles['invalid-input'] : styles.input;
-}
 
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
@@ -56,6 +51,8 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     },
   }));
 
+  const className = props.className || styles.input;
+
   function onBlur(event) {
     inputRef.current.setCustomValidity('');
     setValidationMessage(inputRef.current.validationMessage);
@@ -79,7 +76,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     >
       <input
         aria-describedby={`${props.id}Hint`}
-        className={getClassName(props.className, validationMessage)}
+        className={className}
         defaultChecked={props.checked}
         id={props.id}
         name={props.name}

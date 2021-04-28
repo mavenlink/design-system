@@ -1,0 +1,12 @@
+@import '../../styles/colors-v2.css';
+@import "../../styles/spacing.css";
+@import "../../styles/typography-v2.css";
+
+.input {
+  height: 20px;
+  width: 20px;
+}
+
+.invalid-icon {
+  composes: invalid-icon from '../input/input.css';
+}
