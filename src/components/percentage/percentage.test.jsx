@@ -253,7 +253,7 @@ describe('Percentage', () => {
       expect(ref.current.value).toBe(12);
 
       rerender(<Percentage {...requiredProps} ref={ref} value={undefined} />);
-      expect(ref.current.value).toBeNaN();
+      expect(ref.current.value).toBeUndefined();
       userEvent.type(screen.getByLabelText('the label'), '1');
       expect(ref.current.value).toBe(1);
     });

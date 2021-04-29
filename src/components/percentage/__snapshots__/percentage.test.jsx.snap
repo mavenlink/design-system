@@ -46,6 +46,6 @@ Object {
   "dirty": false,
   "id": "foo",
   "name": undefined,
-  "value": NaN,
+  "value": undefined,
 }
 `;

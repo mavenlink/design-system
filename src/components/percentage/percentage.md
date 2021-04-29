@@ -15,3 +15,24 @@ The `Percentage` component allows for representing a percentage in the range of 
 ```js
 <Percentage id="ex-4" label="Read-only / disabled example" readOnly />
 ```
+
+## Ref API Example
+
+```jsx
+import Percentage from '@mavenlink/design-system/src/components/percentage/percentage.jsx';
+import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+
+const ref = React.createRef();
+
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <Percentage 
+      id="ex-5" 
+      label="Ref example Percentage"
+      name="percentage-ref"
+      onChange={onChange}
+      ref={ref}
+    />
+  )}
+</RefExample>
+```

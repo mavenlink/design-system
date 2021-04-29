@@ -44,13 +44,13 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      const providedValue = props.value || NaN;
+      const providedValue = props.value || undefined;
       return !Object.is(providedValue, this.value);
     },
     id: props.id,
     name: props.name,
     get value() {
-      return parseFloat(inputRef.current.value);
+      return parseFloat(inputRef.current.value) || undefined;
     },
   }));
 
