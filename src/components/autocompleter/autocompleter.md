@@ -25,7 +25,7 @@ const ref = React.createRef();
 
 <RefExample ref={ref}>
   {({ onChange }) => (
-    <Autocompleter ref={ref} onChange={onChange} apiEndpoint={'/models'} id='ex-3' name='ref-ex' label='Ref Example'  />
+    <Autocompleter ref={ref} onChange={onChange} apiEndpoint='/models' id='ex-3' name='ref-ex' label='Ref Example'  />
   )}
 </RefExample>
 ```
