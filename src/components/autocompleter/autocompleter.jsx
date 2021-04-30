@@ -16,7 +16,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   function fetchModels(searchString) {
     fetch(apiEndpoint(searchString))
       .then((results) => {
-        setModels(results.json.results.map(resultInfo => results.json[resultInfo.key][resultInfo.id]));
+        setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
           throw error;
