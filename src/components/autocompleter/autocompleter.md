@@ -7,7 +7,7 @@ For a11y and additional prop info, see the `Select` component.
 ### Default examples
 ```js
 import Autocompleter from './autocompleter.jsx';
-<Autocompleter apiEndpoint={'/models'} id='ex-1' name='default-ex' label='Default Example' />
+<Autocompleter apiEndpoint='/models' id='ex-1' name='default-ex' label='Default Example' />
 ```
 
 ### Initial value examples
