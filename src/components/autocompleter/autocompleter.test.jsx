@@ -15,7 +15,7 @@ describe('src/components/autocompleter/autocompleter', () => {
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
-    name: 'field-id',
+    name: 'test_name',
     apiEndpoint: '/models',
   };
 
