@@ -92,8 +92,13 @@ describe('Checkbox', () => {
 
   describe('readonly api', () => {
     it('sets readonly', () => {
-      render(<Checkbox {...requiredProps} readOnly />);
+      render(<Checkbox {...requiredProps} readOnly={true} />);
       expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
+    });
+
+    it('can be not readonly', () => {
+      render(<Checkbox {...requiredProps} readOnly={false} />);
+      expect(screen.getByRole('checkbox', { name })).not.toHaveAttribute('readonly');
     });
   });
 
