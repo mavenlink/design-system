@@ -16,7 +16,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 <Checkbox id="example-2" label="Agree to Terms and Conditions" name="example" required />
 ```
 
-With a custom validation message. Messages are cleared on blur and change.
+With a custom validation message. Messages are cleared on blur.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
