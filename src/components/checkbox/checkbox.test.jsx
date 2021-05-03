@@ -230,4 +230,19 @@ describe('Checkbox', () => {
       expect(screen.getByRole('checkbox', { name })).toHaveDescription('Constraints not satisfied');
     });
   });
+
+  describe('validation message api', () => {
+    it('can be set', () => {
+      render(<Checkbox {...requiredProps} validationMessage="unique error" />);
+      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('unique error');
+      expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
+    });
+
+    it('can be unset', () => {
+      render(<Checkbox {...requiredProps} validationMessage="" />);
+      expect(screen.getByRole('checkbox', { name })).toBeValid();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+    });
+  });
 });
