@@ -7,9 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(checkbox): A Checkbox component has been added. Like other components, it supports a ref api, readonly, required, and custom validation messages.
-
 </details>
+
+## v0.69.0
+- feat(checkbox): A Checkbox component has been added. Like other components, it supports a ref api, readonly, required, and custom validation messages.
 
 ## v0.68.0
   - feat(FormControlIcons): Add `FormControlIcons` component
