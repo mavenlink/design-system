@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - feat(FormControlIcons): Add `FormControlIcons` component
+  - feat(Percentage): Add new `Percentage` component
 </details>
 
 ## v0.67.0
