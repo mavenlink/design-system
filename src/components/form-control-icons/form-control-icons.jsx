@@ -13,7 +13,6 @@ export default function FormControlIcons({
     <div className={className}>
       {!!validationMessage && (
         <Icon
-          className={styles['invalid-icon']}
           icon={cautionSvg}
           label={validationMessage}
         />
