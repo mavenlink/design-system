@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
-import useMounted from '../../hooks/use-mounted.js';
 import Icon from '../icon/icon.jsx';
 import styles from './checkbox.css';
 import cautionSvg from '../../svgs/caution.svg';
@@ -17,12 +16,9 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
   const inputRef = useRef();
-  const mounted = useMounted();
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useLayoutEffect(() => {
     inputRef.current.checked = props.checked;
   }, [props.checked]);
 
