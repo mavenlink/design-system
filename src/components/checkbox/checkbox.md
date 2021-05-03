@@ -1,4 +1,4 @@
-For design and accessibility functionality, see [Form Controls > Checkbox documentation](dead-link-talk-to-juanca).
+For design and accessibility functionality, see [Form Controls > Checkbox documentation](https://www.notion.so/Checkbox-2c117a30d5c14e50a171a263e04b4fd9).
 
 ## Props API Examples
 
