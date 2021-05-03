@@ -53,12 +53,6 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     props.onBlur(event);
   }
 
-  function onChange(event) {
-    inputRef.current.setCustomValidity('');
-    setValidationMessage(inputRef.current.validationMessage);
-    props.onChange(event);
-  }
-
   return (
     <FormControl
       className={props.cssContainer}
@@ -75,7 +69,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
         id={props.id}
         name={props.name}
         onBlur={onBlur}
-        onChange={onChange}
+        onChange={props.onChange}
         onFocus={props.onFocus}
         readOnly={props.readOnly}
         ref={inputRef}

@@ -206,18 +206,6 @@ describe('Checkbox', () => {
       expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
     });
 
-    it('is invalid after deselecting', () => {
-      render(<Checkbox {...requiredProps} required checked />);
-      expect(screen.getByRole('checkbox', { name })).toBeChecked();
-      expect(screen.getByRole('checkbox', { name })).toBeValid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
-
-      userEvent.click(screen.getByRole('checkbox', { name }));
-      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
-      expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('Constraints not satisfied');
-    });
-
     it('shows validation message after tabbing through', () => {
       render(<Checkbox {...requiredProps} required />);
       userEvent.tab();
