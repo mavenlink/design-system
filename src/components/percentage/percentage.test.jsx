@@ -2,7 +2,6 @@ import React, {
   createRef,
 } from 'react';
 import {
-  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
@@ -20,13 +19,6 @@ describe('Percentage', () => {
     render(<Percentage {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
-  });
-
-  describe('autoFocus API', () => {
-    it('sets the autoFocus attribute', () => {
-      render(<Percentage {...requiredProps} autoFocus />);
-      expect(screen.getByLabelText('the label')).toHaveFocus();
-    });
   });
 
   describe('className API', () => {
@@ -107,48 +99,12 @@ describe('Percentage', () => {
     });
   });
 
-  describe('onBlur API', () => {
-    it('sets the onblur handler', () => {
-      const onBlurSpy = jest.fn();
-      render(<Percentage {...requiredProps} onBlur={onBlurSpy} />);
-      fireEvent.blur(screen.getByLabelText('the label'));
-      expect(onBlurSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
   describe('onChange API', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
       render(<Percentage {...requiredProps} onChange={onChangeSpy} />);
-      fireEvent.change(screen.getByLabelText('the label'), { target: { value: '100' } });
-      expect(onChangeSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('onFocus API', () => {
-    it('sets the onFocus handler', () => {
-      const onFocusSpy = jest.fn();
-      render(<Percentage {...requiredProps} onFocus={onFocusSpy} />);
-      fireEvent.focus(screen.getByLabelText('the label'));
-      expect(onFocusSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('onInput API', () => {
-    it('sets the onInput handler', () => {
-      const onInputSpy = jest.fn();
-      render(<Percentage {...requiredProps} onInput={onInputSpy} />);
-      fireEvent.input(screen.getByLabelText('the label'));
-      expect(onInputSpy.mock.calls.length).toEqual(1);
-    });
-  });
-
-  describe('onKeyDown API', () => {
-    it('sets the onKeyDown handler', () => {
-      const onKeyDownSpy = jest.fn();
-      render(<Percentage {...requiredProps} onKeyDown={onKeyDownSpy} />);
-      fireEvent.keyDown(screen.getByLabelText('the label'));
-      expect(onKeyDownSpy.mock.calls.length).toEqual(1);
+      userEvent.type(screen.getByLabelText('the label'), '100');
+      expect(onChangeSpy.mock.calls.length).toEqual(3);
     });
   });
 
@@ -161,8 +117,11 @@ describe('Percentage', () => {
 
   describe('readOnly API', () => {
     it('sets the readOnly attribute', () => {
-      render(<Percentage {...requiredProps} readOnly />);
+      const { rerender } = render(<Percentage {...requiredProps} readOnly />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('readonly');
+
+      rerender(<Percentage {...requiredProps} readOnly={false} />);
+      expect(screen.getByLabelText('the label')).not.toHaveAttribute('readonly');
     });
   });
 
@@ -191,18 +150,6 @@ describe('Percentage', () => {
       render(<Percentage {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
       expect(screen.getByLabelText('the label')).toHaveDescription('');
-    });
-
-    it('is invalid after typing', async () => {
-      render(<Percentage {...requiredProps} required={true} />);
-      userEvent.type(screen.getByLabelText('the label'), '1');
-      expect(screen.getByLabelText('the label')).toHaveValue(1);
-      expect(screen.getByLabelText('the label')).toBeValid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
-      userEvent.type(screen.getByLabelText('the label'), '{backspace}');
-      expect(screen.getByLabelText('the label')).toHaveValue(null);
-      expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
     });
 
     it('is invalid after tabbing through', async () => {

@@ -8,14 +8,8 @@
 }
 
 .input {
-  border: 1px solid var(--mds-grey-12);
-  border-radius: 3px;
-  box-sizing: border-box;
-  font: var(--mds-type-content);
-  height: var(--spacing-x-large);
-  margin: 0;
+  composes: input from "../input/input.css";
   padding: 0 calc(var(--spacing-x-large) + var(--spacing-large)) 0 var(--spacing-medium);
-  width: 100%;
 }
 
 .input::placeholder {
@@ -26,22 +20,9 @@
   background-color: var(--mds-grey-3);
 }
 
-.invalid-icon {
-  box-sizing: border-box;
-  pointer-events: none;
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .invalid-input {
+  composes: invalid-input from "../input/input.css";
   composes: input;
-  border-color: var(--mds-red-100);
-}
-
-.invalid-input:hover {
-  border-color: var(--mds-red-100);
 }
 
 .percent-sign {
