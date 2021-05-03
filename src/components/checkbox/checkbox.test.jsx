@@ -65,11 +65,13 @@ describe('Checkbox', () => {
     });
   });
 
-  it('sets the onblur handler', () => {
-    const onBlur = jest.fn();
-    render(<Checkbox {...requiredProps} onBlur={onBlur} />);
-    fireEvent.blur(screen.getByRole('checkbox', { name }));
-    expect(onBlur.mock.calls.length).toEqual(1);
+  describe('onblur api', () => {
+    it('sets the onblur handler', () => {
+      const onBlur = jest.fn();
+      render(<Checkbox {...requiredProps} onBlur={onBlur} />);
+      fireEvent.blur(screen.getByRole('checkbox', { name }));
+      expect(onBlur.mock.calls.length).toEqual(1);
+    });
   });
 
   describe('onChange API', () => {
@@ -197,6 +199,11 @@ describe('Checkbox', () => {
       render(<Checkbox {...requiredProps} required />);
       expect(screen.getByRole('checkbox', { name })).toBeRequired();
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
+    });
+
+    it('tells the user it is required', () => {
+      render(<Checkbox {...requiredProps} required />);
+      expect(screen.getByText(/required/i)).toBeInTheDocument();
     });
 
     it('can be unset', () => {
