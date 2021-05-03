@@ -47,8 +47,6 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     },
   }));
 
-  const className = props.className || styles.input;
-
   function onBlur(event) {
     inputRef.current.setCustomValidity('');
     setValidationMessage(inputRef.current.validationMessage);
@@ -72,7 +70,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     >
       <input
         aria-describedby={`${props.id}Hint`}
-        className={className}
+        className={props.className}
         defaultChecked={props.checked}
         id={props.id}
         name={props.name}
@@ -113,7 +111,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   checked: undefined,
-  className: undefined,
+  className: styles.input,
   cssContainer: undefined,
   name: undefined,
   onBlur: () => {},
