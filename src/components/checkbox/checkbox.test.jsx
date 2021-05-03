@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Checkbox from './checkbox.jsx';
 
@@ -69,7 +69,8 @@ describe('Checkbox', () => {
     it('sets the onblur handler', () => {
       const onBlur = jest.fn();
       render(<Checkbox {...requiredProps} onBlur={onBlur} />);
-      fireEvent.blur(screen.getByRole('checkbox', { name }));
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      userEvent.tab();
       expect(onBlur.mock.calls.length).toEqual(1);
     });
   });
@@ -87,12 +88,12 @@ describe('Checkbox', () => {
     it('sets the onFocus handler', () => {
       const onFocus = jest.fn();
       render(<Checkbox {...requiredProps} onFocus={onFocus} />);
-      fireEvent.focus(screen.getByRole('checkbox', { name }));
+      userEvent.click(screen.getByRole('checkbox', { name }));
       expect(onFocus.mock.calls.length).toEqual(1);
     });
   });
 
-  describe('readonly api', () => {
+  describe('readOnly api', () => {
     it('sets readonly', () => {
       render(<Checkbox {...requiredProps} readOnly={true} />);
       expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
