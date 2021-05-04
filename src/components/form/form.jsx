@@ -74,7 +74,12 @@ const Form = React.forwardRef((props, forwardedRef) => {
   }));
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} onChange={onChange}>
+    <form
+      className={props.className}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      ref={formRef}
+    >
       {props.children({ onChange })}
       {!props.readOnly && !props.autoSave &&
         <div className={props.buttonContainerClassName}>
@@ -96,6 +101,7 @@ Form.propTypes = {
   autoSave: PropTypes.bool,
   buttonContainerClassName: PropTypes.string,
   children: PropTypes.func.isRequired,
+  className: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
   readOnly: PropTypes.bool,
@@ -108,6 +114,7 @@ Form.propTypes = {
 Form.defaultProps = {
   autoSave: false,
   buttonContainerClassName: styles['buttons-container'],
+  className: undefined,
   submitText: 'Save',
   onChange: () => {},
   onSubmit: () => {},
