@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
+import useMounted from '../../hooks/use-mounted.js';
 import Select from '../select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
@@ -8,15 +9,22 @@ import mockConstants from '../../mocks/mock-constants.js';
 const { API_ROOT } = mockConstants;
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
-  const { execute: fetch } = useFetch();
+  const { execute } = useFetch();
+  const mounted = useMounted();
   const [models, setModels] = useState(props.models);
+
+  useEffect(() => {
+    if (!mounted.current) return;
+
+    setModels(props.models);
+  }, [props.models]);
 
   useEffect(fetchModels, []);
 
   function fetchModels(searchString) {
-    fetch(apiEndpoint(searchString))
-      .then((results) => {
-        setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
+    execute(apiEndpoint(searchString))
+      .then((respObj) => {
+        return setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
           throw error;
@@ -32,7 +40,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     return `${API_ROOT}${props.apiEndpoint}`;
   }
 
-  function onKeyUp(event) {
+  function onInput(event) {
     fetchModels(event.target.value);
   }
 
@@ -54,7 +62,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       listOptionRefs={listOptionRefs}
       displayValueEvaluator={props.displayValueEvaluator}
       onChange={props.onChange}
-      onKeyUp={onKeyUp}
+      onInput={onInput}
       required={props.required}
       readOnly={props.readOnly}
       placeholder={props.placeholder}
@@ -72,12 +80,17 @@ function displayName(modelInfo) {
 }
 
 Autocompleter.propTypes = {
+  // `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`.
   apiEndpoint: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   searchParam: PropTypes.string,
-  models: PropTypes.arrayOf(PropTypes.object),
+  // `value` and `models` shape is expected to be an object(s) with an `id` key
+  models: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.required,
+  })),
   onChange: PropTypes.func,
+  // displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }`
   displayValueEvaluator: PropTypes.func,
   label: PropTypes.string,
   required: PropTypes.bool,
@@ -85,6 +98,7 @@ Autocompleter.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   errorText: PropTypes.string,
+  // `value` and `models` shape is expected to be an object(s) with an `id` key
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 

@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import {
+  fireEvent,
   render, screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -33,9 +34,17 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
   });
 
+  describe('name API', () => {
+    it('uses name', () => {
+      const { container } = render(<Autocompleter {...requiredProps} className="prioritize-me" />);
+      expect(container.firstChild).toHaveClass('prioritize-me');
+    });
+  });
+
   describe('errorText', () => {
     it('sets the input to be invalid', () => {
       render(<Autocompleter {...requiredProps} errorText="not valid" />);
+      expect(screen.getByLabelText('Test label')).toHaveDescription('not valid');
       expect(screen.getByLabelText('Test label')).not.toBeValid();
     });
   });
@@ -77,31 +86,50 @@ describe('src/components/autocompleter/autocompleter', () => {
     it('sets the required attribute', () => {
       render(<Autocompleter {...requiredProps} required />);
       expect(screen.getByLabelText('Test label')).toBeRequired();
+      expect(screen.getByText('(Required)')).toBeInTheDocument();
     });
 
     it('unsets the required attribute', () => {
       render(<Autocompleter {...requiredProps} required={false} />);
       expect(screen.getByLabelText('Test label')).not.toBeRequired();
+      expect(screen.queryByText('(Required)')).not.toBeInTheDocument();
     });
   });
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value = { id: 22, name: 'cool dude' };
-      render(<Autocompleter {...requiredProps} value={value} />);
-
+      const value1 = { id: 22, name: 'cool dude' };
+      const value2 = { id: 68, name: 'coolio dude' };
+      const { rerender } = render(<Autocompleter {...requiredProps} value={value1} />);
       expect(screen.getByLabelText('Test label')).toHaveValue('cool dude');
+      rerender(<Autocompleter {...requiredProps} value={value2} />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('coolio dude');
     });
   });
 
   describe('models API', () => {
-    it('accepts a an array of models', async () => {
-      const models = [{ id: 22, name: 'cool dude' }, { id: 33, name: 'neato burrito' }];
+    it('handles an empty case', () => {
+      const models = [];
       render(<Autocompleter {...requiredProps} models={models} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('No options available.')).toBeInTheDocument();
+    });
+
+    it('accepts a an array of models and can re-render', async () => {
+      const models = [{ id: 22, name: 'cool dude' }, { id: 33, name: 'neato burrito' }];
+      const { rerender } = render(<Autocompleter {...requiredProps} models={models} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('cool dude')).toBeInTheDocument();
       expect(screen.getByText('neato burrito')).toBeInTheDocument();
+
+      const newModels = [{ id: 44, name: 'wow man' }, { id: 55, name: 'super duper' }];
+      rerender(<Autocompleter {...requiredProps} models={newModels} />);
+
+      userEvent.click(screen.getAllByLabelText('Test label')[1]);
+      expect(screen.getByText('wow man')).toBeInTheDocument();
+      expect(screen.getByText('super duper')).toBeInTheDocument();
     });
   });
 
@@ -125,8 +153,62 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('calls onChange when a new value is selected', () => {
+      let changeValue = '';
+      const onChange = (event) => {
+        changeValue = event.target.value;
+      };
+
+      const models = [{ id: 22, name: 'Foo' }, { id: 33, name: 'Bar' }];
+      render(<Autocompleter {...requiredProps} models={models} onChange={onChange} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Foo'));
+
+      expect(changeValue).toEqual({ id: 22, name: 'Foo' });
+
+      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(screen.getByText('Bar'));
+
+      expect(changeValue).toEqual({ id: 33, name: 'Bar' });
+    });
+
+    it('is not called when provided a new value prop', () => {
+      const onChangeSpy = jest.fn();
+      const { rerender } = render(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'hi' }} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      rerender(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'bye' }} />);
+      expect(onChangeSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('displayValueEvaluator API', () => {
+    it('handles value objects when displayValueEvaluator is provided', () => {
+      const selectValue = { id: 0, label: 'foo' };
+      render(
+        <Autocompleter
+          {...requiredProps}
+          value={selectValue}
+          displayValueEvaluator={value => value.label}
+        />);
+      expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+    });
+  });
+
   describe('search', () => {
     it('searches with the search string', async () => {
+      render(<Autocompleter {...requiredProps} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(document.activeElement, 'Ba');
+
+      expect(await screen.findByText('Bax')).toBeInTheDocument();
+      expect(screen.getByText('Baz')).toBeInTheDocument();
+    });
+
+    it('uses the search param prop with the search string', async () => {
       render(<Autocompleter {...requiredProps} />);
 
       userEvent.click(screen.getByLabelText('Test label'));

@@ -27,7 +27,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
             autocomplete="off"
             class="input"
             id="test-id"
-            name="field-id"
+            name="test_name"
             role="combobox"
             style="--numIcon: 1;"
             type="text"
@@ -61,7 +61,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 2`] = `
 Object {
   "dirty": false,
   "id": "test-id",
-  "name": "field-id",
+  "name": "test_name",
   "value": undefined,
 }
 `;

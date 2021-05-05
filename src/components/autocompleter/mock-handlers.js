@@ -5,7 +5,7 @@ const { API_ROOT } = mockConstants;
 
 const models = [
   {
-    id: '0',
+    id: '55',
     name: 'Foo',
   },
   {
