@@ -8,7 +8,20 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - feat(Autocompleter): Added <Autocompleter/> component
+  - feat(Form): add `className` API
 </details>
+
+## v0.69.0
+- feat(checkbox): A Checkbox component has been added. Like other components, it supports a ref api, readonly, required, and custom validation messages.
+
+## v0.68.0
+  - feat(FormControlIcons): Add `FormControlIcons` component
+  - feat(Percentage): Add new `Percentage` component
+
+## v0.67.0
+- feat(popover): The popover now supports flushing to the left or right. It defaults to left.
+- feat(popover): The popover can now automatically determine which direction to flush in. It defaults to the direction provided (or left, if unprovided).
+- fix(popover): The popover no longer forcefully scrolls the close icon into view when it opens.
 
 ## v0.66.0
 - feat(Date): implement Date component

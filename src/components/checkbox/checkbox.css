@@ -1,0 +1,10 @@
+@import "../../styles/spacing.css";
+
+.input {
+  height: var(--spacing-x-large);
+  display: flex;
+}
+
+.invalid-icon {
+  composes: invalid-icon from '../input/input.css';
+}

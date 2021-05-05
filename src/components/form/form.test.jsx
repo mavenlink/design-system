@@ -137,6 +137,13 @@ describe('<Form />', () => {
     });
   });
 
+  describe('className API', () => {
+    it('is set', () => {
+      render(<Form {...requiredProps} className="unique-class-name" />);
+      expect(document.querySelector('.unique-class-name')).toBeInTheDocument();
+    });
+  });
+
   describe('dirty ref API', () => {
     it('checks for some dirty control', () => {
       const ref = createRef();
