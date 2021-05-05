@@ -66,7 +66,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       readOnly={props.readOnly}
       placeholder={props.placeholder}
-      errorText={props.errorText}
+      errorText={props.validationMessage}
       value={props.value}
       ref={ref}
     >
@@ -97,7 +97,7 @@ Autocompleter.propTypes = {
   readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  errorText: PropTypes.string,
+  validationMessage: PropTypes.string,
   // `value` and `models` shape is expected to be an object(s) with an `id` key
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
@@ -112,7 +112,7 @@ Autocompleter.defaultProps = {
   onChange: () => {},
   placeholder: undefined,
   className: undefined,
-  errorText: undefined,
+  validationMessage: undefined,
   value: undefined,
 };
 

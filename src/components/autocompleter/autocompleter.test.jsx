@@ -41,9 +41,9 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
   });
 
-  describe('errorText', () => {
+  describe('validationMessage', () => {
     it('sets the input to be invalid', () => {
-      render(<Autocompleter {...requiredProps} errorText="not valid" />);
+      render(<Autocompleter {...requiredProps} validationMessage="not valid" />);
       expect(screen.getByLabelText('Test label')).toHaveDescription('not valid');
       expect(screen.getByLabelText('Test label')).not.toBeValid();
     });
@@ -209,13 +209,12 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
 
     it('uses the search param prop with the search string', async () => {
-      render(<Autocompleter {...requiredProps} />);
+      render(<Autocompleter {...requiredProps} searchParam={'find'} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.type(document.activeElement, 'Ba');
+      userEvent.type(document.activeElement, 'Find');
 
-      expect(await screen.findByText('Bax')).toBeInTheDocument();
-      expect(screen.getByText('Baz')).toBeInTheDocument();
+      expect(await screen.findByText('Find-stub')).toBeInTheDocument();
     });
   });
 });
