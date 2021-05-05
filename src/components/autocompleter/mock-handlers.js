@@ -37,7 +37,9 @@ export default function handlers(delay = 0) {
 
       let modelsForData = [...models];
       if (searchString) {
-        modelsForData = [...modelsForData.filter(model => model.name.toLocaleLowerCase().match(searchString.toLocaleLowerCase()))];
+        modelsForData = [...modelsForData.filter((model) => {
+          return model.name.toLocaleLowerCase().match(searchString.toLocaleLowerCase());
+        })];
       }
 
       const findStub = request.url.searchParams.get('find');
