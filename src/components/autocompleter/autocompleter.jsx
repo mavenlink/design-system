@@ -22,6 +22,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   useEffect(fetchModels, []);
 
   function fetchModels(searchString) {
+    if (!props.apiEndpoint) { return; }
+
     execute(apiEndpoint(searchString))
       .then((respObj) => {
         return setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
@@ -81,7 +83,7 @@ function displayName(modelInfo) {
 
 Autocompleter.propTypes = {
   // `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`.
-  apiEndpoint: PropTypes.string.isRequired,
+  apiEndpoint: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   searchParam: PropTypes.string,
@@ -103,6 +105,7 @@ Autocompleter.propTypes = {
 };
 
 Autocompleter.defaultProps = {
+  apiEndpoint: undefined,
   searchParam: 'matching',
   models: [],
   label: undefined,
