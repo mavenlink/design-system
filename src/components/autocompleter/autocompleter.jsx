@@ -103,7 +103,7 @@ Autocompleter.propTypes = {
 };
 
 Autocompleter.defaultProps = {
-  searchParam: 'search',
+  searchParam: 'matching',
   models: [],
   label: undefined,
   required: false,

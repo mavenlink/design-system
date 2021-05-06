@@ -33,7 +33,7 @@ const models = [
 export default function handlers(delay = 0) {
   return [
     rest.get(`${API_ROOT}/models`, (request, response, context) => {
-      const searchString = request.url.searchParams.get('search');
+      const searchString = request.url.searchParams.get('matching');
 
       let modelsForData = [...models];
       if (searchString) {
