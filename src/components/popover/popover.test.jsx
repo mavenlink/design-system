@@ -129,6 +129,22 @@ describe('Popover', () => {
     });
   });
 
+  describe('onClose API', () => {
+    it('is a function', () => {
+      const ref = createRef();
+      const onClose = jest.fn();
+      render(<Popover {...requiredProps} ref={ref} onClose={onClose} />);
+      act(() => {
+        ref.current.open = true;
+      });
+      expect(onClose).not.toHaveBeenCalled();
+      act(() => {
+        ref.current.open = false;
+      });
+      expect(onClose).toHaveBeenCalled();
+    });
+  });
+
   describe('title API', () => {
     it('is set', () => {
       const ref = createRef();

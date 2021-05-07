@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
-  useEffect,
+  useLayoutEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -10,6 +10,7 @@ import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
+import useMounted from '../../hooks/use-mounted.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(false);
@@ -18,6 +19,7 @@ const Popover = forwardRef(function Popover(props, ref) {
   const sectionRef = useRef();
   const selfRef = ref || backupRef;
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
+  const mounted = useMounted();
 
   const onFocusIn = (event) => {
     if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
@@ -31,15 +33,15 @@ const Popover = forwardRef(function Popover(props, ref) {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('click', onWindowClick);
     window.addEventListener('focusin', onFocusIn);
 
-    if (closeIconRef.current && open) {
+    if (open) {
       closeIconRef.current.focus({ preventScroll: true });
     }
 
-    if (!open) {
+    if (mounted.current && !open) {
       props.onClose();
     }
 
