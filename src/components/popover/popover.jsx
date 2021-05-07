@@ -12,7 +12,7 @@ import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
-  const [open, setOpen] = useState(props.startOpen);
+  const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
   const backupRef = useRef();
   const sectionRef = useRef();
@@ -93,7 +93,6 @@ Popover.propTypes = {
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
-  startOpen: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
@@ -102,7 +101,6 @@ Popover.defaultProps = {
   children: undefined,
   flush: 'left',
   onClose: () => {},
-  startOpen: false,
 };
 
 export default Popover;
