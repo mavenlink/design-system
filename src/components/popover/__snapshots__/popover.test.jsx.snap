@@ -7,49 +7,6 @@ exports[`Popover has defaults 1`] = `
 `;
 
 exports[`Popover has defaults 2`] = `
-<body>
-  <div />
-  <div>
-    <section
-      aria-labelledby="popover-heading"
-      class="container"
-      role="dialog"
-      style="left: 0px;"
-    >
-      <div
-        role="presentation"
-      >
-        <div
-          class="heading-container"
-          id="popover-heading"
-        >
-          <h1
-            class="heading"
-          >
-            Defaults
-          </h1>
-          <svg
-            class="close-button"
-            height="8"
-            role="button"
-            tabindex="0"
-            width="8"
-          >
-            <title>
-              Close popover
-            </title>
-            <use
-              xlink:href="#clear.svg"
-            />
-          </svg>
-        </div>
-      </div>
-    </section>
-  </div>
-</body>
-`;
-
-exports[`Popover has defaults 3`] = `
 Object {
   "open": false,
 }

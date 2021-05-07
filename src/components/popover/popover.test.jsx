@@ -36,9 +36,6 @@ describe('Popover', () => {
     render(<Popover title="Defaults" />);
     expect(document.body).toMatchSnapshot();
 
-    render(<Popover title="Defaults" startOpen={true} />);
-    expect(document.body).toMatchSnapshot();
-
     render(<Popover ref={popoverRef} title="Defaults with ref" />);
     expect(popoverRef.current).toMatchSnapshot();
   });
@@ -145,5 +142,5 @@ describe('Popover', () => {
       });
       expect(screen.getByText('Unique title')).toBeInTheDocument();
     });
-  })
+  });
 });
