@@ -1,9 +1,22 @@
-import React, { useRef, Fragment } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import React, {
+  createRef,
+  useRef,
+  Fragment,
+} from 'react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popover from './popover.jsx';
 
 describe('Popover', () => {
+  const requiredProps = {
+    title: 'Test title',
+  };
+
   function PopoverWithToggle(popoverProps) {
     const popoverRef = useRef();
 
@@ -121,4 +134,16 @@ describe('Popover', () => {
       expect(screen.getByRole('dialog')).not.toHaveStyle({ left: 0 });
     });
   });
+
+  describe('title API', () => {
+    it('is set', () => {
+      const ref = createRef();
+      render(<Popover {...requiredProps} ref={ref} title="Unique title" />);
+      expect(screen.queryByText('Unique title')).not.toBeInTheDocument();
+      act(() => {
+        ref.current.open = true;
+      });
+      expect(screen.getByText('Unique title')).toBeInTheDocument();
+    });
+  })
 });
