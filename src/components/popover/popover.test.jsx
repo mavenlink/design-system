@@ -119,7 +119,7 @@ describe('Popover', () => {
     expect(screen.getByText('Another title').tagName).toEqual('H1');
   });
 
-  describe('flush api', () => {
+  describe('flush API', () => {
     it('can flush left', () => {
       render(<PopoverWithToggle title="Another title" flush="left"><span>More text</span></PopoverWithToggle>);
       userEvent.click(screen.getByText('Open Popover'));
