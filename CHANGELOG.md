@@ -11,6 +11,9 @@
   - feat(Form): add `className` API
 </details>
 
+## v0.70.0
+- feat(Form): add `className` API
+
 ## v0.69.0
 - feat(checkbox): A Checkbox component has been added. Like other components, it supports a ref api, readonly, required, and custom validation messages.
 
