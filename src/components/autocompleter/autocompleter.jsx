@@ -82,17 +82,17 @@ function displayName(modelInfo) {
 }
 
 Autocompleter.propTypes = {
-  // `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`.
+  /* `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   searchParam: PropTypes.string,
-  // `value` and `models` shape is expected to be an object(s) with an `id` key
+  /* `value` and `models` shape is expected to be an object(s) with an `id` key */
   models: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.required,
   })),
   onChange: PropTypes.func,
-  // displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }`
+  /* displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   label: PropTypes.string,
   required: PropTypes.bool,
@@ -100,7 +100,7 @@ Autocompleter.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   validationMessage: PropTypes.string,
-  // `value` and `models` shape is expected to be an object(s) with an `id` key
+  /* `value` and `models` shape is expected to be an object(s) with an `id` key */
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
