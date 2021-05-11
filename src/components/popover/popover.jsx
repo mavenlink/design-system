@@ -62,20 +62,18 @@ const Popover = forwardRef(function Popover(props, ref) {
       style={flush}
       tabIndex={-1}
     >
-      <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
-        <div className={styles['heading-container']} id="popover-heading">
-          <h1 className={styles.heading}>{props.title}</h1>
-          <IconButton
-            active={true}
-            className={styles['close-button']}
-            icon={iconClear}
-            label={'Close popover'}
-            onPress={() => { setOpen(false); }}
-            ref={closeIconRef}
-          />
-        </div>
-        {props.children}
+      <div className={styles['heading-container']} id="popover-heading">
+        <h1 className={styles.heading}>{props.title}</h1>
+        <IconButton
+          active={true}
+          className={styles['close-button']}
+          icon={iconClear}
+          label={'Close popover'}
+          onPress={() => { setOpen(false); }}
+          ref={closeIconRef}
+        />
       </div>
+      {props.children}
     </section>
   );
 });
