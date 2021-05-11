@@ -23,7 +23,8 @@ const Popover = forwardRef(function Popover(props, ref) {
 
   function onBlur(event) {
     // Target is set to `null` when losing focus to a non-interactive element (e.g. text)
-    if (event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget)) {
+    const defaultShouldClose = event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget);
+    if (props.shouldClose(event.relatedTarget) && defaultShouldClose) {
       setOpen(false);
     }
   }
@@ -84,6 +85,8 @@ Popover.propTypes = {
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
+  /** Handles either a FocusEvent or MouseEvent. This is an additional predicate for configuring the closing behavior. */
+  shouldClose: PropTypes.func,
   title: PropTypes.string.isRequired,
 };
 
@@ -91,6 +94,7 @@ Popover.defaultProps = {
   autoflush: false,
   children: undefined,
   flush: 'left',
+  shouldClose: () => true,
   onClose: () => {},
 };
 

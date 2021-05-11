@@ -145,6 +145,56 @@ describe('Popover', () => {
     });
   });
 
+  describe('shouldClose API', () => {
+    it('allows closing via clicks', () => {
+      const ref = createRef();
+      const onClose = jest.fn();
+      const shouldClose = () => true;
+      render(<Popover {...requiredProps} ref={ref} onClose={onClose} shouldClose={shouldClose} />);
+      act(() => {
+        ref.current.open = true;
+      });
+      userEvent.click(document.body);
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('stops closing via clicks', () => {
+      const ref = createRef();
+      const onClose = jest.fn();
+      const shouldClose = () => false;
+      render(<Popover {...requiredProps} ref={ref} onClose={onClose} shouldClose={shouldClose} />);
+      act(() => {
+        ref.current.open = true;
+      });
+      userEvent.click(document.body);
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('allows closing via blur', () => {
+      const ref = createRef();
+      const onClose = jest.fn();
+      const shouldClose = () => true;
+      render(<Popover {...requiredProps} ref={ref} onClose={onClose} shouldClose={shouldClose} />);
+      act(() => {
+        ref.current.open = true;
+      });
+      userEvent.tab({ shift: true });
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('stops closing via blur', () => {
+      const ref = createRef();
+      const onClose = jest.fn();
+      const shouldClose = () => false;
+      render(<Popover {...requiredProps} ref={ref} onClose={onClose} shouldClose={shouldClose} />);
+      act(() => {
+        ref.current.open = true;
+      });
+      userEvent.tab({ shift: true });
+      expect(onClose).not.toHaveBeenCalled();
+    });
+  });
+
   describe('title API', () => {
     it('is set', () => {
       const ref = createRef();
