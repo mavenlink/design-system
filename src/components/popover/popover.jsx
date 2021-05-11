@@ -30,11 +30,11 @@ const Popover = forwardRef(function Popover(props, ref) {
   }
 
   useLayoutEffect(() => {
+    if (!mounted.current) return;
+
     if (open) {
       closeIconRef.current.focus({ preventScroll: true });
-    }
-
-    if (mounted.current && !open) {
+    } else {
       props.onClose();
     }
   }, [open]);
