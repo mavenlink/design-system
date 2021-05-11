@@ -21,22 +21,14 @@ const Popover = forwardRef(function Popover(props, ref) {
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
   const mounted = useMounted();
 
-  const onFocusIn = (event) => {
-    if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
+  function onBlur(event) {
+    // Target is set to `null` when losing focus to a non-interactive element (e.g. text)
+    if (event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget)) {
       setOpen(false);
     }
-  };
-
-  const onWindowClick = () => {
-    if (open) {
-      setOpen(false);
-    }
-  };
+  }
 
   useLayoutEffect(() => {
-    window.addEventListener('click', onWindowClick);
-    window.addEventListener('focusin', onFocusIn);
-
     if (open) {
       closeIconRef.current.focus({ preventScroll: true });
     }
@@ -44,11 +36,6 @@ const Popover = forwardRef(function Popover(props, ref) {
     if (mounted.current && !open) {
       props.onClose();
     }
-
-    return () => {
-      window.removeEventListener('click', onWindowClick);
-      window.removeEventListener('focusin', onFocusIn);
-    };
   }, [open]);
 
   useImperativeHandle(selfRef, () => ({
@@ -68,9 +55,11 @@ const Popover = forwardRef(function Popover(props, ref) {
     <section
       aria-labelledby="popover-heading"
       className={styles.container}
+      onBlur={onBlur}
       ref={sectionRef}
       role="dialog"
       style={flush}
+      tabIndex={-1}
     >
       <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
         <div className={styles['heading-container']} id="popover-heading">
