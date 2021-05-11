@@ -113,6 +113,10 @@ describe('Popover', () => {
     expect(screen.getByText('Another title').tagName).toEqual('H1');
   });
 
+  describe('autoflush API', () => {
+    // We don't know how to test this well. Manually QA for now.
+  });
+
   describe('children API', () => {
     it('is set', () => {
       const ref = createRef();
