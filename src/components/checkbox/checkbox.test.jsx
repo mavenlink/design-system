@@ -93,15 +93,23 @@ describe('Checkbox', () => {
     });
   });
 
-  describe('readOnly api', () => {
+  describe('readOnly API', () => {
     it('sets readonly', () => {
       render(<Checkbox {...requiredProps} readOnly={true} />);
       expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
     });
 
     it('can be not readonly', () => {
       render(<Checkbox {...requiredProps} readOnly={false} />);
       expect(screen.getByRole('checkbox', { name })).not.toHaveAttribute('readonly');
+      userEvent.click(screen.getByRole('checkbox', { name }));
+      expect(screen.getByRole('checkbox', { name })).toBeChecked();
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
     });
   });
 
