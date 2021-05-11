@@ -113,6 +113,21 @@ describe('Popover', () => {
     expect(screen.getByText('Another title').tagName).toEqual('H1');
   });
 
+  describe('children API', () => {
+    it('is set', () => {
+      const ref = createRef();
+      render((
+        <Popover {...requiredProps} ref={ref}>
+          Unique popover content
+        </Popover>
+      ));
+      act(() => {
+        ref.current.open = true;
+      });
+      expect(screen.getByText('Unique popover content')).toBeInTheDocument();
+    });
+  });
+
   describe('flush API', () => {
     it('can flush left', () => {
       render(<PopoverWithToggle title="Another title" flush="left"><span>More text</span></PopoverWithToggle>);
