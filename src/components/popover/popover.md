@@ -10,21 +10,25 @@ and/or use the `onClose` callback to return focus to correct element.
 ```js
 import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
 
+const containerRef = React.createRef();
 const popoverRef = React.createRef();
-const buttonRef = React.createRef();
+
+function onBlur(event) {
+  if (shouldClose(event)) popoverRef.current.open = false;
+}
 
 function onButtonClicked(event) {
   popoverRef.current.open = true;
 }
 
-function shouldClose(focusedElement) {
-  return focusedElement !== buttonRef.current;
+function shouldClose(event) {
+  return !containerRef.current.contains(event.relatedTarget);
 }
 
-<React.Fragment>
-  <button onClick={onButtonClicked} ref={buttonRef}>Open Popover</button>
+<div onBlur={onBlur} ref={containerRef} tabIndex={-1}>
+  <button onClick={onButtonClicked}>Open Popover</button>
   <Popover ref={popoverRef} shouldClose={shouldClose} title="Popover Title" />
-</React.Fragment>
+</div>
 ```
 
 
