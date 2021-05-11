@@ -1,8 +1,11 @@
-The `Popover` component provides functionality somewhere between a modal and a toggletip. It doesn't interrupt flow like a modal would, but provides more than the purely informational function of a toggletip. It is a way to allow for greater branching functionality while staying in-flow.
+The `Popover` component provides functionality somewhere between a modal and a toggle-tip. 
+It doesn't interrupt flow like a modal would, but provides more than the purely informational function of a toggle-tip. 
+It is a way to allow for greater branching functionality while staying in-flow.
 
-The `Popover` component provides a ref for getting and setting the `open` state, as well as an `onClose` callback in props. These features can be used to more tightly control the open/close functionality, and to return focus to the correct element once closed.
-
-`Popover`s will close if a `click` or `focusin` event reaches the root `window` (the popover ignores these events if they originate from within it), so click/focus events that should not close the `Popover` should have `stopPropogation` called on them.
+The `Popover` component provides an API to control the open and/or close functionality:
+use the ref to get or set the `open` state;
+use the `shouldClose` callback to avoid closing the dialog;
+and/or use the `onClose` callback to return focus to correct element.
 
 ```js
 import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
