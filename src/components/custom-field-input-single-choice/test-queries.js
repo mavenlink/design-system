@@ -24,5 +24,7 @@ export function selectChoice(fieldLabel, choiceText) {
 
 export async function waitForChoices(fieldName) {
   openChoices(fieldName);
-  await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
+  if (screen.queryAllByRole('progressbar')) {
+    await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
+  }
 }
