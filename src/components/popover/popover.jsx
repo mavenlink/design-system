@@ -68,7 +68,7 @@ const Popover = forwardRef(function Popover(props, ref) {
           active={true}
           className={styles['close-button']}
           icon={iconClear}
-          label={'Close popover'}
+          label="Close popover"
           onPress={() => { setOpen(false); }}
           ref={closeIconRef}
         />
