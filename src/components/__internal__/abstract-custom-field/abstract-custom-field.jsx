@@ -98,6 +98,7 @@ export default function AbstractCustomField(props) {
         onFocus={props.onFocus}
         onKeyDown={props.onKeyDown}
         onKeyUp={props.onKeyUp}
+        onInput={props.onInput}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={props.inputRef}
@@ -157,6 +158,7 @@ AbstractCustomField.propTypes = {
   onFocus: PropTypes.func,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
+  onInput: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -194,6 +196,7 @@ AbstractCustomField.defaultProps = {
   onFocus: () => {},
   onKeyDown: () => {},
   onKeyUp: () => {},
+  onInput: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
