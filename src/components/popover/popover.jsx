@@ -23,8 +23,8 @@ const Popover = forwardRef(function Popover(props, ref) {
 
   function onBlur(event) {
     // Target is set to `null` when losing focus to a non-interactive element (e.g. text)
-    const defaultShouldClose = event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget);
-    if (props.shouldClose(event) && defaultShouldClose) {
+    const focusOutsidePopover = event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget);
+    if (focusOutsidePopover && props.shouldClose(event)) {
       setOpen(false);
     }
   }
