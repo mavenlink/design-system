@@ -62,7 +62,9 @@ export function querySelectedChoice(fieldLabel, choiceLabel) {
 
 export async function waitForChoices(fieldName) {
   openChoices(fieldName);
-  await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
+  if (screen.queryAllByRole('progressbar')) {
+    await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
+  }
 }
 
 export async function waitForChoicesNoOpen() {

@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.70.0",
+  "version": "0.71.0",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",
     "@testing-library/react-hooks": "^3.4.1",
-    "@testing-library/user-event": "^12.0.13",
+    "@testing-library/user-event": "^13.1.8",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
