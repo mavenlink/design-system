@@ -117,11 +117,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       }));
   }
 
-  const handleDropdownClose = () => {
-    setExpanded(false);
-    setAutocompleteValue('');
-  };
-
   function onAutocompleteBlur() {
     if (!autocompleteRef.current) return;
 
@@ -136,6 +131,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   function onAutocompleteChange(event) {
     setExpanded(true);
     setAutocompleteValue(event.target.value);
+  }
+
+  function onDropdownClose() {
+    setExpanded(false);
+    setAutocompleteValue('');
   }
 
   function onOptionRemove(event) {
@@ -182,7 +182,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     }
   }
 
-  useDropdownClose(wrapperRef, expanded, handleDropdownClose);
+  useDropdownClose(wrapperRef, expanded, onDropdownClose);
 
   useEffect(() => {
     setValue(props.value);
