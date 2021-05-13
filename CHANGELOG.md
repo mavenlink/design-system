@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(Popover): implement `shouldClose` API
-  - fix(Checkbox): do not allow state change when `readOnly`
 </details>
+
+## v0.71.0
+- feat(Popover): implement `shouldClose` API
+- fix(Checkbox): do not allow state change when `readOnly`
 
 ## v0.70.0
 - feat(Form): add `className` API
