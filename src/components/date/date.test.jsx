@@ -89,7 +89,7 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} />);
       userEvent.type(screen.getByLabelText('Test label'), '');
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
-      userEvent.type(screen.getByLabelText('Test label'), '{esc}', { skipClick: true });
+      userEvent.keyboard('{Escape}');
       expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 

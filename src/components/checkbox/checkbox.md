@@ -6,7 +6,11 @@ Basic usage.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-1" label="Example checkbox!" name="example" checked={true} />
+<React.Fragment>
+  <Checkbox id="example-1" label="Example checkbox!" name="example" checked={true} />
+  <Checkbox id="example-12" label="Readonly checked box" name="example" checked={true} readOnly />
+  <Checkbox id="example-13" label="Readonly unchecked box" name="example" readOnly />
+</React.Fragment>
 ```
 
 Required example. The validation message only shows when the checkbox is dirty.

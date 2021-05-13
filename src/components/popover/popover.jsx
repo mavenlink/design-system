@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
-  useEffect,
+  useLayoutEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -10,43 +10,33 @@ import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
+import useMounted from '../../hooks/use-mounted.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
-  const [open, setOpen] = useState(props.startOpen);
+  const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
   const backupRef = useRef();
   const sectionRef = useRef();
   const selfRef = ref || backupRef;
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
+  const mounted = useMounted();
 
-  const onFocusIn = (event) => {
-    if (open && event.target instanceof Node && !sectionRef.current.contains(event.target)) {
+  function onBlur(event) {
+    // Target is set to `null` when losing focus to a non-interactive element (e.g. text)
+    const focusOutsidePopover = event.relatedTarget === null || !sectionRef.current.contains(event.relatedTarget);
+    if (focusOutsidePopover && props.shouldClose(event)) {
       setOpen(false);
     }
-  };
+  }
 
-  const onWindowClick = () => {
+  useLayoutEffect(() => {
+    if (!mounted.current) return;
+
     if (open) {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('click', onWindowClick);
-    window.addEventListener('focusin', onFocusIn);
-
-    if (closeIconRef.current && open) {
       closeIconRef.current.focus({ preventScroll: true });
-    }
-
-    if (!open) {
+    } else {
       props.onClose();
     }
-
-    return () => {
-      window.removeEventListener('click', onWindowClick);
-      window.removeEventListener('focusin', onFocusIn);
-    };
   }, [open]);
 
   useImperativeHandle(selfRef, () => ({
@@ -66,24 +56,24 @@ const Popover = forwardRef(function Popover(props, ref) {
     <section
       aria-labelledby="popover-heading"
       className={styles.container}
+      onBlur={onBlur}
       ref={sectionRef}
       role="dialog"
       style={flush}
+      tabIndex={-1}
     >
-      <div onClick={(event) => { event.stopPropagation(); }} role="presentation">
-        <div className={styles['heading-container']} id="popover-heading">
-          <h1 className={styles.heading}>{props.title}</h1>
-          <IconButton
-            active={true}
-            className={styles['close-button']}
-            icon={iconClear}
-            label={'Close popover'}
-            onPress={() => { setOpen(false); }}
-            ref={closeIconRef}
-          />
-        </div>
-        {props.children}
+      <div className={styles['heading-container']} id="popover-heading">
+        <h1 className={styles.heading}>{props.title}</h1>
+        <IconButton
+          active={true}
+          className={styles['close-button']}
+          icon={iconClear}
+          label="Close popover"
+          onPress={() => { setOpen(false); }}
+          ref={closeIconRef}
+        />
       </div>
+      {props.children}
     </section>
   );
 });
@@ -93,7 +83,8 @@ Popover.propTypes = {
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
-  startOpen: PropTypes.bool,
+  /** Handles either a FocusEvent or MouseEvent. This is an additional predicate for configuring the closing behavior. */
+  shouldClose: PropTypes.func,
   title: PropTypes.string.isRequired,
 };
 
@@ -101,8 +92,8 @@ Popover.defaultProps = {
   autoflush: false,
   children: undefined,
   flush: 'left',
+  shouldClose: () => true,
   onClose: () => {},
-  startOpen: false,
 };
 
 export default Popover;

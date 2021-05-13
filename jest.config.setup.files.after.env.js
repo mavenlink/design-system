@@ -11,6 +11,7 @@ afterAll(() => jestServer.close());
 
 const allowedErrors = [
   /^Error: Not implemented: window\.computedStyle\(elt, pseudoElt\)/, // This is an irritating code design in JSDOM
+  /^Error: Expected key descriptor but found "" in ""/, // This is a false negative in @testing-library/user-event
 ];
 
 console.error = (message) => { // eslint-disable-line
