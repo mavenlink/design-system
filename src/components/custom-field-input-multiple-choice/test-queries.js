@@ -60,11 +60,12 @@ export function querySelectedChoice(fieldLabel, choiceLabel) {
   return queryByRole(taglist, 'gridcell', { name: choiceLabel });
 }
 
-export async function waitForChoices(fieldName) {
-  openChoices(fieldName);
-  if (screen.queryAllByRole('progressbar')) {
-    await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
-  }
+export async function waitForChoices(fieldLabel) {
+  openChoices(fieldLabel);
+
+  const listbox = screen.getByRole('listbox', { name: fieldLabel });
+  const progressbar = queryByRole(listbox, 'progressbar');
+  if (progressbar) await waitForElementToBeRemoved(progressbar);
 }
 
 export async function waitForChoicesNoOpen() {
