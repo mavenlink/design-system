@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MultiSelect> has defaults 1`] = `
+<body>
+  <div>
+    <div
+      class="container"
+      id="test-id"
+    >
+      <div
+        role="presentation"
+      >
+        <label
+          class="label"
+          for="test-id-autocomplete"
+          id="test-id-label"
+        >
+          test label
+        </label>
+        <div
+          class="control-container"
+        >
+          <div
+            class="form-control-children-container"
+            role="presentation"
+          >
+            <div
+              aria-labelledby="test-id-label"
+              class="tag-list"
+              role="grid"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="test-id-listbox"
+                aria-describedby="test-id-empty"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-labelledby="test-id-label"
+                autocomplete="off"
+                class="input"
+                id="test-id-autocomplete"
+                role="combobox"
+                value=""
+              />
+            </div>
+            <div
+              class="icon-container"
+            >
+              <svg
+                height="6"
+                role="img"
+                width="10"
+              >
+                <title>
+                  Open multi select options
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<MultiSelect> has defaults 2`] = `
+Object {
+  "dirty": false,
+  "id": "test-id",
+  "name": "field-id",
+  "value": Array [],
+}
+`;
