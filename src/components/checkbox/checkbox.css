@@ -8,3 +8,7 @@
 .invalid-icon {
   composes: invalid-icon from '../input/input.css';
 }
+
+.input[readonly] {
+  opacity: 0.3;
+}

@@ -7,8 +7,7 @@ import React, {
 } from 'react';
 
 const RefExample = forwardRef(function RefExample(props, ref) {
-  // eslint-disable-next-line no-unused-vars
-  const [_, setRerender] = useState(0);
+  const [, setRerender] = useState(0);
   const refKeys = Object.keys(ref.current || {});
 
   function rerender() {
@@ -22,7 +21,7 @@ const RefExample = forwardRef(function RefExample(props, ref) {
   useEffect(rerender, []);
 
   return (
-    <div>
+    <div onClick={onChange} onFocus={onChange} onKeyDown={onChange} onKeyUp={onChange}>
       {props.children({ onChange })}
       <table>
         <thead>

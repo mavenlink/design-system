@@ -53,6 +53,14 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     props.onBlur(event);
   }
 
+  function onClick(event) {
+    if (props.readOnly) event.preventDefault();
+  }
+
+  function onKeyDown(event) {
+    if (props.readOnly && event.key === ' ') event.preventDefault();
+  }
+
   return (
     <FormControl
       className={props.cssContainer}
@@ -70,7 +78,9 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
         name={props.name}
         onBlur={onBlur}
         onChange={props.onChange}
+        onClick={onClick}
         onFocus={props.onFocus}
+        onKeyDown={onKeyDown}
         readOnly={props.readOnly}
         ref={inputRef}
         required={props.required}
