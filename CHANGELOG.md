@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - refactor(test-queries): ensure `waitForElementToBeRemoved` is given a valid element
 </details>
 
 ## v0.72.0
