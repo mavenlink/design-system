@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.72.0
   - feat(Autocompleter): Added <Autocompleter/> component
   - feat(Form): add `className` API
-</details>
 
 ## v0.71.0
 - feat(Popover): implement `shouldClose` API
