@@ -147,6 +147,16 @@ describe('src/components/select/select', () => {
         </Select>);
       expect(screen.getByLabelText('Test label')).toHaveValue('foo');
     });
+
+    it('does not filter when set to false', () => {
+      render(<Select {...requiredProps} displayValueEvaluator={false} >{baseListOptionElements}</Select>);
+      userEvent.tab();
+      userEvent.type(document.activeElement, 'fo', { skipClick: true });
+
+      expect(document.activeElement).toHaveValue('fo');
+      expect(screen.queryByText('foo')).toBeInTheDocument();
+      expect(screen.queryByText('bar')).toBeInTheDocument();
+    });
   });
 
   describe('dirty ref API', () => {
@@ -186,12 +196,12 @@ describe('src/components/select/select', () => {
       expect(screen.queryByText('bar')).toHaveClass('hidden');
     });
 
-    it('allows filtering when focused on the component', () => {
+    it('allows filtering (case-insensitive) when focused on the component', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
       userEvent.tab();
-      userEvent.type(document.activeElement, 'fo', { skipClick: true });
+      userEvent.type(document.activeElement, 'Fo', { skipClick: true });
 
-      expect(document.activeElement).toHaveValue('fo');
+      expect(document.activeElement).toHaveValue('Fo');
       expect(screen.queryByText('foo')).toBeInTheDocument();
       expect(screen.queryByText('bar')).toHaveClass('hidden');
     });
