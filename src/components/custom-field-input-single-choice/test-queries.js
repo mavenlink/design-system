@@ -1,5 +1,6 @@
 import {
   screen,
+  queryByRole,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -24,7 +25,8 @@ export function selectChoice(fieldLabel, choiceText) {
 
 export async function waitForChoices(fieldName) {
   openChoices(fieldName);
-  if (screen.queryAllByRole('progressbar')) {
-    await waitForElementToBeRemoved(() => screen.queryAllByRole('progressbar'));
-  }
+
+  const listbox = screen.getByRole('listbox', { name: fieldName });
+  const progressbar = queryByRole(listbox, 'progressbar');
+  if (progressbar) await waitForElementToBeRemoved(progressbar);
 }

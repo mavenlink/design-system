@@ -10,6 +10,13 @@
   - feat(MultiSelect): Add `MultiSelect` component
 </details>
 
+## v0.72.1
+- refactor(test-queries): ensure `waitForElementToBeRemoved` is given a valid element
+
+## v0.72.0
+  - feat(Autocompleter): Added <Autocompleter/> component
+  - feat(Form): add `className` API
+
 ## v0.71.0
 - feat(Popover): implement `shouldClose` API
 - fix(Checkbox): do not allow state change when `readOnly`

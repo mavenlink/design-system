@@ -144,9 +144,12 @@ const Select = forwardRef(function Select(props, ref) {
     if (searchValue) {
       props.listOptionRefs.forEach((listOptionRef) => {
         if (listOptionRef.current) {
-          const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
+          if (props.displayValueEvaluator) {
+            const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
 
-          listOptionRef.current.setVisible(listOptionDisplayValue.includes(searchValue));
+            const matches = listOptionDisplayValue.toLowerCase().includes(searchValue.toLowerCase());
+            listOptionRef.current.setVisible(matches);
+          }
         }
       });
     } else {
@@ -177,6 +180,7 @@ const Select = forwardRef(function Select(props, ref) {
         onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}
+        onInput={props.onInput}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         inputRef={inputRef}
@@ -224,13 +228,17 @@ Select.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
-  /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. */
-  displayValueEvaluator: PropTypes.func,
+  /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
+  displayValueEvaluator: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.bool,
+  ]),
   errorText: PropTypes.string,
   label: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onInput: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -243,6 +251,7 @@ Select.defaultProps = {
   displayValueEvaluator: value => value,
   errorText: '',
   onChange: () => {},
+  onInput: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
