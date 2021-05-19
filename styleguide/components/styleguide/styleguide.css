@@ -1,6 +1,10 @@
 @import "../../../src/styles/colors-v2.css";
 @import "../../../src/styles/spacing.css";
 
+:global html {
+  scroll-padding-top: var(--spacing-x-large);
+}
+
 .root {
   display: grid;
   grid-template-columns: max-content auto;
