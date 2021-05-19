@@ -8,7 +8,6 @@ module.exports = {
     path.join(__dirname, 'pages'),
     './node_modules/msw/lib/iife',
   ],
-  exampleMode: 'expand',
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
     // interplay between the presence of an index.js and a FolderName.md file. It thinks that the
@@ -105,11 +104,9 @@ module.exports = {
   styleguideComponents: {
     ComponentsListRenderer: path.join(__dirname, 'styleguide/components/components-list'),
     LinkRenderer: path.join(__dirname, 'styleguide/components/link'),
-    PlaygroundRenderer: path.join(__dirname, 'styleguide/components/playground'),
     ReactComponentRenderer: path.join(__dirname, 'styleguide/components/react-component'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
     SectionRenderer: path.join(__dirname, './styleguide/components/section'),
-    TabButton: path.join(__dirname, 'styleguide/components/tab-button'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
   },
   styleguideDir: 'build',
@@ -135,7 +132,7 @@ module.exports = {
       return {
         content: `/* ${settings.file} */\n\n${fs.readFileSync(filepath, 'utf8')}`,
         settings,
-        lang
+        lang,
       };
     }
     return props;
