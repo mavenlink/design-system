@@ -104,7 +104,6 @@ module.exports = {
   styleguideComponents: {
     ComponentsListRenderer: path.join(__dirname, 'styleguide/components/components-list'),
     LinkRenderer: path.join(__dirname, 'styleguide/components/link'),
-    ReactComponentRenderer: path.join(__dirname, 'styleguide/components/react-component'),
     StyleGuideRenderer: path.join(__dirname, 'styleguide/components/styleguide'),
     SectionRenderer: path.join(__dirname, './styleguide/components/section'),
     TableRenderer: path.join(__dirname, 'styleguide/components/table'),
