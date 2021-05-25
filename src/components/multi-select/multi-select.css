@@ -1,5 +1,6 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
+@import "../../styles/typography-v2.css";
 
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
