@@ -46,6 +46,11 @@
   width: 100%;
 }
 
+.form-control-children-container-invalid {
+  composes: form-control-children-container;
+  border: 1px solid var(--mds-red-100);
+}
+
 .form-control-children-container-readonly {
   composes: form-control-children-container;
   background-color: var(--mds-grey-3);

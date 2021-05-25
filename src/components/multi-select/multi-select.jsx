@@ -22,6 +22,18 @@ import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './multi-select.css';
 
+function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
+  if (readOnly) {
+    return styles['form-control-children-container-readonly'];
+  }
+
+  if (validationMessage) {
+    return styles['form-control-children-container-invalid'];
+  }
+
+  return styles['form-control-children-container'];
+}
+
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const autocompleteRef = useRef();
@@ -44,7 +56,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   const classNames = {
     container: styles.container,
-    formControlChildrenContainer: props.readOnly ? styles['form-control-children-container-readonly'] : styles['form-control-children-container'],
+    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
     iconClear: styles['icon-clear'],
     iconsContainer: styles['icon-container'],
     input: props.readOnly ? styles['input-readonly'] : styles.input,
@@ -255,7 +267,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               value={autocompleteValue}
             />
           </TagList>
-          <FormControlIcons validationMessage={props.validationMessage} className={classNames.iconsContainer}>
+          <FormControlIcons validationMessage={validationMessage} className={classNames.iconsContainer}>
             {(!props.readOnly && value.length > 0) && (
               <IconButton
                 icon={iconClear}
