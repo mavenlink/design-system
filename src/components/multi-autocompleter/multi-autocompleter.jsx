@@ -10,6 +10,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute } = useFetch();
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(props.value || []);
 
   function fetchOptions() {
@@ -23,7 +24,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
           setLoading(false);
-          throw error;
+          setValidationMessage('Failed to load options');
         }
       });
   }
@@ -51,7 +52,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       ref={ref}
       required={props.required}
       showLoader={loading}
-      validationMessage={props.validationMessage}
+      validationMessage={validationMessage}
       value={value}
     />
   );
