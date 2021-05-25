@@ -35,7 +35,6 @@ exports[`<MultiSelect> has defaults 1`] = `
                 aria-describedby="test-id-empty"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="test-id-label"
                 autocomplete="off"
                 class="input"
                 id="test-id-autocomplete"

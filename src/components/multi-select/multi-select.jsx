@@ -242,7 +242,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               aria-describedby={`${ids.emptyMessage}`}
               aria-expanded={expanded}
               aria-haspopup="listbox"
-              aria-labelledby={ids.label}
               autoComplete="off"
               role="combobox"
               className={classNames.input}
