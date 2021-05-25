@@ -260,6 +260,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               id={ids.textbox}
               onBlur={onAutocompleteBlur}
               onChange={onAutocompleteChange}
+              onInput={props.onInput}
               placeholder={value.length === 0 ? props.placeholder : undefined}
               readOnly={props.readOnly}
               required={props.required ? value.length === 0 : false}
@@ -305,6 +306,7 @@ MultiSelect.propTypes = {
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onInput: PropTypes.func,
   options: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,
   optionIDGetter: PropTypes.func,
   optionLabelGetter: PropTypes.func,
@@ -320,7 +322,8 @@ MultiSelect.propTypes = {
 MultiSelect.defaultProps = {
   classNames: {},
   listboxChildren: undefined,
-  onChange: () => { },
+  onChange: () => {},
+  onInput: () => {},
   optionIDGetter: option => option,
   optionLabelGetter: option => option,
   placeholder: undefined,

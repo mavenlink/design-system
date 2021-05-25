@@ -108,6 +108,21 @@ describe('<MultiSelect>', () => {
     });
   });
 
+  describe('onInput API', () => {
+    it('fires the onInput event when the user types in the combobox input', async () => {
+      let value = null;
+
+      function onInput(event) {
+        value = event.target.value;
+      }
+
+      render(<MultiSelect {...requiredProps} onInput={onInput} />);
+
+      userEvent.type(await findAutocompleter('test label'), 'F');
+      expect(value).toBe('F');
+    });
+  });
+
   describe('options API', () => {
     it('generates options', async () => {
       render(<MultiSelect {...requiredProps} />);
