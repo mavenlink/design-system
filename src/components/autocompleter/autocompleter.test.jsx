@@ -221,10 +221,9 @@ describe('src/components/autocompleter/autocompleter', () => {
       render(<Autocompleter {...requiredProps} apiEndpoint={'/models?filter=true'} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.type(document.activeElement, 'Find');
+      userEvent.type(document.activeElement, 'Filter');
 
-      expect(await screen.findByText('Bax')).toBeInTheDocument();
-      expect(screen.getByText('Baz')).toBeInTheDocument();
+      expect(await screen.findByText('filter-stub')).toBeInTheDocument();
     });
   });
 });
