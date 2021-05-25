@@ -8,10 +8,10 @@ import userEvent from '@testing-library/user-event';
 import MultiSelect from './multi-select.jsx';
 import Tag from '../tag/tag.jsx';
 import {
-  getAutocompleter,
-  getAvailableOption,
-  getRemoveButton,
-  getSelectedOption,
+  findAutocompleter,
+  findAvailableOption,
+  findRemoveButton,
+  findSelectedOption,
   openOptions,
   queryAvailableOption,
   querySelectedOption,
@@ -54,25 +54,25 @@ describe('<MultiSelect>', () => {
   });
 
   describe('id API', () => {
-    it('sets id of container and selected options', () => {
+    it('sets id of container and selected options', async () => {
       render(<MultiSelect {...requiredProps} id="unique-id" value={['Foo']} />);
 
       expect(document.querySelector('#unique-id')).toBeInTheDocument();
-      expect(getSelectedOption('test label', 'Foo').parentElement).toHaveAttribute('id', 'unique-id-option-Foo');
+      expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-Foo');
     });
   });
 
   describe('label API', () => {
-    it('sets label of form control and clear button', () => {
+    it('sets label of form control and clear button', async () => {
       render(<MultiSelect {...requiredProps} label="unique label" value={['Foo']} />);
 
       expect(screen.getByText('unique label')).toBeInTheDocument();
-      expect(getRemoveButton('unique label', 'Foo')).toBeInTheDocument();
+      expect(await findRemoveButton('unique label', 'Foo')).toBeInTheDocument();
     });
   });
 
   describe('listboxChildren API', () => {
-    it('uses render function for listbox children if set', () => {
+    it('uses render function for listbox children if set', async () => {
       function listboxChildren(options, refs, onSelect) {
         return (
           <div>
@@ -85,15 +85,15 @@ describe('<MultiSelect>', () => {
 
       render(<MultiSelect {...requiredProps} listboxChildren={listboxChildren} />);
 
-      openOptions('test label');
+      await openOptions('test label');
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('Override Foo'));
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
     });
   });
 
   describe('onChange API', () => {
-    it('fires the onChange event when the value changes', () => {
+    it('fires the onChange event when the value changes', async () => {
       let value = [];
 
       function onChange(event) {
@@ -102,24 +102,24 @@ describe('<MultiSelect>', () => {
 
       render(<MultiSelect {...requiredProps} onChange={onChange} />);
 
-      openOptions('test label');
-      userEvent.click(getAvailableOption('test label', 'Foo'));
+      await openOptions('test label');
+      userEvent.click(await await findAvailableOption('test label', 'Foo'));
       expect(value).toContain('Foo');
     });
   });
 
   describe('options API', () => {
-    it('generates options', () => {
+    it('generates options', async () => {
       render(<MultiSelect {...requiredProps} />);
 
-      openOptions('test label');
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      await openOptions('test label');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
     });
   });
 
   describe('option objects APIs', () => {
-    it('allows option that are objects, and uses provided getters', () => {
+    it('allows option that are objects, and uses provided getters', async () => {
       render(<MultiSelect
         {...requiredProps}
         options={[
@@ -136,109 +136,109 @@ describe('<MultiSelect>', () => {
         optionLabelGetter={option => option.label}
       />);
 
-      openOptions('test label');
+      await openOptions('test label');
 
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
 
       userEvent.type(document.activeElement, 'F');
 
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
 
-      userEvent.click(getAvailableOption('test label', 'Foo'));
+      userEvent.click(await findAvailableOption('test label', 'Foo'));
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
     });
   });
 
   describe('placeholder API', () => {
-    it('sets the autocompleter placeholder', () => {
+    it('sets the autocompleter placeholder', async () => {
       render(<MultiSelect {...requiredProps} placeholder="This is a placeholder" />);
 
-      expect(getAutocompleter('test label')).toHaveAttribute('placeholder', 'This is a placeholder');
+      expect(await findAutocompleter('test label')).toHaveAttribute('placeholder', 'This is a placeholder');
     });
   });
 
   describe('readOnly API', () => {
-    it('can be set to `true`', () => {
+    it('can be set to `true`', async () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={true}
       />));
 
-      expect(getAutocompleter('test label')).toHaveAttribute('readOnly', '');
+      expect(await findAutocompleter('test label')).toHaveAttribute('readOnly', '');
       expect(queryRemoveButton('test label')).not.toBeInTheDocument();
-      userEvent.click(getAutocompleter('test label'));
+      userEvent.click(await findAutocompleter('test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('can be set to `false`', () => {
+    it('can be set to `false`', async () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
         value={['Foo']}
       />));
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getAutocompleter('test label')).not.toHaveAttribute('readOnly', '');
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAutocompleter('test label')).not.toHaveAttribute('readOnly', '');
       expect(screen.getByRole('button', { name: 'Remove Foo' })).toBeInTheDocument();
     });
   });
 
   describe('required API', () => {
-    it('can be set to `true`', () => {
+    it('can be set to `true`', async () => {
       render((<MultiSelect
         {...requiredProps}
         required={true}
       />));
 
-      expect(getAutocompleter('test label')).toHaveAttribute('required', '');
-      expect(getAutocompleter('test label')).toBeInvalid();
-      openOptions('test label');
-      userEvent.click(getAutocompleter('test label'));
+      expect(await findAutocompleter('test label')).toHaveAttribute('required', '');
+      expect(await findAutocompleter('test label')).toBeInvalid();
+      await openOptions('test label');
+      userEvent.click(await findAutocompleter('test label'));
       userEvent.tab();
-      expect(getAutocompleter('test label')).toBeInvalid();
-      userEvent.click(getAutocompleter('test label'));
-      userEvent.click(getAvailableOption('test label', 'Foo'));
-      expect(getAutocompleter('test label')).toBeValid();
+      expect(await findAutocompleter('test label')).toBeInvalid();
+      userEvent.click(await findAutocompleter('test label'));
+      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      expect(await findAutocompleter('test label')).toBeValid();
     });
 
-    it('can be set to `false`', () => {
+    it('can be set to `false`', async () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
         value={['Foo']}
       />));
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getAutocompleter('test label')).not.toHaveAttribute('required');
-      expect(getAutocompleter('test label')).toBeValid();
-      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
-      userEvent.click(getAutocompleter('test label'));
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAutocompleter('test label')).not.toHaveAttribute('required');
+      expect(await findAutocompleter('test label')).toBeValid();
+      expect(await findAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      userEvent.click(await findAutocompleter('test label'));
       userEvent.tab();
-      expect(getAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      expect(await findAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
     });
   });
 
   describe('showLoader API', () => {
-    it('when set to true, shows a loader in the autocompleter dropdown', () => {
+    it('when set to true, shows a loader in the autocompleter dropdown', async () => {
       render(<MultiSelect {...requiredProps} showLoader />);
 
-      openOptions('test label');
+      await openOptions('test label');
       expect(screen.getByRole('progressbar')).toBeInTheDocument();
     });
 
-    it('when set to false, shows no loader', () => {
+    it('when set to false, shows no loader', async () => {
       render(<MultiSelect {...requiredProps} showLoader={false} />);
 
-      openOptions('test label');
+      await openOptions('test label');
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
     });
   });
 
   describe('tagChildren API', () => {
-    it('uses render function for taglist children if set', () => {
+    it('uses render function for taglist children if set', async () => {
       function tagChildren(options, refs, onRemove) {
         return (
           <div>
@@ -263,9 +263,9 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={['Foo']} />);
 
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      userEvent.click(getRemoveButton('test label', 'Foo'));
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      userEvent.click(await findRemoveButton('test label', 'Foo'));
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
     });
   });
 
@@ -280,124 +280,124 @@ describe('<MultiSelect>', () => {
   });
 
   describe('value API', () => {
-    it('sets the value for the input and is responsive to changes', () => {
+    it('sets the value for the input and is responsive to changes', async () => {
       const { rerender } = render(<MultiSelect {...requiredProps} value={['Foo']} />);
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={['Bar']} />);
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(getSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={[]} />);
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={undefined} />);
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
     });
   });
 
   describe('autocomplete behavior', () => {
-    it('focuses the input on click', () => {
+    it('focuses the input on click', async () => {
       render(<MultiSelect {...requiredProps} />);
-      openOptions('test label');
-      expect(getAutocompleter('test label')).toHaveFocus();
+      await openOptions('test label');
+      expect(await findAutocompleter('test label')).toHaveFocus();
     });
 
-    it('filters visible options on autocompleter value', () => {
+    it('filters visible options on autocompleter value', async () => {
       render(<MultiSelect {...requiredProps} />);
-      openOptions('test label');
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      await openOptions('test label');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
       userEvent.type(document.activeElement, 'F');
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
     });
 
-    it('clears the autocompleter on selection', () => {
+    it('clears the autocompleter on selection', async () => {
       render(<MultiSelect {...requiredProps} />);
-      userEvent.type(getAutocompleter('test label'), 'F');
-      userEvent.click(getAvailableOption('test label', 'Foo'));
-      expect(getAutocompleter('test label')).toHaveValue('');
+      userEvent.type(await findAutocompleter('test label'), 'F');
+      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      expect(await findAutocompleter('test label')).toHaveValue('');
     });
 
     it('opens on typing', async () => {
       render(<MultiSelect {...requiredProps} />);
       userEvent.tab();
-      expect(getAutocompleter('test label')).toHaveFocus();
-      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
-      await userEvent.type(getAutocompleter('test label'), 'Fo', { skipClick: true });
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAutocompleter('test label')).toHaveFocus();
+      expect(await findAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
+      await userEvent.type(await findAutocompleter('test label'), 'Fo', { skipClick: true });
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
     });
 
-    it('closes on escape key', () => {
+    it('closes on escape key', async () => {
       render(<MultiSelect {...requiredProps} />);
-      userEvent.click(getAutocompleter('test label'));
-      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'true');
+      userEvent.click(await findAutocompleter('test label'));
+      expect(await findAutocompleter('test label')).toHaveAttribute('aria-expanded', 'true');
       userEvent.type(document.activeElement, '{esc}');
-      expect(getAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
+      expect(await findAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('informs the user when no option is available', async () => {
       render(<MultiSelect {...requiredProps} options={[]} />);
-      openOptions('test label');
-      expect(getAutocompleter('test label')).toHaveDescription('No options available.');
+      await openOptions('test label');
+      expect(await findAutocompleter('test label')).toHaveDescription('No options available.');
     });
   });
 
   describe('option deselect behavior', () => {
-    it('removes the option value when pressing the remove button', () => {
+    it('removes the option value when pressing the remove button', async () => {
       render(<MultiSelect {...requiredProps} value={['Foo']} />);
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
 
-      userEvent.click(getRemoveButton('test label', 'Foo'));
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      userEvent.click(await findRemoveButton('test label', 'Foo'));
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
     });
 
-    it('does not expand the popup', () => {
+    it('does not expand the popup', async () => {
       render(<MultiSelect {...requiredProps} value={['Foo']} />);
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      userEvent.click(getRemoveButton('test label', 'Foo'));
+      userEvent.click(await findRemoveButton('test label', 'Foo'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
-    it('removes all options when pressing the clear button and focuses the input', () => {
+    it('removes all options when pressing the clear button and focuses the input', async () => {
       render(<MultiSelect {...requiredProps} value={['Foo', 'Bar']} />);
 
-      expect(getSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(getSelectedOption('test label', 'Bar')).toBeInTheDocument();
-      userEvent.click(getRemoveButton('test label'));
-      expect(querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
-      expect(getAutocompleter('test label')).toHaveFocus();
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      userEvent.click(await findRemoveButton('test label'));
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAutocompleter('test label')).toHaveFocus();
     });
   });
 
   describe('option select behavior', () => {
-    it('removes the option from the list of options', () => {
+    it('removes the option from the list of options', async () => {
       render(<MultiSelect {...requiredProps} />);
-      openOptions('test label');
+      await openOptions('test label');
       expect(screen.queryByRole('option', { name: 'Foo' })).toBeInTheDocument();
       userEvent.click(screen.getByRole('option', { name: 'Foo' }));
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('option', { name: 'Foo' })).not.toBeInTheDocument();
     });
 
-    it('adds the option to the selected options and focuses the auto completer', () => {
+    it('adds the option to the selected options and focuses the auto completer', async () => {
       render(<MultiSelect {...requiredProps} />);
-      openOptions('test label');
+      await openOptions('test label');
       expect(screen.queryByRole('gridcell', { name: 'Foo' })).not.toBeInTheDocument();
       userEvent.click(screen.queryByRole('option', { name: 'Foo' }));
       expect(screen.queryByRole('option', { name: 'Foo' })).not.toBeInTheDocument();
       userEvent.click(screen.getByText('test label'));
       expect(screen.queryByRole('gridcell', { name: 'Foo' })).toBeInTheDocument();
-      expect(getAutocompleter('test label')).toHaveFocus();
+      expect(await findAutocompleter('test label')).toHaveFocus();
     });
   });
 
@@ -410,9 +410,9 @@ describe('<MultiSelect>', () => {
         </div>,
       );
 
-      openOptions('test label');
-      userEvent.click(getAutocompleter('test label'));
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      await openOptions('test label');
+      userEvent.click(await findAutocompleter('test label'));
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
       await waitFor(() => {
         if (screen.queryByText('Foo')) throw new Error('Expected popup to be closed.');
@@ -428,9 +428,9 @@ describe('<MultiSelect>', () => {
         </div>,
       );
 
-      openOptions('test label');
-      userEvent.click(getAutocompleter('test label'));
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      await openOptions('test label');
+      userEvent.click(await findAutocompleter('test label'));
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
 
       userEvent.tab();
       userEvent.tab();
@@ -449,14 +449,14 @@ describe('<MultiSelect>', () => {
         </div>,
       );
 
-      openOptions('test label');
-      expect(getAutocompleter('test label')).toHaveValue('');
-      await userEvent.type(getAutocompleter('test label'), 'F');
-      expect(getAutocompleter('test label')).toHaveValue('F');
-      expect(getAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      await openOptions('test label');
+      expect(await findAutocompleter('test label')).toHaveValue('');
+      await userEvent.type(await findAutocompleter('test label'), 'F');
+      expect(await findAutocompleter('test label')).toHaveValue('F');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
 
-      await waitFor(() => expect(getAutocompleter('test label')).toHaveValue(''));
+      await waitFor(async () => expect(await findAutocompleter('test label')).toHaveValue(''));
     });
   });
 
@@ -475,25 +475,25 @@ describe('<MultiSelect>', () => {
       expect(ref.current.name).toBe('unique-name');
     });
 
-    it('value updates through props and interaction', () => {
+    it('value updates through props and interaction', async () => {
       const ref = createRef();
 
       render(<MultiSelect {...requiredProps} ref={ref} value={['Foo']} />);
       expect(ref.current.value).toContain('Foo');
 
-      openOptions('test label');
-      userEvent.click(getAvailableOption('test label', 'Bar'));
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Bar'));
       expect(ref.current.value).toContain('Bar');
     });
 
-    it('dirty updates through props and interaction', () => {
+    it('dirty updates through props and interaction', async () => {
       const ref = createRef();
 
       render(<MultiSelect {...requiredProps} ref={ref} value={['Foo']} />);
       expect(ref.current.dirty).toBeFalsy();
 
-      openOptions('test label');
-      userEvent.click(getAvailableOption('test label', 'Bar'));
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Bar'));
       expect(ref.current.dirty).toBeTruthy();
     });
   });
