@@ -434,6 +434,7 @@ describe('<MultiSelect>', () => {
 
       userEvent.tab();
       userEvent.tab();
+      userEvent.tab();
 
       await waitFor(() => {
         if (screen.queryByText('Foo')) throw new Error('Expected popup to be closed.');

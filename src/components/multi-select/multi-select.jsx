@@ -276,7 +276,15 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
                 className={classNames.iconClear}
               />
             )}
-            <Icon icon={iconCaretDown} label={`Open ${props.label} options`} />
+            {props.readOnly ? (
+              <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
+            ) : (
+              <IconButton
+                icon={iconCaretDown}
+                label={`Open ${props.label} options`}
+                onPress={onClick}
+              />
+            )}
           </FormControlIcons>
         </div>
       </FormControl>

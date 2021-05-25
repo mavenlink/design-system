@@ -46,8 +46,10 @@ exports[`<MultiSelect> has defaults 1`] = `
               class="icon-container"
             >
               <svg
+                class="button"
                 height="6"
-                role="img"
+                role="button"
+                tabindex="0"
                 width="10"
               >
                 <title>
