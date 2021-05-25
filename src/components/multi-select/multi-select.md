@@ -130,7 +130,7 @@ const tagChildren = (values, refs, onOptionRemove) => {
 }
 
 <MultiSelect
-  id="example-5"
+  id="example-6"
   label="MultiSelect with Custom Children"
   name="example"
   options={['Option 1', 'Option 2', 'Option 3']}
@@ -151,8 +151,8 @@ const ref = React.createRef();
   {({ onChange }) => (
     <MultiSelect
       options={['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5', 'Test 6', 'Test 7', 'Test 8', 'Test 9', 'Test 10', 'Test 11', 'Test 12', 'Test 13', 'Test 14', 'Test 15', 'Test 16', 'Test 17', 'Test 18', 'Test 19', 'Test 20', 'Test 79163871268371687326137812763818894792384723978',]}
-      id="example-1"
-      label="Example multi select"
+      id="example-7"
+      label="Ref example MultiSelect"
       name="example"
       onChange={onChange}
       ref={ref}
