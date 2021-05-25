@@ -15,12 +15,6 @@
   padding: var(--spacing-small);
 }
 
-.icon-clear-readonly {
-  composes: icon-clear;
-  cursor: unset;
-  pointer-events: none;
-}
-
 .icon-container {
   composes: icons from '../form-control-icons/form-control-icons.css';
   top: calc(var(--spacing-large) + var(--spacing-small));

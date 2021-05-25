@@ -45,7 +45,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const classNames = {
     container: styles.container,
     formControlChildrenContainer: props.readOnly ? styles['form-control-children-container-readonly'] : styles['form-control-children-container'],
-    iconClear: props.readOnly ? styles['icon-clear-readonly'] : styles['icon-clear'],
+    iconClear: styles['icon-clear'],
     iconsContainer: styles['icon-container'],
     input: props.readOnly ? styles['input-readonly'] : styles.input,
     noOptionsContainer: styles['no-options'],
@@ -257,7 +257,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             />
           </TagList>
           <FormControlIcons validationMessage={props.validationMessage} className={classNames.iconsContainer}>
-            {value.length > 0 && (
+            {(!props.readOnly && value.length > 0) && (
               <IconButton
                 icon={iconClear}
                 label={`Remove all selected options on ${props.label}`}
