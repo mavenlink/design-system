@@ -216,5 +216,15 @@ describe('src/components/autocompleter/autocompleter', () => {
 
       expect(await screen.findByText('Find-stub')).toBeInTheDocument();
     });
+
+    it('handles apiEndpoint with existing query params', async () => {
+      render(<Autocompleter {...requiredProps} apiEndpoint={'/models?filter=true'} />);
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(document.activeElement, 'Find');
+
+      expect(await screen.findByText('Bax')).toBeInTheDocument();
+      expect(screen.getByText('Baz')).toBeInTheDocument();
+    });
   });
 });
