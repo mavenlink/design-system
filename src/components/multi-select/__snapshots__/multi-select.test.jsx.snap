@@ -35,7 +35,6 @@ exports[`<MultiSelect> has defaults 1`] = `
                 aria-describedby="test-id-empty"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="test-id-label"
                 autocomplete="off"
                 class="input"
                 id="test-id-autocomplete"
@@ -47,12 +46,14 @@ exports[`<MultiSelect> has defaults 1`] = `
               class="icon-container"
             >
               <svg
+                class="button"
                 height="6"
-                role="img"
+                role="button"
+                tabindex="0"
                 width="10"
               >
                 <title>
-                  Open multi select options
+                  Open test label options
                 </title>
                 <use
                   xlink:href="#caret-down.svg"

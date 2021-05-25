@@ -22,6 +22,18 @@ import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './multi-select.css';
 
+function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
+  if (readOnly) {
+    return styles['form-control-children-container-readonly'];
+  }
+
+  if (validationMessage) {
+    return styles['form-control-children-container-invalid'];
+  }
+
+  return styles['form-control-children-container'];
+}
+
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const autocompleteRef = useRef();
@@ -44,8 +56,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   const classNames = {
     container: styles.container,
-    formControlChildrenContainer: props.readOnly ? styles['form-control-children-container-readonly'] : styles['form-control-children-container'],
-    iconClear: props.readOnly ? styles['icon-clear-readonly'] : styles['icon-clear'],
+    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
+    iconClear: styles['icon-clear'],
     iconsContainer: styles['icon-container'],
     input: props.readOnly ? styles['input-readonly'] : styles.input,
     noOptionsContainer: styles['no-options'],
@@ -242,13 +254,13 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               aria-describedby={`${ids.emptyMessage}`}
               aria-expanded={expanded}
               aria-haspopup="listbox"
-              aria-labelledby={ids.label}
               autoComplete="off"
               role="combobox"
               className={classNames.input}
               id={ids.textbox}
               onBlur={onAutocompleteBlur}
               onChange={onAutocompleteChange}
+              onInput={props.onInput}
               placeholder={value.length === 0 ? props.placeholder : undefined}
               readOnly={props.readOnly}
               required={props.required ? value.length === 0 : false}
@@ -256,8 +268,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               value={autocompleteValue}
             />
           </TagList>
-          <FormControlIcons validationMessage={props.validationMessage} className={classNames.iconsContainer}>
-            {value.length > 0 && (
+          <FormControlIcons validationMessage={validationMessage} className={classNames.iconsContainer}>
+            {(!props.readOnly && value.length > 0) && (
               <IconButton
                 icon={iconClear}
                 label={`Remove all selected options on ${props.label}`}
@@ -265,11 +277,19 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
                 className={classNames.iconClear}
               />
             )}
-            <Icon icon={iconCaretDown} label="Open multi select options" />
+            {props.readOnly ? (
+              <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
+            ) : (
+              <IconButton
+                icon={iconCaretDown}
+                label={`Open ${props.label} options`}
+                onPress={onClick}
+              />
+            )}
           </FormControlIcons>
         </div>
-        {dropdownContents()}
       </FormControl>
+      {dropdownContents()}
     </div>
   );
 });
@@ -286,6 +306,7 @@ MultiSelect.propTypes = {
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onInput: PropTypes.func,
   options: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,
   optionIDGetter: PropTypes.func,
   optionLabelGetter: PropTypes.func,
@@ -295,13 +316,14 @@ MultiSelect.propTypes = {
   showLoader: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   tagChildren: PropTypes.func,
   validationMessage: PropTypes.string,
-  value: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]),
 };
 
 MultiSelect.defaultProps = {
   classNames: {},
   listboxChildren: undefined,
-  onChange: () => { },
+  onChange: () => {},
+  onInput: () => {},
   optionIDGetter: option => option,
   optionLabelGetter: option => option,
   placeholder: undefined,

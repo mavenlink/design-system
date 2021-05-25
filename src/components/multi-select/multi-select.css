@@ -1,23 +1,19 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
+@import "../../styles/typography-v2.css";
 
 .container {
   composes: tag-list from '../tag-list/tag-list.css';
-  composes: input-container from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   height: auto;
+  margin: var(--spacing-small) 0;
   padding-top: 0;
   padding-bottom: 0;
+  position: relative;
 }
 
 .icon-clear {
   cursor: pointer;
   padding: var(--spacing-small);
-}
-
-.icon-clear-readonly {
-  composes: icon-clear;
-  cursor: unset;
-  pointer-events: none;
 }
 
 .icon-container {
@@ -39,10 +35,20 @@
 }
 
 .form-control-children-container {
-  composes: input-styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
   align-items: center;
+  border: 1px solid var(--mds-grey-12);
+  border-radius: 3px;
+  box-sizing: border-box;
+  font: var(--mds-type-content);
   height: auto;
-  padding-right: calc(var(--spacing-x-large) + var(--spacing-medium));
+  margin: 0;
+  padding: 0 calc(var(--spacing-x-large) + var(--spacing-medium)) 0 var(--spacing-medium);
+  width: 100%;
+}
+
+.form-control-children-container-invalid {
+  composes: form-control-children-container;
+  border: 1px solid var(--mds-red-100);
 }
 
 .form-control-children-container-readonly {
