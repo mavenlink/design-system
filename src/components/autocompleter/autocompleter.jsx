@@ -40,7 +40,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       const containsQueryStart = baseUrl.match(/[?]/g);
       const paramPrefix = containsQueryStart ? '&' : '?';
 
-      return `${baseUrl}${paramPrefix}=${searchString}`;
+      return `${baseUrl}${paramPrefix}${props.searchParam}=${searchString}`;
     }
 
     return baseUrl;
