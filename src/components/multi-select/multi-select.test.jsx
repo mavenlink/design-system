@@ -290,7 +290,7 @@ describe('<MultiSelect>', () => {
 
       expect(screen.getByText('Some backend error', { selector: 'span' })).toBeInTheDocument();
       rerender(<MultiSelect {...requiredProps} validationMessage={undefined} />);
-      expect(screen.queryByText('Some backend error', { selector: 'span' })).toBeInTheDocument();
+      expect(screen.queryByText('Some backend error', { selector: 'span' })).not.toBeInTheDocument();
     });
   });
 

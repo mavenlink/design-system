@@ -197,6 +197,10 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   useDropdownClose(wrapperRef, expanded, onDropdownClose);
 
   useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
+  useEffect(() => {
     setValue(props.value);
   }, [props.value.map(val => JSON.stringify(val)).join(',')]);
 
