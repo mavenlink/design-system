@@ -52,7 +52,7 @@ exports[`<MultiSelect> has defaults 1`] = `
                 width="10"
               >
                 <title>
-                  Open multi select options
+                  Open test label options
                 </title>
                 <use
                   xlink:href="#caret-down.svg"

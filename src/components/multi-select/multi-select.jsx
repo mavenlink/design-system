@@ -265,7 +265,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
                 className={classNames.iconClear}
               />
             )}
-            <Icon icon={iconCaretDown} label="Open multi select options" />
+            <Icon icon={iconCaretDown} label={`Open ${props.label} options`} />
           </FormControlIcons>
         </div>
         {dropdownContents()}
