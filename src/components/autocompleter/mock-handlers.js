@@ -47,6 +47,11 @@ export default function handlers(delay = 0) {
         modelsForData = [{ name: 'Find-stub', id: '420' }];
       }
 
+      const filterStub = request.url.searchParams.get('filter');
+      if (filterStub && searchString) {
+        modelsForData = [{ name: 'filter-stub', id: '9000' }];
+      }
+
       const modelData = {};
 
       modelsForData.forEach((model) => {

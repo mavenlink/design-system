@@ -35,11 +35,15 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   }
 
   function apiEndpoint(searchString) {
+    const baseUrl = `${API_ROOT}${props.apiEndpoint}`;
     if (searchString) {
-      return `${API_ROOT}${props.apiEndpoint}?${props.searchParam}=${searchString}`;
+      const containsQueryStart = baseUrl.match(/[?]/g);
+      const paramPrefix = containsQueryStart ? '&' : '?';
+
+      return `${baseUrl}${paramPrefix}${props.searchParam}=${searchString}`;
     }
 
-    return `${API_ROOT}${props.apiEndpoint}`;
+    return baseUrl;
   }
 
   function onInput(event) {
