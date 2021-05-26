@@ -74,7 +74,7 @@ describe('CustomFieldInputText', () => {
   });
 
   describe('validations', () => {
-    it('initially, it does not show errors for html-invalidity. It shows errors for html-invalidity after user interaction', () => {
+    it('initially, it does not show errors for html-invalidity. It shows errors for html-invalidity after tabbing', () => {
       render(<CustomFieldInputText {...requiredProps} required />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
@@ -82,6 +82,7 @@ describe('CustomFieldInputText', () => {
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '{backspace}{backspace}{backspace}');
+      userEvent.tab();
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
     });
