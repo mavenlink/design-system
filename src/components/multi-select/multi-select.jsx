@@ -320,7 +320,8 @@ MultiSelect.propTypes = {
   showLoader: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   tagChildren: PropTypes.func,
   validationMessage: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]),
+  // value is expected to be an array of unique identifiers that matches the value retrieved by optionIDGetter
+  value: PropTypes.arrayOf(PropTypes.string),
 };
 
 MultiSelect.defaultProps = {
