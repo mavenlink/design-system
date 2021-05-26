@@ -3,7 +3,6 @@
 @import "../../styles/typography-v2.css";
 
 .container {
-  composes: tag-list from '../tag-list/tag-list.css';
   height: auto;
   padding-top: 0;
   padding-bottom: 0;
