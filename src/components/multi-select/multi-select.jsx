@@ -118,15 +118,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   function getVisibleOptions() {
     return props.options
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()))
-      .filter(option => !value.some((val) => {
-        const optionID = props.optionIDGetter(option);
-
-        if (typeof optionID === 'string') {
-          return val.toLowerCase() === optionID.toLowerCase();
-        }
-
-        return val === optionID;
-      }));
+      .filter(option => !value.some(val => val === props.optionIDGetter(option)));
   }
 
   function onAutocompleteBlur() {
@@ -236,7 +228,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
           >
             {value.length !== 0 &&
               props.tagChildren ?
-              props.tagChildren(value, valueRefs, onOptionRemove) :
+              props.tagChildren(value.map(val => getOption(val)), valueRefs, onOptionRemove) :
               value.map((val, index) => (
                 <Tag
                   defaultActive={index === 0}
@@ -311,7 +303,9 @@ MultiSelect.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onInput: PropTypes.func,
-  options: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.string)]).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** the default getters reflect a native `select` element with `option` element children:
+   * this matches an object format of { value: 'unique-identifier', label: 'a human readable, filterable string' } */
   optionIDGetter: PropTypes.func,
   optionLabelGetter: PropTypes.func,
   placeholder: PropTypes.string,
@@ -320,7 +314,7 @@ MultiSelect.propTypes = {
   showLoader: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   tagChildren: PropTypes.func,
   validationMessage: PropTypes.string,
-  // value is expected to be an array of unique identifiers that matches the value retrieved by optionIDGetter
+  /** value is expected to be an array of unique identifiers that matches the value retrieved by `props.optionIDGetter` */
   value: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -329,8 +323,8 @@ MultiSelect.defaultProps = {
   listboxChildren: undefined,
   onChange: () => {},
   onInput: () => {},
-  optionIDGetter: option => option,
-  optionLabelGetter: option => option,
+  optionIDGetter: option => option.value,
+  optionLabelGetter: option => option.label,
   placeholder: undefined,
   readOnly: false,
   required: false,
