@@ -2,7 +2,7 @@
 ```jsx
 import MultiAutocompleter from '@mavenlink/design-system/src/components/multi-autocompleter/multi-autocompleter.jsx';
 
-<MultiAutocompleter apiEndpoint='/farts' id='example-1' name='example' label='MultiAutocompleter Basic Usage Example'  />
+<MultiAutocompleter apiEndpoint='/models' id='example-1' name='example' label='MultiAutocompleter Basic Usage Example' value={['55']}  />
 ```
 
 ## Ref API Example

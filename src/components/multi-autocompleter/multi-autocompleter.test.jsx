@@ -56,4 +56,16 @@ describe('<MultiAutocompleter>', () => {
       expect(await screen.findByText('Failed to load options', { selector: 'span' })).toBeInTheDocument();
     });
   });
+
+  describe('value behavior', () => {
+    it('is responsive to prop changes', async () => {
+      const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
+
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+
+      rerender(<MultiAutocompleter {...requiredProps} value={['55']} />);
+
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+    });
+  });
 });

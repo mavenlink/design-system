@@ -8,10 +8,10 @@ const { API_ROOT } = mockConstants;
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute } = useFetch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const [value, setValue] = useState(props.value || []);
+  const [value, setValue] = useState([]);
 
   function fetchOptions() {
     setLoading(true);
@@ -32,8 +32,10 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(fetchOptions, []);
 
   useEffect(() => {
-    setValue(props.value);
-  }, [props.value.map(val => JSON.stringify(val)).join(',')]);
+    if (!loading) {
+      setValue(props.value);
+    }
+  }, [props.value.map(val => JSON.stringify(val)).join(','), loading]);
 
   return (
     <MultiSelect
@@ -71,10 +73,8 @@ MultiAutocompleter.propTypes = {
   required: PropTypes.bool,
   searchParam: PropTypes.string,
   validationMessage: PropTypes.string,
-  // `value` shape is expected to be a collection objects with an `id` key
-  value: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.required,
-  })),
+  // `value` shape is an array of ids
+  value: PropTypes.arrayOf(PropTypes.string),
 };
 
 MultiAutocompleter.defaultProps = {
