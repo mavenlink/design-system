@@ -82,6 +82,7 @@ describe('CustomFieldInputText', () => {
       expect(screen.getByLabelText('Test label')).toBeValid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '{backspace}{backspace}{backspace}');
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
       userEvent.tab();
       expect(screen.getByLabelText('Test label')).toBeInvalid();
       expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
