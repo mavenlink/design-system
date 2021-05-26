@@ -1,5 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
+<body>
+  <div>
+    <div
+      class="unique-container"
+      id="test-id"
+    >
+      <div
+        role="presentation"
+      >
+        <label
+          class="label"
+          for="test-id-autocomplete"
+          id="test-id-label"
+        >
+          test label
+        </label>
+        <div
+          class="control-container"
+        >
+          <div
+            class="unique-form-control-children-container"
+            role="presentation"
+          >
+            <div
+              aria-labelledby="test-id-label"
+              class="unique-tag-list-class"
+              role="grid"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-controls="test-id-listbox"
+                aria-describedby="test-id-empty"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="unique-input-class"
+                id="test-id-autocomplete"
+                role="combobox"
+                value=""
+              />
+            </div>
+            <div
+              class="icon-container"
+            >
+              <svg
+                class="button"
+                height="6"
+                role="button"
+                tabindex="0"
+                width="10"
+              >
+                <title>
+                  Open test label options
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`<MultiSelect> has defaults 1`] = `
 <body>
   <div>

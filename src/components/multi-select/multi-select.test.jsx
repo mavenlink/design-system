@@ -55,10 +55,7 @@ describe('<MultiSelect>', () => {
         }}
       />);
 
-      expect(document.querySelector('.unique-container')).toBeInTheDocument();
-      expect(document.querySelector('.unique-form-control-children-container')).toBeInTheDocument();
-      expect(document.querySelector('.unique-input-class')).toBeInTheDocument();
-      expect(document.querySelector('.unique-tag-list-class')).toBeInTheDocument();
+      expect(document.body).toMatchSnapshot();
     });
   });
 
