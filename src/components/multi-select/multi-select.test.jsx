@@ -331,7 +331,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toHaveFocus();
     });
 
-    it('filters visible options on autocompleter value', async () => {
+    it('filters visible options on autocompleter value when props.filterOptions is true', async () => {
       render(<MultiSelect {...requiredProps} />);
       await openOptions('test label');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
@@ -339,6 +339,16 @@ describe('<MultiSelect>', () => {
       userEvent.type(document.activeElement, 'F');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
       expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+    });
+
+    it('does not filter options on autocompleter value when props.filterOptions is false', async () => {
+      render(<MultiSelect {...requiredProps} filterOptions={false} />);
+      await openOptions('test label');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      userEvent.type(document.activeElement, 'F');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('test label', 'Bar')).toBeInTheDocument();
     });
 
     it('clears the autocompleter on selection', async () => {

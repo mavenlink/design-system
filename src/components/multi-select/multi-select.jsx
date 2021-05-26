@@ -116,6 +116,10 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }
 
   function getVisibleOptions() {
+    if (!props.filterOptions) {
+      return props.options;
+    }
+
     return props.options
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()))
       .filter(option => !value.some(val => val === props.optionIDGetter(option)));
@@ -297,6 +301,7 @@ MultiSelect.propTypes = {
     input: PropTypes.string,
     tagList: PropTypes.string,
   }),
+  filterOptions: PropTypes.bool,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
@@ -320,6 +325,7 @@ MultiSelect.propTypes = {
 
 MultiSelect.defaultProps = {
   classNames: {},
+  filterOptions: true,
   listboxChildren: undefined,
   onChange: () => {},
   onInput: () => {},
