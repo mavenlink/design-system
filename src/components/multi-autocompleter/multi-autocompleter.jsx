@@ -11,7 +11,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const [value, setValue] = useState([]);
 
   function fetchOptions() {
     setLoading(true);
@@ -31,12 +30,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   useEffect(fetchOptions, []);
 
-  useEffect(() => {
-    if (!loading) {
-      setValue(props.value);
-    }
-  }, [props.value.map(val => JSON.stringify(val)).join(','), loading]);
-
   return (
     <MultiSelect
       classNames={{
@@ -55,7 +48,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       required={props.required}
       showLoader={loading}
       validationMessage={validationMessage}
-      value={value}
+      value={loading ? [] : props.value}
     />
   );
 });
