@@ -1,3 +1,5 @@
+See [design specifications.](https://www.notion.so/MultiSelect-9da6ee3245d946699106231cf161f783)
+
 `MultiSelect` allows for the selection of multiple values in an accessible, searchable interface. It also provides flexibility in how you render selected options and options in the dropdown, but the default is MDS compatible and assured.
 
 ## Basic Usage
