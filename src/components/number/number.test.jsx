@@ -154,18 +154,6 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toHaveDescription('');
     });
 
-    it('is invalid after typing', async () => {
-      render(<Number {...requiredProps} required={true} />);
-      userEvent.type(screen.getByLabelText('Test Component'), '2');
-      expect(screen.getByLabelText('Test Component')).toHaveValue(2);
-      expect(screen.getByLabelText('Test Component')).toBeValid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('');
-      userEvent.type(screen.getByLabelText('Test Component'), '{backspace}');
-      expect(screen.getByLabelText('Test Component')).toHaveValue(null);
-      expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
-    });
-
     it('is invalid after tabbing through', async () => {
       render(<Number {...requiredProps} required={true} />);
       userEvent.tab();
