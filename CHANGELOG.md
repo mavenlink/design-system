@@ -9,6 +9,8 @@
   - Append new items to make git merging easier.
   - fix(input): input only runs validations in onBlur instead of onBlur and onChange
   - fix(number): number only runs validations in onBlur instead of onBlur and onChange
+  - fix(site): fix prop-type violations 
+  - feat(site): break example with prop-type violations
 </details>
 
 ## v0.72.2
