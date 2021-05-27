@@ -58,7 +58,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 });
 
 MultiAutocompleter.propTypes = {
-  // `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`.
+  /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string.isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -70,7 +70,7 @@ MultiAutocompleter.propTypes = {
   required: PropTypes.bool,
   searchParam: PropTypes.string,
   validationMessage: PropTypes.string,
-  // `value` shape is an array of ids
+  /** value is an array of unique identifiers */
   value: PropTypes.arrayOf(PropTypes.string),
 };
 
