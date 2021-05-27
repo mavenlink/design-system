@@ -20,7 +20,16 @@ import {
 
 describe('<MultiSelect>', () => {
   const requiredProps = {
-    options: ['Foo', 'Bar'],
+    options: [
+      {
+        value: '1',
+        label: 'Foo',
+      },
+      {
+        value: '2',
+        label: 'Bar',
+      },
+    ],
     id: 'test-id',
     label: 'test label',
     name: 'field-id',
@@ -46,25 +55,22 @@ describe('<MultiSelect>', () => {
         }}
       />);
 
-      expect(document.querySelector('.unique-container')).toBeInTheDocument();
-      expect(document.querySelector('.unique-form-control-children-container')).toBeInTheDocument();
-      expect(document.querySelector('.unique-input-class')).toBeInTheDocument();
-      expect(document.querySelector('.unique-tag-list-class')).toBeInTheDocument();
+      expect(document.body).toMatchSnapshot();
     });
   });
 
   describe('id API', () => {
     it('sets id of container and selected options', async () => {
-      render(<MultiSelect {...requiredProps} id="unique-id" value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} id="unique-id" value={['1']} />);
 
       expect(document.querySelector('#unique-id')).toBeInTheDocument();
-      expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-Foo');
+      expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-1');
     });
   });
 
   describe('label API', () => {
     it('sets label of form control and clear button', async () => {
-      render(<MultiSelect {...requiredProps} label="unique label" value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} label="unique label" value={['1']} />);
 
       expect(screen.getByText('unique label')).toBeInTheDocument();
       expect(await findRemoveButton('unique label', 'Foo')).toBeInTheDocument();
@@ -77,7 +83,7 @@ describe('<MultiSelect>', () => {
         return (
           <div>
             {options.map((option, index) => (
-              <span key={option} ref={refs[index]} onClick={() => { onSelect({ target: refs[index] }); }}>Override {option}</span>
+              <span key={option.value} ref={refs[index]} onClick={() => { onSelect({ target: refs[index] }); }}>Override {option.label}</span>
             ))}
           </div>
         );
@@ -94,32 +100,24 @@ describe('<MultiSelect>', () => {
 
   describe('onChange API', () => {
     it('fires the onChange event when the value changes', async () => {
-      let value = [];
+      const onChangeMock = jest.fn();
 
-      function onChange(event) {
-        value = event.target.value;
-      }
-
-      render(<MultiSelect {...requiredProps} onChange={onChange} />);
+      render(<MultiSelect {...requiredProps} onChange={onChangeMock} />);
 
       await openOptions('test label');
       userEvent.click(await await findAvailableOption('test label', 'Foo'));
-      expect(value).toContain('Foo');
+      expect(onChangeMock).toHaveBeenCalled();
     });
   });
 
-  describe('onInput API', () => {
+  fdescribe('onInput API', () => {
     it('fires the onInput event when the user types in the combobox input', async () => {
-      let value = null;
+      const onInputMock = jest.fn();
 
-      function onInput(event) {
-        value = event.target.value;
-      }
-
-      render(<MultiSelect {...requiredProps} onInput={onInput} />);
+      render(<MultiSelect {...requiredProps} onInput={onInputMock} />);
 
       userEvent.type(await findAutocompleter('test label'), 'F');
-      expect(value).toBe('F');
+      expect(onInputMock).toHaveBeenCalled();
     });
   });
 
@@ -134,21 +132,21 @@ describe('<MultiSelect>', () => {
   });
 
   describe('option objects APIs', () => {
-    it('allows option that are objects, and uses provided getters', async () => {
+    it('uses provided getter overrides', async () => {
       render(<MultiSelect
         {...requiredProps}
         options={[
           {
             id: 'test-1',
-            label: 'Foo',
+            text: 'Foo',
           },
           {
             id: 'test-2',
-            label: 'Bar',
+            text: 'Bar',
           },
         ]}
         optionIDGetter={option => option.id}
-        optionLabelGetter={option => option.label}
+        optionLabelGetter={option => option.text}
       />);
 
       await openOptions('test label');
@@ -192,7 +190,7 @@ describe('<MultiSelect>', () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
-        value={['Foo']}
+        value={['1']}
       />));
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -223,7 +221,7 @@ describe('<MultiSelect>', () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
-        value={['Foo']}
+        value={['1']}
       />));
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -258,16 +256,16 @@ describe('<MultiSelect>', () => {
         return (
           <div>
             {options.map((option, index) => (
-              <React.Fragment key={option}>
-                <span>Override {option}</span>
+              <React.Fragment key={option.value}>
+                <span>Override {option.label}</span>
                 <Tag
                   defaultActive={index === 0}
-                  id={option}
-                  key={option}
+                  id={option.value}
+                  key={option.value}
                   onRemove={onRemove}
                   ref={refs[index]}
                 >
-                  {option}
+                  {option.label}
                 </Tag>
               </React.Fragment>
             ))}
@@ -275,7 +273,7 @@ describe('<MultiSelect>', () => {
         );
       }
 
-      render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={['1']} />);
 
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -296,12 +294,12 @@ describe('<MultiSelect>', () => {
 
   describe('value API', () => {
     it('sets the value for the input and is responsive to changes', async () => {
-      const { rerender } = render(<MultiSelect {...requiredProps} value={['Foo']} />);
+      const { rerender } = render(<MultiSelect {...requiredProps} value={['1']} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
 
-      rerender(<MultiSelect {...requiredProps} value={['Bar']} />);
+      rerender(<MultiSelect {...requiredProps} value={['2']} />);
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
@@ -322,7 +320,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toHaveFocus();
     });
 
-    it('filters visible options on autocompleter value', async () => {
+    it('filters visible options on autocompleter value when props.filterOptions is true', async () => {
       render(<MultiSelect {...requiredProps} />);
       await openOptions('test label');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
@@ -330,6 +328,16 @@ describe('<MultiSelect>', () => {
       userEvent.type(document.activeElement, 'F');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
       expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+    });
+
+    it('does not filter options on autocompleter value when props.filterOptions is false', async () => {
+      render(<MultiSelect {...requiredProps} filterOptions={false} />);
+      await openOptions('test label');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      userEvent.type(document.activeElement, 'F');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('test label', 'Bar')).toBeInTheDocument();
     });
 
     it('clears the autocompleter on selection', async () => {
@@ -365,7 +373,7 @@ describe('<MultiSelect>', () => {
 
   describe('option deselect behavior', () => {
     it('removes the option value when pressing the remove button', async () => {
-      render(<MultiSelect {...requiredProps} value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} value={['1']} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
 
@@ -374,7 +382,7 @@ describe('<MultiSelect>', () => {
     });
 
     it('does not expand the popup', async () => {
-      render(<MultiSelect {...requiredProps} value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} value={['1']} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
@@ -383,7 +391,7 @@ describe('<MultiSelect>', () => {
     });
 
     it('removes all options when pressing the clear button and focuses the input', async () => {
-      render(<MultiSelect {...requiredProps} value={['Foo', 'Bar']} />);
+      render(<MultiSelect {...requiredProps} value={['1', '2']} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
@@ -494,18 +502,18 @@ describe('<MultiSelect>', () => {
     it('value updates through props and interaction', async () => {
       const ref = createRef();
 
-      render(<MultiSelect {...requiredProps} ref={ref} value={['Foo']} />);
-      expect(ref.current.value).toContain('Foo');
+      render(<MultiSelect {...requiredProps} ref={ref} value={['1']} />);
+      expect(ref.current.value).toContain('1');
 
       await openOptions('test label');
       userEvent.click(await findAvailableOption('test label', 'Bar'));
-      expect(ref.current.value).toContain('Bar');
+      expect(ref.current.value).toContain('2');
     });
 
     it('dirty updates through props and interaction', async () => {
       const ref = createRef();
 
-      render(<MultiSelect {...requiredProps} ref={ref} value={['Foo']} />);
+      render(<MultiSelect {...requiredProps} ref={ref} value={['1']} />);
       expect(ref.current.dirty).toBeFalsy();
 
       await openOptions('test label');

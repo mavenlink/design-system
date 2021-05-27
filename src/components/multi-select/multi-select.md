@@ -1,3 +1,5 @@
+See [design specifications.](https://www.notion.so/MultiSelect-9da6ee3245d946699106231cf161f783)
+
 `MultiSelect` allows for the selection of multiple values in an accessible, searchable interface. It also provides flexibility in how you render selected options and options in the dropdown, but the default is MDS compatible and assured.
 
 ## Basic Usage
@@ -8,7 +10,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
   id="example-1"
   label="Basic MultiSelect"
   name="example"
-  options={['Option 1', 'Option 2', 'Option 3']}
+  options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
   placeholder="Select some options"
 />
 ```
@@ -21,7 +23,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
   id="example-2"
   label="Required MultiSelect"
   name="example"
-  options={['Option 1', 'Option 2', 'Option 3']}
+  options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
   required
 />
 ```
@@ -34,34 +36,9 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
   id="example-3"
   label="Readonly MultiSelect"
   name="example"
-  options={['Option 1', 'Option 2', 'Option 3']}
-  value={['Option 1', 'Option 2']}
+  options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
+  value={['1', '2']}
   readOnly
-/>
-```
-
-## Object Options
-```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
-
-const options = [
-  {
-    id: '0',
-    text: 'Hello'
-  },
-  {
-    id: '1',
-    text: 'World!'
-  },
-];
-
-<MultiSelect
-  id="example-4"
-  label="MultiSelect with Object Options"
-  name="example"
-  options={options}
-  optionIDGetter={option => option.id}
-  optionLabelGetter={option => option.text}
 />
 ```
 
@@ -70,11 +47,11 @@ const options = [
 import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
 
 <MultiSelect
-  id="example-5"
+  id="example-4"
   label="Loader MultiSelect"
   name="example"
-  options={['Option 1', 'Option 2', 'Option 3']}
-  value={['Option 1', 'Option 2']}
+  options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
+  value={['1', '2']}
   showLoader
 />
 ```
@@ -88,7 +65,7 @@ import Tag from '@mavenlink/design-system/src/components/tag/tag.jsx';
 
 const ListboxChild = React.forwardRef((props, ref) => {
   return (
-    <div ref={ref} onClick={() => { props.onOptionSelect({ target: ref }) }}>{props.option}</div>
+    <div ref={ref} onClick={() => { props.onOptionSelect({ target: ref }) }}>{props.option.label}</div>
   )
 });
 
@@ -98,12 +75,12 @@ const TagChild = React.forwardRef((props, ref) => {
       <span>Some Custom Text</span>
       <Tag
         defaultActive={props.index === 0}
-        id={props.val}
-        key={props.val}
+        id={props.option.value}
+        key={props.option.value}
         onRemove={props.onOptionRemove}
         ref={ref}
       >
-        {props.val}
+        {props.option.label}
       </Tag>
     </div>
   )
@@ -113,27 +90,27 @@ const listboxChildren = (visibleOptions, refs, onOptionSelect) => {
   return (
     <div>
       {visibleOptions.map((option, index) => (
-        <ListboxChild key={option} option={option} onOptionSelect={onOptionSelect} ref={refs[index]} />
+        <ListboxChild key={option.value} option={option} onOptionSelect={onOptionSelect} ref={refs[index]} />
       ))}
     </div>
   )
 }
 
-const tagChildren = (values, refs, onOptionRemove) => {
+const tagChildren = (selectedOptions, refs, onOptionRemove) => {
   return (
     <React.Fragment>
-      {values.map((val, index) => (
-        <TagChild key={val} index={index} onOptionRemove={onOptionRemove} val={val} ref={refs[index]} />
+      {selectedOptions.map((option, index) => (
+        <TagChild key={option.value} index={index} onOptionRemove={onOptionRemove} option={option} ref={refs[index]} />
       ))}
     </React.Fragment>
   )
 }
 
 <MultiSelect
-  id="example-6"
+  id="example-5"
   label="MultiSelect with Custom Children"
   name="example"
-  options={['Option 1', 'Option 2', 'Option 3']}
+  options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
   listboxChildren={listboxChildren}
   tagChildren={tagChildren}
 />
@@ -150,13 +127,13 @@ const ref = React.createRef();
 <RefExample ref={ref}>
   {({ onChange }) => (
     <MultiSelect
-      options={['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5', 'Test 6', 'Test 7', 'Test 8', 'Test 9', 'Test 10', 'Test 11', 'Test 12', 'Test 13', 'Test 14', 'Test 15', 'Test 16', 'Test 17', 'Test 18', 'Test 19', 'Test 20', 'Test 79163871268371687326137812763818894792384723978',]}
-      id="example-7"
+      options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }, { value: '4', label: 'Option with an egregiously long label that takes up just a ridiculous amount of visual space and you should probably never actually do this because it makes readers sad and is bad for accessibility in so many ways but here we are testing it anyway... I heard you like run-on sentences!' }]}
+      id="example-6"
       label="Ref example MultiSelect"
       name="example"
       onChange={onChange}
       ref={ref}
-      value={['Test 1', 'Test 2',]}
+      value={['1', '2']}
     />
   )}
 </RefExample>

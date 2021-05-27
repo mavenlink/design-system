@@ -1,9 +1,0 @@
-.container {
-  position: relative;
-}
-
-.hero {
-  background-size: 100% 100%;
-  height: calc(500 * (100vw / 1280));
-  width: 100%;
-}

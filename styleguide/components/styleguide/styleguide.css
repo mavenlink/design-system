@@ -1,6 +1,12 @@
 @import "../../../src/styles/colors-v2.css";
 @import "../../../src/styles/spacing.css";
 
+:global html {
+  --header-height: 51px;
+
+  scroll-padding-top: calc(var(--header-height) + var(--spacing-x-large));
+}
+
 .root {
   display: grid;
   grid-template-columns: max-content auto;
