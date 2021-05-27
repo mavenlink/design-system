@@ -17,6 +17,7 @@ import {
 } from '../multi-select/test-queries.js';
 import jestServer from '../../mocks/jest-server.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
+import userEvent from '@testing-library/user-event';
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {
@@ -51,6 +52,34 @@ describe('<MultiAutocompleter>', () => {
       rerender(<MultiAutocompleter {...requiredProps} validationMessage={undefined} />);
 
       expect(screen.queryByText('This is a different error')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('option getter* function behavior', () => {
+    it('default handles title, name, full_name, and currency "labels" with id', async () => {
+      render(<MultiAutocompleter {...requiredProps} />);
+
+      await openOptions('test label');
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Option 6')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Option 7')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'USD')).toBeInTheDocument();
+
+      userEvent.click(await findAvailableOption('test label', 'Foo'));
+
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Option 6'));
+
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Option 7'));
+
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'USD'));
+
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Option 6')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Option 7')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'USD')).toBeInTheDocument();
     });
   });
 
