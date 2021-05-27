@@ -69,13 +69,13 @@ function onSubmit(event) {
     <React.Fragment>
       <Text
         defaultValue="Example for a persisted value"
-        id="text-field"
+        id={uuid.v4()}
         label="Custom Field Text"
         name="text-name"
         ref={refs[0]}
       />
       <Number
-        id="number-field"
+        id={uuid.v4()}
         label="Custom Field Number"
         name="number-name"
         ref={refs[1]}
@@ -83,14 +83,14 @@ function onSubmit(event) {
       />
       <Currency
         currencyCode="USD"
-        id="currency-field"
+        id={uuid.v4()}
         label="Custom Field Currency"
         name="currency-name"
         ref={refs[2]}
         value={350}
       />
       <Date
-        id="date-field"
+        id={uuid.v4()}
         label="Custom Field Date"
         name="date-name"
         onChange={onChange}
@@ -98,7 +98,7 @@ function onSubmit(event) {
       />
       <SingleChoice
         choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }]}
-        id="single-choice-field"
+        id={uuid.v4()}
         label="Custom Field Single Choice"
         name="single-choice-name"
         onChange={onChange}
@@ -106,7 +106,7 @@ function onSubmit(event) {
       />
       <MultiChoice
         choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }, { id: 3, label: 'Choice 3' }]}
-        id="multiple-choice-field"
+        id={uuid.v4()}
         label="Custom Field Multiple Choice"
         name="multiple-choice-name"
         onChange={onChange}

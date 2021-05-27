@@ -8,6 +8,9 @@ module.exports = {
     path.join(__dirname, 'pages'),
     './node_modules/msw/lib/iife',
   ],
+  context: {
+    uuid: 'uuid',
+  },
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
     // interplay between the presence of an index.js and a FolderName.md file. It thinks that the

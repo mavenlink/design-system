@@ -5,13 +5,13 @@ For a11y and additional prop info, see the `Select` component.
 ### Default examples
 ```js
 import Autocompleter from './autocompleter.jsx';
-<Autocompleter apiEndpoint='/models' id='ex-1' name='default-ex' label='Default Example' />
+<Autocompleter apiEndpoint='/models' id={uuid.v4()} name='default-ex' label='Default Example' />
 ```
 
 ### Initial value examples
 ```js
 import Autocompleter from './autocompleter.jsx';
-<Autocompleter apiEndpoint='/models' value={{id: 11, name: 'cool'}} id='ex-2' name='value-ex' label='Value Example' />
+<Autocompleter apiEndpoint='/models' value={{id: 11, name: 'cool'}} id={uuid.v4()} name='value-ex' label='Value Example' />
 ```
 
 ## Ref API Example
@@ -23,7 +23,7 @@ const ref = React.createRef();
 
 <RefExample ref={ref}>
   {({ onChange }) => (
-    <Autocompleter ref={ref} onChange={onChange} apiEndpoint='/models' id='ex-3' name='ref-ex' label='Ref Example'  />
+    <Autocompleter ref={ref} onChange={onChange} apiEndpoint='/models' id={uuid.v4()} name='ref-ex' label='Ref Example'  />
   )}
 </RefExample>
 ```

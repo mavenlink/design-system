@@ -2,25 +2,25 @@
 Refer to the [Tag documentation](#/Components/Tag) for more information.
 
 ```js
-<TagSkill id="egg" name="Egg" />
+<TagSkill id={uuid.v4()} name="Egg" />
 ```
 
 ```js
-<TagSkill id="bacon" name="Bacon" level={1} />
+<TagSkill id={uuid.v4()} name="Bacon" level={1} />
 ```
 
 ```js
-<TagSkill id="toast" name="Toast" level={2} />
+<TagSkill id={uuid.v4()} name="Toast" level={2} />
 ```
 
 ```js
-<TagSkill id="bean" name="Bean" level={3} />
+<TagSkill id={uuid.v4()} name="Bean" level={3} />
 ```
 
 ```js
-<TagSkill id="tomato" name="Tomato" level={4} />
+<TagSkill id={uuid.v4()} name="Tomato" level={4} />
 ```
 
 ```js
-<TagSkill id="avocado" name="Avocado" level={5} />
+<TagSkill id={uuid.v4()} name="Avocado" level={5} />
 ```
