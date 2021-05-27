@@ -30,6 +30,10 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   useEffect(fetchOptions, []);
 
+  useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
   return (
     <MultiSelect
       classNames={{

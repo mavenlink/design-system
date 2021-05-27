@@ -38,6 +38,22 @@ describe('<MultiAutocompleter>', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('validationMessage', () => {
+    it('uses prop and is responsive to prop changes', async () => {
+      const { rerender } = render(<MultiAutocompleter {...requiredProps} validationMessage="This is an error" />);
+
+      expect(await screen.findByText('This is an error', { selector: 'span' })).toBeInTheDocument();
+
+      rerender(<MultiAutocompleter {...requiredProps} validationMessage="This is a different error" />);
+
+      expect(await screen.findByText('This is a different error', { selector: 'span' })).toBeInTheDocument();
+
+      rerender(<MultiAutocompleter {...requiredProps} validationMessage={undefined} />);
+
+      expect(screen.queryByText('This is a different error')).not.toBeInTheDocument();
+    });
+  });
+
   describe('option loading behavior', () => {
     it('shows the loader while loading options', async () => {
       // Reset handlers and use them with 100msec delay to guarantee we see the progressbar
