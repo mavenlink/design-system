@@ -116,13 +116,14 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }
 
   function getVisibleOptions() {
+    const filteredOptions = props.options.filter(option => !value.some(val => val === props.optionIDGetter(option)));
+
     if (!props.filterOptions) {
-      return props.options;
+      return filteredOptions;
     }
 
-    return props.options
-      .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()))
-      .filter(option => !value.some(val => val === props.optionIDGetter(option)));
+    return filteredOptions
+      .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()));
   }
 
   function onAutocompleteBlur() {
