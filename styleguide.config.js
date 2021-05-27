@@ -27,6 +27,7 @@ module.exports = {
   require: [
     path.join(__dirname, 'styleguide/content/content.css'),
     path.join(__dirname, 'styleguide/utils/include-msw.js'),
+    path.join(__dirname, 'styleguide/utils/console-error.js'),
   ],
   sections: [
     {
