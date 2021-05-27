@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './section.css';
-import Hero from '../hero/hero.jsx';
 
 export default function Section(props) {
   const {
@@ -18,7 +17,6 @@ export default function Section(props) {
 
   return (
     <section>
-      <Hero slug={slug} />
       <div className={styles['root-content']}>
         {name &&
           <Heading depth={depth} id={slug} slotName="sectionToolbar" slotProps={props}>

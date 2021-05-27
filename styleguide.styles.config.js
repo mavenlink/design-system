@@ -13,12 +13,10 @@ module.exports = {
     heading2: {
       font: 'var(--mds-type-subhead-1)',
       marginBottom: 'var(--spacing-x-large)',
-      paddingTop: 'calc(2 * var(--spacing-x-large))',
     },
     heading3: {
       font: 'var(--mds-type-subhead-2)',
       marginBottom: 'var(--spacing-x-large)',
-      paddingTop: 'calc(2 * var(--spacing-x-large))',
     },
     heading4: {
       font: 'var(--mds-type-subhead-3)',
