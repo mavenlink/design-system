@@ -11,6 +11,11 @@
   - fix(number): number only runs validations in onBlur instead of onBlur and onChange
 </details>
 
+## v0.72.2
+- refactor(site): use latest react-styleguidist
+- refactor(site): remove banners on site
+- refactor(site): replace custom "toggle code" functionality with built-in "show code" functionality
+
 ## v0.72.1
 - refactor(test-queries): ensure `waitForElementToBeRemoved` is given a valid element
 
