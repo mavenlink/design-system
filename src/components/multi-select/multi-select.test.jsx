@@ -110,7 +110,7 @@ describe('<MultiSelect>', () => {
     });
   });
 
-  fdescribe('onInput API', () => {
+  describe('onInput API', () => {
     it('fires the onInput event when the user types in the combobox input', async () => {
       const onInputMock = jest.fn();
 
@@ -338,6 +338,9 @@ describe('<MultiSelect>', () => {
       userEvent.type(document.activeElement, 'F');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
       expect(await queryAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      await openOptions('test label');
+      expect(await queryAvailableOption('test label', 'Foo')).not.toBeInTheDocument();
     });
 
     it('clears the autocompleter on selection', async () => {
