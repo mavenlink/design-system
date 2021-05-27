@@ -7,10 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## v0.73.0
   - feat(MultiSelect): Add `MultiSelect` component
   - fix(input): input only runs validations in onBlur instead of onBlur and onChange
   - fix(number): number only runs validations in onBlur instead of onBlur and onChange
-</details>
 
 ## v0.72.2
 - refactor(site): use latest react-styleguidist
