@@ -21,17 +21,17 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 ### Basic examples
 
 ```js
-<Tag id="basic-example-1" readOnly>Test Title</Tag>
+<Tag id={uuid.v4()} readOnly>Test Title</Tag>
 ```
 
 ```js
-<Tag id="basic-example-2" >Test Title</Tag>
+<Tag id={uuid.v4()}>Test Title</Tag>
 ```
 
 ### Composition examples
 
 ```js
-<Tag id="composition-example-1" readOnly>
+<Tag id={uuid.v4()} readOnly>
   Test Title
   <span style={{color: "var(--mds-grey-54)", marginLeft: "var(--spacing-medium)"}}>
     4
@@ -43,7 +43,7 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 import Icon from '@mavenlink/design-system/src/components/icon/icon.jsx';
 import iconTick from '@mavenlink/design-system/src/svgs/tick.svg';
 
-<Tag id="composition-example-2" readOnly>
+<Tag id={uuid.v4()} readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>
     Test Title
     <span style={{marginLeft: 'var(--spacing-medium)', display: 'inline-flex', alignItems: 'center'}}>
@@ -59,7 +59,7 @@ The `onRemove` prop is used to register a handler for interaction with the tag's
 
 
 ```js
-<Tag id="on-clear-example" onRemove={event => { console.log(event); window.alert('Removed!'); }}>Test Title</Tag>
+<Tag id={uuid.v4()} onRemove={event => { console.log(event); window.alert('Removed!'); }}>Test Title</Tag>
 ```
 
 ### Advanced usage
@@ -74,12 +74,12 @@ function Spacer() {
 }
 
 <div role="grid">
-  <Tag id="adv-example-1">Test 1</Tag>
+  <Tag id={uuid.v4()}>Test 1</Tag>
   <Spacer />
-  <Tag id="adv-example-2">Test 2</Tag>
+  <Tag id={uuid.v4()}>Test 2</Tag>
   <Spacer />
-  <Tag id="adv-example-3">Test 3</Tag>
+  <Tag id={uuid.v4()}>Test 3</Tag>
   <Spacer />
-  <Tag id="adv-example-4">Test 4</Tag>
+  <Tag id={uuid.v4()}>Test 4</Tag>
 </div>
 ```

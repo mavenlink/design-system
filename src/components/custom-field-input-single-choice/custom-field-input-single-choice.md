@@ -5,7 +5,7 @@ The examples on this page have a 5 second delay in loading their choices, to sho
 
 ```js
 <CustomFieldInputSingleChoice
-  id="default-example-1"
+  id={uuid.v4()}
   customFieldID="0"
   label="Default Example 1"
   name="default-1"
@@ -15,7 +15,7 @@ The examples on this page have a 5 second delay in loading their choices, to sho
 
 ```js
 <CustomFieldInputSingleChoice
-  id="default-example-2"
+  id={uuid.v4()}
   customFieldID="1"
   label="Default Example 2"
   name="default-2"
@@ -27,7 +27,7 @@ The examples on this page have a 5 second delay in loading their choices, to sho
 
 ```js
 <CustomFieldInputSingleChoice
-  id="read-only-example-1"
+  id={uuid.v4()}
   customFieldID="0"
   label="Read Only Example 1"
   name="read-only-1"
@@ -37,7 +37,7 @@ The examples on this page have a 5 second delay in loading their choices, to sho
 
 ```js
 <CustomFieldInputSingleChoice
-  id="read-only-example-2"
+  id={uuid.v4()}
   customFieldID="0"
   label="Read Only Example 2"
   name="read-only-2"
@@ -61,7 +61,7 @@ function TestComponent() {
   return(
     <div>
       <CustomFieldInputSingleChoice
-        id="editable-example-1"
+        id={uuid.v4()}
         customFieldID="0"
         label="Editable Example 1"
         name="editable-1"
@@ -80,7 +80,7 @@ function TestComponent() {
 
 ```js
 <CustomFieldInputSingleChoice
-  id="editable-example-2"
+  id={uuid.v4()}
   customFieldID="0"
   label="Editable Example 2"
   name="editable-2"
@@ -91,7 +91,7 @@ function TestComponent() {
 ##### Error:
 ```jsx
 <CustomFieldInputSingleChoice
-  id="error-example-1"
+  id={uuid.v4()}
   customFieldID="0"
   label="Error Example 1"
   name="error-1"

@@ -38,7 +38,7 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
 
 <CustomFieldInputMultipleChoice
   customFieldID="0"
-  id="example-empty"
+  id={uuid.v4()}
   label="This custom field is empty"
   name="example-empty"
   placeholder="This is an empty multi-choice field"
@@ -51,7 +51,7 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
 
 <CustomFieldInputMultipleChoice
   customFieldID="-1"
-  id="example-no-choices"
+  id={uuid.v4()}
   label="This custom field has no choices"
   name="example-no-choices"
   placeholder="This input represents a custom field with no choices"
@@ -63,7 +63,7 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
 
 <CustomFieldInputMultipleChoice
   customFieldID="0"
-  id="example-readonly"
+  id={uuid.v4()}
   label="This custom field is read-only"
   name="example-readonly"
   readOnly
@@ -77,7 +77,7 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
 <CustomFieldInputMultipleChoice
   customFieldID="0"
   errorText="If you're not first, you're last!"
-  id="example-invalid"
+  id={uuid.v4()}
   label="This custom field is invalid"
   name="example-invalid"
   value={['0']}
@@ -121,7 +121,7 @@ function TestComponent() {
     <React.Fragment>
       <CustomFieldInputMultipleChoice
         customFieldID="1"
-        id="example-lotsa"
+        id={uuid.v4()}
         label="This custom field has a lot of choices"
         name="example-lotsa"
         onChange={onChange}
