@@ -98,6 +98,7 @@ function onSubmit(event) {
       />
       <SingleChoice
         choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }]}
+        customFieldID="0"
         id={uuid.v4()}
         label="Custom Field Single Choice"
         name="single-choice-name"
@@ -106,6 +107,7 @@ function onSubmit(event) {
       />
       <MultiChoice
         choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }, { id: 3, label: 'Choice 3' }]}
+        customFieldID="0"
         id={uuid.v4()}
         label="Custom Field Multiple Choice"
         name="multiple-choice-name"

@@ -8,6 +8,7 @@ within itself.
 <CustomFieldInputCurrency
   placeholder="$123.00"
   label="US Dollars"
+  name="example_name"
   id={uuid.v4()}
 />
 ```
@@ -17,6 +18,7 @@ within itself.
   placeholder="$123.00"
   label="US Dollars"
   id={uuid.v4()}
+  name="example_name"
   value={0}
 />
 ```
@@ -26,6 +28,7 @@ within itself.
   label="Iraqi Dinar"
   currencyCode="IQD"
   id={uuid.v4()}
+  name="example_name"
   value={182211}
 />
 ```
@@ -35,6 +38,7 @@ within itself.
   label="Central African Francs"
   id={uuid.v4()}
   currencyCode="XAF"
+  name="example_name"
   value={5200}
 />
 ```
@@ -96,6 +100,7 @@ function TestComponent() {
         currencyCode="USD"
         id={uuid.v4()}
         label="Example 4"
+        name="example_4"
         ref={ref}
       />
       <ul>
