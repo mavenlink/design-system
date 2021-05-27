@@ -40,14 +40,6 @@ const Number = React.forwardRef((props, ref) => {
     props.onBlur(event);
   }
 
-  function onChange(event) {
-    // Do not expose this onChange to any parent component.
-    // According to the HTML spec, the event.target.value is
-    // an empty string when the input is invalid.
-    validate();
-    props.onChange(event);
-  }
-
   useImperativeHandle(ref, () => ({
     get dirty() {
       return props.value !== this.value;
@@ -85,7 +77,7 @@ const Number = React.forwardRef((props, ref) => {
         min={apiLimits.min}
         name={props.name}
         onBlur={onBlur}
-        onChange={onChange}
+        onChange={props.onChange}
         placeholder={props.placeholder}
         ref={inputRef}
         readOnly={props.readOnly}
