@@ -40,11 +40,14 @@ describe('<MultiAutocompleter>', () => {
 
   describe('option loading behavior', () => {
     it('shows the loader while loading options', async () => {
+      // Reset handlers and use them with 100msec delay to guarantee we see the progressbar
+      jestServer.resetHandlers();
+      jestServer.use(...mockHandlers(100));
+
       render(<MultiAutocompleter {...requiredProps} />);
 
       await openOptions('test label');
-      const loader = screen.getByRole('progressbar');
-      expect(loader).toBeInTheDocument();
+      expect(await screen.findByRole('progressbar')).toBeInTheDocument();
 
       await waitForLoadingComplete('test label');
       expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
@@ -66,6 +69,16 @@ describe('<MultiAutocompleter>', () => {
       rerender(<MultiAutocompleter {...requiredProps} value={['55']} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+
+      rerender(<MultiAutocompleter {...requiredProps} value={['1']} />);
+
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+
+      rerender(<MultiAutocompleter {...requiredProps} value={['55', '1']} />);
+
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
     });
   });
 });
