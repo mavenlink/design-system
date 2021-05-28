@@ -9,6 +9,16 @@
   - Append new items to make git merging easier.
 </details>
 
+## v0.73.0
+  - feat(MultiSelect): Add `MultiSelect` component
+  - fix(input): input only runs validations in onBlur instead of onBlur and onChange
+  - fix(number): number only runs validations in onBlur instead of onBlur and onChange
+
+## v0.72.2
+- refactor(site): use latest react-styleguidist
+- refactor(site): remove banners on site
+- refactor(site): replace custom "toggle code" functionality with built-in "show code" functionality
+
 ## v0.72.1
 - refactor(test-queries): ensure `waitForElementToBeRemoved` is given a valid element
 

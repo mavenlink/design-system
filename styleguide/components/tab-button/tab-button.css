@@ -1,7 +1,0 @@
-@import "../../../src/styles/typography-v2.css";
-@import "../../../src/styles/spacing.css";
-
-.heading {
-  font: var(--mds-type-subhead-2);
-  margin-top: var(--spacing-x-large);
-}
