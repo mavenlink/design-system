@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - fix(Autocompleter): handle additional query params
 </details>
+
+## v0.73.1
+  - fix(Autocompleter): handle additional query params
 
 ## v0.73.0
   - feat(MultiSelect): Add `MultiSelect` component
