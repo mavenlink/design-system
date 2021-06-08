@@ -10,6 +10,7 @@
   - feat(MultiSelect): Add `MultiSelect` component
   - fix(input): input only runs validations in onBlur instead of onBlur and onChange
   - fix(number): number only runs validations in onBlur instead of onBlur and onChange
+  - feat(MultiSelect): `MultiSelect` now holds complete object values, and provides those objects for value instead on unique ids
 </details>
 
 ## v0.72.2
