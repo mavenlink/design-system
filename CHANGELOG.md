@@ -7,11 +7,17 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - fix(input): input only runs validations in onBlur instead of onBlur and onChange
-  - fix(number): number only runs validations in onBlur instead of onBlur and onChange
   - fix(site): fix prop-type violations 
   - feat(site): break example with prop-type violations
 </details>
+
+## v0.73.1
+  - fix(Autocompleter): handle additional query params
+
+## v0.73.0
+  - feat(MultiSelect): Add `MultiSelect` component
+  - fix(input): input only runs validations in onBlur instead of onBlur and onChange
+  - fix(number): number only runs validations in onBlur instead of onBlur and onChange
 
 ## v0.72.2
 - refactor(site): use latest react-styleguidist
