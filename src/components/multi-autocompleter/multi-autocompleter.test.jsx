@@ -3,21 +3,18 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import MultiAutocompleter from './multi-autocompleter.jsx';
 import {
-  findAutocompleter,
   findAvailableOption,
-  findRemoveButton,
   findSelectedOption,
   openOptions,
   queryAvailableOption,
   querySelectedOption,
-  queryRemoveButton,
   waitForLoadingComplete,
 } from '../multi-select/test-queries.js';
 import jestServer from '../../mocks/jest-server.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
-import userEvent from '@testing-library/user-event';
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {
@@ -39,7 +36,19 @@ describe('<MultiAutocompleter>', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('validationMessage', () => {
+  describe('onChange API', () => {
+    it('fires the onChange event when the value changes', async () => {
+      const onChangeMock = jest.fn();
+
+      render(<MultiAutocompleter {...requiredProps} onChange={onChangeMock} />);
+
+      await openOptions('test label');
+      userEvent.click(await await findAvailableOption('test label', 'Foo'));
+      expect(onChangeMock).toHaveBeenCalled();
+    });
+  });
+
+  describe('validationMessage API', () => {
     it('uses prop and is responsive to prop changes', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} validationMessage="This is an error" />);
 
@@ -103,6 +112,38 @@ describe('<MultiAutocompleter>', () => {
 
       expect(await screen.findByText('Failed to load options', { selector: 'span' })).toBeInTheDocument();
     });
+
+    it('applies the filter input value as a search param', async () => {
+      render(<MultiAutocompleter {...requiredProps} />);
+
+      await openOptions('test label');
+
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+
+      userEvent.type(document.activeElement, 'Fo');
+
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+    });
+
+    it('resets the search value when an option is selected', async () => {
+      render(<MultiAutocompleter {...requiredProps} />);
+
+      await openOptions('test label');
+
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+
+      userEvent.type(document.activeElement, 'Bar');
+
+      expect(await queryAvailableOption('test label', 'Foo')).not.toBeInTheDocument();
+      userEvent.click(await findAvailableOption('test label', 'Bar'));
+
+      await openOptions('test label');
+
+      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+    });
   });
 
   describe('value behavior', () => {
@@ -111,16 +152,40 @@ describe('<MultiAutocompleter>', () => {
 
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
 
-      rerender(<MultiAutocompleter {...requiredProps} value={['55']} />);
+      rerender(<MultiAutocompleter
+        {...requiredProps}
+        value={[{
+          id: '55',
+          name: 'Foo',
+        }]}
+      />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
 
-      rerender(<MultiAutocompleter {...requiredProps} value={['1']} />);
+      rerender(<MultiAutocompleter
+        {...requiredProps}
+        value={[{
+          id: '1',
+          name: 'Bar',
+        }]}
+      />);
 
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
-      rerender(<MultiAutocompleter {...requiredProps} value={['55', '1']} />);
+      rerender(<MultiAutocompleter
+        {...requiredProps}
+        value={[
+          {
+            id: '55',
+            name: 'Foo',
+          },
+          {
+            id: '1',
+            name: 'Bar',
+          },
+        ]}
+      />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();

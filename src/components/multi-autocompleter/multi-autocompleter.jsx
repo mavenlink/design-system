@@ -10,11 +10,12 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   function fetchOptions() {
     setLoading(true);
-    execute(`${API_ROOT}${props.apiEndpoint}`)
+    execute(`${API_ROOT}${props.apiEndpoint}?${props.searchParam}=${searchValue}`)
       .then(({ json, mounted }) => {
         if (mounted) {
           setOptions(json.results.map(result => json[result.key][result.id]));
@@ -28,7 +29,16 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       });
   }
 
-  useEffect(fetchOptions, []);
+  function onMultiSelectChange(event) {
+    setSearchValue('');
+    props.onChange(event);
+  }
+
+  function onMultiSelectInput(event) {
+    setSearchValue(event.target.value);
+  }
+
+  useEffect(fetchOptions, [searchValue]);
 
   useEffect(() => {
     setValidationMessage(props.validationMessage);
@@ -43,7 +53,8 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       id={props.id}
       label={props.label}
       name={props.name}
-      onChange={props.onChange}
+      onChange={onMultiSelectChange}
+      onInput={onMultiSelectInput}
       options={options}
       optionIDGetter={props.optionIDGetter}
       optionLabelGetter={props.optionLabelGetter}
@@ -53,7 +64,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       required={props.required}
       showLoader={loading}
       validationMessage={validationMessage}
-      value={loading ? [] : props.value}
+      value={props.value}
     />
   );
 });
@@ -73,8 +84,8 @@ MultiAutocompleter.propTypes = {
   required: PropTypes.bool,
   searchParam: PropTypes.string,
   validationMessage: PropTypes.string,
-  /** value is an array of unique identifiers */
-  value: PropTypes.arrayOf(PropTypes.string),
+  /** value is an array of objects matching the shape of options */
+  value: PropTypes.arrayOf(PropTypes.object),
 };
 
 MultiAutocompleter.defaultProps = {
@@ -85,7 +96,7 @@ MultiAutocompleter.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
-  searchParam: 'search',
+  searchParam: 'matching',
   validationMessage: undefined,
   value: [],
 };
