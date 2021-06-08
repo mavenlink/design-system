@@ -111,12 +111,10 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     );
   };
 
-  function getOption(id) {
-    return props.options.find(option => props.optionIDGetter(option) === id);
-  }
-
   function getVisibleOptions() {
-    const filteredOptions = props.options.filter(option => !value.some(val => val === props.optionIDGetter(option)));
+    const filteredOptions = props.options.filter(option => !value.some((val) => {
+      return props.optionIDGetter(val) === props.optionIDGetter(option);
+    }));
 
     if (!props.filterOptions) {
       return filteredOptions;
@@ -168,7 +166,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     const selectedOptionIndex = visibleOptionsRefs.findIndex(optionRef => optionRef === event.target);
     const selectedOption = visibleOptions[selectedOptionIndex];
     setExpanded(false);
-    const newValue = [...value, props.optionIDGetter(selectedOption)]
+    const newValue = [...value, selectedOption]
       .sort((a, b) => props.optionIDGetter(a) - props.optionIDGetter(b));
     setValue(newValue);
     setAutocompleteValue('');
@@ -203,7 +201,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   useEffect(() => {
     props.onChange({ target: selfRef.current });
-  }, [value.map(val => JSON.stringify(val)).join(',')]);
+  }, [value.join(',')]);
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
@@ -233,19 +231,17 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
           >
             {value.length !== 0 &&
               props.tagChildren ?
-              props.tagChildren(value.map(val => getOption(val)), valueRefs, onOptionRemove) :
+              props.tagChildren(value, valueRefs, onOptionRemove) :
               value.map((val, index) => (
                 <Tag
                   defaultActive={index === 0}
-                  id={`${props.id}-option-${props.optionIDGetter(getOption(val))}`}
-                  key={props.optionIDGetter(getOption(val))}
+                  id={`${props.id}-option-${props.optionIDGetter(val)}`}
+                  key={props.optionIDGetter(val)}
                   onRemove={onOptionRemove}
                   readOnly={props.readOnly}
                   ref={valueRefs[index]}
                 >
-                  {props.optionLabelGetter(
-                    props.options.find(option => props.optionIDGetter(option) === props.optionIDGetter(getOption(val))),
-                  )}
+                  {props.optionLabelGetter(val)}
                 </Tag>
               ))
             }
@@ -320,8 +316,8 @@ MultiSelect.propTypes = {
   showLoader: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   tagChildren: PropTypes.func,
   validationMessage: PropTypes.string,
-  /** value is expected to be an array of unique identifiers that matches the value retrieved by `props.optionIDGetter` */
-  value: PropTypes.arrayOf(PropTypes.string),
+  /** value is expected to be an array of objects that matches the "option" structure */
+  value: PropTypes.arrayOf(PropTypes.object),
 };
 
 MultiSelect.defaultProps = {

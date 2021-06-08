@@ -2,6 +2,7 @@ import {
   findByRole,
   queryByRole,
   screen,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -47,4 +48,15 @@ export function queryRemoveButton(fieldLabel, optionLabel) {
 export async function querySelectedOption(fieldLabel, optionLabel) {
   const taglist = await screen.findByRole('grid', { name: fieldLabel });
   return queryByRole(taglist, 'gridcell', { name: optionLabel });
+}
+
+export async function waitForLoadingComplete(fieldLabel) {
+  const listbox = await screen.findByRole('listbox', { name: fieldLabel });
+  const loader = await queryByRole(listbox, 'progressbar');
+
+  if (!loader) {
+    return Promise.resolve();
+  }
+
+  return waitForElementToBeRemoved(loader);
 }

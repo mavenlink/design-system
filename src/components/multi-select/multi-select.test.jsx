@@ -61,7 +61,7 @@ describe('<MultiSelect>', () => {
 
   describe('id API', () => {
     it('sets id of container and selected options', async () => {
-      render(<MultiSelect {...requiredProps} id="unique-id" value={['1']} />);
+      render(<MultiSelect {...requiredProps} id="unique-id" value={[requiredProps.options[0]]} />);
 
       expect(document.querySelector('#unique-id')).toBeInTheDocument();
       expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-1');
@@ -70,7 +70,7 @@ describe('<MultiSelect>', () => {
 
   describe('label API', () => {
     it('sets label of form control and clear button', async () => {
-      render(<MultiSelect {...requiredProps} label="unique label" value={['1']} />);
+      render(<MultiSelect {...requiredProps} label="unique label" value={[requiredProps.options[0]]} />);
 
       expect(screen.getByText('unique label')).toBeInTheDocument();
       expect(await findRemoveButton('unique label', 'Foo')).toBeInTheDocument();
@@ -190,7 +190,7 @@ describe('<MultiSelect>', () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
-        value={['1']}
+        value={[requiredProps.options[0]]}
       />));
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -221,7 +221,7 @@ describe('<MultiSelect>', () => {
       render((<MultiSelect
         {...requiredProps}
         readOnly={false}
-        value={['1']}
+        value={[requiredProps.options[0]]}
       />));
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -273,7 +273,7 @@ describe('<MultiSelect>', () => {
         );
       }
 
-      render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={['1']} />);
+      render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={[requiredProps.options[0]]} />);
 
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
@@ -294,12 +294,12 @@ describe('<MultiSelect>', () => {
 
   describe('value API', () => {
     it('sets the value for the input and is responsive to changes', async () => {
-      const { rerender } = render(<MultiSelect {...requiredProps} value={['1']} />);
+      const { rerender } = render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
 
-      rerender(<MultiSelect {...requiredProps} value={['2']} />);
+      rerender(<MultiSelect {...requiredProps} value={[requiredProps.options[1]]} />);
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
@@ -376,7 +376,7 @@ describe('<MultiSelect>', () => {
 
   describe('option deselect behavior', () => {
     it('removes the option value when pressing the remove button', async () => {
-      render(<MultiSelect {...requiredProps} value={['1']} />);
+      render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
 
@@ -385,7 +385,7 @@ describe('<MultiSelect>', () => {
     });
 
     it('does not expand the popup', async () => {
-      render(<MultiSelect {...requiredProps} value={['1']} />);
+      render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
@@ -394,7 +394,7 @@ describe('<MultiSelect>', () => {
     });
 
     it('removes all options when pressing the clear button and focuses the input', async () => {
-      render(<MultiSelect {...requiredProps} value={['1', '2']} />);
+      render(<MultiSelect {...requiredProps} value={[requiredProps.options[0], requiredProps.options[1]]} />);
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
@@ -505,18 +505,18 @@ describe('<MultiSelect>', () => {
     it('value updates through props and interaction', async () => {
       const ref = createRef();
 
-      render(<MultiSelect {...requiredProps} ref={ref} value={['1']} />);
-      expect(ref.current.value).toContain('1');
+      render(<MultiSelect {...requiredProps} ref={ref} value={[requiredProps.options[0]]} />);
+      expect(ref.current.value).toContain(requiredProps.options[0]);
 
       await openOptions('test label');
       userEvent.click(await findAvailableOption('test label', 'Bar'));
-      expect(ref.current.value).toContain('2');
+      expect(ref.current.value).toContain(requiredProps.options[1]);
     });
 
     it('dirty updates through props and interaction', async () => {
       const ref = createRef();
 
-      render(<MultiSelect {...requiredProps} ref={ref} value={['1']} />);
+      render(<MultiSelect {...requiredProps} ref={ref} value={[requiredProps.options[0]]} />);
       expect(ref.current.dirty).toBeFalsy();
 
       await openOptions('test label');
