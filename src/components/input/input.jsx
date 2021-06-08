@@ -29,11 +29,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     props.onBlur(event);
   }
 
-  function onChange(event) {
-    validate();
-    props.onChange(event);
-  }
-
   useEffect(() => {
     if (!mounted.current) return;
 
@@ -73,7 +68,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         maxLength={props.maxLength}
         name={props.name}
         onBlur={onBlur}
-        onChange={onChange}
+        onChange={props.onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
         onKeyDown={props.onKeyDown}

@@ -200,18 +200,6 @@ describe('Input', () => {
       expect(screen.getByLabelText('the label')).toHaveDescription('');
     });
 
-    it('is invalid after typing', async () => {
-      render(<Input {...requiredProps} required={true} />);
-      userEvent.type(screen.getByLabelText('the label'), 'a');
-      expect(screen.getByLabelText('the label')).toHaveValue('a');
-      expect(screen.getByLabelText('the label')).toBeValid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
-      userEvent.type(screen.getByLabelText('the label'), '{backspace}');
-      expect(screen.getByLabelText('the label')).toHaveValue('');
-      expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
-    });
-
     it('is invalid after tabbing through', async () => {
       render(<Input {...requiredProps} required={true} />);
       userEvent.tab();
