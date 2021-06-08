@@ -4,6 +4,7 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { rest } from 'msw';
 import MultiAutocompleter from './multi-autocompleter.jsx';
 import {
   findAvailableOption,
@@ -14,7 +15,10 @@ import {
   waitForLoadingComplete,
 } from '../multi-select/test-queries.js';
 import jestServer from '../../mocks/jest-server.js';
+import mockConstants from '../../mocks/mock-constants.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
+
+const { API_ROOT } = mockConstants;
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {
@@ -36,6 +40,52 @@ describe('<MultiAutocompleter>', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('apiEndpoint API', () => {
+    it('overrides the apiEndpoint used to load options', async () => {
+      jestServer.resetHandlers();
+      jestServer.use(rest.get(`${API_ROOT}/test`, (request, response, context) => {
+        return response(
+          context.status(200),
+          context.json({
+            count: 1,
+            meta: {
+              count: 1,
+              page_count: 1,
+              page_number: 0,
+              page_size: 1,
+            },
+            results: [
+              {
+                key: 'models',
+                id: '1',
+              },
+            ],
+            models: {
+              1: {
+                id: '1',
+                name: 'Test Option',
+              },
+            },
+          }),
+        );
+      }));
+
+      render(<MultiAutocompleter {...requiredProps} apiEndpoint="/test" />);
+
+      await openOptions('test label');
+
+      expect(await findAvailableOption('test label', 'Test Option')).toBeInTheDocument();
+    });
+  });
+
+  describe('className API', () => {
+    it('uses class name provided', () => {
+      render(<MultiAutocompleter {...requiredProps} className="unique-container" />);
+
+      expect(document.body).toMatchSnapshot();
+    });
+  });
+
   describe('onChange API', () => {
     it('fires the onChange event when the value changes', async () => {
       const onChangeMock = jest.fn();
@@ -45,6 +95,18 @@ describe('<MultiAutocompleter>', () => {
       await openOptions('test label');
       userEvent.click(await await findAvailableOption('test label', 'Foo'));
       expect(onChangeMock).toHaveBeenCalled();
+    });
+  });
+
+  describe('searchParam API', () => {
+    it('overrides the search param used to filter options', async () => {
+      render(<MultiAutocompleter {...requiredProps} searchParam="find" />);
+
+      await openOptions('test label');
+
+      userEvent.type(document.activeElement, 'Find');
+
+      expect(await findAvailableOption('test label', 'Find-stub')).toBeInTheDocument();
     });
   });
 
