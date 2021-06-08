@@ -7,8 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(MultiAutocompleter): Added <MultiAutocompleter /> component
-  - feat(MultiSelect): `MultiSelect` now holds complete object values, and provides those objects for value instead on unique ids
+  - feat(MultiAutocompleter): Add <MultiAutocompleter /> component
+  - feat(MultiSelect): <MultiSelect /> now holds complete object values, and provides those objects for value instead of unique ids
 </details>
 
 ## v0.73.1
