@@ -72,6 +72,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
 <body>
   <div>
     <div
+      class="container"
       id="test-id"
     >
       <div

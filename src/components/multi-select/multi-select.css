@@ -16,7 +16,6 @@
 
 .icon-container {
   composes: icons from '../form-control-icons/form-control-icons.css';
-  top: calc(var(--spacing-large) + var(--spacing-small));
 }
 
 .input {
@@ -40,7 +39,7 @@
   font: var(--mds-type-content);
   height: auto;
   margin: 0;
-  padding: 0 calc(var(--spacing-x-large) + var(--spacing-medium)) 0 var(--spacing-medium);
+  padding: 0 calc(var(--spacing-x-large) + var(--spacing-x-large)) 0 var(--spacing-medium);
   width: 100%;
 }
 

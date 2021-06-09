@@ -222,6 +222,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         id={ids.textbox}
         error={validationMessage}
         onKeyDown={onKeyDown}
+        required={props.required}
       >
         <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
           <TagList

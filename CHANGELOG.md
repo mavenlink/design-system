@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - feat(MultiAutocompleter): Add <MultiAutocompleter /> component
   - feat(MultiSelect): <MultiSelect /> now holds complete object values, and provides those objects for value instead of unique ids
+  - fix(MultiSelect): <MultiSelect /> now has enough internal padding for 3 icons, which are now also vertically centered in single and multi-line
 </details>
 
 ## v0.73.1

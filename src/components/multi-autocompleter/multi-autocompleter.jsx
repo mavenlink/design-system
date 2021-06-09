@@ -3,6 +3,7 @@ import React, { forwardRef, useEffect, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../multi-select/multi-select.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
+import multiSelectStyles from '../multi-select/multi-select.css';
 
 const { API_ROOT } = mockConstants;
 
@@ -89,7 +90,7 @@ MultiAutocompleter.propTypes = {
 };
 
 MultiAutocompleter.defaultProps = {
-  className: undefined,
+  className: multiSelectStyles.container,
   onChange: () => {},
   optionIDGetter: option => option.id,
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency,
