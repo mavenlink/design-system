@@ -28,6 +28,18 @@ const models = [
     id: '5',
     name: 'Bax',
   },
+  {
+    id: '6',
+    title: 'Option 6',
+  },
+  {
+    id: '7',
+    full_name: 'Option 7',
+  },
+  {
+    id: '8',
+    currency: 'USD',
+  },
 ];
 
 export default function handlers(delay = 0) {
@@ -38,7 +50,8 @@ export default function handlers(delay = 0) {
       let modelsForData = [...models];
       if (searchString) {
         modelsForData = [...modelsForData.filter((model) => {
-          return model.name.toLocaleLowerCase().match(searchString.toLocaleLowerCase());
+          const modelName = model.title || model.name || model.full_name || model.currency;
+          return modelName.toLocaleLowerCase().match(searchString.toLocaleLowerCase());
         })];
       }
 
