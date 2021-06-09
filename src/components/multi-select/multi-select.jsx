@@ -201,7 +201,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   useEffect(() => {
     props.onChange({ target: selfRef.current });
-  }, [value.join(',')]);
+  }, [value.length]);
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {

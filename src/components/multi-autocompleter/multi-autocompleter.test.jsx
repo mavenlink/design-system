@@ -104,7 +104,7 @@ describe('<MultiAutocompleter>', () => {
 
       await openOptions('test label');
 
-      userEvent.type(document.activeElement, 'Find');
+      userEvent.keyboard('Find');
 
       expect(await findAvailableOption('test label', 'Find-stub')).toBeInTheDocument();
     });
