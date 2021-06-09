@@ -122,7 +122,6 @@ module.exports = {
     },
   },
   title: 'Mavenlink Design System',
-  usageMode: 'expand',
   updateExample(props = {}, exampleFilePath) {
     const { settings = {}, lang } = props;
     if (lang === 'css' && typeof settings.file === 'string') {
