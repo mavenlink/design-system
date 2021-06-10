@@ -7,25 +7,25 @@ It has no underlying validations besides developer intent (see Error example for
 ```js
 import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 
-<CustomFieldInputText id="ex-1" label="Default example" />
+<CustomFieldInputText id={uuid.v4()} label="Default example" />
 ```
 
 ```js
 import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 
-<CustomFieldInputText id="ex-2" label="Required example" required />
+<CustomFieldInputText id={uuid.v4()} label="Required example" required />
 ```
 
 ```js
 import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 
-<CustomFieldInputText id="ex-3" label="Server error example" errorText="The server returned an error." />
+<CustomFieldInputText id={uuid.v4()} label="Server error example" errorText="The server returned an error." />
 ```
 
 ```js
 import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 
-<CustomFieldInputText id="ex-4" label="Read-only / disabled example" readOnly />
+<CustomFieldInputText id={uuid.v4()} label="Read-only / disabled example" readOnly />
 ```
 
 ### Ref usage:
@@ -47,7 +47,7 @@ function TestComponent() {
   return (
     <div onChange={onChange}>
       <CustomFieldInputText
-        id="test-id-4"
+        id={uuid.v4()}
         label="Example 4"
         ref={ref}
       />

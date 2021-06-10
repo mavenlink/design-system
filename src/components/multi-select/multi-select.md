@@ -37,7 +37,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
   label="Readonly MultiSelect"
   name="example"
   options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
-  value={['1', '2']}
+  value={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }]}
   readOnly
 />
 ```
@@ -51,7 +51,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
   label="Loader MultiSelect"
   name="example"
   options={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }, { value: '3', label: 'Option 3' }]}
-  value={['1', '2']}
+  value={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }]}
   showLoader
 />
 ```
@@ -133,7 +133,7 @@ const ref = React.createRef();
       name="example"
       onChange={onChange}
       ref={ref}
-      value={['1', '2']}
+      value={[{ value: '1', label: 'Option 1' }, { value: '2', label: 'Option 2' }]}
     />
   )}
 </RefExample>

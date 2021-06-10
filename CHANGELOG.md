@@ -10,6 +10,15 @@
   - fix(Autocompleter): check if its mounted before modifying state
 </details>
 
+## v0.75.0
+- fix(site): fix prop-type violations
+- feat(site): break example with prop-type violations
+
+## v0.74.0
+  - feat(MultiAutocompleter): Add <MultiAutocompleter /> component
+  - feat(MultiSelect): <MultiSelect /> now holds complete object values, and provides those objects for value instead of unique ids
+  - fix(MultiSelect): <MultiSelect /> now has enough internal padding for 3 icons, which are now also vertically centered in single and multi-line
+
 ## v0.73.1
   - fix(Autocompleter): handle additional query params
 
