@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - fix(Autocompleter): check if its mounted before modifying state
 </details>
+
+## v0.75.1
+- fix(Autocompleter): check if its mounted before modifying state
 
 ## v0.75.0
 - fix(site): fix prop-type violations
