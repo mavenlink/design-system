@@ -8,6 +8,9 @@ module.exports = {
     path.join(__dirname, 'pages'),
     './node_modules/msw/lib/iife',
   ],
+  context: {
+    uuid: 'uuid',
+  },
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
     // interplay between the presence of an index.js and a FolderName.md file. It thinks that the
@@ -24,6 +27,7 @@ module.exports = {
   require: [
     path.join(__dirname, 'styleguide/content/content.css'),
     path.join(__dirname, 'styleguide/utils/include-msw.js'),
+    path.join(__dirname, 'styleguide/utils/console-error.js'),
   ],
   sections: [
     {
@@ -118,7 +122,6 @@ module.exports = {
     },
   },
   title: 'Mavenlink Design System',
-  usageMode: 'expand',
   updateExample(props = {}, exampleFilePath) {
     const { settings = {}, lang } = props;
     if (lang === 'css' && typeof settings.file === 'string') {

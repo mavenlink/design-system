@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - fix(site): fix prop-type violations
+  - feat(site): break example with prop-type violations
 </details>
 
 ## v0.74.0

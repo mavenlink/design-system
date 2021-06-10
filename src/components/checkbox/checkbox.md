@@ -7,9 +7,9 @@ Basic usage.
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
 <React.Fragment>
-  <Checkbox id="example-1" label="Example checkbox!" name="example" checked={true} />
-  <Checkbox id="example-12" label="Readonly checked box" name="example" checked={true} readOnly />
-  <Checkbox id="example-13" label="Readonly unchecked box" name="example" readOnly />
+  <Checkbox id={uuid.v4()} label="Example checkbox!" name="example" checked={true} />
+  <Checkbox id={uuid.v4()} label="Readonly checked box" name="example" checked={true} readOnly />
+  <Checkbox id={uuid.v4()} label="Readonly unchecked box" name="example" readOnly />
 </React.Fragment>
 ```
 
@@ -17,14 +17,14 @@ Required example. The validation message only shows when the checkbox is dirty.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-2" label="Agree to Terms and Conditions" name="example" required />
+<Checkbox id={uuid.v4()} label="Agree to Terms and Conditions" name="example" required />
 ```
 
 With a custom validation message. Messages are cleared on blur.
 ```jsx
 import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
 
-<Checkbox id="example-3" label="With a Custom Validation Error" name="example" validationMessage="There is something wrong." />
+<Checkbox id={uuid.v4()} label="With a Custom Validation Error" name="example" validationMessage="There is something wrong." />
 ```
 
 ## Ref API Example
@@ -38,7 +38,7 @@ const ref = React.createRef();
 <RefExample ref={ref}>
   {({ onChange }) => (
     <Checkbox
-      id="example-5"
+      id={uuid.v4()}
       label="Example checkbox field"
       name="example"
       onChange={onChange}
