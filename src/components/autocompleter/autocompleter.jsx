@@ -26,7 +26,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
     execute(apiEndpoint(searchString))
       .then((respObj) => {
-        return setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
+        if (mounted.current) {
+          setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
+        }
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
           throw error;
