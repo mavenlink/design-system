@@ -10,11 +10,11 @@ import CustomFieldInputText from '@mavenlink/design-system/src/components/custom
 >
   <SectionRow>
     <CustomFieldInputText
-      id="test-id-1"
+      id={uuid.v4()}
       label="Project Sub Name"
     />
     <CustomFieldInputText
-      id="test-id-2"
+      id={uuid.v4()}
       label="Project Direct Report"
     />
   </SectionRow>

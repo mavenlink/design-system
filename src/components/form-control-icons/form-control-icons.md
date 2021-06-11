@@ -20,10 +20,8 @@ function TestComponent() {
     <div style={{
       width: '150px'
     }}>
-      <FormControl id="ex-1-control" label="Example Input" error={valid ? '' : errorMessage}>
-        <input style={{
-          height: '20px'
-        }} id="ex-1" />
+      <FormControl id={uuid.v4()} label="Example Input" error={valid ? '' : errorMessage}>
+        <input style={{ height: '20px' }} id={uuid.v4()} />
         <FormControlIcons validationMessage={valid ? '' : errorMessage}>
           <Icon icon={calendarSVG} label="open calendar" />
         </FormControlIcons>
