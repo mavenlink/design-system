@@ -6,6 +6,7 @@ import Tooltip from './tooltip.jsx';
 describe('tooltip', () => {
   const requiredProps = {
     children: <div id="my-component" aria-describedby="my-component-tooltip">Child</div>,
+    disabled: false,
     id: 'my-component',
     text: 'Help Text',
   };
@@ -59,6 +60,25 @@ describe('tooltip', () => {
 
       user.tab();
       expect(screen.getByRole('textbox')).not.toHaveDescription('Help Text');
+    });
+  });
+
+  describe('disabled api', () => {
+    it('does not show on hover when disabled', () => {
+      render(<Tooltip {...requiredProps} disabled={true} />);
+      user.hover(screen.getByText('Child'));
+      expect(screen.getByText('Child')).not.toHaveDescription('Help Texts');
+    });
+
+    it('does not show on focus when disabled', () => {
+      render(
+        <Tooltip {...requiredProps} disabled={true}>
+          <input id="my-component" />
+        </Tooltip>,
+      );
+
+      user.tab();
+      expect(screen.getByRole('textbox')).not.toHaveDescription('Help Texts');
     });
   });
 });
