@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tooltip has defaults 1`] = `
+<div>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip has defaults 2`] = `
+<div>
+  <span
+    id="my-component-tooltip"
+  >
+    Help Text
+  </span>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
