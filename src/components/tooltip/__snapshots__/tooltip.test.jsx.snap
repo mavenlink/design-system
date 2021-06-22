@@ -1,7 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`tooltip direction api allows bottom 1`] = `
+<div
+  class="tooltip bottom"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip direction api allows left 1`] = `
+<div
+  class="tooltip left"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip direction api allows right 1`] = `
+<div
+  class="tooltip right"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip direction api allows top 1`] = `
+<div
+  class="tooltip top"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
 exports[`tooltip has defaults 1`] = `
-<div>
+<div
+  class="tooltip top"
+  data-tooltip="Help Text"
+>
   <div
     aria-describedby="my-component-tooltip"
     id="my-component"
@@ -12,8 +71,12 @@ exports[`tooltip has defaults 1`] = `
 `;
 
 exports[`tooltip has defaults 2`] = `
-<div>
+<div
+  class="tooltip top"
+  data-tooltip="Help Text"
+>
   <span
+    class="sr-only"
     id="my-component-tooltip"
   >
     Help Text

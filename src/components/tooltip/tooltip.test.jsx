@@ -21,12 +21,12 @@ describe('tooltip', () => {
     expect(screen.getByText('Child').parentElement).toMatchSnapshot();
   });
 
-  it('does not render the tooltip unless the child is hovered', () => {
-    render(<Tooltip {...requiredProps} />);
-    expect(screen.queryByText('Help Text')).not.toBeInTheDocument();
-  });
-
   describe('hovering behavior', () => {
+    it('does not render the tooltip unless the child is hovered', () => {
+      render(<Tooltip {...requiredProps} />);
+      expect(screen.getByText('Child')).not.toHaveDescription('Help Text');
+    });
+
     it('applies a description to the children when hovered', () => {
       render(<Tooltip {...requiredProps} />);
       user.hover(screen.getByText('Child'));
@@ -50,15 +50,18 @@ describe('tooltip', () => {
     it('applies a description to the children when focused', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
       user.tab();
+      expect(screen.getByRole('textbox')).toHaveFocus();
       expect(screen.getByRole('textbox')).toHaveDescription('Help Text');
     });
 
     it('removes the description when the child is no longer focused', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
       user.tab();
+      expect(screen.getByRole('textbox')).toHaveFocus();
       expect(screen.getByRole('textbox')).toHaveDescription('Help Text');
 
       user.tab();
+      expect(screen.getByRole('textbox')).not.toHaveFocus();
       expect(screen.getByRole('textbox')).not.toHaveDescription('Help Text');
     });
   });
@@ -79,6 +82,28 @@ describe('tooltip', () => {
 
       user.tab();
       expect(screen.getByRole('textbox')).not.toHaveDescription('Help Texts');
+    });
+  });
+
+  describe('direction api', () => {
+    it('allows top', () => {
+      render(<Tooltip {...requiredProps} direction="top" />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+
+    it('allows bottom', () => {
+      render(<Tooltip {...requiredProps} direction="bottom" />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+
+    it('allows left', () => {
+      render(<Tooltip {...requiredProps} direction="left" />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+
+    it('allows right', () => {
+      render(<Tooltip {...requiredProps} direction="right" />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
     });
   });
 });
