@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './form-control.css';
+import HelpIcon from '../help-icon/help-icon.jsx';
 
 function getLabelClassName(error, readOnly) {
   if (isInvalid(error, readOnly)) return styles['invalid-label'];
@@ -21,13 +22,18 @@ function isInvalid(error, readOnly) {
 export default function FormControl(props) {
   return (
     <div className={props.className} onKeyDown={props.onKeyDown} role="presentation">
-      <label
-        className={getLabelClassName(props.error, props.readOnly)}
-        htmlFor={props.id}
-        id={props.labelId}
-      >
-        {props.label}
-      </label>
+      <div className={styles['label-wrapper']}>
+        <label
+          className={getLabelClassName(props.error, props.readOnly)}
+          htmlFor={props.id}
+          id={props.labelId}
+        >
+          {props.label}
+        </label>
+        {!!props.tooltip && (
+          <HelpIcon text={props.tooltip} label="More information" id={`${props.id}-tooltip`} />
+        )}
+      </div>
       {props.required && (
         <span className={getRequiredClassName(props.error, props.readOnly)}>
           (Required)
@@ -79,6 +85,7 @@ FormControl.propTypes = {
   onKeyDown: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
 };
 
 FormControl.defaultProps = {
@@ -89,4 +96,5 @@ FormControl.defaultProps = {
   onKeyDown: () => {},
   readOnly: false,
   required: false,
+  tooltip: undefined,
 };

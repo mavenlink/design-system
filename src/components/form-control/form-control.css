@@ -33,3 +33,9 @@
   color: var(--mds-red-text);
   font: var(--mds-type-content);
 }
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

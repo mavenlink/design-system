@@ -7,26 +7,26 @@ exports[`Input cssContainer API sets input container className 1`] = `
       class="test-class"
       role="presentation"
     >
-      <label
-        class="label"
-        for="foo"
+      <div
+        class="label-wrapper"
       >
-        the label
-      </label>
+        <label
+          class="label"
+          for="foo"
+        >
+          the label
+        </label>
+      </div>
       <div
         class="control-container"
       >
-        <div
-          class="wrapper"
-        >
-          <input
-            aria-describedby="fooHint"
-            class="input"
-            id="foo"
-            type="text"
-            value=""
-          />
-        </div>
+        <input
+          aria-describedby="fooHint"
+          class="input"
+          id="foo"
+          type="text"
+          value=""
+        />
       </div>
     </div>
   </div>
@@ -37,29 +37,28 @@ exports[`Input has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="foo"
+      <div
+        class="label-wrapper"
       >
-        the label
-      </label>
+        <label
+          class="label"
+          for="foo"
+        >
+          the label
+        </label>
+      </div>
       <div
         class="control-container"
       >
-        <div
-          class="wrapper"
-        >
-          <input
-            aria-describedby="fooHint"
-            class="input"
-            id="foo"
-            type="text"
-            value=""
-          />
-        </div>
+        <input
+          aria-describedby="fooHint"
+          class="input"
+          id="foo"
+          type="text"
+          value=""
+        />
       </div>
     </div>
   </div>

@@ -62,38 +62,34 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
-      <div className={styles.wrapper}>
-        <input
-          aria-describedby={describedBy.join(' ')}
-          autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-          className={getClassName(props.className, validationMessage)}
-          defaultValue={props.value}
-          id={props.id}
-          maxLength={props.maxLength}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onInput={props.onInput}
-          onKeyDown={props.onKeyDown}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={inputRef}
-          required={props.required}
-          type={props.type}
+      <input
+        aria-describedby={describedBy.join(' ')}
+        autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+        className={getClassName(props.className, validationMessage)}
+        defaultValue={props.value}
+        id={props.id}
+        maxLength={props.maxLength}
+        name={props.name}
+        onBlur={onBlur}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onInput={props.onInput}
+        onKeyDown={props.onKeyDown}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={inputRef}
+        required={props.required}
+        type={props.type}
+      />
+      {!!validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          label={validationMessage}
         />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={validationMessage}
-          />
-        )}
-        {!!props.tooltip && (
-          <HelpIcon text={props.tooltip} label="More information" id={`${props.id}-tooltip`} className={styles.help} />
-        )}
-      </div>
+      )}
     </FormControl>
   );
 });
@@ -127,7 +123,7 @@ Input.propTypes = {
 Input.defaultProps = {
   autoFocus: undefined,
   className: undefined,
-  cssContainer: styles.container,
+  cssContainer: undefined,
   cssLabel: undefined,
   maxLength: undefined,
   name: undefined,
