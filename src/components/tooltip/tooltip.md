@@ -12,7 +12,7 @@ import cautionSvg from '../../svgs/caution.svg';
 
 However, the tooltip is intended to be usable in conjunction with any children or sibling components.
 
-**Regardless, it is _imperative_ that you use `aria-describedby` on the component the tooltip is related to with the `id` provided to `<Tooltip>` to help screenreaders and other assistive technology**.
+**Regardless, it is _imperative_ that there is an `aria-describedby` in the tooltipped component with the value of the `id` provided to `<Tooltip>`. This sets up the accessible relationship which help screenreaders and other assistive technology**.
 
 ```jsx
 import Tooltip from "./tooltip.jsx";
