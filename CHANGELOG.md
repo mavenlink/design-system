@@ -11,6 +11,7 @@
   - fix(Autocompleter): check if its mounted before modifying state
   - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
   - feat(help-icon): Initial creation HelpIcon component
+  - feat(input): expose `tooltip` prop which renders a help icon next to the label if provided
 </details>
 
 ## v0.75.0
