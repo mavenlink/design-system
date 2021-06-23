@@ -12,12 +12,12 @@ describe('tooltip', () => {
 
   it('has defaults', () => {
     render(<Tooltip {...requiredProps} />);
-    expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
 
     user.hover(screen.getByText('Child'));
     expect(screen.getByText('Help Text')).toBeInTheDocument();
 
-    expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('hovering behavior', () => {
@@ -87,46 +87,46 @@ describe('tooltip', () => {
   describe('direction api', () => {
     it('allows top', () => {
       render(<Tooltip {...requiredProps} direction="top" />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows bottom', () => {
       render(<Tooltip {...requiredProps} direction="bottom" />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows left', () => {
       render(<Tooltip {...requiredProps} direction="left" />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows right', () => {
       render(<Tooltip {...requiredProps} direction="right" />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
   });
 
   describe('truncate api', () => {
     it('adds the class if true', () => {
       render(<Tooltip {...requiredProps} truncate />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('does not add the class if false', () => {
       render(<Tooltip {...requiredProps} truncate={false} />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
   });
 
   describe('className api', () => {
     it('can be supplied', () => {
       render(<Tooltip {...requiredProps} className="my-dope-class" />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('defaults to `tooltip`', () => {
       render(<Tooltip {...requiredProps} className={undefined} />);
-      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
   });
 });
