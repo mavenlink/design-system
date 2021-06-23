@@ -11,6 +11,7 @@ import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 import useMounted from '../../hooks/use-mounted.js';
 import useValidation from '../../hooks/use-validation.jsx';
+import HelpIcon from '../help-icon/help-icon.jsx';
 
 function getClassName(className, validationMessage) {
   if (className) return className;
@@ -50,6 +51,9 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     },
   }));
 
+  const describedBy = [`${props.id}Hint`];
+  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
+
   return (
     <FormControl
       className={props.cssContainer}
@@ -60,7 +64,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       required={props.required}
     >
       <input
-        aria-describedby={`${props.id}Hint`}
+        aria-describedby={describedBy.join(' ')}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
@@ -85,6 +89,9 @@ const Input = forwardRef(function Input(props, forwardedRef) {
           label={validationMessage}
         />
       )}
+      {!!props.tooltip && (
+        <HelpIcon text={props.tooltip} label="More information" id={`${props.id}-tooltip`} />
+      )}
     </FormControl>
   );
 });
@@ -105,6 +112,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   type: PropTypes.oneOf([
     'email',
     'password',
@@ -129,6 +137,7 @@ Input.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
+  tooltip: undefined,
   type: 'text',
   validationMessage: '',
   value: undefined,
