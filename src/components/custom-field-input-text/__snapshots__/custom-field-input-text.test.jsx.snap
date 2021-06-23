@@ -4,15 +4,18 @@ exports[`CustomFieldInputText has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="test-input"
+      <div
+        class="label-wrapper"
       >
-        Test label
-      </label>
+        <label
+          class="label"
+          for="test-input"
+        >
+          Test label
+        </label>
+      </div>
       <div
         class="control-container"
       >

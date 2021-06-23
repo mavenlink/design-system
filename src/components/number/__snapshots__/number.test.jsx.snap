@@ -6,12 +6,16 @@ exports[`Number has defaults 1`] = `
     <div
       role="presentation"
     >
-      <label
-        class="label"
-        for="test-component"
+      <div
+        class="label-wrapper"
       >
-        Test Component
-      </label>
+        <label
+          class="label"
+          for="test-component"
+        >
+          Test Component
+        </label>
+      </div>
       <div
         class="control-container"
       >

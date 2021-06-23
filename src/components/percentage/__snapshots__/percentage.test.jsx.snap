@@ -7,12 +7,16 @@ exports[`Percentage has defaults 1`] = `
       class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="foo"
+      <div
+        class="label-wrapper"
       >
-        the label
-      </label>
+        <label
+          class="label"
+          for="foo"
+        >
+          the label
+        </label>
+      </div>
       <div
         class="control-container"
       >

@@ -4,15 +4,18 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="currency"
+      <div
+        class="label-wrapper"
       >
-        currency
-      </label>
+        <label
+          class="label"
+          for="currency"
+        >
+          currency
+        </label>
+      </div>
       <div
         class="control-container"
       >
