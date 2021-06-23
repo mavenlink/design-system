@@ -10,9 +10,9 @@ import cautionSvg from '../../svgs/caution.svg';
 </Tooltip>
 ```
 
-However, the tooltip is intended to be usable with basically any children, such as text, input fields, buttons, etc.
+However, the tooltip is intended to be usable in conjunction with any children or sibling components.
 
-_It is imperative that you use_ **`aria-describedby`** _on the component the tooltip is related to with_ **`{id}-tooltip`** _to help screenreaders and other assistive technology_.
+**Regardless, it is _imperative_ that you use `aria-describedby` on the component the tooltip is related to with `{id}-tooltip` to help screenreaders and other assistive technology**.
 
 ```jsx
 import Tooltip from "./tooltip.jsx";
@@ -46,7 +46,7 @@ import Tooltip from "./tooltip.jsx";
 
 Finally, you can also use the `truncate` prop to limit tooltip length.
 
-In general, this is not recommended. Tooltips should be kept short and concise. If something needs a particularly long and verbose set of text, it should be somewhere other than a tooltip. However, in cases where tooltips render user-entered data, this is not always achievable. Use this prop carefully.
+In general, this is not recommended. Tooltips should be kept short and concise. If something needs a particularly long and verbose set of text, it should be somewhere other than a tooltip. However, in cases where tooltips render user-entered data, this is not always achievable. Use this option mindfully.
 
 ```jsx
 import Tooltip from "./tooltip.jsx";
