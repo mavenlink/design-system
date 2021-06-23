@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`tooltip className api can be supplied 1`] = `
+<div
+  class="my-dope-class top"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip className api defaults to \`tooltip\` 1`] = `
+<div
+  class="tooltip top"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
 exports[`tooltip direction api allows bottom 1`] = `
 <div
   class="tooltip bottom"
@@ -81,6 +109,34 @@ exports[`tooltip has defaults 2`] = `
   >
     Help Text
   </span>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip truncate api can be false 1`] = `
+<div
+  class="tooltip top"
+  data-tooltip="Help Text"
+>
+  <div
+    aria-describedby="my-component-tooltip"
+    id="my-component"
+  >
+    Child
+  </div>
+</div>
+`;
+
+exports[`tooltip truncate api can be true 1`] = `
+<div
+  class="tooltip top truncate"
+  data-tooltip="Help Text"
+>
   <div
     aria-describedby="my-component-tooltip"
     id="my-component"

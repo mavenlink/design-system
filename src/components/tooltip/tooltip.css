@@ -16,6 +16,7 @@
   --negative-triangle-height: calc(-1 * var(--triangle-height));
 
   position: relative;
+  display: inline-flex;
 }
 
 /* Base styles for the tooltip's direction arrow */
@@ -32,6 +33,8 @@
 .tooltip::after {
   z-index: 1000;
   padding: var(--spacing-medium);
+  width: fit-content;
+  max-width: calc(10 * var(--spacing-large));
   content: attr(data-tooltip);
   font-size: var(--mds-type-subtext);
   border-radius: 3px;

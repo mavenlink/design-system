@@ -4,12 +4,12 @@ import styles from './tooltip.css';
 
 export default function Tooltip({
   children,
-  // className,
+  className,
   direction,
   disabled,
   id,
   text,
-  // truncate,
+  truncate,
 }) {
   const [visible, setVisible] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Tooltip({
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
 
-  const classNames = [styles.tooltip];
+  const classNames = [className];
 
   switch (direction) {
     case 'top': classNames.push(styles.top); break;
@@ -28,8 +28,7 @@ export default function Tooltip({
     default: break;
   }
 
-  // if (truncate) classNames.push(styles.truncate);
-  // if (className) classNames.push(className);
+  if (truncate) classNames.push(styles.truncate);
 
   return (
     <div
@@ -54,14 +53,14 @@ Tooltip.propTypes = {
   direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
   disabled: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  // className: PropTypes.string,
+  className: PropTypes.string,
   text: PropTypes.string.isRequired,
-  // truncate: PropTypes.bool,
+  truncate: PropTypes.bool,
 };
 
 Tooltip.defaultProps = {
   direction: 'top',
   disabled: false,
-  className: undefined,
-  truncate: true, // this should probably be false, or a prop of the classes passed in, not
+  className: styles.tooltip,
+  truncate: false,
 };

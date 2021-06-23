@@ -106,4 +106,28 @@ describe('tooltip', () => {
       expect(screen.getByText('Child').parentElement).toMatchSnapshot();
     });
   });
+
+  describe('truncate api', () => {
+    it('adds the class if true', () => {
+      render(<Tooltip {...requiredProps} truncate />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+
+    it('does not add the class if false', () => {
+      render(<Tooltip {...requiredProps} truncate={false} />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+  });
+
+  describe('className api', () => {
+    it('can be supplied', () => {
+      render(<Tooltip {...requiredProps} className="my-dope-class" />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+
+    it('defaults to `tooltip`', () => {
+      render(<Tooltip {...requiredProps} className={undefined} />);
+      expect(screen.getByText('Child').parentElement).toMatchSnapshot();
+    });
+  });
 });
