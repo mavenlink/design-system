@@ -5,19 +5,19 @@ import Tooltip from "./tooltip.jsx";
 import Icon from "../icon/icon.jsx";
 import cautionSvg from '../../svgs/caution.svg';
 
-<Tooltip text="and here that beautiful text is" id="help" direction="top">
+<Tooltip text="and here that beautiful text is" id="help-tooltip" direction="top">
   <Icon label="caution" icon={cautionSvg} aria-describedby="help-tooltip" />
 </Tooltip>
 ```
 
 However, the tooltip is intended to be usable in conjunction with any children or sibling components.
 
-**Regardless, it is _imperative_ that you use `aria-describedby` on the component the tooltip is related to with `{id}-tooltip` to help screenreaders and other assistive technology**.
+**Regardless, it is _imperative_ that you use `aria-describedby` on the component the tooltip is related to with the `id` provided to `<Tooltip>` to help screenreaders and other assistive technology**.
 
 ```jsx
 import Tooltip from "./tooltip.jsx";
 
-<Tooltip text="and here that beautiful text is" id="howdy" direction="right">
+<Tooltip text="and here that beautiful text is" id="howdy-tooltip" direction="right">
   <div id="howdy" aria-describedby="howdy-tooltip">
     wow, a line of text with a tooltip
   </div>
@@ -29,8 +29,8 @@ Tooltips with interactive components
 ```jsx
 import Tooltip from "./tooltip.jsx";
 
-<Tooltip text="Click me!" id="fart" direction="bottom">
-  <button id="fart" aria-describedby="fart-tooltip">fart</button>
+<Tooltip text="Click me!" id="button-tooltip" direction="bottom">
+  <button id="button" aria-describedby="button-tooltip">fart</button>
 </Tooltip>
 ```
 
@@ -39,7 +39,7 @@ The tooltip appears both on focus and hover. Tab into the next input field.
 ```jsx
 import Tooltip from "./tooltip.jsx";
 
-<Tooltip text="I am, indeed, a text box" id="texty-lad" direction="left">
+<Tooltip text="I am, indeed, a text box" id="texty-lad-tooltip" direction="left">
     <input id="texty-lad" aria-describedby="texty-lad-tooltip" />
 </Tooltip>
 ```
@@ -53,7 +53,7 @@ import Tooltip from "./tooltip.jsx";
 
 const terms = "By using this Site, you agree to be bound by, and to comply with, these Terms and Conditions. If you do not agree to these Terms and Conditions, please do not use this site.";
 
-<Tooltip text={terms} id="terms-n-conditions" truncate>
+<Tooltip text={terms} id="terms-n-conditions-tooltip" truncate>
     <input type="checkbox" id="terms-n-conditions" aria-describedby="terms-n-conditions-tooltip" />
 </Tooltip>
 ```

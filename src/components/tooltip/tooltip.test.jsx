@@ -6,8 +6,7 @@ import Tooltip from './tooltip.jsx';
 describe('tooltip', () => {
   const requiredProps = {
     children: <div id="my-component" aria-describedby="my-component-tooltip">Child</div>,
-    disabled: false,
-    id: 'my-component',
+    id: 'my-component-tooltip',
     text: 'Help Text',
   };
 

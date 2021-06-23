@@ -8,7 +8,7 @@ import styles from './tooltip.css';
  * @param className An optional className for the tooltip to provide styling.
  * @param direction The direction the tooltip should appear from.
  * @param disabled Whether or not the tooltip should appear at all. If this is true, the tooltip will not appear even when the children receive focus.
- * @param id The id of the element this tooltip is describing. The element with this id should have have <code>aria-describedby={`${id}-tooltip`}</code>.
+ * @param id The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>.
  * @param text The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences.
  * @param truncate Whether or not to truncate the <code>text</code> provided. Usage of this prop is generally not recommended unless the text is user-defined.
  */
@@ -50,7 +50,7 @@ export default function Tooltip({
       onMouseLeave={hide}
     >
       {visible ?
-        <span id={`${id}-tooltip`} className={styles['sr-only']}>{text}</span> :
+        <span id={id} className={styles['sr-only']}>{text}</span> :
         null
       }
       { children }
