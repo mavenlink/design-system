@@ -11,7 +11,6 @@ import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 import useMounted from '../../hooks/use-mounted.js';
 import useValidation from '../../hooks/use-validation.jsx';
-import HelpIcon from '../help-icon/help-icon.jsx';
 
 function getClassName(className, validationMessage) {
   if (className) return className;

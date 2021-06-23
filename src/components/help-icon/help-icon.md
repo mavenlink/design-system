@@ -16,6 +16,8 @@ import HelpIcon from "./help-icon.jsx";
 
 More realistically, the `HelpIcon` is going to be used in conjunction with other elements, like inputs or paragraphs.
 
+Much like with `Tooltip`, please remember to apply `aria-describedby` on the component the help text is related to.
+
 ```jsx
 import HelpIcon from "./help-icon.jsx";
 
