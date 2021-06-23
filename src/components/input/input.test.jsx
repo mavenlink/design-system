@@ -39,7 +39,7 @@ describe('Input', () => {
   describe('cssContainer API', () => {
     it('sets input container className', () => {
       render(<Input {...requiredProps} cssContainer="test-class" />);
-      expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
+      expect(document.body).toMatchSnapshot();
     });
   });
 

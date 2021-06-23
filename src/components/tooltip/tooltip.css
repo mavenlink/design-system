@@ -33,9 +33,8 @@
 .tooltip::after {
   z-index: 1000;
   padding: var(--spacing-medium);
-  width: calc(8 * var(--spacing-large));
-  /*width: fit-content;*/
-  /*max-width: calc(10 * var(--spacing-x-large));*/
+  width: fit-content;
+  max-width: calc(10 * var(--spacing-x-large));
   content: attr(data-tooltip);
   font-size: var(--mds-type-subtext);
   border-radius: 3px;

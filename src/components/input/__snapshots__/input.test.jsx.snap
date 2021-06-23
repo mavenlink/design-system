@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Input cssContainer API sets input container className 1`] = `
+<body>
+  <div>
+    <div
+      class="test-class"
+      role="presentation"
+    >
+      <label
+        class="label"
+        for="foo"
+      >
+        the label
+      </label>
+      <div
+        class="control-container"
+      >
+        <div
+          class="wrapper"
+        >
+          <input
+            aria-describedby="fooHint"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`Input has defaults 1`] = `
 <body>
   <div>
@@ -16,13 +49,17 @@ exports[`Input has defaults 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="fooHint"
-          class="input"
-          id="foo"
-          type="text"
-          value=""
-        />
+        <div
+          class="wrapper"
+        >
+          <input
+            aria-describedby="fooHint"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -38,3 +38,12 @@
 .invalid-input:hover {
   border-color: var(--mds-red-100);
 }
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.help {
+  padding-left: var(--spacing-medium);
+}
