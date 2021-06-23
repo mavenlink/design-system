@@ -10,6 +10,7 @@
   - fix(ListOption): Fetch from correct endpoint for example
   - fix(Autocompleter): check if its mounted before modifying state
   - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
+  - feat(help-icon): Initial creation HelpIcon component
 </details>
 
 ## v0.75.0
