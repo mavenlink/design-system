@@ -15,8 +15,6 @@ describe('tooltip', () => {
     expect(document.body).toMatchSnapshot();
 
     user.hover(screen.getByText('Child'));
-    expect(screen.getByText('Help Text')).toBeInTheDocument();
-
     expect(document.body).toMatchSnapshot();
   });
 
@@ -119,13 +117,8 @@ describe('tooltip', () => {
   });
 
   describe('className api', () => {
-    it('can be supplied', () => {
+    it('can be overridden', () => {
       render(<Tooltip {...requiredProps} className="my-dope-class" />);
-      expect(document.body).toMatchSnapshot();
-    });
-
-    it('defaults to `tooltip`', () => {
-      render(<Tooltip {...requiredProps} className={undefined} />);
       expect(document.body).toMatchSnapshot();
     });
   });

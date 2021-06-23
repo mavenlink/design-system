@@ -1,28 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`tooltip className api can be supplied 1`] = `
+exports[`tooltip className api can be overridden 1`] = `
 <body>
   <div>
     <div
       class="my-dope-class top"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`tooltip className api defaults to \`tooltip\` 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip top"
       data-tooltip="Help Text"
     >
       <div
