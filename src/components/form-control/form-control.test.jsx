@@ -1,11 +1,5 @@
-import React, {
-  createRef,
-} from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import React, { createRef } from 'react';
+import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import FormControl from './form-control.jsx';
 
@@ -99,7 +93,8 @@ describe('<FormControl>', () => {
     it('can be set', () => {
       const onKeyDownSpy = jest.fn();
       render(<FormControl {...requiredProps} onKeyDown={onKeyDownSpy} />);
-      fireEvent.keyDown(screen.getByText('Test label'), { key: 'A' });
+      user.click(screen.getByText('Test label'));
+      user.keyboard('a');
       expect(onKeyDownSpy).toHaveBeenCalled();
     });
   });
