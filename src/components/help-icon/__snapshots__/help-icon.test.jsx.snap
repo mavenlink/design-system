@@ -1,127 +1,151 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HelpIcon direction api allows bottom 1`] = `
-<div
-  class="tooltip bottom"
-  data-tooltip="Help Text"
->
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip bottom"
+      data-tooltip="Help Text"
+    >
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`HelpIcon direction api allows left 1`] = `
-<div
-  class="tooltip left"
-  data-tooltip="Help Text"
->
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip left"
+      data-tooltip="Help Text"
+    >
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`HelpIcon direction api allows right 1`] = `
-<div
-  class="tooltip right"
-  data-tooltip="Help Text"
->
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip right"
+      data-tooltip="Help Text"
+    >
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`HelpIcon direction api allows top 1`] = `
-<div
-  class="tooltip top"
-  data-tooltip="Help Text"
->
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip top"
+      data-tooltip="Help Text"
+    >
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`HelpIcon has defaults 1`] = `
-<div
-  class="tooltip top"
-  data-tooltip="Help Text"
->
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip top"
+      data-tooltip="Help Text"
+    >
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`HelpIcon has defaults 2`] = `
-<div
-  class="tooltip top"
-  data-tooltip="Help Text"
->
-  <span
-    class="sr-only"
-    id="help-tooltip"
-  >
-    Help Text
-  </span>
-  <svg
-    height="18"
-    role="img"
-    width="18"
-  >
-    <title>
-      Icon Label
-    </title>
-    <use
-      xlink:href="#help.svg"
-    />
-  </svg>
-</div>
+<body>
+  <div>
+    <div
+      class="tooltip top"
+      data-tooltip="Help Text"
+    >
+      <span
+        class="sr-only"
+        id="help-tooltip"
+      >
+        Help Text
+      </span>
+      <svg
+        height="18"
+        role="img"
+        width="18"
+      >
+        <title>
+          Icon Label
+        </title>
+        <use
+          xlink:href="#help.svg"
+        />
+      </svg>
+    </div>
+  </div>
+</body>
 `;

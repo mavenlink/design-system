@@ -12,12 +12,12 @@ describe('HelpIcon', () => {
 
   it('has defaults', () => {
     render(<HelpIcon {...requiredProps} />);
-    expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
 
     user.hover(screen.getByTitle('Icon Label'));
     expect(screen.getByText('Help Text')).toBeInTheDocument();
 
-    expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('hovering behavior', () => {
@@ -46,22 +46,22 @@ describe('HelpIcon', () => {
   describe('direction api', () => {
     it('allows top', () => {
       render(<HelpIcon {...requiredProps} direction="top" />);
-      expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows bottom', () => {
       render(<HelpIcon {...requiredProps} direction="bottom" />);
-      expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows left', () => {
       render(<HelpIcon {...requiredProps} direction="left" />);
-      expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
 
     it('allows right', () => {
       render(<HelpIcon {...requiredProps} direction="right" />);
-      expect(screen.getByTitle('Icon Label').closest('.tooltip')).toMatchSnapshot();
+      expect(document.body).toMatchSnapshot();
     });
   });
 });
