@@ -63,20 +63,21 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   return (
     <Select
-      label={props.label}
-      id={props.id}
-      name={props.name}
       className={props.className}
-      listOptionRefs={listOptionRefs}
       displayValueEvaluator={props.displayValueEvaluator}
+      errorText={props.validationMessage}
+      id={props.id}
+      label={props.label}
+      listOptionRefs={listOptionRefs}
+      name={props.name}
       onChange={props.onChange}
       onInput={onInput}
-      required={props.required}
-      readOnly={props.readOnly}
       placeholder={props.placeholder}
-      errorText={props.validationMessage}
-      value={props.value}
+      readOnly={props.readOnly}
       ref={ref}
+      required={props.required}
+      tooltip={props.tooltip}
+      value={props.value}
     >
       {listOptionElements}
     </Select>
@@ -90,21 +91,22 @@ function displayName(modelInfo) {
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
+  className: PropTypes.string,
+  /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
+  displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  searchParam: PropTypes.string,
+  label: PropTypes.string,
   /** `value` and `models` shape is expected to be an object(s) with an `id` key */
   models: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.required,
   })),
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
-  displayValueEvaluator: PropTypes.func,
-  label: PropTypes.string,
-  required: PropTypes.bool,
-  readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
-  className: PropTypes.string,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  searchParam: PropTypes.string,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** `value` and `models` shape is expected to be an object(s) with an `id` key */
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
@@ -112,15 +114,16 @@ Autocompleter.propTypes = {
 
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
-  searchParam: 'matching',
-  models: [],
-  label: undefined,
-  required: false,
-  readOnly: false,
+  className: undefined,
   displayValueEvaluator: displayName,
+  label: undefined,
+  models: [],
   onChange: () => {},
   placeholder: undefined,
-  className: undefined,
+  readOnly: false,
+  required: false,
+  searchParam: 'matching',
+  tooltip: undefined,
   validationMessage: undefined,
   value: undefined,
 };

@@ -13,6 +13,7 @@
   - feat(help-icon): Initial creation HelpIcon component
   - Added help text icon as optional prop the following components:
     - abstract-custom-field
+    - autocompleter
     - checkbox
     - custom-field-input-multiple-choice
     - custom-field-input-single-choice
