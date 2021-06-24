@@ -28,6 +28,7 @@ const Textarea = forwardRef(function Textarea({
   placeholder,
   readOnly,
   required,
+  tooltip,
   validationMessage,
   value,
 }, forwardedRef) {
@@ -64,6 +65,9 @@ const Textarea = forwardRef(function Textarea({
     },
   }));
 
+  const describedBy = [`${id}Hint`];
+  if (tooltip) describedBy.push(`${id}-tooltip`);
+
   return (
     <FormControl
       className={cssContainer}
@@ -72,9 +76,10 @@ const Textarea = forwardRef(function Textarea({
       label={label}
       readOnly={readOnly}
       required={required}
+      tooltip={tooltip}
     >
       <textarea
-        aria-describedby={`${id}Hint`}
+        aria-describedby={describedBy.join(' ')}
         className={getClassName(className, validationMessageValue)}
         defaultValue={value}
         id={id}
@@ -108,6 +113,7 @@ Textarea.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   value: PropTypes.string,
 };
@@ -121,6 +127,7 @@ Textarea.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
+  tooltip: undefined,
   validationMessage: '',
   value: undefined,
 };

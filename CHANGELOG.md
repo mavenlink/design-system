@@ -15,6 +15,7 @@
     - abstract-custom-field  
     - input
     - select
+    - textarea
 </details>
 
 ## v0.75.0
