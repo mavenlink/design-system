@@ -21,7 +21,7 @@ exports[`Percentage has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="fooHint"
+          aria-describedby="fooHint foo-tooltip"
           class="input"
           id="foo"
           max="100"
