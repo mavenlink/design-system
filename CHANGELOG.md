@@ -26,6 +26,7 @@
     - multi-autocompleter
     - multi-select
     - number
+    - percentage
     - select
     - textarea
 </details>
