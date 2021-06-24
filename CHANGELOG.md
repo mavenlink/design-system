@@ -19,6 +19,7 @@
     - custom-field-input-single-choice
     - date
     - input
+    - multi-select
     - number
     - select
     - textarea

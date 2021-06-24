@@ -36,7 +36,7 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
               <input
                 aria-autocomplete="list"
                 aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 autocomplete="off"
@@ -108,7 +108,7 @@ exports[`<MultiSelect> has defaults 1`] = `
               <input
                 aria-autocomplete="list"
                 aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 autocomplete="off"
