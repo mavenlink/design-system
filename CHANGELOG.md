@@ -17,6 +17,7 @@
     - checkbox
     - custom-field-input-date
     - custom-field-input-multiple-choice
+    - custom-field-input-number
     - custom-field-input-single-choice
     - date
     - input
