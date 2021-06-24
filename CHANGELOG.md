@@ -15,6 +15,7 @@
     - abstract-custom-field
     - checkbox
     - custom-field-input-multiple-choice
+    - custom-field-input-single-choice
     - date
     - input
     - number

@@ -13,6 +13,7 @@ import {
   selectChoice,
   waitForChoices,
 } from './test-queries.js';
+import user from '@testing-library/user-event';
 
 describe('src/components/custom-field-input-single-choice/custom-field-input-single-choice', () => {
   beforeEach(() => {
@@ -202,6 +203,23 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       await waitForChoices('Test label');
       selectChoice('Test label', 'Foo');
+    });
+  });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<CustomFieldInputSingleChoice {...requiredProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      user.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
     });
   });
 });

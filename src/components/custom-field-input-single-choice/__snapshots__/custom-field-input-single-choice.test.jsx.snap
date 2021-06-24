@@ -26,6 +26,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
           <input
             aria-autocomplete="none"
             aria-controls="test-id-single-choice-listbox"
+            aria-describedby=""
             aria-expanded="false"
             aria-haspopup="listbox"
             autocomplete="off"
