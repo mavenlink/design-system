@@ -12,7 +12,8 @@
   - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
   - feat(help-icon): Initial creation HelpIcon component
   - Added help text icon as optional prop the following components:
-    - abstract-custom-field  
+    - abstract-custom-field
+    - checkbox
     - date
     - input
     - select
