@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import AbstractCustomField from './abstract-custom-field.jsx';
 import Icon from '../../icon/icon.jsx';
 import calendarSvg from '../../../svgs/calendar.svg';
@@ -260,6 +261,23 @@ describe('AbstractCustomField', () => {
     it('can be set to `date`', () => {
       render(<AbstractCustomField {...sharedProps} type="date" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
+    });
+  });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<AbstractCustomField {...sharedProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText('Test label')).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<AbstractCustomField {...sharedProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      user.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText('Test label')).toHaveDescription('');
     });
   });
 });

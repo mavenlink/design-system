@@ -65,6 +65,10 @@ export default function AbstractCustomField(props) {
     }
   }, [props.defaultValue]);
 
+  const describedBy = [];
+  if (invalidDueToProps) describedBy.push(`${props.id}Hint`);
+  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
+
   return (
     <FormControl
       className={props.className}
@@ -74,6 +78,7 @@ export default function AbstractCustomField(props) {
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
         autoComplete={props.autoComplete}
@@ -82,7 +87,7 @@ export default function AbstractCustomField(props) {
         aria-haspopup={props.ariaProps.haspopup}
         aria-expanded={props.ariaProps.expanded}
         aria-invalid={invalidDueToProps ? 'true' : undefined}
-        aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
+        aria-describedby={describedBy.join(' ')}
         defaultValue={props.defaultValue}
         className={inputClassName()}
         disabled={props.disabled}
@@ -163,6 +168,7 @@ AbstractCustomField.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
+  tooltip: PropTypes.string,
   type: PropTypes.oneOf([
     'date',
     'number',
@@ -201,6 +207,7 @@ AbstractCustomField.defaultProps = {
   readOnly: false,
   required: false,
   step: undefined,
+  tooltip: undefined,
   type: 'text',
   value: undefined,
 };
