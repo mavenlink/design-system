@@ -15,8 +15,6 @@ describe('HelpIcon', () => {
     expect(document.body).toMatchSnapshot();
 
     user.hover(screen.getByTitle('Icon Label'));
-    expect(screen.getByText('Help Text')).toBeInTheDocument();
-
     expect(document.body).toMatchSnapshot();
   });
 
