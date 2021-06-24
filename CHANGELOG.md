@@ -16,6 +16,7 @@
     - checkbox
     - date
     - input
+    - number
     - select
     - textarea
 </details>
