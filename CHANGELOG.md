@@ -14,6 +14,7 @@
   - Added help text icon as optional prop the following components:
     - abstract-custom-field
     - checkbox
+    - custom-field-input-multiple-choice
     - date
     - input
     - number
