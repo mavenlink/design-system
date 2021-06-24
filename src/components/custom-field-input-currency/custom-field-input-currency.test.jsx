@@ -231,4 +231,21 @@ describe('CustomFieldInputCurrency', () => {
       expect(ref.current.value).toBeUndefined();
     });
   });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<CustomFieldInputCurrency {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<CustomFieldInputCurrency {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+    });
+  });
 });

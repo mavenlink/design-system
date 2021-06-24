@@ -15,6 +15,7 @@
     - abstract-custom-field
     - autocompleter
     - checkbox
+    - custom-field-input-currency
     - custom-field-input-date
     - custom-field-input-multiple-choice
     - custom-field-input-number
