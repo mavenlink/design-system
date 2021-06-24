@@ -19,6 +19,7 @@
     - custom-field-input-multiple-choice
     - custom-field-input-number
     - custom-field-input-single-choice
+    - custom-field-input-text
     - date
     - input
     - multi-autocompleter
