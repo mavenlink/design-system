@@ -21,7 +21,7 @@ exports[`Input cssContainer API sets input container className 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="fooHint"
+          aria-describedby="fooHint foo-tooltip"
           class="input"
           id="foo"
           type="text"
@@ -53,7 +53,7 @@ exports[`Input has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="fooHint"
+          aria-describedby="fooHint foo-tooltip"
           class="input"
           id="foo"
           type="text"

@@ -1,10 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
@@ -50,9 +45,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     },
   }));
 
-  const describedBy = [`${props.id}Hint`];
-  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
-
   return (
     <FormControl
       className={props.cssContainer}
@@ -64,7 +56,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       tooltip={props.tooltip}
     >
       <input
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${props.id}Hint ${props.id}-tooltip`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}

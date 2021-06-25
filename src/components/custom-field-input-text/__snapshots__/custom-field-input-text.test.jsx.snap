@@ -20,7 +20,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="test-inputHint"
+          aria-describedby="test-inputHint test-input-tooltip"
           class="input"
           id="test-input"
           name="field-id"

@@ -20,7 +20,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="currencyHint"
+          aria-describedby="currencyHint currency-tooltip"
           class="custom-field-input-text"
           id="currency"
           name="some-field-id"
