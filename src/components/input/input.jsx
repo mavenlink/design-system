@@ -19,6 +19,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
+  const ids = {
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
   function onBlur(event) {
     validate();
     props.onBlur(event);
@@ -56,7 +61,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       tooltip={props.tooltip}
     >
       <input
-        aria-describedby={`${props.id}Hint ${props.id}-tooltip`}
+        aria-describedby={`${ids.validation} ${ids.tooltip}`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
