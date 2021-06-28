@@ -20,7 +20,7 @@ exports[`Checkbox has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="fartHint"
+          aria-describedby="fart-tooltip fartHint"
           class="input"
           id="fart"
           type="checkbox"

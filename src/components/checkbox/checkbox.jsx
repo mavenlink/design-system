@@ -61,8 +61,11 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     if (props.readOnly && event.key === ' ') event.preventDefault();
   }
 
-  const describedBy = [`${props.id}Hint`];
-  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
+  const ids = {
+    input: props.id,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
 
   return (
     <FormControl
@@ -75,7 +78,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       tooltip={props.tooltip}
     >
       <input
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         className={props.className}
         defaultChecked={props.checked}
         id={props.id}
