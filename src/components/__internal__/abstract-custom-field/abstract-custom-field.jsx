@@ -6,7 +6,13 @@ import cautionSvg from '../../../svgs/caution.svg';
 import FormControl from '../../form-control/form-control.jsx';
 
 export default function AbstractCustomField(props) {
-  const labelId = `${props.id}-label`;
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
   const invalidDueToProps = props.errorText.length > 0 && !props.readOnly;
 
   const numIcons = () => {
@@ -65,16 +71,12 @@ export default function AbstractCustomField(props) {
     }
   }, [props.defaultValue]);
 
-  const describedBy = [];
-  if (invalidDueToProps) describedBy.push(`${props.id}Hint`);
-  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
-
   return (
     <FormControl
       className={props.className}
       error={props.errorText}
-      id={props.id}
-      labelId={labelId}
+      id={ids.input}
+      labelId={ids.label}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
@@ -87,11 +89,11 @@ export default function AbstractCustomField(props) {
         aria-haspopup={props.ariaProps.haspopup}
         aria-expanded={props.ariaProps.expanded}
         aria-invalid={invalidDueToProps ? 'true' : undefined}
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         defaultValue={props.defaultValue}
         className={inputClassName()}
         disabled={props.disabled}
-        id={props.id}
+        id={ids.input}
         role={props.inputRole}
         max={props.max}
         maxLength={props.maxLength}
