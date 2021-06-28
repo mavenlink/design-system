@@ -1,10 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
@@ -23,6 +18,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const inputRef = useRef();
   const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
+
+  const ids = {
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
 
   function onBlur(event) {
     validate();
@@ -50,9 +50,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     },
   }));
 
-  const describedBy = [`${props.id}Hint`];
-  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
-
   return (
     <FormControl
       className={props.cssContainer}
@@ -64,7 +61,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       tooltip={props.tooltip}
     >
       <input
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${ids.validation} ${ids.tooltip}`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}

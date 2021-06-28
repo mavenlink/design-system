@@ -4,12 +4,6 @@ import Tooltip from '../tooltip/tooltip.jsx';
 import Icon from '../icon/icon.jsx';
 import helpSvg from '../../svgs/help.svg';
 
-/**
- * @param direction Direction for the tooltip to fly from relative to the icon.
- * @param id The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>.
- * @param label The label text of the icon.
- * @param text The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences.
- */
 export default function HelpIcon({
   direction,
   id,
@@ -24,9 +18,13 @@ export default function HelpIcon({
 }
 
 HelpIcon.propTypes = {
+  /** Direction for the tooltip to fly from relative to the icon. */
   direction: Tooltip.propTypes.direction,
+  /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
   id: PropTypes.string.isRequired,
+  /** The label text of the icon. */
   label: PropTypes.string.isRequired,
+  /** The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
   text: PropTypes.string.isRequired,
 };
 
