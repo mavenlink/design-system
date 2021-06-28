@@ -65,24 +65,27 @@ const Textarea = forwardRef(function Textarea({
     },
   }));
 
-  const describedBy = [`${id}Hint`];
-  if (tooltip) describedBy.push(`${id}-tooltip`);
+  const ids = {
+    input: id,
+    tooltip: `${id}-tooltip`,
+    validation: `${id}Hint`,
+  };
 
   return (
     <FormControl
       className={cssContainer}
       error={validationMessageValue}
-      id={id}
+      id={ids.input}
       label={label}
       readOnly={readOnly}
       required={required}
       tooltip={tooltip}
     >
       <textarea
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         className={getClassName(className, validationMessageValue)}
         defaultValue={value}
-        id={id}
+        id={ids.input}
         name={name}
         onBlur={blurHandler}
         onChange={changeHandler}
