@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - fix(ListOption): Fetch from correct endpoint for example
   - fix(Autocompleter): check if its mounted before modifying state
+  - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
 </details>
 
 ## v0.75.0
