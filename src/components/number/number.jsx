@@ -60,23 +60,26 @@ const Number = React.forwardRef((props, ref) => {
     },
   }));
 
-  const describedBy = [`${props.id}Hint`];
-  if (props.tooltip) describedBy.push(`${props.id}-tooltip`);
+  const ids = {
+    input: props.id,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
 
   return (
     <FormControl
       error={validationMessage}
-      id={props.id}
+      id={ids.input}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
       tooltip={props.tooltip}
     >
       <input
-        aria-describedby={describedBy.join(' ')}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
-        id={props.id}
+        id={ids.input}
         max={apiLimits.max}
         min={apiLimits.min}
         name={props.name}
