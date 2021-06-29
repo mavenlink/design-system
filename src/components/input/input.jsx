@@ -1,10 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
@@ -23,6 +18,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const inputRef = useRef();
   const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
+
+  const ids = {
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
 
   function onBlur(event) {
     validate();
@@ -58,9 +58,10 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
-        aria-describedby={`${props.id}Hint`}
+        aria-describedby={`${ids.validation} ${ids.tooltip}`}
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
@@ -105,6 +106,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   type: PropTypes.oneOf([
     'email',
     'password',
@@ -117,7 +119,7 @@ Input.propTypes = {
 Input.defaultProps = {
   autoFocus: undefined,
   className: undefined,
-  cssContainer: styles.container,
+  cssContainer: undefined,
   cssLabel: undefined,
   maxLength: undefined,
   name: undefined,
@@ -129,6 +131,7 @@ Input.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
+  tooltip: undefined,
   type: 'text',
   validationMessage: '',
   value: undefined,

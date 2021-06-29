@@ -9,13 +9,17 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          Test label
-        </label>
+          <label
+            class="label"
+            for="test-id"
+            id="test-id-label"
+          >
+            Test label
+          </label>
+        </div>
         <div
           class="control-container"
         >
@@ -61,13 +65,17 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          Test label
-        </label>
+          <label
+            class="label"
+            for="test-id"
+            id="test-id-label"
+          >
+            Test label
+          </label>
+        </div>
         <div
           class="control-container"
         >
@@ -649,13 +657,17 @@ exports[`src/components/date/date.test.jsx has defaults 1`] = `
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          Test label
-        </label>
+          <label
+            class="label"
+            for="test-id"
+            id="test-id-label"
+          >
+            Test label
+          </label>
+        </div>
         <div
           class="control-container"
         >

@@ -13,3 +13,7 @@
 ```js
 <Input id={uuid.v4()} label="Read-only / disabled example" readOnly />
 ```
+
+```js
+<Input id={uuid.v4()} label="An example with extra information" tooltip="Fill this input with some information please" />
+```

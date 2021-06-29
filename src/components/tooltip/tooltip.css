@@ -34,9 +34,9 @@
   z-index: 1000;
   padding: var(--spacing-medium);
   width: fit-content;
-  max-width: calc(10 * var(--spacing-large));
+  max-width: calc(10 * var(--spacing-x-large));
   content: attr(data-tooltip);
-  font-size: var(--mds-type-subtext);
+  font: var(--mds-type-subtext);
   border-radius: 3px;
   background-color: var(--mds-grey-87);
   border-color: var(--mds-grey-87);

@@ -4,20 +4,23 @@ exports[`CustomFieldInputText has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="test-input"
+      <div
+        class="label-wrapper"
       >
-        Test label
-      </label>
+        <label
+          class="label"
+          for="test-input"
+        >
+          Test label
+        </label>
+      </div>
       <div
         class="control-container"
       >
         <input
-          aria-describedby="test-inputHint"
+          aria-describedby="test-inputHint test-input-tooltip"
           class="input"
           id="test-input"
           name="field-id"

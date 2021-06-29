@@ -10,13 +10,17 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id-autocomplete"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          test label
-        </label>
+          <label
+            class="label"
+            for="test-id-autocomplete"
+            id="test-id-label"
+          >
+            test label
+          </label>
+        </div>
         <div
           class="control-container"
         >
@@ -78,13 +82,17 @@ exports[`<MultiSelect> has defaults 1`] = `
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id-autocomplete"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          test label
-        </label>
+          <label
+            class="label"
+            for="test-id-autocomplete"
+            id="test-id-label"
+          >
+            test label
+          </label>
+        </div>
         <div
           class="control-container"
         >
