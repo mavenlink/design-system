@@ -20,7 +20,7 @@ exports[`Number has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="test-componentHint"
+          aria-describedby="test-component-tooltip test-componentHint"
           class="input"
           id="test-component"
           max="2147483648"

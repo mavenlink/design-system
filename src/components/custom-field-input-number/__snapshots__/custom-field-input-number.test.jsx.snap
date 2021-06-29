@@ -20,7 +20,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
         class="control-container"
       >
         <input
-          aria-describedby="test-inputHint"
+          aria-describedby="test-input-tooltip test-inputHint"
           class="custom-field-input-text"
           id="test-input"
           max="2147483648"

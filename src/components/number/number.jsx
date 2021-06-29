@@ -60,19 +60,26 @@ const Number = React.forwardRef((props, ref) => {
     },
   }));
 
+  const ids = {
+    input: props.id,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
   return (
     <FormControl
       error={validationMessage}
-      id={props.id}
+      id={ids.input}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
-        aria-describedby={`${props.id}Hint`}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
-        id={props.id}
+        id={ids.input}
         max={apiLimits.max}
         min={apiLimits.min}
         name={props.name}
@@ -112,6 +119,7 @@ Number.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   value: PropTypes.number,
 };
@@ -125,6 +133,7 @@ Number.defaultProps = {
   readOnly: false,
   required: false,
   step: 1,
+  tooltip: undefined,
   validationMessage: '',
   value: undefined,
 };

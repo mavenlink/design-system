@@ -10,9 +10,27 @@
   - fix(ListOption): Fetch from correct endpoint for example
   - fix(Autocompleter): check if its mounted before modifying state
   - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
-  - feat(help-icon): Initial creation HelpIcon component
   - feat(form-control): expose `tooltip` prop which renders a help icon next to the label if provided
   - feat(input): expose `tooltip` prop which is passed to form-control
+  - feat(help-icon): Initial creation HelpIcon component
+  - Added help text icon as optional prop the following components:
+    - abstract-custom-field
+    - autocompleter
+    - checkbox
+    - custom-field-input-currency
+    - custom-field-input-date
+    - custom-field-input-multiple-choice
+    - custom-field-input-number
+    - custom-field-input-single-choice
+    - custom-field-input-text
+    - date
+    - input
+    - multi-autocompleter
+    - multi-select
+    - number
+    - percentage
+    - select
+    - textarea
 </details>
 
 ## v0.75.0

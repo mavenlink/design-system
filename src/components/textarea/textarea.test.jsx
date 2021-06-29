@@ -213,4 +213,21 @@ describe('Textarea', () => {
       expect(ref.current.value).toBe('!');
     });
   });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<Textarea {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText('the label')).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<Textarea {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByLabelText('the label')).toHaveDescription('');
+    });
+  });
 });

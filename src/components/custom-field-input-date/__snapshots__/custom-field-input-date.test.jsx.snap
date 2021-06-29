@@ -24,7 +24,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
           class="control-container"
         >
           <input
-            aria-describedby="field-dateHint"
+            aria-describedby="field-dateHint field-date-tooltip"
             class="unique-input"
             id="field-date"
             name="field-name"
@@ -80,7 +80,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
           class="control-container"
         >
           <input
-            aria-describedby="field-dateHint"
+            aria-describedby="field-dateHint field-date-tooltip"
             class="input"
             id="field-date"
             name="field-name"

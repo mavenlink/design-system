@@ -20,7 +20,7 @@ exports[`Textarea has defaults 1`] = `
         class="control-container"
       >
         <textarea
-          aria-describedby="fooHint"
+          aria-describedby="foo-tooltip fooHint"
           class="textarea"
           id="foo"
         />

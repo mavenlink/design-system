@@ -6,7 +6,13 @@ import cautionSvg from '../../../svgs/caution.svg';
 import FormControl from '../../form-control/form-control.jsx';
 
 export default function AbstractCustomField(props) {
-  const labelId = `${props.id}-label`;
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
   const invalidDueToProps = props.errorText.length > 0 && !props.readOnly;
 
   const numIcons = () => {
@@ -69,11 +75,12 @@ export default function AbstractCustomField(props) {
     <FormControl
       className={props.className}
       error={props.errorText}
-      id={props.id}
-      labelId={labelId}
+      id={ids.input}
+      labelId={ids.label}
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
         autoComplete={props.autoComplete}
@@ -82,11 +89,11 @@ export default function AbstractCustomField(props) {
         aria-haspopup={props.ariaProps.haspopup}
         aria-expanded={props.ariaProps.expanded}
         aria-invalid={invalidDueToProps ? 'true' : undefined}
-        aria-describedby={invalidDueToProps ? `${props.id}Hint` : undefined}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         defaultValue={props.defaultValue}
         className={inputClassName()}
         disabled={props.disabled}
-        id={props.id}
+        id={ids.input}
         role={props.inputRole}
         max={props.max}
         maxLength={props.maxLength}
@@ -163,6 +170,7 @@ AbstractCustomField.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
+  tooltip: PropTypes.string,
   type: PropTypes.oneOf([
     'date',
     'number',
@@ -201,6 +209,7 @@ AbstractCustomField.defaultProps = {
   readOnly: false,
   required: false,
   step: undefined,
+  tooltip: undefined,
   type: 'text',
   value: undefined,
 };

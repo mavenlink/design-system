@@ -26,6 +26,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
           <input
             aria-autocomplete="none"
             aria-controls="test-id-single-choice-listbox"
+            aria-describedby="test-id-tooltip test-idHint"
             aria-expanded="false"
             aria-haspopup="listbox"
             autocomplete="off"

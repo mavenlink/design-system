@@ -61,6 +61,12 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     if (props.readOnly && event.key === ' ') event.preventDefault();
   }
 
+  const ids = {
+    input: props.id,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
   return (
     <FormControl
       className={props.cssContainer}
@@ -69,9 +75,10 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
-        aria-describedby={`${props.id}Hint`}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
         className={props.className}
         defaultChecked={props.checked}
         id={props.id}
@@ -109,6 +116,7 @@ Checkbox.propTypes = {
   onFocus: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   value: PropTypes.string,
 };
@@ -123,6 +131,7 @@ Checkbox.defaultProps = {
   onFocus: () => {},
   readOnly: undefined,
   required: undefined,
+  tooltip: undefined,
   validationMessage: '',
   value: undefined,
 };

@@ -56,14 +56,15 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       name={props.name}
       onChange={onMultiSelectChange}
       onInput={onMultiSelectInput}
-      options={options}
       optionIDGetter={props.optionIDGetter}
       optionLabelGetter={props.optionLabelGetter}
+      options={options}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       ref={ref}
       required={props.required}
       showLoader={loading}
+      tooltip={props.tooltip}
       validationMessage={validationMessage}
       value={props.value}
     />
@@ -84,6 +85,7 @@ MultiAutocompleter.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   searchParam: PropTypes.string,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is an array of objects matching the shape of options */
   value: PropTypes.arrayOf(PropTypes.object),
@@ -98,6 +100,7 @@ MultiAutocompleter.defaultProps = {
   readOnly: false,
   required: false,
   searchParam: 'matching',
+  tooltip: undefined,
   validationMessage: undefined,
   value: [],
 };
