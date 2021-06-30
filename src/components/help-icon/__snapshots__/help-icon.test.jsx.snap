@@ -4,6 +4,11 @@ exports[`HelpIcon direction api allows bottom 1`] = `
 <body>
   <div>
     <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
+  <div>
+    <div
       class="wrapper"
     >
       <svg
@@ -32,6 +37,11 @@ exports[`HelpIcon direction api allows bottom 1`] = `
 
 exports[`HelpIcon direction api allows left 1`] = `
 <body>
+  <div>
+    <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
   <div>
     <div
       class="wrapper"
@@ -64,6 +74,11 @@ exports[`HelpIcon direction api allows right 1`] = `
 <body>
   <div>
     <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
+  <div>
+    <div
       class="wrapper"
     >
       <svg
@@ -92,6 +107,11 @@ exports[`HelpIcon direction api allows right 1`] = `
 
 exports[`HelpIcon direction api allows top 1`] = `
 <body>
+  <div>
+    <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
   <div>
     <div
       class="wrapper"
@@ -124,6 +144,11 @@ exports[`HelpIcon has defaults 1`] = `
 <body>
   <div>
     <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
+  <div>
+    <div
       class="wrapper"
     >
       <svg
@@ -145,6 +170,11 @@ exports[`HelpIcon has defaults 1`] = `
 
 exports[`HelpIcon has defaults 2`] = `
 <body>
+  <div>
+    <div
+      aria-describedby="help-tooltip"
+    />
+  </div>
   <div>
     <div
       class="wrapper"

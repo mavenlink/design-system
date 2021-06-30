@@ -10,6 +10,11 @@ describe('HelpIcon', () => {
     text: 'Help Text',
   };
 
+  // There needs to be something on the DOM that the tooltip is describing, so render a dummy div for each test.
+  beforeEach(() => {
+    render(<div aria-describedby={requiredProps.id} />);
+  });
+
   it('has defaults', () => {
     render(<HelpIcon {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
