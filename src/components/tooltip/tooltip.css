@@ -54,3 +54,9 @@
   left: calc(-2 * var(--triangle-height));
   top: calc(50% - var(--triangle-height));
 }
+
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

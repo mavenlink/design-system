@@ -20,6 +20,13 @@ exports[`HelpIcon direction api allows bottom 1`] = `
       </svg>
     </div>
   </div>
+  <span
+    class="tooltip bottom"
+    id="help-tooltip"
+    style="left: 0px; top: 128px;"
+  >
+    Help Text
+  </span>
 </body>
 `;
 
@@ -43,6 +50,13 @@ exports[`HelpIcon direction api allows left 1`] = `
       </svg>
     </div>
   </div>
+  <span
+    class="tooltip left"
+    id="help-tooltip"
+    style="left: -128px; top: 0px;"
+  >
+    Help Text
+  </span>
 </body>
 `;
 
@@ -66,6 +80,13 @@ exports[`HelpIcon direction api allows right 1`] = `
       </svg>
     </div>
   </div>
+  <span
+    class="tooltip right"
+    id="help-tooltip"
+    style="left: 128px; top: 0px;"
+  >
+    Help Text
+  </span>
 </body>
 `;
 
@@ -89,6 +110,13 @@ exports[`HelpIcon direction api allows top 1`] = `
       </svg>
     </div>
   </div>
+  <span
+    class="tooltip top"
+    id="help-tooltip"
+    style="left: 0px; top: -128px;"
+  >
+    Help Text
+  </span>
 </body>
 `;
 

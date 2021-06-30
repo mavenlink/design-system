@@ -32,6 +32,8 @@ export default function Tooltip({
   else if (direction === 'left') classNames.push(styles.left);
   else if (direction === 'right') classNames.push(styles.right);
 
+  if (truncate) classNames.push(styles.truncate);
+
   return (
     <div
       className={styles.wrapper}

@@ -1,88 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`tooltip className api can be overridden 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="my-dope-class top"
+  id="my-component-tooltip"
+  style="left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows bottom 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip bottom"
+  id="my-component-tooltip"
+  style="left: 0px; top: 128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows left 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip left"
+  id="my-component-tooltip"
+  style="left: -128px; top: 0px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows right 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip right"
+  id="my-component-tooltip"
+  style="left: 128px; top: 0px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows top 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip top"
+  id="my-component-tooltip"
+  style="left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip has defaults 1`] = `
@@ -127,35 +92,21 @@ exports[`tooltip has defaults 2`] = `
 `;
 
 exports[`tooltip truncate api adds the class if true 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip top truncate"
+  id="my-component-tooltip"
+  style="left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip truncate api does not add the class if false 1`] = `
-<body>
-  <div>
-    <div
-      class="wrapper"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip top"
+  id="my-component-tooltip"
+  style="left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
