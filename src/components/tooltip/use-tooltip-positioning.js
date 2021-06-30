@@ -21,7 +21,7 @@ export default function useTooltipPositioning({
     const sourceRect = target.getBoundingClientRect();
 
     // Start from the top-left of the thing we want the tooltip to "open" from.
-    const sourceX = sourceRect.x;
+    const sourceX = sourceRect.x + window.scrollX;
     const sourceY = sourceRect.y + window.scrollY;
     const tooltipText = tooltipRef.current.getBoundingClientRect();
 
