@@ -4,8 +4,7 @@ exports[`HelpIcon direction api allows bottom 1`] = `
 <body>
   <div>
     <div
-      class="tooltip bottom"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <svg
         height="18"
@@ -28,8 +27,7 @@ exports[`HelpIcon direction api allows left 1`] = `
 <body>
   <div>
     <div
-      class="tooltip left"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <svg
         height="18"
@@ -52,8 +50,7 @@ exports[`HelpIcon direction api allows right 1`] = `
 <body>
   <div>
     <div
-      class="tooltip right"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <svg
         height="18"
@@ -76,8 +73,7 @@ exports[`HelpIcon direction api allows top 1`] = `
 <body>
   <div>
     <div
-      class="tooltip top"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <svg
         height="18"
@@ -100,8 +96,7 @@ exports[`HelpIcon has defaults 1`] = `
 <body>
   <div>
     <div
-      class="tooltip top"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <svg
         height="18"
@@ -124,15 +119,8 @@ exports[`HelpIcon has defaults 2`] = `
 <body>
   <div>
     <div
-      class="tooltip top"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
-      <span
-        class="sr-only"
-        id="help-tooltip"
-      >
-        Help Text
-      </span>
       <svg
         height="18"
         role="img"
@@ -147,5 +135,12 @@ exports[`HelpIcon has defaults 2`] = `
       </svg>
     </div>
   </div>
+  <span
+    class="tooltip top"
+    id="help-tooltip"
+    style="left: 0px; top: -128px;"
+  >
+    Help Text
+  </span>
 </body>
 `;

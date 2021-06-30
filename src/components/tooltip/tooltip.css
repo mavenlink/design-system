@@ -2,40 +2,17 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography-v2.css';
 
-/*
-  This css file uses pseudo elements and the triangle hack to render a tooltip.
-  It is adapted from https://chrisbracco.com/a-simple-css-tooltip/.
-
-  General ideas:
-  ::before - the tooltip's triangle         - aligned on the appropriate side, centered on the parent element, adjusted for the triangle's height (see https://stackoverflow.com/questions/7073484/how-do-css-triangles-work)
-  ::after  - the tooltip's text content/box - aligned on the appropriate side, centered on the parent element, adjusted for the content's width, adjusted for the triangle's height
-*/
-
-.tooltip {
-  --triangle-height: 6px;
-  --negative-triangle-height: calc(-1 * var(--triangle-height));
-
+.wrapper {
+  width: fit-content;
   position: relative;
   display: inline-flex;
 }
 
-/* Base styles for the tooltip's direction arrow */
-.tooltip::before {
-  z-index: 1001;
-  border-width: var(--triangle-height);
-  border-style: solid;
-  border-color: transparent;
-  background: transparent;
-  content: "";
-}
-
-/* Base styles for the tooltip's content area */
-.tooltip::after {
-  z-index: 1000;
+.tooltip {
+  position: absolute;
   padding: var(--spacing-medium);
   width: fit-content;
   max-width: calc(10 * var(--spacing-x-large));
-  content: attr(data-tooltip);
   font: var(--mds-type-subtext);
   border-radius: 3px;
   background-color: var(--mds-grey-87);
@@ -43,96 +20,37 @@
   color: var(--white);
 }
 
-.tooltip::before,
-.tooltip::after {
-  position: absolute;
-  visibility: hidden;
-  pointer-events: none;
-}
+.top::before,
+.bottom::before,
+.left::before,
+.right::before {
+  --triangle-height: var(--spacing-medium);
 
-.tooltip:hover::before,
-.tooltip:hover::after,
-.tooltip:focus-within::before,
-.tooltip:focus-within::after {
-  visibility: visible;
-  opacity: 1;
+  content: '';
+  border: var(--triangle-height) solid transparent; /* stylelint-disable-line mds/colors */
+  position: absolute;
 }
 
 .top::before {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--triangle-height));
   border-top-color: var(--mds-grey-87);
-}
-
-.top::after {
-  bottom: calc(100% - 1px);
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--negative-triangle-height));
+  left: calc(50% - var(--triangle-height));
+  top: 100%;
 }
 
 .bottom::before {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--negative-triangle-height));
-  border-top-color: transparent;
   border-bottom-color: var(--mds-grey-87);
-}
-
-.bottom::after {
-  top: calc(100% - 1px);
-  left: 50%;
-  transform: translateX(-50%) translateY(var(--triangle-height));
+  left: calc(50% - var(--triangle-height));
+  top: calc(-2 * var(--triangle-height));
 }
 
 .left::before {
-  top: 50%;
-  right: 100%;
-  transform: translateX(var(--triangle-height)) translateY(-50%);
-  border-top-color: transparent;
   border-left-color: var(--mds-grey-87);
-}
-
-.left::after {
-  top: 50%;
-  right: calc(100% - 1px);
-  transform: translateX(var(--negative-triangle-height)) translateY(-50%);
+  left: 100%;
+  top: calc(50% - var(--triangle-height));
 }
 
 .right::before {
-  top: 50%;
-  left: 100%;
-  transform: translateX(var(--negative-triangle-height)) translateY(-50%);
-  border-top-color: transparent;
   border-right-color: var(--mds-grey-87);
-}
-
-.right::after {
-  top: 50%;
-  left: 100%;
-  transform: translateX(var(--triangle-height)) translateY(-50%);
-}
-
-.truncate::after {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/*
-  This class is used to hide the DOM node content off of the screen for sighted users, but still allows
-  screen readers to use it.
-
-  This way we can continue to use the CSS `content` hack for sighted users (which keeps the CSS for the
-  tooltip simple and address 99%+ of tooltip needs), without losing testability or accessibility.
-
-  For more information, see https://webaim.org/techniques/css/invisiblecontent/#offscreen
- */
-.sr-only {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  left: calc(-2 * var(--triangle-height));
+  top: calc(50% - var(--triangle-height));
 }
