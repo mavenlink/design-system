@@ -16,8 +16,7 @@ export default function Tooltip({
   text,
   truncate,
 }) {
-  // size of the triangle in pixels; this should be the same as teh value in the linked stylesheet
-  // TODO is there a way to share the variable so its only in one place
+  // size of the triangle in pixels
   const triangleHeight = 8;
 
   const tooltipRef = useRef();
@@ -54,7 +53,10 @@ export default function Tooltip({
         <span
           id={id}
           className={classNames.join(' ')}
-          style={position}
+          style={{
+            '--triangle-height': `${triangleHeight}px`,
+            ...position,
+          }}
           ref={tooltipRef}
         >
           {text}

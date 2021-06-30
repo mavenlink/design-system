@@ -1,3 +1,4 @@
+/* stylelint-disable css-modules/css-variables */
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
 @import '../../styles/typography-v2.css';
@@ -24,8 +25,6 @@
 .bottom::before,
 .left::before,
 .right::before {
-  --triangle-height: var(--spacing-medium);
-
   content: '';
   border: var(--triangle-height) solid transparent; /* stylelint-disable-line mds/colors */
   position: absolute;

@@ -28,7 +28,7 @@ exports[`HelpIcon direction api allows bottom 1`] = `
   <span
     class="tooltip bottom"
     id="help-tooltip"
-    style="left: 0px; top: 128px;"
+    style="--triangle-height: 8px; left: 0px; top: 128px;"
   >
     Help Text
   </span>
@@ -63,7 +63,7 @@ exports[`HelpIcon direction api allows left 1`] = `
   <span
     class="tooltip left"
     id="help-tooltip"
-    style="left: -128px; top: 0px;"
+    style="--triangle-height: 8px; left: -128px; top: 0px;"
   >
     Help Text
   </span>
@@ -98,7 +98,7 @@ exports[`HelpIcon direction api allows right 1`] = `
   <span
     class="tooltip right"
     id="help-tooltip"
-    style="left: 128px; top: 0px;"
+    style="--triangle-height: 8px; left: 128px; top: 0px;"
   >
     Help Text
   </span>
@@ -133,7 +133,7 @@ exports[`HelpIcon direction api allows top 1`] = `
   <span
     class="tooltip top"
     id="help-tooltip"
-    style="left: 0px; top: -128px;"
+    style="--triangle-height: 8px; left: 0px; top: -128px;"
   >
     Help Text
   </span>
@@ -196,7 +196,7 @@ exports[`HelpIcon has defaults 2`] = `
   <span
     class="tooltip top"
     id="help-tooltip"
-    style="left: 0px; top: -128px;"
+    style="--triangle-height: 8px; left: 0px; top: -128px;"
   >
     Help Text
   </span>
