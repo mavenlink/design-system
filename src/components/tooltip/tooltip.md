@@ -14,6 +14,8 @@ However, the tooltip is intended to be usable in conjunction with any children o
 
 **Regardless, it is _imperative_ that there is an `aria-describedby` in the tooltipped component with the value of the `id` provided to `<Tooltip>`. This sets up the accessible relationship which help screenreaders and other assistive technology**.
 
+There is a `useLayoutEffect` hook on the tooltip that will scan the document for a linking element and raise an error if it is not found.
+
 ```jsx
 import Tooltip from "./tooltip.jsx";
 
