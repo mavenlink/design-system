@@ -81,4 +81,16 @@ describe('Icon', () => {
       expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
     });
   });
+
+  describe('describedBy prop API', () => {
+    it('can be set', () => {
+      render((
+        <React.Fragment>
+          <span id="help-id">Help Text</span>
+          <Icon {...requiredProps} describedBy="help-id" />
+        </React.Fragment>
+      ));
+      expect(screen.getByRole('img', { name: 'Test label' })).toHaveDescription('Help Text');
+    });
+  });
 });

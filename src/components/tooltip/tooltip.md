@@ -6,7 +6,7 @@ import Icon from "../icon/icon.jsx";
 import cautionSvg from '../../svgs/caution.svg';
 
 <Tooltip text="and here that beautiful text is" id="help-tooltip" direction="top">
-  <Icon label="caution" icon={cautionSvg} aria-describedby="help-tooltip" />
+  <Icon label="caution" icon={cautionSvg} describedBy="help-tooltip" />
 </Tooltip>
 ```
 
