@@ -24,7 +24,7 @@ export default function Tooltip({
   const { position, visible, show, hide } = useTooltipPositioning({ tooltipRef, triangleHeight, direction });
 
   useLayoutEffect(() => {
-    if (disabled || document.querySelector(`[aria-describedby="${id}"]`)) return;
+    if (disabled || document.querySelector('[aria-describedby]', id)) return;
 
     throw new Error('<Tooltip> was used without an element on the DOM being described by it. ' +
       'Please add `aria-describedby` to the element this tooltip is being used to describe.');
