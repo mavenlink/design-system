@@ -2,11 +2,13 @@
 
 A set of [React](https://reactjs.org/) components created by, and for, [Mavenlink](https://www.mavenlink.com/). See all the available components at our [Github Page](https://mavenlink.github.io/design-system/master).
 
+For a living style guide of design patterns, visit our [site on Notion](https://www.notion.so/Mavenlink-Design-System-d3118c3e2f5647d6adfc5b1599af993e).
+
 ## Installation
 
 - Install with NPM or Yarn
 
-  ```bash
+  ```bash static
   npm install --save @mavenlink/design-system
 
   # or
@@ -54,7 +56,7 @@ A set of [React](https://reactjs.org/) components created by, and for, [Mavenlin
 
 - Use in your project
 
-  ```js
+  ```js static
   import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
   function App() {
@@ -69,20 +71,16 @@ We periodically update and upgrade styles. We have also created linters to help 
  - Install [stylelint](https://stylelint.io/) into your project
  - In your stylelint configuration file (`.stylelintrc.json, .stylelintrc, stylelint.config.js`) include the following:
 
-    ```js
+    ```js static
     const path = require('path');
 
     module.exports = {
-      // ... stylelint configuration ...
       plugins: [
-        // ...
         path.resolve('@mavenlink/design-system/src/linters/colors.js'),
       ],
-      // ...
-      rules: [
-         // ...
-         'mds/colors': true,
-      ],
+      rules: {
+        'mds/colors': true,
+      },
     };
     ```
  - Run stylelint to see failures

@@ -4,8 +4,6 @@ const webpackConfig = require('./styleguide/webpack.config.js');
 
 module.exports = {
   assetsDir: [
-    path.join(__dirname, 'styleguide/assets'),
-    path.join(__dirname, 'pages'),
     './node_modules/msw/lib/iife',
   ],
   context: {
@@ -25,82 +23,25 @@ module.exports = {
   },
   pagePerSection: true,
   require: [
-    path.join(__dirname, 'styleguide/content/content.css'),
     path.join(__dirname, 'styleguide/utils/include-msw.js'),
     path.join(__dirname, 'styleguide/utils/console-error.js'),
   ],
-  sections: [
-    {
-      name: 'Overview',
-      content: path.join(__dirname, 'styleguide/content/overview/overview.md'),
-    },
-    {
-      name: 'Components',
-      components: './src/components/**/*.jsx',
-    },
-    {
-      name: 'Hooks',
-      components: './src/hooks/**/*.jsx',
-    },
-    {
-      name: 'Icon Library',
-      content: './styleguide/content/icons/index.md',
-    },
-    {
-      name: 'Guidelines',
-      sections: [
-        {
-          name: 'Accessibility',
-          content: path.join(__dirname, 'styleguide/content/guidelines/accessibility.md'),
-        },
-        {
-          name: 'Contribute',
-          content: path.join(__dirname, 'docs/contributing.md'),
-        },
-      ],
-    },
-    {
-      name: 'Brand Identity',
-      sections: [
-        {
-          name: 'Colors',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/colors.md'),
-        },
-        {
-          name: 'Spacing',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/spacing.md'),
-        },
-        {
-          name: 'Typography',
-          content: path.join(__dirname, 'styleguide/content/brand-identity/typography.md'),
-        },
-      ],
-    },
-    {
-      name: 'Design Patterns',
-      sections: [{
-        name: 'Basic Page Patterns',
-        content: path.join(__dirname, 'pages/design-patterns/basic-page-spacing.md'),
-      }, {
-        name: 'Page Patterns',
-        content: path.join(__dirname, 'pages/design-patterns/pages/index.md'),
-        sections: [{
-          name: 'Table Page Type',
-          content: path.join(__dirname, 'pages/design-patterns/pages/table-type.md'),
-        }, {
-          name: 'Form Page Type',
-          content: path.join(__dirname, 'pages/design-patterns/pages/form-type.md'),
-        }, {
-          name: 'Form/Table Hybrid Page Type',
-          content: path.join(__dirname, 'pages/design-patterns/pages/hybrid-type.md'),
-        }, {
-          name: 'Project View Page Type',
-          content: path.join(__dirname, 'pages/design-patterns/pages/project-view-type.md'),
-        }],
-      }],
-    },
-  ],
-  skipComponentsWithoutExample: true,
+  sections: [{
+    name: 'README',
+    content: './README.md',
+  }, {
+    name: 'Living Codebase',
+    href: 'https://github.com/mavenlink/design-system',
+  }, {
+    name: 'Living Style Guide',
+    href: 'https://www.notion.so/Mavenlink-Design-System-d3118c3e2f5647d6adfc5b1599af993e',
+  }, {
+    name: 'Components',
+    components: './src/components/**/*.jsx',
+  }, {
+    name: 'Icon Library',
+    content: './styleguide/content/icons/index.md',
+  }],
   styleguideComponents: {
     ComponentsListRenderer: path.join(__dirname, 'styleguide/components/components-list'),
     LinkRenderer: path.join(__dirname, 'styleguide/components/link'),
