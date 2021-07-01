@@ -10,13 +10,20 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id-autocomplete"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          test label
-        </label>
+          <div
+            class="label"
+          >
+            <label
+              for="test-id-autocomplete"
+              id="test-id-label"
+            >
+              test label
+            </label>
+          </div>
+        </div>
         <div
           class="control-container"
         >
@@ -32,7 +39,7 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
               <input
                 aria-autocomplete="list"
                 aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 autocomplete="off"
@@ -72,18 +79,26 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
 <body>
   <div>
     <div
+      class="container"
       id="test-id"
     >
       <div
         role="presentation"
       >
-        <label
-          class="label"
-          for="test-id-autocomplete"
-          id="test-id-label"
+        <div
+          class="label-wrapper"
         >
-          test label
-        </label>
+          <div
+            class="label"
+          >
+            <label
+              for="test-id-autocomplete"
+              id="test-id-label"
+            >
+              test label
+            </label>
+          </div>
+        </div>
         <div
           class="control-container"
         >
@@ -99,7 +114,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
               <input
                 aria-autocomplete="list"
                 aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
                 aria-expanded="false"
                 aria-haspopup="listbox"
                 autocomplete="off"

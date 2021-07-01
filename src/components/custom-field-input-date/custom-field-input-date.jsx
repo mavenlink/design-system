@@ -25,6 +25,7 @@ CustomFieldInputDate.propTypes = {
   onChange: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -37,6 +38,7 @@ CustomFieldInputDate.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: undefined,
 };
 

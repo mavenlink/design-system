@@ -85,6 +85,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
     validationMessage: `${props.id}Hint`,
   };
 
@@ -190,9 +191,10 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         label={props.label}
         readOnly={props.readOnly}
         required={props.required}
+        tooltip={props.tooltip}
       >
         <input
-          aria-describedby={ids.validationMessage}
+          aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
           className={classNames.input}
           defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
           id={ids.input}
@@ -244,6 +246,7 @@ Date.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** A date in full-date format (i.e. yyyy-mm-dd) */
   value: PropTypes.string,
@@ -257,6 +260,7 @@ Date.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   validationMessage: '',
   value: undefined,
 };

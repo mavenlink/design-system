@@ -4,20 +4,26 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
       role="presentation"
     >
-      <label
-        class="label"
-        for="currency"
+      <div
+        class="label-wrapper"
       >
-        currency
-      </label>
+        <div
+          class="label"
+        >
+          <label
+            for="currency"
+          >
+            currency
+          </label>
+        </div>
+      </div>
       <div
         class="control-container"
       >
         <input
-          aria-describedby="currencyHint"
+          aria-describedby="currencyHint currency-tooltip"
           class="custom-field-input-text"
           id="currency"
           name="some-field-id"

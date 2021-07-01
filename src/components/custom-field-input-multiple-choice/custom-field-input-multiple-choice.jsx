@@ -57,6 +57,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     label: `${props.id}-label`,
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
+    tooltip: `${props.id}-autocomplete-tooltip`,
   };
   const mounted = useMounted();
   const wrapperRef = useRef(null);
@@ -219,10 +220,11 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     <div ref={wrapperRef} className={styles['component-root']}>
       <FormControl
         error={validationMessage}
+        id={ids.textbox}
         label={props.label}
         labelId={ids.label}
-        id={ids.textbox}
         onKeyDown={onKeyDown}
+        tooltip={props.tooltip}
         readOnly={props.readOnly}
       >
         <div
@@ -252,7 +254,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
             <input
               aria-autocomplete="list"
               aria-controls={ids.listbox}
-              aria-describedby={`${ids.errorMessage} ${ids.emptyMessage}`}
+              aria-describedby={`${ids.errorMessage} ${ids.emptyMessage} ${ids.tooltip}`}
               aria-expanded={expanded}
               aria-haspopup="listbox"
               aria-labelledby={ids.label}
@@ -315,6 +317,7 @@ CustomFieldInputMultipleChoice.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -325,6 +328,7 @@ CustomFieldInputMultipleChoice.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: [],
 };
 

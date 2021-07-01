@@ -1,11 +1,5 @@
-import React, {
-  createRef,
-} from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import React, { createRef } from 'react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from './input.jsx';
 
@@ -39,7 +33,7 @@ describe('Input', () => {
   describe('cssContainer API', () => {
     it('sets input container className', () => {
       render(<Input {...requiredProps} cssContainer="test-class" />);
-      expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
+      expect(document.body).toMatchSnapshot();
     });
   });
 
@@ -118,7 +112,8 @@ describe('Input', () => {
     it('sets the onblur handler', () => {
       const onBlurSpy = jest.fn();
       render(<Input {...requiredProps} onBlur={onBlurSpy} />);
-      fireEvent.blur(screen.getByLabelText('the label'));
+      userEvent.click(screen.getByLabelText('the label'));
+      userEvent.tab();
       expect(onBlurSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -127,7 +122,7 @@ describe('Input', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
       render(<Input {...requiredProps} onChange={onChangeSpy} />);
-      fireEvent.change(screen.getByLabelText('the label'), { target: { value: 'new value' } });
+      userEvent.type(screen.getByLabelText('the label'), 'f');
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -136,7 +131,7 @@ describe('Input', () => {
     it('sets the onFocus handler', () => {
       const onFocusSpy = jest.fn();
       render(<Input {...requiredProps} onFocus={onFocusSpy} />);
-      fireEvent.focus(screen.getByLabelText('the label'));
+      userEvent.click(screen.getByLabelText('the label'));
       expect(onFocusSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -145,7 +140,7 @@ describe('Input', () => {
     it('sets the onInput handler', () => {
       const onInputSpy = jest.fn();
       render(<Input {...requiredProps} onInput={onInputSpy} />);
-      fireEvent.input(screen.getByLabelText('the label'));
+      userEvent.type(screen.getByLabelText('the label'), 'f');
       expect(onInputSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -154,7 +149,8 @@ describe('Input', () => {
     it('sets the onKeyDown handler', () => {
       const onKeyDownSpy = jest.fn();
       render(<Input {...requiredProps} onKeyDown={onKeyDownSpy} />);
-      fireEvent.keyDown(screen.getByLabelText('the label'));
+      userEvent.click(screen.getByText('the label'));
+      userEvent.keyboard('a');
       expect(onKeyDownSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -268,6 +264,23 @@ describe('Input', () => {
       expect(ref.current.value).toBe('');
       userEvent.type(screen.getByLabelText('the label'), '!');
       expect(ref.current.value).toBe('!');
+    });
+  });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<Input {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<Input {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveDescription('');
     });
   });
 });

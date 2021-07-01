@@ -1,11 +1,6 @@
-import React, {
-  createRef,
-} from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import React, { createRef } from 'react';
+import { render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import FormControl from './form-control.jsx';
 
 describe('<FormControl>', () => {
@@ -98,7 +93,8 @@ describe('<FormControl>', () => {
     it('can be set', () => {
       const onKeyDownSpy = jest.fn();
       render(<FormControl {...requiredProps} onKeyDown={onKeyDownSpy} />);
-      fireEvent.keyDown(screen.getByText('Test label'), { key: 'A' });
+      user.click(screen.getByText('Test label'));
+      user.keyboard('a');
       expect(onKeyDownSpy).toHaveBeenCalled();
     });
   });
@@ -124,6 +120,23 @@ describe('<FormControl>', () => {
     it('can be unset', () => {
       render(<FormControl {...requiredProps} required={false} />);
       expect(screen.queryByText('(Required)')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('displays the tooltip text when the help icon is hovered over', () => {
+      render(<FormControl {...requiredProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByText(tooltip)).toBeInTheDocument();
+    });
+
+    it('removes the tooltip when the help icon is unhovered', () => {
+      render(<FormControl {...requiredProps} tooltip={tooltip} />);
+      user.hover(screen.getByRole('img', { name: 'More information' }));
+      user.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.queryByText(tooltip)).not.toBeInTheDocument();
     });
   });
 });

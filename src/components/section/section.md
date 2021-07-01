@@ -20,20 +20,20 @@ import SectionRow from '@mavenlink/design-system/src/components/section-row/sect
   description="These fields allow control of custom project fields."
 >
   <CustomFieldInputText
-    id="test-id-1"
+    id={uuid.v4()}
     label="Project Sub Name"
   />
   <CustomFieldInputText
-    id="test-id-2"
+    id={uuid.v4()}
     label="Project Direct Report"
   />
   <SectionRow>
     <CustomFieldInputText
-      id="test-id-3"
+      id={uuid.v4()}
       label="Project Sub Report 1"
     />
     <CustomFieldInputText
-      id="test-id-4"
+      id={uuid.v4()}
       label="Project Sub Report 2"
     />
   </SectionRow>

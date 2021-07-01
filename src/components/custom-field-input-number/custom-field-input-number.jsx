@@ -31,8 +31,6 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
   return (
     <Number
       className={props.className}
-      value={props.value}
-      validationMessage={props.errorText}
       id={props.id}
       label={props.label}
       max={apiLimits.max}
@@ -45,7 +43,10 @@ const CustomFieldInputNumber = forwardRef(function CustomFieldInputNumber(props,
       ref={inputRef}
       required={props.required}
       step={props.step}
+      tooltip={props.tooltip}
       type="number"
+      validationMessage={props.errorText}
+      value={props.value}
     />
   );
 });
@@ -68,6 +69,7 @@ CustomFieldInputNumber.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   step: PropTypes.number,
+  tooltip: PropTypes.string,
   value: PropTypes.number,
 };
 
@@ -82,6 +84,7 @@ CustomFieldInputNumber.defaultProps = {
   readOnly: false,
   required: false,
   step: 1,
+  tooltip: undefined,
   value: undefined,
 };
 

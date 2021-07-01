@@ -6,7 +6,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 
 ```js
 <CustomFieldInputNumber
-  id="test-id-1"
+  id={uuid.v4()}
   label="Example 1"
 />
 ```
@@ -16,7 +16,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 ```js
 <CustomFieldInputNumber
   disabled
-  id="test-id-2"
+  id={uuid.v4()}
   label="Example 2"
   value={1337}
 />
@@ -26,7 +26,7 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 
 ```js
 <CustomFieldInputNumber
-  id="test-id-3"
+  id={uuid.v4()}
   label="Example 3"
   value={-1.01}
 />

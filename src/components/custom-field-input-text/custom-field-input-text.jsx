@@ -18,6 +18,7 @@ const CustomFieldInputText = forwardRef(function CustomFieldInputText(props, ref
       readOnly={props.readOnly}
       ref={ref}
       required={props.required}
+      tooltip={props.tooltip}
       type="text"
       validationMessage={props.errorText}
       value={props.value}
@@ -40,6 +41,7 @@ CustomFieldInputText.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -53,6 +55,7 @@ CustomFieldInputText.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: undefined,
 };
 

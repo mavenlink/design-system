@@ -1,23 +1,23 @@
 The `Textarea` component should be used when a multi-line string input is needed. For now, it does not support vertical resizing.
 
 ```js
-<Textarea id="ex-1" label="Default example" />
+<Textarea id={uuid.v4()} label="Default example" />
 ```
 
 ```js
-<Textarea id="ex-2" label="Required example" required />
+<Textarea id={uuid.v4()} label="Required example" required />
 ```
 
 ```js
-<Textarea id="ex-3" label="Server error example" validationMessage="The server returned an error." />
+<Textarea id={uuid.v4()} label="Server error example" validationMessage="The server returned an error." />
 ```
 
 ```js
-<Textarea id="ex-4" label="Read-only / disabled example" readOnly />
+<Textarea id={uuid.v4()} label="Read-only / disabled example" readOnly />
 ```
 
 ```js
-<Textarea id="ex-5" label="Placeholder example" placeholder={'This is a placeholder\nWith multiple lines of text'} />
+<Textarea id={uuid.v4()} label="Placeholder example" placeholder={'This is a placeholder\nWith multiple lines of text'} />
 ```
 
 ```js
@@ -46,7 +46,7 @@ function TestComponent() {
 
   return (
     <React.Fragment>
-      <Textarea onChange={changeHandler} ref={ref} id="ex-6" label="Complete usage example (with async loaded value)" value={remoteValue} />
+      <Textarea onChange={changeHandler} ref={ref} id={uuid.v4()} label="Complete usage example (with async loaded value)" value={remoteValue} />
       <div>Dirty: {ref.current ? ref.current.dirty.toString() : ''}</div>
       <div>Value: {componentValue.replaceAll ? componentValue.replaceAll('\n', '\\n') : ''}</div>
     </React.Fragment>

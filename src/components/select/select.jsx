@@ -172,23 +172,6 @@ const Select = forwardRef(function Select(props, ref) {
   return (
     <div ref={wrapperRef} className={props.className}>
       <AbstractCustomField
-        icon={caretIcon}
-        clear={clearIcon()}
-        id={props.id}
-        label={props.label}
-        name={props.name}
-        onChange={onSearchChange}
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        onInput={props.onInput}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        inputRef={inputRef}
-        required={props.required}
-        errorText={validationMessage}
-        value={searchValue || defaultValue}
-        onBlur={handleBlur}
-        inputRole={'combobox'}
         ariaProps={{
           autocomplete: 'none',
           controls: `${props.id}-single-choice-listbox`,
@@ -196,6 +179,24 @@ const Select = forwardRef(function Select(props, ref) {
           haspopup: 'listbox',
         }}
         autoComplete="off"
+        clear={clearIcon()}
+        errorText={validationMessage}
+        icon={caretIcon}
+        id={props.id}
+        inputRef={inputRef}
+        inputRole="combobox"
+        label={props.label}
+        name={props.name}
+        onBlur={handleBlur}
+        onChange={onSearchChange}
+        onClick={onClick}
+        onInput={props.onInput}
+        onKeyDown={onKeyDown}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        required={props.required}
+        tooltip={props.tooltip}
+        value={searchValue || defaultValue}
       />
       { showOptions && (
         (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
@@ -225,7 +226,6 @@ const ListOptionRefType = PropTypes.shape({
 });
 
 Select.propTypes = {
-  id: PropTypes.string.isRequired,
   children: PropTypes.node,
   className: PropTypes.string,
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
@@ -234,6 +234,7 @@ Select.propTypes = {
     PropTypes.bool,
   ]),
   errorText: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
@@ -242,6 +243,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
@@ -255,6 +257,7 @@ Select.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: undefined,
 };
 

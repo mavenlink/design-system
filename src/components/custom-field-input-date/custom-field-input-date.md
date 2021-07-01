@@ -7,7 +7,7 @@ It composes the MDS Date component.
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-  id="tbd-date-1"
+  id={uuid.v4()}
   label="Pick a date!"
   name="date-tbd"
   placeholder="Please select a date"
@@ -18,7 +18,7 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-  id="my-birthday-2"
+  id={uuid.v4()}
   label="Greyson's Birthday"
   name="birthday[greyson]"
   value="2020-08-20"
@@ -29,7 +29,7 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
 
 <CustomFieldInputDate
-  id="independence-day"
+  id={uuid.v4()}
   label="The Fourth"
   name="independence_day"
   readOnly
@@ -42,7 +42,7 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 
 <CustomFieldInputDate
   errorText="Not Juanca's birthday."
-  id="my-birthday-4"
+  id={uuid.v4()}
   label="Juanca's Birthday"
   name="birthday[juanca]"
   value="1990-03-04"
@@ -60,7 +60,7 @@ const ref = React.createRef();
 <RefExample ref={ref}>
   {({ onChange }) => (
     <CustomFieldInputDate
-      id="my-birthday-1"
+      id={uuid.v4()}
       label="Andre's Birthday"
       name="birthday[andre]"
       onChange={onChange}

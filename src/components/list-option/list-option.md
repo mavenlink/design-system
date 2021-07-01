@@ -11,7 +11,7 @@ function TestComponent() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await fetch('/list');
+      const response = await fetch('api/v1/list');
       const listData = await response.json();
 
       setData(listData);

@@ -19,19 +19,19 @@ We want to provide an accessible, fully integrated input component that captures
 ## Props API Examples
 
 ```js
-<Number id="ex-1" label="Default example" />
+<Number id={uuid.v4()} label="Default example" />
 ```
 
 ```js
-<Number id="ex-2" label="Required example" required />
+<Number id={uuid.v4()} label="Required example" required />
 ```
 
 ```js
-<Number id="ex-3" label="Server error example" validationMessage="The server returned an error." />
+<Number id={uuid.v4()} label="Server error example" validationMessage="The server returned an error." />
 ```
 
 ```js
-<Number id="ex-4" label="Read-only / disabled example" readOnly />
+<Number id={uuid.v4()} label="Read-only / disabled example" readOnly />
 ```
 
 ## Ref API Example
@@ -49,7 +49,7 @@ function TestComponent() {
   
   return(
     <div onChange={onChange}>
-      <Number id="test-id-1" label="Some number" ref={ref} />
+      <Number id={uuid.v4()} label="Some number" ref={ref} />
       <ul>
         {Object.keys(current).map(k => <li>{k}: {JSON.stringify(current[k])}</li>)}
       </ul>

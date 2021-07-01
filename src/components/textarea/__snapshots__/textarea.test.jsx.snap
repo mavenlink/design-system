@@ -6,17 +6,24 @@ exports[`Textarea has defaults 1`] = `
     <div
       role="presentation"
     >
-      <label
-        class="label"
-        for="foo"
+      <div
+        class="label-wrapper"
       >
-        the label
-      </label>
+        <div
+          class="label"
+        >
+          <label
+            for="foo"
+          >
+            the label
+          </label>
+        </div>
+      </div>
       <div
         class="control-container"
       >
         <textarea
-          aria-describedby="fooHint"
+          aria-describedby="foo-tooltip fooHint"
           class="textarea"
           id="foo"
         />

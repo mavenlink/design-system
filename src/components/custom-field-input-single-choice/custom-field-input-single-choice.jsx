@@ -103,6 +103,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
+        tooltip={props.tooltip}
         value={value[0] !== -1 ? choices.find(choice => choice.id === value[0]) : undefined}
       >
         {choices.length === 0
@@ -115,28 +116,30 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
 });
 
 CustomFieldInputSingleChoice.propTypes = {
-  id: PropTypes.string.isRequired,
   className: PropTypes.string,
   /** Needs to be the Custom Field ID from the database for self-loading of choices */
   customFieldID: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.string),
-  errorText: PropTypes.string,
 };
 
 CustomFieldInputSingleChoice.defaultProps = {
   className: undefined,
+  errorText: undefined,
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: defaultValue,
-  errorText: undefined,
 };
 
 export default CustomFieldInputSingleChoice;

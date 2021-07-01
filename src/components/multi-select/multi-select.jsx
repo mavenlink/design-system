@@ -52,6 +52,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     label: `${props.id}-label`,
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
+    tooltip: `${props.id}-autocomplete-tooltip`,
   };
 
   const classNames = {
@@ -201,7 +202,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   useEffect(() => {
     props.onChange({ target: selfRef.current });
-  }, [value.join(',')]);
+  }, [value.length]);
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
@@ -217,11 +218,13 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   return (
     <div className={classNames.container} id={props.id} ref={wrapperRef}>
       <FormControl
+        error={validationMessage}
+        id={ids.textbox}
         label={props.label}
         labelId={ids.label}
-        id={ids.textbox}
-        error={validationMessage}
         onKeyDown={onKeyDown}
+        required={props.required}
+        tooltip={props.tooltip}
       >
         <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
           <TagList
@@ -230,7 +233,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             refs={valueRefs}
           >
             {value.length !== 0 &&
-              props.tagChildren ?
+            props.tagChildren ?
               props.tagChildren(value, valueRefs, onOptionRemove) :
               value.map((val, index) => (
                 <Tag
@@ -248,7 +251,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             <input
               aria-autocomplete="list"
               aria-controls={ids.listbox}
-              aria-describedby={`${ids.emptyMessage}`}
+              aria-describedby={`${ids.emptyMessage} ${ids.tooltip}`}
               aria-expanded={expanded}
               aria-haspopup="listbox"
               autoComplete="off"
@@ -315,6 +318,7 @@ MultiSelect.propTypes = {
   required: PropTypes.bool,
   showLoader: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   tagChildren: PropTypes.func,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is expected to be an array of objects that matches the "option" structure */
   value: PropTypes.arrayOf(PropTypes.object),
@@ -333,6 +337,7 @@ MultiSelect.defaultProps = {
   required: false,
   showLoader: false,
   tagChildren: undefined,
+  tooltip: undefined,
   value: [],
   validationMessage: undefined,
 };

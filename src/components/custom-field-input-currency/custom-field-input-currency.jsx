@@ -125,6 +125,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
     placeholder: props.placeholder,
     readOnly: props.readOnly,
     required: props.required,
+    tooltip: props.tooltip,
   };
 
   const formattedNumber = formatValue(input, props.currencyCode);
@@ -169,6 +170,7 @@ CustomFieldInputCurrency.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   value: PropTypes.number,
 };
 
@@ -181,6 +183,7 @@ CustomFieldInputCurrency.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  tooltip: undefined,
   value: undefined,
 };
 

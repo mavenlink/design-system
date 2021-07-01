@@ -6,17 +6,24 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
     <div
       role="presentation"
     >
-      <label
-        class="label"
-        for="test-input"
+      <div
+        class="label-wrapper"
       >
-        Test label
-      </label>
+        <div
+          class="label"
+        >
+          <label
+            for="test-input"
+          >
+            Test label
+          </label>
+        </div>
+      </div>
       <div
         class="control-container"
       >
         <input
-          aria-describedby="test-inputHint"
+          aria-describedby="test-input-tooltip test-inputHint"
           class="custom-field-input-text"
           id="test-input"
           max="2147483648"

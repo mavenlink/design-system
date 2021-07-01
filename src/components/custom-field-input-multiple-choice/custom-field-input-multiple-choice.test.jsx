@@ -325,6 +325,23 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<CustomFieldInputMultipleChoice {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription('');
+    });
+  });
+
   describe('value API', () => {
     it('generates tags', async () => {
       render((<CustomFieldInputMultipleChoice

@@ -6,17 +6,24 @@ exports[`Checkbox has defaults 1`] = `
     <div
       role="presentation"
     >
-      <label
-        class="label"
-        for="fart"
+      <div
+        class="label-wrapper"
       >
-        You good?
-      </label>
+        <div
+          class="label"
+        >
+          <label
+            for="fart"
+          >
+            You good?
+          </label>
+        </div>
+      </div>
       <div
         class="control-container"
       >
         <input
-          aria-describedby="fartHint"
+          aria-describedby="fart-tooltip fartHint"
           class="input"
           id="fart"
           type="checkbox"

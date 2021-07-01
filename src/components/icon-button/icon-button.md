@@ -47,12 +47,12 @@ import clear from '@mavenlink/design-system/src/svgs/clear.svg';
 import styles from './icon-button.md.css';
 
 <div className={styles['adv-example']}>
-  <input aria-label="the input" id="adv-ex-input" />
+  <input aria-label="the input" id={uuid.v4()} />
   <IconButton
     className={styles['clear-button']}
     label="clear"
     labelledBy="adv-ex-button adv-ex-input"
-    id="adv-ex-button"
+    id={uuid.v4()}
     icon={clear}
     onPress={() => alert('Imagine the input was cleared.')}
   />

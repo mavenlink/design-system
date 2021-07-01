@@ -8,7 +8,8 @@ within itself.
 <CustomFieldInputCurrency
   placeholder="$123.00"
   label="US Dollars"
-  id="us-dollars"
+  name="example_name"
+  id={uuid.v4()}
 />
 ```
 
@@ -16,7 +17,8 @@ within itself.
 <CustomFieldInputCurrency
   placeholder="$123.00"
   label="US Dollars"
-  id="us-dollars-1"
+  id={uuid.v4()}
+  name="example_name"
   value={0}
 />
 ```
@@ -25,7 +27,8 @@ within itself.
 <CustomFieldInputCurrency
   label="Iraqi Dinar"
   currencyCode="IQD"
-  id="iraqi-dinar"
+  id={uuid.v4()}
+  name="example_name"
   value={182211}
 />
 ```
@@ -33,8 +36,9 @@ within itself.
 ```js
 <CustomFieldInputCurrency
   label="Central African Francs"
-  id="cFa"
+  id={uuid.v4()}
   currencyCode="XAF"
+  name="example_name"
   value={5200}
 />
 ```
@@ -42,7 +46,7 @@ within itself.
 ```js
 <CustomFieldInputCurrency
   readOnly
-  id="test-id-2"
+  id={uuid.v4()}
   name="test-name-2"
   value={123}
   label="Disabled /read-only field"
@@ -55,7 +59,7 @@ presented to it, responding with a specific message for the context of that spec
 
 ```js
 <CustomFieldInputCurrency
-  id="test-id-3"
+  id={uuid.v4()}
   name="test-name-3"
   value={112.5}
   currencyCode="XAF"
@@ -66,7 +70,7 @@ presented to it, responding with a specific message for the context of that spec
 ```js
 <CustomFieldInputCurrency
   label="External Error State"
-  id="test-id-4"
+  id={uuid.v4()}
   name="test-name-4"
   value={350}
   currencyCode="USD"
@@ -94,8 +98,9 @@ function TestComponent() {
     <div onChange={onChange}>
       <CustomFieldInputCurrency
         currencyCode="USD"
-        id="test-id-4"
+        id={uuid.v4()}
         label="Example 4"
+        name="example_4"
         ref={ref}
       />
       <ul>

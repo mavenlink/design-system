@@ -26,6 +26,7 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
   };
   const ids = {
     validationMessage: `${props.id}Hint`,
+    tooltip: `${props.id}-tooltip`,
   };
 
   function onBlur() {
@@ -60,15 +61,15 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
       label={props.label}
       readOnly={props.readOnly}
       required={props.required}
+      tooltip={props.tooltip}
     >
       <input
-        aria-describedby={ids.validationMessage}
+        aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
         className={getClassName(classNames.input, validationMessage)}
         defaultValue={props.value}
         id={props.id}
         max={100}
         min={0}
-        step={0.01}
         name={props.name}
         onBlur={onBlur}
         onChange={onChange}
@@ -76,6 +77,7 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
         readOnly={props.readOnly}
         ref={inputRef}
         required={props.required}
+        step={0.01}
         type="number"
       />
       <FormControlIcons validationMessage={validationMessage} className={styles['icons-container']}>
@@ -95,6 +97,7 @@ Percentage.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   value: (props, propName, componentName) => {
     const propValue = props[propName];
@@ -125,6 +128,7 @@ Percentage.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
+  tooltip: undefined,
   validationMessage: '',
   value: undefined,
 };

@@ -104,7 +104,7 @@ describe('<MultiAutocompleter>', () => {
 
       await openOptions('test label');
 
-      userEvent.type(document.activeElement, 'Find');
+      userEvent.keyboard('Find');
 
       expect(await findAvailableOption('test label', 'Find-stub')).toBeInTheDocument();
     });
@@ -251,6 +251,23 @@ describe('<MultiAutocompleter>', () => {
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+    });
+  });
+
+  describe('tooltip API', () => {
+    const tooltip = 'I am an input, short and stout.';
+
+    it('applies a description to the input when the help icon is hovered', () => {
+      render(<MultiAutocompleter {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription(tooltip);
+    });
+
+    it('removes the description to the input when the help icon is unhovered', () => {
+      render(<MultiAutocompleter {...requiredProps} tooltip={tooltip} />);
+      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
+      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription('');
     });
   });
 });

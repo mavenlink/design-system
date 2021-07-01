@@ -16,30 +16,30 @@ Otherwise, when using `<FormControl>`, you must implement:
 
 ```js
 <FormControl
-  id="example-1"
+  id={uuid.v4()}
   label="Basic example"
 >
-  <input id="example-1" />
+  <input id={uuid.v4()} />
 </FormControl>
 ```
 
 ```js
 <FormControl
-  id="example-2"
+  id={uuid.v4()}
   label="Required example"
   required
 >
-  <input id="example-2" />
+  <input id={uuid.v4()} />
 </FormControl>
 ```
 
 ```js
 <FormControl
   error="This field is required."
-  id="error-example"
+  id={uuid.v4()}
   label="Errored example"
   required
 >
-  <input id="error-example" />
+  <input id={uuid.v4()} />
 </FormControl>
 ```
