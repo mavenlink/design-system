@@ -19,7 +19,7 @@ const {
   </TableHeader>
   <TableBody>
     {icons.map(([props, options]) => (
-      <TableRow>
+      <TableRow key={options.path}>
         <TableCell>
           <Icon {...props} />
         </TableCell>
