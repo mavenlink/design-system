@@ -9,6 +9,9 @@ module.exports = {
   context: {
     uuid: 'uuid',
   },
+  getComponentPathLine(componentPath) {
+    return `@mavenlink/design-system/${componentPath}`;
+  },
   getExampleFilename(componentPath) {
     // Override the default function for finding example files. The default has some unfortunate
     // interplay between the presence of an index.js and a FolderName.md file. It thinks that the
