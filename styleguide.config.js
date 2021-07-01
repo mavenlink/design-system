@@ -31,7 +31,7 @@ module.exports = {
   ],
   sections: [{
     name: 'README',
-    content: './README.md',
+    content: path.join(__dirname, './README.md'),
   }, {
     name: 'Living Codebase',
     href: 'https://github.com/mavenlink/design-system',
@@ -84,7 +84,7 @@ module.exports = {
     ],
   }, {
     name: 'Icon Library',
-    content: './styleguide/content/icons/index.md',
+    content: path.join(__dirname, './styleguide/content/icons/index.md'),
     components: [
       path.join(__dirname, 'src/components/icon/icon.jsx'),
     ],
