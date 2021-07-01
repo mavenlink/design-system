@@ -18,11 +18,6 @@ module.exports = {
     // @see https://github.com/styleguidist/react-styleguidist/commit/545b466c4461021ac7220504b8d61b4bb62573c2
     return componentPath.replace(/\.jsx?$/, '.md');
   },
-  ignore: [
-    '**/__internal__/**',
-    '**/__site__/**',
-    '**/*.test.{js,jsx}',
-  ],
   moduleAliases: {
     '@mavenlink/design-system': __dirname,
   },
@@ -41,11 +36,55 @@ module.exports = {
     name: 'Living Style Guide',
     href: 'https://www.notion.so/Mavenlink-Design-System-d3118c3e2f5647d6adfc5b1599af993e',
   }, {
-    name: 'Components',
-    components: './src/components/**/*.jsx',
+    name: 'Form Controls',
+    components: [
+      path.join(__dirname, 'src/components/form/form.jsx'),
+      path.join(__dirname, 'src/components/form-control/form-control.jsx'), // Is this private? Should it be undocumented as implementation details?
+      path.join(__dirname, 'src/components/form-control-icons/form-control-icons.jsx'), // Is this private? Should it be undocumented as implementation details?
+      path.join(__dirname, 'src/components/autocompleter/autocompleter.jsx'),
+      path.join(__dirname, 'src/components/checkbox/checkbox.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-currency/custom-field-input-currency.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-date/custom-field-input-date.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-number/custom-field-input-number.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-single-choice/custom-field-input-single-choice.jsx'),
+      path.join(__dirname, 'src/components/custom-field-input-text/custom-field-input-text.jsx'),
+      path.join(__dirname, 'src/components/date/date.jsx'),
+      path.join(__dirname, 'src/components/input/input.jsx'),
+      path.join(__dirname, 'src/components/multi-autocompleter/multi-autocompleter.jsx'),
+      path.join(__dirname, 'src/components/multi-select/multi-select.jsx'),
+      path.join(__dirname, 'src/components/number/number.jsx'),
+      path.join(__dirname, 'src/components/percentage/percentage.jsx'),
+      path.join(__dirname, 'src/components/select/select.jsx'),
+      path.join(__dirname, 'src/components/textarea/textarea.jsx'),
+    ],
+  }, {
+    name: 'Widgets',
+    components: [
+      path.join(__dirname, 'src/components/button/button.jsx'),
+      path.join(__dirname, 'src/components/calendar/calendar.jsx'),
+      path.join(__dirname, 'src/components/help-icon/help-icon.jsx'),
+      path.join(__dirname, 'src/components/icon-button/icon-button.jsx'), // Should this be part of a Button interface?
+      path.join(__dirname, 'src/components/list-option/list-option.jsx'),
+      path.join(__dirname, 'src/components/listbox/listbox.jsx'),
+      path.join(__dirname, 'src/components/loader/loader.jsx'),
+      path.join(__dirname, 'src/components/no-options/no-options.jsx'),
+      path.join(__dirname, 'src/components/page-header/page-header.jsx'),
+      path.join(__dirname, 'src/components/popover/popover.jsx'),
+      path.join(__dirname, 'src/components/section/section.jsx'),
+      path.join(__dirname, 'src/components/section-row/section-row.jsx'),
+      path.join(__dirname, 'src/components/table/table.jsx'),
+      path.join(__dirname, 'src/components/tag/tag.jsx'),
+      path.join(__dirname, 'src/components/tag-list/tag-list.jsx'),
+      path.join(__dirname, 'src/components/tag-skill/tag-skill.jsx'),
+      path.join(__dirname, 'src/components/tooltip/tooltip.jsx'),
+    ],
   }, {
     name: 'Icon Library',
     content: './styleguide/content/icons/index.md',
+    components: [
+      path.join(__dirname, 'src/components/icon/icon.jsx'),
+    ],
   }],
   styleguideComponents: {
     ComponentsListRenderer: path.join(__dirname, 'styleguide/components/components-list'),
