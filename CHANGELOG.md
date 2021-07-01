@@ -31,6 +31,7 @@
     - percentage
     - select
     - textarea
+  - fix(form-control): resolve an issue where tooltip text in a form control was making required move to a new line
 </details>
 
 ## v0.75.0
