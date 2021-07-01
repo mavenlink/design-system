@@ -48,7 +48,6 @@
     "eslint": "^4.3.0",
     "eslint-config-mavenlint-react": "^2.0.0",
     "eslint-plugin-cypress": "^2.2.0",
-    "file-loader": "^6.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
     "msw": "^0.26.0",

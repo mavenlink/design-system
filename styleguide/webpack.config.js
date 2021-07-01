@@ -33,17 +33,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
-        include: [
-          // Let file-loader pull the following in
-          /styleguide\/components\/hero\//,
-          /styleguide\/assets\/svgs\//,
-        ],
-        use: [
-          'file-loader',
-        ],
-      },
-      {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
