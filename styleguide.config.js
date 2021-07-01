@@ -18,6 +18,11 @@ module.exports = {
     // @see https://github.com/styleguidist/react-styleguidist/commit/545b466c4461021ac7220504b8d61b4bb62573c2
     return componentPath.replace(/\.jsx?$/, '.md');
   },
+  ignore: [
+    '**/__internal__/**',
+    '**/__site__/**',
+    '**/*.test.{js,jsx}',
+  ],
   moduleAliases: {
     '@mavenlink/design-system': __dirname,
   },
