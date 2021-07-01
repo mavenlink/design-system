@@ -24,11 +24,7 @@ export default function FormControl(props) {
           >
             {props.label}
           </label>
-          {props.required &&
-            <span className={styles.required}>
-              (Required)
-            </span>
-          }
+          {props.required && '(Required)'}
         </div>
         {!!props.tooltip && (
           <HelpIcon id={`${props.id}-tooltip`} label="More information" text={props.tooltip} />

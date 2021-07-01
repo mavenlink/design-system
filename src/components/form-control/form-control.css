@@ -4,17 +4,14 @@
 
 .label {
   color: var(--mds-grey-54);
-  display: inline;
+  display: inline-flex;
   font: var(--mds-type-subtext);
+  column-gap: var(--spacing-small);
 }
 
 .invalid-label {
   composes: label;
   color: var(--mds-red-text);
-}
-
-.required {
-  margin-left: var(--spacing-small);
 }
 
 .control-container {
