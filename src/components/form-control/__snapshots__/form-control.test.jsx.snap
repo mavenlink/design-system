@@ -9,12 +9,15 @@ exports[`<FormControl> has defaults 1`] = `
       <div
         class="label-wrapper"
       >
-        <label
+        <div
           class="label"
-          for="test-id"
         >
-          Test label
-        </label>
+          <label
+            for="test-id"
+          >
+            Test label
+          </label>
+        </div>
       </div>
       <div
         class="control-container"
