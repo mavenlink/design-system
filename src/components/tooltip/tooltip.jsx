@@ -14,7 +14,6 @@ export default function Tooltip({
   disabled,
   id,
   text,
-  truncate,
 }) {
   // size of the triangle in pixels
   const triangleHeight = 8;
@@ -37,8 +36,6 @@ export default function Tooltip({
   else if (direction === 'bottom') classNames.push(styles.bottom);
   else if (direction === 'left') classNames.push(styles.left);
   else if (direction === 'right') classNames.push(styles.right);
-
-  if (truncate) classNames.push(styles.truncate);
 
   return (
     <div
@@ -78,12 +75,10 @@ Tooltip.propTypes = {
   id: PropTypes.string.isRequired,
   /** The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
   text: PropTypes.string.isRequired,
-  truncate: PropTypes.bool,
 };
 
 Tooltip.defaultProps = {
   className: styles.tooltip,
   direction: 'top',
   disabled: false,
-  truncate: false,
 };

@@ -90,23 +90,3 @@ exports[`tooltip has defaults 2`] = `
   </span>
 </body>
 `;
-
-exports[`tooltip truncate api adds the class if true 1`] = `
-<span
-  class="tooltip top truncate"
-  id="my-component-tooltip"
-  style="--triangle-height: 8px; left: 0px; top: -128px;"
->
-  Help Text
-</span>
-`;
-
-exports[`tooltip truncate api does not add the class if false 1`] = `
-<span
-  class="tooltip top"
-  id="my-component-tooltip"
-  style="--triangle-height: 8px; left: 0px; top: -128px;"
->
-  Help Text
-</span>
-`;

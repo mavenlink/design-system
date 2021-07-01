@@ -45,17 +45,3 @@ import Tooltip from "./tooltip.jsx";
     <input id="texty-lad" aria-describedby="texty-lad-tooltip" />
 </Tooltip>
 ```
-
-Finally, you can also use the `truncate` prop to limit tooltip length.
-
-In general, this is not recommended. Tooltips should be kept short and concise. If something needs a particularly long and verbose set of text, it should be somewhere other than a tooltip. However, in cases where tooltips render user-entered data, this is not always achievable. Use this option mindfully.
-
-```jsx
-import Tooltip from "./tooltip.jsx";
-
-const terms = "By using this Site, you agree to be bound by, and to comply with, these Terms and Conditions. If you do not agree to these Terms and Conditions, please do not use this site.";
-
-<Tooltip text={terms} id="terms-n-conditions-tooltip" truncate>
-    <input type="checkbox" id="terms-n-conditions" aria-describedby="terms-n-conditions-tooltip" />
-</Tooltip>
-```

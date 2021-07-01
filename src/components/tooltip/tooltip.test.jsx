@@ -126,20 +126,6 @@ describe('tooltip', () => {
     });
   });
 
-  describe('truncate api', () => {
-    it('adds the class if true', () => {
-      render(<Tooltip {...requiredProps} truncate={true} />);
-      user.hover(screen.getByText('Child'));
-      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
-    });
-
-    it('does not add the class if false', () => {
-      render(<Tooltip {...requiredProps} truncate={false} />);
-      user.hover(screen.getByText('Child'));
-      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
-    });
-  });
-
   describe('className api', () => {
     it('can be overridden', () => {
       render(<Tooltip {...requiredProps} className="my-dope-class" />);
