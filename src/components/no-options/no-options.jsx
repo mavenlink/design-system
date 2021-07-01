@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './no-options.css';
 
+/**
+ * @deprecated
+ */
 export default function NoOptions(props) {
   return (
     <span className={props.className} id={props.id}>
