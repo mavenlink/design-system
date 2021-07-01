@@ -6,6 +6,9 @@ import React, {
   useState,
 } from 'react';
 
+/**
+ * @deprecated
+ */
 const RefExample = forwardRef(function RefExample(props, ref) {
   const [, setRerender] = useState(0);
   const refKeys = Object.keys(ref.current || {});

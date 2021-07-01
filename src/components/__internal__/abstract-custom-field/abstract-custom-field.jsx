@@ -5,6 +5,9 @@ import styles from './abstract-custom-field.css';
 import cautionSvg from '../../../svgs/caution.svg';
 import FormControl from '../../form-control/form-control.jsx';
 
+/**
+ * @deprecated
+ */
 export default function AbstractCustomField(props) {
   const ids = {
     input: props.id,
