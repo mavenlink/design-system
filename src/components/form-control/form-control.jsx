@@ -9,12 +9,6 @@ function getLabelClassName(error, readOnly) {
   return styles.label;
 }
 
-function getRequiredClassName(error, readOnly) {
-  if (isInvalid(error, readOnly)) return styles['invalid-required'];
-
-  return styles.required;
-}
-
 function isInvalid(error, readOnly) {
   return !!error && !readOnly;
 }
@@ -23,22 +17,23 @@ export default function FormControl(props) {
   return (
     <div className={props.className} onKeyDown={props.onKeyDown} role="presentation">
       <div className={styles['label-wrapper']}>
-        <label
-          className={getLabelClassName(props.error, props.readOnly)}
-          htmlFor={props.id}
-          id={props.labelId}
-        >
-          {props.label}
-        </label>
+        <div className={getLabelClassName(props.error, props.readOnly)}>
+          <label
+            htmlFor={props.id}
+            id={props.labelId}
+          >
+            {props.label}
+          </label>
+          {props.required &&
+            <span className={styles.required}>
+              (Required)
+            </span>
+          }
+        </div>
         {!!props.tooltip && (
-          <HelpIcon text={props.tooltip} label="More information" id={`${props.id}-tooltip`} />
+          <HelpIcon id={`${props.id}-tooltip`} label="More information" text={props.tooltip} />
         )}
       </div>
-      {props.required && (
-        <span className={getRequiredClassName(props.error, props.readOnly)}>
-          (Required)
-        </span>
-      )}
       <div className={styles['control-container']}>
         {props.children}
       </div>

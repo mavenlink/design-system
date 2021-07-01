@@ -13,13 +13,16 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
         <div
           class="label-wrapper"
         >
-          <label
+          <div
             class="label"
-            for="test-id-autocomplete"
-            id="test-id-label"
           >
-            test label
-          </label>
+            <label
+              for="test-id-autocomplete"
+              id="test-id-label"
+            >
+              test label
+            </label>
+          </div>
         </div>
         <div
           class="control-container"
@@ -85,13 +88,16 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
         <div
           class="label-wrapper"
         >
-          <label
+          <div
             class="label"
-            for="test-id-autocomplete"
-            id="test-id-label"
           >
-            test label
-          </label>
+            <label
+              for="test-id-autocomplete"
+              id="test-id-label"
+            >
+              test label
+            </label>
+          </div>
         </div>
         <div
           class="control-container"

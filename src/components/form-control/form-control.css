@@ -14,13 +14,7 @@
 }
 
 .required {
-  composes: label;
   margin-left: var(--spacing-small);
-}
-
-.invalid-required {
-  composes: required;
-  color: var(--mds-red-text);
 }
 
 .control-container {

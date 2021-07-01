@@ -9,12 +9,15 @@ exports[`Checkbox has defaults 1`] = `
       <div
         class="label-wrapper"
       >
-        <label
+        <div
           class="label"
-          for="fart"
         >
-          You good?
-        </label>
+          <label
+            for="fart"
+          >
+            You good?
+          </label>
+        </div>
       </div>
       <div
         class="control-container"

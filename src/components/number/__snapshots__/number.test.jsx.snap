@@ -9,12 +9,15 @@ exports[`Number has defaults 1`] = `
       <div
         class="label-wrapper"
       >
-        <label
+        <div
           class="label"
-          for="test-component"
         >
-          Test Component
-        </label>
+          <label
+            for="test-component"
+          >
+            Test Component
+          </label>
+        </div>
       </div>
       <div
         class="control-container"
