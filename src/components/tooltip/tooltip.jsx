@@ -29,7 +29,7 @@ export default function Tooltip({
   }, []);
 
   // keep the div so enabling/disabling doesn't affect the dom tree or styles
-  if (disabled) return <div>{children}</div>;
+  if (disabled) return <div className={styles.wrapper}>{children}</div>;
 
   const classNames = [className];
   if (direction === 'top') classNames.push(styles.top);
