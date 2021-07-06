@@ -11,6 +11,9 @@ module.exports = {
     'import/extensions': ['error', 'always', {
       ignorePackages: true,
     }],
+    'no-mixed-operators': ['error', {
+      allowSamePrecedence: true,
+    }],
   },
   overrides: [{
     files: [

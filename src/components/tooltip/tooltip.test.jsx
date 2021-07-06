@@ -18,6 +18,23 @@ describe('tooltip', () => {
     expect(document.body).toMatchSnapshot();
   });
 
+  it('errors if the tooltip is not describing any elements', () => {
+    const originalConsoleError = window.console.error;
+    window.console.error = jest.fn();
+
+    expect(() => {
+      render(
+        <Tooltip {...requiredProps}>
+          <input />
+        </Tooltip>,
+      );
+    }).toThrowError('<Tooltip> was used without an element on the DOM being described by it. ' +
+      'Please add `aria-describedby` to the element this tooltip is being used to describe.');
+
+    expect(window.console.error).toHaveBeenCalled();
+    window.console.error = originalConsoleError;
+  });
+
   describe('hovering behavior', () => {
     it('does not render the tooltip unless the child is hovered', () => {
       render(<Tooltip {...requiredProps} />);
@@ -85,41 +102,34 @@ describe('tooltip', () => {
   describe('direction api', () => {
     it('allows top', () => {
       render(<Tooltip {...requiredProps} direction="top" />);
-      expect(document.body).toMatchSnapshot();
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
 
     it('allows bottom', () => {
       render(<Tooltip {...requiredProps} direction="bottom" />);
-      expect(document.body).toMatchSnapshot();
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
 
     it('allows left', () => {
       render(<Tooltip {...requiredProps} direction="left" />);
-      expect(document.body).toMatchSnapshot();
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
 
     it('allows right', () => {
       render(<Tooltip {...requiredProps} direction="right" />);
-      expect(document.body).toMatchSnapshot();
-    });
-  });
-
-  describe('truncate api', () => {
-    it('adds the class if true', () => {
-      render(<Tooltip {...requiredProps} truncate />);
-      expect(document.body).toMatchSnapshot();
-    });
-
-    it('does not add the class if false', () => {
-      render(<Tooltip {...requiredProps} truncate={false} />);
-      expect(document.body).toMatchSnapshot();
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
   });
 
   describe('className api', () => {
     it('can be overridden', () => {
       render(<Tooltip {...requiredProps} className="my-dope-class" />);
-      expect(document.body).toMatchSnapshot();
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
   });
 });

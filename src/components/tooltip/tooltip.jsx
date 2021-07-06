@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './tooltip.css';
+import useTooltipPositioning from './use-tooltip-positioning.js';
 
 /**
  * A component used to render help or reminder text.
- * @param children The component that needs to be hovered or focused to display the tooltip. These children are where the tooltip "appears" from.
- * @param className An optional className for the tooltip to provide styling.
- * @param direction The direction the tooltip should appear from.
- * @param disabled Whether or not the tooltip should appear at all. If this is true, the tooltip will not appear even when the children receive focus.
- * @param id The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>.
- * @param text The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences.
- * @param truncate Whether or not to truncate the <code>text</code> provided. Usage of this prop is generally not recommended unless the text is user-defined.
  */
 export default function Tooltip({
   children,
@@ -19,58 +14,71 @@ export default function Tooltip({
   disabled,
   id,
   text,
-  truncate,
 }) {
-  const [visible, setVisible] = useState(false);
+  // size of the triangle in pixels
+  const triangleHeight = 8;
 
-  if (disabled) return children;
+  const tooltipRef = useRef();
+  const { position, visible, show, hide } = useTooltipPositioning({ tooltipRef, triangleHeight, direction });
 
-  const show = () => setVisible(true);
-  const hide = () => setVisible(false);
+  useLayoutEffect(() => {
+    if (disabled || document.querySelector('[aria-describedby]', id)) return;
+
+    throw new Error('<Tooltip> was used without an element on the DOM being described by it. ' +
+      'Please add `aria-describedby` to the element this tooltip is being used to describe.');
+  }, []);
+
+  // keep the div so enabling/disabling doesn't affect the dom tree or styles
+  if (disabled) return <div className={styles.wrapper}>{children}</div>;
 
   const classNames = [className];
-
-  switch (direction) {
-    case 'top': classNames.push(styles.top); break;
-    case 'bottom': classNames.push(styles.bottom); break;
-    case 'left': classNames.push(styles.left); break;
-    case 'right': classNames.push(styles.right); break;
-    default: break;
-  }
-
-  if (truncate) classNames.push(styles.truncate);
+  if (direction === 'top') classNames.push(styles.top);
+  else if (direction === 'bottom') classNames.push(styles.bottom);
+  else if (direction === 'left') classNames.push(styles.left);
+  else if (direction === 'right') classNames.push(styles.right);
 
   return (
     <div
-      className={classNames.join(' ')}
-      data-tooltip={text}
+      className={styles.wrapper}
       onBlur={hide}
       onFocus={show}
       onMouseEnter={show}
       onMouseLeave={hide}
     >
-      {visible ?
-        <span id={id} className={styles['sr-only']}>{text}</span> :
-        null
-      }
       { children }
+      { visible && ReactDOM.createPortal((
+        <span
+          id={id}
+          className={classNames.join(' ')}
+          style={{
+            '--triangle-height': `${triangleHeight}px`,
+            ...position,
+          }}
+          ref={tooltipRef}
+        >
+          {text}
+        </span>
+      ), document.body)}
     </div>
   );
 }
 
 Tooltip.propTypes = {
+  /** The component that needs to be hovered or focused to display the tooltip. These children are where the tooltip "appears" from. */
   children: PropTypes.node.isRequired,
-  direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-  disabled: PropTypes.bool,
-  id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  /** The direction the tooltip should appear from. */
+  direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  /** Whether or not the tooltip should appear at all. If this is true, the tooltip will not appear even when the children receive focus. */
+  disabled: PropTypes.bool,
+  /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
+  id: PropTypes.string.isRequired,
+  /** The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
   text: PropTypes.string.isRequired,
-  truncate: PropTypes.bool,
 };
 
 Tooltip.defaultProps = {
+  className: styles.tooltip,
   direction: 'top',
   disabled: false,
-  className: styles.tooltip,
-  truncate: false,
 };

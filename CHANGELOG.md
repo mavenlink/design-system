@@ -7,6 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - refactor(tooltip): rewrite `tooltip` component to use react-portal and unify screenreader / sighted contents;
+  - fix(tooltip): resolve issue with `overflow: hidden` truncating tooltip content
+  - feat(tooltip): removed `truncate` prop. BREAKING CHANGE: truncation should not be handled by a general component, it should be handled by the existing `className` property or programmatically.
+  - build(deps): Several internal dependencies have been updated for security patches. Thanks, dependabot!
 </details>
 
 ## v0.76.0
