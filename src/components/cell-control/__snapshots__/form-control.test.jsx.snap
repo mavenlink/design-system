@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CellControl> has defaults 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <div
+        class="label-wrapper"
+      >
+        <label
+          class="label"
+          for="test-id"
+        >
+          Test label
+        </label>
+      </div>
+      <div
+        class="control-container"
+      >
+        <input
+          id="test-id"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

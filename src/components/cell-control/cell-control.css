@@ -1,0 +1,41 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
+
+.label {
+  color: var(--mds-grey-54);
+  display: inline;
+  font: var(--mds-type-subtext);
+}
+
+.invalid-label {
+  composes: label;
+  color: var(--mds-red-text);
+}
+
+.required {
+  composes: label;
+  margin-left: var(--spacing-small);
+}
+
+.invalid-required {
+  composes: required;
+  color: var(--mds-red-text);
+}
+
+.control-container {
+  margin-bottom: var(--spacing-small);
+  margin-top: var(--spacing-small);
+  position: relative;
+}
+
+.error-message {
+  color: var(--mds-red-text);
+  font: var(--mds-type-content);
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
