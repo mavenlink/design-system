@@ -19,9 +19,8 @@ describe('tooltip', () => {
   });
 
   it('errors if the tooltip is not describing any elements', () => {
-    /* eslint-disable no-console */
-    const originalConsoleError = console.error;
-    console.error = jest.fn();
+    const originalConsoleError = window.console.error;
+    window.console.error = jest.fn();
 
     expect(() => {
       render(
@@ -32,8 +31,8 @@ describe('tooltip', () => {
     }).toThrowError('<Tooltip> was used without an element on the DOM being described by it. ' +
       'Please add `aria-describedby` to the element this tooltip is being used to describe.');
 
-    expect(console.error).toHaveBeenCalled();
-    console.error = originalConsoleError;
+    expect(window.console.error).toHaveBeenCalled();
+    window.console.error = originalConsoleError;
   });
 
   describe('hovering behavior', () => {
