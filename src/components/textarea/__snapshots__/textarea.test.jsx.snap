@@ -9,12 +9,15 @@ exports[`Textarea has defaults 1`] = `
       <div
         class="label-wrapper"
       >
-        <label
+        <div
           class="label"
-          for="foo"
         >
-          the label
-        </label>
+          <label
+            for="foo"
+          >
+            the label
+          </label>
+        </div>
       </div>
       <div
         class="control-container"

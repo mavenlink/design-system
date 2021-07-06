@@ -1,101 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`tooltip className api can be overridden 1`] = `
-<body>
-  <div>
-    <div
-      class="my-dope-class top"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="my-dope-class top"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows bottom 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip bottom"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip bottom"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: 0px; top: 128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows left 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip left"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip left"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: -128px; top: 0px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows right 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip right"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip right"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: 128px; top: 0px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip direction api allows top 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip top"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
+<span
+  class="tooltip top"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: 0px; top: -128px;"
+>
+  Help Text
+</span>
 `;
 
 exports[`tooltip has defaults 1`] = `
 <body>
   <div>
     <div
-      class="tooltip top"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <div
         aria-describedby="my-component-tooltip"
@@ -112,32 +71,7 @@ exports[`tooltip has defaults 2`] = `
 <body>
   <div>
     <div
-      class="tooltip top"
-      data-tooltip="Help Text"
-    >
-      <span
-        class="sr-only"
-        id="my-component-tooltip"
-      >
-        Help Text
-      </span>
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`tooltip truncate api adds the class if true 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip top truncate"
-      data-tooltip="Help Text"
+      class="wrapper"
     >
       <div
         aria-describedby="my-component-tooltip"
@@ -147,23 +81,12 @@ exports[`tooltip truncate api adds the class if true 1`] = `
       </div>
     </div>
   </div>
-</body>
-`;
-
-exports[`tooltip truncate api does not add the class if false 1`] = `
-<body>
-  <div>
-    <div
-      class="tooltip top"
-      data-tooltip="Help Text"
-    >
-      <div
-        aria-describedby="my-component-tooltip"
-        id="my-component"
-      >
-        Child
-      </div>
-    </div>
-  </div>
+  <span
+    class="tooltip top"
+    id="my-component-tooltip"
+    style="--triangle-height: 8px; left: 0px; top: -128px;"
+  >
+    Help Text
+  </span>
 </body>
 `;

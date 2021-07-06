@@ -6,32 +6,41 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-  - Append new items to make git merging easier.
-  - fix(ListOption): Fetch from correct endpoint for example
-  - fix(Autocompleter): check if its mounted before modifying state
-  - feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
-  - feat(form-control): expose `tooltip` prop which renders a help icon next to the label if provided
-  - feat(input): expose `tooltip` prop which is passed to form-control
-  - feat(help-icon): Initial creation HelpIcon component
-  - Added help text icon as optional prop the following components:
-    - abstract-custom-field
-    - autocompleter
-    - checkbox
-    - custom-field-input-currency
-    - custom-field-input-date
-    - custom-field-input-multiple-choice
-    - custom-field-input-number
-    - custom-field-input-single-choice
-    - custom-field-input-text
-    - date
-    - input
-    - multi-autocompleter
-    - multi-select
-    - number
-    - percentage
-    - select
-    - textarea
+  - Append new items to make git merging easier.=
 </details>
+
+## v0.77.0
+- refactor(tooltip): rewrite `tooltip` component to use react-portal and unify screenreader / sighted contents;
+- fix(tooltip): resolve issue with `overflow: hidden` truncating tooltip content
+- feat(tooltip): removed `truncate` prop. BREAKING CHANGE: truncation should not be handled by a general component, it should be handled by the existing `className` property or programmatically.
+- build(deps): Several internal dependencies have been updated for security patches. Thanks, dependabot!
+
+## v0.76.0
+- fix(ListOption): Fetch from correct endpoint for example
+- fix(Autocompleter): check if its mounted before modifying state
+- feat(tooltip): Initial creation / promotion of tooltip component, intended to display short help or reminder text
+- feat(form-control): expose `tooltip` prop which renders a help icon next to the label if provided
+- feat(input): expose `tooltip` prop which is passed to form-control
+- feat(help-icon): Initial creation HelpIcon component
+- Added help text icon as optional prop the following components:
+  - abstract-custom-field
+  - autocompleter
+  - checkbox
+  - custom-field-input-currency
+  - custom-field-input-date
+  - custom-field-input-multiple-choice
+  - custom-field-input-number
+  - custom-field-input-single-choice
+  - custom-field-input-text
+  - date
+  - input
+  - multi-autocompleter
+  - multi-select
+  - number
+  - percentage
+  - select
+  - textarea
+- fix(form-control): resolve an issue where tooltip text in a form control was making required move to a new line
 
 ## v0.75.0
 - fix(site): fix prop-type violations

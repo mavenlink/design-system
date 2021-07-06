@@ -6,13 +6,15 @@ import Icon from "../icon/icon.jsx";
 import cautionSvg from '../../svgs/caution.svg';
 
 <Tooltip text="and here that beautiful text is" id="help-tooltip" direction="top">
-  <Icon label="caution" icon={cautionSvg} aria-describedby="help-tooltip" />
+  <Icon label="caution" icon={cautionSvg} describedBy="help-tooltip" />
 </Tooltip>
 ```
 
 However, the tooltip is intended to be usable in conjunction with any children or sibling components.
 
 **Regardless, it is _imperative_ that there is an `aria-describedby` in the tooltipped component with the value of the `id` provided to `<Tooltip>`. This sets up the accessible relationship which help screenreaders and other assistive technology**.
+
+There is a `useLayoutEffect` hook on the tooltip that will scan the document for a linking element and raise an error if it is not found.
 
 ```jsx
 import Tooltip from "./tooltip.jsx";
@@ -41,19 +43,5 @@ import Tooltip from "./tooltip.jsx";
 
 <Tooltip text="I am, indeed, a text box" id="texty-lad-tooltip" direction="left">
     <input id="texty-lad" aria-describedby="texty-lad-tooltip" />
-</Tooltip>
-```
-
-Finally, you can also use the `truncate` prop to limit tooltip length.
-
-In general, this is not recommended. Tooltips should be kept short and concise. If something needs a particularly long and verbose set of text, it should be somewhere other than a tooltip. However, in cases where tooltips render user-entered data, this is not always achievable. Use this option mindfully.
-
-```jsx
-import Tooltip from "./tooltip.jsx";
-
-const terms = "By using this Site, you agree to be bound by, and to comply with, these Terms and Conditions. If you do not agree to these Terms and Conditions, please do not use this site.";
-
-<Tooltip text={terms} id="terms-n-conditions-tooltip" truncate>
-    <input type="checkbox" id="terms-n-conditions" aria-describedby="terms-n-conditions-tooltip" />
 </Tooltip>
 ```

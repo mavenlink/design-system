@@ -127,13 +127,21 @@ describe('<FormControl>', () => {
     const tooltip = 'I am an input, short and stout.';
 
     it('displays the tooltip text when the help icon is hovered over', () => {
-      render(<FormControl {...requiredProps} tooltip={tooltip} />);
+      render(
+        <FormControl {...requiredProps} tooltip={tooltip}>
+          <input id="test-id" aria-describedby="test-id-tooltip" />
+        </FormControl>,
+      );
       user.hover(screen.getByRole('img', { name: 'More information' }));
       expect(screen.getByText(tooltip)).toBeInTheDocument();
     });
 
     it('removes the tooltip when the help icon is unhovered', () => {
-      render(<FormControl {...requiredProps} tooltip={tooltip} />);
+      render(
+        <FormControl {...requiredProps} tooltip={tooltip}>
+          <input id="test-id" aria-describedby="test-id-tooltip" />
+        </FormControl>,
+      );
       user.hover(screen.getByRole('img', { name: 'More information' }));
       user.unhover(screen.getByRole('img', { name: 'More information' }));
       expect(screen.queryByText(tooltip)).not.toBeInTheDocument();

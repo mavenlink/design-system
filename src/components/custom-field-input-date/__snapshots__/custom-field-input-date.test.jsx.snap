@@ -12,13 +12,16 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
         <div
           class="label-wrapper"
         >
-          <label
+          <div
             class="label"
-            for="field-date"
-            id="field-date-label"
           >
-            Field Date
-          </label>
+            <label
+              for="field-date"
+              id="field-date-label"
+            >
+              Field Date
+            </label>
+          </div>
         </div>
         <div
           class="control-container"
@@ -68,13 +71,16 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         <div
           class="label-wrapper"
         >
-          <label
+          <div
             class="label"
-            for="field-date"
-            id="field-date-label"
           >
-            Field Date
-          </label>
+            <label
+              for="field-date"
+              id="field-date-label"
+            >
+              Field Date
+            </label>
+          </div>
         </div>
         <div
           class="control-container"

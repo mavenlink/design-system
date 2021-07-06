@@ -8,6 +8,7 @@ export default function Icon(props) {
 
   return (
     <svg
+      aria-describedby={props.describedBy}
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
@@ -26,6 +27,7 @@ Icon.propTypes = {
     id: PropTypes.string,
     viewBox: PropTypes.string,
   }).isRequired,
+  describedBy: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelledBy: PropTypes.string,
@@ -33,6 +35,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   className: undefined,
+  describedBy: undefined,
   id: undefined,
   labelledBy: undefined,
 };
