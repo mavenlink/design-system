@@ -38,7 +38,7 @@ Interactive components should be in the user focus flow, usually by making sure 
 ```js
 import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
 import SectionRow from '@mavenlink/design-system/src/components/section-row/section-row.jsx';
-import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

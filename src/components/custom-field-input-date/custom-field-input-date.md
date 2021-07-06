@@ -53,7 +53,7 @@ import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom
 
 ```jsx
 import CustomFieldInputDate from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
-import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

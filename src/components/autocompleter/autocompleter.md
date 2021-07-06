@@ -17,7 +17,7 @@ import Autocompleter from './autocompleter.jsx';
 ## Ref API Example
 ```jsx
 import Autocompleter from './autocompleter.jsx';
-import RefExample from '@mavenlink/design-system/src/components/ref-example/ref-example.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 
