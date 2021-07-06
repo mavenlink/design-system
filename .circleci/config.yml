@@ -73,6 +73,7 @@ jobs:
           command: |
             yarn build
             git checkout gh-pages
+            git pull
             rm -rf $CIRCLE_BRANCH
             mkdir -p $CIRCLE_BRANCH
             mv -v build/* $CIRCLE_BRANCH
