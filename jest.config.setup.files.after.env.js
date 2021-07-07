@@ -38,5 +38,6 @@ window.console.error = (message, ...args) => {
   if (allowedErrors.some(error => error.test(message))) return;
 
   originalError(message, ...args);
-  throw new Error('Your test produced an unexpected `console.error`. See above for more details!');
+  // eslint-disable-next-line max-len
+  throw new Error(`Your test produced an unexpected console.error. See above for original message. This is the unprocessed message: ${message}`);
 };
