@@ -33,4 +33,16 @@ describe('Input cell control', () => {
       expect(screen.getByRole('gridcell')).toHaveAttribute('aria-labelledby', 'unique-labelledby');
     });
   });
+
+  describe('readOnly API', () => {
+    it('is true', () => {
+      render(<Input {...requiredProps} readOnly={true} />);
+      expect(screen.getByRole('textbox')).toHaveAttribute('readonly');
+    });
+
+    it('is false', () => {
+      render(<Input {...requiredProps} readOnly={false} />);
+      expect(screen.getByRole('textbox')).not.toHaveAttribute('readonly');
+    });
+  });
 });

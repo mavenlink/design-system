@@ -14,6 +14,7 @@ function Input(props) {
     >
       <input
         className={classNames.input}
+        readOnly={props.readOnly}
       />
     </CellControl>
   );
@@ -22,9 +23,11 @@ function Input(props) {
 Input.propTypes = {
   /** The ID of the column header */
   labelledBy: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
 };
 
 Input.defaultProps = {
+  readOnly: false,
 };
 
 export default Input;
