@@ -5,12 +5,16 @@ exports[`Input cell control has defaults 1`] = `
   <div>
     <table>
       <tbody>
-        <td
-          aria-labelledby="labelled-by"
-          role="gridcell"
-        >
-          <input />
-        </td>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            role="gridcell"
+          >
+            <input
+              class="input"
+            />
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
