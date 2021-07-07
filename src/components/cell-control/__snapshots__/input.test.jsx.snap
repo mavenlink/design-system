@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input cell control has defaults 1`] = `
+<body>
+  <div>
+    <table>
+      <tbody>
+        <td
+          aria-labelledby="labelled-by"
+          role="gridcell"
+        >
+          <input />
+        </td>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
