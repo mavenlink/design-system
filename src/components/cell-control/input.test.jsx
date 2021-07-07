@@ -8,7 +8,9 @@ const render = (ui, options) => (
     wrapper: props => (
       <table>
         <tbody>
-          {props.children}
+          <tr>
+            {props.children}
+          </tr>
         </tbody>
       </table>
     ),
