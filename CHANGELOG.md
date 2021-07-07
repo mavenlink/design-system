@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.=
 </details>
 
+## v0.78.0
+- refactor(site): organize components into explicit grouped (e.g. Form Controls and Widgets)
+
 ## v0.77.0
 - refactor(tooltip): rewrite `tooltip` component to use react-portal and unify screenreader / sighted contents;
 - fix(tooltip): resolve issue with `overflow: hidden` truncating tooltip content
