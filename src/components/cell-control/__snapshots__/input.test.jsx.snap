@@ -8,11 +8,44 @@ exports[`Input cell control has defaults 1`] = `
         <tr>
           <td
             aria-labelledby="labelled-by"
+            class="container"
             role="gridcell"
           >
-            <input
-              class="input"
-            />
+            <div
+              class="control-container"
+            >
+              <input
+                aria-describedby="test-id-validation-message"
+                class="input"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Input cell control id API is a string 1`] = `
+<body>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <div
+              class="control-container"
+            >
+              <input
+                aria-describedby="unique-id-validation-message"
+                class="input"
+              />
+            </div>
           </td>
         </tr>
       </tbody>

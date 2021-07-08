@@ -19,12 +19,20 @@ const render = (ui, options) => (
 
 describe('Input cell control', () => {
   const requiredProps = {
+    id: 'test-id',
     labelledBy: 'labelled-by',
   };
 
   it('has defaults', () => {
     render(<Input {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
+  });
+
+  describe('id API', () => {
+    it('is a string', () => {
+      render(<Input {...requiredProps} id="unique-id" />);
+      expect(document.body).toMatchSnapshot();
+    });
   });
 
   describe('labelledBy API', () => {
@@ -43,6 +51,14 @@ describe('Input cell control', () => {
     it('is false', () => {
       render(<Input {...requiredProps} readOnly={false} />);
       expect(screen.getByRole('textbox')).not.toHaveAttribute('readonly');
+    });
+  });
+
+  describe('validationMessage API', () => {
+    it('is a string', () => {
+      render(<Input {...requiredProps} validationMessage="A unique error message." />);
+      expect(screen.getByRole('textbox')).toBeInvalid();
+      expect(screen.getByRole('textbox')).toHaveDescription('A unique error message.');
     });
   });
 });
