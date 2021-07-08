@@ -14,6 +14,7 @@ exports[`Number has defaults 1`] = `
         >
           <label
             for="test-component"
+            id="test-component-label"
           >
             Test Component
           </label>

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Control from '../control/control.jsx';
 import styles from './cell-control.css';
 
 export default function CellControl(props) {
   const classNames = {
     container: styles.container,
-    validationMessage: styles['validation-message'],
   };
 
   return (
@@ -14,17 +14,13 @@ export default function CellControl(props) {
       className={classNames.container}
       role="gridcell"
     >
-      {props.children}
-      {!!props.validationMessage && (
-        <span
-          aria-hidden="true"
-          aria-live="polite"
-          className={classNames.validationMessage}
-          id={props.validationMessageId}
-        >
-          {props.validationMessage}
-        </span>
-      )}
+      <Control
+        labelledBy={props.labelledBy}
+        validationMessage={props.validationMessage}
+        validationMessageId={props.validationMessageId}
+      >
+        {props.children}
+      </Control>
     </td>
   );
 }

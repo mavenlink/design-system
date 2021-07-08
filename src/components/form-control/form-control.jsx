@@ -1,47 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './form-control.css';
+import Control from '../control/control.jsx';
 import HelpIcon from '../help-icon/help-icon.jsx';
-
-function getLabelClassName(error, readOnly) {
-  if (isInvalid(error, readOnly)) return styles['invalid-label'];
-
-  return styles.label;
-}
-
-function isInvalid(error, readOnly) {
-  return !!error && !readOnly;
-}
+import styles from './form-control.css';
 
 export default function FormControl(props) {
+  const classNames = {
+    container: props.className,
+    control: styles['control-container'],
+    heading: styles['label-wrapper'],
+    label: props.error ? styles['invalid-label'] : styles.label,
+  };
+  const ids = {
+    input: props.id,
+    label: props.labelId || `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+    validationMessage: `${props.id}Hint`,
+  };
+
   return (
-    <div className={props.className} onKeyDown={props.onKeyDown} role="presentation">
-      <div className={styles['label-wrapper']}>
-        <div className={getLabelClassName(props.error, props.readOnly)}>
-          <label
-            htmlFor={props.id}
-            id={props.labelId}
-          >
+    <div className={classNames.container} onKeyDown={props.onKeyDown} role="presentation">
+      <div className={classNames.heading}>
+        <div className={classNames.label}>
+          <label htmlFor={ids.input} id={ids.label}>
             {props.label}
           </label>
           {props.required && '(Required)'}
         </div>
         {!!props.tooltip && (
-          <HelpIcon id={`${props.id}-tooltip`} label="More information" text={props.tooltip} />
+          <HelpIcon id={ids.tooltip} label="More information" text={props.tooltip} />
         )}
       </div>
-      <div className={styles['control-container']}>
-        {props.children}
-      </div>
-      {isInvalid(props.error, props.readOnly) && (
-        <span
-          id={`${props.id}Hint`}
-          className={styles['error-message']}
-          aria-live="polite"
-        >
-          {props.error}
-        </span>
-      )}
+      <Control
+        labelledBy={ids.label}
+        validationMessage={props.error}
+        validationMessageId={ids.validationMessage}
+      >
+        <div className={classNames.control}>
+          {props.children}
+        </div>
+      </Control>
     </div>
   );
 }
@@ -74,7 +72,6 @@ FormControl.propTypes = {
     return undefined;
   },
   onKeyDown: PropTypes.func,
-  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
 };
@@ -85,7 +82,6 @@ FormControl.defaultProps = {
   id: undefined,
   labelId: undefined,
   onKeyDown: () => {},
-  readOnly: false,
   required: false,
   tooltip: undefined,
 };

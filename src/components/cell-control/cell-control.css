@@ -1,7 +1,3 @@
 .container {
   vertical-align: top;
 }
-
-.validation-message {
-  composes: error-message from '../form-control/form-control.css';
-}

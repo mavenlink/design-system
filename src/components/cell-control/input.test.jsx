@@ -2,11 +2,16 @@ import React from 'react';
 import { render as _render, screen } from '@testing-library/react';
 import Input from './input.jsx';
 
-const render = (ui, options) => (
+const render = (ui, options = { labelledBy: 'labelled-by' }) => (
   _render(ui, {
     ...options,
     wrapper: props => (
       <table>
+        <thead>
+          <tr>
+            <th id={options.labelledBy}>Column Header</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             {props.children}
@@ -37,7 +42,7 @@ describe('Input cell control', () => {
 
   describe('labelledBy API', () => {
     it('is a string', () => {
-      render(<Input {...requiredProps} labelledBy="unique-labelledby" />);
+      render(<Input {...requiredProps} labelledBy="unique-labelledby" />, { labelledBy: 'unique-labelledby' });
       expect(screen.getByRole('gridcell')).toHaveAttribute('aria-labelledby', 'unique-labelledby');
     });
   });

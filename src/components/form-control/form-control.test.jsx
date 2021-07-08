@@ -5,7 +5,7 @@ import FormControl from './form-control.jsx';
 
 describe('<FormControl>', () => {
   const requiredProps = {
-    children: <input id="test-id" />,
+    children: <input aria-describedby="test-idHint" id="test-id" />,
     id: 'test-id',
     label: 'Test label',
   };
@@ -40,7 +40,7 @@ describe('<FormControl>', () => {
       const inputRef = createRef();
       render((
         <FormControl {...requiredProps}>
-          <input id="test-id" ref={inputRef} />
+          <input aria-describedby="test-idHint" id="test-id" ref={inputRef} />
         </FormControl>
       ));
       expect(screen.getByLabelText('Test label')).toBe(inputRef.current);
@@ -68,7 +68,7 @@ describe('<FormControl>', () => {
     it('can be set without a labelId', () => {
       render((
         <FormControl {...requiredProps} id="unique-id">
-          <input id="unique-id" />
+          <input aria-describedby="unique-idHint" id="unique-id" />
         </FormControl>
       ));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'unique-id');
@@ -96,18 +96,6 @@ describe('<FormControl>', () => {
       user.click(screen.getByText('Test label'));
       user.keyboard('a');
       expect(onKeyDownSpy).toHaveBeenCalled();
-    });
-  });
-
-  describe('readOnly API', () => {
-    it('can be set and hides the error state', () => {
-      render(<FormControl {...requiredProps} readOnly={true} error="I am invalid" />);
-      expect(screen.queryByText('I am invalid')).not.toBeInTheDocument();
-    });
-
-    it('can be unset', () => {
-      render(<FormControl {...requiredProps} readOnly={false} error="I am invalid" />);
-      expect(screen.getByText('I am invalid')).toBeInTheDocument();
     });
   });
 

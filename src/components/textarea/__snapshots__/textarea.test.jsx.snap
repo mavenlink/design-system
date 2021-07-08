@@ -14,6 +14,7 @@ exports[`Textarea has defaults 1`] = `
         >
           <label
             for="foo"
+            id="foo-label"
           >
             the label
           </label>

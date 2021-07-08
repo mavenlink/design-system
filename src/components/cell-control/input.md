@@ -35,6 +35,11 @@ const ids = {
       <Input labelledBy={ids.th} id={uuid.v4()} validationMessage="This is an error message!" />
       <Input labelledBy={ids.th} id={uuid.v4()} />
     </tr>
+    <tr>
+      <td role="rowheader">Invalid</td>
+      <Input labelledBy={ids.th} id={uuid.v4()} validationMessage="This is an error message!" />
+      <Input labelledBy={ids.th} id={uuid.v4()} />
+    </tr>
   </tbody>
 </table>
 ```
