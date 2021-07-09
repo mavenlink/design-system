@@ -53,3 +53,14 @@
   left: calc(-2 * var(--triangle-height));
   top: calc(50% - var(--triangle-height));
 }
+
+/*
+  This is to prevent the tooltip from jumping around when a scrollbar appears / disappears. While adding a style like
+  this only on specific components can definitely cause some intermittent global pollution, the choice was either add
+  it only where it is needed (e.g. the tooltip), or globally everywhere, even when it isn't needed. It _should not_
+  cause much in the way of styling pollution other than preventing thescreen from "jumping" when a scrollbar appears,
+  but that is always possible.
+*/
+html {
+  width: 100vw;
+}
