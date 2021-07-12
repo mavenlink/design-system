@@ -66,8 +66,6 @@ function fromFullDateFormat(string) {
 const Date = forwardRef(function Date(props, forwardedRef) {
   const backupRef = useRef();
   const ref = forwardedRef || backupRef;
-  const containerRef = useRef();
-  const inputRef = useRef();
   const [active, setActive] = useState(false);
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
@@ -88,20 +86,25 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     tooltip: `${props.id}-tooltip`,
     validationMessage: `${props.id}Hint`,
   };
+  const refs = {
+    container: useRef(),
+    control: useRef(),
+    input: useRef(),
+  };
 
   function onBlur(event) {
-    if (containerRef.current.contains(event.relatedTarget)) return;
+    if (refs.container.current.contains(event.relatedTarget)) return;
 
     // Given the validation spec, any provided validation messages are cleared on blur.
     // If the native node is still invalid then re-render with the native validation messages.
-    inputRef.current.setCustomValidity('');
-    setValidationMessage(inputRef.current.validationMessage);
+    refs.input.current.setCustomValidity('');
+    setValidationMessage(refs.input.current.validationMessage);
     setActive(false);
-    if (!inputRef.current.validationMessage) setEditing(false);
+    if (!refs.input.current.validationMessage) setEditing(false);
   }
 
   function onInputChange() {
-    setValue(fromFullDateFormat(inputRef.current.value));
+    setValue(fromFullDateFormat(refs.input.current.value));
   }
 
   function onInputClick(event) {
@@ -139,7 +142,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     setExpanded(false);
   }
 
-  useDropdownClose(containerRef, expanded, () => setExpanded(false));
+  useDropdownClose(refs.container, expanded, () => setExpanded(false));
 
   useEffect(() => {
     setEditing(!!props.validationMessage);
@@ -155,24 +158,23 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   }, [value]);
 
   useLayoutEffect(() => {
-    if (active) inputRef.current.focus();
+    if (active) refs.input.current.focus();
   }, [editing]);
 
   useLayoutEffect(() => {
-    inputRef.current.setCustomValidity(validationMessage);
+    refs.input.current.setCustomValidity(validationMessage);
   }, [validationMessage]);
 
   useLayoutEffect(() => {
-    inputRef.current.value = editing ? toFullDateFormat(value) : toDateStringFormat(value);
+    refs.input.current.value = editing ? toFullDateFormat(value) : toDateStringFormat(value);
   }, [value]);
 
   useImperativeHandle(ref, () => ({
+    ...refs.control.current,
     get dirty() {
       const providedValue = props.value;
       return providedValue !== this.value;
     },
-    id: props.id,
-    name: props.name,
     get value() {
       return toFullDateFormat(value);
     },
@@ -182,14 +184,16 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     <div
       className={classNames.layout.container}
       onBlur={onBlur}
-      ref={containerRef}
+      ref={refs.container}
     >
       <FormControl
         error={validationMessage}
         id={ids.input}
-        labelId={ids.label}
         label={props.label}
+        labelId={ids.label}
+        name={props.name}
         readOnly={props.readOnly}
+        ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
       >
@@ -207,7 +211,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
           onKeyDown={onInputKeyDown}
           placeholder={props.placeholder}
           readOnly={props.readOnly}
-          ref={inputRef}
+          ref={refs.input}
           required={props.required}
           type={editing ? 'date' : 'text'}
         />

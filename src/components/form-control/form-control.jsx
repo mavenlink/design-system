@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Control from '../control/control.jsx';
 import HelpIcon from '../help-icon/help-icon.jsx';
 import styles from './form-control.css';
 
-export default function FormControl(props) {
+const FormControl = forwardRef(function FormControl(props, ref) {
   const classNames = {
     container: props.className,
     control: styles['control-container'],
@@ -17,6 +17,17 @@ export default function FormControl(props) {
     tooltip: `${props.id}-tooltip`,
     validationMessage: `${props.id}Hint`,
   };
+
+  useImperativeHandle(ref, () => ({
+    /** Determine whether the component has a different value than the provided prop. */
+    get dirty() { return undefined; },
+    /** The ID of the input element. */
+    id: props.id, // Is this needed anymore? Seems like it can be solved by `name`
+    /** The name of the control element which is used to reference the form-data after submitting the form. */
+    name: props.name,
+    /** Access the value of the component without hoisting value state */
+    get value() { return undefined; },
+  }));
 
   return (
     <div className={classNames.container} onKeyDown={props.onKeyDown} role="presentation">
@@ -42,35 +53,17 @@ export default function FormControl(props) {
       </Control>
     </div>
   );
-}
+});
 
 FormControl.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   error: PropTypes.string,
-  id: (props) => {
-    if (props.id === undefined && props.labelId === undefined) {
-      return new Error('Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.');
-    }
-
-    if (typeof props.id !== 'string' && props.labelId === undefined) {
-      return new Error('Invalid prop `id` supplied to `FormControl`. `id` must be a string.');
-    }
-
-    return undefined;
-  },
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  labelId: (props) => {
-    if (props.id === undefined && props.labelId === undefined) {
-      return new Error('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.');
-    }
-
-    if (props.id === undefined && typeof props.labelId !== 'string') {
-      return new Error('Invalid prop `labelId` supplied to `FormControl`. `labelId` must be a string.');
-    }
-
-    return undefined;
-  },
+  labelId: PropTypes.string,
+  /** The name of the input element which is used to reference the form-data after submitting the form. */
+  name: PropTypes.string,
   onKeyDown: PropTypes.func,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
@@ -81,7 +74,10 @@ FormControl.defaultProps = {
   error: '',
   id: undefined,
   labelId: undefined,
+  name: undefined,
   onKeyDown: () => {},
   required: false,
   tooltip: undefined,
 };
+
+export default FormControl;

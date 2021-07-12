@@ -39,18 +39,16 @@ function getClassName(className, readOnly, errorText) {
 }
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
-  const autocompleteRef = useRef();
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [choices, setChoices] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const [validationMessage, validate] = useValidation(props.errorText, autocompleteRef);
   const visibleChoices = getVisibleChoices();
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const classContainer = getClassName(props.className, props.readOnly, validationMessage);
   const backupRef = useRef();
   const selfRef = ref || backupRef;
+
   const ids = {
     emptyMessage: `${props.id}-empty`,
     errorMessage: `${props.id}-autocompleteHint`,
@@ -59,15 +57,22 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     textbox: `${props.id}-autocomplete`,
     tooltip: `${props.id}-autocomplete-tooltip`,
   };
+  const refs = {
+    autocomplete: useRef(),
+    control: useRef(),
+    wrapper: useRef(),
+  };
+
   const mounted = useMounted();
-  const wrapperRef = useRef(null);
   const { completed, execute } = useFetch();
+  const [validationMessage, validate] = useValidation(props.errorText, refs.autocomplete);
+  const classContainer = getClassName(props.className, props.readOnly, validationMessage);
 
   const handleDropdownClose = () => {
     setExpanded(false);
     setAutocompleteValue('');
   };
-  useDropdownClose(wrapperRef, expanded, handleDropdownClose);
+  useDropdownClose(refs.wrapper, expanded, handleDropdownClose);
 
   const dropdownContents = () => {
     if (!expanded) {
@@ -132,14 +137,14 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     const newValue = [...value, selectedChoice.id].sort((a, b) => a.id - b.id);
     setValue(newValue);
     setAutocompleteValue('');
-    autocompleteRef.current.focus();
+    refs.autocomplete.current.focus();
   }
 
   function onChoicesClear(event) {
     event.preventDefault();
     setValue([]);
     setExpanded(false);
-    autocompleteRef.current.focus();
+    refs.autocomplete.current.focus();
   }
 
   function onAutocompleteBlur() {
@@ -168,8 +173,8 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   }
 
   useEffect(() => {
-    if (expanded && autocompleteRef.current) {
-      autocompleteRef.current.focus();
+    if (expanded && refs.autocomplete.current) {
+      refs.autocomplete.current.focus();
     }
   }, [expanded]);
 
@@ -186,11 +191,11 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   }, [props.value.join(',')]);
 
   useImperativeHandle(selfRef, () => ({
+    ...refs.control.current,
     get dirty() {
       return props.value.join(',') !== this.value.join(',');
     },
     id: props.id,
-    name: props.name,
     get value() {
       return value;
     },
@@ -217,15 +222,17 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   }, []);
 
   return (
-    <div ref={wrapperRef} className={styles['component-root']}>
+    <div ref={refs.wrapper} className={styles['component-root']}>
       <FormControl
         error={validationMessage}
         id={ids.textbox}
         label={props.label}
         labelId={ids.label}
+        name={props.name}
         onKeyDown={onKeyDown}
         tooltip={props.tooltip}
         readOnly={props.readOnly}
+        ref={refs.control}
       >
         <div
           className={classContainer}
@@ -267,7 +274,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
               placeholder={value.length === 0 ? props.placeholder : undefined}
               readOnly={props.readOnly}
               required={props.required ? value.length === 0 : false}
-              ref={autocompleteRef}
+              ref={refs.autocomplete}
               value={autocompleteValue}
             />
           </TagList>

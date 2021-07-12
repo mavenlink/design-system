@@ -43,6 +43,7 @@ exports[`Number has defaults 2`] = `
 Object {
   "dirty": false,
   "focus": [Function],
+  "id": "test-component",
   "name": undefined,
   "validity": ValidityState {},
   "value": undefined,

@@ -36,16 +36,14 @@ function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
 
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const [autocompleteValue, setAutocompleteValue] = useState('');
-  const autocompleteRef = useRef();
-  const backupRef = useRef();
   const [expanded, setExpanded] = useState(false);
+  const backupRef = useRef();
   const selfRef = ref || backupRef;
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(props.value || []);
   const valueRefs = value.map(() => createRef());
   const visibleOptions = getVisibleOptions();
   const visibleOptionsRefs = visibleOptions.map(() => createRef());
-  const wrapperRef = useRef(null);
 
   const ids = {
     emptyMessage: `${props.id}-empty`,
@@ -53,6 +51,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
     tooltip: `${props.id}-autocomplete-tooltip`,
+  };
+  const refs = {
+    autocomplete: useRef(),
+    control: useRef(),
+    wrapper: useRef(),
   };
 
   const classNames = {
@@ -126,11 +129,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }
 
   function onAutocompleteBlur() {
-    if (!autocompleteRef.current) return;
+    if (!refs.autocomplete.current) return;
 
-    autocompleteRef.current.setCustomValidity('');
-    if (!autocompleteRef.current.validity.valid) {
-      setValidationMessage(autocompleteRef.current.validationMessage);
+    refs.autocomplete.current.setCustomValidity('');
+    if (!refs.autocomplete.current.validity.valid) {
+      setValidationMessage(refs.autocomplete.current.validationMessage);
     } else {
       setValidationMessage(props.validationMessage || '');
     }
@@ -159,7 +162,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     if (!props.readOnly) {
       setValue([]);
       setExpanded(false);
-      autocompleteRef.current.focus();
+      refs.autocomplete.current.focus();
     }
   }
 
@@ -171,7 +174,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       .sort((a, b) => props.optionIDGetter(a) - props.optionIDGetter(b));
     setValue(newValue);
     setAutocompleteValue('');
-    autocompleteRef.current.focus();
+    refs.autocomplete.current.focus();
   }
 
   function onClick(event) {
@@ -190,7 +193,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     }
   }
 
-  useDropdownClose(wrapperRef, expanded, onDropdownClose);
+  useDropdownClose(refs.wrapper, expanded, onDropdownClose);
 
   useEffect(() => {
     setValidationMessage(props.validationMessage);
@@ -205,24 +208,26 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }, [value.length]);
 
   useImperativeHandle(selfRef, () => ({
+    ...refs.control.current,
     get dirty() {
       return props.value.map(val => JSON.stringify(val)).join(',') !== this.value.map(val => JSON.stringify(val)).join(',');
     },
     id: props.id,
-    name: props.name,
     get value() {
       return value;
     },
   }));
 
   return (
-    <div className={classNames.container} id={props.id} ref={wrapperRef}>
+    <div className={classNames.container} id={props.id} ref={refs.wrapper}>
       <FormControl
         error={validationMessage}
         id={ids.textbox}
         label={props.label}
         labelId={ids.label}
+        name={props.name}
         onKeyDown={onKeyDown}
+        ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
       >
@@ -264,7 +269,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               placeholder={value.length === 0 ? props.placeholder : undefined}
               readOnly={props.readOnly}
               required={props.required ? value.length === 0 : false}
-              ref={autocompleteRef}
+              ref={refs.autocomplete}
               value={autocompleteValue}
             />
           </TagList>
