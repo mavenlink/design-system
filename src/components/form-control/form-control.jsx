@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 import Control from '../control/control.jsx';
 import HelpIcon from '../help-icon/help-icon.jsx';
