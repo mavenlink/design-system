@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`HelpIcon classNames api passes class name to the icon 1`] = `
+<svg
+  class="an-icon-class"
+  height="18"
+  role="img"
+  width="18"
+>
+  <title>
+    Icon Label
+  </title>
+  <use
+    xlink:href="#help.svg"
+  />
+</svg>
+`;
+
+exports[`HelpIcon classNames api passes class name to tooltip 1`] = `
+<span
+  class="a-tooltip-class top"
+  id="help-tooltip"
+  style="--triangle-height: 8px; left: 0px; top: -128px;"
+>
+  Help Text
+</span>
+`;
+
 exports[`HelpIcon direction api allows bottom 1`] = `
 <body>
   <div>

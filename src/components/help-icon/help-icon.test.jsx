@@ -71,4 +71,19 @@ describe('HelpIcon', () => {
       expect(document.body).toMatchSnapshot();
     });
   });
+
+  describe('classNames api', () => {
+    it('passes class name to tooltip', () => {
+      const classNames = { tooltip: 'a-tooltip-class' };
+      render(<HelpIcon {...requiredProps} classNames={classNames} />);
+      user.hover(screen.getByTitle('Icon Label'));
+      expect(screen.getByText('Help Text')).toMatchSnapshot();
+    });
+
+    it('passes class name to the icon', () => {
+      const classNames = { icon: 'an-icon-class' };
+      render(<HelpIcon {...requiredProps} classNames={classNames} />);
+      expect(screen.getByRole('img')).toMatchSnapshot();
+    });
+  });
 });

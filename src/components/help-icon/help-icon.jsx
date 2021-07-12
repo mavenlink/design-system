@@ -5,19 +5,25 @@ import Icon from '../icon/icon.jsx';
 import helpSvg from '../../svgs/help.svg';
 
 export default function HelpIcon({
+  classNames,
   direction,
   id,
   label,
   text,
 }) {
   return (
-    <Tooltip text={text} direction={direction} id={id}>
-      <Icon label={label} icon={helpSvg} />
+    <Tooltip text={text} direction={direction} id={id} className={classNames.tooltip}>
+      <Icon label={label} icon={helpSvg} className={classNames.icon} />
     </Tooltip>
   );
 }
 
 HelpIcon.propTypes = {
+  /** classes to be applied to the tooltip and icon */
+  classNames: PropTypes.shape({
+    icon: PropTypes.string,
+    tooltip: PropTypes.string,
+  }),
   /** Direction for the tooltip to fly from relative to the icon. */
   direction: Tooltip.propTypes.direction,
   /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
@@ -29,5 +35,6 @@ HelpIcon.propTypes = {
 };
 
 HelpIcon.defaultProps = {
+  classNames: {},
   direction: Tooltip.defaultProps.direction,
 };

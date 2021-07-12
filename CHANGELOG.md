@@ -8,6 +8,8 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - docs(help-icon): removed a nonsensical example that did not describe anything
+  - feat(help-icon): added `classNames` api to provide classes to icon & tooltip
+  - fix(tooltip): prevent tooltip misalignment when scrollbar appears
 </details>
 
 ## v0.78.0
