@@ -15,6 +15,7 @@ import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './date.css';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 /* eslint-disable react/prop-types */
 function ControlIcons(props) {
@@ -64,8 +65,7 @@ function fromFullDateFormat(string) {
 }
 
 const Date = forwardRef(function Date(props, forwardedRef) {
-  const backupRef = useRef();
-  const ref = forwardedRef || backupRef;
+  const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);

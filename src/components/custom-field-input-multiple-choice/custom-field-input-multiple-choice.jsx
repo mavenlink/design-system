@@ -27,6 +27,7 @@ import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
 import useValidation from '../../hooks/use-validation.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const { API_ROOT } = mockConstants;
 
@@ -46,8 +47,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const visibleChoices = getVisibleChoices();
   const choicesRefs = visibleChoices.map(() => createRef());
   const valueRefs = value.map(() => createRef());
-  const backupRef = useRef();
-  const selfRef = ref || backupRef;
+  const selfRef = useForwardedRef(ref);
 
   const ids = {
     emptyMessage: `${props.id}-empty`,

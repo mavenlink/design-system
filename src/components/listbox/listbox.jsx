@@ -2,19 +2,18 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
-  useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import styles from './listbox.css';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   const [active, setActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [didMount, setDidMount] = useState(false);
   const [value, setValue] = useState(props.value);
-  const backupRef = useRef();
-  const ref = forwardedRef || backupRef;
+  const ref = useForwardedRef(forwardedRef);
 
   const refIndexOf = target => props.refs.findIndex(optionRef => (
     optionRef.current && optionRef.current.contains(target)

@@ -21,6 +21,7 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './multi-select.css';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
   if (readOnly) {
@@ -37,8 +38,7 @@ function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
-  const backupRef = useRef();
-  const selfRef = ref || backupRef;
+  const selfRef = useForwardedRef(ref);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(props.value || []);
   const valueRefs = value.map(() => createRef());
