@@ -15,14 +15,19 @@ function getClassName(className, validationMessage) {
 const Input = forwardRef(function Input(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
-  const inputRef = useRef();
-  const mounted = useMounted();
-  const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
 
   const ids = {
+    label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
     validation: `${props.id}Hint`,
   };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
+  };
+
+  const mounted = useMounted();
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   function onBlur(event) {
     validate();
@@ -35,18 +40,17 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     // The MDS Input is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
-    inputRef.current.value = props.value || '';
+    refs.input.current.value = props.value || '';
   }, [props.value]);
 
   useImperativeHandle(ref, () => ({
+    ...refs.control.current,
     get dirty() {
       const providedValue = props.value || '';
       return providedValue !== this.value;
     },
-    id: props.id,
-    name: props.name,
     get value() {
-      return inputRef.current.value;
+      return refs.input.current.value;
     },
   }));
 
@@ -56,7 +60,10 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       error={validationMessage}
       id={props.id}
       label={props.label}
+      labelId={ids.label}
+      name={props.name}
       readOnly={props.readOnly}
+      ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
     >
@@ -75,7 +82,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={inputRef}
+        ref={refs.input}
         required={props.required}
         type={props.type}
       />

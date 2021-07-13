@@ -11,13 +11,13 @@ import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
 import useMounted from '../../hooks/use-mounted.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
-  const backupRef = useRef();
   const sectionRef = useRef();
-  const selfRef = ref || backupRef;
+  const selfRef = useForwardedRef(ref);
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
   const mounted = useMounted();
 

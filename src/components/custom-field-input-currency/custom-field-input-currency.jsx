@@ -5,6 +5,7 @@ import CustomFieldInputNumber from '../custom-field-input-number/custom-field-in
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 function getLocale() {
   if (navigator && navigator.languages) {
@@ -46,8 +47,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
-  const backupRef = useRef();
-  const ref = forwardedRef || backupRef;
+  const ref = useForwardedRef(forwardedRef);
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {

@@ -15,11 +15,22 @@ import cautionSvg from '../../svgs/caution.svg';
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
-  const inputRef = useRef();
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
+  // TODO: Automate with object proxy. Always props.id + key.
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
+  };
+
   useLayoutEffect(() => {
-    inputRef.current.checked = props.checked;
+    refs.input.current.checked = props.checked;
   }, [props.checked]);
 
   useEffect(() => {
@@ -27,19 +38,18 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   }, [props.validationMessage]);
 
   useLayoutEffect(() => {
-    inputRef.current.setCustomValidity(validationMessage);
+    refs.input.current.setCustomValidity(validationMessage);
   }, [validationMessage]);
 
   useImperativeHandle(ref, () => ({
-    id: props.id,
-    name: props.name,
+    ...refs.control.current,
     get value() {
       if (props.value) return props.value;
 
-      return inputRef.current.checked ? 'on' : 'off';
+      return refs.input.current.checked ? 'on' : 'off';
     },
     get checked() {
-      return inputRef.current.checked;
+      return refs.input.current.checked;
     },
     get dirty() {
       const providedValue = props.checked || false;
@@ -48,8 +58,8 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   }));
 
   function onBlur(event) {
-    inputRef.current.setCustomValidity('');
-    setValidationMessage(inputRef.current.validationMessage);
+    refs.input.current.setCustomValidity('');
+    setValidationMessage(refs.input.current.validationMessage);
     props.onBlur(event);
   }
 
@@ -61,19 +71,16 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     if (props.readOnly && event.key === ' ') event.preventDefault();
   }
 
-  const ids = {
-    input: props.id,
-    tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
-  };
-
   return (
     <FormControl
       className={props.cssContainer}
       error={validationMessage}
       id={props.id}
       label={props.label}
+      labelId={ids.label}
+      name={props.name}
       readOnly={props.readOnly}
+      ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
     >
@@ -89,7 +96,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
         onFocus={props.onFocus}
         onKeyDown={onKeyDown}
         readOnly={props.readOnly}
-        ref={inputRef}
+        ref={refs.input}
         required={props.required}
         type="checkbox"
       />

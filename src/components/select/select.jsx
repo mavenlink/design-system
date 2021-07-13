@@ -18,6 +18,7 @@ import NoOptions from '../no-options/no-options.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
@@ -27,8 +28,7 @@ const Select = forwardRef(function Select(props, ref) {
   const mounted = useMounted();
   const listBoxRef = useRef();
   const inputRef = useRef();
-  const backupRef = useRef();
-  const selfRef = ref || backupRef;
+  const selfRef = useForwardedRef(ref);
 
   const [validationMessage, validate] = useValidation(props.errorText, inputRef);
   const caretIcon = (<Icon

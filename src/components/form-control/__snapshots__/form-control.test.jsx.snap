@@ -14,6 +14,7 @@ exports[`<FormControl> has defaults 1`] = `
         >
           <label
             for="test-id"
+            id="test-id-label"
           >
             Test label
           </label>
@@ -23,6 +24,7 @@ exports[`<FormControl> has defaults 1`] = `
         class="control-container"
       >
         <input
+          aria-describedby="test-idHint"
           id="test-id"
         />
       </div>

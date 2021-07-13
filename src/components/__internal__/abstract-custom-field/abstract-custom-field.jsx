@@ -81,6 +81,7 @@ export default function AbstractCustomField(props) {
       id={ids.input}
       labelId={ids.label}
       label={props.label}
+      name={props.name}
       readOnly={props.readOnly}
       required={props.required}
       tooltip={props.tooltip}

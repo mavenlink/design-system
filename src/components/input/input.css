@@ -30,6 +30,11 @@
   transform: translateY(-50%);
 }
 
+/*
+  An input only looks invalid after user interaction.
+  The first time render will _look_ valid while it is internally invalid for a11y purposes.
+  i.e. Do not implement `.input:invalid`.
+*/
 .invalid-input {
   composes: input;
   border-color: var(--mds-red-100);

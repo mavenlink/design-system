@@ -18,9 +18,19 @@ const apiLimits = {
 };
 
 const Number = React.forwardRef((props, ref) => {
-  const inputRef = useRef();
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
+  };
+
   const mounted = useMounted();
-  const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   useEffect(() => {
     if (!mounted.current) return;
@@ -29,9 +39,9 @@ const Number = React.forwardRef((props, ref) => {
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
     if (props.value === undefined) {
-      inputRef.current.value = null;
+      refs.input.current.value = null;
     } else {
-      inputRef.current.value = props.value;
+      refs.input.current.value = props.value;
     }
   }, [props.value]);
 
@@ -41,37 +51,34 @@ const Number = React.forwardRef((props, ref) => {
   }
 
   useImperativeHandle(ref, () => ({
+    ...refs.control.current,
     get dirty() {
       return props.value !== this.value;
     },
     focus() {
-      inputRef.current.focus();
+      refs.input.current.focus();
     },
-    name: props.name,
     get value() {
-      if (inputRef.current.value) {
-        return parseInt(inputRef.current.value, 10);
+      if (refs.input.current.value) {
+        return parseInt(refs.input.current.value, 10);
       }
 
       return undefined;
     },
     get validity() {
-      return inputRef.current.validity;
+      return refs.input.current.validity;
     },
   }));
-
-  const ids = {
-    input: props.id,
-    tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
-  };
 
   return (
     <FormControl
       error={validationMessage}
       id={ids.input}
       label={props.label}
+      labelId={ids.label}
+      name={props.name}
       readOnly={props.readOnly}
+      ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
     >
@@ -86,7 +93,7 @@ const Number = React.forwardRef((props, ref) => {
         onBlur={onBlur}
         onChange={props.onChange}
         placeholder={props.placeholder}
-        ref={inputRef}
+        ref={refs.input}
         readOnly={props.readOnly}
         required={props.required}
         step={props.step}

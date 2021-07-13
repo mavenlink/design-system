@@ -3,7 +3,6 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
-  useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -12,6 +11,7 @@ import ListOption from '../list-option/list-option.jsx';
 import Loader from '../loader/loader.jsx';
 import Select from '../select/select.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const { API_ROOT } = mockConstants;
 const defaultValue = ['-1'];
@@ -20,8 +20,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
   const [choices, setChoices] = useState([]);
   const listOptionRefs = choices.map(() => createRef());
   const [value, setValue] = useState(props.value);
-  const backupRef = useRef();
-  const selfRef = ref || backupRef;
+  const selfRef = useForwardedRef(ref);
   const { execute } = useFetch();
 
   function selectOnChangeHandler(event) {

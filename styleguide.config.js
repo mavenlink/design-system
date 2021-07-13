@@ -39,6 +39,12 @@ module.exports = {
     name: 'Living Style Guide',
     href: 'https://www.notion.so/Mavenlink-Design-System-d3118c3e2f5647d6adfc5b1599af993e',
   }, {
+    name: 'Cell Controls',
+    components: [
+      path.join(__dirname, 'src/components/table/table.jsx'),
+      path.join(__dirname, 'src/components/cell-control/input.jsx'),
+    ],
+  }, {
     name: 'Form Controls',
     components: [
       path.join(__dirname, 'src/components/form/form.jsx'),
@@ -76,7 +82,6 @@ module.exports = {
       path.join(__dirname, 'src/components/popover/popover.jsx'),
       path.join(__dirname, 'src/components/section/section.jsx'),
       path.join(__dirname, 'src/components/section-row/section-row.jsx'),
-      path.join(__dirname, 'src/components/table/table.jsx'),
       path.join(__dirname, 'src/components/tag/tag.jsx'),
       path.join(__dirname, 'src/components/tag-list/tag-list.jsx'),
       path.join(__dirname, 'src/components/tag-skill/tag-skill.jsx'),

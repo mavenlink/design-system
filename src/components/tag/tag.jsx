@@ -9,6 +9,7 @@ import React, {
 import styles from './tag.css';
 import clear from '../../svgs/clear.svg';
 import IconButton from '../icon-button/icon-button.jsx';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Tag = forwardRef(function Tag(props, forwardedRef) {
   const [focusQueued, setFocusQueued] = useState(false);
@@ -18,8 +19,7 @@ const Tag = forwardRef(function Tag(props, forwardedRef) {
   const buttonId = `${props.id}-button`;
   const contentRef = useRef(null);
   const contentId = `${props.id}-content`;
-  const backupRef = useRef();
-  const ref = forwardedRef || backupRef;
+  const ref = useForwardedRef(forwardedRef);
   const refElements = [contentRef, buttonRef];
   const rootRef = useRef();
 

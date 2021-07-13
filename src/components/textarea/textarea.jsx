@@ -34,9 +34,20 @@ const Textarea = forwardRef(function Textarea({
 }, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
-  const textareaRef = useRef();
+
+  const ids = {
+    input: id,
+    label: `${id}-label`,
+    tooltip: `${id}-tooltip`,
+    validation: `${id}Hint`,
+  };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
+  };
+
   const mounted = useMounted();
-  const [validationMessageValue, validate] = useValidation(validationMessage, textareaRef);
+  const [validationMessageValue, validate] = useValidation(validationMessage, refs.input);
 
   function blurHandler(event) {
     validate();
@@ -50,26 +61,19 @@ const Textarea = forwardRef(function Textarea({
   useLayoutEffect(() => {
     if (!mounted.current) return;
 
-    textareaRef.current.value = value || '';
+    refs.input.current.value = value || '';
   }, [value]);
 
   useImperativeHandle(ref, () => ({
+    ...refs.control.current,
     get dirty() {
       const providedValue = value || '';
       return providedValue !== this.value;
     },
-    id,
-    name,
     get value() {
-      return textareaRef.current.value;
+      return refs.input.current.value;
     },
   }));
-
-  const ids = {
-    input: id,
-    tooltip: `${id}-tooltip`,
-    validation: `${id}Hint`,
-  };
 
   return (
     <FormControl
@@ -77,7 +81,10 @@ const Textarea = forwardRef(function Textarea({
       error={validationMessageValue}
       id={ids.input}
       label={label}
+      labelId={ids.label}
+      name={name}
       readOnly={readOnly}
+      ref={refs.control}
       required={required}
       tooltip={tooltip}
     >
@@ -91,7 +98,7 @@ const Textarea = forwardRef(function Textarea({
         onChange={changeHandler}
         placeholder={placeholder}
         readOnly={readOnly}
-        ref={textareaRef}
+        ref={refs.input}
         required={required}
       />
       {!!validationMessageValue && (

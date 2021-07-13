@@ -33,8 +33,11 @@ const allowedErrors = [
   /^Error: Expected key descriptor but found "" in ""/, // This is a false negative in @testing-library/user-event
 ];
 
-console.error = (message) => { // eslint-disable-line
-  if (!allowedErrors.some(error => error.test(message))) {
-    throw new Error(message);
-  }
+const originalError = window.console.error;
+window.console.error = (message, ...args) => {
+  if (allowedErrors.some(error => error.test(message))) return;
+
+  originalError(message, ...args);
+  // eslint-disable-next-line max-len
+  throw new Error(`Your test produced an unexpected console.error. See above for original message. This is the unprocessed message: ${message}`);
 };
