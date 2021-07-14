@@ -24,12 +24,7 @@ The `CustomFieldInputMultipleChoice` component represents the UI for a custom fi
 
 ## Test Queries
 
-| Query | Element |
-| ----- | -------- |
-| `*Autcompleter` | The autocompleter input |
-| `*AvailableChoice` | A particular choice in the popup |
-| `*RemoveButton` | Either the remove all button or remove choice button |
-| `*SelectedChoice` | A particular selected choice |
+Uses the `<MultiSelect>` test queries.
 
 ## Props API Examples
 
@@ -67,76 +62,20 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
   label="This custom field is read-only"
   name="example-readonly"
   readOnly
-  value={['0', '1']}
-/>
-```
-
-```js
-import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
-
-<CustomFieldInputMultipleChoice
-  customFieldID="0"
-  errorText="If you're not first, you're last!"
-  id={uuid.v4()}
-  label="This custom field is invalid"
-  name="example-invalid"
   value={['0']}
 />
 ```
 
 ## Ref API Example
-
-```js
+```jsx
 import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
-const initialValue = [
-  '3',
-  '11',
-  '4',
-  '6',
-  '7',
-  '8',
-  '9',
-];
-const swapValue = [
-  '5',
-  '10',
-  '11',
-];
+const ref = React.createRef();
 
-function TestComponent() {
-  const ref = React.useRef();
-  const [target, setTarget] = React.useState({});
-  const [useSwapValue, setUseSwapValue] = React.useState(false);
-
-  function onChange(event) {
-    setTarget(event.target)
-  }
-
-  function onSwapValueClick() {
-    setUseSwapValue(!useSwapValue);
-  }
-
-  return (
-    <React.Fragment>
-      <CustomFieldInputMultipleChoice
-        customFieldID="1"
-        id={uuid.v4()}
-        label="This custom field has a lot of choices"
-        name="example-lotsa"
-        onChange={onChange}
-        value={useSwapValue ? swapValue : initialValue}
-      />
-      <ul>
-        {Object.keys(target).map(key => (
-          <li key={key}>{key}: {JSON.stringify(target[key])}</li>
-        ))}
-        <li>useSwapValue: {JSON.stringify(useSwapValue)}</li>
-      </ul>
-      <button onClick={onSwapValueClick}>Swap Value</button>
-    </React.Fragment>
-  );
-}
-
-<TestComponent />
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <CustomFieldInputMultipleChoice customFieldID="0" ref={ref} onChange={onChange} id="customfieldmultiplechoice-ref-example" name="example-ref" label="CustomFieldInputMultipleChoice Ref Example" />
+  )}
+</RefExample>
 ```

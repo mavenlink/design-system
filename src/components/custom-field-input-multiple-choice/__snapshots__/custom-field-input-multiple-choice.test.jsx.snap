@@ -4,7 +4,8 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 <body>
   <div>
     <div
-      class="component-root"
+      class="container"
+      id="test-id"
     >
       <div
         role="presentation"
@@ -27,7 +28,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
           class="control-container"
         >
           <div
-            class="read-write-container"
+            class="form-control-children-container"
             role="presentation"
           >
             <div
@@ -38,38 +39,33 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
               <input
                 aria-autocomplete="list"
                 aria-controls="test-id-listbox"
-                aria-describedby="test-id-autocompleteHint test-id-empty test-id-autocomplete-tooltip"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-labelledby="test-id-label"
                 autocomplete="off"
-                class="combobox"
+                class="input"
                 id="test-id-autocomplete"
                 role="combobox"
                 value=""
               />
             </div>
             <div
-              class="icons-container"
+              class="icon-container"
             >
-              
-              <div
-                class="icon-container"
+              <svg
+                class="button"
+                height="6"
+                role="button"
+                tabindex="0"
+                width="10"
               >
-                <svg
-                  class="icon"
-                  height="6"
-                  role="img"
-                  width="10"
-                >
-                  <title>
-                    Open choices listbox
-                  </title>
-                  <use
-                    xlink:href="#caret-down.svg"
-                  />
-                </svg>
-              </div>
+                <title>
+                  Open test label options
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
             </div>
           </div>
         </div>

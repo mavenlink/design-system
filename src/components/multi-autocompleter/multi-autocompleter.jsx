@@ -16,7 +16,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   function fetchOptions() {
     setLoading(true);
-    execute(`${API_ROOT}${props.apiEndpoint}?${props.searchParam}=${searchValue}`)
+    execute(`${API_ROOT}${props.apiEndpoint}?${props.extraParams !== '' ? `${props.extraParams}&` : ''}${props.searchParam}=${searchValue}`)
       .then(({ json, mounted }) => {
         if (mounted) {
           setOptions(json.results.map(result => json[result.key][result.id]));
@@ -75,6 +75,7 @@ MultiAutocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string.isRequired,
   className: PropTypes.string,
+  extraParams: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -93,9 +94,10 @@ MultiAutocompleter.propTypes = {
 
 MultiAutocompleter.defaultProps = {
   className: multiSelectStyles.container,
+  extraParams: '',
   onChange: () => {},
   optionIDGetter: option => option.id,
-  optionLabelGetter: option => option.title || option.name || option.full_name || option.currency,
+  optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,
   readOnly: false,
   required: false,

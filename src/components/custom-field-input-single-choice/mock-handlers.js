@@ -70,7 +70,13 @@ export default function handlers(delay = 0) {
   return [
     rest.get(`${API_ROOT}/custom_field_choices`, (request, response, context) => {
       const customFieldID = request.url.searchParams.get('for_custom_fields');
+      const matchingParam = request.url.searchParams.get('matching');
+
       const matchingChoices = choices.filter((choice) => {
+        if (matchingParam && !choice.label.includes(matchingParam)) {
+          return false;
+        }
+
         return choice.custom_field_id === customFieldID;
       });
       const customFieldChoices = {};
