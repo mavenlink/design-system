@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - refactor(CustomFieldInputMultipleChoice): use <MultiAutocompleter /> component internally, change `value` API to use full objects, use `validationMessage` instead of `errorText`
+  - feat(MultiAutocompleter): add `extraParams` API for supporting arbitrary additional query params when loading choices
 </details>
 
 ## 0.79.0
