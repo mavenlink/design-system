@@ -62,7 +62,7 @@ import CustomFieldInputMultipleChoice from '@mavenlink/design-system/src/compone
   label="This custom field is read-only"
   name="example-readonly"
   readOnly
-  value={[{id: '0', label: 'Foo'}]}
+  value={['0']}
 />
 ```
 

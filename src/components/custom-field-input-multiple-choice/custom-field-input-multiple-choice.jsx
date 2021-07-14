@@ -1,13 +1,46 @@
 import React, {
+  useEffect,
   useImperativeHandle,
   useRef,
+  useState,
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import useFetch from '@bloodyaugust/use-fetch';
 import MultiAutocompleter from '../multi-autocompleter/multi-autocompleter.jsx';
+import mockConstants from '../../mocks/mock-constants.js';
+
+const { API_ROOT } = mockConstants;
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const multiAutocompleterRef = useRef();
+  const [allChoices, setAllChoices] = useState([]);
+  const [fullPropValue, setFullPropValue] = useState([]);
+  const { execute } = useFetch();
+
+  useEffect(() => {
+    const fetchChoices = async () => {
+      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
+        .then(({ json, mounted }) => {
+          if (mounted) {
+            setAllChoices(json.results.map(result => json[result.key][result.id]));
+          }
+        })
+        .catch((error) => {
+          if (error.error && error.error.type !== 'aborted') {
+            throw error;
+          }
+        });
+    };
+
+    fetchChoices();
+  }, []);
+
+  useEffect(() => {
+    setFullPropValue(props.value.map((choiceID) => {
+      return allChoices.find(choice => choice.id === choiceID);
+    }).filter(mappedChoice => mappedChoice !== undefined));
+  }, [props.value, allChoices]);
 
   useImperativeHandle(ref, () => ({
     id: multiAutocompleterRef.current.id,
@@ -35,8 +68,8 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
       ref={multiAutocompleterRef}
       required={props.required}
       tooltip={props.tooltip}
-      validationMessage={props.validationMessage}
-      value={props.value}
+      validationMessage={props.errorText}
+      value={fullPropValue}
     />
   );
 });
@@ -44,6 +77,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
 CustomFieldInputMultipleChoice.propTypes = {
   className: PropTypes.string,
   customFieldID: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -52,18 +86,17 @@ CustomFieldInputMultipleChoice.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
-  validationMessage: PropTypes.string,
-  value: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.arrayOf(PropTypes.string),
 };
 
 CustomFieldInputMultipleChoice.defaultProps = {
   className: undefined,
+  errorText: '',
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
   tooltip: undefined,
-  validationMessage: undefined,
   value: [],
 };
 

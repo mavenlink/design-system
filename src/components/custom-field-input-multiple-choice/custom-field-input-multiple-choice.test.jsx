@@ -7,6 +7,8 @@ import jestServer from '../../mocks/jest-server.js';
 import mockHandlers from '../custom-field-input-single-choice/mock-handlers.js';
 import {
   findAvailableOption,
+  findSelectedOption,
+  querySelectedOption,
   openOptions,
 } from '../multi-select/test-queries.js';
 import CustomFieldInputMultipleChoice from './custom-field-input-multiple-choice.jsx';
@@ -40,6 +42,20 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     });
   });
 
+  describe('props value mapping behavior', () => {
+    it('properly maps an array of choice IDs to full value objects', async () => {
+      const { rerender } = render(<CustomFieldInputMultipleChoice {...requiredProps} value={['0']} />);
+
+      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+
+      rerender(<CustomFieldInputMultipleChoice {...requiredProps} value={['1']} />);
+
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+    });
+  });
+
   describe('ref API behaviors', () => {
     it('returns id set in props', () => {
       const ref = createRef();
@@ -58,7 +74,7 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('dirty updates through props and interaction', async () => {
       const ref = createRef();
 
-      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} value={[{ id: '0', label: 'Foo' }]} />);
+      render(<CustomFieldInputMultipleChoice {...requiredProps} ref={ref} value={['0']} />);
       expect(ref.current.dirty).toBeFalsy();
 
       await openOptions('test label');
