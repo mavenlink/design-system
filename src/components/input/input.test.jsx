@@ -16,13 +16,6 @@ describe('Input', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('autoFocus API', () => {
-    it('sets the autoFocus attribute', () => {
-      render(<Input {...requiredProps} autoFocus />);
-      expect(screen.getByLabelText('the label')).toHaveFocus();
-    });
-  });
-
   describe('className API', () => {
     it('sets <input> className', () => {
       render(<Input {...requiredProps} className="test-class" />);
