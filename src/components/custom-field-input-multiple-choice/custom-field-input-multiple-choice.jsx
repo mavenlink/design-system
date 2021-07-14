@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '@bloodyaugust/use-fetch';
+import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
@@ -234,80 +235,86 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
         readOnly={props.readOnly}
         ref={refs.control}
       >
-        <div
-          className={classContainer}
-          onClick={onClick}
-          role="presentation"
+        <Control
+          labelledBy={ids.label}
+          validationMessage={validationMessage}
+          validationMessageId={ids.errorMessage}
         >
-          <TagList
-            className={styles['tag-list']}
-            id={props.id}
-            labelledBy={ids.label}
-            refs={valueRefs}
+          <div
+            className={classContainer}
+            onClick={onClick}
+            role="presentation"
           >
-            {choices.length !== 0 && value.map((valueID, index) => (
-              <Tag
-                defaultActive={index === 0}
-                id={`${props.id}-${valueID}`}
-                key={`${props.id}-${valueID}`}
-                onRemove={onChoiceRemove}
+            <TagList
+              className={styles['tag-list']}
+              id={props.id}
+              labelledBy={ids.label}
+              refs={valueRefs}
+            >
+              {choices.length !== 0 && value.map((valueID, index) => (
+                <Tag
+                  defaultActive={index === 0}
+                  id={`${props.id}-${valueID}`}
+                  key={`${props.id}-${valueID}`}
+                  onRemove={onChoiceRemove}
+                  readOnly={props.readOnly}
+                  ref={valueRefs[index]}
+                >
+                  {choices.find(choice => choice.id === valueID).label}
+                </Tag>
+              ))
+              }
+              <input
+                aria-autocomplete="list"
+                aria-controls={ids.listbox}
+                aria-describedby={`${ids.errorMessage} ${ids.emptyMessage} ${ids.tooltip}`}
+                aria-expanded={expanded}
+                aria-haspopup="listbox"
+                aria-labelledby={ids.label}
+                autoComplete="off"
+                role="combobox"
+                className={styles.combobox}
+                id={ids.textbox}
+                onBlur={onAutocompleteBlur}
+                onChange={onAutocompleteChange}
+                placeholder={value.length === 0 ? props.placeholder : undefined}
                 readOnly={props.readOnly}
-                ref={valueRefs[index]}
-              >
-                {choices.find(choice => choice.id === valueID).label}
-              </Tag>
-            ))
-            }
-            <input
-              aria-autocomplete="list"
-              aria-controls={ids.listbox}
-              aria-describedby={`${ids.errorMessage} ${ids.emptyMessage} ${ids.tooltip}`}
-              aria-expanded={expanded}
-              aria-haspopup="listbox"
-              aria-labelledby={ids.label}
-              autoComplete="off"
-              role="combobox"
-              className={styles.combobox}
-              id={ids.textbox}
-              onBlur={onAutocompleteBlur}
-              onChange={onAutocompleteChange}
-              placeholder={value.length === 0 ? props.placeholder : undefined}
-              readOnly={props.readOnly}
-              required={props.required ? value.length === 0 : false}
-              ref={refs.autocomplete}
-              value={autocompleteValue}
-            />
-          </TagList>
-          <div className={styles['icons-container']}>
-            {!props.readOnly && validationMessage && (
+                required={props.required ? value.length === 0 : false}
+                ref={refs.autocomplete}
+                value={autocompleteValue}
+              />
+            </TagList>
+            <div className={styles['icons-container']}>
+              {!props.readOnly && validationMessage && (
+                <div className={styles['icon-container']}>
+                  <Icon
+                    className={styles.icon}
+                    icon={iconCaution}
+                    label="Invalid multiple choice custom field"
+                  />
+                </div>
+              )}
+              {!props.readOnly && value.length > 0 && (
+                <div className={styles['icon-container']}>
+                  <IconButton
+                    className={styles['clear-icon']}
+                    icon={iconClear}
+                    label={`Remove all selected choices on ${props.label}`}
+                    onPress={onChoicesClear}
+                  />
+                </div>
+              )}
               <div className={styles['icon-container']}>
                 <Icon
                   className={styles.icon}
-                  icon={iconCaution}
-                  label="Invalid multiple choice custom field"
+                  icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+                  label="Open choices listbox"
                 />
               </div>
-            )}
-            {!props.readOnly && value.length > 0 && (
-              <div className={styles['icon-container']}>
-                <IconButton
-                  className={styles['clear-icon']}
-                  icon={iconClear}
-                  label={`Remove all selected choices on ${props.label}`}
-                  onPress={onChoicesClear}
-                />
-              </div>
-            )}
-            <div className={styles['icon-container']}>
-              <Icon
-                className={styles.icon}
-                icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-                label="Open choices listbox"
-              />
             </div>
           </div>
-        </div>
-        {dropdownContents()}
+          {dropdownContents()}
+        </Control>
       </FormControl>
     </div>
   );

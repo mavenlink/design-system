@@ -7,6 +7,7 @@ import React, {
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import FormControlIcons from '../form-control-icons/form-control-icons.jsx';
 import Icon from '../icon/icon.jsx';
@@ -51,6 +52,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     listbox: `${props.id}-listbox`,
     textbox: `${props.id}-autocomplete`,
     tooltip: `${props.id}-autocomplete-tooltip`,
+    validation: `${props.id}Hint`,
   };
   const refs = {
     autocomplete: useRef(),
@@ -231,68 +233,74 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         required={props.required}
         tooltip={props.tooltip}
       >
-        <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
-          <TagList
-            className={classNames.tagList}
-            labelledBy={ids.label}
-            refs={valueRefs}
-          >
-            {value.length !== 0 &&
-            props.tagChildren ?
-              props.tagChildren(value, valueRefs, onOptionRemove) :
-              value.map((val, index) => (
-                <Tag
-                  defaultActive={index === 0}
-                  id={`${props.id}-option-${props.optionIDGetter(val)}`}
-                  key={props.optionIDGetter(val)}
-                  onRemove={onOptionRemove}
-                  readOnly={props.readOnly}
-                  ref={valueRefs[index]}
-                >
-                  {props.optionLabelGetter(val)}
-                </Tag>
-              ))
-            }
-            <input
-              aria-autocomplete="list"
-              aria-controls={ids.listbox}
-              aria-describedby={`${ids.emptyMessage} ${ids.tooltip}`}
-              aria-expanded={expanded}
-              aria-haspopup="listbox"
-              autoComplete="off"
-              role="combobox"
-              className={classNames.input}
-              id={ids.textbox}
-              onBlur={onAutocompleteBlur}
-              onChange={onAutocompleteChange}
-              onInput={props.onInput}
-              placeholder={value.length === 0 ? props.placeholder : undefined}
-              readOnly={props.readOnly}
-              required={props.required ? value.length === 0 : false}
-              ref={refs.autocomplete}
-              value={autocompleteValue}
-            />
-          </TagList>
-          <FormControlIcons validationMessage={validationMessage} className={classNames.iconsContainer}>
-            {(!props.readOnly && value.length > 0) && (
-              <IconButton
-                icon={iconClear}
-                label={`Remove all selected options on ${props.label}`}
-                onPress={onOptionsClear}
-                className={classNames.iconClear}
+        <Control
+          labelledBy={ids.label}
+          validationMessage={validationMessage || ''}
+          validationMessageId={ids.validation}
+        >
+          <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
+            <TagList
+              className={classNames.tagList}
+              labelledBy={ids.label}
+              refs={valueRefs}
+            >
+              {value.length !== 0 &&
+              props.tagChildren ?
+                props.tagChildren(value, valueRefs, onOptionRemove) :
+                value.map((val, index) => (
+                  <Tag
+                    defaultActive={index === 0}
+                    id={`${props.id}-option-${props.optionIDGetter(val)}`}
+                    key={props.optionIDGetter(val)}
+                    onRemove={onOptionRemove}
+                    readOnly={props.readOnly}
+                    ref={valueRefs[index]}
+                  >
+                    {props.optionLabelGetter(val)}
+                  </Tag>
+                ))
+              }
+              <input
+                aria-autocomplete="list"
+                aria-controls={ids.listbox}
+                aria-describedby={`${ids.emptyMessage} ${ids.tooltip}`}
+                aria-expanded={expanded}
+                aria-haspopup="listbox"
+                autoComplete="off"
+                role="combobox"
+                className={classNames.input}
+                id={ids.textbox}
+                onBlur={onAutocompleteBlur}
+                onChange={onAutocompleteChange}
+                onInput={props.onInput}
+                placeholder={value.length === 0 ? props.placeholder : undefined}
+                readOnly={props.readOnly}
+                required={props.required ? value.length === 0 : false}
+                ref={refs.autocomplete}
+                value={autocompleteValue}
               />
-            )}
-            {props.readOnly ? (
-              <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
-            ) : (
-              <IconButton
-                icon={iconCaretDown}
-                label={`Open ${props.label} options`}
-                onPress={onClick}
-              />
-            )}
-          </FormControlIcons>
-        </div>
+            </TagList>
+            <FormControlIcons validationMessage={validationMessage} className={classNames.iconsContainer}>
+              {(!props.readOnly && value.length > 0) && (
+                <IconButton
+                  icon={iconClear}
+                  label={`Remove all selected options on ${props.label}`}
+                  onPress={onOptionsClear}
+                  className={classNames.iconClear}
+                />
+              )}
+              {props.readOnly ? (
+                <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
+              ) : (
+                <IconButton
+                  icon={iconCaretDown}
+                  label={`Open ${props.label} options`}
+                  onPress={onClick}
+                />
+              )}
+            </FormControlIcons>
+          </div>
+        </Control>
       </FormControl>
       {dropdownContents()}
     </div>

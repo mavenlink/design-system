@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import CellControl from '../cell-control/cell-control.jsx';
+import Control from '../control/control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 
@@ -26,24 +27,28 @@ function Input(props) {
     <CellControl
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
-      validationMessage={props.validationMessage}
-      validationMessageId={ids.validationMessage}
     >
-      <div className={classNames.control}>
-        <input
-          aria-describedby={ids.validationMessage}
-          className={classNames.input}
-          readOnly={props.readOnly}
-          ref={inputRef}
-        />
-        {!!props.validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={props.validationMessage}
+      <Control
+        labelledBy={props.labelledBy}
+        validationMessage={props.validationMessage}
+        validationMessageId={ids.validationMessage}
+      >
+        <div className={classNames.control}>
+          <input
+            aria-describedby={ids.validationMessage}
+            className={classNames.input}
+            readOnly={props.readOnly}
+            ref={inputRef}
           />
-        )}
-      </div>
+          {!!props.validationMessage && (
+            <Icon
+              className={styles['invalid-icon']}
+              icon={cautionSvg}
+              label={props.validationMessage}
+            />
+          )}
+        </div>
+      </Control>
     </CellControl>
   );
 }

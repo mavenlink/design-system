@@ -1,5 +1,6 @@
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
+import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useMounted from '../../hooks/use-mounted.js';
@@ -82,30 +83,36 @@ const Number = React.forwardRef((props, ref) => {
       required={props.required}
       tooltip={props.tooltip}
     >
-      <input
-        aria-describedby={`${ids.tooltip} ${ids.validation}`}
-        className={getClassName(props.className, validationMessage)}
-        defaultValue={props.value}
-        id={ids.input}
-        max={apiLimits.max}
-        min={apiLimits.min}
-        name={props.name}
-        onBlur={onBlur}
-        onChange={props.onChange}
-        placeholder={props.placeholder}
-        ref={refs.input}
-        readOnly={props.readOnly}
-        required={props.required}
-        step={props.step}
-        type="number"
-      />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          label={validationMessage}
+      <Control
+        labelledBy={ids.label}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validation}
+      >
+        <input
+          aria-describedby={`${ids.tooltip} ${ids.validation}`}
+          className={getClassName(props.className, validationMessage)}
+          defaultValue={props.value}
+          id={ids.input}
+          max={apiLimits.max}
+          min={apiLimits.min}
+          name={props.name}
+          onBlur={onBlur}
+          onChange={props.onChange}
+          placeholder={props.placeholder}
+          ref={refs.input}
+          readOnly={props.readOnly}
+          required={props.required}
+          step={props.step}
+          type="number"
         />
-      )}
+        {!!validationMessage && (
+          <Icon
+            className={styles['invalid-icon']}
+            icon={cautionSvg}
+            label={validationMessage}
+          />
+        )}
+      </Control>
     </FormControl>
   );
 });

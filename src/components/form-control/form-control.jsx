@@ -1,6 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
-import Control from '../control/control.jsx';
 import HelpIcon from '../help-icon/help-icon.jsx';
 import styles from './form-control.css';
 
@@ -15,7 +14,6 @@ const FormControl = forwardRef(function FormControl(props, ref) {
     input: props.id,
     label: props.labelId || `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validationMessage: `${props.id}Hint`,
   };
 
   useImperativeHandle(ref, () => ({
@@ -42,15 +40,9 @@ const FormControl = forwardRef(function FormControl(props, ref) {
           <HelpIcon id={ids.tooltip} label="More information" text={props.tooltip} />
         )}
       </div>
-      <Control
-        labelledBy={ids.label}
-        validationMessage={props.error}
-        validationMessageId={ids.validationMessage}
-      >
-        <div className={classNames.control}>
-          {props.children}
-        </div>
-      </Control>
+      <div className={classNames.control}>
+        {props.children}
+      </div>
     </div>
   );
 });
@@ -61,6 +53,7 @@ FormControl.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  /** The ID of the label element. */
   labelId: PropTypes.string,
   /** The name of the input element which is used to reference the form-data after submitting the form. */
   name: PropTypes.string,

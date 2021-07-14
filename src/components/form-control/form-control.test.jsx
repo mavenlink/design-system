@@ -11,13 +11,13 @@ describe('<FormControl>', () => {
   };
 
   it('has defaults', () => {
-    render(<FormControl {...requiredProps} />);
+    render(<FormControl {...requiredProps}>{requiredProps.children}</FormControl>);
     expect(document.body).toMatchSnapshot();
   });
 
   describe('className API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} className="unique-class" />);
+      render(<FormControl {...requiredProps} className="unique-class">{requiredProps.children}</FormControl>);
       expect(screen.getByLabelText('Test label').parentElement.parentElement).toHaveAttribute('class', 'unique-class');
     });
   });
@@ -36,18 +36,8 @@ describe('<FormControl>', () => {
 
   describe('error API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} error="I am an error message" />);
-      expect(screen.getByText('I am an error message')).toBeInTheDocument();
-    });
-
-    it('uses aria-live polite to alert users of an error', () => {
-      render(<FormControl {...requiredProps} error="I am an error message" />);
-      expect(screen.getByText('I am an error message')).toHaveAttribute('aria-live', 'polite');
-    });
-
-    it('uses a hint to alert users of the error message', () => {
-      render(<FormControl {...requiredProps} error="I am an error message" />);
-      expect(screen.getByText('I am an error message')).toHaveAttribute('id', 'test-idHint');
+      render(<FormControl {...requiredProps} error="I am an error message">{requiredProps.children}</FormControl>);
+      expect(document.body).toMatchSnapshot();
     });
   });
 
@@ -64,14 +54,14 @@ describe('<FormControl>', () => {
 
   describe('label API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} label="Unique label" />);
+      render(<FormControl {...requiredProps} label="Unique label">{requiredProps.children}</FormControl>);
       expect(screen.getByLabelText('Unique label')).toBeInTheDocument();
     });
   });
 
   describe('labelId API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} labelId="unique-label-id" />);
+      render(<FormControl {...requiredProps} labelId="unique-label-id">{requiredProps.children}</FormControl>);
       expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-label-id');
     });
   });
@@ -79,7 +69,7 @@ describe('<FormControl>', () => {
   describe('onKeyDown API', () => {
     it('can be set', () => {
       const onKeyDownSpy = jest.fn();
-      render(<FormControl {...requiredProps} onKeyDown={onKeyDownSpy} />);
+      render(<FormControl {...requiredProps} onKeyDown={onKeyDownSpy}>{requiredProps.children}</FormControl>);
       user.click(screen.getByText('Test label'));
       user.keyboard('a');
       expect(onKeyDownSpy).toHaveBeenCalled();
@@ -88,12 +78,12 @@ describe('<FormControl>', () => {
 
   describe('required API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} required={true} />);
+      render(<FormControl {...requiredProps} required={true}>{requiredProps.children}</FormControl>);
       expect(screen.getByText('(Required)')).toBeInTheDocument();
     });
 
     it('can be unset', () => {
-      render(<FormControl {...requiredProps} required={false} />);
+      render(<FormControl {...requiredProps} required={false}>{requiredProps.children}</FormControl>);
       expect(screen.queryByText('(Required)')).not.toBeInTheDocument();
     });
   });
