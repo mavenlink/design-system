@@ -6,8 +6,16 @@
   </summary>
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-  - Append new items to make git merging easier.=
+  - Append new items to make git merging easier.
 </details>
+
+## 0.79.0
+- feat(help-icon): added `classNames` api to provide classes to icon & tooltip
+- docs(help-icon): removed a nonsensical example that did not describe anything
+- fix(tooltip): prevent tooltip misalignment when scrollbar appears
+
+## v0.78.0
+- refactor(site): organize components into explicit grouped (e.g. Form Controls and Widgets)
 
 ## v0.77.0
 - refactor(tooltip): rewrite `tooltip` component to use react-portal and unify screenreader / sighted contents;
