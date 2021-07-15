@@ -21,11 +21,14 @@ exports[`Input cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              class="control-container"
+              style="position: relative;"
             >
               <input
-                aria-describedby="test-id-validation-message"
+                aria-describedby="test-idHint "
                 class="input"
+                id="test-id"
+                type="text"
+                value=""
               />
             </div>
           </td>
@@ -57,11 +60,14 @@ exports[`Input cell control id API is a string 1`] = `
             role="gridcell"
           >
             <div
-              class="control-container"
+              style="position: relative;"
             >
               <input
-                aria-describedby="unique-id-validation-message"
+                aria-describedby="unique-idHint "
                 class="input"
+                id="unique-id"
+                type="text"
+                value=""
               />
             </div>
           </td>

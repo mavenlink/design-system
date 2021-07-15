@@ -1,63 +1,32 @@
 import PropTypes from 'prop-types';
-import React, {
-  useLayoutEffect,
-  useRef,
-} from 'react';
-import cautionSvg from '../../svgs/caution.svg';
+import React from 'react';
 import CellControl from '../cell-control/cell-control.jsx';
-import Control from '../control/control.jsx';
-import Icon from '../icon/icon.jsx';
-import styles from './input.css';
+import InputControl from '../control/input.jsx';
 
 function Input(props) {
-  const inputRef = useRef();
-  const classNames = {
-    control: styles['control-container'],
-    input: props.validationMessage ? styles['invalid-input'] : styles.input,
-  };
-  const ids = {
-    validationMessage: `${props.id}-validation-message`,
-  };
-
-  useLayoutEffect(() => {
-    inputRef.current.setCustomValidity(props.validationMessage);
-  }, [props.validationMessage]);
-
   return (
     <CellControl
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
     >
-      <Control
+      <InputControl
+        id={props.id}
         labelledBy={props.labelledBy}
+        readOnly={props.readOnly}
         validationMessage={props.validationMessage}
-        validationMessageId={ids.validationMessage}
-      >
-        <div className={classNames.control}>
-          <input
-            aria-describedby={ids.validationMessage}
-            className={classNames.input}
-            readOnly={props.readOnly}
-            ref={inputRef}
-          />
-          {!!props.validationMessage && (
-            <Icon
-              className={styles['invalid-icon']}
-              icon={cautionSvg}
-              label={props.validationMessage}
-            />
-          )}
-        </div>
-      </Control>
+      />
     </CellControl>
   );
 }
 
 Input.propTypes = {
+  /** A unique ID for the component. */
   id: PropTypes.string.isRequired,
-  /** The ID of the column header */
+  /** The ID of the column header. */
   labelledBy: PropTypes.string.isRequired,
+  /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
+  /** A server-side validation message. */
   validationMessage: PropTypes.string,
 };
 
