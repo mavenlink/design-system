@@ -13,6 +13,7 @@ function Input(props) {
         id={props.id}
         labelledBy={props.labelledBy}
         readOnly={props.readOnly}
+        required={props.required}
         validationMessage={props.validationMessage}
       />
     </CellControl>
@@ -26,12 +27,15 @@ Input.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
+  /** Require a value on the input control. */
+  required: PropTypes.bool,
   /** A server-side validation message. */
   validationMessage: PropTypes.string,
 };
 
 Input.defaultProps = {
   readOnly: false,
+  required: false,
   validationMessage: '',
 };
 

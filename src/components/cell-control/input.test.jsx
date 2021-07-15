@@ -59,6 +59,18 @@ describe('Input cell control', () => {
     });
   });
 
+  describe('required API', () => {
+    it('is true', () => {
+      render(<Input {...requiredProps} required={true} />);
+      expect(screen.getByRole('textbox')).toHaveAttribute('required');
+    });
+
+    it('is false', () => {
+      render(<Input {...requiredProps} required={false} />);
+      expect(screen.getByRole('textbox')).not.toHaveAttribute('required');
+    });
+  });
+
   describe('validationMessage API', () => {
     it('is a string', () => {
       render(<Input {...requiredProps} validationMessage="A unique error message." />);
