@@ -94,26 +94,28 @@ const Textarea = forwardRef(function Textarea({
         validationMessage={validationMessageValue}
         validationMessageId={ids.validation}
       >
-        <textarea
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={getClassName(className, validationMessageValue)}
-          defaultValue={value}
-          id={ids.input}
-          name={name}
-          onBlur={blurHandler}
-          onChange={changeHandler}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          ref={refs.input}
-          required={required}
-        />
-        {!!validationMessageValue && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={validationMessageValue}
+        <div style={{ position: 'relative' }}>
+          <textarea
+            aria-describedby={`${ids.tooltip} ${ids.validation}`}
+            className={getClassName(className, validationMessageValue)}
+            defaultValue={value}
+            id={ids.input}
+            name={name}
+            onBlur={blurHandler}
+            onChange={changeHandler}
+            placeholder={placeholder}
+            readOnly={readOnly}
+            ref={refs.input}
+            required={required}
           />
-        )}
+          {!!validationMessageValue && (
+            <Icon
+              className={styles['invalid-icon']}
+              icon={cautionSvg}
+              label={validationMessageValue}
+            />
+          )}
+        </div>
       </Control>
     </FormControl>
   );

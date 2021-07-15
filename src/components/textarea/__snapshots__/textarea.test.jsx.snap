@@ -23,11 +23,15 @@ exports[`Textarea has defaults 1`] = `
       <div
         class="control-container"
       >
-        <textarea
-          aria-describedby="foo-tooltip fooHint"
-          class="textarea"
-          id="foo"
-        />
+        <div
+          style="position: relative;"
+        >
+          <textarea
+            aria-describedby="foo-tooltip fooHint"
+            class="textarea"
+            id="foo"
+          />
+        </div>
       </div>
     </div>
   </div>

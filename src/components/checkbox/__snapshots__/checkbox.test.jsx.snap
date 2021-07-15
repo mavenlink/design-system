@@ -23,12 +23,16 @@ exports[`Checkbox has defaults 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="fart-tooltip fartHint"
-          class="input"
-          id="fart"
-          type="checkbox"
-        />
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="fart-tooltip fartHint"
+            class="input"
+            id="fart"
+            type="checkbox"
+          />
+        </div>
       </div>
     </div>
   </div>

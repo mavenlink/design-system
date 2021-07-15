@@ -66,31 +66,33 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       validationMessage={validationMessage}
       validationMessageId={ids.validation}
     >
-      <input
-        aria-describedby={`${ids.validation} ${props.describedBy}`}
-        className={getClassName(props.className, validationMessage)}
-        defaultValue={props.value}
-        id={props.id}
-        maxLength={props.maxLength}
-        name={props.name}
-        onBlur={onBlur}
-        onChange={props.onChange}
-        onFocus={props.onFocus}
-        onInput={props.onInput}
-        onKeyDown={props.onKeyDown}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        ref={refs.input}
-        required={props.required}
-        type={props.type}
-      />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          label={validationMessage}
+      <div style={{ position: 'relative' }}>
+        <input
+          aria-describedby={`${ids.validation} ${props.describedBy}`}
+          className={getClassName(props.className, validationMessage)}
+          defaultValue={props.value}
+          id={props.id}
+          maxLength={props.maxLength}
+          name={props.name}
+          onBlur={onBlur}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onInput={props.onInput}
+          onKeyDown={props.onKeyDown}
+          placeholder={props.placeholder}
+          readOnly={props.readOnly}
+          ref={refs.input}
+          required={props.required}
+          type={props.type}
         />
-      )}
+        {!!validationMessage && (
+          <Icon
+            className={styles['invalid-icon']}
+            icon={cautionSvg}
+            label={validationMessage}
+          />
+        )}
+      </div>
     </Control>
   );
 });

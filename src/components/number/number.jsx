@@ -88,30 +88,32 @@ const Number = React.forwardRef((props, ref) => {
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
       >
-        <input
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={getClassName(props.className, validationMessage)}
-          defaultValue={props.value}
-          id={ids.input}
-          max={apiLimits.max}
-          min={apiLimits.min}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          placeholder={props.placeholder}
-          ref={refs.input}
-          readOnly={props.readOnly}
-          required={props.required}
-          step={props.step}
-          type="number"
-        />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={validationMessage}
+        <div style={{ position: 'relative' }}>
+          <input
+            aria-describedby={`${ids.tooltip} ${ids.validation}`}
+            className={getClassName(props.className, validationMessage)}
+            defaultValue={props.value}
+            id={ids.input}
+            max={apiLimits.max}
+            min={apiLimits.min}
+            name={props.name}
+            onBlur={onBlur}
+            onChange={props.onChange}
+            placeholder={props.placeholder}
+            ref={refs.input}
+            readOnly={props.readOnly}
+            required={props.required}
+            step={props.step}
+            type="number"
           />
-        )}
+          {!!validationMessage && (
+            <Icon
+              className={styles['invalid-icon']}
+              icon={cautionSvg}
+              label={validationMessage}
+            />
+          )}
+        </div>
       </Control>
     </FormControl>
   );

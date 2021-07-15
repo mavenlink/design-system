@@ -26,31 +26,35 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
         <div
           class="control-container"
         >
-          <input
-            aria-describedby="field-dateHint field-date-tooltip"
-            class="unique-input"
-            id="field-date"
-            name="field-name"
-            type="text"
-            value=""
-          />
           <div
-            class="icons"
+            style="position: relative;"
           >
-            <svg
-              class="button"
-              height="14"
-              role="button"
-              tabindex="0"
-              width="11"
+            <input
+              aria-describedby="field-dateHint field-date-tooltip"
+              class="unique-input"
+              id="field-date"
+              name="field-name"
+              type="text"
+              value=""
+            />
+            <div
+              class="icons"
             >
-              <title>
-                Field Date calendar button
-              </title>
-              <use
-                xlink:href="#calendar.svg"
-              />
-            </svg>
+              <svg
+                class="button"
+                height="14"
+                role="button"
+                tabindex="0"
+                width="11"
+              >
+                <title>
+                  Field Date calendar button
+                </title>
+                <use
+                  xlink:href="#calendar.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -85,31 +89,35 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         <div
           class="control-container"
         >
-          <input
-            aria-describedby="field-dateHint field-date-tooltip"
-            class="input"
-            id="field-date"
-            name="field-name"
-            type="text"
-            value=""
-          />
           <div
-            class="icons"
+            style="position: relative;"
           >
-            <svg
-              class="button"
-              height="14"
-              role="button"
-              tabindex="0"
-              width="11"
+            <input
+              aria-describedby="field-dateHint field-date-tooltip"
+              class="input"
+              id="field-date"
+              name="field-name"
+              type="text"
+              value=""
+            />
+            <div
+              class="icons"
             >
-              <title>
-                Field Date calendar button
-              </title>
-              <use
-                xlink:href="#calendar.svg"
-              />
-            </svg>
+              <svg
+                class="button"
+                height="14"
+                role="button"
+                tabindex="0"
+                width="11"
+              >
+                <title>
+                  Field Date calendar button
+                </title>
+                <use
+                  xlink:href="#calendar.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

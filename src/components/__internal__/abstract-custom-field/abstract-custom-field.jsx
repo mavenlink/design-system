@@ -92,43 +92,45 @@ export default function AbstractCustomField(props) {
         validationMessage={props.errorText}
         validationMessageId={ids.validation}
       >
-        <input
-          autoComplete={props.autoComplete}
-          aria-autocomplete={props.ariaProps.autocomplete}
-          aria-controls={props.ariaProps.controls}
-          aria-haspopup={props.ariaProps.haspopup}
-          aria-expanded={props.ariaProps.expanded}
-          aria-invalid={invalidDueToProps ? 'true' : undefined}
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          defaultValue={props.defaultValue}
-          className={inputClassName()}
-          disabled={props.disabled}
-          id={ids.input}
-          role={props.inputRole}
-          max={props.max}
-          maxLength={props.maxLength}
-          min={props.min}
-          name={props.name}
-          onBlur={props.onBlur}
-          onChange={props.onChange}
-          onClick={props.onClick}
-          onFocus={props.onFocus}
-          onKeyDown={props.onKeyDown}
-          onKeyUp={props.onKeyUp}
-          onInput={props.onInput}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={props.inputRef}
-          required={props.required}
-          step={props.step}
-          style={{ '--numIcon': numIcons() }}
-          type={props.type}
-          value={props.value}
-        />
-        <div className={styles['icon-container']}>
-          { showInvalidIcon() }
-          { showClear() }
-          { showIcon() }
+        <div style={{ position: 'relative' }}>
+          <input
+            autoComplete={props.autoComplete}
+            aria-autocomplete={props.ariaProps.autocomplete}
+            aria-controls={props.ariaProps.controls}
+            aria-haspopup={props.ariaProps.haspopup}
+            aria-expanded={props.ariaProps.expanded}
+            aria-invalid={invalidDueToProps ? 'true' : undefined}
+            aria-describedby={`${ids.tooltip} ${ids.validation}`}
+            defaultValue={props.defaultValue}
+            className={inputClassName()}
+            disabled={props.disabled}
+            id={ids.input}
+            role={props.inputRole}
+            max={props.max}
+            maxLength={props.maxLength}
+            min={props.min}
+            name={props.name}
+            onBlur={props.onBlur}
+            onChange={props.onChange}
+            onClick={props.onClick}
+            onFocus={props.onFocus}
+            onKeyDown={props.onKeyDown}
+            onKeyUp={props.onKeyUp}
+            onInput={props.onInput}
+            placeholder={props.placeholder}
+            readOnly={props.readOnly}
+            ref={props.inputRef}
+            required={props.required}
+            step={props.step}
+            style={{ '--numIcon': numIcons() }}
+            type={props.type}
+            value={props.value}
+          />
+          <div className={styles['icon-container']}>
+            { showInvalidIcon() }
+            { showClear() }
+            { showIcon() }
+          </div>
         </div>
       </Control>
     </FormControl>

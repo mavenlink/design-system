@@ -203,30 +203,32 @@ const Date = forwardRef(function Date(props, forwardedRef) {
           validationMessage={validationMessage}
           validationMessageId={ids.validationMessage}
         >
-          <input
-            aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
-            className={classNames.input}
-            defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
-            id={ids.input}
-            key={`${ids.input}-${editing ? 'editing' : 'display'}`}
-            max={props.max}
-            min={props.min}
-            name={props.name}
-            onChange={onInputChange}
-            onClick={onInputClick}
-            onKeyDown={onInputKeyDown}
-            placeholder={props.placeholder}
-            readOnly={props.readOnly}
-            ref={refs.input}
-            required={props.required}
-            type={editing ? 'date' : 'text'}
-          />
-          <ControlIcons
-            label={props.label}
-            onPress={onIconPress}
-            readOnly={props.readOnly}
-            validationMessage={validationMessage}
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
+              className={classNames.input}
+              defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
+              id={ids.input}
+              key={`${ids.input}-${editing ? 'editing' : 'display'}`}
+              max={props.max}
+              min={props.min}
+              name={props.name}
+              onChange={onInputChange}
+              onClick={onInputClick}
+              onKeyDown={onInputKeyDown}
+              placeholder={props.placeholder}
+              readOnly={props.readOnly}
+              ref={refs.input}
+              required={props.required}
+              type={editing ? 'date' : 'text'}
+            />
+            <ControlIcons
+              label={props.label}
+              onPress={onIconPress}
+              readOnly={props.readOnly}
+              validationMessage={validationMessage}
+            />
+          </div>
         </Control>
       </FormControl>
       {expanded && (

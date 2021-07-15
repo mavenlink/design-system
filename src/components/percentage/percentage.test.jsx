@@ -31,7 +31,7 @@ describe('Percentage', () => {
   describe('cssContainer API', () => {
     it('sets container className', () => {
       render(<Percentage {...requiredProps} cssContainer="test-class" />);
-      expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
+      expect(screen.getByLabelText('the label').parentElement.parentElement.parentElement).toHaveClass('test-class');
     });
   });
 

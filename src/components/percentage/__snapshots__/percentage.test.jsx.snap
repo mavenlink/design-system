@@ -24,24 +24,28 @@ exports[`Percentage has defaults 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="fooHint foo-tooltip"
-          class="input"
-          id="foo"
-          max="100"
-          min="0"
-          step="0.01"
-          type="number"
-          value=""
-        />
         <div
-          class="icons-container"
+          style="position: relative;"
         >
-          <span
-            class="percent-sign"
+          <input
+            aria-describedby="fooHint foo-tooltip"
+            class="input"
+            id="foo"
+            max="100"
+            min="0"
+            step="0.01"
+            type="number"
+            value=""
+          />
+          <div
+            class="icons-container"
           >
-            %
-          </span>
+            <span
+              class="percent-sign"
+            >
+              %
+            </span>
+          </div>
         </div>
       </div>
     </div>

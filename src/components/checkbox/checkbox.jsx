@@ -90,29 +90,31 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
       >
-        <input
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={props.className}
-          defaultChecked={props.checked}
-          id={props.id}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          onClick={onClick}
-          onFocus={props.onFocus}
-          onKeyDown={onKeyDown}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          type="checkbox"
-        />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={validationMessage}
+        <div style={{ position: 'relative' }}>
+          <input
+            aria-describedby={`${ids.tooltip} ${ids.validation}`}
+            className={props.className}
+            defaultChecked={props.checked}
+            id={props.id}
+            name={props.name}
+            onBlur={onBlur}
+            onChange={props.onChange}
+            onClick={onClick}
+            onFocus={props.onFocus}
+            onKeyDown={onKeyDown}
+            readOnly={props.readOnly}
+            ref={refs.input}
+            required={props.required}
+            type="checkbox"
           />
-        )}
+          {!!validationMessage && (
+            <Icon
+              className={styles['invalid-icon']}
+              icon={cautionSvg}
+              label={validationMessage}
+            />
+          )}
+        </div>
       </Control>
     </FormControl>
   );

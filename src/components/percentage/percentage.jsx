@@ -77,26 +77,28 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
       >
-        <input
-          aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
-          className={getClassName(classNames.input, validationMessage)}
-          defaultValue={props.value}
-          id={props.id}
-          max={100}
-          min={0}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={onChange}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          step={0.01}
-          type="number"
-        />
-        <FormControlIcons validationMessage={validationMessage} className={styles['icons-container']}>
-          <span className={styles['percent-sign']}>%</span>
-        </FormControlIcons>
+        <div style={{ position: 'relative' }}>
+          <input
+            aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
+            className={getClassName(classNames.input, validationMessage)}
+            defaultValue={props.value}
+            id={props.id}
+            max={100}
+            min={0}
+            name={props.name}
+            onBlur={onBlur}
+            onChange={onChange}
+            placeholder={props.placeholder}
+            readOnly={props.readOnly}
+            ref={refs.input}
+            required={props.required}
+            step={0.01}
+            type="number"
+          />
+          <FormControlIcons validationMessage={validationMessage} className={styles['icons-container']}>
+            <span className={styles['percent-sign']}>%</span>
+          </FormControlIcons>
+        </div>
       </Control>
     </FormControl>
   );

@@ -24,13 +24,17 @@ exports[`Input cssContainer API sets input container className 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="fooHint foo-tooltip"
-          class="input"
-          id="foo"
-          type="text"
-          value=""
-        />
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="fooHint foo-tooltip"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -60,13 +64,17 @@ exports[`Input has defaults 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="fooHint foo-tooltip"
-          class="input"
-          id="foo"
-          type="text"
-          value=""
-        />
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="fooHint foo-tooltip"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>
