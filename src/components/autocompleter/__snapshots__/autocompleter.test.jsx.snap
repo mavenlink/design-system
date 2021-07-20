@@ -70,6 +70,6 @@ Object {
   "dirty": false,
   "id": "test-id",
   "name": "test_name",
-  "value": undefined,
+  "value": null,
 }
 `;
