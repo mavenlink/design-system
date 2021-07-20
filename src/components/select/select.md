@@ -35,31 +35,33 @@ const listOptionElements = listOptions.map((option, index) => {
 </Select>
 ```
 
-Complex usage with parent component:
-```js
+## Ref API Example
+
+```jsx
 import Select from '@mavenlink/design-system/src/components/select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
+const ref = React.createRef();
 const listOptions = ['test', 'this', 'select'];
 const listOptionRefs = listOptions.map(() => React.createRef());
 const listOptionElements = listOptions.map((optionName, index) => {
   return(<ListOption key={optionName} ref={listOptionRefs[index]} value={optionName}>{optionName}</ListOption>);
 });
 
-function TestComponent() {
-  return (
+<RefExample ref={ref}>
+  {({ onChange }) => (
     <Select
-      id={uuid.v4()}
-      label="Complex Example 1"
-      name="Example 3"
+      id="select-ref-example"
+      label="Ref Example"
+      name="ref-example"
+      onChange={onChange}
       placeholder="This is a single choice field"
-      required
+      ref={ref}
       listOptionRefs={listOptionRefs}
     >
       {listOptionElements}
     </Select>
-  )
-}
-
-<TestComponent />
+  )}
+</RefExample>
 ```
