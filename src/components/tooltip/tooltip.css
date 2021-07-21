@@ -19,6 +19,7 @@
   background-color: var(--mds-grey-87);
   border-color: var(--mds-grey-87);
   color: var(--white);
+  z-index: 65536; /* a tooltip should be able to sit above modals and other stacked objects */
 }
 
 .top::before,
