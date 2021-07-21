@@ -182,7 +182,7 @@ describe('<MultiAutocompleter>', () => {
   });
 
   describe('option getter* function behavior', () => {
-    it('default handles title, name, full_name, and currency "labels" with id', async () => {
+    it('default handles title, name, full_name, currency, and label "labels" with id', async () => {
       render(<MultiAutocompleter {...requiredProps} />);
 
       await openOptions('test label');
@@ -190,6 +190,7 @@ describe('<MultiAutocompleter>', () => {
       expect(await findAvailableOption('test label', 'Option 6')).toBeInTheDocument();
       expect(await findAvailableOption('test label', 'Option 7')).toBeInTheDocument();
       expect(await findAvailableOption('test label', 'USD')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Option 9')).toBeInTheDocument();
 
       userEvent.click(await findAvailableOption('test label', 'Foo'));
 
@@ -202,10 +203,14 @@ describe('<MultiAutocompleter>', () => {
       await openOptions('test label');
       userEvent.click(await findAvailableOption('test label', 'USD'));
 
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Option 9'));
+
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Option 6')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Option 7')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'USD')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Option 9')).toBeInTheDocument();
     });
   });
 

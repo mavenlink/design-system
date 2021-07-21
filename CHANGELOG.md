@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - refactor(CustomFieldInputMultipleChoice): use <MultiAutocompleter /> component internally
   - feat(MultiAutocompleter): add `extraParams` API for supporting arbitrary additional query params when loading choices
+  - fix(Autocompleter): add support for `model.label` as the display name for an option
 </details>
 
 ## 0.79.0
