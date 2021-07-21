@@ -21,7 +21,7 @@ import useMounted from '../../hooks/use-mounted.js';
 
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
-  const [value, setValue] = useState(props.value || null);
+  const [value, setValue] = useState(props.value === undefined ? null : props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
@@ -110,7 +110,7 @@ const Select = forwardRef(function Select(props, ref) {
     id: props.id,
     name: props.name,
     get value() {
-      return value;
+      return value === null ? undefined : value;
     },
   }));
 
