@@ -7,6 +7,7 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - fix(tooltip): added a z-index to tooltips so they can generally be on top of everything. Tooltips are legal inside of other "stacking" content and should be on top.
 </details>
 
 ## 0.79.0
