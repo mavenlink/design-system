@@ -12,6 +12,9 @@
   - fix(Autocompleter): add support for `model.label` as the display name for an option
 </details>
 
+## 0.79.1
+  - fix(tooltip): added a z-index to tooltips so they can generally be on top of everything. Tooltips are legal inside of other "stacking" content and should be on top.
+
 ## 0.79.0
 - feat(help-icon): added `classNames` api to provide classes to icon & tooltip
 - docs(help-icon): removed a nonsensical example that did not describe anything
