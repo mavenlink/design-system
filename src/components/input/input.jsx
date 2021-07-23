@@ -1,96 +1,69 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import cautionSvg from '../../svgs/caution.svg';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import FormControl from '../form-control/form-control.jsx';
-import Icon from '../icon/icon.jsx';
-import styles from './input.css';
-import useMounted from '../../hooks/use-mounted.js';
-import useValidation from '../../hooks/use-validation.jsx';
-
-function getClassName(className, validationMessage) {
-  if (className) return className;
-  return validationMessage ? styles['invalid-input'] : styles.input;
-}
+import InputControl from '../control/input.jsx';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Input = forwardRef(function Input(props, forwardedRef) {
-  const fallbackRef = useRef();
-  const ref = forwardedRef || fallbackRef;
-  const inputRef = useRef();
-  const mounted = useMounted();
-  const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
-
   const ids = {
+    label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
+  };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
   };
 
-  function onBlur(event) {
-    validate();
-    props.onBlur(event);
-  }
-
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    // The MDS Input is using an uncontrolled `<input>`.
-    // In order to set a new provided value prop, we
-    // set the internal state of the `<input>`.
-    inputRef.current.value = props.value || '';
-  }, [props.value]);
+  const ref = useForwardedRef(forwardedRef);
+  const [invalid, setInvalid] = useState('');
 
   useImperativeHandle(ref, () => ({
-    get dirty() {
-      const providedValue = props.value || '';
-      return providedValue !== this.value;
-    },
-    id: props.id,
-    name: props.name,
-    get value() {
-      return inputRef.current.value;
-    },
+    ...refs.control.current,
+    get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
+    get value() { return refs.input.current.value; }, // Spread operator does not work with getters
   }));
 
   return (
     <FormControl
       className={props.cssContainer}
-      error={validationMessage}
+      error={invalid}
       id={props.id}
       label={props.label}
+      labelId={ids.label}
+      name={props.name}
       readOnly={props.readOnly}
+      ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
     >
-      <input
-        aria-describedby={`${ids.validation} ${ids.tooltip}`}
-        autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-        className={getClassName(props.className, validationMessage)}
-        defaultValue={props.value}
+      <InputControl
+        autoFocus={props.autoFocus}
+        className={props.className}
+        describedBy={ids.tooltip}
         id={props.id}
+        labelledBy={ids.label}
         maxLength={props.maxLength}
         name={props.name}
-        onBlur={onBlur}
+        onBlur={props.onBlur}
         onChange={props.onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
+        onInvalid={event => setInvalid(event.detail.validationMessage)}
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={inputRef}
+        ref={refs.input}
         required={props.required}
         type={props.type}
+        validationMessage={props.validationMessage}
+        value={props.value}
       />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          label={validationMessage}
-        />
-      )}
     </FormControl>
   );
 });
 
 Input.propTypes = {
+  /** Auto-focus the input control when mounted. */
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
@@ -117,7 +90,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  autoFocus: undefined,
+  autoFocus: false,
   className: undefined,
   cssContainer: undefined,
   cssLabel: undefined,

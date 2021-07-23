@@ -1,80 +1,63 @@
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
-import styles from './form-control.css';
 import HelpIcon from '../help-icon/help-icon.jsx';
+import styles from './form-control.css';
 
-function getLabelClassName(error, readOnly) {
-  if (isInvalid(error, readOnly)) return styles['invalid-label'];
+const FormControl = forwardRef(function FormControl(props, ref) {
+  const classNames = {
+    container: props.className,
+    control: styles['control-container'],
+    heading: styles['label-wrapper'],
+    label: props.error ? styles['invalid-label'] : styles.label,
+  };
+  const ids = {
+    input: props.id,
+    label: props.labelId || `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
+  };
 
-  return styles.label;
-}
+  useImperativeHandle(ref, () => ({
+    /** Determine whether the component has a different value than the provided prop. */
+    get dirty() { return undefined; },
+    /** The ID of the input element. */
+    id: props.id, // Is this needed anymore? Seems like it can be solved by `name`
+    /** The name of the control element which is used to reference the form-data after submitting the form. */
+    name: props.name,
+    /** Access the value of the component without hoisting value state */
+    get value() { return undefined; },
+  }));
 
-function isInvalid(error, readOnly) {
-  return !!error && !readOnly;
-}
-
-export default function FormControl(props) {
   return (
-    <div className={props.className} onKeyDown={props.onKeyDown} role="presentation">
-      <div className={styles['label-wrapper']}>
-        <div className={getLabelClassName(props.error, props.readOnly)}>
-          <label
-            htmlFor={props.id}
-            id={props.labelId}
-          >
+    <div className={classNames.container} onKeyDown={props.onKeyDown} role="presentation">
+      <div className={classNames.heading}>
+        <div className={classNames.label}>
+          <label htmlFor={ids.input} id={ids.label}>
             {props.label}
           </label>
           {props.required && '(Required)'}
         </div>
         {!!props.tooltip && (
-          <HelpIcon id={`${props.id}-tooltip`} label="More information" text={props.tooltip} />
+          <HelpIcon id={ids.tooltip} label="More information" text={props.tooltip} />
         )}
       </div>
-      <div className={styles['control-container']}>
+      <div className={classNames.control}>
         {props.children}
       </div>
-      {isInvalid(props.error, props.readOnly) && (
-        <span
-          id={`${props.id}Hint`}
-          className={styles['error-message']}
-          aria-live="polite"
-        >
-          {props.error}
-        </span>
-      )}
     </div>
   );
-}
+});
 
 FormControl.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  error: PropTypes.string,
-  id: (props) => {
-    if (props.id === undefined && props.labelId === undefined) {
-      return new Error('Invalid prop `id` supplied to `FormControl`. Either `id` or `labelId` are required.');
-    }
-
-    if (typeof props.id !== 'string' && props.labelId === undefined) {
-      return new Error('Invalid prop `id` supplied to `FormControl`. `id` must be a string.');
-    }
-
-    return undefined;
-  },
+  error: PropTypes.string, // TODO: Refactor as boolean
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  labelId: (props) => {
-    if (props.id === undefined && props.labelId === undefined) {
-      return new Error('Invalid prop `labelId` supplied to `FormControl`. Either `id` or `labelId` are required.');
-    }
-
-    if (props.id === undefined && typeof props.labelId !== 'string') {
-      return new Error('Invalid prop `labelId` supplied to `FormControl`. `labelId` must be a string.');
-    }
-
-    return undefined;
-  },
+  /** The ID of the label element. */
+  labelId: PropTypes.string,
+  /** The name of the input element which is used to reference the form-data after submitting the form. */
+  name: PropTypes.string,
   onKeyDown: PropTypes.func,
-  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
 };
@@ -84,8 +67,10 @@ FormControl.defaultProps = {
   error: '',
   id: undefined,
   labelId: undefined,
+  name: undefined,
   onKeyDown: () => {},
-  readOnly: false,
   required: false,
   tooltip: undefined,
 };
+
+export default FormControl;
