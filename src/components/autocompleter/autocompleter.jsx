@@ -85,7 +85,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 });
 
 function displayName(modelInfo) {
-  return modelInfo.title || modelInfo.name || modelInfo.full_name || modelInfo.currency;
+  return modelInfo.title || modelInfo.name || modelInfo.full_name || modelInfo.currency || modelInfo.label;
 }
 
 Autocompleter.propTypes = {
