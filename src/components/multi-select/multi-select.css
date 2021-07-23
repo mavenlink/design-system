@@ -40,6 +40,7 @@
   height: auto;
   margin: 0;
   padding: 0 calc(var(--spacing-x-large) + var(--spacing-x-large)) 0 var(--spacing-medium);
+  position: relative;
   width: 100%;
 }
 

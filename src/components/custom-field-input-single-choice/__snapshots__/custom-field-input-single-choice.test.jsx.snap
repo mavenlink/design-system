@@ -26,37 +26,41 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         <div
           class="control-container"
         >
-          <input
-            aria-autocomplete="none"
-            aria-controls="test-id-single-choice-listbox"
-            aria-describedby="test-id-tooltip test-idHint"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            autocomplete="off"
-            class="input"
-            id="test-id"
-            name="field-id"
-            role="combobox"
-            style="--numIcon: 1;"
-            type="text"
-            value=""
-          />
           <div
-            class="icon-container"
+            style="position: relative;"
           >
-            <svg
-              class="input-icon"
-              height="6"
-              role="img"
-              width="10"
+            <input
+              aria-autocomplete="none"
+              aria-controls="test-id-single-choice-listbox"
+              aria-describedby="test-id-tooltip test-idHint"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              class="input"
+              id="test-id"
+              name="field-id"
+              role="combobox"
+              style="--numIcon: 1;"
+              type="text"
+              value=""
+            />
+            <div
+              class="icon-container"
             >
-              <title>
-                Open choices listbox
-              </title>
-              <use
-                xlink:href="#caret-down.svg"
-              />
-            </svg>
+              <svg
+                class="input-icon"
+                height="6"
+                role="img"
+                width="10"
+              >
+                <title>
+                  Open choices listbox
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
         >
           <label
             for="test-input"
+            id="test-input-label"
           >
             Test label
           </label>
@@ -22,14 +23,18 @@ exports[`CustomFieldInputText has defaults 1`] = `
       <div
         class="control-container"
       >
-        <input
-          aria-describedby="test-inputHint test-input-tooltip"
-          class="input"
-          id="test-input"
-          name="field-id"
-          type="text"
-          value=""
-        />
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="test-inputHint test-input-tooltip"
+            class="input"
+            id="test-input"
+            name="field-id"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -26,31 +26,35 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
         <div
           class="control-container"
         >
-          <input
-            aria-describedby="test-idHint test-id-tooltip"
-            class="unique-input"
-            id="test-id"
-            name="test_name"
-            type="text"
-            value="Apr 20, 2021"
-          />
           <div
-            class="icons"
+            style="position: relative;"
           >
-            <svg
-              class="button"
-              height="14"
-              role="button"
-              tabindex="0"
-              width="11"
+            <input
+              aria-describedby="test-idHint test-id-tooltip"
+              class="unique-input"
+              id="test-id"
+              name="test_name"
+              type="text"
+              value="Apr 20, 2021"
+            />
+            <div
+              class="icons"
             >
-              <title>
-                Test label calendar button
-              </title>
-              <use
-                xlink:href="#calendar.svg"
-              />
-            </svg>
+              <svg
+                class="button"
+                height="14"
+                role="button"
+                tabindex="0"
+                width="11"
+              >
+                <title>
+                  Test label calendar button
+                </title>
+                <use
+                  xlink:href="#calendar.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -85,31 +89,35 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
         <div
           class="control-container"
         >
-          <input
-            aria-describedby="test-idHint test-id-tooltip"
-            class="unique-input"
-            id="test-id"
-            name="test_name"
-            type="date"
-            value="2021-04-20"
-          />
           <div
-            class="icons"
+            style="position: relative;"
           >
-            <svg
-              class="button"
-              height="14"
-              role="button"
-              tabindex="0"
-              width="11"
+            <input
+              aria-describedby="test-idHint test-id-tooltip"
+              class="unique-input"
+              id="test-id"
+              name="test_name"
+              type="date"
+              value="2021-04-20"
+            />
+            <div
+              class="icons"
             >
-              <title>
-                Test label calendar button
-              </title>
-              <use
-                xlink:href="#calendar.svg"
-              />
-            </svg>
+              <svg
+                class="button"
+                height="14"
+                role="button"
+                tabindex="0"
+                width="11"
+              >
+                <title>
+                  Test label calendar button
+                </title>
+                <use
+                  xlink:href="#calendar.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -680,31 +688,35 @@ exports[`src/components/date/date.test.jsx has defaults 1`] = `
         <div
           class="control-container"
         >
-          <input
-            aria-describedby="test-idHint test-id-tooltip"
-            class="input"
-            id="test-id"
-            name="test_name"
-            type="text"
-            value=""
-          />
           <div
-            class="icons"
+            style="position: relative;"
           >
-            <svg
-              class="button"
-              height="14"
-              role="button"
-              tabindex="0"
-              width="11"
+            <input
+              aria-describedby="test-idHint test-id-tooltip"
+              class="input"
+              id="test-id"
+              name="test_name"
+              type="text"
+              value=""
+            />
+            <div
+              class="icons"
             >
-              <title>
-                Test label calendar button
-              </title>
-              <use
-                xlink:href="#calendar.svg"
-              />
-            </svg>
+              <svg
+                class="button"
+                height="14"
+                role="button"
+                tabindex="0"
+                width="11"
+              >
+                <title>
+                  Test label calendar button
+                </title>
+                <use
+                  xlink:href="#calendar.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

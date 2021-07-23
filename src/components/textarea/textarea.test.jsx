@@ -31,7 +31,7 @@ describe('Textarea', () => {
   describe('cssContainer API', () => {
     it('sets <textarea> container className', () => {
       render(<Textarea {...requiredProps} cssContainer="test-class" />);
-      expect(screen.getByLabelText('the label').parentElement.parentElement).toHaveClass('test-class');
+      expect(screen.getByLabelText('the label').parentElement.parentElement.parentElement).toHaveClass('test-class');
     });
   });
 

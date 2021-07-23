@@ -2,8 +2,6 @@
 @import "../../styles/spacing.css";
 @import "../../styles/typography-v2.css";
 
-/* TODO: Deprecate in favor of control/input.css */
-
 .input {
   border: 1px solid var(--mds-grey-12);
   border-radius: 3px;
@@ -27,9 +25,9 @@
   box-sizing: border-box;
   pointer-events: none;
   position: absolute;
-  right: 6px;
+  right: calc(var(--spacing-x-large) / 2);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(50%, -50%);
 }
 
 /*

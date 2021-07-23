@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiAutocompleter from '../multi-autocompleter/multi-autocompleter.jsx';
 import mockConstants from '../../mocks/mock-constants.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const { API_ROOT } = mockConstants;
 
@@ -17,6 +18,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
   const [allChoices, setAllChoices] = useState([]);
   const [fullPropValue, setFullPropValue] = useState([]);
   const { execute } = useFetch();
+  const selfRef = useForwardedRef(ref);
 
   useEffect(() => {
     const fetchChoices = async () => {
@@ -42,7 +44,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
     }).filter(mappedChoice => mappedChoice !== undefined));
   }, [props.value, allChoices]);
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(selfRef, () => ({
     id: multiAutocompleterRef.current.id,
     name: multiAutocompleterRef.current.name,
     get dirty() {

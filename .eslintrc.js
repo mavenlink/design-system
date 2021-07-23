@@ -29,6 +29,7 @@ module.exports = {
       'jsx-a11y/no-noninteractive-tabindex': 'off',
       'jsx-a11y/no-static-element-interactions': 'off',
       'max-len': 'off',
+      'react/prop-types': 'off',
     },
   }, {
     files: [

@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - refactor(Input): implement an input for form controls and implement a basic input for cell controls
+  - feat(Control): implement an interface for interactive components
 </details>
 
 ## 0.79.3
