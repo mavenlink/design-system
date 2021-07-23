@@ -49,7 +49,7 @@ export default function Control(props) {
 
 Control.propTypes = {
   children: PropTypes.node.isRequired,
-  labelledBy: PropTypes.string.isRequired,
+  // labelledBy: PropTypes.string.isRequired,
   validationMessage: PropTypes.string.isRequired,
   validationMessageId: PropTypes.string.isRequired,
 };
