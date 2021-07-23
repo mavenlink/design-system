@@ -14,17 +14,21 @@ export default function Control(props) {
     validationMessage: styles['validation-message'],
   };
 
-  useLayoutEffect(() => {
-    if (window.document.getElementById(props.labelledBy)) return;
-    throw new Error('<Control> is missing a visible label.');
-  }, []);
+  // Temporarily disabled while we figure out how to be compatible with the ReactWrapper (backbone view)
+  // The backbone view renders the React component in-memory so this always throws.
+  // useLayoutEffect(() => {
+  //   if (window.document.getElementById(props.labelledBy)) return;
+  //   throw new Error('<Control> is missing a visible label.');
+  // }, []);
 
-  useLayoutEffect(() => {
-    if (window.document.querySelector('[aria-describedby]', props.validationMessageId)) return;
-
-    throw new Error('<Control> was used without an element on the DOM being described by it. ' +
-      'Please add `aria-describedby` to the element this control is being used to describe.');
-  }, []);
+  // Temporarily disabled while we figure out how to be compatible with the ReactWrapper (backbone view)
+  // The backbone view renders the React component in-memory so this always throws.
+  // useLayoutEffect(() => {
+  //   if (window.document.querySelector('[aria-describedby]', props.validationMessageId)) return;
+  //
+  //   throw new Error('<Control> was used without an element on the DOM being described by it. ' +
+  //     'Please add `aria-describedby` to the element this control is being used to describe.');
+  // }, []);
 
   return (
     <React.Fragment>
