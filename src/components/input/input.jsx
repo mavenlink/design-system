@@ -37,6 +37,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       tooltip={props.tooltip}
     >
       <InputControl
+        autoFocus={props.autoFocus}
         className={props.className}
         describedBy={ids.tooltip}
         id={props.id}
@@ -62,6 +63,8 @@ const Input = forwardRef(function Input(props, forwardedRef) {
 });
 
 Input.propTypes = {
+  /** Auto-focus the input control when mounted. */
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -87,6 +90,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  autoFocus: false,
   className: undefined,
   cssContainer: undefined,
   cssLabel: undefined,

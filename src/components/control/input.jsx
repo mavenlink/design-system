@@ -68,6 +68,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     >
       <div style={{ position: 'relative' }}>
         <input
+          autoFocus={props.autoFocus}
           aria-describedby={`${ids.validation} ${props.describedBy}`}
           className={getClassName(props.className, validationMessage)}
           defaultValue={props.value}
@@ -98,6 +99,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
 });
 
 Input.propTypes = {
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   describedBy: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -123,6 +125,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  autoFocus: false,
   className: undefined,
   describedBy: '',
   maxLength: undefined,
