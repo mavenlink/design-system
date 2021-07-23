@@ -34,9 +34,9 @@ object-assign
  */
 
 /*!
- * regjsgen 0.5.0
- * Copyright 2014-2018 Benjamin Tan <https://bnjmnt4n.now.sh/>
- * Available under MIT license <https://github.com/bnjmnt4n/regjsgen/blob/master/LICENSE>
+ * regjsgen 0.5.2
+ * Copyright 2014-2020 Benjamin Tan <https://ofcr.se/>
+ * Available under the MIT license <https://github.com/bnjmnt4n/regjsgen/blob/master/LICENSE-MIT.txt>
  */
 
 /*! *****************************************************************************
@@ -56,7 +56,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! https://mths.be/punycode v1.3.2 by @mathias */
 
-/*! https://mths.be/regenerate v1.3.3 by @mathias | MIT license */
+/*! https://mths.be/regenerate v1.4.2 by @mathias | MIT license */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
