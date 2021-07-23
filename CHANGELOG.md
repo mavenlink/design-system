@@ -7,10 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## 0.79.2
   - refactor(CustomFieldInputMultipleChoice): use <MultiAutocompleter /> component internally
   - feat(MultiAutocompleter): add `extraParams` API for supporting arbitrary additional query params when loading choices
   - fix(Autocompleter): add support for `model.label` as the display name for an option
-</details>
 
 ## 0.79.1
   - fix(tooltip): added a z-index to tooltips so they can generally be on top of everything. Tooltips are legal inside of other "stacking" content and should be on top.
