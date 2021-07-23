@@ -110,6 +110,61 @@ describe('<MultiAutocompleter>', () => {
     });
   });
 
+  describe('extraParams API', () => {
+    it('can insert extra params string into request', async () => {
+      jestServer.resetHandlers();
+      jestServer.use(rest.get(`${API_ROOT}/extra`, (request, response, context) => {
+        if (request.url.searchParams.get('an_extra_param') === '1') {
+          return response(
+            context.status(200),
+            context.json({
+              count: 1,
+              meta: {
+                count: 1,
+                page_count: 1,
+                page_number: 0,
+                page_size: 1,
+              },
+              results: [
+                {
+                  key: 'models',
+                  id: '1',
+                },
+              ],
+              models: {
+                1: {
+                  id: '1',
+                  name: 'Test Option',
+                },
+              },
+            }),
+          );
+        }
+
+        return response(
+          context.status(500),
+          context.json({
+            count: 0,
+            meta: {
+              count: 0,
+              page_count: 1,
+              page_number: 0,
+              page_size: 0,
+            },
+            results: [],
+            models: {},
+          }),
+        );
+      }));
+
+      render(<MultiAutocompleter {...requiredProps} apiEndpoint="/extra" extraParams="an_extra_param=1" />);
+
+      await openOptions('test label');
+
+      expect(await findAvailableOption('test label', 'Test Option')).toBeInTheDocument();
+    });
+  });
+
   describe('validationMessage API', () => {
     it('uses prop and is responsive to prop changes', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} validationMessage="This is an error" />);
@@ -127,7 +182,7 @@ describe('<MultiAutocompleter>', () => {
   });
 
   describe('option getter* function behavior', () => {
-    it('default handles title, name, full_name, and currency "labels" with id', async () => {
+    it('default handles title, name, full_name, currency, and label "labels" with id', async () => {
       render(<MultiAutocompleter {...requiredProps} />);
 
       await openOptions('test label');
@@ -135,6 +190,7 @@ describe('<MultiAutocompleter>', () => {
       expect(await findAvailableOption('test label', 'Option 6')).toBeInTheDocument();
       expect(await findAvailableOption('test label', 'Option 7')).toBeInTheDocument();
       expect(await findAvailableOption('test label', 'USD')).toBeInTheDocument();
+      expect(await findAvailableOption('test label', 'Option 9')).toBeInTheDocument();
 
       userEvent.click(await findAvailableOption('test label', 'Foo'));
 
@@ -147,10 +203,14 @@ describe('<MultiAutocompleter>', () => {
       await openOptions('test label');
       userEvent.click(await findAvailableOption('test label', 'USD'));
 
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('test label', 'Option 9'));
+
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Option 6')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Option 7')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'USD')).toBeInTheDocument();
+      expect(await findSelectedOption('test label', 'Option 9')).toBeInTheDocument();
     });
   });
 
