@@ -103,7 +103,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
         readOnly={props.readOnly}
         required={props.required}
         tooltip={props.tooltip}
-        value={value[0] !== -1 ? choices.find(choice => choice.id === value[0]) : undefined}
+        value={value[0] !== -1 ? (choices.find(choice => choice.id === value[0]) || null) : null}
       >
         {choices.length === 0
           ? <Loader inline />

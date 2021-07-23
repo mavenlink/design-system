@@ -22,7 +22,7 @@ import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.value === undefined ? null : props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
@@ -47,7 +47,7 @@ const Select = forwardRef(function Select(props, ref) {
   useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
   const clear = () => {
-    setValue(undefined);
+    setValue(null);
     setSearchValue(undefined);
     inputRef.current.focus();
   };
@@ -105,17 +105,19 @@ const Select = forwardRef(function Select(props, ref) {
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      return props.value !== this.value;
+      return props.value === undefined ? value !== null : props.value !== value;
     },
     id: props.id,
     name: props.name,
     get value() {
-      return value;
+      return value === null ? undefined : value;
     },
   }));
 
   useEffect(() => {
     if (!mounted.current) return;
+
+    if (props.value === undefined) return;
 
     setValue(props.value);
   }, [props.value]);

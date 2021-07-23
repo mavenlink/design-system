@@ -378,7 +378,7 @@ describe('src/components/select/select', () => {
   });
 
   describe('forwardRef API', () => {
-    it('can be used to get value as array of selected id', () => {
+    it('can be used to get value as the selected id', () => {
       const inputRef = createRef(null);
       const value = 'bar';
       render(<Select {...requiredProps} value={value} ref={inputRef}>{baseListOptionElements}</Select>);
@@ -415,6 +415,15 @@ describe('src/components/select/select', () => {
       expect(onChangeSpy).not.toHaveBeenCalled();
       rerender(<Select {...requiredProps} onChange={onChangeSpy} value="11" />);
       expect(onChangeSpy).not.toHaveBeenCalled();
+    });
+
+    it('is called when the value is cleared', () => {
+      const onChangeSpy = jest.fn();
+      render(<Select {...requiredProps} onChange={onChangeSpy} value="10" />);
+
+      expect(onChangeSpy).not.toHaveBeenCalled();
+      userEvent.click(screen.getByRole('button'));
+      expect(onChangeSpy).toHaveBeenCalled();
     });
   });
 

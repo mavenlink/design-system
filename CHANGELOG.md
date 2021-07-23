@@ -9,6 +9,8 @@
   - Append new items to make git merging easier.
   - refactor(Input): implement an input for form controls and implement a basic input for cell controls
   - feat(Control): implement an interface for interactive components
+  - fix(Select): set value to `null` on clear and as default state so `onChange` is called and `dirty` is correct
+  - fix(CustomFieldInputSingleChoice): pass value `null` to child `<Select />` when no choice is found
 </details>
 
 ## 0.79.2
