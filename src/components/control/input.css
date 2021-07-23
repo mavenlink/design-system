@@ -25,9 +25,9 @@
   box-sizing: border-box;
   pointer-events: none;
   position: absolute;
-  right: 6px;
+  right: calc(var(--spacing-x-large) / 2);
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(50%, -50%);
 }
 
 /*
