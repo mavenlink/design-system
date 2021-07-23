@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - fix(Select): set value to `null` on clear and as default state so `onChange` is called and `dirty` is correct
+  - fix(CustomFieldInputSingleChoice): pass value `null` to child `<Select />` when no choice is found
 </details>
 
 ## 0.79.2
