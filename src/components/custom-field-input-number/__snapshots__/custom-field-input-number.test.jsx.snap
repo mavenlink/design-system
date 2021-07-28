@@ -28,7 +28,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
         >
           <input
             aria-describedby="test-input-tooltip test-inputHint"
-            class="custom-field-input-text"
+            class="input"
             id="test-input"
             max="2147483648"
             min="-2147483648"
