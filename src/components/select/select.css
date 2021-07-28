@@ -1,5 +1,6 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
 
 .container {
   position: relative;
@@ -20,10 +21,57 @@
 }
 
 .input-icon {
-  composes: input-icon from '../__internal__/abstract-custom-field/abstract-custom-field.css';
+  pointer-events: none;
 }
 
 .clear-button {
   composes: button from '../icon-button/icon-button.css';
   padding: var(--spacing-small);
+}
+
+.icon-container {
+  align-items: center;
+  display: inline-flex;
+  position: absolute;
+  right: var(--spacing-medium);
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.icon-container > * {
+  margin-right: var(--spacing-small);
+}
+
+.icon-container > *:last-child {
+  margin-right: 0;
+}
+
+.input-styles {
+  border: 1px solid var(--mds-grey-12);
+  border-radius: var(--spacing-x-small);
+  box-sizing: border-box;
+  color: var(--mds-grey-87);
+  font: var(--mds-type-content);
+  height: var(--spacing-x-large);
+  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
+  padding-left: var(--spacing-medium);
+  width: 100%;
+}
+
+.input {
+  composes: input-styles;
+}
+
+.input:disabled {
+  background-color: var(--mds-grey-3);
+}
+
+.input:read-only {
+  background-color: var(--mds-grey-3);
+}
+
+.input-invalid {
+  composes: input-styles;
+  border-color: var(--mds-red-100);
+  padding-right: var(--spacing-x-large);
 }

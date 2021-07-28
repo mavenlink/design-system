@@ -6,15 +6,17 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
-import styles from './select.css';
+import cautionSvg from '../../svgs/caution.svg';
+import Control from '../control/control.jsx';
+import FormControl from '../form-control/form-control.jsx';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
+import styles from './select.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
@@ -26,16 +28,7 @@ const Select = forwardRef(function Select(props, ref) {
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
-  const listBoxRef = useRef();
-  const inputRef = useRef();
   const selfRef = useForwardedRef(ref);
-
-  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
-  const caretIcon = (<Icon
-    className={styles['input-icon']}
-    icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-    label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
-  />);
 
   const defaultValue = value ? props.displayValueEvaluator(value) : '';
 
@@ -46,23 +39,31 @@ const Select = forwardRef(function Select(props, ref) {
   };
   useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
+  const refs = {
+    listbox: useRef(),
+    input: useRef(),
+  };
+
+  const [validationMessage, validate] = useValidation(props.errorText, refs.input);
+  const invalid = validationMessage.length > 0;
+
+  const classNames = {
+    input: invalid ? styles['input-invalid'] : styles.input,
+  };
+
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+    listbox: `${props.id}-single-choice-listbox`,
+    tooltip: `${props.id}-tooltip`,
+    validation: `${props.id}Hint`,
+  };
+
+
   const clear = () => {
     setValue(null);
     setSearchValue(undefined);
-    inputRef.current.focus();
-  };
-
-  const clearIcon = () => {
-    if (!props.readOnly && (value || searchValue)) {
-      return (<IconButton
-        className={styles['clear-button']}
-        icon={iconClear}
-        label={'Remove selected choice'}
-        onPress={clear}
-      />);
-    }
-
-    return undefined;
+    refs.input.current.focus();
   };
 
   function onClick() {
@@ -88,7 +89,7 @@ const Select = forwardRef(function Select(props, ref) {
     setValue(selectedValue);
     setSearchValue(selectedValue.label);
     setShowOptions(false);
-    inputRef.current.focus();
+    refs.input.current.focus();
   }
 
   function onSearchChange(event) {
@@ -135,7 +136,7 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value]);
 
   function handleBlur(event) {
-    if (!(listBoxRef.current && listBoxRef.current.contains(event.relatedTarget))) {
+    if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
       validate();
     }
 
@@ -173,48 +174,84 @@ const Select = forwardRef(function Select(props, ref) {
 
   return (
     <div ref={wrapperRef} className={props.className}>
-      <AbstractCustomField
-        ariaProps={{
-          autocomplete: 'none',
-          controls: `${props.id}-single-choice-listbox`,
-          expanded: showOptions,
-          haspopup: 'listbox',
-        }}
-        autoComplete="off"
-        clear={clearIcon()}
-        errorText={validationMessage}
-        icon={caretIcon}
-        id={props.id}
-        inputRef={inputRef}
-        inputRole="combobox"
+      <FormControl
+        error={validationMessage}
+        id={ids.input}
+        labelId={ids.label}
         label={props.label}
         name={props.name}
-        onBlur={handleBlur}
-        onChange={onSearchChange}
-        onClick={onClick}
-        onInput={props.onInput}
-        onKeyDown={onKeyDown}
-        placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
         tooltip={props.tooltip}
-        value={searchValue || defaultValue}
-      />
-      { showOptions && (
-        (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
-          <Listbox
-            className={styles.dropdown}
-            id={`${props.id}-single-choice-listbox`}
-            labelledBy={`${props.id}-label`}
-            onChange={onSelectionChange}
-            ref={listBoxRef}
-            refs={props.listOptionRefs}
-            value={value}
-          >
-            {props.children}
-          </Listbox>
-        )
-      )}
+      >
+        <Control
+          labelledBy={ids.label}
+          validationMessage={validationMessage}
+          validationMessageId={ids.validation}
+        >
+          <div style={{ position: 'relative' }}>
+            <input
+              autoComplete="off"
+              aria-autocomplete="none"
+              aria-controls={ids.listbox}
+              aria-haspopup="listbox"
+              aria-expanded={showOptions}
+              aria-invalid={invalid ? 'true' : undefined}
+              aria-describedby={`${ids.tooltip} ${ids.validation}`}
+              className={classNames.input}
+              id={ids.input}
+              role="combobox"
+              name={props.name}
+              onBlur={handleBlur}
+              onChange={onSearchChange}
+              onClick={onClick}
+              onKeyDown={onKeyDown}
+              onInput={props.onInput}
+              placeholder={props.placeholder}
+              readOnly={props.readOnly}
+              ref={refs.input}
+              required={props.required}
+              style={{ '--numIcon': 3 }}
+              type="text"
+              value={searchValue || defaultValue}
+            />
+            <div className={styles['icon-container']}>
+              {validationMessage.length > 0 ? (<Icon
+                className={styles['input-icon']}
+                icon={cautionSvg}
+                label="Invalid custom field"
+              />) : undefined}
+              {!props.readOnly && (value || searchValue) ? (
+                <IconButton
+                  icon={iconClear}
+                  label={'Remove selected choice'}
+                  onPress={clear}
+                />
+              ) : undefined}
+              <Icon
+                className={styles['input-icon']}
+                icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+                label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+              />
+            </div>
+            { showOptions && (
+              (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
+                <Listbox
+                  className={styles.dropdown}
+                  id={`${props.id}-single-choice-listbox`}
+                  labelledBy={`${props.id}-label`}
+                  onChange={onSelectionChange}
+                  ref={refs.listbox}
+                  refs={props.listOptionRefs}
+                  value={value}
+                >
+                  {props.children}
+                </Listbox>
+              )
+            )}
+          </div>
+        </Control>
+      </FormControl>
     </div>
   );
 });
