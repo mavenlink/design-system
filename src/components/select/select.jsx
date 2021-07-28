@@ -59,7 +59,6 @@ const Select = forwardRef(function Select(props, ref) {
     validation: `${props.id}Hint`,
   };
 
-
   const clear = () => {
     setValue(null);
     setSearchValue(undefined);
