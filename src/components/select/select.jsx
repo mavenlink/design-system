@@ -135,7 +135,7 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value]);
 
   function handleBlur(event) {
-    if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
+    if (!refs.listbox.current || !refs.listbox.current.contains(event.relatedTarget))) {
       validate();
     }
 
