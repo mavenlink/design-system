@@ -50,7 +50,7 @@ const FormControl = forwardRef(function FormControl(props, ref) {
 FormControl.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  error: PropTypes.string, // TODO: Refactor as boolean
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), // TODO: Refactor as boolean
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   /** The ID of the label element. */
