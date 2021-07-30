@@ -17,6 +17,7 @@ module.exports = {
   },
   overrides: [{
     files: [
+      '**/jest*',
       '**/*.test.js',
       '**/*.test.jsx',
     ],
