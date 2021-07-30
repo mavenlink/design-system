@@ -22,7 +22,6 @@ module.exports = {
     ],
     env: {
       jest: true,
-      'jest/globals': true,
     },
     rules: {
       'jsx-a11y/label-has-for': 'off',
