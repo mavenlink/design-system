@@ -48,7 +48,6 @@ const Select = forwardRef(function Select(props, forwardedRef) {
       >
         <SelectControl
           displayValueEvaluator={props.displayValueEvaluator}
-          errorText={props.errorText}
           id={props.id}
           listOptionRefs={props.listOptionRefs}
           name={props.name}
@@ -59,6 +58,7 @@ const Select = forwardRef(function Select(props, forwardedRef) {
           readOnly={props.readOnly}
           ref={refs.input}
           required={props.required}
+          validationMessage={props.errorText}
           value={props.value}
           wrapperRef={refs.container}
         >

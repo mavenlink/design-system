@@ -43,7 +43,7 @@ const Select = forwardRef(function Select(props, ref) {
     input: useRef(),
   };
 
-  const [validationMessage, validate] = useValidation(props.errorText, refs.input);
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
   const invalid = validationMessage.length > 0;
 
   const classNames = {
@@ -263,7 +263,6 @@ Select.propTypes = {
     PropTypes.func,
     PropTypes.bool,
   ]),
-  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
@@ -273,6 +272,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  validationMessage: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
@@ -280,13 +280,13 @@ Select.propTypes = {
 Select.defaultProps = {
   children: undefined,
   displayValueEvaluator: value => value,
-  errorText: '',
   onChange: () => {},
   onInput: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
+  validationMessage: '',
   value: undefined,
   wrapperRef: undefined,
 };
