@@ -49,6 +49,7 @@ const Select = forwardRef(function Select(props, forwardedRef) {
         <SelectControl
           displayValueEvaluator={props.displayValueEvaluator}
           id={props.id}
+          labelledBy={ids.label}
           listOptionRefs={props.listOptionRefs}
           name={props.name}
           onChange={props.onChange}

@@ -52,7 +52,7 @@ const Select = forwardRef(function Select(props, ref) {
 
   const ids = {
     input: props.id,
-    label: `${props.id}-label`,
+    label: props.labelledBy,
     listbox: `${props.id}-single-choice-listbox`,
     tooltip: `${props.id}-tooltip`,
     validation: `${props.id}Hint`,
@@ -113,7 +113,7 @@ const Select = forwardRef(function Select(props, ref) {
 
   useEffect(() => {
     props.onInvalid({
-      target: ref.current,
+      target: selfRef.current,
       detail: {
         validationMessage,
       },
@@ -264,6 +264,7 @@ Select.propTypes = {
     PropTypes.bool,
   ]),
   id: PropTypes.string.isRequired,
+  labelledBy: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
