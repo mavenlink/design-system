@@ -43,7 +43,7 @@ import ListOption from '../list-option/list-option.jsx';
 import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
-const listOptions = ['test', 'this', 'select'];
+const listOptions = ['test', 'this', 'select', 'foo', 'bar', 'baz', '1', '2', '3', '4', '5', '6', '7'];
 const listOptionRefs = listOptions.map(() => React.createRef());
 const listOptionElements = listOptions.map((optionName, index) => {
   return(<ListOption key={optionName} ref={listOptionRefs[index]} value={optionName}>{optionName}</ListOption>);
