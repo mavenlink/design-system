@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - fix(Select): add a maximum height to the `<Select />` dropdown equal to 10 rows
 </details>
+
+## 0.80.1
+  - fix(Select): add a maximum height to the `<Select />` dropdown equal to 10 rows
 
 ## 0.80.0
 - refactor(Input): implement an input for form controls and implement a basic input for cell controls
