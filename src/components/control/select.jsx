@@ -148,33 +148,27 @@ const Select = forwardRef(function Select(props, ref) {
     props.onChange({ target: selfRef.current });
   }, [value]);
 
-  useEffect(function updateOptionVisibility() {
+  useEffect(() => {
     if (searchValue) {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          if (props.displayValueEvaluator) {
-            const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
-
-            const matches = listOptionDisplayValue.toLowerCase().includes(searchValue.toLowerCase());
-            listOptionRef.current.setVisible(matches);
-          }
-        }
-      });
+      if (!props.displayValueEvaluator) return;
+      props.listOptionRefs
+        .filter(_ref => _ref.current)
+        .forEach((_ref) => {
+          const displayValue = props.displayValueEvaluator(_ref.current.value);
+          const matches = displayValue.toLowerCase().includes(searchValue.toLowerCase());
+          _ref.current.setVisible(matches);
+        });
     } else {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          listOptionRef.current.setVisible(true);
-        }
-      });
+      props.listOptionRefs
+        .filter(_ref => _ref.current)
+        .forEach(_ref => _ref.current.setVisible(true));
     }
   }, [searchValue, props.listOptionRefs]);
 
-  useEffect(function updateOptionSelected() {
-    props.listOptionRefs.forEach((listOptionRef) => {
-      if (listOptionRef.current) {
-        listOptionRef.current.setSelected(JSON.stringify(value) === JSON.stringify(listOptionRef.current.value));
-      }
-    });
+  useEffect(() => {
+    props.listOptionRefs
+      .filter(_ref => _ref.current)
+      .forEach(_ref => _ref.current.setSelected(JSON.stringify(value) === JSON.stringify(_ref.current.value)));
   }, [value, showOptions]);
 
   return (
