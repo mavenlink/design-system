@@ -64,6 +64,14 @@ const Select = forwardRef(function Select(props, ref) {
     refs.input.current.focus();
   };
 
+  function onBlur(event) {
+    if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
+      validate();
+    }
+
+    setBeenBlurred(true);
+  }
+
   function onClick() {
     if (!props.readOnly) setShowOptions(true);
   }
@@ -140,14 +148,6 @@ const Select = forwardRef(function Select(props, ref) {
     props.onChange({ target: selfRef.current });
   }, [value]);
 
-  function handleBlur(event) {
-    if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
-      validate();
-    }
-
-    setBeenBlurred(true);
-  }
-
   useEffect(function updateOptionVisibility() {
     if (searchValue) {
       props.listOptionRefs.forEach((listOptionRef) => {
@@ -196,7 +196,7 @@ const Select = forwardRef(function Select(props, ref) {
           id={ids.input}
           role="combobox"
           name={props.name}
-          onBlur={handleBlur}
+          onBlur={onBlur}
           onChange={onSearchChange}
           onClick={onClick}
           onKeyDown={onKeyDown}
