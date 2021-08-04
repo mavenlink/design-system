@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - refactor(Select): split abstract Select control vs Select form control
+  - feat(Select): implement Select cell control
 </details>
 
 ## 0.80.0
