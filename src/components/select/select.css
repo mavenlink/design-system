@@ -10,6 +10,8 @@
   composes: container from '../listbox/listbox.css';
   box-sizing: border-box;
   background-color: var(--white);
+  max-height: calc(var(--spacing-x-large) * 10);
+  overflow-y: scroll;
   position: absolute;
   width: 100%;
   z-index: 10;
