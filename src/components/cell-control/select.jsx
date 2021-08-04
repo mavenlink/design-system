@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import SelectControl from '../control/select.jsx';
 
 function Select(props) {
+  const refs = {
+    container: useRef(),
+  };
+
   return (
     <CellControl
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
+      ref={refs.container}
     >
       <SelectControl
         id={props.id}
@@ -17,6 +22,7 @@ function Select(props) {
         readOnly={props.readOnly}
         required={props.required}
         validationMessage={props.validationMessage}
+        wrapperRef={refs.container}
       >
         {props.children}
       </SelectControl>

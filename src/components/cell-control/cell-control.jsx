@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './cell-control.css';
 
-export default function CellControl(props) {
+const CellControl = forwardRef(function CellControl(props, ref) {
   const classNames = {
     container: styles.container,
   };
@@ -11,12 +11,13 @@ export default function CellControl(props) {
     <td
       aria-labelledby={props.labelledBy}
       className={classNames.container}
+      ref={ref}
       role="gridcell"
     >
       {props.children}
     </td>
   );
-}
+});
 
 CellControl.propTypes = {
   children: PropTypes.node.isRequired,
@@ -25,3 +26,5 @@ CellControl.propTypes = {
 };
 
 CellControl.defaultProps = {};
+
+export default CellControl;
