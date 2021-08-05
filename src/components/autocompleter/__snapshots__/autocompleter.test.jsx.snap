@@ -4,63 +4,59 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id"
+            id="test-id-label"
           >
-            <label
-              for="test-id"
-              id="test-id-label"
-            >
-              Test label
-            </label>
-          </div>
+            Test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          style="position: relative;"
         >
+          <input
+            aria-autocomplete="none"
+            aria-controls="test-id-single-choice-listbox"
+            aria-describedby="test-id-tooltip test-idHint"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            autocomplete="off"
+            class="input"
+            id="test-id"
+            name="test_name"
+            role="combobox"
+            style="--numIcon: 3;"
+            type="text"
+            value=""
+          />
           <div
-            style="position: relative;"
+            class="icon-container"
           >
-            <input
-              aria-autocomplete="none"
-              aria-controls="test-id-single-choice-listbox"
-              aria-describedby="test-id-tooltip test-idHint"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              autocomplete="off"
-              class="input"
-              id="test-id"
-              name="test_name"
-              role="combobox"
-              style="--numIcon: 3;"
-              type="text"
-              value=""
-            />
-            <div
-              class="icon-container"
+            <svg
+              class="input-icon"
+              height="6"
+              role="img"
+              width="10"
             >
-              <svg
-                class="input-icon"
-                height="6"
-                role="img"
-                width="10"
-              >
-                <title>
-                  Open choices listbox
-                </title>
-                <use
-                  xlink:href="#caret-down.svg"
-                />
-              </svg>
-            </div>
+              <title>
+                Open choices listbox
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
+              />
+            </svg>
           </div>
         </div>
       </div>
@@ -71,6 +67,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
 
 exports[`src/components/autocompleter/autocompleter has defaults 2`] = `
 Object {
+  "contains": [Function],
   "dirty": false,
   "id": "test-id",
   "name": "test_name",

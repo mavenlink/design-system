@@ -1,92 +1,62 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState } from 'react';
-import useFetch from '@bloodyaugust/use-fetch';
-import useMounted from '../../hooks/use-mounted.js';
-import Select from '../select/select.jsx';
-import ListOption from '../list-option/list-option.jsx';
-import mockConstants from '../../mocks/mock-constants.js';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import AutocompleteControl from '../control/autocompleter.jsx';
+import FormControl from '../form-control/form-control.jsx';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const { API_ROOT } = mockConstants;
+const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
+  const ref = useForwardedRef(forwardedRef);
+  const [invalid, setInvalid] = useState(false);
 
-const Autocompleter = forwardRef(function Autocompleter(props, ref) {
-  const { execute } = useFetch();
-  const mounted = useMounted();
-  const [models, setModels] = useState(props.models);
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+  };
+  const refs = {
+    control: useRef(),
+    input: useRef(),
+  };
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    setModels(props.models);
-  }, [props.models]);
-
-  useEffect(fetchModels, []);
-
-  function fetchModels(searchString) {
-    if (!props.apiEndpoint) { return; }
-
-    execute(apiEndpoint(searchString))
-      .then((respObj) => {
-        if (mounted.current) {
-          setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
-        }
-      }).catch((error) => {
-        if (error.error && error.error.type !== 'aborted') {
-          throw error;
-        }
-      });
-  }
-
-  function apiEndpoint(searchString) {
-    const baseUrl = `${API_ROOT}${props.apiEndpoint}`;
-    if (searchString) {
-      const containsQueryStart = baseUrl.match(/[?]/g);
-      const paramPrefix = containsQueryStart ? '&' : '?';
-
-      return `${baseUrl}${paramPrefix}${props.searchParam}=${searchString}`;
-    }
-
-    return baseUrl;
-  }
-
-  function onInput(event) {
-    fetchModels(event.target.value);
-  }
-
-  const listOptionRefs = models.map(() => React.createRef());
-  const listOptionElements = models.map((modelInfo, index) => {
-    return (
-      <ListOption key={modelInfo.id} ref={listOptionRefs[index]} value={modelInfo}>
-        {props.displayValueEvaluator(modelInfo)}
-      </ListOption>
-    );
-  });
+  useImperativeHandle(ref, () => ({
+    ...refs.control.current,
+    get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
+    get value() { return refs.input.current.value; }, // Spread operator does not work with getters
+  }));
 
   return (
-    <Select
+    <FormControl
       className={props.className}
-      displayValueEvaluator={props.displayValueEvaluator}
-      errorText={props.validationMessage}
-      id={props.id}
+      error={invalid}
+      id={ids.input}
+      labelId={ids.label}
       label={props.label}
-      listOptionRefs={listOptionRefs}
       name={props.name}
-      onChange={props.onChange}
-      onInput={onInput}
-      placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref={ref}
+      ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
-      value={props.value}
     >
-      {listOptionElements}
-    </Select>
+      <AutocompleteControl
+        apiEndpoint={props.apiEndpoint}
+        displayValueEvaluator={props.displayValueEvaluator}
+        id={props.id}
+        labelledBy={ids.label}
+        models={props.models}
+        name={props.name}
+        onChange={props.onChange}
+        onInvalid={event => setInvalid(event.detail.validationMessage)}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        searchParam={props.searchParam}
+        validationMessage={props.validationMessage}
+        value={props.value}
+        wrapperRef={refs.control}
+      />
+    </FormControl>
   );
 });
-
-function displayName(modelInfo) {
-  return modelInfo.title || modelInfo.name || modelInfo.full_name || modelInfo.currency || modelInfo.label;
-}
 
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
@@ -115,7 +85,7 @@ Autocompleter.propTypes = {
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
   className: undefined,
-  displayValueEvaluator: displayName,
+  displayValueEvaluator: undefined,
   label: undefined,
   models: [],
   onChange: () => {},
