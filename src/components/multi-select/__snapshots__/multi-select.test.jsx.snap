@@ -152,6 +152,7 @@ exports[`<MultiSelect> has defaults 1`] = `
 
 exports[`<MultiSelect> has defaults 2`] = `
 Object {
+  "contains": [Function],
   "dirty": false,
   "id": "test-id",
   "name": "field-id",

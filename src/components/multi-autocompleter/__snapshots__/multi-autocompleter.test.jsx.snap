@@ -152,6 +152,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
 
 exports[`<MultiAutocompleter> has defaults 2`] = `
 Object {
+  "contains": [Function],
   "dirty": false,
   "id": "test-id",
   "name": "field-id",
