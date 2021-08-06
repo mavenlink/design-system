@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import styles from '../__internal__/abstract-custom-field/abstract-custom-field.css';
 import Number from '../number/number.jsx';
 
 const apiLimits = {
@@ -74,7 +73,7 @@ CustomFieldInputNumber.propTypes = {
 };
 
 CustomFieldInputNumber.defaultProps = {
-  className: styles['custom-field-input-text'],
+  className: undefined,
   disabled: false,
   errorText: '',
   name: undefined,

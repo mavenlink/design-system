@@ -40,7 +40,7 @@ exports[`src/components/select/select has defaults 1`] = `
               id="test-id"
               name="field-id"
               role="combobox"
-              style="--numIcon: 1;"
+              style="--numIcon: 3;"
               type="text"
               value=""
             />

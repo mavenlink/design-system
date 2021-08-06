@@ -28,7 +28,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
         >
           <input
             aria-describedby="currencyHint currency-tooltip"
-            class="custom-field-input-text"
+            class="input"
             id="currency"
             name="some-field-id"
             type="text"

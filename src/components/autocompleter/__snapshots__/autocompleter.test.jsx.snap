@@ -40,7 +40,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
               id="test-id"
               name="test_name"
               role="combobox"
-              style="--numIcon: 1;"
+              style="--numIcon: 3;"
               type="text"
               value=""
             />

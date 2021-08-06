@@ -17,12 +17,12 @@ module.exports = {
   },
   overrides: [{
     files: [
+      '**/jest*',
       '**/*.test.js',
       '**/*.test.jsx',
     ],
     env: {
       jest: true,
-      'jest/globals': true,
     },
     rules: {
       'jsx-a11y/label-has-for': 'off',

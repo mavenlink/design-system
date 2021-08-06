@@ -1,220 +1,71 @@
 import React, {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import AbstractCustomField from '../__internal__/abstract-custom-field/abstract-custom-field.jsx';
-import Icon from '../icon/icon.jsx';
-import IconButton from '../icon-button/icon-button.jsx';
-import iconClear from '../../svgs/clear.svg';
-import iconCaretDown from '../../svgs/caret-down.svg';
-import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
-import styles from './select.css';
-import Listbox from '../listbox/listbox.jsx';
-import NoOptions from '../no-options/no-options.jsx';
-import useValidation from '../../hooks/use-validation.jsx';
-import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import useMounted from '../../hooks/use-mounted.js';
+import FormControl from '../form-control/form-control.jsx';
+import SelectControl from '../control/select.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import styles from './select.css';
 
-const Select = forwardRef(function Select(props, ref) {
-  const [showOptions, setShowOptions] = useState(false);
-  const [value, setValue] = useState(props.value === undefined ? null : props.value);
-  const [hasBeenBlurred, setBeenBlurred] = useState(false);
-  const [searchValue, setSearchValue] = useState(undefined);
-  const mounted = useMounted();
-  const listBoxRef = useRef();
-  const inputRef = useRef();
-  const selfRef = useForwardedRef(ref);
+const Select = forwardRef(function Select(props, forwardedRef) {
+  const ref = useForwardedRef(forwardedRef);
+  const [invalid, setInvalid] = useState(false);
 
-  const [validationMessage, validate] = useValidation(props.errorText, inputRef);
-  const caretIcon = (<Icon
-    className={styles['input-icon']}
-    icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-    label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
-  />);
-
-  const defaultValue = value ? props.displayValueEvaluator(value) : '';
-
-  const wrapperRef = useRef(null);
-  const handleDropdownClose = () => {
-    setShowOptions(false);
-    setSearchValue(defaultValue);
+  const classNames = {
+    container: props.className,
   };
-  useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
-
-  const clear = () => {
-    setValue(null);
-    setSearchValue(undefined);
-    inputRef.current.focus();
+  const ids = {
+    input: props.id,
+    label: `${props.id}-label`,
+  };
+  const refs = {
+    container: useRef(),
+    control: useRef(),
+    input: useRef(),
   };
 
-  const clearIcon = () => {
-    if (!props.readOnly && (value || searchValue)) {
-      return (<IconButton
-        className={styles['clear-button']}
-        icon={iconClear}
-        label={'Remove selected choice'}
-        onPress={clear}
-      />);
-    }
-
-    return undefined;
-  };
-
-  function onClick() {
-    if (!props.readOnly) setShowOptions(true);
-  }
-
-  function onKeyDown(event) {
-    switch (event.key) {
-      case 'Enter':
-        event.preventDefault();
-        if (!showOptions && !props.readOnly) setShowOptions(true);
-        break;
-      case 'Escape':
-        event.preventDefault();
-        setShowOptions(false);
-        break;
-      default:
-    }
-  }
-
-  function onSelectionChange(event) {
-    const selectedValue = event.target.value;
-    setValue(selectedValue);
-    setSearchValue(selectedValue.label);
-    setShowOptions(false);
-    inputRef.current.focus();
-  }
-
-  function onSearchChange(event) {
-    const newValue = event.target.value;
-
-    if (newValue === '') {
-      clear();
-      return;
-    }
-
-    setSearchValue(newValue);
-    setShowOptions(true);
-  }
-
-  useImperativeHandle(selfRef, () => ({
-    get dirty() {
-      return props.value === undefined ? value !== null : props.value !== value;
-    },
-    id: props.id,
-    name: props.name,
-    get value() {
-      return value === null ? undefined : value;
-    },
+  useImperativeHandle(ref, () => ({
+    ...refs.control.current,
+    get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
+    get value() { return refs.input.current.value; }, // Spread operator does not work with getters
   }));
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    if (props.value === undefined) return;
-
-    setValue(props.value);
-  }, [props.value]);
-
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    if (hasBeenBlurred) {
-      validate();
-    }
-
-    if (props.value === value) return;
-
-    props.onChange({ target: selfRef.current });
-  }, [value]);
-
-  function handleBlur(event) {
-    if (!(listBoxRef.current && listBoxRef.current.contains(event.relatedTarget))) {
-      validate();
-    }
-
-    setBeenBlurred(true);
-  }
-
-  useEffect(function updateOptionVisibility() {
-    if (searchValue) {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          if (props.displayValueEvaluator) {
-            const listOptionDisplayValue = props.displayValueEvaluator(listOptionRef.current.value);
-
-            const matches = listOptionDisplayValue.toLowerCase().includes(searchValue.toLowerCase());
-            listOptionRef.current.setVisible(matches);
-          }
-        }
-      });
-    } else {
-      props.listOptionRefs.forEach((listOptionRef) => {
-        if (listOptionRef.current) {
-          listOptionRef.current.setVisible(true);
-        }
-      });
-    }
-  }, [searchValue, props.listOptionRefs]);
-
-  useEffect(function updateOptionSelected() {
-    props.listOptionRefs.forEach((listOptionRef) => {
-      if (listOptionRef.current) {
-        listOptionRef.current.setSelected(JSON.stringify(value) === JSON.stringify(listOptionRef.current.value));
-      }
-    });
-  }, [value, showOptions]);
-
   return (
-    <div ref={wrapperRef} className={props.className}>
-      <AbstractCustomField
-        ariaProps={{
-          autocomplete: 'none',
-          controls: `${props.id}-single-choice-listbox`,
-          expanded: showOptions,
-          haspopup: 'listbox',
-        }}
-        autoComplete="off"
-        clear={clearIcon()}
-        errorText={validationMessage}
-        icon={caretIcon}
-        id={props.id}
-        inputRef={inputRef}
-        inputRole="combobox"
+    <div ref={refs.container} className={classNames.container}>
+      <FormControl
+        error={invalid}
+        id={ids.input}
+        labelId={ids.label}
         label={props.label}
         name={props.name}
-        onBlur={handleBlur}
-        onChange={onSearchChange}
-        onClick={onClick}
-        onInput={props.onInput}
-        onKeyDown={onKeyDown}
-        placeholder={props.placeholder}
         readOnly={props.readOnly}
+        ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
-        value={searchValue || defaultValue}
-      />
-      { showOptions && (
-        (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
-          <Listbox
-            className={styles.dropdown}
-            id={`${props.id}-single-choice-listbox`}
-            labelledBy={`${props.id}-label`}
-            onChange={onSelectionChange}
-            ref={listBoxRef}
-            refs={props.listOptionRefs}
-            value={value}
-          >
-            {props.children}
-          </Listbox>
-        )
-      )}
+      >
+        <SelectControl
+          displayValueEvaluator={props.displayValueEvaluator}
+          id={props.id}
+          labelledBy={ids.label}
+          listOptionRefs={props.listOptionRefs}
+          name={props.name}
+          onChange={props.onChange}
+          onInput={props.onInput}
+          onInvalid={event => setInvalid(event.detail.validationMessage)}
+          placeholder={props.placeholder}
+          readOnly={props.readOnly}
+          ref={refs.input}
+          required={props.required}
+          validationMessage={props.errorText}
+          value={props.value}
+          wrapperRef={refs.container}
+        >
+          {props.children}
+        </SelectControl>
+      </FormControl>
     </div>
   );
 });
