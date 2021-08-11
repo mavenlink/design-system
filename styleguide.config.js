@@ -42,6 +42,7 @@ module.exports = {
     name: 'Cell Controls',
     components: [
       path.join(__dirname, 'src/components/table/table.jsx'),
+      path.join(__dirname, 'src/components/cell-control/autocompleter.jsx'),
       path.join(__dirname, 'src/components/cell-control/input.jsx'),
       path.join(__dirname, 'src/components/cell-control/select.jsx'),
     ],

@@ -1,50 +1,27 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import AutocompleteControl from '../control/autocompleter.jsx';
-import FormControl from '../form-control/form-control.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import React, { useRef } from 'react';
+import CellControl from './cell-control.jsx';
+import AutocompleterControl from '../control/autocompleter.jsx';
 
-const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState(false);
-
-  const ids = {
-    input: props.id,
-    label: `${props.id}-label`,
-  };
+function Autocompleter(props) {
   const refs = {
-    control: useRef(),
-    input: useRef(),
+    container: useRef(),
   };
-
-  useImperativeHandle(ref, () => ({
-    ...refs.control.current,
-    get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
-    get value() { return refs.input.current.value; }, // Spread operator does not work with getters
-  }));
 
   return (
-    <FormControl
-      className={props.className}
-      error={invalid}
-      id={ids.input}
-      labelId={ids.label}
-      label={props.label}
-      name={props.name}
+    <CellControl
+      labelledBy={props.labelledBy}
       readOnly={props.readOnly}
-      ref={refs.control}
-      required={props.required}
-      tooltip={props.tooltip}
+      ref={refs.container}
     >
-      <AutocompleteControl
+      <AutocompleterControl
         apiEndpoint={props.apiEndpoint}
         displayValueEvaluator={props.displayValueEvaluator}
         id={props.id}
-        labelledBy={ids.label}
+        labelledBy={props.labelledBy}
         models={props.models}
         name={props.name}
         onChange={props.onChange}
-        onInvalid={event => setInvalid(event.detail.validationMessage)}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={refs.input}
@@ -52,20 +29,19 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
         searchParam={props.searchParam}
         validationMessage={props.validationMessage}
         value={props.value}
-        wrapperRef={refs.control}
+        wrapperRef={refs.container}
       />
-    </FormControl>
+    </CellControl>
   );
-});
+}
 
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
-  className: PropTypes.string,
   /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  labelledBy: PropTypes.string.isRequired,
   /** `value` and `models` shape is expected to be an object(s) with an `id` key */
   models: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.required,
@@ -76,7 +52,6 @@ Autocompleter.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   searchParam: PropTypes.string,
-  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** `value` and `models` shape is expected to be an object(s) with an `id` key */
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
@@ -86,14 +61,12 @@ Autocompleter.defaultProps = {
   apiEndpoint: undefined,
   className: undefined,
   displayValueEvaluator: undefined,
-  label: undefined,
   models: [],
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
   searchParam: 'matching',
-  tooltip: undefined,
   validationMessage: undefined,
   value: undefined,
 };

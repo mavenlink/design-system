@@ -257,7 +257,6 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} ref={ref} value="2016-07-16" onChange={onChange} />);
       changeValue(() => getByLabelText('Field Date'), '2016-07-18');
       expect(onChange.mock.calls.length).toBe(1);
-      expect(onChange).toHaveBeenLastCalledWith({ target: ref.current });
     });
   });
 

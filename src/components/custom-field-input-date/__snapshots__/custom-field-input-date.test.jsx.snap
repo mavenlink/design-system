@@ -128,6 +128,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
 
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 2`] = `
 Object {
+  "contains": [Function],
   "dirty": false,
   "id": "field-date",
   "name": "field-name",

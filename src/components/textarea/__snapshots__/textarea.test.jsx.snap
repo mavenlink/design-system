@@ -40,6 +40,7 @@ exports[`Textarea has defaults 1`] = `
 
 exports[`Textarea has defaults 2`] = `
 Object {
+  "contains": [Function],
   "dirty": false,
   "id": "foo",
   "name": undefined,

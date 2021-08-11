@@ -9,6 +9,8 @@
   - Append new items to make git merging easier.
   - refactor(Select): split abstract Select control vs Select form control
   - feat(Select): implement Select cell control
+  - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
+  - feat(Autocompleter): implement Autocompleter cell control
 </details>
 
 ## 0.80.1

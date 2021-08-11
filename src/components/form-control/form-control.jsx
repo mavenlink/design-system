@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import HelpIcon from '../help-icon/help-icon.jsx';
 import styles from './form-control.css';
@@ -15,8 +15,15 @@ const FormControl = forwardRef(function FormControl(props, ref) {
     label: props.labelId || `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
   };
+  const refs = {
+    container: useRef(),
+  };
 
   useImperativeHandle(ref, () => ({
+    /** Determine whether a node is within the form control. */
+    contains(node) {
+      return refs.container.current.contains(node);
+    },
     /** Determine whether the component has a different value than the provided prop. */
     get dirty() { return undefined; },
     /** The ID of the input element. */
@@ -28,7 +35,7 @@ const FormControl = forwardRef(function FormControl(props, ref) {
   }));
 
   return (
-    <div className={classNames.container} onKeyDown={props.onKeyDown} role="presentation">
+    <div className={classNames.container} onKeyDown={props.onKeyDown} ref={refs.container} role="presentation">
       <div className={classNames.heading}>
         <div className={classNames.label}>
           <label htmlFor={ids.input} id={ids.label}>

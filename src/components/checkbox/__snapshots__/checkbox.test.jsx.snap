@@ -42,6 +42,7 @@ exports[`Checkbox has defaults 1`] = `
 exports[`Checkbox has defaults 2`] = `
 Object {
   "checked": false,
+  "contains": [Function],
   "dirty": false,
   "id": "fart",
   "name": undefined,
