@@ -10,6 +10,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   return (
     <CellControl
+      className={props.className}
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
       ref={refs.container}
@@ -38,6 +39,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
+  /** A class name for the table cell container. */
+  className: PropTypes.string,
   /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,

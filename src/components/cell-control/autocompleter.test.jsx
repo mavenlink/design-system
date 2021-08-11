@@ -36,4 +36,11 @@ describe('Autocompleter cell control', () => {
     expect(document.body).toBe(document.activeElement);
     expect(ref.current).toMatchSnapshot();
   });
+
+  describe('className API', () => {
+    it('can be set', () => {
+      render(<Autocompleter {...requiredProps} className="unique-class-name" />);
+      expect(document.body).toMatchSnapshot();
+    });
+  });
 });

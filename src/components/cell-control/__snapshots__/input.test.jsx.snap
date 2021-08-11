@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Input cell control className API 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="unique-class-name"
+            role="gridcell"
+          >
+            <div
+              style="position: relative;"
+            >
+              <input
+                aria-describedby="test-idHint "
+                class="input"
+                id="test-id"
+                type="text"
+                value=""
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
 exports[`Input cell control has defaults 1`] = `
 <body>
   <div>

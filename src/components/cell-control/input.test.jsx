@@ -36,6 +36,11 @@ describe('Input cell control', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  it('className API', () => {
+    render(<Input {...requiredProps} className="unique-class-name" />);
+    expect(document.body).toMatchSnapshot();
+  });
+
   describe('id API', () => {
     it('is a string', () => {
       render(<Input {...requiredProps} id="unique-id" />);

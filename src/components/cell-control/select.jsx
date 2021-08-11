@@ -10,6 +10,7 @@ const Select = forwardRef(function Select(props, ref) {
 
   return (
     <CellControl
+      className={props.className}
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
       ref={refs.container}
@@ -33,6 +34,7 @@ const Select = forwardRef(function Select(props, ref) {
 
 Select.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   /** A unique ID for the component. */
   id: PropTypes.string.isRequired,
   /** The ID of the column header. */
@@ -51,6 +53,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   children: undefined,
+  className: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',

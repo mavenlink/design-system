@@ -37,4 +37,9 @@ describe('Select cell control', () => {
     expect(document.body).toBe(document.activeElement);
     expect(ref.current).toMatchSnapshot();
   });
+
+  it('className API', () => {
+    render(<Select {...requiredProps} className="unique-class-name" />);
+    expect(document.body).toMatchSnapshot();
+  });
 });

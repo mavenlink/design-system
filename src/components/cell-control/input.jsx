@@ -6,6 +6,7 @@ import InputControl from '../control/input.jsx';
 const Input = forwardRef(function Input(props, ref) {
   return (
     <CellControl
+      className={props.className}
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
     >
@@ -22,6 +23,8 @@ const Input = forwardRef(function Input(props, ref) {
 });
 
 Input.propTypes = {
+  /** A class name for the table cell container. */
+  className: PropTypes.string,
   /** A unique ID for the component. */
   id: PropTypes.string.isRequired,
   /** The ID of the column header. */
@@ -35,6 +38,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  className: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',
