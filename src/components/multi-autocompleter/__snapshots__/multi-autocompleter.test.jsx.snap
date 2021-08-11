@@ -53,6 +53,7 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
               class="icon-container"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="6"
                 role="button"
@@ -128,6 +129,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
               class="icon-container"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="6"
                 role="button"

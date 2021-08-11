@@ -45,6 +45,24 @@ describe('<IconButton />', () => {
     });
   });
 
+  describe('disabled API', () => {
+    it('can be set', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} disabled={true} />);
+      expect(screen.getByRole('button')).toHaveAttribute('aria-disabled', 'true');
+      user.click(screen.getByRole('button'));
+      expect(onPressSpy).not.toBeCalled();
+    });
+
+    it('can be unset', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} disabled={false} />);
+      expect(screen.getByRole('button')).not.toBeDisabled();
+      user.click(screen.getByRole('button'));
+      expect(onPressSpy).toBeCalled();
+    });
+  });
+
   describe('icon API', () => {
     it('sets the xlink:href', () => {
       render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, id: 'unique-id' }} />);

@@ -53,6 +53,7 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
               class="icon-container"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="6"
                 role="button"
@@ -128,6 +129,7 @@ exports[`<MultiSelect> has defaults 1`] = `
               class="icon-container"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="6"
                 role="button"

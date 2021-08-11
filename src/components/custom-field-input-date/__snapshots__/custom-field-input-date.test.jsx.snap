@@ -41,6 +41,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
               class="icons"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="14"
                 role="button"
@@ -104,6 +105,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
               class="icons"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="14"
                 role="button"

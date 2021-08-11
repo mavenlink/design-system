@@ -10,7 +10,14 @@ const IconButton = forwardRef(function IconButton(props, ref) {
   const height = parseInt(viewBox[3], 10);
   const tabIndex = props.active ? 0 : -1;
 
+  function onClick(event) {
+    if (props.disabled) return;
+    event.preventDefault();
+    props.onPress(event);
+  }
+
   function onKeyDown(event) {
+    if (props.disabled) return;
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       props.onPress(event);
@@ -19,10 +26,11 @@ const IconButton = forwardRef(function IconButton(props, ref) {
 
   return (
     <svg
+      aria-disabled={props.disabled}
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
-      onClick={props.onPress}
+      onClick={onClick}
       onKeyDown={onKeyDown}
       ref={ref}
       role="button"
@@ -38,6 +46,7 @@ const IconButton = forwardRef(function IconButton(props, ref) {
 IconButton.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   icon: PropTypes.shape({
     id: PropTypes.string.isRequired,
     viewBox: PropTypes.string.isRequired,
@@ -51,6 +60,7 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   active: true,
   className: styles.button,
+  disabled: false,
   id: undefined,
   labelledBy: undefined,
 };

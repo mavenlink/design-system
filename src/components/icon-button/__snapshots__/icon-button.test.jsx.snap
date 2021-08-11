@@ -4,6 +4,7 @@ exports[`<IconButton /> has defaults 1`] = `
 <body>
   <div>
     <svg
+      aria-disabled="false"
       class="button"
       height="4"
       role="button"
@@ -23,6 +24,7 @@ exports[`<IconButton /> has defaults 1`] = `
 
 exports[`<IconButton /> has defaults 2`] = `
 <svg
+  aria-disabled="false"
   class="button"
   height="4"
   role="button"

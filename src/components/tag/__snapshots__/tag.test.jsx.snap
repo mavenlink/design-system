@@ -22,6 +22,7 @@ exports[`Tag renders a tag component 1`] = `
         tabindex="-1"
       >
         <svg
+          aria-disabled="false"
           aria-labelledby="test-id-button test-id-content"
           class="icon"
           height="8"
