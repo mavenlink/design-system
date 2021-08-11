@@ -5,7 +5,7 @@
 .label {
   color: var(--mds-grey-54);
   display: inline-flex;
-  font: var(--mds-type-subtext);
+  font: var(--mds-type-subtext) !important;
   column-gap: var(--spacing-small);
 }
 
