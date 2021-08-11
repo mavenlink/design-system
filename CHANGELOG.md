@@ -13,6 +13,9 @@
   - feat(Autocompleter): implement Autocompleter cell control
   - feat(IconButton): implement `disabled` API
   - fix(Form Controls): ensure label use specified MDS fonts
+  - feat(Input): implement `ref` API on input cell controls
+  - feat(Select): implement `ref` API on select cell controls
+  - feat(Autocompleter): implement `ref` API on autocompleter cell controls
 </details>
 
 ## 0.80.1

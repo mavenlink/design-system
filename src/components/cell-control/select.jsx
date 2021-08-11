@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import SelectControl from '../control/select.jsx';
 
-function Select(props) {
+const Select = forwardRef(function Select(props, ref) {
   const refs = {
     container: useRef(),
   };
@@ -20,6 +20,7 @@ function Select(props) {
         listOptionRefs={props.listOptionRefs}
         name={props.name}
         readOnly={props.readOnly}
+        ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
         wrapperRef={refs.container}
@@ -28,7 +29,7 @@ function Select(props) {
       </SelectControl>
     </CellControl>
   );
-}
+});
 
 Select.propTypes = {
   children: PropTypes.node,

@@ -39,6 +39,14 @@ exports[`Input cell control has defaults 1`] = `
 </body>
 `;
 
+exports[`Input cell control has defaults 2`] = `
+Object {
+  "dirty": false,
+  "name": undefined,
+  "value": "",
+}
+`;
+
 exports[`Input cell control id API is a string 1`] = `
 <body>
   <div>

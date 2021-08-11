@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import AutocompleterControl from '../control/autocompleter.jsx';
 
-function Autocompleter(props) {
+const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const refs = {
     container: useRef(),
   };
@@ -24,7 +24,7 @@ function Autocompleter(props) {
         onChange={props.onChange}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={refs.input}
+        ref={ref}
         required={props.required}
         searchParam={props.searchParam}
         validationMessage={props.validationMessage}
@@ -33,7 +33,7 @@ function Autocompleter(props) {
       />
     </CellControl>
   );
-}
+});
 
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */

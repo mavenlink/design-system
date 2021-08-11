@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import CellControl from '../cell-control/cell-control.jsx';
 import InputControl from '../control/input.jsx';
 
-function Input(props) {
+const Input = forwardRef(function Input(props, ref) {
   return (
     <CellControl
       labelledBy={props.labelledBy}
@@ -13,12 +13,13 @@ function Input(props) {
         id={props.id}
         labelledBy={props.labelledBy}
         readOnly={props.readOnly}
+        ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
       />
     </CellControl>
   );
-}
+});
 
 Input.propTypes = {
   /** A unique ID for the component. */

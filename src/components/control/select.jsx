@@ -114,6 +114,8 @@ const Select = forwardRef(function Select(props, ref) {
     get dirty() {
       return props.value === undefined ? value !== null : props.value !== value;
     },
+    /** The name of the control element which is used to reference the data after submitting the control. */
+    name: props.name,
     get value() {
       return value === null ? undefined : value;
     },
