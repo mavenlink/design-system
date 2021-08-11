@@ -11,6 +11,7 @@
   - feat(Select): implement Select cell control
   - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
   - feat(Autocompleter): implement Autocompleter cell control
+  - feat(IconButton): implement `disabled` API
 </details>
 
 ## 0.80.1
