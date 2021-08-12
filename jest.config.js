@@ -7,6 +7,7 @@ module.exports = {
     '@testing-library/jest-dom/extend-expect.js',
     '<rootDir>/jest.config.setup.files.after.env.js',
   ],
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
     'node_modules',
     'styleguide/cypress/integration',

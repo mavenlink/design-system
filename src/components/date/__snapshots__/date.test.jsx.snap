@@ -41,6 +41,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
               class="icons"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="14"
                 role="button"
@@ -104,6 +105,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
               class="icons"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="14"
                 role="button"
@@ -131,6 +133,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
             class="header"
           >
             <svg
+              aria-disabled="false"
               class="change-month-button"
               height="8"
               role="button"
@@ -163,6 +166,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
               </svg>
             </button>
             <svg
+              aria-disabled="false"
               class="change-month-button"
               height="8"
               role="button"
@@ -703,6 +707,7 @@ exports[`src/components/date/date.test.jsx has defaults 1`] = `
               class="icons"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="14"
                 role="button"

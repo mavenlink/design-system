@@ -27,6 +27,7 @@ exports[`TagList renders a TagList 1`] = `
           tabindex="-1"
         >
           <svg
+            aria-disabled="false"
             aria-labelledby="test-tag-fake-button test-tag-fake-content"
             class="icon"
             height="8"

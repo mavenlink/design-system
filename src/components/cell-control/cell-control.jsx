@@ -3,14 +3,10 @@ import React, { forwardRef } from 'react';
 import styles from './cell-control.css';
 
 const CellControl = forwardRef(function CellControl(props, ref) {
-  const classNames = {
-    container: styles.container,
-  };
-
   return (
     <td
       aria-labelledby={props.labelledBy}
-      className={classNames.container}
+      className={props.className}
       ref={ref}
       role="gridcell"
     >
@@ -20,11 +16,14 @@ const CellControl = forwardRef(function CellControl(props, ref) {
 });
 
 CellControl.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   /** The ID of the column header cell. */
   labelledBy: PropTypes.string.isRequired,
 };
 
-CellControl.defaultProps = {};
+CellControl.defaultProps = {
+  className: styles.container,
+};
 
 export default CellControl;

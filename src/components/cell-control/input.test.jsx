@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { render as _render, screen } from '@testing-library/react';
 import Input from './input.jsx';
 
@@ -29,7 +29,15 @@ describe('Input cell control', () => {
   };
 
   it('has defaults', () => {
-    render(<Input {...requiredProps} />);
+    const ref = createRef();
+    render(<Input {...requiredProps} ref={ref} />);
+    expect(document.body).toMatchSnapshot();
+    expect(document.body).toBe(document.activeElement);
+    expect(ref.current).toMatchSnapshot();
+  });
+
+  it('className API', () => {
+    render(<Input {...requiredProps} className="unique-class-name" />);
     expect(document.body).toMatchSnapshot();
   });
 

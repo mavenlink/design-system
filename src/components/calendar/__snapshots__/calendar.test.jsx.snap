@@ -10,6 +10,7 @@ exports[`<Calendar /> has defaults 1`] = `
         class="header"
       >
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"
@@ -42,6 +43,7 @@ exports[`<Calendar /> has defaults 1`] = `
           </svg>
         </button>
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"
@@ -549,6 +551,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
         class="header"
       >
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"
@@ -581,6 +584,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
           </svg>
         </button>
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"
@@ -1088,6 +1092,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
         class="header"
       >
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"
@@ -1120,6 +1125,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
           </svg>
         </button>
         <svg
+          aria-disabled="false"
           class="change-month-button"
           height="8"
           role="button"

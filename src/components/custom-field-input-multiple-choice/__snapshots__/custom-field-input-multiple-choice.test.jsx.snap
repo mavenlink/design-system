@@ -53,6 +53,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
               class="icon-container"
             >
               <svg
+                aria-disabled="false"
                 class="button"
                 height="6"
                 role="button"

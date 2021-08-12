@@ -55,6 +55,8 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       const providedValue = props.value || '';
       return providedValue !== this.value;
     },
+    /** The name of the control element which is used to reference the data after submitting the control. */
+    name: props.name,
     get value() {
       return refs.input.current.value;
     },

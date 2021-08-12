@@ -11,6 +11,15 @@
   - feat(Select): implement Select cell control
   - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
   - feat(Autocompleter): implement Autocompleter cell control
+  - feat(IconButton): implement `disabled` API
+  - fix(Form Controls): ensure label use specified MDS fonts
+  - feat(Input): implement `ref` API on input cell controls
+  - feat(Select): implement `ref` API on select cell controls
+  - feat(Autocompleter): implement `ref` API on autocompleter cell controls
+  - feat(CellControl): implement `className` API
+  - feat(Input): implement `className` API
+  - feat(Select): implement `className` API
+  - feat(Autocompleter): implement `className` API
 </details>
 
 ## 0.80.1

@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import SelectControl from '../control/select.jsx';
 
-function Select(props) {
+const Select = forwardRef(function Select(props, ref) {
   const refs = {
     container: useRef(),
   };
 
   return (
     <CellControl
+      className={props.className}
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
       ref={refs.container}
@@ -20,6 +21,7 @@ function Select(props) {
         listOptionRefs={props.listOptionRefs}
         name={props.name}
         readOnly={props.readOnly}
+        ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
         wrapperRef={refs.container}
@@ -28,10 +30,11 @@ function Select(props) {
       </SelectControl>
     </CellControl>
   );
-}
+});
 
 Select.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   /** A unique ID for the component. */
   id: PropTypes.string.isRequired,
   /** The ID of the column header. */
@@ -50,6 +53,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   children: undefined,
+  className: undefined,
   readOnly: false,
   required: false,
   validationMessage: '',

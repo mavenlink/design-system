@@ -2,11 +2,10 @@ import React, {
   createRef,
 } from 'react';
 import {
-  fireEvent,
   render,
   screen,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import user from '@testing-library/user-event';
 import IconButton from './icon-button.jsx';
 
 describe('<IconButton />', () => {
@@ -20,11 +19,14 @@ describe('<IconButton />', () => {
   };
 
   it('has defaults', () => {
-    render(<IconButton {...requiredProps} />);
+    const ref = createRef();
+    render(<IconButton {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(document.body).toBe(document.activeElement);
+    expect(ref.current).toMatchSnapshot();
   });
 
-  describe('active prop API', () => {
+  describe('active API', () => {
     it('can be set', () => {
       render(<IconButton {...requiredProps} active />);
       expect(screen.getByRole('button')).toHaveAttribute('tabindex', '0');
@@ -36,14 +38,32 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('className prop API', () => {
+  describe('className API', () => {
     it('can be set', () => {
       render(<IconButton {...requiredProps} className="unique-class-name" />);
       expect(screen.getByRole('button', { name: 'Test label' })).toHaveClass('unique-class-name');
     });
   });
 
-  describe('icon prop API', () => {
+  describe('disabled API', () => {
+    it('can be set', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} disabled={true} />);
+      expect(screen.getByRole('button')).toHaveAttribute('aria-disabled', 'true');
+      user.click(screen.getByRole('button'));
+      expect(onPressSpy).not.toBeCalled();
+    });
+
+    it('can be unset', () => {
+      const onPressSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onPress={onPressSpy} disabled={false} />);
+      expect(screen.getByRole('button')).not.toBeDisabled();
+      user.click(screen.getByRole('button'));
+      expect(onPressSpy).toBeCalled();
+    });
+  });
+
+  describe('icon API', () => {
     it('sets the xlink:href', () => {
       render(<IconButton {...requiredProps} icon={{ ...requiredProps.icon, id: 'unique-id' }} />);
       expect(screen.getByRole('button', { name: 'Test label' }).children[1]).toHaveAttribute('xlink:href', '#unique-id');
@@ -60,7 +80,7 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('id prop API', () => {
+  describe('id API', () => {
     it('can be set', () => {
       const ref = createRef();
 
@@ -75,14 +95,14 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('label prop API', () => {
+  describe('label API', () => {
     it('can be set', () => {
       render(<IconButton {...requiredProps} label="Unique label" />);
       expect(screen.getByRole('button', { name: 'Unique label' })).toBeInTheDocument();
     });
   });
 
-  describe('labelledBy prop API', () => {
+  describe('labelledBy API', () => {
     it('can be set', () => {
       render((
         <React.Fragment>
@@ -94,18 +114,19 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('onPress prop API', () => {
+  describe('onPress API', () => {
     it('is called on click', () => {
       const onPressSpy = jest.fn(event => event.persist());
       render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
-      userEvent.click(screen.getByRole('button'));
+      user.click(screen.getByRole('button'));
       expect(onPressSpy).toBeCalledWith(expect.objectContaining({ target: expect.anything() }));
     });
 
     it('is called on enter keypress', () => {
       const onPressSpy = jest.fn(event => event.persist());
       render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
-      fireEvent.keyDown(screen.getByRole('button'), { key: 'Enter' });
+      user.tab();
+      user.keyboard('{Enter}');
       expect(onPressSpy).toBeCalledWith(expect.objectContaining({
         defaultPrevented: true,
         target: expect.anything(),
@@ -115,19 +136,12 @@ describe('<IconButton />', () => {
     it('is called on space keypress', () => {
       const onPressSpy = jest.fn(event => event.persist());
       render(<IconButton {...requiredProps} onPress={onPressSpy} role="button" />);
-      fireEvent.keyDown(screen.getByRole('button'), { key: ' ' });
+      user.tab();
+      user.keyboard(' ');
       expect(onPressSpy).toBeCalledWith(expect.objectContaining({
         defaultPrevented: true,
         target: expect.anything(),
       }));
-    });
-  });
-
-  describe('ref API', () => {
-    it('can be set', () => {
-      const ref = createRef();
-      render(<IconButton {...requiredProps} ref={ref} />);
-      expect(screen.getByRole('button')).toEqual(ref.current);
     });
   });
 });
