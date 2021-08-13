@@ -20,6 +20,7 @@
   - feat(Input): implement `className` API
   - feat(Select): implement `className` API
   - feat(Autocompleter): implement `className` API
+  - fix(Button): add pointer-events: none; for disabled button
 </details>
 
 ## 0.80.1
