@@ -27,6 +27,7 @@ exports[`Input cell control className API 1`] = `
                 aria-describedby="test-idHint "
                 class="input"
                 id="test-id"
+                name="test-name"
                 type="text"
                 value=""
               />
@@ -114,6 +115,7 @@ exports[`Input cell control id API is a string 1`] = `
                 aria-describedby="unique-idHint "
                 class="input"
                 id="unique-id"
+                name="test-name"
                 type="text"
                 value=""
               />
