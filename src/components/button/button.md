@@ -9,3 +9,7 @@
 ```js
 <Button color="secondary">Secondary Button</Button>
 ```
+
+```js
+<Button disabled>Disabled Button</Button>
+```
