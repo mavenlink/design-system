@@ -13,6 +13,7 @@ const Input = forwardRef(function Input(props, ref) {
       <InputControl
         id={props.id}
         labelledBy={props.labelledBy}
+        name={props.name}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
@@ -29,6 +30,8 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   /** The ID of the column header. */
   labelledBy: PropTypes.string.isRequired,
+  /** See documentation on `FormControl#name` */
+  name: PropTypes.string.isRequired,
   /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
   /** Require a value on the input control. */

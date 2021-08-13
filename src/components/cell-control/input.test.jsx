@@ -26,6 +26,7 @@ describe('Input cell control', () => {
   const requiredProps = {
     id: 'test-id',
     labelledBy: 'labelled-by',
+    name: 'test-name',
   };
 
   it('has defaults', () => {
@@ -52,6 +53,13 @@ describe('Input cell control', () => {
     it('is a string', () => {
       render(<Input {...requiredProps} labelledBy="unique-labelledby" />, { labelledBy: 'unique-labelledby' });
       expect(screen.getByRole('gridcell')).toHaveAttribute('aria-labelledby', 'unique-labelledby');
+    });
+  });
+
+  describe('name API', () => {
+    it('is a string', () => {
+      render(<Input {...requiredProps} name="unique-name" />);
+      expect(screen.getByRole('textbox')).toHaveAttribute('name', 'unique-name');
     });
   });
 

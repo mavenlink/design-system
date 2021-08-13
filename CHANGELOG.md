@@ -20,6 +20,7 @@
   - feat(Input): implement `className` API
   - feat(Select): implement `className` API
   - feat(Autocompleter): implement `className` API
+  - fix(Input): implement `name` ref API on cell controls
 </details>
 
 ## 0.80.1
