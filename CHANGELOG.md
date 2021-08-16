@@ -21,6 +21,7 @@
   - feat(Select): implement `className` API
   - feat(Autocompleter): implement `className` API
   - fix(Input): implement `name` ref API on cell controls
+  - fix(FormControl): increase label font sizes to 14px
 </details>
 
 ## 0.80.1
