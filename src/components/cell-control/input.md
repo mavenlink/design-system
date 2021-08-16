@@ -19,19 +19,19 @@ const ids = {
   <tbody>
     <tr>
       <td role="rowheader">Default</td>
-      <Input labelledBy={ids.th.input} id={uuid.v4()} />
+      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} />
     </tr>
     <tr>
       <td role="rowheader">Read-only</td>
-      <Input labelledBy={ids.th.input} id={uuid.v4()} readOnly />
+      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly />
     </tr>
     <tr>
       <td role="rowheader">Required</td>
-      <Input labelledBy={ids.th.input} id={uuid.v4()} required />
+      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} required />
     </tr>
     <tr>
       <td role="rowheader">Invalid</td>
-      <Input labelledBy={ids.th.input} id={uuid.v4()} validationMessage="This is an error message!" />
+      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
     </tr>
   </tbody>
 </table>
