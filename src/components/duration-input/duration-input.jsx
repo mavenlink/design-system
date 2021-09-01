@@ -20,8 +20,41 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
   useImperativeHandle(ref, () => ({
     ...refs.control.current,
     get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
-    get value() { return refs.input.current.value; }, // Spread operator does not work with getters
+    get value() { return timeToMinutes(refs.input.current.value); }, // Spread operator does not work with getters
   }));
+
+  function onBlur(e) {
+    const duration = timeToMinutes(refs.input.current.value);
+    e.target.value = formatTime(duration);
+    props.onBlur(e);
+  }
+
+  function timeToMinutes(value) {
+    const colonMatch = /(\d*):(\d*)/.exec(value);
+    if (colonMatch) {
+      return ((parseInt(colonMatch[1], 10) || 0) * 60) + (parseInt(colonMatch[2], 10) || 0);
+    } else if (/\d\s*[hm]/i.test(value)) {
+      let minutes = 0;
+      const hourMatch = /([\d.]+)\s*h/i.exec(value);
+      const minuteMatch = /([\d.]+)\s*m/i.exec(value);
+      if (hourMatch) { minutes += parseFloat(hourMatch[1]) * 60; }
+      if (minuteMatch) { minutes += parseInt(minuteMatch[1], 10); }
+      return minutes;
+    }
+    const hoursValue = parseFloat(value);
+    if (isNaN(hoursValue)) {
+      return null;
+    }
+    return Math.ceil(hoursValue * 60);
+  }
+
+  function formatTime(time, orig) {
+    if (time === null) { return orig; }
+
+    const hours = Math.floor(time / 60);
+    const minutes = Math.ceil(time % 60);
+    return `${hours}h ${minutes}m`;
+  }
 
   return (
     <FormControl
@@ -44,7 +77,7 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
         labelledBy={ids.label}
         maxLength={props.maxLength}
         name={props.name}
-        onBlur={props.onBlur}
+        onBlur={onBlur}
         onChange={props.onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
