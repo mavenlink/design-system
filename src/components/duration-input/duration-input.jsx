@@ -53,7 +53,7 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
 
     const hours = Math.floor(time / 60);
     const minutes = Math.ceil(time % 60);
-    return `${hours}h ${minutes}m`;
+    return `${hours}h ${minutes}`;
   }
 
   return (
