@@ -83,7 +83,7 @@ const Select = forwardRef(function Select(props, ref) {
         if (!showOptions && !props.readOnly) setShowOptions(true);
         break;
       case 'Escape':
-        event.preventDefault();
+        event.nativeEvent.stopImmediatePropagation();
         setShowOptions(false);
         break;
       default:
