@@ -6,7 +6,7 @@ import autocompleterHandlers from '../../src/components/autocompleter/mock-handl
 
 setupWorker(
   ...listHandlers,
-  ...customFieldSingleHandlers(5000),
+  ...customFieldSingleHandlers(1000),
   ...textareaHandlers(1000),
   ...autocompleterHandlers(1000),
 ).start({
