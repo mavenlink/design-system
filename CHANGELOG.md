@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(Select): consumes `keydown` event for Escape key when dropdown open
 </details>
+
+## 0.82.0
+  - feat(Select): consumes `keydown` event for Escape key when dropdown open
 
 ## 0.81.0
 - refactor(Select): split abstract Select control vs Select form control
