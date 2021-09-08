@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
@@ -120,17 +121,13 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value = ['0'];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} />);
 
-      await waitForChoices('Test label');
-
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo'));
     });
 
     it('provided value sets the corresponding list item as selected', async () => {
-      const value = ['0'];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} />);
 
       await waitForChoices('Test label');
 
@@ -147,7 +144,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={['1']} />);
 
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Bar');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Bar'));
     });
 
     it('handles empty array without errors', async () => {
@@ -156,11 +153,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForChoices('Test label');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo'));
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[]} />);
 
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue(''));
     });
   });
 

@@ -112,7 +112,7 @@ const Select = forwardRef(function Select(props, ref) {
 
   useImperativeHandle(selfRef, () => ({
     get dirty() {
-      return props.value === undefined ? value !== null : props.value !== value;
+      return props.value !== this.value;
     },
     /** The name of the control element which is used to reference the data after submitting the control. */
     name: props.name,
@@ -132,8 +132,6 @@ const Select = forwardRef(function Select(props, ref) {
 
   useEffect(() => {
     if (!mounted.current) return;
-
-    if (props.value === undefined) return;
 
     setValue(props.value);
   }, [props.value]);
@@ -203,7 +201,7 @@ const Select = forwardRef(function Select(props, ref) {
           required={props.required}
           style={{ '--numIcon': 3 }}
           type="text"
-          value={searchValue || defaultValue}
+          value={searchValue ?? defaultValue}
         />
         <div className={styles['icon-container']}>
           {validationMessage.length > 0 ? (<Icon
