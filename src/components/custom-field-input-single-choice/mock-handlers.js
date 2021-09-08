@@ -1,7 +1,5 @@
 import { rest } from 'msw';
-import mockConstants from '../../mocks/mock-constants.js';
-
-const { API_ROOT } = mockConstants;
+import { API_ROOT } from '../../mocks/mock-constants.js';
 
 const choices = [
   {
