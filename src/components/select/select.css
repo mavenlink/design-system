@@ -55,7 +55,7 @@
   color: var(--mds-grey-87);
   font: var(--mds-type-content);
   height: var(--spacing-x-large);
-  padding-right: calc((var(--numIcon, 0) * var(--iconSizeMedium)) + var(--spacing-medium)); /* stylelint-disable-line css-modules/css-variables */
+  padding-right: 60px; /* stylelint-disable-line css-modules/css-variables */
   padding-left: var(--spacing-medium);
   width: 100%;
 }
@@ -75,5 +75,4 @@
 .input-invalid {
   composes: input-styles;
   border-color: var(--mds-red-100);
-  padding-right: var(--spacing-x-large);
 }
