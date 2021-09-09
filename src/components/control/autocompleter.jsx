@@ -4,9 +4,7 @@ import useFetch from '@bloodyaugust/use-fetch';
 import useMounted from '../../hooks/use-mounted.js';
 import Select from './select.jsx';
 import ListOption from '../list-option/list-option.jsx';
-import mockConstants from '../../mocks/mock-constants.js';
-
-const { API_ROOT } = mockConstants;
+import { API_ROOT } from '../../mocks/mock-constants.js';
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute } = useFetch();

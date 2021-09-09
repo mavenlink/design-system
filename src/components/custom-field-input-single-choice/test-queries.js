@@ -26,7 +26,7 @@ export function selectChoice(fieldLabel, choiceText) {
 export async function waitForChoices(fieldName) {
   openChoices(fieldName);
 
-  const listbox = screen.getByRole('listbox', { name: fieldName });
+  const listbox = await screen.findByRole('listbox', { name: fieldName });
   const progressbar = queryByRole(listbox, 'progressbar');
   if (progressbar) await waitForElementToBeRemoved(progressbar);
 }

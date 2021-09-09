@@ -1,3 +1,8 @@
+This component is a purely client-side select widget. 
+Given a list of options, it allows a user to select a single option as the select value.
+It allows customizing the displayed value in the textbox and each individual option in the listbox.
+For examples on how to fetch data from the server, see the Autocompleter documentation.
+
 Default usage:
 ```js
 import Select from '@mavenlink/design-system/src/components/select/select.jsx';

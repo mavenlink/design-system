@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - feat(CustomFieldSingleChoice): implement server-side autocompleter behavior
+  - fix(Select): do not let text underflow icons
   - feat(Select): consumes `keydown` event for Escape key when dropdown open
 </details>
 

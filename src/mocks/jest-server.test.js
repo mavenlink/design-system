@@ -1,8 +1,6 @@
 import { rest } from 'msw';
-import mockConstants from './mock-constants.js';
+import { API_ROOT } from './mock-constants.js';
 import jestServer from './jest-server.js';
-
-const { API_ROOT } = mockConstants;
 
 describe('src/mocks/jest-server', () => {
   beforeEach(() => {
