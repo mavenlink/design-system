@@ -7,8 +7,10 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
-  - feat(Colors): Add opaque grey color variables.
 </details>
+
+## 0.84.0
+- feat(Colors): Add opaque grey color variables.
 
 ## 0.83.0
 - feat(CustomFieldSingleChoice): implement server-side autocompleter behavior
