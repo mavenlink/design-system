@@ -10,7 +10,7 @@
   --mds-brand-38: #448fea61;
   --mds-brand-12: #448fea1f;
 
-  /* Grey transparent*/
+  /* Grey transparent */
   --mds-grey-87: #000000de;
   --mds-grey-54: #0000008a;
   --mds-grey-38: #00000061;
@@ -18,14 +18,13 @@
   --mds-grey-8: #00000014;
   --mds-grey-3: #00000008;
 
-  /* Grey opaque*/
+  /* Grey opaque */
   --mds-grey-opaque-87: #212121;
   --mds-grey-opaque-54: #757575;
   --mds-grey-opaque-38: #9e9e9e;
   --mds-grey-opaque-12: #e0e0e0;
   --mds-grey-opaque-8: #ebebeb;
   --mds-grey-opaque-3: #f7f7f7;
-  
   /* Red colors */
   --mds-red-text: #b5200f;
   --mds-red-100: #ee534c;
