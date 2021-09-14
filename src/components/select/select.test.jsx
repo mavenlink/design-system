@@ -493,4 +493,40 @@ describe('src/components/select/select', () => {
       expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveFocus();
     });
   });
+
+  describe('escape keydown event behavior', () => {
+    it('closes the dropdown when pressing escape and consumes the event', () => {
+      const documentOnKeyDownSpy = jest.fn();
+      const eventListener = document.addEventListener('keydown', documentOnKeyDownSpy);
+
+      render(<Select {...requiredProps} value={baseListOptions[0]}>{baseListOptionElements}</Select>);
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('foo')).toBeInTheDocument();
+      userEvent.keyboard('{Escape}');
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+      expect(documentOnKeyDownSpy).not.toHaveBeenCalled();
+
+      document.removeEventListener('keydown', eventListener);
+    });
+
+    it('does not consume the keydown event if the dropdown is not open', () => {
+      const documentOnKeyDownSpy = jest.fn();
+      const eventListener = document.addEventListener('keydown', documentOnKeyDownSpy);
+
+      render((
+        <React.Fragment>
+          <Select {...requiredProps} value={baseListOptions[0]}>{baseListOptionElements}</Select>
+          <input aria-label="outside" />
+        </React.Fragment>
+      ));
+      userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('foo')).toBeInTheDocument();
+      userEvent.click(screen.getByLabelText('outside'));
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+      userEvent.keyboard('{Escape}');
+      expect(documentOnKeyDownSpy).toHaveBeenCalled();
+
+      document.removeEventListener('keydown', eventListener);
+    });
+  });
 });
