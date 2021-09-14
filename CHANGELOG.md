@@ -9,6 +9,9 @@
   - Append new items to make git merging easier.
 </details>
 
+## 0.85.0
+  - feat(Select): consumes `keydown` event for Escape key when dropdown open
+
 ## 0.84.0
 - feat(Colors): Add opaque grey color variables.
 
