@@ -9,8 +9,15 @@
   - Append new items to make git merging easier.
 </details>
 
-## 0.82.0
+## 0.85.0
   - feat(Select): consumes `keydown` event for Escape key when dropdown open
+## 0.84.0
+- feat(Colors): Add opaque grey color variables.
+
+## 0.83.0
+- feat(CustomFieldSingleChoice): implement server-side autocompleter behavior
+- fix(Select): do not let text underflow icons
+- feat(Select): consumes `keydown` event for Escape key when dropdown open
 
 ## 0.81.0
 - refactor(Select): split abstract Select control vs Select form control

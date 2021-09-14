@@ -2,10 +2,8 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../multi-select/multi-select.jsx';
-import mockConstants from '../../mocks/mock-constants.js';
+import { API_ROOT } from '../../mocks/mock-constants.js';
 import multiSelectStyles from '../multi-select/multi-select.css';
-
-const { API_ROOT } = mockConstants;
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute } = useFetch();
