@@ -28,7 +28,7 @@ module.exports = {
           /src\/svgs\//,
         ],
         use: [
-          { loader: 'svg-sprite-loader', options: {} },
+          { loader: 'svg-sprite-loader' },
           { loader: 'svgo-loader' },
         ],
       },
