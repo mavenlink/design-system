@@ -51,7 +51,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "msw": "^0.26.0",
-    "postcss-loader": "^5",
+    "postcss-loader": "^6",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
