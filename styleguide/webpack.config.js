@@ -13,16 +13,6 @@ module.exports = {
         }],
       },
       {
-        test: /\.(jpeg|ico)$/,
-        exclude: /node_modules/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-          },
-        }],
-      },
-      {
         test: /\.svg$/,
         include: [
           /src\/svgs\//,
