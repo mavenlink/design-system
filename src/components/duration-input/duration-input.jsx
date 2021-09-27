@@ -19,8 +19,8 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     ...refs.control.current,
-    get dirty() { return refs.input.current.dirty; }, // TODO: Dynamic composition?
-    get value() { return timeToMinutes(refs.input.current.value); }, // Spread operator does not work with getters
+    get dirty() { return refs.input.current.dirty; },
+    get value() { return timeToMinutes(refs.input.current.value); },
   }));
 
   function onBlur(e) {
@@ -53,7 +53,8 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
 
     const hours = Math.floor(time / 60);
     const minutes = Math.ceil(time % 60);
-    return `${hours}h ${minutes}`;
+    const prefixZero = minutes < 10 ? '0' : '';
+    return `${hours}h ${prefixZero}${minutes}`;
   }
 
   return (
@@ -87,7 +88,6 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
         readOnly={props.readOnly}
         ref={refs.input}
         required={props.required}
-        type={props.type}
         validationMessage={props.validationMessage}
         value={props.value}
       />
@@ -113,11 +113,6 @@ DurationInput.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
-  type: PropTypes.oneOf([
-    'email',
-    'password',
-    'text',
-  ]),
   validationMessage: PropTypes.string,
   value: PropTypes.string,
 };
@@ -138,7 +133,6 @@ DurationInput.defaultProps = {
   readOnly: undefined,
   required: undefined,
   tooltip: undefined,
-  type: 'text',
   validationMessage: '',
   value: undefined,
 };

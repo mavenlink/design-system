@@ -47,14 +47,14 @@ describe('DurationInput', () => {
     it('is set with any changes', () => {
       const ref = createRef();
       render(<DurationInput {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('the label'), 'a');
+      userEvent.type(screen.getByLabelText('the label'), '2h');
       expect(ref.current.dirty).toBe(true);
     });
 
     it('is unset with changes back to initial state', () => {
       const ref = createRef();
       render(<DurationInput {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('the label'), 'a');
+      userEvent.type(screen.getByLabelText('the label'), '2');
       userEvent.type(screen.getByLabelText('the label'), '{backspace}');
       expect(ref.current.dirty).toBe(false);
     });
@@ -62,8 +62,8 @@ describe('DurationInput', () => {
     it('is unset with changes and new value prop', () => {
       const ref = createRef();
       const { rerender } = render(<DurationInput {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('the label'), 'a');
-      rerender(<DurationInput {...requiredProps} ref={ref} value="a" />);
+      userEvent.type(screen.getByLabelText('the label'), '2');
+      rerender(<DurationInput {...requiredProps} ref={ref} value="2" />);
       expect(ref.current.dirty).toBe(false);
     });
   });
@@ -122,7 +122,7 @@ describe('DurationInput', () => {
     it('sets the onchange handler', () => {
       const onChangeSpy = jest.fn();
       render(<DurationInput {...requiredProps} onChange={onChangeSpy} />);
-      userEvent.type(screen.getByLabelText('the label'), 'f');
+      userEvent.type(screen.getByLabelText('the label'), '2');
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -140,7 +140,7 @@ describe('DurationInput', () => {
     it('sets the onInput handler', () => {
       const onInputSpy = jest.fn();
       render(<DurationInput {...requiredProps} onInput={onInputSpy} />);
-      userEvent.type(screen.getByLabelText('the label'), 'f');
+      userEvent.type(screen.getByLabelText('the label'), '2');
       expect(onInputSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -150,7 +150,7 @@ describe('DurationInput', () => {
       const onKeyDownSpy = jest.fn();
       render(<DurationInput {...requiredProps} onKeyDown={onKeyDownSpy} />);
       userEvent.click(screen.getByText('the label'));
-      userEvent.keyboard('a');
+      userEvent.type(screen.getByLabelText('the label'), '2');
       expect(onKeyDownSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -172,8 +172,8 @@ describe('DurationInput', () => {
   describe('ref API', () => {
     it('can be set', () => {
       const ref = React.createRef();
-      render(<DurationInput {...requiredProps} ref={ref} value="test value" />);
-      expect(ref.current.value).toEqual('test value');
+      render(<DurationInput {...requiredProps} ref={ref} value="2" />);
+      expect(ref.current.value).toEqual(120);
     });
   });
 
@@ -210,16 +210,6 @@ describe('DurationInput', () => {
   });
 
   describe('type API', () => {
-    it('is set to "email"', () => {
-      render(<DurationInput {...requiredProps} type="email" />);
-      expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'email');
-    });
-
-    it('is set to "password"', () => {
-      render(<DurationInput {...requiredProps} type="password" />);
-      expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'password');
-    });
-
     it('is be set to "text"', () => {
       render(<DurationInput {...requiredProps} type="text" />);
       expect(screen.getByLabelText('the label')).toHaveAttribute('type', 'text');
@@ -243,27 +233,27 @@ describe('DurationInput', () => {
 
   describe('value API', () => {
     it('sets the value', () => {
-      render(<DurationInput {...requiredProps} value="test-value" />);
-      expect(screen.getByLabelText('the label')).toHaveValue('test-value');
+      render(<DurationInput {...requiredProps} value="1" />);
+      expect(screen.getByLabelText('the label')).toHaveValue('1');
     });
 
     it('updates the value', () => {
-      const { rerender } = render(<DurationInput {...requiredProps} value="test value" />);
-      rerender(<DurationInput {...requiredProps} value="another value" />);
-      expect(screen.getByLabelText('the label')).toHaveValue('another value');
+      const { rerender } = render(<DurationInput {...requiredProps} value="1" />);
+      rerender(<DurationInput {...requiredProps} value="2" />);
+      expect(screen.getByLabelText('the label')).toHaveValue('2');
     });
 
     it('set on the ref', () => {
       const ref = createRef();
-      const { rerender } = render(<DurationInput {...requiredProps} ref={ref} value="unique value" />);
-      expect(ref.current.value).toBe('unique value');
-      userEvent.type(screen.getByLabelText('the label'), '!');
-      expect(ref.current.value).toBe('unique value!');
+      const { rerender } = render(<DurationInput {...requiredProps} ref={ref} value="2h 00" />);
+      expect(ref.current.value).toBe(120);
+      userEvent.type(screen.getByLabelText('the label'), '3');
+      expect(ref.current.value).toBe(240);
 
       rerender(<DurationInput {...requiredProps} ref={ref} value={undefined} />);
       expect(ref.current.value).toBe('');
-      userEvent.type(screen.getByLabelText('the label'), '!');
-      expect(ref.current.value).toBe('!');
+      userEvent.type(screen.getByLabelText('the label'), '1');
+      expect(ref.current.value).toBe(60);
     });
   });
 
