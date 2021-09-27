@@ -16,16 +16,30 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
 
   const ref = useForwardedRef(forwardedRef);
   const [invalid, setInvalid] = useState('');
+  const [formattedValue, setFormattedValue] = useState(formatTime(props.value));
 
   useImperativeHandle(ref, () => ({
-    ...refs.control.current,
-    get dirty() { return refs.input.current.dirty; },
+    get dirty() {
+      return refs.input.current.dirty;
+    },
     get value() { return timeToMinutes(refs.input.current.value); },
+    contains(node) {
+      return refs.control.current.contains(node);
+    },
+    get id() {
+      return refs.control.current.id;
+    },
+    get name() {
+      return refs.control.current.name;
+    },
   }));
 
   function onBlur(e) {
-    const duration = timeToMinutes(refs.input.current.value);
-    e.target.value = formatTime(duration);
+    const duration = timeToMinutes(e.target.value);
+    const formattedTime = formatTime(duration);
+    if (formattedTime) {
+      setFormattedValue(formattedTime);
+    }
     props.onBlur(e);
   }
 
@@ -48,8 +62,8 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
     return Math.ceil(hoursValue * 60);
   }
 
-  function formatTime(time, orig) {
-    if (time === null) { return orig; }
+  function formatTime(time) {
+    if (!time) { return undefined; }
 
     const hours = Math.floor(time / 60);
     const minutes = Math.ceil(time % 60);
@@ -89,7 +103,7 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
         ref={refs.input}
         required={props.required}
         validationMessage={props.validationMessage}
-        value={props.value}
+        value={formattedValue}
       />
     </FormControl>
   );

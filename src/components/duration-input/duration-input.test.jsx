@@ -44,10 +44,11 @@ describe('DurationInput', () => {
       expect(ref.current.dirty).toBe(false);
     });
 
-    it('is set with any changes', () => {
+    it('is set with any changes', async () => {
       const ref = createRef();
-      render(<DurationInput {...requiredProps} ref={ref} />);
-      userEvent.type(screen.getByLabelText('the label'), '2h');
+      render(<div><DurationInput {...requiredProps} ref={ref} /><button /></div>);
+      userEvent.type(screen.getByLabelText('the label'), '2');
+      userEvent.tab(); // blur
       expect(ref.current.dirty).toBe(true);
     });
 
@@ -172,7 +173,7 @@ describe('DurationInput', () => {
   describe('ref API', () => {
     it('can be set', () => {
       const ref = React.createRef();
-      render(<DurationInput {...requiredProps} ref={ref} value="2" />);
+      render(<DurationInput {...requiredProps} ref={ref} value="120" />);
       expect(ref.current.value).toEqual(120);
     });
   });
@@ -234,26 +235,7 @@ describe('DurationInput', () => {
   describe('value API', () => {
     it('sets the value', () => {
       render(<DurationInput {...requiredProps} value="1" />);
-      expect(screen.getByLabelText('the label')).toHaveValue('1');
-    });
-
-    it('updates the value', () => {
-      const { rerender } = render(<DurationInput {...requiredProps} value="1" />);
-      rerender(<DurationInput {...requiredProps} value="2" />);
-      expect(screen.getByLabelText('the label')).toHaveValue('2');
-    });
-
-    it('set on the ref', () => {
-      const ref = createRef();
-      const { rerender } = render(<DurationInput {...requiredProps} ref={ref} value="2h 00" />);
-      expect(ref.current.value).toBe(120);
-      userEvent.type(screen.getByLabelText('the label'), '3');
-      expect(ref.current.value).toBe(240);
-
-      rerender(<DurationInput {...requiredProps} ref={ref} value={undefined} />);
-      expect(ref.current.value).toBe('');
-      userEvent.type(screen.getByLabelText('the label'), '1');
-      expect(ref.current.value).toBe(60);
+      expect(screen.getByLabelText('the label')).toHaveValue('0h 01');
     });
   });
 
