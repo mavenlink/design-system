@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DurationInput cssContainer API sets input container className 1`] = `
+<body>
+  <div>
+    <div
+      class="test-class"
+      role="presentation"
+    >
+      <div
+        class="label-wrapper"
+      >
+        <div
+          class="label"
+        >
+          <label
+            for="foo"
+            id="foo-label"
+          >
+            the label
+          </label>
+        </div>
+      </div>
+      <div
+        class="control-container"
+      >
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="fooHint foo-tooltip"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DurationInput has defaults 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <div
+        class="label-wrapper"
+      >
+        <div
+          class="label"
+        >
+          <label
+            for="foo"
+            id="foo-label"
+          >
+            the label
+          </label>
+        </div>
+      </div>
+      <div
+        class="control-container"
+      >
+        <div
+          style="position: relative;"
+        >
+          <input
+            aria-describedby="fooHint foo-tooltip"
+            class="input"
+            id="foo"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`DurationInput has defaults 2`] = `
+Object {
+  "contains": [Function],
+  "dirty": false,
+  "id": "foo",
+  "name": undefined,
+  "value": undefined,
+}
+`;
