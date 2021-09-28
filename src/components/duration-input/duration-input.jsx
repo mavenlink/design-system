@@ -3,6 +3,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import FormControl from '../form-control/form-control.jsx';
 import InputControl from '../control/input.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import { formatTime, timeToMinutes } from './duration-formatter.js';
 
 const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
   const ids = {
@@ -20,9 +21,13 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      return refs.input.current.dirty;
+      const providedValue = props.value;
+      return providedValue !== this.value;
     },
-    get value() { return timeToMinutes(refs.input.current.value); },
+    get value() {
+      const val = timeToMinutes(refs.input.current.value);
+      return val;
+    },
     contains(node) {
       return refs.control.current.contains(node);
     },
@@ -41,34 +46,6 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
       setFormattedValue(formattedTime);
     }
     props.onBlur(e);
-  }
-
-  function timeToMinutes(value) {
-    const colonMatch = /(\d*):(\d*)/.exec(value);
-    if (colonMatch) {
-      return ((parseInt(colonMatch[1], 10) || 0) * 60) + (parseInt(colonMatch[2], 10) || 0);
-    } else if (/\d\s*[hm]/i.test(value)) {
-      let minutes = 0;
-      const hourMatch = /([\d.]+)\s*h/i.exec(value);
-      const minuteMatch = /([\d.]+)\s*m/i.exec(value);
-      if (hourMatch) { minutes += parseFloat(hourMatch[1]) * 60; }
-      if (minuteMatch) { minutes += parseInt(minuteMatch[1], 10); }
-      return minutes;
-    }
-    const hoursValue = parseFloat(value);
-    if (isNaN(hoursValue)) {
-      return null;
-    }
-    return Math.ceil(hoursValue * 60);
-  }
-
-  function formatTime(time) {
-    if (!time) { return undefined; }
-
-    const hours = Math.floor(time / 60);
-    const minutes = Math.ceil(time % 60);
-    const prefixZero = minutes < 10 ? '0' : '';
-    return `${hours}h ${prefixZero}${minutes}`;
   }
 
   return (
@@ -128,7 +105,7 @@ DurationInput.propTypes = {
   required: PropTypes.bool,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };
 
 DurationInput.defaultProps = {

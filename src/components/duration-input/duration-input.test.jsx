@@ -46,7 +46,7 @@ describe('DurationInput', () => {
 
     it('is set with any changes', async () => {
       const ref = createRef();
-      render(<div><DurationInput {...requiredProps} ref={ref} /><button /></div>);
+      render(<DurationInput {...requiredProps} ref={ref} />);
       userEvent.type(screen.getByLabelText('the label'), '2');
       userEvent.tab(); // blur
       expect(ref.current.dirty).toBe(true);
@@ -64,7 +64,7 @@ describe('DurationInput', () => {
       const ref = createRef();
       const { rerender } = render(<DurationInput {...requiredProps} ref={ref} />);
       userEvent.type(screen.getByLabelText('the label'), '2');
-      rerender(<DurationInput {...requiredProps} ref={ref} value="2" />);
+      rerender(<DurationInput {...requiredProps} ref={ref} value={120} />);
       expect(ref.current.dirty).toBe(false);
     });
   });
@@ -173,7 +173,7 @@ describe('DurationInput', () => {
   describe('ref API', () => {
     it('can be set', () => {
       const ref = React.createRef();
-      render(<DurationInput {...requiredProps} ref={ref} value="120" />);
+      render(<DurationInput {...requiredProps} ref={ref} value={120} />);
       expect(ref.current.value).toEqual(120);
     });
   });
@@ -234,8 +234,127 @@ describe('DurationInput', () => {
 
   describe('value API', () => {
     it('sets the value', () => {
-      render(<DurationInput {...requiredProps} value="1" />);
+      const ref = React.createRef();
+      render(<DurationInput {...requiredProps} ref={ref} value={1} />);
       expect(screen.getByLabelText('the label')).toHaveValue('0h 01');
+      expect(ref.current.value).toBe(1);
+    });
+
+    it('updates the ref value with changes', () => {
+      const ref = React.createRef();
+      render(<DurationInput {...requiredProps} ref={ref} value={60} />);
+      expect(screen.getByLabelText('the label')).toHaveValue('1h 00');
+
+      userEvent.type(screen.getByLabelText('the label'), '{backspace}{backspace}{backspace}{backspace}{backspace}');
+      userEvent.type(screen.getByLabelText('the label'), '2h 00');
+      userEvent.tab(); // blur
+
+      expect(ref.current.value).toBe(120);
+    });
+  });
+
+  describe('formatting', () => {
+    describe('formatting values', () => {
+      it('handles just minutes', () => {
+        render(<DurationInput {...requiredProps} value={1} />);
+        expect(screen.getByLabelText('the label')).toHaveValue('0h 01');
+      });
+
+      it('handles hours', () => {
+        render(<DurationInput {...requiredProps} value={120} />);
+        expect(screen.getByLabelText('the label')).toHaveValue('2h 00');
+      });
+
+      it('handles hours and minutes', () => {
+        render(<DurationInput {...requiredProps} value={150} />);
+        expect(screen.getByLabelText('the label')).toHaveValue('2h 30');
+      });
+    });
+
+    describe('formatting user input', () => {
+      it('converts the user input: 2 to 2h 00', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '2');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('2h 00');
+      });
+
+      it('converts the user input: 3h to 3h 00', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '3h');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('3h 00');
+      });
+
+      it('converts the user input: 4.5 to 4h 30', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '4.5');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('4h 30');
+      });
+
+      it('converts the user input: .25 to 0h 15', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '.25');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('0h 15');
+      });
+
+      it('converts the user input: 45m to 0h 45', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '45m');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('0h 45');
+      });
+
+      it('converts the user input: 45 min to 0h 45', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '45 min');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('0h 45');
+      });
+
+      it('converts the user input: 1 hour 45 min to 1h 45', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '1 hour 45 min');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('1h 45');
+      });
+
+      it('converts the user input: 1h 15 to 1h 15', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '1h 15');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('1h 15');
+      });
+
+      it('converts the user input: 2:30 to 2h 30', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '2:30');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('2h 30');
+      });
+
+      it('converts the user input: 1.5d to 36h 00', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '1.5d');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('36h 00');
+      });
+
+      it('converts the user input: 3 days to 72h 00', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '3 days');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('72h 00');
+      });
+
+      it('converts the user input: 2 days 2 hours 2 mins to 50h 02', () => {
+        render(<DurationInput {...requiredProps} />);
+        userEvent.type(screen.getByLabelText('the label'), '2 days 2 hours 2 mins');
+        userEvent.tab(); // blur
+        expect(screen.getByLabelText('the label')).toHaveValue('50h 02');
+      });
     });
   });
 
