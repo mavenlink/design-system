@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import FormControl from '../form-control/form-control.jsx';
-import InputControl from '../control/input.jsx';
+import Input from '../input/input.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import { formatTime, timeToMinutes } from './duration-formatter.js';
 
@@ -16,7 +15,6 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
   };
 
   const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState('');
   const [formattedValue, setFormattedValue] = useState(formatTime(props.value));
 
   useImperativeHandle(ref, () => ({
@@ -49,40 +47,31 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
   }
 
   return (
-    <FormControl
-      className={props.cssContainer}
-      error={invalid}
+    <Input
+      cssContainer={props.cssContainer}
       id={props.id}
       label={props.label}
       labelId={ids.label}
       name={props.name}
       readOnly={props.readOnly}
-      ref={refs.control}
+      controlRef={refs.control}
+      inputRef={refs.input}
       required={props.required}
       tooltip={props.tooltip}
-    >
-      <InputControl
-        autoFocus={props.autoFocus}
-        className={props.className}
-        describedBy={ids.tooltip}
-        id={props.id}
-        labelledBy={ids.label}
-        maxLength={props.maxLength}
-        name={props.name}
-        onBlur={onBlur}
-        onChange={props.onChange}
-        onFocus={props.onFocus}
-        onInput={props.onInput}
-        onInvalid={event => setInvalid(event.detail.validationMessage)}
-        onKeyDown={props.onKeyDown}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        ref={refs.input}
-        required={props.required}
-        validationMessage={props.validationMessage}
-        value={formattedValue}
-      />
-    </FormControl>
+      autoFocus={props.autoFocus}
+      className={props.className}
+      describedBy={ids.tooltip}
+      labelledBy={ids.label}
+      maxLength={props.maxLength}
+      onBlur={onBlur}
+      onChange={props.onChange}
+      onFocus={props.onFocus}
+      onInput={props.onInput}
+      onKeyDown={props.onKeyDown}
+      placeholder={props.placeholder}
+      validationMessage={props.validationMessage}
+      value={formattedValue}
+    />
   );
 });
 

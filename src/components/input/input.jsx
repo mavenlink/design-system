@@ -10,8 +10,8 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     tooltip: `${props.id}-tooltip`,
   };
   const refs = {
-    control: useRef(),
-    input: useRef(),
+    control: props.controlRef || useRef(),
+    input: props.inputRef || useRef(),
   };
 
   const ref = useForwardedRef(forwardedRef);
@@ -67,6 +67,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
+  controlRef: PropTypes.object,
+  inputRef: PropTypes.object,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
@@ -94,6 +96,8 @@ Input.defaultProps = {
   className: undefined,
   cssContainer: undefined,
   cssLabel: undefined,
+  controlRef: undefined,
+  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: () => {},
