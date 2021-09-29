@@ -67,8 +67,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
-  controlRef: PropTypes.object,
-  inputRef: PropTypes.object,
+  controlRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  inputRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
