@@ -9,6 +9,7 @@ exports[`src/components/listbox/listbox has defaults 1`] = `
       role="listbox"
     >
       <li
+        aria-disabled="false"
         aria-selected="false"
         class="option"
         role="option"
@@ -17,6 +18,7 @@ exports[`src/components/listbox/listbox has defaults 1`] = `
         Hello
       </li>
       <li
+        aria-disabled="false"
         aria-selected="false"
         class="option"
         role="option"
