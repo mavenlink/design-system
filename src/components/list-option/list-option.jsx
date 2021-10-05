@@ -8,12 +8,12 @@ import React, {
 import PropTypes from 'prop-types';
 import styles from './list-option.css';
 
-const getClassName = (className, visible) => {
-  if (!visible) {
-    return `${className} ${styles.hidden}`;
-  }
-
-  return className;
+const getClassName = (className, selected, visible, readOnly) => {
+  return [className, styles.option]
+    .concat(selected ? styles.selected : [])
+    .concat(visible ? [] : styles.hidden)
+    .concat(readOnly ? styles['read-only'] : [])
+    .join(' ');
 };
 
 const ListOption = forwardRef(function ListOption(props, ref) {
@@ -23,8 +23,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const [selected, setSelected] = useState(props.selected);
   const [visible, setVisible] = useState(true);
   const rootRef = useRef();
-  const selectedClassName = selected ? styles.selected : styles.option;
-  const className = getClassName(props.className ? props.className : selectedClassName, visible);
+  const className = getClassName(props.className, selected, visible, props.readOnly);
 
   function onClick() {
     if (props.readOnly) return;

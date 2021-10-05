@@ -8,6 +8,8 @@
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
   - feat(list option): implement readOnly API. when it is read-only, the option cannot be selected or unselected with user actions.
+  - refactor(list option): append styling based on various states in the option (selected vs readonly vs hidden)
+    fix(list option): add styling for a read-only option
 </details>
 
 ## 0.85.0
