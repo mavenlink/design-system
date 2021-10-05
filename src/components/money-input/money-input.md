@@ -78,39 +78,16 @@ presented to it, responding with a specific message for the context of that spec
 />
 ```
 
-### Ref usage:
-
-The component uses `forwardRef` and `useImperativeHandle` to provide an API similar to the DOM native for determining their value.
-Below is an example of this usage:
-
+## Ref API Example
 ```jsx
 import MoneyInput from '@mavenlink/design-system/src/components/money-input/money-input.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
-function TestComponent() {
-  const ref = React.useRef();
-  const [current, setCurrent] = React.useState({});
+const ref = React.createRef();
 
-  const onChange = () => {
-    setCurrent(ref.current);
-  }
-
-  return (
-    <div onChange={onChange}>
-      <MoneyInput
-        currencyCode="USD"
-        id={uuid.v4()}
-        label="Example 4"
-        name="example_4"
-        ref={ref}
-      />
-      <ul>
-        {Object.keys(current).map(key => (
-          <li>{key}: {JSON.stringify(current[key])}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-<TestComponent />
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <MoneyInput id={uuid.v4()} ref={ref} onChange={onChange} label='Ref Example' name={'ref-ex'}  />
+  )}
+</RefExample>
 ```

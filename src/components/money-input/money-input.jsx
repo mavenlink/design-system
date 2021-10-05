@@ -58,7 +58,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
     get value() {
       let numberValue;
 
-      if (!valueRef.current || valueRef.current.value === '') {
+      if (valueRef.current.value === '') {
         return undefined;
       }
 
