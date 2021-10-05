@@ -63,6 +63,7 @@ module.exports = {
       path.join(__dirname, 'src/components/date/date.jsx'),
       path.join(__dirname, 'src/components/input/input.jsx'),
       path.join(__dirname, 'src/components/duration-input/duration-input.jsx'),
+      path.join(__dirname, 'src/components/money-input/money-input.jsx'),
       path.join(__dirname, 'src/components/multi-autocompleter/multi-autocompleter.jsx'),
       path.join(__dirname, 'src/components/multi-select/multi-select.jsx'),
       path.join(__dirname, 'src/components/number/number.jsx'),

@@ -64,10 +64,13 @@ describe('MoneyInput', () => {
       userEvent.click(screen.getByLabelText('currency'));
       expect(ref.current.dirty).toEqual(false);
       userEvent.type(screen.getByLabelText('currency'), '12');
+      userEvent.tab();
       expect(ref.current.dirty).toEqual(true);
       userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      userEvent.tab();
       expect(ref.current.dirty).toEqual(true);
       userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      userEvent.tab();
       expect(ref.current.dirty).toEqual(false);
     });
   });
@@ -84,12 +87,9 @@ describe('MoneyInput', () => {
     it('calls the handler', () => {
       const onChangeSpy = jest.fn();
       const { getByLabelText } = render(<MoneyInput {...requiredProps} onChange={onChangeSpy} />);
-      userEvent.type(getByLabelText('currency'), '1234');
-      expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
-        target: expect.objectContaining({
-          value: [123400, 'USD'],
-        }),
-      }));
+      userEvent.type(getByLabelText('currency'), '1');
+      userEvent.tab();
+      expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
   });
 
@@ -203,6 +203,7 @@ describe('MoneyInput', () => {
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
+      userEvent.tab();
       expect(ref.current.value).toStrictEqual([123400, 'USD']);
       fireEvent.blur(screen.getByLabelText('Test label'));
       expect(ref.current.value).toStrictEqual([123400, 'USD']);
@@ -214,6 +215,7 @@ describe('MoneyInput', () => {
 
       fireEvent.focus(screen.getByLabelText('Test label'));
       fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
+      userEvent.tab();
       expect(ref.current.value).toStrictEqual([-123400, 'USD']);
       fireEvent.blur(screen.getByLabelText('Test label'));
       expect(ref.current.value).toStrictEqual([-123400, 'USD']);

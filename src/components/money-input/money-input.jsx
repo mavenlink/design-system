@@ -1,43 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
+import Input from '../input/input.jsx';
+import Number from '../number/number.jsx';
 import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
 import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
+import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-
-function getLocale() {
-  if (navigator && navigator.languages) {
-    return navigator.languages[0];
-  }
-
-  return 'en-IN';
-}
-
-function initialInputValid(inputValue) {
-  if (!inputValue) {
-    return true;
-  }
-
-  return inputValue.toString()
-    .split('.').length === 1;
-}
-
-function subunitToUnit(subunitValue, currencyCode) {
-  if (subunitValue === undefined) return undefined;
-
-  return subunitValue / (10 ** currencyMetaData[currencyCode].maximumFractionDigits);
-}
-
-function formatValue(unitValue, currencyCode) {
-  if (unitValue === undefined) return '';
-
-  return new Intl.NumberFormat(getLocale(), {
-    style: 'currency',
-    currency: currencyCode,
-    maximumFractionDigits: currencyMetaData[currencyCode].maximumFractionDigits,
-  }).format(unitValue);
-}
 
 const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
@@ -62,10 +30,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
     setIsEditing(true);
     setIsFocused(true);
-  }
-
-  function onChange() {
-    props.onChange({ target: ref.current });
   }
 
   useEffect(() => {
@@ -94,7 +58,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
     get value() {
       let numberValue;
 
-      if (valueRef.current.value === '') {
+      if (!valueRef.current || valueRef.current.value === '') {
         return undefined;
       }
 
@@ -131,10 +95,10 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
   if (isEditing) {
     return (
-      <CustomFieldInputNumber
+      <Number
         {...sharedProps}
         onBlur={handleOnBlur}
-        onChange={onChange}
+        onChange={props.onChange}
         ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         value={input}
@@ -143,9 +107,9 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   }
 
   return (
-    <CustomFieldInputText
+    <Input
       {...sharedProps}
-      errorText={props.errorText}
+      validationMessage={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"

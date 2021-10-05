@@ -84,7 +84,7 @@ The component uses `forwardRef` and `useImperativeHandle` to provide an API simi
 Below is an example of this usage:
 
 ```jsx
-import MoneyInput from '@mavenlink/design-system/src/components/custom-field-input-currency/custom-field-input-currency.jsx';
+import MoneyInput from '@mavenlink/design-system/src/components/money-input/money-input.jsx';
 
 function TestComponent() {
   const ref = React.useRef();
