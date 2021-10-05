@@ -33,6 +33,7 @@ import ListOption from '@mavenlink/design-system/src/components/list-option/list
 const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
 
 <FormControl
+  id="listbox-example-1"
   label="Choose your answer"
   labelId="listbox-example-1"
 >
@@ -40,7 +41,7 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
     <ListOption ref={refs[0]} value="1">Yes</ListOption>
     <ListOption ref={refs[1]} value="2">No</ListOption>
     <ListOption ref={refs[2]} value="3">Maybe</ListOption>
-    <ListOption ref={refs[3]} value="4">I don't know</ListOption>
+    <ListOption ref={refs[3]} readOnly value="4">I don't know</ListOption>
     <ListOption ref={refs[4]} title="Can you repeat the question?" value="5">Can you repeat the question?</ListOption>
   </Listbox>
 </FormControl>
@@ -67,6 +68,7 @@ const children = options.map((option, index) => (
 
 <div style={container}>
   <FormControl
+    id="listbox-example-2"
     label="Dynamic answers"
     labelId="listbox-example-2"
   >

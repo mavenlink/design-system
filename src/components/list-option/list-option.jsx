@@ -27,10 +27,12 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const className = getClassName(props.className ? props.className : selectedClassName, visible);
 
   function onClick() {
+    if (props.readOnly) return;
     setSelected(!selected);
   }
 
   function onKeyDown(event) {
+    if (props.readOnly) return;
     switch (event.key) {
       case 'Enter':
         event.preventDefault();
@@ -76,6 +78,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   });
 
   return (<li
+    aria-disabled={props.readOnly}
     aria-selected={selected}
     className={className}
     onClick={onClick}
@@ -94,6 +97,7 @@ ListOption.propTypes = {
   children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -103,6 +107,7 @@ ListOption.defaultProps = {
   className: undefined,
   defaultActive: true,
   onSelect: () => {},
+  readOnly: false,
   selected: false,
   title: undefined,
 };
