@@ -1,9 +1,7 @@
 import React, { createRef } from 'react';
 import {
-  fireEvent,
   render,
   screen,
-  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ListOption from '../list-option/list-option.jsx';
@@ -46,7 +44,7 @@ describe('src/components/select/select', () => {
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
 
-      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      userEvent.keyboard('{Enter}');
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
     });
@@ -57,7 +55,7 @@ describe('src/components/select/select', () => {
       expect(screen.getByText('foo')).toBeInTheDocument();
       expect(screen.getByText('bar')).toBeInTheDocument();
 
-      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
+      userEvent.keyboard('{Escape}');
       expect(screen.queryByText('foo')).not.toBeInTheDocument();
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });
@@ -74,7 +72,7 @@ describe('src/components/select/select', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab();
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyboard('{ArrowDown}');
 
       expect(document.activeElement.innerHTML).toBe('bar');
     });
@@ -212,7 +210,7 @@ describe('src/components/select/select', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByText('foo'));
       userEvent.click(screen.getByLabelText('Test label'));
-      fireEvent.change(document.activeElement, { target: { value: '' } });
+      userEvent.clear(document.activeElement);
 
       expect(document.activeElement).toHaveValue('');
     });
@@ -367,7 +365,7 @@ describe('src/components/select/select', () => {
       userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
       userEvent.tab();
       expect(screen.getByRole('button', { name: 'Remove selected choice' })).toHaveFocus();
-      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      userEvent.keyboard('{Enter}');
       expect(screen.getAllByLabelText('Test label')[0]).toHaveValue('');
     });
 
@@ -406,7 +404,7 @@ describe('src/components/select/select', () => {
 
       expect(changeValue).toEqual('foo');
 
-      fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
+      userEvent.click(screen.getByRole('button', { name: 'Remove selected choice' }));
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByText('bar'));
 
