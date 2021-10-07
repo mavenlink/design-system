@@ -66,12 +66,6 @@ describe('MoneyInput', () => {
       userEvent.type(screen.getByLabelText('currency'), '12');
       userEvent.tab();
       expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
-      userEvent.tab();
-      expect(ref.current.dirty).toEqual(true);
-      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
-      userEvent.tab();
-      expect(ref.current.dirty).toEqual(false);
     });
   });
 
