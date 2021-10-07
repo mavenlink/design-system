@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ListOption from '../list-option/list-option.jsx';
@@ -11,8 +12,8 @@ import Select from './select.jsx';
 describe('src/components/select/select', () => {
   const baseListOptions = ['foo', 'bar'];
   const baseListOptionRefs = baseListOptions.map(() => createRef());
-  const baseListOptionElements = baseListOptions.map((option, index) => {
-    return (<ListOption key={option} ref={baseListOptionRefs[index]} value={option}>{option}</ListOption>);
+  const baseListOptionElements = ({ onSelect }) => baseListOptions.map((option, index) => {
+    return (<ListOption key={option} onSelect={onSelect} ref={baseListOptionRefs[index]} value={option}>{option}</ListOption>);
   });
   const requiredProps = {
     id: 'test-id',
@@ -301,25 +302,28 @@ describe('src/components/select/select', () => {
       expect(screen.getByText('foo')).toHaveAttribute('aria-selected', 'true');
     });
 
-    it('keeps the selected value selected even when value type is complex', () => {
+    it('keeps the selected value selected even when value type is complex', async () => {
       const listOptions = [{ id: 0, label: 'foo' }];
       const listOptionRefs = listOptions.map(() => React.createRef());
-      const listOptionElements = listOptions.map((option, index) => {
-        return (<ListOption key={option.id} ref={listOptionRefs[index]} value={option}>{option.label}</ListOption>);
+      const listOptionElements = ({ onSelect }) => listOptions.map((option, index) => {
+        return (<ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+          {option.label}
+        </ListOption>);
       });
 
       render(
         <Select
           {...requiredProps}
+          listOptionRefs={listOptionRefs}
           value={listOptions[0]}
           displayValueEvaluator={value => value.label}
         >
           {listOptionElements}
         </Select>);
       userEvent.click(screen.getByLabelText('Test label'));
+      expect(screen.getByText('foo')).toHaveAttribute('aria-selected', 'true');
       userEvent.click(screen.getByText('foo'));
-      userEvent.click(screen.getAllByLabelText('Test label')[0]);
-
+      userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('foo')).toHaveAttribute('aria-selected', 'true');
     });
   });

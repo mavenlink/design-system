@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 import styles from './list-option.css';
 
 const getClassName = (className, selected, visible, readOnly) => {
-  return [className, styles.option]
+  return [styles.option]
+    .concat(className || [])
     .concat(selected ? styles.selected : [])
     .concat(visible ? [] : styles.hidden)
     .concat(readOnly ? styles['read-only'] : [])
@@ -22,6 +23,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
   const [visible, setVisible] = useState(true);
+  const silentRef = useRef(false);
   const rootRef = useRef();
   const className = getClassName(props.className, selected, visible, props.readOnly);
 
@@ -50,6 +52,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setActive(bool);
     },
     setSelected: (bool) => {
+      silentRef.current = true;
       setSelected(bool);
     },
     setVisible: (bool) => {
@@ -65,6 +68,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 
   useEffect(() => {
     if (!didMount) return;
+    if (silentRef.current) return;
 
     props.onSelect({ target: ref });
   }, [selected]);
@@ -74,6 +78,10 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       rootRef.current.focus();
       setFocusQueued(false);
     }
+  });
+
+  useEffect(() => {
+    if (silentRef.current) silentRef.current = false;
   });
 
   return (<li

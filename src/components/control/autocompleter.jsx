@@ -51,13 +51,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   }
 
   const listOptionRefs = models.map(() => React.createRef());
-  const listOptionElements = models.map((modelInfo, index) => {
-    return (
-      <ListOption key={modelInfo.id} ref={listOptionRefs[index]} value={modelInfo}>
-        {props.displayValueEvaluator(modelInfo)}
-      </ListOption>
-    );
-  });
 
   return (
     <Select
@@ -78,7 +71,13 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       value={props.value}
       wrapperRef={props.wrapperRef}
     >
-      {listOptionElements}
+      {({ onSelect }) => (
+        models.map((modelInfo, index) => (
+          <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
+            {props.displayValueEvaluator(modelInfo)}
+          </ListOption>
+        ))
+      )}
     </Select>
   );
 });

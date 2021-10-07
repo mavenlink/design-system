@@ -29,22 +29,30 @@ Otherwise, the user does not know the context of the list.
 import FormControl from '@mavenlink/design-system/src/components/form-control/form-control.jsx';
 import Listbox from '@mavenlink/design-system/src/components/listbox/listbox.jsx';
 import ListOption from '@mavenlink/design-system/src/components/list-option/list-option.jsx';
+import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
+const ref = React.createRef();
 const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
 
-<FormControl
-  id="listbox-example-1"
-  label="Choose your answer"
-  labelId="listbox-example-1"
->
-  <Listbox labelledBy="listbox-example-1" refs={refs}>
-    <ListOption ref={refs[0]} value="1">Yes</ListOption>
-    <ListOption ref={refs[1]} value="2">No</ListOption>
-    <ListOption ref={refs[2]} value="3">Maybe</ListOption>
-    <ListOption ref={refs[3]} readOnly value="4">I don't know</ListOption>
-    <ListOption ref={refs[4]} title="Can you repeat the question?" value="5">Can you repeat the question?</ListOption>
-  </Listbox>
-</FormControl>
+<RefExample ref={ref}>
+  {({ onChange }) => (
+    <FormControl
+      id="listbox-example-1"
+      label="Choose your answer"
+      labelId="listbox-example-1"
+    >
+      <Listbox labelledBy="listbox-example-1" onChange={onChange} ref={ref} refs={refs}>
+        {({ onSelect }) => (<>
+          <ListOption onSelect={onSelect} ref={refs[0]} value="1">Yes</ListOption>
+          <ListOption onSelect={onSelect} ref={refs[1]} value="2">No</ListOption>
+          <ListOption onSelect={onSelect} ref={refs[2]} value="3">Maybe</ListOption>
+          <ListOption onSelect={onSelect} ref={refs[3]} readOnly value="4">I don't know</ListOption>
+          <ListOption onSelect={onSelect} ref={refs[4]} title="Can you repeat the question?" value="5">Can you repeat the question?</ListOption>  
+        </>)}
+      </Listbox>
+    </FormControl>
+  )}
+</RefExample>
 ```
 
 If the list needs to be a certain size or style, place the listbox into its own containing `div` and style that `div`:
@@ -60,11 +68,6 @@ const container = {
 };
 const options = ['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?'];
 const refs = options.map(_ => React.createRef());
-const children = options.map((option, index) => (
-  <ListOption key={`${option}-${index}`} ref={refs[index]} title={option} value={option}>
-    {option}
-  </ListOption>
-));
 
 <div style={container}>
   <FormControl
@@ -73,7 +76,13 @@ const children = options.map((option, index) => (
     labelId="listbox-example-2"
   >
     <Listbox labelledBy="listbox-example-2" refs={refs}>
-      { children }
+      {({ onSelect }) => (
+        options.map((option, index) => (
+          <ListOption key={`${option}-${index}`} onSelect={onSelect} ref={refs[index]} title={option} value={option}>
+            {option}
+          </ListOption>
+        ))
+      )}
     </Listbox>
   </FormControl>
 </div>

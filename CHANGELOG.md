@@ -10,6 +10,13 @@
   - feat(list option): implement readOnly API. when it is read-only, the option cannot be selected or unselected with user actions.
   - refactor(list option): append styling based on various states in the option (selected vs readonly vs hidden)
     fix(list option): add styling for a read-only option
+  - fix(listbox): do not change selected state on read-only options
+  - feat(listbox): use a function for its children API
+    BREAKING CHANGE: Update children to be a function. 
+    If you are passing an `onSelect` to Listbox then the render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
+  - feat(select): use a function for its children API
+    BREAKING CHANGE: Update children to be a function.
+    The render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
 </details>
 
 ## 0.85.0

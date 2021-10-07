@@ -94,8 +94,10 @@ const Select = forwardRef(function Select(props, ref) {
 
   function onSelectionChange(event) {
     const selectedValue = event.target.value;
-    setValue(selectedValue);
-    setSearchValue(selectedValue.label);
+    if (event.target.value) {
+      setValue(selectedValue);
+      setSearchValue(selectedValue.label);
+    }
     setShowOptions(false);
     refs.input.current.focus();
   }
@@ -225,8 +227,9 @@ const Select = forwardRef(function Select(props, ref) {
           />
         </div>
         { showOptions && (
-          (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
-            <Listbox
+          (!props.children || props.children.length === 0)
+            ? <NoOptions className={styles['no-options']} />
+            : <Listbox
               className={styles.dropdown}
               id={`${props.id}-single-choice-listbox`}
               labelledBy={`${props.id}-label`}
@@ -235,9 +238,8 @@ const Select = forwardRef(function Select(props, ref) {
               refs={props.listOptionRefs}
               value={value}
             >
-              {props.children}
+              {({ onSelect }) => props.children({ onSelect })}
             </Listbox>
-          )
         )}
       </div>
     </Control>
@@ -253,7 +255,7 @@ const ListOptionRefType = PropTypes.shape({
 });
 
 Select.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
   displayValueEvaluator: PropTypes.oneOfType([
     PropTypes.func,
@@ -275,7 +277,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  children: undefined,
+  children: () => {},
   displayValueEvaluator: value => value,
   onChange: () => {},
   onInput: () => {},
