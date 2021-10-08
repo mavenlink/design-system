@@ -273,7 +273,7 @@ Select.propTypes = {
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
-  wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired, // eslint-disable-line react/forbid-prop-types
+  wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
 
 Select.defaultProps = {
@@ -287,6 +287,7 @@ Select.defaultProps = {
   required: false,
   validationMessage: '',
   value: undefined,
+  wrapperRef: undefined,
 };
 
 export default Select;
