@@ -17,11 +17,6 @@
   z-index: 10;
 }
 
-.no-options {
-  composes: dropdown;
-  composes: no-options from '../no-options/no-options.css';
-}
-
 .input-icon {
   pointer-events: none;
 }

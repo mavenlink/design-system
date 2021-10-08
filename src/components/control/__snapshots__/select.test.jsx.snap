@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/components/control/select has defaults 1`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        autocomplete="off"
+        class="input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`src/components/control/select has defaults 2`] = `
+Object {
+  "dirty": false,
+  "name": "field-id",
+  "value": undefined,
+}
+`;
+
+exports[`src/components/control/select has defaults 3`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="true"
+        aria-haspopup="listbox"
+        autocomplete="off"
+        class="input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+      <ul
+        aria-labelledby="test-id-label"
+        class="dropdown"
+        id="test-id-single-choice-listbox"
+        role="listbox"
+      >
+        <span
+          class="no-options"
+        >
+          No options available.
+        </span>
+      </ul>
+    </div>
+  </div>
+</body>
+`;

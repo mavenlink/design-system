@@ -227,19 +227,21 @@ const Select = forwardRef(function Select(props, ref) {
           />
         </div>
         { showOptions && (
-          (!props.children || props.children.length === 0)
-            ? <NoOptions className={styles['no-options']} />
-            : <Listbox
-              className={styles.dropdown}
-              id={`${props.id}-single-choice-listbox`}
-              labelledBy={`${props.id}-label`}
-              onChange={onSelectionChange}
-              ref={refs.listbox}
-              refs={props.listOptionRefs}
-              value={value}
-            >
-              {({ onSelect }) => props.children({ onSelect })}
-            </Listbox>
+          <Listbox
+            className={styles.dropdown}
+            id={`${props.id}-single-choice-listbox`}
+            labelledBy={`${props.id}-label`}
+            onChange={onSelectionChange}
+            ref={refs.listbox}
+            refs={props.listOptionRefs}
+            value={value}
+          >
+            {({ onSelect }) => {
+              const options = props.children({ onSelect });
+              if (React.Children.count(options) === 0) return <NoOptions />;
+              return options;
+            }}
+          </Listbox>
         )}
       </div>
     </Control>
