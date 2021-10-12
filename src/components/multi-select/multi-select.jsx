@@ -85,7 +85,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
           labelledBy={ids.label}
           refs={[]}
         >
-          <Loader inline />
+          {() => <Loader inline />}
         </Listbox>
       );
     }
@@ -101,7 +101,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         labelledBy={ids.label}
         refs={visibleOptionsRefs}
       >
-        {props.listboxChildren ?
+        {() => (props.listboxChildren ?
           props.listboxChildren(visibleOptions, visibleOptionsRefs, onOptionSelect) :
           visibleOptions.map((option, index) => (
             <ListOption
@@ -112,7 +112,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             >
               {props.optionLabelGetter(option)}
             </ListOption>
-          ))}
+          ))
+        )}
       </Listbox>
     );
   };

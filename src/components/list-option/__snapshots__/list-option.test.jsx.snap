@@ -4,6 +4,7 @@ exports[`src/components/list-option/list-option renders defaults 1`] = `
 <body>
   <div>
     <li
+      aria-disabled="false"
       aria-selected="false"
       class="option"
       role="option"

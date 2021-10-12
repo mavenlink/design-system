@@ -329,7 +329,7 @@ function Calendar(props) {
       { yearView ?
         (
           <Listbox value={highlightedDate} className={styles['calendar-year-list']} labelledBy={'year-view'} refs={yearViewRefs} >
-            { renderYearOptions() }
+            {renderYearOptions}
           </Listbox>
         )
         :

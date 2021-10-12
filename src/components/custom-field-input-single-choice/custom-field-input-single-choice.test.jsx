@@ -46,7 +46,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('uses the set customFieldID to fetch choices', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={'1'} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Fizz');
       selectChoice('Test label', 'Fizz');
     });
   });
@@ -56,7 +56,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const ref = createRef();
       render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label', 'Foo');
       selectChoice('Test label', 'Foo');
 
       expect(ref.current.dirty).toEqual(true);
@@ -129,7 +129,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('provided value sets the corresponding list item as selected', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
 
       expect(screen.getByText('Foo')).toHaveAttribute('aria-selected', 'true');
     });
@@ -166,7 +166,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const inputRef = createRef(null);
       render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} ref={inputRef} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
 
       expect(inputRef.current.value).toStrictEqual(['0']);
     });
@@ -181,7 +181,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" onChange={onChange} />);
 
-      await waitForChoices('Oh La Mort');
+      await waitForChoices('Oh La Mort', 'Bar');
       selectChoice('Oh La Mort', 'Bar');
 
       expect(changeValue).toStrictEqual(['1']);
@@ -198,7 +198,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('fetches choices on mount', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
       selectChoice('Test label', 'Foo');
     });
   });
