@@ -9,11 +9,8 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
   };
-  const refs = {
-    control: useRef(),
-    input: useRef(),
-  };
 
+  const inputRef = useRef();
   const ref = useForwardedRef(forwardedRef);
   const [formattedValue, setFormattedValue] = useState(formatTime(props.value));
 
@@ -23,17 +20,14 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
       return providedValue !== this.value;
     },
     get value() {
-      const val = timeToMinutes(refs.input.current.value);
+      const val = timeToMinutes(inputRef.current.value);
       return val;
     },
-    contains(node) {
-      return refs.control.current.contains(node);
-    },
     get id() {
-      return refs.control.current.id;
+      return props.id;
     },
     get name() {
-      return refs.control.current.name;
+      return props.name;
     },
   }));
 
@@ -53,9 +47,8 @@ const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
       label={props.label}
       labelId={ids.label}
       name={props.name}
+      ref={inputRef}
       readOnly={props.readOnly}
-      controlRef={refs.control}
-      inputRef={refs.input}
       required={props.required}
       tooltip={props.tooltip}
       autoFocus={props.autoFocus}

@@ -83,7 +83,6 @@ exports[`DurationInput has defaults 1`] = `
 
 exports[`DurationInput has defaults 2`] = `
 Object {
-  "contains": [Function],
   "dirty": false,
   "id": "foo",
   "name": undefined,

@@ -10,8 +10,8 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     tooltip: `${props.id}-tooltip`,
   };
   const refs = {
-    control: props.controlRef || useRef(),
-    input: props.inputRef || useRef(),
+    control: useRef(),
+    input: useRef(),
   };
 
   const ref = useForwardedRef(forwardedRef);
@@ -67,8 +67,6 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   cssContainer: PropTypes.string,
-  controlRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  inputRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
