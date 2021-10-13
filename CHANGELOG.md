@@ -7,6 +7,49 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - feat(DurationInput): implement feature
+  - feat(MoneyInput): implement feature
+</details>
+
+## 0.86.0
+- feat(list option): implement readOnly API. when it is read-only, the option cannot be selected or unselected with user actions.
+- refactor(list option): append styling based on various states in the option (selected vs readonly vs hidden)
+  fix(list option): add styling for a read-only option
+- fix(listbox): do not change selected state on read-only options
+- feat(listbox): use a function for its children API
+  BREAKING CHANGE: Update children to be a function.
+  If you are passing an `onSelect` to Listbox then the render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
+- feat(select): use a function for its children API
+  BREAKING CHANGE: Update children to be a function.
+  The render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
+
+## 0.85.0
+  - feat(Select): consumes `keydown` event for Escape key when dropdown open
+
+## 0.84.0
+- feat(Colors): Add opaque grey color variables.
+
+## 0.83.0
+- feat(CustomFieldSingleChoice): implement server-side autocompleter behavior
+- fix(Select): do not let text underflow icons
+- feat(Select): consumes `keydown` event for Escape key when dropdown open
+
+## 0.81.0
+- refactor(Select): split abstract Select control vs Select form control
+- feat(Select): implement Select cell control
+- refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
+- feat(Autocompleter): implement Autocompleter cell control
+- feat(IconButton): implement `disabled` API
+- fix(Form Controls): ensure label use specified MDS fonts
+- feat(Input): implement `ref` API on input cell controls
+- feat(Select): implement `ref` API on select cell controls
+- feat(Autocompleter): implement `ref` API on autocompleter cell controls
+- feat(CellControl): implement `className` API
+- feat(Input): implement `className` API
+- feat(Select): implement `className` API
+- feat(Autocompleter): implement `className` API
+- fix(Input): implement `name` ref API on cell controls
+- fix(FormControl): increase label font sizes to 14px
   - refactor(Select): split abstract Select control vs Select form control
   - feat(Select): implement Select cell control
   - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control

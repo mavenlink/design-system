@@ -1,6 +1,4 @@
-The `Autocompleter` component is a wrapper for Select component with the additional functionality searching for a specific models from an API endpoint.
-
-For a11y and additional prop info, see the `Select` component.
+This component makes it easy to fetch data from the Mavenlink API and render it with the Select component.
 
 ### Default examples
 ```js

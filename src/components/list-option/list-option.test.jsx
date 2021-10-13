@@ -82,6 +82,24 @@ describe('src/components/list-option/list-option', () => {
     });
   });
 
+  describe('readOnly API', () => {
+    it('can be true', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} readOnly={true} />);
+      expect(screen.getByText('Test option')).toHaveAttribute('aria-disabled', 'true');
+      userEvent.click(screen.getByText('Test option'));
+      expect(onSelectSpy).not.toHaveBeenCalled();
+    });
+
+    it('can be false', () => {
+      const onSelectSpy = jest.fn();
+      render(<ListOption {...requiredProps} onSelect={onSelectSpy} readOnly={false} />);
+      expect(screen.getByText('Test option')).toHaveAttribute('aria-disabled', 'false');
+      userEvent.click(screen.getByText('Test option'));
+      expect(onSelectSpy).toHaveBeenCalled();
+    });
+  });
+
   describe('ref API', () => {
     describe('contains', () => {
       it('finds the container element', () => {

@@ -4,30 +4,14 @@ This component is to be used with [Listbox](/#/Components/Listbox).
 <ListOption value="yo">Yo</ListOption>
 ```
 
-A more complete example, populating the items from an API endpoint:
-```jsx
-function TestComponent() {
-  const [data, setData] = React.useState([]);
+```js
+<ListOption selected value="yo">Yo</ListOption>
+```
 
-  React.useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('api/v1/list');
-      const listData = await response.json();
+```js
+<ListOption readOnly value="yo">Yo</ListOption>
+```
 
-      setData(listData);
-    }
-
-    fetchData();
-  }, []);
-
-  return (
-    <React.Fragment>
-      {data.map((item) => (
-        <ListOption key={item} value={item}>{item}</ListOption>
-      ))}
-    </React.Fragment>
-  )
-}
-
-<TestComponent />
+```js
+<ListOption readOnly selected value="yo">Yo</ListOption>
 ```

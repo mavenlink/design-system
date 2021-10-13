@@ -3,6 +3,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
@@ -45,7 +46,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('uses the set customFieldID to fetch choices', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} customFieldID={'1'} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Fizz');
       selectChoice('Test label', 'Fizz');
     });
   });
@@ -55,7 +56,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const ref = createRef();
       render(<CustomFieldInputSingleChoice {...requiredProps} ref={ref} />);
 
-      await waitForChoices();
+      await waitForChoices('Test label', 'Foo');
       selectChoice('Test label', 'Foo');
 
       expect(ref.current.dirty).toEqual(true);
@@ -120,19 +121,15 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value = ['0'];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} />);
 
-      await waitForChoices('Test label');
-
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo'));
     });
 
     it('provided value sets the corresponding list item as selected', async () => {
-      const value = ['0'];
-      render(<CustomFieldInputSingleChoice {...requiredProps} value={value} />);
+      render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
 
       expect(screen.getByText('Foo')).toHaveAttribute('aria-selected', 'true');
     });
@@ -147,7 +144,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={['1']} />);
 
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('Bar');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Bar'));
     });
 
     it('handles empty array without errors', async () => {
@@ -156,11 +153,11 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
         value={['0']}
       />);
 
-      await waitForChoices('Test label');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue('Foo'));
 
       rerender(<CustomFieldInputSingleChoice {...requiredProps} value={[]} />);
 
-      expect(getSingleChoiceRootByName('Test label')).toHaveValue('');
+      await waitFor(() => expect(getSingleChoiceRootByName('Test label')).toHaveValue(''));
     });
   });
 
@@ -169,7 +166,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
       const inputRef = createRef(null);
       render(<CustomFieldInputSingleChoice {...requiredProps} value={['0']} ref={inputRef} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
 
       expect(inputRef.current.value).toStrictEqual(['0']);
     });
@@ -184,7 +181,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
 
       render(<CustomFieldInputSingleChoice {...requiredProps} label="Oh La Mort" id="hey" onChange={onChange} />);
 
-      await waitForChoices('Oh La Mort');
+      await waitForChoices('Oh La Mort', 'Bar');
       selectChoice('Oh La Mort', 'Bar');
 
       expect(changeValue).toStrictEqual(['1']);
@@ -201,7 +198,7 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('fetches choices on mount', async () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} />);
 
-      await waitForChoices('Test label');
+      await waitForChoices('Test label', 'Foo');
       selectChoice('Test label', 'Foo');
     });
   });

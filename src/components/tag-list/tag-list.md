@@ -47,6 +47,7 @@ const refs = data.map(() => React.createRef());
 const tagListId = 'basic-example';
 
 <FormControl
+  id={`tag-list-example-${tagListId}`}
   label="Band names"
   labelId="tag-list-example-1"
 >
@@ -151,6 +152,7 @@ const refs = data.map(() => React.createRef());
 const tagListId = 'wrapping-example';
 
 <FormControl
+  id={`tag-list-example-${tagListId}`}
   label="ARIA roles"
   labelId="tag-list-example-2"
 >

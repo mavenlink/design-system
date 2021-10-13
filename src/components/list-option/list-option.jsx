@@ -8,12 +8,13 @@ import React, {
 import PropTypes from 'prop-types';
 import styles from './list-option.css';
 
-const getClassName = (className, visible) => {
-  if (!visible) {
-    return `${className} ${styles.hidden}`;
-  }
-
-  return className;
+const getClassName = (className, selected, visible, readOnly) => {
+  return [styles.option]
+    .concat(className || [])
+    .concat(selected ? styles.selected : [])
+    .concat(visible ? [] : styles.hidden)
+    .concat(readOnly ? styles['read-only'] : [])
+    .join(' ');
 };
 
 const ListOption = forwardRef(function ListOption(props, ref) {
@@ -22,15 +23,17 @@ const ListOption = forwardRef(function ListOption(props, ref) {
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
   const [visible, setVisible] = useState(true);
+  const silentRef = useRef(false);
   const rootRef = useRef();
-  const selectedClassName = selected ? styles.selected : styles.option;
-  const className = getClassName(props.className ? props.className : selectedClassName, visible);
+  const className = getClassName(props.className, selected, visible, props.readOnly);
 
   function onClick() {
+    if (props.readOnly) return;
     setSelected(!selected);
   }
 
   function onKeyDown(event) {
+    if (props.readOnly) return;
     switch (event.key) {
       case 'Enter':
         event.preventDefault();
@@ -49,6 +52,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
       setActive(bool);
     },
     setSelected: (bool) => {
+      silentRef.current = true;
       setSelected(bool);
     },
     setVisible: (bool) => {
@@ -64,6 +68,7 @@ const ListOption = forwardRef(function ListOption(props, ref) {
 
   useEffect(() => {
     if (!didMount) return;
+    if (silentRef.current) return;
 
     props.onSelect({ target: ref });
   }, [selected]);
@@ -75,7 +80,12 @@ const ListOption = forwardRef(function ListOption(props, ref) {
     }
   });
 
+  useEffect(() => {
+    if (silentRef.current) silentRef.current = false;
+  });
+
   return (<li
+    aria-disabled={props.readOnly}
     aria-selected={selected}
     className={className}
     onClick={onClick}
@@ -94,6 +104,7 @@ ListOption.propTypes = {
   children: PropTypes.node.isRequired,
   defaultActive: PropTypes.bool,
   onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
   selected: PropTypes.bool,
   title: PropTypes.string,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -103,6 +114,7 @@ ListOption.defaultProps = {
   className: undefined,
   defaultActive: true,
   onSelect: () => {},
+  readOnly: false,
   selected: false,
   title: undefined,
 };
