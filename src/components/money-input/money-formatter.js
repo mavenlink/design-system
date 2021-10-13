@@ -18,13 +18,13 @@ function initialInputValid(inputValue) {
 }
 
 function subunitToUnit(subunitValue, currencyCode) {
-  if (subunitValue === undefined) return undefined;
+  if (subunitValue === undefined || subunitValue === null) return undefined;
 
   return subunitValue / (10 ** currencyMetaData[currencyCode].maximumFractionDigits);
 }
 
 function formatValue(unitValue, currencyCode) {
-  if (unitValue === undefined) return '';
+  if (unitValue === undefined || unitValue === null) return '';
 
   return new Intl.NumberFormat(getLocale(), {
     style: 'currency',
