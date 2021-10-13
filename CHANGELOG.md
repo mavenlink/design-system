@@ -7,9 +7,11 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## 0.87.0
   - feat(DurationInput): implement feature
   - feat(MoneyInput): implement feature
-</details>
 
 ## 0.86.0
 - feat(list option): implement readOnly API. when it is read-only, the option cannot be selected or unselected with user actions.
