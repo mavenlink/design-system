@@ -1,116 +1,62 @@
 import React, {
-  createRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '@bloodyaugust/use-fetch';
-import ListOption from '../list-option/list-option.jsx';
-import Loader from '../loader/loader.jsx';
-import Select from '../select/select.jsx';
-import mockConstants from '../../mocks/mock-constants.js';
+import Autocompleter from '../autocompleter/autocompleter.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import { API_ROOT } from '../../mocks/mock-constants.js';
 
-const { API_ROOT } = mockConstants;
-const defaultValue = ['-1'];
-
-const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, ref) {
-  const [choices, setChoices] = useState([]);
-  const listOptionRefs = choices.map(() => createRef());
-  const [value, setValue] = useState(props.value);
-  const selfRef = useForwardedRef(ref);
+const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, forwardedRef) {
+  const ref = useForwardedRef(forwardedRef);
+  const autocompleterRef = useRef();
   const { execute } = useFetch();
-
-  function selectOnChangeHandler(event) {
-    if (event.target.value) {
-      setValue([event.target.value.id]);
-    } else {
-      setValue(defaultValue);
-    }
-  }
-
-  const listOptions = () => {
-    return choices
-      .map((item, index) => (
-        <ListOption
-          key={item.id}
-          ref={listOptionRefs[index]}
-          value={item}
-        >
-          {item.label}
-        </ListOption>
-      ));
-  };
-
-  useImperativeHandle(selfRef, () => ({
-    get dirty() {
-      const providedValue = props.value[0] !== defaultValue[0] ? props.value[0] : undefined;
-      return providedValue !== this.value[0];
-    },
-    id: props.id,
-    name: props.name,
-    get value() {
-      return value[0] === defaultValue[0] ? [] : value;
-    },
-  }));
+  const [value, setValue] = useState(undefined);
 
   useEffect(() => {
     if (props.value.length) {
-      setValue(props.value);
-    } else {
-      setValue(defaultValue);
-    }
-  }, (props.value.length ? [...props.value] : [...defaultValue]));
-
-  useEffect(() => {
-    props.onChange({ target: selfRef.current });
-  }, [value]);
-
-  useEffect(() => {
-    const getChoices = async () => {
-      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
+      execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}&only=${props.value[0]}`)
         .then(({ json, mounted }) => {
-          if (mounted) {
-            const choiceObjects = json.results.map(result => json[result.key][result.id]);
-
-            setChoices(choiceObjects);
-          }
-        })
-        .catch((error) => {
-          if (error.error && error.error.type !== 'aborted') {
-            throw error;
-          }
+          if (!mounted) return;
+          setValue(json.custom_field_choices[json.results[0].id]);
         });
-    };
+    } else {
+      setValue(undefined);
+    }
+  }, [props.value.join(',')]);
 
-    getChoices();
-  }, []);
+  useImperativeHandle(ref, () => ({
+    ...autocompleterRef.current,
+    get dirty() {
+      return this.value.join(',') !== props.value.join(',');
+    },
+    get value() {
+      const choice = autocompleterRef.current.value;
+      return choice ? [choice.id] : [];
+    },
+  }));
 
   return (
-    <React.Fragment>
-      <Select
-        className={props.className}
-        displayValueEvaluator={selectValue => selectValue.label}
-        errorText={props.errorText}
-        id={props.id}
-        label={props.label}
-        listOptionRefs={listOptionRefs}
-        name={props.name}
-        onChange={selectOnChangeHandler}
-        placeholder={props.placeholder}
-        readOnly={props.readOnly}
-        required={props.required}
-        tooltip={props.tooltip}
-        value={value[0] !== -1 ? (choices.find(choice => choice.id === value[0]) || null) : null}
-      >
-        {choices.length === 0
-          ? <Loader inline />
-          : listOptions()
-        }
-      </Select>
-    </React.Fragment>
+    <Autocompleter
+      apiEndpoint={`/custom_field_choices?for_custom_fields=${props.customFieldID}`}
+      className={props.className}
+      displayValueEvaluator={selectValue => (selectValue ? selectValue.label : '')}
+      id={props.id}
+      label={props.label}
+      name={props.name}
+      onChange={event => props.onChange({ target: { ...event.target, value: ref.current.value } })}
+      placeholder={props.placeholder}
+      readOnly={props.readOnly}
+      ref={autocompleterRef}
+      required={props.required}
+      tooltip={props.tooltip}
+      validationMessage={props.errorText}
+      value={value}
+    />
   );
 });
 
@@ -138,7 +84,7 @@ CustomFieldInputSingleChoice.defaultProps = {
   readOnly: false,
   required: false,
   tooltip: undefined,
-  value: defaultValue,
+  value: [],
 };
 
 export default CustomFieldInputSingleChoice;

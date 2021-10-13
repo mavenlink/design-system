@@ -43,8 +43,8 @@ const options = [
         listOptionRefs={options[0].map(option => option.ref)}
         name="select-1"
       >
-        {options[0].map((option, index) => (
-          <ListOption key={option.id} ref={option.ref} value={option.label}>
+        {({ onSelect }) => options[0].map((option, index) => (
+          <ListOption key={option.id} onSelect={onSelect} ref={option.ref} value={option.label}>
             {option.label}
           </ListOption>
         ))}
@@ -59,8 +59,8 @@ const options = [
         name="select-2"
         readOnly
       >
-        {options[1].map((option, index) => (
-          <ListOption key={option.id} ref={option.ref} value={option.label}>
+        {({ onSelect }) => options[1].map((option, index) => (
+          <ListOption key={option.id} onSelect={onSelect} ref={option.ref} value={option.label}>
             {option.label}
           </ListOption>
         ))}
@@ -75,8 +75,8 @@ const options = [
         name="select-3"
         required
       >
-        {options[2].map((option, index) => (
-          <ListOption key={option.id} ref={option.ref} value={option.label}>
+        {({ onSelect }) => options[2].map((option, index) => (
+          <ListOption key={option.id} onSelect={onSelect} ref={option.ref} value={option.label}>
             {option.label}
           </ListOption>
         ))}
@@ -91,8 +91,8 @@ const options = [
         name="select-4"
         validationMessage="This is a validation message."
       >
-        {options[3].map((option, index) => (
-          <ListOption key={option.id} ref={option.ref} value={option.label}>
+        {({ onSelect }) => options[3].map((option, index) => (
+          <ListOption key={option.id} onSelect={onSelect} ref={option.ref} value={option.label}>
             {option.label}
           </ListOption>
         ))}

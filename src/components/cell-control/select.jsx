@@ -33,7 +33,7 @@ const Select = forwardRef(function Select(props, ref) {
 });
 
 Select.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   className: PropTypes.string,
   /** A unique ID for the component. */
   id: PropTypes.string.isRequired,
@@ -52,7 +52,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  children: undefined,
+  children: () => {},
   className: undefined,
   readOnly: false,
   required: false,

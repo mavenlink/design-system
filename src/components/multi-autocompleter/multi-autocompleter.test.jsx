@@ -15,10 +15,8 @@ import {
   waitForLoadingComplete,
 } from '../multi-select/test-queries.js';
 import jestServer from '../../mocks/jest-server.js';
-import mockConstants from '../../mocks/mock-constants.js';
+import { API_ROOT } from '../../mocks/mock-constants.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
-
-const { API_ROOT } = mockConstants;
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {

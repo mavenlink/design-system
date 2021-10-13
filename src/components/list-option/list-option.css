@@ -25,6 +25,9 @@
 }
 
 .selected {
-  composes: option;
   background-color: var(--selected-background); /* stylelint-disable-line mds/colors */
+}
+
+.read-only {
+  opacity: 50%;
 }

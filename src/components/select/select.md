@@ -1,3 +1,8 @@
+This component is a purely client-side select widget. 
+Given a list of options, it allows a user to select a single option as the select value.
+It allows customizing the displayed value in the textbox and each individual option in the listbox.
+For examples on how to fetch data from the server, see the Autocompleter documentation.
+
 Default usage:
 ```js
 import Select from '@mavenlink/design-system/src/components/select/select.jsx';
@@ -18,9 +23,6 @@ import ListOption from '../list-option/list-option.jsx';
 
 const listOptions = [{id: 0, label: 'foo'}];
 const listOptionRefs = listOptions.map(() => React.createRef());
-const listOptionElements = listOptions.map((option, index) => {
-  return(<ListOption key={option.id} ref={listOptionRefs[index]} value={option}>{option.label}</ListOption>);
-});
 
 <Select
   displayValueEvaluator={value => value.label}
@@ -31,7 +33,11 @@ const listOptionElements = listOptions.map((option, index) => {
   listOptionRefs={listOptionRefs}
   value={listOptions[0]}
 >
-  {listOptionElements}
+  {({ onSelect }) => listOptions.map((option, index) => (
+    <ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+      {option.label}
+    </ListOption>
+  ))}
 </Select>
 ```
 
@@ -45,9 +51,6 @@ import RefExample from '@mavenlink/design-system/src/components/__site__/ref-exa
 const ref = React.createRef();
 const listOptions = ['test', 'this', 'select', 'foo', 'bar', 'baz', '1', '2', '3', '4', '5', '6', '7'];
 const listOptionRefs = listOptions.map(() => React.createRef());
-const listOptionElements = listOptions.map((optionName, index) => {
-  return(<ListOption key={optionName} ref={listOptionRefs[index]} value={optionName}>{optionName}</ListOption>);
-});
 
 <RefExample ref={ref}>
   {({ onChange }) => (
@@ -60,7 +63,11 @@ const listOptionElements = listOptions.map((optionName, index) => {
       ref={ref}
       listOptionRefs={listOptionRefs}
     >
-      {listOptionElements}
+      {({ onSelect }) => listOptions.map((optionName, index) => (
+        <ListOption key={optionName} onSelect={onSelect} ref={listOptionRefs[index]} value={optionName}>
+          {optionName}
+        </ListOption>
+      ))}
     </Select>
   )}
 </RefExample>

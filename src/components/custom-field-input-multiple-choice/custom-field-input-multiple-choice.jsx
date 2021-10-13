@@ -8,10 +8,8 @@ import React, {
 import PropTypes from 'prop-types';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiAutocompleter from '../multi-autocompleter/multi-autocompleter.jsx';
-import mockConstants from '../../mocks/mock-constants.js';
+import { API_ROOT } from '../../mocks/mock-constants.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-
-const { API_ROOT } = mockConstants;
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const multiAutocompleterRef = useRef();
