@@ -7,6 +7,8 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+  - feat(DurationInput): implement feature
+  - feat(MoneyInput): implement feature
 </details>
 
 ## 0.86.0
@@ -48,6 +50,22 @@
 - feat(Autocompleter): implement `className` API
 - fix(Input): implement `name` ref API on cell controls
 - fix(FormControl): increase label font sizes to 14px
+  - refactor(Select): split abstract Select control vs Select form control
+  - feat(Select): implement Select cell control
+  - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
+  - feat(Autocompleter): implement Autocompleter cell control
+  - feat(IconButton): implement `disabled` API
+  - fix(Form Controls): ensure label use specified MDS fonts
+  - feat(Input): implement `ref` API on input cell controls
+  - feat(Select): implement `ref` API on select cell controls
+  - feat(Autocompleter): implement `ref` API on autocompleter cell controls
+  - feat(CellControl): implement `className` API
+  - feat(Input): implement `className` API
+  - feat(Select): implement `className` API
+  - feat(Autocompleter): implement `className` API
+  - feat(DurationInput): implement feature
+  - feat(MoneyInput): implement feature
+</details>
 
 ## 0.80.1
 - fix(Select): add a maximum height to the `<Select />` dropdown equal to 10 rows
