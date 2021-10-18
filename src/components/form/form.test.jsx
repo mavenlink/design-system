@@ -72,6 +72,7 @@ describe('<Form />', () => {
         data: {
           'input-test-1': refs[0].current,
         },
+        redirect: true,
         target: ref.current,
       });
     });
@@ -215,6 +216,33 @@ describe('<Form />', () => {
         data: {
           'input-test-1': refs[0].current,
         },
+        redirect: true,
+        target: ref.current,
+      });
+    });
+
+    it('is called with redirect: false when add another is clicked', () => {
+      const onSubmitSpy = jest.fn();
+      const ref = createRef();
+      const refs = [
+        createRef(),
+      ];
+
+      render((
+        <Form onSubmit={onSubmitSpy} ref={ref} refs={refs}>
+          {() => (
+            <input aria-label="input test 1" name="input-test-1" ref={refs[0]} />
+          )}
+        </Form>
+      ));
+
+      userEvent.type(screen.getByLabelText('input test 1'), 'unique value');
+      userEvent.click(screen.getByText('Save & Add Another'));
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        data: {
+          'input-test-1': refs[0].current,
+        },
+        redirect: false,
         target: ref.current,
       });
     });
