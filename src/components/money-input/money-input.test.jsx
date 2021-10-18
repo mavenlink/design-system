@@ -22,6 +22,11 @@ describe('MoneyInput', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  it('has an empty string with no value', () => {
+    render(<MoneyInput {...requiredProps} value={null} />);
+    expect(screen.getByLabelText('currency')).toHaveTextContent('');
+  });
+
   it('accepts a currency code', () => {
     render(<MoneyInput {...requiredProps} value={5000} currencyCode="XAF" />);
     expect(screen.getByLabelText('currency').value).toMatch(/FCFA/);
