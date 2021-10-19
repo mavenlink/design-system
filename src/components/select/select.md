@@ -49,7 +49,7 @@ import ListOption from '../list-option/list-option.jsx';
 import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
-const listOptions = ['test', 'this', 'select', 'foo', 'bar', 'baz', '1', '2', '3', '4', '5', '6', '7'];
+const listOptions = ['test', 'this', 'select', 'foo', 'bar', 'baz', 'This is a much longer test value that is super long because sometimes people like to put long values in there, you know? It can make sense sometimes. Maybe this is not the best way to convey longform data, but who I am I to say? Power to the people and all that.', '1', '2', '3', '4', '5', '6', '7'];
 const listOptionRefs = listOptions.map(() => React.createRef());
 
 <RefExample ref={ref}>
