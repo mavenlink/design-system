@@ -1,7 +1,7 @@
 import React, { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Checkbox from './checkbox.jsx';
+import Checkbox from './inline-checkbox.jsx';
 
 describe('Checkbox', () => {
   const name = 'You good?';
@@ -35,7 +35,10 @@ describe('Checkbox', () => {
   describe('id API', () => {
     it('sets the id', () => {
       render(<Checkbox {...requiredProps} id="hello-mario" />);
-      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('id', 'hello-mario');
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute(
+        'id',
+        'hello-mario',
+      );
     });
 
     it('is set on the ref', () => {
@@ -48,14 +51,19 @@ describe('Checkbox', () => {
   describe('label API', () => {
     it('can be set', () => {
       render(<Checkbox {...requiredProps} label="Unique label" />);
-      expect(screen.getByRole('checkbox', { name: 'Unique label' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('checkbox', { name: 'Unique label' }),
+      ).toBeInTheDocument();
     });
   });
 
   describe('name API', () => {
     it('sets the name attribute', () => {
       render(<Checkbox {...requiredProps} name="test-name" />);
-      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('name', 'test-name');
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute(
+        'name',
+        'test-name',
+      );
     });
 
     it('is set on the ref', () => {
@@ -96,7 +104,9 @@ describe('Checkbox', () => {
   describe('readOnly API', () => {
     it('sets readonly', () => {
       render(<Checkbox {...requiredProps} readOnly={true} />);
-      expect(screen.getByRole('checkbox', { name })).toHaveAttribute('readonly');
+      expect(screen.getByRole('checkbox', { name })).toHaveAttribute(
+        'readonly',
+      );
       userEvent.click(screen.getByRole('checkbox', { name }));
       expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
       userEvent.keyboard(' ');
@@ -105,7 +115,9 @@ describe('Checkbox', () => {
 
     it('can be not readonly', () => {
       render(<Checkbox {...requiredProps} readOnly={false} />);
-      expect(screen.getByRole('checkbox', { name })).not.toHaveAttribute('readonly');
+      expect(screen.getByRole('checkbox', { name })).not.toHaveAttribute(
+        'readonly',
+      );
       userEvent.click(screen.getByRole('checkbox', { name }));
       expect(screen.getByRole('checkbox', { name })).toBeChecked();
       userEvent.keyboard(' ');
@@ -128,7 +140,9 @@ describe('Checkbox', () => {
     });
 
     it('updates the value', () => {
-      const { rerender } = render(<Checkbox {...requiredProps} checked={false} />);
+      const { rerender } = render(
+        <Checkbox {...requiredProps} checked={false} />,
+      );
       expect(screen.getByRole('checkbox', { name })).not.toBeChecked();
       rerender(<Checkbox {...requiredProps} checked={true} />);
       expect(screen.getByRole('checkbox', { name })).toBeChecked();
@@ -136,7 +150,9 @@ describe('Checkbox', () => {
 
     it('is set on the ref', () => {
       const ref = createRef();
-      const { rerender } = render(<Checkbox {...requiredProps} ref={ref} checked={false} />);
+      const { rerender } = render(
+        <Checkbox {...requiredProps} ref={ref} checked={false} />,
+      );
       expect(ref.current.checked).toBe(false);
 
       userEvent.click(screen.getByRole('checkbox', { name }));
@@ -208,15 +224,17 @@ describe('Checkbox', () => {
 
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Checkbox {...requiredProps} tooltip={tooltip} />);
-      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      userEvent.hover(screen.getByRole('img'));
+      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(
+        tooltip,
+      );
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Checkbox {...requiredProps} tooltip={tooltip} />);
-      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      userEvent.hover(screen.getByRole('img'));
+      userEvent.unhover(screen.getByRole('img'));
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
     });
   });
 
@@ -247,13 +265,17 @@ describe('Checkbox', () => {
     it('shows validation message after tabbing through', () => {
       render(<Checkbox {...requiredProps} required />);
       userEvent.tab();
-      expect(document.activeElement).toBe(screen.getByRole('checkbox', { name }));
+      expect(document.activeElement).toBe(
+        screen.getByRole('checkbox', { name }),
+      );
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
       expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
 
       userEvent.tab();
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription(
+        'Constraints not satisfied',
+      );
     });
   });
 
@@ -261,8 +283,12 @@ describe('Checkbox', () => {
     it('can be set', () => {
       render(<Checkbox {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('unique error');
-      expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
+      expect(screen.getByRole('checkbox', { name })).toHaveDescription(
+        'unique error',
+      );
+      expect(
+        screen.getByRole('img', { name: 'unique error' }),
+      ).toBeInTheDocument();
     });
 
     it('can be unset', () => {
