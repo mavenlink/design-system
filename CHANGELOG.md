@@ -7,10 +7,12 @@
 
   - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
   - Append new items to make git merging easier.
+</details>
+
+## 0.87.1
   - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
   - feat(Form): Form now have an add another button that passes redirect: false to submit callback
   - Minor(ListOption): make text wrap to new line in container
-</details>
 
 ## 0.87.0
   - feat(DurationInput): implement feature
