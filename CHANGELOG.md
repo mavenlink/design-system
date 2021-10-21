@@ -9,6 +9,7 @@
   - Append new items to make git merging easier.
   - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
   - feat(Form): Form now have an add another button that passes redirect: false to submit callback
+  - Minor(ListOption): make text wrap to new line in container
 </details>
 
 ## 0.87.0
