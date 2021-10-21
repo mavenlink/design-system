@@ -15,10 +15,11 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const [dirty, setDirty] = useState(false);
   const [valid, setValid] = useState(true);
 
-  const onRegularSubmit = () => {
+  const onRegularSubmit = (redirect) => {
     if (ref.current && ref.current.checkValidity() && ref.current.dirty) {
       props.onSubmit({
         target: ref.current,
+        redirect,
         data: props.refs.reduce((data, controlRef) => {
           if (controlRef.current) {
             return {
@@ -43,7 +44,12 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
   function onSubmit(event) {
     event.preventDefault();
-    onRegularSubmit();
+    onRegularSubmit(true);
+  }
+
+  function onSaveAndAddAnotherClick(event) {
+    event.preventDefault();
+    onRegularSubmit(false);
   }
 
   useEffect(() => {
@@ -73,6 +79,8 @@ const Form = React.forwardRef((props, forwardedRef) => {
     },
   }));
 
+  const disableButtons = !valid || !dirty;
+
   return (
     <form
       className={props.className}
@@ -82,16 +90,24 @@ const Form = React.forwardRef((props, forwardedRef) => {
     >
       {props.children({ onChange })}
       {!props.readOnly && !props.autoSave &&
-        <div className={props.buttonContainerClassName}>
-          <Button
-            className={styles['primary-button']}
-            color="primary"
-            type="submit"
-            disabled={!valid || !dirty}
-          >
-            {props.submitText}
-          </Button>
-        </div>
+      <div className={props.buttonContainerClassName}>
+        <Button
+          className={styles['primary-button']}
+          color="primary"
+          type="submit"
+          disabled={disableButtons}
+          name={'submit'}
+        >
+          {props.submitText}
+        </Button>
+        <Button
+          color="secondary"
+          disabled={disableButtons}
+          onClick={onSaveAndAddAnotherClick}
+        >
+          Save & Add Another
+        </Button>
+      </div>
       }
     </form>
   );
