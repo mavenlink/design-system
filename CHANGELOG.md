@@ -9,6 +9,27 @@
   - Append new items to make git merging easier.
 </details>
 
+## 0.87.1
+  - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
+  - feat(Form): Form now have an add another button that passes redirect: false to submit callback
+  - Minor(ListOption): make text wrap to new line in container
+
+## 0.87.0
+  - feat(DurationInput): implement feature
+  - feat(MoneyInput): implement feature
+
+## 0.86.0
+- feat(list option): implement readOnly API. when it is read-only, the option cannot be selected or unselected with user actions.
+- refactor(list option): append styling based on various states in the option (selected vs readonly vs hidden)
+  fix(list option): add styling for a read-only option
+- fix(listbox): do not change selected state on read-only options
+- feat(listbox): use a function for its children API
+  BREAKING CHANGE: Update children to be a function.
+  If you are passing an `onSelect` to Listbox then the render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
+- feat(select): use a function for its children API
+  BREAKING CHANGE: Update children to be a function.
+  The render prop has an `{ onSelect }` argument that needs to be passed to each ListOption.
+
 ## 0.85.0
   - feat(Select): consumes `keydown` event for Escape key when dropdown open
 
@@ -36,6 +57,22 @@
 - feat(Autocompleter): implement `className` API
 - fix(Input): implement `name` ref API on cell controls
 - fix(FormControl): increase label font sizes to 14px
+  - refactor(Select): split abstract Select control vs Select form control
+  - feat(Select): implement Select cell control
+  - refactor(Autocompleter): split abstract Autocompleter control vs Autocompleter form control
+  - feat(Autocompleter): implement Autocompleter cell control
+  - feat(IconButton): implement `disabled` API
+  - fix(Form Controls): ensure label use specified MDS fonts
+  - feat(Input): implement `ref` API on input cell controls
+  - feat(Select): implement `ref` API on select cell controls
+  - feat(Autocompleter): implement `ref` API on autocompleter cell controls
+  - feat(CellControl): implement `className` API
+  - feat(Input): implement `className` API
+  - feat(Select): implement `className` API
+  - feat(Autocompleter): implement `className` API
+  - feat(DurationInput): implement feature
+  - feat(MoneyInput): implement feature
+</details>
 
 ## 0.80.1
 - fix(Select): add a maximum height to the `<Select />` dropdown equal to 10 rows

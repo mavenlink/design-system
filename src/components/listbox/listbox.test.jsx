@@ -30,8 +30,10 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+          {() => (<>
+            <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+            <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+          </>)}
         </Listbox>
       ));
     });
@@ -100,8 +102,10 @@ describe('src/components/listbox/listbox', () => {
     it('displays a list of things', () => {
       render((
         <Listbox {...requiredProps}>
-          <ListOption value="hello">Hello</ListOption>
-          <ListOption value="hey">Hey</ListOption>
+          {() => (<>
+            <ListOption value="hello">Hello</ListOption>
+            <ListOption value="hey">Hey</ListOption>
+          </>)}
         </Listbox>
       ));
 
@@ -114,8 +118,10 @@ describe('src/components/listbox/listbox', () => {
     it('allows setting the class name', () => {
       render((
         <Listbox {...requiredProps} className="prioritize-me">
-          <ListOption value="hello">Hello</ListOption>
-          <ListOption value="hey">Hey</ListOption>
+          {() => (<>
+            <ListOption value="hello">Hello</ListOption>
+            <ListOption value="hey">Hey</ListOption>
+          </>)}
         </Listbox>
       ));
       expect(screen.getByRole('listbox')).toHaveClass('prioritize-me');
@@ -123,18 +129,22 @@ describe('src/components/listbox/listbox', () => {
   });
 
   describe('focus ref API', () => {
-    const ref = createRef();
-    const refs = [createRef(), createRef()];
-    render((
-      <Listbox {...requiredProps} ref={ref} refs={refs}>
-        <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-        <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
-      </Listbox>
-    ));
+    it('focuses the component', () => {
+      const ref = createRef();
+      const refs = [createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} ref={ref} refs={refs}>
+          {() => (<>
+            <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+            <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+          </>)}
+        </Listbox>
+      ));
 
-    expect(screen.getByText('Hello')).not.toHaveFocus();
-    act(() => ref.current.focus());
-    expect(screen.getByText('Hello')).toHaveFocus();
+      expect(screen.getByText('Hello')).not.toHaveFocus();
+      act(() => ref.current.focus());
+      expect(screen.getByText('Hello')).toHaveFocus();
+    });
   });
 
   describe('labelledBy API', () => {
@@ -144,8 +154,10 @@ describe('src/components/listbox/listbox', () => {
           {/* eslint-disable-next-line jsx-a11y/label-has-for */}
           <label id="unique-label-id">Label</label>
           <Listbox {...requiredProps} labelledBy="unique-label-id">
-            <ListOption value="hello">Hello</ListOption>
-            <ListOption value="hey">Hey</ListOption>
+            {() => (<>
+              <ListOption value="hello">Hello</ListOption>
+              <ListOption value="hey">Hey</ListOption>
+            </>)}
           </Listbox>
         </React.Fragment>
       ));
@@ -162,8 +174,10 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs} onChange={onChange}>
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+          {({ onSelect }) => (<>
+            <ListOption onSelect={onSelect} value="hello" ref={refs[0]}>Hello</ListOption>
+            <ListOption onSelect={onSelect} value="hey" ref={refs[1]}>Hey</ListOption>
+          </>)}
         </Listbox>
       ));
 
@@ -179,8 +193,10 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs} onChange={onChange} value={refs[0]}>
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
-          <ListOption value="hey" ref={refs[1]}>Hey</ListOption>
+          {({ onSelect }) => (<>
+            <ListOption onSelect={onSelect} value="hello" ref={refs[0]}>Hello</ListOption>
+            <ListOption onSelect={onSelect} value="hey" ref={refs[1]}>Hey</ListOption>
+          </>)}
         </Listbox>
       ));
 
@@ -201,7 +217,7 @@ describe('src/components/listbox/listbox', () => {
   describe('refs API', () => {
     it('does not freak out when current is undefined', () => {
       const refs = [{ current: undefined }];
-      render(<Listbox {...requiredProps} refs={refs}><span tabIndex={-1}>foo</span></Listbox>);
+      render(<Listbox {...requiredProps} refs={refs}>{() => <span tabIndex={-1}>foo</span>}</Listbox>);
       expect(() => userEvent.click(screen.getByText('foo'))).not.toThrow();
     });
   });
@@ -227,7 +243,9 @@ describe('src/components/listbox/listbox', () => {
 
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs} value="unique value">
-          <ListOption value="hello" ref={refs[0]}>Hello</ListOption>
+          {({ onSelect }) => (<>
+            <ListOption onSelect={onSelect} value="hello" ref={refs[0]}>Hello</ListOption>
+          </>)}
         </Listbox>
       ));
 

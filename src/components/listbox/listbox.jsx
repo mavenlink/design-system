@@ -19,16 +19,6 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     optionRef.current && optionRef.current.contains(target)
   ));
 
-  const optionsWasSelected = (toggledRefIndex) => {
-    const nextValue = props.refs[toggledRefIndex].current.value;
-    if (value === nextValue) {
-      // Simulate a value change even though internal state does not change
-      props.onChange({ target: ref.current });
-    } else {
-      setValue(nextValue);
-    }
-  };
-
   function onFocus(event) {
     setActive(true);
 
@@ -39,10 +29,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
   }
 
-  function onClick(event) {
-    const selectedRefIndex = refIndexOf(event.target);
-    if (selectedRefIndex !== -1) {
-      optionsWasSelected(selectedRefIndex);
+  function onSelect(event) {
+    if (event.target.current.value === value) {
+      setValue(undefined);
+    } else {
+      setValue(event.target.current.value);
     }
   }
 
@@ -66,11 +57,6 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
         keyEvent.preventDefault();
         setActiveIndex(props.refs.length - 1);
         break;
-      case 'Enter': {
-        keyEvent.preventDefault();
-        optionsWasSelected(activeIndex);
-        break;
-      }
       case 'Home':
         keyEvent.preventDefault();
         setActiveIndex(0);
@@ -112,12 +98,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       aria-labelledby={props.labelledBy}
       className={props.className}
       id={props.id}
-      onClick={onClick}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
     >
-      { props.children }
+      {props.children({ onSelect })}
     </ul>
   );
 });
@@ -131,7 +116,7 @@ const ListOptionRefType = PropTypes.shape({
 });
 
 Listbox.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   className: PropTypes.string,
   id: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
@@ -143,7 +128,7 @@ Listbox.propTypes = {
 Listbox.defaultProps = {
   className: styles.container,
   id: undefined,
-  children: undefined,
+  children: () => {},
   onChange: () => {},
   value: undefined,
 };

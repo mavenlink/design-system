@@ -94,8 +94,10 @@ const Select = forwardRef(function Select(props, ref) {
 
   function onSelectionChange(event) {
     const selectedValue = event.target.value;
-    setValue(selectedValue);
-    setSearchValue(selectedValue.label);
+    if (event.target.value) {
+      setValue(selectedValue);
+      setSearchValue(selectedValue.label);
+    }
     setShowOptions(false);
     refs.input.current.focus();
   }
@@ -225,19 +227,21 @@ const Select = forwardRef(function Select(props, ref) {
           />
         </div>
         { showOptions && (
-          (!props.children || props.children.length === 0) ? (<NoOptions className={styles['no-options']} />) : (
-            <Listbox
-              className={styles.dropdown}
-              id={`${props.id}-single-choice-listbox`}
-              labelledBy={`${props.id}-label`}
-              onChange={onSelectionChange}
-              ref={refs.listbox}
-              refs={props.listOptionRefs}
-              value={value}
-            >
-              {props.children}
-            </Listbox>
-          )
+          <Listbox
+            className={styles.dropdown}
+            id={`${props.id}-single-choice-listbox`}
+            labelledBy={`${props.id}-label`}
+            onChange={onSelectionChange}
+            ref={refs.listbox}
+            refs={props.listOptionRefs}
+            value={value}
+          >
+            {({ onSelect }) => {
+              const options = props.children({ onSelect });
+              if (React.Children.count(options) === 0) return <NoOptions />;
+              return options;
+            }}
+          </Listbox>
         )}
       </div>
     </Control>
@@ -253,7 +257,7 @@ const ListOptionRefType = PropTypes.shape({
 });
 
 Select.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
   displayValueEvaluator: PropTypes.oneOfType([
     PropTypes.func,
@@ -271,11 +275,11 @@ Select.propTypes = {
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
-  wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired, // eslint-disable-line react/forbid-prop-types
+  wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
 
 Select.defaultProps = {
-  children: undefined,
+  children: () => {},
   displayValueEvaluator: value => value,
   onChange: () => {},
   onInput: () => {},
@@ -285,6 +289,7 @@ Select.defaultProps = {
   required: false,
   validationMessage: '',
   value: undefined,
+  wrapperRef: undefined,
 };
 
 export default Select;

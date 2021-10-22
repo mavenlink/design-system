@@ -11,13 +11,10 @@
 
   cursor: pointer;
   font: var(--mds-type-content);
-  height: var(--spacing-x-large);
   line-height: var(--spacing-x-large); /* stylelint-disable-line mds/typography */
   list-style-type: none;
   overflow: hidden;
   padding: 0 var(--spacing-medium);
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .option:hover {
@@ -25,6 +22,9 @@
 }
 
 .selected {
-  composes: option;
   background-color: var(--selected-background); /* stylelint-disable-line mds/colors */
+}
+
+.read-only {
+  opacity: 50%;
 }

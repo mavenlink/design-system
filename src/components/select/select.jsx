@@ -79,7 +79,7 @@ const ListOptionRefType = PropTypes.shape({
 });
 
 Select.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func,
   className: PropTypes.string,
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
   displayValueEvaluator: PropTypes.oneOfType([
@@ -101,7 +101,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  children: undefined,
+  children: () => {},
   className: styles.container,
   displayValueEvaluator: value => value,
   errorText: '',

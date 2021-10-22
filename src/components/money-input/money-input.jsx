@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
-import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
-import currencyCodeType from './currency-code-type.js';
-import currencyMetaData from './currency-meta-data.js';
+import Input from '../input/input.jsx';
+import Number from '../number/number.jsx';
+import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
+import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
+import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import { initialInputValid, subunitToUnit, formatValue } from '../money-input/money-formatter.js';
 
-const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, forwardedRef) {
+const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -30,10 +30,6 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
     setIsEditing(true);
     setIsFocused(true);
-  }
-
-  function onChange() {
-    props.onChange({ target: ref.current });
   }
 
   useEffect(() => {
@@ -99,10 +95,10 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   if (isEditing) {
     return (
-      <CustomFieldInputNumber
+      <Number
         {...sharedProps}
         onBlur={handleOnBlur}
-        onChange={onChange}
+        onChange={props.onChange}
         ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         value={input}
@@ -111,9 +107,9 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   }
 
   return (
-    <CustomFieldInputText
+    <Input
       {...sharedProps}
-      errorText={props.errorText}
+      validationMessage={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"
@@ -122,7 +118,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   );
 });
 
-CustomFieldInputCurrency.propTypes = {
+MoneyInput.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
   errorText: PropTypes.string,
@@ -141,7 +137,7 @@ CustomFieldInputCurrency.propTypes = {
   value: PropTypes.number,
 };
 
-CustomFieldInputCurrency.defaultProps = {
+MoneyInput.defaultProps = {
   className: undefined,
   currencyCode: 'USD',
   errorText: undefined,
@@ -154,4 +150,4 @@ CustomFieldInputCurrency.defaultProps = {
   value: undefined,
 };
 
-export default CustomFieldInputCurrency;
+export default MoneyInput;

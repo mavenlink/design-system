@@ -94,6 +94,8 @@ Input.defaultProps = {
   className: undefined,
   cssContainer: undefined,
   cssLabel: undefined,
+  controlRef: undefined,
+  inputRef: undefined,
   maxLength: undefined,
   name: undefined,
   onBlur: () => {},

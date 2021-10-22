@@ -108,14 +108,6 @@ describe('src/components/autocompleter/autocompleter', () => {
   });
 
   describe('models API', () => {
-    it('handles an empty case', () => {
-      const models = [];
-      render(<Autocompleter {...requiredProps} models={models} />);
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByText('No options available.')).toBeInTheDocument();
-    });
-
     it('accepts a an array of models and can re-render', async () => {
       const models = [{ id: 22, name: 'cool dude' }, { id: 33, name: 'neato burrito' }];
       const { rerender } = render(<Autocompleter {...requiredProps} models={models} />);
