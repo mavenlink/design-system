@@ -27,7 +27,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
     name="example"
     readOnly
   />
-</React.Fragment>;
+</React.Fragment>
 ```
 
 Required example. The validation message only shows when the checkbox is dirty.
@@ -40,7 +40,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
   label="Agree to Terms and Conditions"
   name="example"
   required
-/>;
+/>
 ```
 
 With a custom validation message. Messages are cleared on blur.
@@ -53,7 +53,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
   label="With a Custom Validation Error"
   name="example"
   validationMessage="There is something wrong."
-/>;
+/>
 ```
 
 Inline
@@ -75,7 +75,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
   name="example"
   required
   inline
-/>;
+/>
 ```
 
 Inline with validation message
@@ -89,7 +89,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
   name="example"
   inline
   validationMessage="There is something wrong."
-/>;
+/>
 ```
 
 Inline with tooltip
@@ -103,7 +103,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
   name="example"
   inline
   tooltip="Can I offer you a nice egg in this trying time?"
-/>;
+/>
 ```
 
 ## Ref API Example
@@ -124,5 +124,5 @@ const ref = React.createRef();
       ref={ref}
     />
   )}
-</RefExample>;
+</RefExample>
 ```
