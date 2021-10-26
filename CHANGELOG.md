@@ -75,7 +75,6 @@
   - feat(Autocompleter): implement `className` API
   - feat(DurationInput): implement feature
   - feat(MoneyInput): implement feature
-  </details>
 
 ## 0.80.1
 
