@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import BlockCheckbox from './block-checkbox.jsx';
 import InlineCheckbox from './inline-checkbox.jsx';
 
-export default function Checkbox(props) {
+function Checkbox(props, forwardedRef){
   return props.inline ? (
-    <InlineCheckbox {...props} />
+    <InlineCheckbox {...props} ref = {forwardedRef}/>
   ) : (
-    <BlockCheckbox {...props} />
+    <BlockCheckbox {...props} ref = {forwardedRef}/>
   );
 }
 
@@ -18,3 +18,5 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   inline: false,
 };
+
+export default forwardRef(Checkbox)
