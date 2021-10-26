@@ -1,14 +1,6 @@
-## [Unreleased]
-
-<details>
-  <summary>
-    Changes that have landed in master but are not yet released.
-    Click to see more.
-  </summary>
-
+## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
-</details>
 
 ## 0.88.0
 - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
