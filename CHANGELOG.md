@@ -12,6 +12,11 @@
 - feature(inline checkbox): Adds an inline prop to checkbox to put labels on same line as box
 </details>
 
+## 0.87.1
+  - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
+  - feat(Form): Form now have an add another button that passes redirect: false to submit callback
+  - Minor(ListOption): make text wrap to new line in container
+
 ## 0.87.0
 
 - feat(DurationInput): implement feature

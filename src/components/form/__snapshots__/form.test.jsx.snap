@@ -10,9 +10,16 @@ exports[`<Form /> has defaults 1`] = `
         <button
           class="primary-button"
           disabled=""
+          name="submit"
           type="submit"
         >
           Save
+        </button>
+        <button
+          class="secondary"
+          disabled=""
+        >
+          Save & Add Another
         </button>
       </div>
     </form>

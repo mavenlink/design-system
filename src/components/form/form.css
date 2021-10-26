@@ -3,7 +3,6 @@
 .buttons-container {
   display: flex;
   margin-top: var(--spacing-x-large);
-  max-width: 250px;
 }
 
 .primary-button {
