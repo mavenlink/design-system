@@ -29,7 +29,7 @@ Icon.propTypes = {
   }).isRequired,
   describedBy: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   labelledBy: PropTypes.string,
 };
 
@@ -37,5 +37,6 @@ Icon.defaultProps = {
   className: undefined,
   describedBy: undefined,
   id: undefined,
+  label: undefined,
   labelledBy: undefined,
 };
