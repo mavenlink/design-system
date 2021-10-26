@@ -27,7 +27,7 @@ HelpIcon.propTypes = {
   direction: Tooltip.propTypes.direction,
   /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
   id: PropTypes.string.isRequired,
-  /** @deprecated The label text of the icon. */
+  /** @deprecated because this prop will cause a double message. The label text of the icon. */
   label: PropTypes.string,
   /** The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
   text: PropTypes.string.isRequired,
