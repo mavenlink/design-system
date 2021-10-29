@@ -305,6 +305,7 @@ function Calendar(props) {
           className={styles['year-button']}
           onClick={onChangeYearView}
           onKeyDown={onYearKeyDown}
+          type="button"
         >
           {currentCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',
