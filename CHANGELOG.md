@@ -1,16 +1,10 @@
-## [Unreleased]
-
-<details>
-  <summary>
-    Changes that have landed in master but are not yet released.
-    Click to see more.
-  </summary>
-
+## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+
+## 0.88.0
 - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
 - feature(inline checkbox): Adds an inline prop to checkbox to put labels on same line as box
-</details>
 
 ## 0.87.1
   - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
@@ -81,7 +75,6 @@
   - feat(Autocompleter): implement `className` API
   - feat(DurationInput): implement feature
   - feat(MoneyInput): implement feature
-  </details>
 
 ## 0.80.1
 
