@@ -1,6 +1,7 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+- fix(Control/Select): avoid infinite loop in onChange when options are objects 
 
 ## 0.88.0
 - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
