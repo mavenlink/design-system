@@ -147,7 +147,7 @@ const Select = forwardRef(function Select(props, ref) {
       validate();
     }
 
-    if (props.value === value) return;
+    if (JSON.stringify(props.value) === JSON.stringify(value)) return;
 
     props.onChange({ target: selfRef.current });
   }, [value]);
