@@ -2,6 +2,7 @@
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
 - fix(Calendar): set the "year button" type to "button" so we don't submit parent forms
+- fix(Calendar): after changing the year, moving month stays in the newly selected year
 
 ## 0.88.0
 - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.

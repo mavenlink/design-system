@@ -97,6 +97,15 @@ describe('<Calendar />', () => {
       userEvent.click(screen.getByText('2022'));
       expect(screen.getByText('July 2022')).toBeInTheDocument();
     });
+
+    it('displays the next month in the correct year after changing the year from the dropdown', () => {
+      render(<Calendar {...requiredProps} />);
+      userEvent.click(screen.getByText('July 2020'));
+      userEvent.click(screen.getByText('2022'));
+
+      userEvent.click(screen.getByTitle('Change calendar to August 2022'));
+      expect(screen.getByText('August 2022')).toBeInTheDocument();
+    });
   });
 
   describe('accessibility', () => {

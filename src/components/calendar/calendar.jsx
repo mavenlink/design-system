@@ -202,6 +202,7 @@ function Calendar(props) {
 
   function changeYear(newYear) {
     setYear(newYear.target.current.value.getFullYear());
+    setActiveDate(newYear.target.current.value);
     setYearView(false);
   }
 
