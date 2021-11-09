@@ -1,14 +1,19 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+
+# 0.89.0
+
 - fix(Control/Select): avoid infinite loop in onChange when options are objects 
 - feat(Tooltip): adds light variant
 
 ## 0.88.0
+
 - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
 - feature(inline checkbox): Adds an inline prop to checkbox to put labels on same line as box
 
 ## 0.87.1
+
   - fix(MoneyInput): handle null / undefined so that component is not instantiated with null and instead undefined.
   - feat(Form): Form now have an add another button that passes redirect: false to submit callback
   - Minor(ListOption): make text wrap to new line in container
