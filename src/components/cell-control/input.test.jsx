@@ -94,4 +94,11 @@ describe('Input cell control', () => {
       expect(screen.getByRole('textbox')).toHaveDescription('A unique error message.');
     });
   });
+
+  describe('value API', () => {
+    it('can be supplied', () => {
+      render(<Input {...requiredProps} value="Cheese burrito" />);
+      expect(screen.getByRole('textbox')).toHaveValue('Cheese burrito');
+    });
+  });
 });
