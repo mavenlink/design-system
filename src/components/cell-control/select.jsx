@@ -24,6 +24,7 @@ const Select = forwardRef(function Select(props, ref) {
         ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
+        value={props.value}
         wrapperRef={refs.container}
       >
         {props.children}
@@ -49,6 +50,8 @@ Select.propTypes = {
   required: PropTypes.bool,
   /** A server-side validation message. */
   validationMessage: PropTypes.string,
+  /** The initial value of the cell */
+  value: SelectControl.propTypes.value,
 };
 
 Select.defaultProps = {
@@ -57,6 +60,7 @@ Select.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
+  value: SelectControl.defaultProps.value,
 };
 
 export default Select;
