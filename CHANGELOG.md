@@ -1,6 +1,8 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+- feat(select-cell): allow prefilled values
+- feat(input-cell): allow prefilled values
 
 ## 0.89.1
 

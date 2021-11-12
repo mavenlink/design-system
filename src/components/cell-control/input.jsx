@@ -18,6 +18,7 @@ const Input = forwardRef(function Input(props, ref) {
         ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
+        value={props.value}
       />
     </CellControl>
   );
@@ -38,6 +39,8 @@ Input.propTypes = {
   required: PropTypes.bool,
   /** A server-side validation message. */
   validationMessage: PropTypes.string,
+  /** The initial value of the cell */
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -45,6 +48,7 @@ Input.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
+  value: '',
 };
 
 export default Input;
