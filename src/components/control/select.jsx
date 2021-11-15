@@ -96,7 +96,7 @@ const Select = forwardRef(function Select(props, ref) {
     const selectedValue = event.target.value;
     if (event.target.value) {
       setValue(selectedValue);
-      setSearchValue(selectedValue.label);
+      setSearchValue(undefined);
     }
     setShowOptions(false);
     refs.input.current.focus();
