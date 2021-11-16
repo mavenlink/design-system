@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   fireEvent,
   render, screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
@@ -98,12 +99,10 @@ describe('src/components/autocompleter/autocompleter', () => {
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value1 = { id: 22, name: 'cool dude' };
-      const value2 = { id: 68, name: 'coolio dude' };
-      const { rerender } = render(<Autocompleter {...requiredProps} value={value1} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('cool dude');
-      rerender(<Autocompleter {...requiredProps} value={value2} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('coolio dude');
+      const { rerender } = render(<Autocompleter {...requiredProps} value="731" />);
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Another page of models!'));
+      rerender(<Autocompleter {...requiredProps} value="732" />);
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Do not throw the object!'));
     });
   });
 
@@ -128,9 +127,9 @@ describe('src/components/autocompleter/autocompleter', () => {
   describe('forwardRef API', () => {
     it('can be used to get value as array of selected id', async () => {
       const ref = createRef();
-      render(<Autocompleter {...requiredProps} value={{ name: 'neat', id: 11 }} ref={ref} />);
+      render(<Autocompleter {...requiredProps} value={9} ref={ref} />);
 
-      expect(ref.current.value).toStrictEqual({ name: 'neat', id: 11 });
+      await waitFor(() => expect(ref.current.value).toEqual({ id: '9', label: 'Option 9' }));
     });
   });
 
@@ -169,23 +168,22 @@ describe('src/components/autocompleter/autocompleter', () => {
 
     it('is not called when provided a new value prop', () => {
       const onChangeSpy = jest.fn();
-      const { rerender } = render(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'hi' }} />);
+      const { rerender } = render(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={9} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
-      rerender(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'bye' }} />);
+      rerender(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={8} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('displayValueEvaluator API', () => {
-    it('handles value objects when displayValueEvaluator is provided', () => {
-      const selectValue = { id: 0, label: 'foo' };
+    it('handles value objects when displayValueEvaluator is provided', async () => {
       render(
         <Autocompleter
           {...requiredProps}
-          value={selectValue}
-          displayValueEvaluator={value => value.label}
+          value={55}
+          displayValueEvaluator={value => value.name}
         />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Foo'));
     });
   });
 

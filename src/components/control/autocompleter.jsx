@@ -7,9 +7,11 @@ import ListOption from '../list-option/list-option.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
-  const { execute } = useFetch();
+  const { execute: executeModels } = useFetch();
+  const { execute: executeValue } = useFetch();
   const mounted = useMounted();
   const [models, setModels] = useState(props.models);
+  const [model, setModel] = useState();
 
   useEffect(() => {
     if (!mounted.current) return;
@@ -17,12 +19,32 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     setModels(props.models);
   }, [props.models]);
 
-  useEffect(fetchModels, []);
+  useEffect(() => {
+    fetchModels();
+  }, []);
+
+  useEffect(() => {
+    if (props.value) {
+      executeValue(apiEndpoint('only', props.value))
+        .then((respObj) => {
+          if (mounted.current) {
+            setModel(respObj.json.results.map(result => respObj.json[result.key][result.id])[0]);
+          }
+        })
+        .catch((error) => {
+          if (error.error && error.error.type !== 'aborted') {
+            throw error;
+          }
+        });
+    } else {
+      setModel(undefined);
+    }
+  }, [props.value]);
 
   function fetchModels(searchString) {
     if (!props.apiEndpoint) { return; }
 
-    execute(apiEndpoint(searchString))
+    executeModels(apiEndpoint(props.searchParam, searchString))
       .then((respObj) => {
         if (mounted.current) {
           setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
@@ -34,13 +56,13 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       });
   }
 
-  function apiEndpoint(searchString) {
+  function apiEndpoint(key, value) {
     const baseUrl = `${API_ROOT}${props.apiEndpoint}`;
-    if (searchString) {
+    if (value) {
       const containsQueryStart = baseUrl.match(/[?]/g);
       const paramPrefix = containsQueryStart ? '&' : '?';
 
-      return `${baseUrl}${paramPrefix}${props.searchParam}=${searchString}`;
+      return `${baseUrl}${paramPrefix}${key}=${value}`;
     }
 
     return baseUrl;
@@ -68,7 +90,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
-      value={props.value}
+      value={model}
       wrapperRef={props.wrapperRef}
     >
       {({ onSelect }) => (
@@ -106,8 +128,8 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  /** `value` and `models` shape is expected to be an object(s) with an `id` key */
-  value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  /** The `value` props is expected an `id` used to fetch a model on the API. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
 };
 

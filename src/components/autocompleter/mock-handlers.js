@@ -44,6 +44,14 @@ const models = [
   },
 ];
 
+const onlyModels = [{
+  id: '731',
+  label: 'Another page of models!',
+}, {
+  id: '732',
+  label: 'Do not throw the object!',
+}];
+
 export default function handlers(delay = 0) {
   return [
     rest.get(`${API_ROOT}/models`, (request, response, context) => {
@@ -65,6 +73,10 @@ export default function handlers(delay = 0) {
       const filterStub = request.url.searchParams.get('filter');
       if (filterStub && searchString) {
         modelsForData = [{ name: 'filter-stub', id: '9000' }];
+      }
+
+      if (request.url.searchParams.get('only')) {
+        modelsForData = models.concat(onlyModels).filter(model => model.id === request.url.searchParams.get('only'));
       }
 
       const modelData = {};

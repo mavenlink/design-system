@@ -1,33 +1,15 @@
 import React, {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useRef,
-  useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import useFetch from '@bloodyaugust/use-fetch';
 import Autocompleter from '../autocompleter/autocompleter.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import { API_ROOT } from '../../mocks/mock-constants.js';
 
 const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleChoice(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const autocompleterRef = useRef();
-  const { execute } = useFetch();
-  const [value, setValue] = useState(undefined);
-
-  useEffect(() => {
-    if (props.value.length) {
-      execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}&only=${props.value[0]}`)
-        .then(({ json, mounted }) => {
-          if (!mounted) return;
-          setValue(json.custom_field_choices[json.results[0].id]);
-        });
-    } else {
-      setValue(undefined);
-    }
-  }, [props.value.join(',')]);
 
   useImperativeHandle(ref, () => ({
     ...autocompleterRef.current,
@@ -55,7 +37,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.errorText}
-      value={value}
+      value={props.value.join(',')}
     />
   );
 });
