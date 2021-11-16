@@ -1,6 +1,8 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+- feat(select-cell): implement onChange API
+- feat(input-cell): implement onChange API
 
 ## 0.90.0
 - feat(select-cell): allow prefilled values
