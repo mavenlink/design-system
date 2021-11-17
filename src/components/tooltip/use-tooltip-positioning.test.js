@@ -29,6 +29,15 @@ describe('use-tooltip-positioning', () => {
     expect(result.current.visible).toBe(false);
   });
 
+  it('does not error if tooltipRef.current is falsy', () => {
+    const target = { getBoundingClientRect: () => ({}) };
+
+    const { result } = renderHook(() => useTooltipPositioning({ ...requiredProps, tooltipRef: { current: null } }));
+    act(() => result.current.show({ target }));
+    act(() => result.current.hide());
+    expect(result.current.visible).toBe(false);
+  });
+
   describe('position and direction', () => {
     const tooltipRect = {
       height: 20,
