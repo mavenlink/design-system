@@ -26,6 +26,7 @@ exports[`<Calendar /> has defaults 1`] = `
         </svg>
         <button
           class="year-button"
+          type="button"
         >
           July 2020
           <svg
@@ -567,6 +568,7 @@ exports[`<Calendar /> renders the previous month 1`] = `
         </svg>
         <button
           class="year-button"
+          type="button"
         >
           June 2020
           <svg
@@ -1108,6 +1110,7 @@ exports[`<Calendar /> renders the previous year 1`] = `
         </svg>
         <button
           class="year-button"
+          type="button"
         >
           July 2019
           <svg

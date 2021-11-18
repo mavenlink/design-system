@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox has defaults 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <label
+        class="labelInline"
+        for="fart"
+      >
+        <input
+          aria-describedby="fart-tooltip fartHint"
+          class="input"
+          id="fart"
+          type="checkbox"
+        />
+        <div
+          class="label"
+        >
+          You good?
+        </div>
+      </label>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Checkbox has defaults 2`] = `
+Object {
+  "checked": false,
+  "dirty": false,
+  "id": "fart",
+  "name": undefined,
+  "value": "off",
+}
+`;

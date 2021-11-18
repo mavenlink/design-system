@@ -22,6 +22,15 @@
   z-index: 65536; /* a tooltip should be able to sit above modals and other stacked objects */
 }
 
+.tooltipLight {
+  composes: tooltip;
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+  border-radius: var(--spacing-small);
+  filter: drop-shadow(0 0 var(--spacing-medium) rgba(0, 0, 0, 0.25));
+}
+
 .top::before,
 .bottom::before,
 .left::before,
@@ -53,6 +62,22 @@
   border-right-color: var(--mds-grey-87);
   left: calc(-2 * var(--triangle-height));
   top: calc(50% - var(--triangle-height));
+}
+
+.tooltipLight.top::before {
+  border-top-color: var(--white);
+}
+
+.tooltipLight.bottom::before {
+  border-bottom-color: var(--white);
+}
+
+.tooltipLight.left::before {
+  border-left-color: var(--white);
+}
+
+.tooltipLight.right::before {
+  border-right-color: var(--white);
 }
 
 /*

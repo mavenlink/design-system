@@ -90,3 +90,13 @@ exports[`tooltip has defaults 2`] = `
   </span>
 </body>
 `;
+
+exports[`tooltip variant api renders the light variant tooltip 1`] = `
+<span
+  class="tooltipLight top"
+  id="my-component-tooltip"
+  style="--triangle-height: 8px; left: 0px; top: -128px;"
+>
+  Help Text
+</span>
+`;
