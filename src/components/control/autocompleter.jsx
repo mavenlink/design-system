@@ -10,14 +10,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeModels } = useFetch();
   const { execute: executeValue } = useFetch();
   const mounted = useMounted();
-  const [models, setModels] = useState(props.models);
+  const [models, setModels] = useState([]);
   const [model, setModel] = useState();
-
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    setModels(props.models);
-  }, [props.models]);
 
   useEffect(() => {
     fetchModels();
@@ -115,10 +109,6 @@ Autocompleter.propTypes = {
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
-  /** `value` and `models` shape is expected to be an object(s) with an `id` key */
-  models: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.required,
-  })),
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onInvalid: PropTypes.func,
@@ -138,7 +128,6 @@ Autocompleter.defaultProps = {
   className: undefined,
   displayValueEvaluator: displayName,
   label: undefined,
-  models: [],
   onChange: () => {},
   onInvalid: () => {},
   placeholder: undefined,

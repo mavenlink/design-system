@@ -106,24 +106,6 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
   });
 
-  describe('models API', () => {
-    it('accepts a an array of models and can re-render', async () => {
-      const models = [{ id: 22, name: 'cool dude' }, { id: 33, name: 'neato burrito' }];
-      const { rerender } = render(<Autocompleter {...requiredProps} models={models} />);
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByText('cool dude')).toBeInTheDocument();
-      expect(screen.getByText('neato burrito')).toBeInTheDocument();
-
-      const newModels = [{ id: 44, name: 'wow man' }, { id: 55, name: 'super duper' }];
-      rerender(<Autocompleter {...requiredProps} models={newModels} />);
-
-      userEvent.click(screen.getAllByLabelText('Test label')[1]);
-      expect(screen.getByText('wow man')).toBeInTheDocument();
-      expect(screen.getByText('super duper')).toBeInTheDocument();
-    });
-  });
-
   describe('forwardRef API', () => {
     it('can be used to get value as array of selected id', async () => {
       const ref = createRef();
@@ -145,25 +127,25 @@ describe('src/components/autocompleter/autocompleter', () => {
   });
 
   describe('onChange API', () => {
-    it('calls onChange when a new value is selected', () => {
+    it('calls onChange when a new value is selected', async () => {
       let changeValue = '';
       const onChange = (event) => {
         changeValue = event.target.value;
       };
 
-      const models = [{ id: 22, name: 'Foo' }, { id: 33, name: 'Bar' }];
-      render(<Autocompleter {...requiredProps} models={models} onChange={onChange} />);
+      // const models = [{ id: 22, name: 'Foo' }, { id: 33, name: 'Bar' }];
+      render(<Autocompleter {...requiredProps} onChange={onChange} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Foo'));
+      userEvent.click(await screen.findByText('Foo'));
 
-      expect(changeValue).toEqual({ id: 22, name: 'Foo' });
+      expect(changeValue).toEqual({ id: '55', name: 'Foo' });
 
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Bar'));
+      userEvent.click(await screen.findByText('Bar'));
 
-      expect(changeValue).toEqual({ id: 33, name: 'Bar' });
+      expect(changeValue).toEqual({ id: '1', name: 'Bar' });
     });
 
     it('is not called when provided a new value prop', () => {
