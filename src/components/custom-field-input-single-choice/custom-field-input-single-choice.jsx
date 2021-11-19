@@ -18,7 +18,7 @@ const CustomFieldInputSingleChoice = forwardRef(function CustomFieldInputSingleC
     },
     get value() {
       const choice = autocompleterRef.current.value;
-      return choice ? [choice.id] : [];
+      return choice ? [choice] : [];
     },
   }));
 

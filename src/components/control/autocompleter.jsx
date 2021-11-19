@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import useMounted from '../../hooks/use-mounted.js';
 import Select from './select.jsx';
@@ -12,6 +12,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const mounted = useMounted();
   const [models, setModels] = useState([]);
   const [model, setModel] = useState();
+  const selectRef = useRef();
 
   useEffect(() => {
     fetchModels();
@@ -68,6 +69,16 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   const listOptionRefs = models.map(() => React.createRef());
 
+  useImperativeHandle(ref, () => ({
+    ...selectRef.current,
+    get dirty() {
+      return selectRef.current.dirty;
+    },
+    get value() {
+      return selectRef.current.value?.id;
+    },
+  }));
+
   return (
     <Select
       displayValueEvaluator={props.displayValueEvaluator}
@@ -80,7 +91,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       onInvalid={props.onInvalid}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref={ref}
+      ref={selectRef}
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}

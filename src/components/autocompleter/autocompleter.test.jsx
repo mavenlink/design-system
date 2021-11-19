@@ -111,7 +111,7 @@ describe('src/components/autocompleter/autocompleter', () => {
       const ref = createRef();
       render(<Autocompleter {...requiredProps} value={9} ref={ref} />);
 
-      await waitFor(() => expect(ref.current.value).toEqual({ id: '9', label: 'Option 9' }));
+      await waitFor(() => expect(ref.current.value).toEqual('9'));
     });
   });
 
