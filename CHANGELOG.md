@@ -4,6 +4,8 @@
 - feat(autocompleter): fetch preloaded value to ensure value is always rendered
 - feat(select-cell): implement onChange API
 - feat(input-cell): implement onChange API
+- fix(autocompleter): ensure value ref API matches prop value API while it is loading
+- fix(select): ensure dynamic prop value does not error during rendering
 
 ## 0.90.0
 - feat(select-cell): allow prefilled values

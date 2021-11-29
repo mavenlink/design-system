@@ -205,7 +205,7 @@ const Select = forwardRef(function Select(props, ref) {
           required={props.required}
           style={{ '--numIcon': 3 }}
           type="text"
-          value={searchValue ?? defaultValue}
+          value={searchValue ?? defaultValue ?? ''}
         />
         <div className={styles['icon-container']}>
           {validationMessage.length > 0 ? (<Icon

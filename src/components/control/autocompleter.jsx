@@ -11,7 +11,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeValue } = useFetch();
   const mounted = useMounted();
   const [models, setModels] = useState([]);
-  const [model, setModel] = useState();
+  const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
 
   useEffect(() => {
