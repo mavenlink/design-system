@@ -25,6 +25,7 @@ Button.propTypes = {
   color: PropTypes.oneOf([
     'primary',
     'secondary',
+    'subtle',
   ]),
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
