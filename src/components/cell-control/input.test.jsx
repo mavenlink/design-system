@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { render as _render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import Input from './input.jsx';
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
@@ -60,6 +61,20 @@ describe('Input cell control', () => {
     it('is a string', () => {
       render(<Input {...requiredProps} name="unique-name" />);
       expect(screen.getByRole('textbox')).toHaveAttribute('name', 'unique-name');
+    });
+  });
+
+  describe('onChange API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onChange = jest.fn(event => event.persist());
+
+      render(<Input {...requiredProps} onChange={onChange} />);
+
+      user.type(screen.getByRole('textbox'), 'hello world!');
+
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'hello world!' }),
+      }));
     });
   });
 
