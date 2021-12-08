@@ -97,6 +97,12 @@ describe('Number', () => {
       render(<Number {...requiredProps} step={0.1} />);
       expect(screen.getByLabelText('Test Component')).toHaveAttribute('step', '0.1');
     });
+
+    it('parses the value API with decimals', () => {
+      const ref = createRef();
+      render(<Number {...requiredProps} ref={ref} step={0.01} value={10.12} />);
+      expect(ref.current.value).toEqual(10.12);
+    });
   });
 
   describe('onBlur API', () => {
