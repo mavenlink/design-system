@@ -7,7 +7,12 @@
 - fix(autocompleter): ensure value ref API matches prop value API while it is loading
 - fix(select): ensure dynamic prop value does not error during rendering
 
+## 0.91.0
+
+- feature(rems): converts size and spacing css variable to rems for better accessibility support
+
 ## 0.90.0
+
 - feat(select-cell): allow prefilled values
 - feat(input-cell): allow prefilled values
 

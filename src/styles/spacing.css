@@ -1,7 +1,7 @@
 :root {
-  --spacing-x-small: 2px;
-  --spacing-small: 4px;
-  --spacing-medium: 8px;
-  --spacing-large: 16px;
-  --spacing-x-large: 32px;
+  --spacing-x-small: 0.125rem;
+  --spacing-small: 0.25rem;
+  --spacing-medium: 0.5rem;
+  --spacing-large: 1rem;
+  --spacing-x-large: 2rem;
 }
