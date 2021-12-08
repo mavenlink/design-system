@@ -123,6 +123,7 @@ const Checkbox = forwardRef(function Checkbox(
           <HelpIcon
             id={ids.tooltip}
             text={tooltip}
+            label={'More information'}
             classNames={{ icon: styles.tooltipIcon }}
           />
         ) : null}
