@@ -48,14 +48,6 @@ describe('MoneyInput', () => {
         expect(currencyProps).toContain(key);
       });
     });
-
-    it('presents contextual error state', () => {
-      const errorText = 'What do you want from us monster!?';
-      render(<MoneyInput {...requiredProps} value={350} errorText={errorText} />);
-
-      expect(screen.getByLabelText('currency')).toBeInvalid();
-      expect(screen.getByLabelText('currency')).toHaveDescription(errorText);
-    });
   });
 
   describe('dirty ref API', () => {
@@ -225,6 +217,14 @@ describe('MoneyInput', () => {
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
       expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+    });
+  });
+
+  describe('validationMessage API', () => {
+    it('shows the message', () => {
+      render(<MoneyInput {...requiredProps} validationMessage={'What do you want from us monster!?'} />);
+      expect(screen.getByLabelText('currency')).toBeInvalid();
+      expect(screen.getByLabelText('currency')).toHaveDescription('What do you want from us monster!?');
     });
   });
 });
