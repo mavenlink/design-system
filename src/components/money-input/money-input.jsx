@@ -50,8 +50,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      const currentValue = this.value ? this.value[0] : this.value;
-      return props.value !== currentValue;
+      return props.value !== this.value;
     },
     id: props.id,
     name: props.name,
@@ -76,7 +75,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
         numberValue = parseInt(valueRef.current.value.replace(/[^0-9-]/g, ''), 10);
       }
 
-      return [numberValue, props.currencyCode];
+      return numberValue;
     },
   }));
 

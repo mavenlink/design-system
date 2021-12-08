@@ -174,9 +174,9 @@ describe('MoneyInput', () => {
 
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.type(screen.getByLabelText('Test label'), '12.34');
-      expect(ref.current.value).toStrictEqual([1234, 'USD']);
+      expect(ref.current.value).toStrictEqual(1234);
       userEvent.tab();
-      expect(ref.current.value).toStrictEqual([1234, 'USD']);
+      expect(ref.current.value).toStrictEqual(1234);
     });
 
     it('can get a negative value', () => {
@@ -185,9 +185,9 @@ describe('MoneyInput', () => {
 
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.type(screen.getByLabelText('Test label'), '-12.34');
-      expect(ref.current.value).toStrictEqual([-1234, 'USD']);
+      expect(ref.current.value).toStrictEqual(-1234);
       userEvent.tab();
-      expect(ref.current.value).toStrictEqual([-1234, 'USD']);
+      expect(ref.current.value).toStrictEqual(-1234);
     });
 
     it('can be undefined', () => {
