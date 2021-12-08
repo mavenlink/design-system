@@ -133,7 +133,6 @@ describe('src/components/autocompleter/autocompleter', () => {
         changeValue = event.target.value;
       };
 
-      // const models = [{ id: 22, name: 'Foo' }, { id: 33, name: 'Bar' }];
       render(<Autocompleter {...requiredProps} onChange={onChange} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
