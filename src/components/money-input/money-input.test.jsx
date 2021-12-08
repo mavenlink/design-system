@@ -1,9 +1,5 @@
 import React, { createRef } from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import MoneyInput from './money-input.jsx';
@@ -37,7 +33,7 @@ describe('MoneyInput', () => {
 
     // NOTE: This space is character code 160, non-breaking space. It did break my brain though
     expect(screen.getByLabelText('currency')).toHaveValue('IQD 10.111');
-    fireEvent.focus(screen.getByLabelText('currency'));
+    userEvent.click(screen.getByLabelText('currency'));
     expect(screen.getByLabelText('currency')).toHaveValue(10.111);
   });
 
@@ -69,7 +65,6 @@ describe('MoneyInput', () => {
       userEvent.click(screen.getByLabelText('currency'));
       expect(ref.current.dirty).toEqual(false);
       userEvent.type(screen.getByLabelText('currency'), '12');
-      userEvent.tab();
       expect(ref.current.dirty).toEqual(true);
     });
   });
@@ -87,7 +82,6 @@ describe('MoneyInput', () => {
       const onChangeSpy = jest.fn();
       const { getByLabelText } = render(<MoneyInput {...requiredProps} onChange={onChangeSpy} />);
       userEvent.type(getByLabelText('currency'), '1');
-      userEvent.tab();
       expect(onChangeSpy.mock.calls.length).toEqual(1);
     });
   });
@@ -100,7 +94,7 @@ describe('MoneyInput', () => {
 
     it('does not enter edit mode on focus', () => {
       render(<MoneyInput {...requiredProps} readOnly={true} />);
-      fireEvent.focus(screen.getByLabelText('currency'));
+      userEvent.click(screen.getByLabelText('currency'));
       expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'text');
     });
 
@@ -114,9 +108,9 @@ describe('MoneyInput', () => {
     it('does not trigger error state for valid value', () => {
       render(<MoneyInput {...requiredProps} />);
 
-      fireEvent.focus(screen.getByLabelText('currency'));
-      fireEvent.change(screen.getByLabelText('currency'), { target: { value: 1234 } });
-      fireEvent.blur(screen.getByLabelText('currency'));
+      userEvent.click(screen.getByLabelText('currency'));
+      userEvent.type(screen.getByLabelText('currency'), '1234');
+      userEvent.tab();
 
       expect(screen.getByLabelText('currency')).toBeValid();
       expect(screen.getByLabelText('currency')).toHaveValue('$1,234.00');
@@ -125,26 +119,12 @@ describe('MoneyInput', () => {
     it('does not switch to view mode when its value is numerically invalid', () => {
       render(<MoneyInput {...requiredProps} />);
 
-      fireEvent.focus(screen.getByLabelText('currency'));
-      fireEvent.change(screen.getByLabelText('currency'), { target: { value: 12.111111 } });
-      fireEvent.blur(screen.getByLabelText('currency'));
-
+      userEvent.click(screen.getByLabelText('currency'));
+      userEvent.type(screen.getByLabelText('currency'), '12.111111');
       expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'number');
+
+      userEvent.tab();
       expect(screen.getByLabelText('currency')).toHaveValue(12.111111);
-    });
-
-    xit('does not switch to view mode when its value is numerically invalid', () => {
-      // This test does not work because programmatically setting value
-      // on a number input does not reflect a user typing.
-      // See commit for more details.
-      render(<MoneyInput {...requiredProps} />);
-
-      fireEvent.focus(screen.getByLabelText('currency'));
-      fireEvent.change(screen.getByLabelText('currency'), { target: { value: '12..' } });
-      fireEvent.blur(screen.getByLabelText('currency'));
-
-      expect(screen.getByLabelText('currency')).toHaveAttribute('type', 'number');
-      expect(screen.getByLabelText('currency')).toHaveValue('12..');
     });
 
     it('accepts an undefined value', () => {
@@ -200,11 +180,10 @@ describe('MoneyInput', () => {
       const ref = createRef(null);
       render(<MoneyInput {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
-      fireEvent.focus(screen.getByLabelText('Test label'));
-      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: 1234 } });
-      userEvent.tab();
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), '1234');
       expect(ref.current.value).toStrictEqual([123400, 'USD']);
-      fireEvent.blur(screen.getByLabelText('Test label'));
+      userEvent.tab();
       expect(ref.current.value).toStrictEqual([123400, 'USD']);
     });
 
@@ -212,11 +191,10 @@ describe('MoneyInput', () => {
       const ref = createRef(null);
       render(<MoneyInput {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
-      fireEvent.focus(screen.getByLabelText('Test label'));
-      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: -1234 } });
-      userEvent.tab();
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), '-1234');
       expect(ref.current.value).toStrictEqual([-123400, 'USD']);
-      fireEvent.blur(screen.getByLabelText('Test label'));
+      userEvent.tab();
       expect(ref.current.value).toStrictEqual([-123400, 'USD']);
     });
 
@@ -224,11 +202,11 @@ describe('MoneyInput', () => {
       const ref = createRef(null);
       render(<MoneyInput {...requiredProps} id="test-input" label="Test label" ref={ref} />);
 
-      fireEvent.focus(screen.getByLabelText('Test label'));
-      fireEvent.change(screen.getByLabelText('Test label'), { target: { value: '' } });
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.type(screen.getByLabelText('Test label'), '');
 
       expect(ref.current.value).toBeUndefined();
-      fireEvent.blur(screen.getByLabelText('Test label'));
+      userEvent.tab();
       expect(ref.current.value).toBeUndefined();
     });
   });
