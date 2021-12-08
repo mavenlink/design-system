@@ -1,9 +1,5 @@
 import React, { createRef } from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
@@ -107,8 +103,8 @@ describe('Number', () => {
     it('can set an onBlur event', () => {
       const onBlur = jest.fn();
       render(<Number {...requiredProps} onBlur={onBlur} />);
-      fireEvent.focus(screen.getByLabelText('Test Component'));
-      fireEvent.blur(screen.getByLabelText('Test Component'));
+      userEvent.click(screen.getByLabelText('Test Component'));
+      userEvent.tab();
       expect(onBlur.mock.calls.length).toEqual(1);
     });
   });
@@ -134,8 +130,8 @@ describe('Number', () => {
       render(<Number {...requiredProps} required />);
       expect(screen.getByLabelText('Test Component')).toBeRequired();
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      fireEvent.focus(screen.getByLabelText('Test Component'));
-      fireEvent.blur(screen.getByLabelText('Test Component'));
+      userEvent.click(screen.getByLabelText('Test Component'));
+      userEvent.tab();
       expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
     });
 
@@ -143,8 +139,8 @@ describe('Number', () => {
       render(<Number {...requiredProps} required={false} />);
       expect(screen.getByLabelText('Test Component')).not.toBeRequired();
       expect(screen.getByLabelText('Test Component')).toBeValid();
-      fireEvent.focus(screen.getByLabelText('Test Component'));
-      fireEvent.blur(screen.getByLabelText('Test Component'));
+      userEvent.click(screen.getByLabelText('Test Component'));
+      userEvent.tab();
       expect(screen.getByLabelText('Test Component')).not.toHaveDescription('Constraints not satisfied');
     });
 
