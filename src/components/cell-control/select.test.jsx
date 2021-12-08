@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { render as _render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import Select from './select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
@@ -56,5 +57,20 @@ describe('Select cell control', () => {
     const value = 'foo';
     render(<Select {...requiredProps} value={value}>{baseListOptionElements}</Select>);
     expect(screen.getByRole('combobox')).toHaveValue('foo');
+  });
+
+  describe('onChange API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onChange = jest.fn();
+
+      render(<Select {...requiredProps} onChange={onChange}>{baseListOptionElements}</Select>);
+
+      user.click(screen.getByRole('combobox'));
+      user.click(screen.getByText('foo'));
+
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'foo' }),
+      }));
+    });
   });
 });

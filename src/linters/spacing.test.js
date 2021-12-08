@@ -32,6 +32,15 @@ describe('src/linters/spacing', () => {
     });
   });
 
+  it('fixes rem values as well', async () => {
+    const code = '.className { margin: 1rem 2rem 0.5rem 0.25rem; }';
+
+    await stylelint.lint(configuration({ code }, { fix: true })).then((data) => {
+      expect(data.errored).toBe(false);
+      expect(data.output).toEqual('.className { margin: var(--spacing-large) var(--spacing-x-large) var(--spacing-medium) var(--spacing-small); }');
+    });
+  });
+
   it('ignores values that postfix match the mds values', async () => {
     const code = '.className { margin-top: 444px; padding-left: 22px; padding-right: calc(22px + 4px); }';
 

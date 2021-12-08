@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   fireEvent,
   render, screen,
+  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
@@ -98,39 +99,19 @@ describe('src/components/autocompleter/autocompleter', () => {
 
   describe('value API', () => {
     it('accepts a value', async () => {
-      const value1 = { id: 22, name: 'cool dude' };
-      const value2 = { id: 68, name: 'coolio dude' };
-      const { rerender } = render(<Autocompleter {...requiredProps} value={value1} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('cool dude');
-      rerender(<Autocompleter {...requiredProps} value={value2} />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('coolio dude');
-    });
-  });
-
-  describe('models API', () => {
-    it('accepts a an array of models and can re-render', async () => {
-      const models = [{ id: 22, name: 'cool dude' }, { id: 33, name: 'neato burrito' }];
-      const { rerender } = render(<Autocompleter {...requiredProps} models={models} />);
-
-      userEvent.click(screen.getByLabelText('Test label'));
-      expect(screen.getByText('cool dude')).toBeInTheDocument();
-      expect(screen.getByText('neato burrito')).toBeInTheDocument();
-
-      const newModels = [{ id: 44, name: 'wow man' }, { id: 55, name: 'super duper' }];
-      rerender(<Autocompleter {...requiredProps} models={newModels} />);
-
-      userEvent.click(screen.getAllByLabelText('Test label')[1]);
-      expect(screen.getByText('wow man')).toBeInTheDocument();
-      expect(screen.getByText('super duper')).toBeInTheDocument();
+      const { rerender } = render(<Autocompleter {...requiredProps} value="731" />);
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Another page of models!'));
+      rerender(<Autocompleter {...requiredProps} value="732" />);
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Do not throw the object!'));
     });
   });
 
   describe('forwardRef API', () => {
     it('can be used to get value as array of selected id', async () => {
       const ref = createRef();
-      render(<Autocompleter {...requiredProps} value={{ name: 'neat', id: 11 }} ref={ref} />);
+      render(<Autocompleter {...requiredProps} value={9} ref={ref} />);
 
-      expect(ref.current.value).toStrictEqual({ name: 'neat', id: 11 });
+      await waitFor(() => expect(ref.current.value).toEqual('9'));
     });
   });
 
@@ -146,46 +127,44 @@ describe('src/components/autocompleter/autocompleter', () => {
   });
 
   describe('onChange API', () => {
-    it('calls onChange when a new value is selected', () => {
+    it('calls onChange when a new value is selected', async () => {
       let changeValue = '';
       const onChange = (event) => {
         changeValue = event.target.value;
       };
 
-      const models = [{ id: 22, name: 'Foo' }, { id: 33, name: 'Bar' }];
-      render(<Autocompleter {...requiredProps} models={models} onChange={onChange} />);
+      render(<Autocompleter {...requiredProps} onChange={onChange} />);
 
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Foo'));
+      userEvent.click(await screen.findByText('Foo'));
 
-      expect(changeValue).toEqual({ id: 22, name: 'Foo' });
+      expect(changeValue).toEqual({ id: '55', name: 'Foo' });
 
       fireEvent.keyDown(screen.getByRole('button', { name: 'Remove selected choice' }).firstChild, { key: 'Enter', code: 'Enter' });
       userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.click(screen.getByText('Bar'));
+      userEvent.click(await screen.findByText('Bar'));
 
-      expect(changeValue).toEqual({ id: 33, name: 'Bar' });
+      expect(changeValue).toEqual({ id: '1', name: 'Bar' });
     });
 
     it('is not called when provided a new value prop', () => {
       const onChangeSpy = jest.fn();
-      const { rerender } = render(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'hi' }} />);
+      const { rerender } = render(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={9} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
-      rerender(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={{ id: 22, name: 'bye' }} />);
+      rerender(<Autocompleter {...requiredProps} onChange={onChangeSpy} value={8} />);
       expect(onChangeSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('displayValueEvaluator API', () => {
-    it('handles value objects when displayValueEvaluator is provided', () => {
-      const selectValue = { id: 0, label: 'foo' };
+    it('handles value objects when displayValueEvaluator is provided', async () => {
       render(
         <Autocompleter
           {...requiredProps}
-          value={selectValue}
-          displayValueEvaluator={value => value.label}
+          value={55}
+          displayValueEvaluator={value => value.name}
         />);
-      expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Foo'));
     });
   });
 

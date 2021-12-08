@@ -23,7 +23,7 @@ import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
-  const [value, setValue] = useState(props.value === undefined ? null : props.value);
+  const [value, setValue] = useState(props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const mounted = useMounted();
@@ -59,7 +59,7 @@ const Select = forwardRef(function Select(props, ref) {
   };
 
   const clear = () => {
-    setValue(null);
+    setValue(undefined);
     setSearchValue(undefined);
     refs.input.current.focus();
   };
@@ -121,7 +121,7 @@ const Select = forwardRef(function Select(props, ref) {
     /** The name of the control element which is used to reference the data after submitting the control. */
     name: props.name,
     get value() {
-      return value === null ? undefined : value;
+      return value;
     },
   }));
 
@@ -205,7 +205,7 @@ const Select = forwardRef(function Select(props, ref) {
           required={props.required}
           style={{ '--numIcon': 3 }}
           type="text"
-          value={searchValue ?? defaultValue}
+          value={searchValue ?? defaultValue ?? ''}
         />
         <div className={styles['icon-container']}>
           {validationMessage.length > 0 ? (<Icon

@@ -3,7 +3,20 @@
 - Append new items to make git merging easier.
 - fix(use-tooltip-positioning): don't break on `tooltipRef` not containing a `current` value
 
+## 0.92.0
+
+- feat(autocompleter): fetch preloaded value to ensure value is always rendered
+- feat(select-cell): implement onChange API
+- feat(input-cell): implement onChange API
+- fix(autocompleter): ensure value ref API matches prop value API while it is loading
+- fix(select): ensure dynamic prop value does not error during rendering
+
+## 0.91.0
+
+- feature(rems): converts size and spacing css variable to rems for better accessibility support
+
 ## 0.90.0
+
 - feat(select-cell): allow prefilled values
 - feat(input-cell): allow prefilled values
 

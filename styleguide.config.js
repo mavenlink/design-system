@@ -37,7 +37,7 @@ module.exports = {
     href: 'https://github.com/mavenlink/design-system',
   }, {
     name: 'Living Style Guide',
-    href: 'https://www.notion.so/Mavenlink-Design-System-d3118c3e2f5647d6adfc5b1599af993e',
+    href: 'https://www.notion.so/mldesignteam/Mavenlink-Design-System-d83f5bf8fef7429fbf88932331808d47',
   }, {
     name: 'Cell Controls',
     components: [
