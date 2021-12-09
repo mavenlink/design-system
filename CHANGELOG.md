@@ -1,6 +1,7 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+- fix(Select): Fix issues where select text value not clearing when value set to undefined
 
 ## 0.92.0
 
