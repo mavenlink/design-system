@@ -74,7 +74,7 @@ presented to it, responding with a specific message for the context of that spec
   name="test-name-4"
   value={350}
   currencyCode="USD"
-  errorText="What do you want from us monster!?"
+  validationMessage="What do you want from us monster!?"
 />
 ```
 

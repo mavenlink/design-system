@@ -3,6 +3,11 @@
 - Append new items to make git merging easier.
 - fix(Select): Fix issues where select text value not clearing when value set to undefined
 
+## 0.93.0
+
+- fix(money): parse decimal values
+  fix(number): parse decimal values when step is less than 1
+
 ## 0.92.0
 
 - feat(autocompleter): fetch preloaded value to ensure value is always rendered
