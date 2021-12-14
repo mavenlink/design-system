@@ -1,6 +1,9 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+
+## 0.93.0
+
 - fix(money): parse decimal values
   fix(number): parse decimal values when step is less than 1
 
