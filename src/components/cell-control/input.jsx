@@ -14,6 +14,7 @@ const Input = forwardRef(function Input(props, ref) {
         id={props.id}
         labelledBy={props.labelledBy}
         name={props.name}
+        onChange={props.onChange}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
@@ -33,6 +34,7 @@ Input.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   /** See documentation on `FormControl#name` */
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
   /** Require a value on the input control. */
@@ -45,6 +47,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   className: undefined,
+  onChange: () => {},
   readOnly: false,
   required: false,
   validationMessage: '',

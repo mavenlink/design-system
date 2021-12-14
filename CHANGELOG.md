@@ -4,6 +4,14 @@
 - fix(money): parse decimal values
   fix(number): parse decimal values when step is less than 1
 
+## 0.92.0
+
+- feat(autocompleter): fetch preloaded value to ensure value is always rendered
+- feat(select-cell): implement onChange API
+- feat(input-cell): implement onChange API
+- fix(autocompleter): ensure value ref API matches prop value API while it is loading
+- fix(select): ensure dynamic prop value does not error during rendering
+
 ## 0.91.0
 
 - feature(rems): converts size and spacing css variable to rems for better accessibility support
