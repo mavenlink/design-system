@@ -12,7 +12,7 @@ export default function useTooltipPositioning({
   const hide = () => setTarget(null);
 
   useLayoutEffect(() => {
-    if (!target) {
+    if (!target || !tooltipRef.current) {
       setPosition(null);
       return;
     }

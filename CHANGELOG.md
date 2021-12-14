@@ -1,6 +1,8 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+- fix(use-tooltip-positioning): don't break on `tooltipRef` not containing a `current` value
+- feat(button): add new `subtle` color type
 
 ## 0.93.0
 
