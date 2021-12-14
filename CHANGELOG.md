@@ -4,6 +4,11 @@
 - fix(use-tooltip-positioning): don't break on `tooltipRef` not containing a `current` value
 - feat(button): add new `subtle` color type
 
+## 0.93.0
+
+- fix(money): parse decimal values
+  fix(number): parse decimal values when step is less than 1
+
 ## 0.92.0
 
 - feat(autocompleter): fetch preloaded value to ensure value is always rendered
