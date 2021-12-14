@@ -61,7 +61,9 @@ const Number = React.forwardRef((props, ref) => {
     },
     get value() {
       if (refs.input.current.value) {
-        return parseInt(refs.input.current.value, 10);
+        return props.step < 1
+          ? parseFloat(refs.input.current.value)
+          : parseInt(refs.input.current.value, 10);
       }
 
       return undefined;
