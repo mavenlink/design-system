@@ -50,8 +50,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     get dirty() {
-      const currentValue = this.value ? this.value[0] : this.value;
-      return props.value !== currentValue;
+      return props.value !== this.value;
     },
     id: props.id,
     name: props.name,
@@ -76,7 +75,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
         numberValue = parseInt(valueRef.current.value.replace(/[^0-9-]/g, ''), 10);
       }
 
-      return [numberValue, props.currencyCode];
+      return numberValue;
     },
   }));
 
@@ -89,6 +88,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
     readOnly: props.readOnly,
     required: props.required,
     tooltip: props.tooltip,
+    validationMessage: props.validationMessage,
   };
 
   const formattedNumber = formatValue(input, props.currencyCode);
@@ -109,7 +109,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   return (
     <Input
       {...sharedProps}
-      validationMessage={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"
@@ -121,7 +120,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 MoneyInput.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
-  errorText: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -134,6 +132,7 @@ MoneyInput.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
+  validationMessage: PropTypes.string,
   value: PropTypes.number,
 };
 
@@ -147,6 +146,7 @@ MoneyInput.defaultProps = {
   readOnly: false,
   required: false,
   tooltip: undefined,
+  validationMessage: '',
   value: undefined,
 };
 

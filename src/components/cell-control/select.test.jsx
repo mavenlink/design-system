@@ -1,6 +1,16 @@
 import React, { createRef } from 'react';
-import { render as _render } from '@testing-library/react';
+import { render as _render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import Select from './select.jsx';
+import ListOption from '../list-option/list-option.jsx';
+
+const baseListOptions = ['foo', 'bar'];
+const baseListOptionRefs = baseListOptions.map(() => createRef());
+const baseListOptionElements = ({ onSelect }) => baseListOptions.map((option, index) => (
+  <ListOption key={option} onSelect={onSelect} ref={baseListOptionRefs[index]} value={option}>
+    {option}
+  </ListOption>
+));
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
   _render(ui, {
@@ -41,5 +51,26 @@ describe('Select cell control', () => {
   it('className API', () => {
     render(<Select {...requiredProps} className="unique-class-name" />);
     expect(document.body).toMatchSnapshot();
+  });
+
+  it('accepts a value', () => {
+    const value = 'foo';
+    render(<Select {...requiredProps} value={value}>{baseListOptionElements}</Select>);
+    expect(screen.getByRole('combobox')).toHaveValue('foo');
+  });
+
+  describe('onChange API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onChange = jest.fn();
+
+      render(<Select {...requiredProps} onChange={onChange}>{baseListOptionElements}</Select>);
+
+      user.click(screen.getByRole('combobox'));
+      user.click(screen.getByText('foo'));
+
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'foo' }),
+      }));
+    });
   });
 });

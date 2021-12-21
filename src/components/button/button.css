@@ -62,3 +62,19 @@
   border: none;
   color: var(--mds-grey-38);
 }
+
+.subtle {
+  composes: button;
+  background-color: transparent;
+  border: none;
+  color: var(--mds-grey-54);
+}
+
+.subtle:hover {
+  background-color: var(--mds-grey-opaque-3);
+  color: var(--mds-grey-87);
+}
+
+.subtle[disabled]:hover {
+  background-color: transparent;
+}

@@ -202,6 +202,7 @@ function Calendar(props) {
 
   function changeYear(newYear) {
     setYear(newYear.target.current.value.getFullYear());
+    setActiveDate(newYear.target.current.value);
     setYearView(false);
   }
 
@@ -305,6 +306,7 @@ function Calendar(props) {
           className={styles['year-button']}
           onClick={onChangeYearView}
           onKeyDown={onYearKeyDown}
+          type="button"
         >
           {currentCalendarMonth.toLocaleDateString(undefined, {
             year: 'numeric',

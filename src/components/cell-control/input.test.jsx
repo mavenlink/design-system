@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import { render as _render, screen } from '@testing-library/react';
+import user from '@testing-library/user-event';
 import Input from './input.jsx';
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
@@ -63,6 +64,20 @@ describe('Input cell control', () => {
     });
   });
 
+  describe('onChange API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onChange = jest.fn(event => event.persist());
+
+      render(<Input {...requiredProps} onChange={onChange} />);
+
+      user.type(screen.getByRole('textbox'), 'hello world!');
+
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'hello world!' }),
+      }));
+    });
+  });
+
   describe('readOnly API', () => {
     it('is true', () => {
       render(<Input {...requiredProps} readOnly={true} />);
@@ -92,6 +107,13 @@ describe('Input cell control', () => {
       render(<Input {...requiredProps} validationMessage="A unique error message." />);
       expect(screen.getByRole('textbox')).toBeInvalid();
       expect(screen.getByRole('textbox')).toHaveDescription('A unique error message.');
+    });
+  });
+
+  describe('value API', () => {
+    it('can be supplied', () => {
+      render(<Input {...requiredProps} value="Cheese burrito" />);
+      expect(screen.getByRole('textbox')).toHaveValue('Cheese burrito');
     });
   });
 });

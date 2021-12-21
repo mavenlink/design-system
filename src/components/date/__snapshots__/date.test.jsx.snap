@@ -149,6 +149,7 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
             </svg>
             <button
               class="year-button"
+              type="button"
             >
               April 2021
               <svg

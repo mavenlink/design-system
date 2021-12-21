@@ -14,10 +14,12 @@ const Input = forwardRef(function Input(props, ref) {
         id={props.id}
         labelledBy={props.labelledBy}
         name={props.name}
+        onChange={props.onChange}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
+        value={props.value}
       />
     </CellControl>
   );
@@ -32,19 +34,24 @@ Input.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   /** See documentation on `FormControl#name` */
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
   /** Require a value on the input control. */
   required: PropTypes.bool,
   /** A server-side validation message. */
   validationMessage: PropTypes.string,
+  /** The initial value of the cell */
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
   className: undefined,
+  onChange: () => {},
   readOnly: false,
   required: false,
   validationMessage: '',
+  value: '',
 };
 
 export default Input;

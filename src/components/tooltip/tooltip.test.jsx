@@ -132,4 +132,12 @@ describe('tooltip', () => {
       expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
     });
   });
+
+  describe('variant api', () => {
+    it('renders the light variant tooltip', () => {
+      render(<Tooltip {...requiredProps} variant="light" />);
+      user.hover(screen.getByText('Child'));
+      expect(document.getElementById(requiredProps.id)).toMatchSnapshot();
+    });
+  });
 });

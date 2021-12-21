@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import useMounted from '../../hooks/use-mounted.js';
 import Select from './select.jsx';
@@ -7,22 +7,39 @@ import ListOption from '../list-option/list-option.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
-  const { execute } = useFetch();
+  const { execute: executeModels } = useFetch();
+  const { execute: executeValue } = useFetch();
   const mounted = useMounted();
-  const [models, setModels] = useState(props.models);
+  const [models, setModels] = useState([]);
+  const [model, setModel] = useState({ id: props.value });
+  const selectRef = useRef();
 
   useEffect(() => {
-    if (!mounted.current) return;
+    fetchModels();
+  }, []);
 
-    setModels(props.models);
-  }, [props.models]);
-
-  useEffect(fetchModels, []);
+  useEffect(() => {
+    if (props.value) {
+      executeValue(apiEndpoint('only', props.value))
+        .then((respObj) => {
+          if (mounted.current) {
+            setModel(respObj.json.results.map(result => respObj.json[result.key][result.id])[0]);
+          }
+        })
+        .catch((error) => {
+          if (error.error && error.error.type !== 'aborted') {
+            throw error;
+          }
+        });
+    } else {
+      setModel(undefined);
+    }
+  }, [props.value]);
 
   function fetchModels(searchString) {
     if (!props.apiEndpoint) { return; }
 
-    execute(apiEndpoint(searchString))
+    executeModels(apiEndpoint(props.searchParam, searchString))
       .then((respObj) => {
         if (mounted.current) {
           setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
@@ -34,13 +51,13 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       });
   }
 
-  function apiEndpoint(searchString) {
+  function apiEndpoint(key, value) {
     const baseUrl = `${API_ROOT}${props.apiEndpoint}`;
-    if (searchString) {
+    if (value) {
       const containsQueryStart = baseUrl.match(/[?]/g);
       const paramPrefix = containsQueryStart ? '&' : '?';
 
-      return `${baseUrl}${paramPrefix}${props.searchParam}=${searchString}`;
+      return `${baseUrl}${paramPrefix}${key}=${value}`;
     }
 
     return baseUrl;
@@ -51,6 +68,16 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   }
 
   const listOptionRefs = models.map(() => React.createRef());
+
+  useImperativeHandle(ref, () => ({
+    ...selectRef.current,
+    get dirty() {
+      return selectRef.current.dirty;
+    },
+    get value() {
+      return selectRef.current.value?.id;
+    },
+  }));
 
   return (
     <Select
@@ -64,11 +91,11 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       onInvalid={props.onInvalid}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref={ref}
+      ref={selectRef}
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
-      value={props.value}
+      value={model}
       wrapperRef={props.wrapperRef}
     >
       {({ onSelect }) => (
@@ -93,10 +120,6 @@ Autocompleter.propTypes = {
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
-  /** `value` and `models` shape is expected to be an object(s) with an `id` key */
-  models: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.required,
-  })),
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onInvalid: PropTypes.func,
@@ -106,8 +129,8 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  /** `value` and `models` shape is expected to be an object(s) with an `id` key */
-  value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  /** The `value` props is expected an `id` used to fetch a model on the API. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
 };
 
@@ -116,7 +139,6 @@ Autocompleter.defaultProps = {
   className: undefined,
   displayValueEvaluator: displayName,
   label: undefined,
-  models: [],
   onChange: () => {},
   onInvalid: () => {},
   placeholder: undefined,

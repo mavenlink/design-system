@@ -35,4 +35,11 @@ describe('src/components/control/select', () => {
     user.click(screen.getByLabelText('Test label'));
     expect(document.body).toMatchSnapshot();
   });
+
+  it('displays (loading) empty objects', () => {
+    const { rerender } = render(<Select {...requiredProps} value={{ id: 8 }} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('');
+    rerender(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+  });
 });

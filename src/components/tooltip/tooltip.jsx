@@ -14,6 +14,7 @@ export default function Tooltip({
   disabled,
   id,
   text,
+  variant,
 }) {
   // size of the triangle in pixels
   const triangleHeight = 8;
@@ -31,7 +32,16 @@ export default function Tooltip({
   // keep the div so enabling/disabling doesn't affect the dom tree or styles
   if (disabled) return <div className={styles.wrapper}>{children}</div>;
 
-  const classNames = [className];
+  let baseClassName;
+  if (className) {
+    baseClassName = className;
+  } else if (variant === 'light') {
+    baseClassName = styles.tooltipLight;
+  } else {
+    baseClassName = styles.tooltip;
+  }
+
+  const classNames = [baseClassName];
   if (direction === 'top') classNames.push(styles.top);
   else if (direction === 'bottom') classNames.push(styles.bottom);
   else if (direction === 'left') classNames.push(styles.left);
@@ -46,7 +56,7 @@ export default function Tooltip({
       onMouseLeave={hide}
     >
       { children }
-      { visible && ReactDOM.createPortal((
+      {visible ? ReactDOM.createPortal((
         <span
           id={id}
           className={classNames.join(' ')}
@@ -58,7 +68,7 @@ export default function Tooltip({
         >
           {text}
         </span>
-      ), document.body)}
+      ), document.body) : null}
     </div>
   );
 }
@@ -73,12 +83,15 @@ Tooltip.propTypes = {
   disabled: PropTypes.bool,
   /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
   id: PropTypes.string.isRequired,
-  /** The text inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
-  text: PropTypes.string.isRequired,
+  /** The text and/or graphic inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  /** Show the default dark background tooltip or the light background tooltip */
+  variant: PropTypes.oneOf(['default', 'light']),
 };
 
 Tooltip.defaultProps = {
-  className: styles.tooltip,
+  className: undefined,
   direction: 'top',
   disabled: false,
+  variant: 'default',
 };
