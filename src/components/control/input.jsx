@@ -8,12 +8,17 @@ import useMounted from '../../hooks/use-mounted.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import useValidation from '../../hooks/use-validation.jsx';
 
-function getClassName(className, validationMessage) {
-  if (className) return className;
-  return validationMessage ? styles['invalid-input'] : styles.input;
+function getClassName(classNames, validationMessage) {
+  return validationMessage ? classNames.invalidInput : classNames.input;
 }
 
 const Input = forwardRef(function Input(props, forwardedRef) {
+  const classNames = {
+    container: styles.container,
+    input: styles.input,
+    invalidInput: styles['invalid-input'],
+    ...props.classNames,
+  };
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
@@ -68,11 +73,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       validationMessage={validationMessage}
       validationMessageId={ids.validation}
     >
-      <div style={{ position: 'relative' }}>
+      <div className={classNames.container} style={{ position: 'relative' }}>
         <input
           autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           aria-describedby={`${ids.validation} ${props.describedBy}`}
-          className={getClassName(props.className, validationMessage)}
+          className={getClassName(classNames, validationMessage)}
           defaultValue={props.value}
           id={props.id}
           maxLength={props.maxLength}
@@ -102,7 +107,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
 
 Input.propTypes = {
   autoFocus: PropTypes.bool,
-  className: PropTypes.string,
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    input: PropTypes.string,
+    invalidInput: PropTypes.string,
+  }),
   describedBy: PropTypes.string,
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
@@ -128,7 +137,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   autoFocus: false,
-  className: undefined,
+  classNames: {},
   describedBy: '',
   maxLength: undefined,
   name: undefined,

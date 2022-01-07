@@ -1,0 +1,16 @@
+@import "../../styles/colors-v2.css";
+
+.container {
+  border-left: 1px solid var(--mds-grey-12);
+  border-right: 1px solid var(--mds-grey-12);
+}
+
+.input {
+  composes: input from '../control/input.css';
+  border: none;
+}
+
+.invalidInput {
+  composes: invalid-input from '../control/input.css';
+  border: none;
+}
