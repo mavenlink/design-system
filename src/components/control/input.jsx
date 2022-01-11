@@ -14,10 +14,9 @@ function getClassName(classNames, validationMessage) {
 
 const Input = forwardRef(function Input(props, forwardedRef) {
   const classNames = {
-    container: styles.container,
-    input: styles.input,
-    invalidInput: styles['invalid-input'],
-    ...props.classNames,
+    container: props.classNames.container ? props.classNames.container : styles.container,
+    input: props.classNames.input ? props.classNames.input : styles.input,
+    invalidInput: props.classNames.invalidInput ? props.classNames.invalidInput : styles['invalid-input'],
   };
   const ids = {
     label: `${props.id}-label`,

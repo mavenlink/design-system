@@ -38,7 +38,9 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     >
       <InputControl
         autoFocus={props.autoFocus}
-        className={props.className}
+        classNames={{
+          input: props.className,
+        }}
         describedBy={ids.tooltip}
         id={props.id}
         labelledBy={ids.label}
