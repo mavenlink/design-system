@@ -11,12 +11,16 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     textarea: useRef(),
   };
 
-  const [validationMessage] = useValidation(props.validationMessage, refs.textarea);
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.textarea);
 
   const classNames = {
     container: styles.container,
     textarea: styles.textarea,
   };
+
+  function onBlur() {
+    validate();
+  }
 
   useImperativeHandle(ref, () => ({}));
 
@@ -28,11 +32,18 @@ const Textarea = forwardRef(function Textarea(props, ref) {
       <textarea
         className={classNames.textarea}
         defaultValue={props.value}
+        onBlur={onBlur}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
+        ref={refs.textarea}
         required={props.required}
       />
-      <div className={styles.iconsContainer}>
+      <div
+        className={styles.iconsContainer}
+        style={{
+          display: validationMessage ? 'block' : 'none',
+        }}
+      >
         <Icon
           className={styles.invalidIcon}
           icon={cautionSvg}

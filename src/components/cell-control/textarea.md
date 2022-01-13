@@ -26,7 +26,7 @@ const ids = {
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} required />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} placeholder="This will error after blur." required />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Invalid</TableCell>

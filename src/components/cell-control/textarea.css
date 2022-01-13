@@ -15,18 +15,6 @@
   width: 100%;
 }
 
-.textarea:valid + .iconsContainer {
-  display: none;
-}
-
-.textarea:read-only + .iconsContainer {
-  display: none;
-}
-
-.textarea:invalid + .iconsContainer {
-  display: block;
-}
-
 .iconsContainer {
   composes: icons from '../form-control-icons/form-control-icons.css';
 }
