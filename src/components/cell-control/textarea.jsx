@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import CellControl from './cell-control.jsx';
 import Icon from '../icon/icon.jsx';
