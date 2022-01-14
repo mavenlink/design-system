@@ -8,15 +8,12 @@ import useMounted from '../../hooks/use-mounted.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import useValidation from '../../hooks/use-validation.jsx';
 
-function getClassName(classNames, validationMessage) {
-  return validationMessage ? classNames.invalidInput : classNames.input;
-}
-
 const Input = forwardRef(function Input(props, forwardedRef) {
   const classNames = {
-    container: props.classNames.container ? props.classNames.container : styles.container,
-    input: props.classNames.input ? props.classNames.input : styles.input,
-    invalidInput: props.classNames.invalidInput ? props.classNames.invalidInput : styles['invalid-input'],
+    container: styles.container,
+    input: styles.input,
+    invalidInput: styles['invalid-input'],
+    ...props.classNames,
   };
   const ids = {
     label: `${props.id}-label`,
@@ -76,7 +73,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         <input
           autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           aria-describedby={`${ids.validation} ${props.describedBy}`}
-          className={getClassName(classNames, validationMessage)}
+          className={validationMessage ? classNames.invalidInput : classNames.input}
           defaultValue={props.value}
           id={props.id}
           maxLength={props.maxLength}
