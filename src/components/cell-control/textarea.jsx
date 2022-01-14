@@ -7,16 +7,6 @@ import Tooltip from '../tooltip/tooltip.jsx';
 import styles from './textarea.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
-function useHeight(ref) {
-  const [height, setHeight] = useState();
-
-  useLayoutEffect(() => {
-    if (ref.current.scrollHeight > ref.current.offsetHeight) setHeight(ref.current.scrollHeight);
-  }, []);
-
-  return [height];
-}
-
 const Textarea = forwardRef(function Textarea(props, ref) {
   const ids = {
     invalidIcon: `${props.id}-invalid-tooltip`,
@@ -25,7 +15,7 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     textarea: useRef(),
   };
 
-  const [height] = useHeight(refs.textarea);
+  const [height, setHeight] = useState();
   const [validationMessage, validate] = useValidation(props.validationMessage, refs.textarea);
 
   const classNames = {
@@ -35,6 +25,15 @@ const Textarea = forwardRef(function Textarea(props, ref) {
 
   function onBlur() {
     validate();
+    setHeight(undefined);
+  }
+
+  function onChange() {
+    setHeight(refs.textarea.current.scrollHeight);
+  }
+
+  function onFocus() {
+    setHeight(refs.textarea.current.scrollHeight);
   }
 
   useImperativeHandle(ref, () => ({}));
@@ -48,6 +47,8 @@ const Textarea = forwardRef(function Textarea(props, ref) {
         className={classNames.textarea}
         defaultValue={props.value}
         onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={refs.textarea}
