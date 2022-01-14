@@ -22,7 +22,7 @@
 }
 
 .input:read-only {
-  background-color: var(--mds-grey-3);
+  background-color: var(--mds-grey-opaque-3);
 }
 
 .invalid-icon {
