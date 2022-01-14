@@ -1,16 +1,27 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import CellControl from './cell-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './textarea.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
+function useHeight(ref) {
+  const [height, setHeight] = useState();
+
+  useLayoutEffect(() => {
+    if (ref.current.scrollHeight > ref.current.offsetHeight) setHeight(ref.current.scrollHeight);
+  }, []);
+
+  return [height];
+}
+
 const Textarea = forwardRef(function Textarea(props, ref) {
   const refs = {
     textarea: useRef(),
   };
 
+  const [height] = useHeight(refs.textarea);
   const [validationMessage, validate] = useValidation(props.validationMessage, refs.textarea);
 
   const classNames = {
@@ -37,6 +48,7 @@ const Textarea = forwardRef(function Textarea(props, ref) {
         readOnly={props.readOnly}
         ref={refs.textarea}
         required={props.required}
+        style={{ height }}
       />
       <div
         className={styles.iconsContainer}

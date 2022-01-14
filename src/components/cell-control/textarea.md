@@ -22,7 +22,7 @@ const ids = {
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Read-only</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly value="This is not editable.\n\nWith mult-line text." />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly value="This is not editable.\n\nWith mult-line text.\n\nWith alot of text." />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
