@@ -2,6 +2,7 @@ A grid cell for text datum.
 
 ```jsx
 import Input from '@mavenlink/design-system/src/components/cell-control/input.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
   th: {
@@ -9,30 +10,28 @@ const ids = {
   },
 };
 
-<table role="grid">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th id={ids.th.input} role="columnheader" scope="col">Input</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td role="rowheader">Default</td>
+<Table>
+  <TableHeader>
+    <TableHeaderCell>State</TableHeaderCell>
+    <TableHeaderCell id={ids.th.input}>Input</TableHeaderCell>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell role="rowheader">Default</TableCell>
       <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} />
-    </tr>
-    <tr>
-      <td role="rowheader">Read-only</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Read-only</TableCell>
       <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly />
-    </tr>
-    <tr>
-      <td role="rowheader">Required</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Required</TableCell>
       <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} required />
-    </tr>
-    <tr>
-      <td role="rowheader">Invalid</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Invalid</TableCell>
       <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
-    </tr>
-  </tbody>
-</table>
+    </TableRow>
+  </TableBody>
+</Table>
 ```
