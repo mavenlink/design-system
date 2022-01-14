@@ -27,19 +27,7 @@ exports[`Textarea cell control has defaults 1`] = `
             <div
               class="iconsContainer"
               style="display: none;"
-            >
-              <svg
-                class="invalidIcon"
-                height="18"
-                role="img"
-                width="22"
-              >
-                <title />
-                <use
-                  xlink:href="#caution.svg"
-                />
-              </svg>
-            </div>
+            />
           </td>
         </tr>
       </tbody>
