@@ -3,6 +3,7 @@ import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useSta
 import cautionSvg from '../../svgs/caution.svg';
 import CellControl from './cell-control.jsx';
 import Icon from '../icon/icon.jsx';
+import Tooltip from '../tooltip/tooltip.jsx';
 import styles from './textarea.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
@@ -17,6 +18,9 @@ function useHeight(ref) {
 }
 
 const Textarea = forwardRef(function Textarea(props, ref) {
+  const ids = {
+    invalidIcon: `${props.id}-invalid-tooltip`,
+  };
   const refs = {
     textarea: useRef(),
   };
@@ -56,11 +60,17 @@ const Textarea = forwardRef(function Textarea(props, ref) {
           display: validationMessage ? 'block' : 'none',
         }}
       >
-        <Icon
-          className={styles.invalidIcon}
-          icon={cautionSvg}
-          label={validationMessage}
-        />
+        {validationMessage && <Tooltip
+          id={ids.invalidIcon}
+          text={validationMessage}
+          direction="left"
+        >
+          <Icon
+            className={styles.invalidIcon}
+            describedBy={ids.invalidIcon}
+            icon={cautionSvg}
+          />
+        </Tooltip>}
       </div>
     </CellControl>
   );
@@ -69,6 +79,7 @@ const Textarea = forwardRef(function Textarea(props, ref) {
 Textarea.propTypes = {
   /* The ID of the header cell. */
   labelledBy: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,

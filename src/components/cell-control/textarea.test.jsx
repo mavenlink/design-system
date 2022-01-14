@@ -25,6 +25,7 @@ const render = (ui, options = { labelledBy: 'labelled-by' }) => (
 describe('Textarea cell control', () => {
   const requiredProps = {
     labelledBy: 'labelled-by',
+    id: 'test-id',
   };
 
   it('has defaults', () => {
