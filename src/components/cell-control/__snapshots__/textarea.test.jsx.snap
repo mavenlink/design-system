@@ -26,6 +26,7 @@ exports[`Textarea cell control has defaults 1`] = `
             />
             <div
               class="iconsContainer"
+              style="display: none;"
             >
               <svg
                 class="invalidIcon"
