@@ -21,6 +21,7 @@ const Textarea = forwardRef(function Textarea(props, ref) {
   const classNames = {
     container: styles.container,
     textarea: styles.textarea,
+    ...props.classNames,
   };
 
   function onBlur() {
@@ -78,6 +79,10 @@ const Textarea = forwardRef(function Textarea(props, ref) {
 });
 
 Textarea.propTypes = {
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    textarea: PropTypes.string,
+  }),
   /* The ID of the header cell. */
   labelledBy: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
@@ -89,6 +94,7 @@ Textarea.propTypes = {
 };
 
 Textarea.defaultProps = {
+  classNames: {},
   readOnly: false,
   required: false,
   placeholder: '',
