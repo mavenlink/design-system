@@ -37,7 +37,13 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     setHeight(refs.textarea.current.scrollHeight);
   }
 
-  useImperativeHandle(ref, () => ({}));
+  useImperativeHandle(ref, () => {
+    return ({
+      get value() {
+        return refs.textarea.current.value;
+      },
+    });
+  });
 
   return (
     <CellControl
