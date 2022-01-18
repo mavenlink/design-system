@@ -36,4 +36,8 @@ exports[`Textarea cell control has defaults 1`] = `
 </body>
 `;
 
-exports[`Textarea cell control has defaults 2`] = `Object {}`;
+exports[`Textarea cell control has defaults 2`] = `
+Object {
+  "value": "",
+}
+`;
