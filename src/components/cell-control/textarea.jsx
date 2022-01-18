@@ -29,8 +29,9 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     setHeight(undefined);
   }
 
-  function onChange() {
+  function onChange(event) {
     setHeight(refs.textarea.current.scrollHeight);
+    props.onChange(event);
   }
 
   function onFocus() {
@@ -92,6 +93,7 @@ Textarea.propTypes = {
   /* The ID of the header cell. */
   labelledBy: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -103,6 +105,7 @@ Textarea.defaultProps = {
   classNames: {},
   readOnly: false,
   required: false,
+  onChange: () => {},
   placeholder: '',
   validationMessage: undefined,
   value: '',
