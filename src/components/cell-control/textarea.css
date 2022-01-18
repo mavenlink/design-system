@@ -10,6 +10,7 @@
   composes: input from '../control/input.css';
   border: none;
   height: 100%;
+  min-height: unset !important;
   padding-top: var(--spacing-medium);
   padding-bottom: var(--spacing-medium);
   resize: none;
