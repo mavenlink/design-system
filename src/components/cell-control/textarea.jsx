@@ -9,7 +9,8 @@ import useValidation from '../../hooks/use-validation.jsx';
 
 const Textarea = forwardRef(function Textarea(props, ref) {
   const ids = {
-    invalidIcon: `${props.id}-invalid-tooltip`,
+    invalidIcon: `${props.id}-invalid-icon`,
+    invalidTooltip: `${props.id}-invalid-tooltip`,
   };
   const refs = {
     textarea: useRef(),
@@ -52,6 +53,7 @@ const Textarea = forwardRef(function Textarea(props, ref) {
       labelledBy={props.labelledBy}
     >
       <textarea
+        aria-describedby={ids.invalidIcon}
         className={classNames.textarea}
         defaultValue={props.value}
         onBlur={onBlur}
@@ -70,14 +72,15 @@ const Textarea = forwardRef(function Textarea(props, ref) {
         }}
       >
         {validationMessage && <Tooltip
-          id={ids.invalidIcon}
+          id={ids.invalidTooltip}
           text={validationMessage}
           direction="left"
         >
           <Icon
             className={styles.invalidIcon}
-            describedBy={ids.invalidIcon}
             icon={cautionSvg}
+            id={ids.invalidIcon}
+            label={validationMessage}
           />
         </Tooltip>}
       </div>

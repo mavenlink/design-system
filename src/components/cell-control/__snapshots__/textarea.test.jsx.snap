@@ -1,5 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Textarea cell control className API sets all class names 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="unique-class-container"
+            role="gridcell"
+          >
+            <textarea
+              aria-describedby="test-id-invalid-icon"
+              class="unique-class-textarea"
+              placeholder=""
+            />
+            <div
+              class="iconsContainer"
+              style="display: none;"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Textarea cell control className API sets container class name 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="unique-class-container"
+            role="gridcell"
+          >
+            <textarea
+              aria-describedby="test-id-invalid-icon"
+              class="textarea"
+              placeholder=""
+            />
+            <div
+              class="iconsContainer"
+              style="display: none;"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Textarea cell control className API sets textarea class name 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <textarea
+              aria-describedby="test-id-invalid-icon"
+              class="unique-class-textarea"
+              placeholder=""
+            />
+            <div
+              class="iconsContainer"
+              style="display: none;"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
 exports[`Textarea cell control has defaults 1`] = `
 <body>
   <div>
@@ -21,6 +132,7 @@ exports[`Textarea cell control has defaults 1`] = `
             role="gridcell"
           >
             <textarea
+              aria-describedby="test-id-invalid-icon"
               class="textarea"
               placeholder=""
             />
@@ -40,4 +152,78 @@ exports[`Textarea cell control has defaults 2`] = `
 Object {
   "value": "",
 }
+`;
+
+exports[`Textarea cell control id API sets the ID on the textarea 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <textarea
+              aria-describedby="unique-id-invalid-icon"
+              class="textarea"
+              placeholder=""
+            />
+            <div
+              class="iconsContainer"
+              style="display: none;"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Textarea cell control labelledBy API references the column header 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="unique-labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="unique-labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <textarea
+              aria-describedby="test-id-invalid-icon"
+              class="textarea"
+              placeholder=""
+            />
+            <div
+              class="iconsContainer"
+              style="display: none;"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
 `;
