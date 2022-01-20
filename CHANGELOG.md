@@ -1,6 +1,9 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+
+## 0.96.0
+
 - feat(textarea cell): implement cell type for multi-line text editing
 
 ## 0.95.0
