@@ -110,7 +110,7 @@ Textarea.defaultProps = {
   required: false,
   onChange: () => {},
   placeholder: '',
-  validationMessage: undefined,
+  validationMessage: '',
   value: '',
 };
 
