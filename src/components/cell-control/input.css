@@ -1,8 +1,5 @@
-@import "../../styles/colors-v2.css";
-
 .container {
-  border-left: 1px solid var(--mds-grey-12);
-  border-right: 1px solid var(--mds-grey-12);
+  composes: container from './cell-control.css';
   height: 100%; /* In order for an element to match its parent's height, the parent needs an explicit height. Set it on the <td> or relevant <div>. */
 }
 
