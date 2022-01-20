@@ -25,6 +25,7 @@ exports[`DurationInput cssContainer API sets input container className 1`] = `
         class="control-container"
       >
         <div
+          class="container"
           style="position: relative;"
         >
           <input
@@ -65,6 +66,7 @@ exports[`DurationInput has defaults 1`] = `
         class="control-container"
       >
         <div
+          class="container"
           style="position: relative;"
         >
           <input

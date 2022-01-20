@@ -50,6 +50,15 @@ describe('Button', () => {
       ));
       expect(screen.getByText('Hello world!')).toHaveClass('secondary');
     });
+
+    it('can be "subtle"', () => {
+      render((
+        <Button color="subtle">
+          Hello world!
+        </Button>
+      ));
+      expect(screen.getByText('Hello world!')).toHaveClass('subtle');
+    });
   });
 
   describe('disabled API', () => {
