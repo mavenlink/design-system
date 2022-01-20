@@ -96,7 +96,7 @@ const Select = forwardRef(function Select(props, ref) {
     const selectedValue = event.target.value;
     if (event.target.value) {
       setValue(selectedValue);
-      setSearchValue(undefined);
+      setSearchValue(selectedValue.label);
     }
     setShowOptions(false);
     refs.input.current.focus();
@@ -138,6 +138,10 @@ const Select = forwardRef(function Select(props, ref) {
     if (!mounted.current) return;
 
     setValue(props.value);
+
+    if (props.value === undefined || props.value === null) {
+      setSearchValue('');
+    }
   }, [props.value]);
 
   useEffect(() => {
