@@ -1,7 +1,7 @@
-A grid cell for text datum. 
+A grid cell for large text datum.
 
 ```jsx
-import Input from '@mavenlink/design-system/src/components/cell-control/input.jsx';
+import Textarea from '@mavenlink/design-system/src/components/cell-control/textarea.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
@@ -18,19 +18,19 @@ const ids = {
   <TableBody>
     <TableRow>
       <TableCell role="rowheader">Default</TableCell>
-      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} placeholder="Type into this cell." />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Read-only</TableCell>
-      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly value="This is not editable.\n\nWith mult-line text.\n\nWith alot of text." />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
-      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} required />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} placeholder="This will error after blur." required />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Invalid</TableCell>
-      <Input labelledBy={ids.th.input} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
+      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
     </TableRow>
   </TableBody>
 </Table>

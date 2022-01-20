@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import CellControl from '../cell-control/cell-control.jsx';
 import InputControl from '../control/input.jsx';
+import styles from './input.css';
 
 const Input = forwardRef(function Input(props, ref) {
   return (
@@ -11,6 +12,10 @@ const Input = forwardRef(function Input(props, ref) {
       readOnly={props.readOnly}
     >
       <InputControl
+        classNames={{
+          input: styles.input,
+          invalidInput: styles.invalidInput,
+        }}
         id={props.id}
         labelledBy={props.labelledBy}
         name={props.name}
@@ -46,7 +51,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  className: undefined,
+  className: styles.container,
   onChange: () => {},
   readOnly: false,
   required: false,

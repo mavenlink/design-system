@@ -45,6 +45,7 @@ module.exports = {
       path.join(__dirname, 'src/components/cell-control/autocompleter.jsx'),
       path.join(__dirname, 'src/components/cell-control/input.jsx'),
       path.join(__dirname, 'src/components/cell-control/select.jsx'),
+      path.join(__dirname, 'src/components/cell-control/textarea.jsx'),
     ],
   }, {
     name: 'Form Controls',

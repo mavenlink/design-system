@@ -3,6 +3,25 @@
 - Append new items to make git merging easier.
 - fix(Select): Fix issues where select text value not clearing when value set to undefined
 
+## 0.96.0
+
+- feat(textarea cell): implement cell type for multi-line text editing
+
+## 0.95.0
+
+- feat(input control): BREAKING CHANGE: replace `className` API with `classNames` API (pass in { input: <class name> } for fix)
+- feat(input cell): restyle to match more cell-like designs (borderless, full height, full width, etc)
+
+## 0.94.0
+- 
+- fix(use-tooltip-positioning): don't break on `tooltipRef` not containing a `current` value
+- feat(button): add new `subtle` color type
+
+## 0.93.0
+
+- fix(money): parse decimal values
+  fix(number): parse decimal values when step is less than 1
+
 ## 0.92.0
 
 - feat(autocompleter): fetch preloaded value to ensure value is always rendered
