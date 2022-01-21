@@ -1,0 +1,9 @@
+.input {
+  composes: input from '../select/select.css';
+  border: none;
+}
+
+.invalidInput {
+  composes: input-invalid from '../select/select.css';
+  border: none;
+}
