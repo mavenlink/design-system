@@ -11,10 +11,9 @@
 
   cursor: pointer;
   font: var(--mds-type-content);
-  line-height: var(--spacing-x-large); /* stylelint-disable-line mds/typography */
   list-style-type: none;
   overflow: hidden;
-  padding: 0 var(--spacing-medium);
+  padding: var(--spacing-medium);
 }
 
 .option:hover {
