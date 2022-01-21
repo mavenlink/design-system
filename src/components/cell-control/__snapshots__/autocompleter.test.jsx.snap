@@ -21,6 +21,7 @@ exports[`Autocompleter cell control className API can be set 1`] = `
             role="gridcell"
           >
             <div
+              class="container"
               style="position: relative;"
             >
               <input
@@ -85,6 +86,7 @@ exports[`Autocompleter cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
+              class="container"
               style="position: relative;"
             >
               <input
