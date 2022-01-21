@@ -47,7 +47,10 @@ const Select = forwardRef(function Select(props, ref) {
   const invalid = validationMessage.length > 0;
 
   const classNames = {
-    input: invalid ? styles['input-invalid'] : styles.input,
+    container: styles.container,
+    input: styles.input,
+    invalidInput: styles['input-invalid'],
+    ...props.classNames,
   };
 
   const ids = {
@@ -181,7 +184,7 @@ const Select = forwardRef(function Select(props, ref) {
       validationMessage={validationMessage}
       validationMessageId={ids.validation}
     >
-      <div style={{ position: 'relative' }}>
+      <div className={classNames.container} style={{ position: 'relative' }}>
         <input
           autoComplete="off"
           aria-autocomplete="none"
@@ -190,7 +193,7 @@ const Select = forwardRef(function Select(props, ref) {
           aria-expanded={showOptions}
           aria-invalid={invalid ? 'true' : undefined}
           aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={classNames.input}
+          className={invalid ? classNames.invalidInput : classNames.input}
           id={ids.input}
           role="combobox"
           name={props.name}
@@ -258,6 +261,11 @@ const ListOptionRefType = PropTypes.shape({
 
 Select.propTypes = {
   children: PropTypes.func,
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    input: PropTypes.string,
+    invalidInput: PropTypes.string,
+  }),
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
   displayValueEvaluator: PropTypes.oneOfType([
     PropTypes.func,
@@ -280,6 +288,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   children: () => {},
+  classNames: {},
   displayValueEvaluator: value => value,
   onChange: () => {},
   onInput: () => {},

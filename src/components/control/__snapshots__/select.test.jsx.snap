@@ -1,5 +1,227 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`src/components/control/select classNames API sets all class names 1`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      class="unique-container"
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        autocomplete="off"
+        class="unique-input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`src/components/control/select classNames API sets container 1`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      class="unique-container"
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        autocomplete="off"
+        class="input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`src/components/control/select classNames API sets invalid input 1`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      class="container"
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-invalid="true"
+        autocomplete="off"
+        class="unique-invalid-input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="18"
+          role="img"
+          width="22"
+        >
+          <title>
+            Invalid custom field
+          </title>
+          <use
+            xlink:href="#caution.svg"
+          />
+        </svg>
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+    </div>
+    <span
+      aria-hidden="true"
+      aria-live="polite"
+      class="validation-message"
+      id="test-idHint"
+    >
+      This is an error state.
+    </span>
+  </div>
+</body>
+`;
+
+exports[`src/components/control/select classNames API sets valid input 1`] = `
+<body>
+  <div>
+    <label
+      for="test-id"
+      id="test-label-id"
+    >
+      Test label
+    </label>
+    <div
+      class="container"
+      style="position: relative;"
+    >
+      <input
+        aria-autocomplete="none"
+        aria-controls="test-id-single-choice-listbox"
+        aria-describedby="test-id-tooltip test-idHint"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        autocomplete="off"
+        class="unique-input"
+        id="test-id"
+        name="field-id"
+        role="combobox"
+        style="--numIcon: 3;"
+        type="text"
+        value=""
+      />
+      <div
+        class="icon-container"
+      >
+        <svg
+          class="input-icon"
+          height="6"
+          role="img"
+          width="10"
+        >
+          <title>
+            Open choices listbox
+          </title>
+          <use
+            xlink:href="#caret-down.svg"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`src/components/control/select has defaults 1`] = `
 <body>
   <div>
@@ -10,6 +232,7 @@ exports[`src/components/control/select has defaults 1`] = `
       Test label
     </label>
     <div
+      class="container"
       style="position: relative;"
     >
       <input
@@ -67,6 +290,7 @@ exports[`src/components/control/select has defaults 3`] = `
       Test label
     </label>
     <div
+      class="container"
       style="position: relative;"
     >
       <input
