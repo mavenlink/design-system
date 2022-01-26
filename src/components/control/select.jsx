@@ -140,7 +140,7 @@ const Select = forwardRef(function Select(props, ref) {
     setValue(props.value);
 
     if (props.value === undefined || props.value === null) {
-      setSearchValue('');
+      setSearchValue(undefined);
     }
   }, [props.value]);
 
