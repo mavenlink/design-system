@@ -48,5 +48,7 @@ describe('src/components/control/select', () => {
     expect(screen.getByLabelText('Test label')).toHaveValue('foo');
     rerender(<Select {...requiredProps} value={undefined} displayValueEvaluator={o => o.label} />);
     expect(screen.getByLabelText('Test label')).toHaveValue('');
+    rerender(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('foo');
   });
 });
