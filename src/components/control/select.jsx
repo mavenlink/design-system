@@ -138,6 +138,10 @@ const Select = forwardRef(function Select(props, ref) {
     if (!mounted.current) return;
 
     setValue(props.value);
+
+    if (props.value === undefined || props.value === null) {
+      setSearchValue('');
+    }
   }, [props.value]);
 
   useEffect(() => {
