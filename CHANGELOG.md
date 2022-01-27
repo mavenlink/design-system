@@ -7,6 +7,13 @@
 - chore(control): deprecate Control component, move validationMessage to FormControl
 - chore(all): reference invalid icon as description for interactive elements
 
+## 0.96.1
+
+- fix(Select): Fix issues where select text value not clearing when value set to undefined
+- fix(ListOption): Remove line height and add padding. This way items with long text do not appear as two options.
+- fix(Select): Fix issue where searchValue was clobbering value from toggling between a value and being cleared.
+
+
 ## 0.96.0
 
 - feat(textarea cell): implement cell type for multi-line text editing

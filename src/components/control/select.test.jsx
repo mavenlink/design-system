@@ -43,6 +43,15 @@ describe('src/components/control/select', () => {
     expect(screen.getByLabelText('Test label')).toHaveValue('foo');
   });
 
+  it('resets the searchValue when value is set to undefined (regression test)', () => {
+    const { rerender } = render(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+    rerender(<Select {...requiredProps} value={undefined} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('');
+    rerender(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
+    expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+  });
+
   describe('classNames API', () => {
     it('sets container', () => {
       render(<Select
