@@ -3,6 +3,9 @@
 - Append new items to make git merging easier.
 - feat(select control): implement classNames API
 - feat(select cell): update designs to match new cell designs
+- feat(form control): implement validationMessage API
+- chore(control): deprecate Control component, move validationMessage to FormControl
+- chore(all): reference invalid icon as description for interactive elements
 
 ## 0.96.0
 
