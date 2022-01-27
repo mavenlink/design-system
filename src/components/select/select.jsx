@@ -20,7 +20,6 @@ const Select = forwardRef(function Select(props, forwardedRef) {
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
-    validationMessage: `${props.id}-validation-message`,
   };
   const refs = {
     container: useRef(),
@@ -46,7 +45,6 @@ const Select = forwardRef(function Select(props, forwardedRef) {
         required={props.required}
         tooltip={props.tooltip}
         validationMessage={validationMessage}
-        validationMessageId={ids.validationMessage}
       >
         <SelectControl
           displayValueEvaluator={props.displayValueEvaluator}

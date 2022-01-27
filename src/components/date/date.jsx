@@ -24,6 +24,7 @@ function ControlIcons(props) {
       {!!props.validationMessage && (
         <Icon
           className={styles['invalid-icon']}
+          id={props.validationMessageId}
           icon={cautionSvg}
           label={props.validationMessage}
         />
@@ -197,7 +198,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         required={props.required}
         tooltip={props.tooltip}
         validationMessage={validationMessage}
-        validationMessageId={ids.validationMessage}
       >
         <div style={{ position: 'relative' }}>
           <input
@@ -223,6 +223,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
             onPress={onIconPress}
             readOnly={props.readOnly}
             validationMessage={validationMessage}
+            validationMessageId={ids.validationMessage}
           />
         </div>
       </FormControl>

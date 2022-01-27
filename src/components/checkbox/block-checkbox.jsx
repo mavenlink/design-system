@@ -84,7 +84,6 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      validationMessageId={ids.validation}
     >
       <div style={{ position: 'relative' }}>
         <input
@@ -107,6 +106,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
           <Icon
             className={styles['invalid-icon']}
             icon={cautionSvg}
+            id={ids.validation}
             label={validationMessage}
           />
         )}

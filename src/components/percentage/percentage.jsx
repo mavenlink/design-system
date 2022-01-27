@@ -71,7 +71,6 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      validationMessageId={ids.validationMessage}
     >
       <div style={{ position: 'relative' }}>
         <input
@@ -91,7 +90,11 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
           step={0.01}
           type="number"
         />
-        <FormControlIcons validationMessage={validationMessage} className={styles['icons-container']}>
+        <FormControlIcons
+          className={styles['icons-container']}
+          validationMessage={validationMessage}
+          validationMessageId={ids.validationMessage}
+        >
           <span className={styles['percent-sign']}>%</span>
         </FormControlIcons>
       </div>

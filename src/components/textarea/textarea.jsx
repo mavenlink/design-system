@@ -88,7 +88,6 @@ const Textarea = forwardRef(function Textarea({
       required={required}
       tooltip={tooltip}
       validationMessage={validationMessageValue}
-      validationMessageId={ids.validation}
     >
       <div style={{ position: 'relative' }}>
         <textarea
@@ -108,6 +107,7 @@ const Textarea = forwardRef(function Textarea({
           <Icon
             className={styles['invalid-icon']}
             icon={cautionSvg}
+            id={ids.validation}
             label={validationMessageValue}
           />
         )}

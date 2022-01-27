@@ -8,7 +8,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validationMessage: `${props.id}-validation-message`,
   };
   const refs = {
     control: useRef(),
@@ -36,7 +35,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      validationMessageId={ids.validationMessage}
     >
       <InputControl
         autoFocus={props.autoFocus}
@@ -60,7 +58,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         required={props.required}
         type={props.type}
         validationMessage={props.validationMessage}
-        validationMessageId={ids.validationMessage}
         value={props.value}
       />
     </FormControl>

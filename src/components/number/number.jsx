@@ -84,7 +84,6 @@ const Number = React.forwardRef((props, ref) => {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      validationMessageId={ids.validationMessage}
     >
       <div style={{ position: 'relative' }}>
         <input
@@ -108,6 +107,7 @@ const Number = React.forwardRef((props, ref) => {
           <Icon
             className={styles['invalid-icon']}
             icon={cautionSvg}
+            id={ids.validationMessage}
             label={validationMessage}
           />
         )}

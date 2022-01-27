@@ -64,7 +64,6 @@ exports[`<FormControl> validationMessage API can be set 1`] = `
           aria-hidden="true"
           aria-live="polite"
           class="validation-message"
-          id="test-validation-id"
         >
           I am an error message
         </span>

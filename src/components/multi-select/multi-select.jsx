@@ -232,7 +232,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         required={props.required}
         tooltip={props.tooltip}
         validationMessage={validationMessage || ''}
-        validationMessageId={ids.validation}
       >
         <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
           <TagList
@@ -276,7 +275,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               value={autocompleteValue}
             />
           </TagList>
-          <FormControlIcons validationMessage={validationMessage} className={classNames.iconsContainer}>
+          <FormControlIcons
+            className={classNames.iconsContainer}
+            validationMessage={validationMessage}
+            validationMessageId={ids.validation}
+          >
             {(!props.readOnly && value.length > 0) && (
               <IconButton
                 icon={iconClear}

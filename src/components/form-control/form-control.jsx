@@ -55,7 +55,6 @@ const FormControl = forwardRef(function FormControl(props, ref) {
             aria-hidden="true"
             aria-live="polite"
             className={classNames.validationMessage}
-            id={props.validationMessageId}
           >
             {props.validationMessage}
           </span>
@@ -78,7 +77,6 @@ FormControl.propTypes = {
   required: PropTypes.bool,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  validationMessageId: PropTypes.string.isRequired,
 };
 
 FormControl.defaultProps = {

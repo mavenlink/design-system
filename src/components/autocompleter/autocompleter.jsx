@@ -11,7 +11,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
-    validationMessage: `${props.id}-validationMessage`,
   };
   const refs = {
     control: useRef(),
@@ -36,7 +35,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      validationMessageId={ids.validationMessage}
     >
       <AutocompleteControl
         apiEndpoint={props.apiEndpoint}
