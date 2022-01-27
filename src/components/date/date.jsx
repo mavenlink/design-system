@@ -197,12 +197,10 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validationMessage}
       >
-        <Control
-          labelledBy={ids.label}
-          validationMessage={validationMessage}
-          validationMessageId={ids.validationMessage}
-        >
+        <Control>
           <div style={{ position: 'relative' }}>
             <input
               aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}

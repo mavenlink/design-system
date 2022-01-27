@@ -23,7 +23,7 @@ const Number = React.forwardRef((props, ref) => {
     input: props.id,
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
+    validationMessage: `${props.id}-validation-message`,
   };
   const refs = {
     control: useRef(),
@@ -84,15 +84,13 @@ const Number = React.forwardRef((props, ref) => {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
+      validationMessageId={ids.validationMessage}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessage}
-        validationMessageId={ids.validation}
-      >
+      <Control>
         <div style={{ position: 'relative' }}>
           <input
-            aria-describedby={`${ids.tooltip} ${ids.validation}`}
+            aria-describedby={`${ids.tooltip} ${ids.validationMessage}`}
             className={getClassName(props.className, validationMessage)}
             defaultValue={props.value}
             id={ids.input}

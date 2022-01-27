@@ -12,7 +12,7 @@ import styles from './select.css';
 
 const Select = forwardRef(function Select(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState(false);
+  const [validationMessage, setValidationMessage] = useState('');
 
   const classNames = {
     container: props.className,
@@ -20,6 +20,7 @@ const Select = forwardRef(function Select(props, forwardedRef) {
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
+    validationMessage: `${props.id}-validation-message`,
   };
   const refs = {
     container: useRef(),
@@ -36,7 +37,6 @@ const Select = forwardRef(function Select(props, forwardedRef) {
   return (
     <div ref={refs.container} className={classNames.container}>
       <FormControl
-        error={invalid}
         id={ids.input}
         labelId={ids.label}
         label={props.label}
@@ -45,6 +45,8 @@ const Select = forwardRef(function Select(props, forwardedRef) {
         ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validationMessage}
       >
         <SelectControl
           displayValueEvaluator={props.displayValueEvaluator}
@@ -54,7 +56,7 @@ const Select = forwardRef(function Select(props, forwardedRef) {
           name={props.name}
           onChange={props.onChange}
           onInput={props.onInput}
-          onInvalid={event => setInvalid(event.detail.validationMessage)}
+          onInvalid={event => setValidationMessage(event.detail.validationMessage)}
           placeholder={props.placeholder}
           readOnly={props.readOnly}
           ref={refs.input}

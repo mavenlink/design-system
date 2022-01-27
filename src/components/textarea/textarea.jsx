@@ -88,12 +88,10 @@ const Textarea = forwardRef(function Textarea({
       ref={refs.control}
       required={required}
       tooltip={tooltip}
+      validationMessage={validationMessageValue}
+      validationMessageId={ids.validation}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessageValue}
-        validationMessageId={ids.validation}
-      >
+      <Control>
         <div style={{ position: 'relative' }}>
           <textarea
             aria-describedby={`${ids.tooltip} ${ids.validation}`}

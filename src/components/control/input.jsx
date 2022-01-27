@@ -18,7 +18,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
+    validation: props.validationMessageId ?? `${props.id}-validation-message`,
   };
   const refs = {
     input: useRef(),
@@ -64,11 +64,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <Control
-      labelledBy={props.labelledBy}
-      validationMessage={validationMessage}
-      validationMessageId={ids.validation}
-    >
+    <Control>
       <div className={classNames.container} style={{ position: 'relative' }}>
         <input
           autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
@@ -93,6 +89,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
           <Icon
             className={styles['invalid-icon']}
             icon={cautionSvg}
+            id={props.validationMessageId ? undefined : ids.validation}
             label={validationMessage}
           />
         )}
@@ -110,7 +107,6 @@ Input.propTypes = {
   }),
   describedBy: PropTypes.string,
   id: PropTypes.string.isRequired,
-  labelledBy: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   name: PropTypes.string,
   onBlur: PropTypes.func,
@@ -128,6 +124,7 @@ Input.propTypes = {
     'text',
   ]),
   validationMessage: PropTypes.string,
+  validationMessageId: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -149,6 +146,7 @@ Input.defaultProps = {
   tooltip: undefined,
   type: 'text',
   validationMessage: '',
+  validationMessageId: undefined,
   value: undefined,
 };
 

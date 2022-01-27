@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './control.css';
 
 /**
  * Generic control component for interactive widgets.
@@ -9,11 +8,7 @@ import styles from './control.css';
  * - label
  * - validation message
  */
-export default function Control(props) {
-  const classNames = {
-    validationMessage: styles['validation-message'],
-  };
-
+export default function FieldControl(props) {
   // Temporarily disabled while we figure out how to be compatible with the ReactWrapper (backbone view)
   // The backbone view renders the React component in-memory so this always throws.
   // useLayoutEffect(() => {
@@ -33,25 +28,12 @@ export default function Control(props) {
   return (
     <React.Fragment>
       {props.children}
-      {!!props.validationMessage && (
-        <span
-          aria-hidden="true"
-          aria-live="polite"
-          className={classNames.validationMessage}
-          id={props.validationMessageId}
-        >
-          {props.validationMessage}
-        </span>
-      )}
     </React.Fragment>
   );
 }
 
-Control.propTypes = {
+FieldControl.propTypes = {
   children: PropTypes.node.isRequired,
-  // labelledBy: PropTypes.string.isRequired,
-  validationMessage: PropTypes.string.isRequired,
-  validationMessageId: PropTypes.string.isRequired,
 };
 
-Control.defaultProps = {};
+FieldControl.defaultProps = {};

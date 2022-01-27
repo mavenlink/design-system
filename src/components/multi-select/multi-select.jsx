@@ -224,7 +224,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   return (
     <div className={classNames.container} id={props.id} ref={refs.wrapper}>
       <FormControl
-        error={validationMessage}
         id={ids.textbox}
         label={props.label}
         labelId={ids.label}
@@ -233,12 +232,10 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         ref={refs.control}
         required={props.required}
         tooltip={props.tooltip}
+        validationMessage={validationMessage || ''}
+        validationMessageId={ids.validation}
       >
-        <Control
-          labelledBy={ids.label}
-          validationMessage={validationMessage || ''}
-          validationMessageId={ids.validation}
-        >
+        <Control>
           <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
             <TagList
               className={classNames.tagList}

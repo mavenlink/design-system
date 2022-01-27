@@ -6,11 +6,12 @@ import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState(false);
+  const [validationMessage, setValidationMessage] = useState('');
 
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
+    validationMessage: `${props.id}-validationMessage`,
   };
   const refs = {
     control: useRef(),
@@ -26,7 +27,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
   return (
     <FormControl
       className={props.className}
-      error={invalid}
       id={ids.input}
       labelId={ids.label}
       label={props.label}
@@ -35,6 +35,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
+      validationMessageId={ids.validationMessage}
     >
       <AutocompleteControl
         apiEndpoint={props.apiEndpoint}
@@ -44,7 +46,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
         models={props.models}
         name={props.name}
         onChange={props.onChange}
-        onInvalid={event => setInvalid(event.detail.validationMessage)}
+        onInvalid={event => setValidationMessage(event.detail.validationMessage)}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={refs.input}

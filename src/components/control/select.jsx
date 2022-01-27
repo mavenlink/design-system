@@ -179,11 +179,7 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <Control
-      labelledBy={ids.label}
-      validationMessage={validationMessage}
-      validationMessageId={ids.validation}
-    >
+    <Control>
       <div className={classNames.container} style={{ position: 'relative' }}>
         <input
           autoComplete="off"
@@ -214,7 +210,8 @@ const Select = forwardRef(function Select(props, ref) {
           {validationMessage.length > 0 ? (<Icon
             className={styles['input-icon']}
             icon={cautionSvg}
-            label="Invalid custom field"
+            id={ids.validation}
+            label={validationMessage}
           />) : undefined}
           {!props.readOnly && (value || searchValue) ? (
             <IconButton
@@ -281,6 +278,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  // type: PropTypes.oneOf(['cell', 'field']).isRequired,
   validationMessage: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types

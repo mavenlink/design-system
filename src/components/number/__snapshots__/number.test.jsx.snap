@@ -27,7 +27,7 @@ exports[`Number has defaults 1`] = `
           style="position: relative;"
         >
           <input
-            aria-describedby="test-component-tooltip test-componentHint"
+            aria-describedby="test-component-tooltip test-component-validation-message"
             class="input"
             id="test-component"
             max="2147483648"

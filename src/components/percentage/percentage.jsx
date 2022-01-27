@@ -71,6 +71,8 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
+      validationMessageId={ids.validationMessage}
     >
       <Control
         labelledBy={ids.label}

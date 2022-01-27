@@ -8,6 +8,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
+    validationMessage: `${props.id}-validation-message`,
   };
   const refs = {
     control: useRef(),
@@ -15,7 +16,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   };
 
   const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState('');
+  const [validationMessage, setValidationMessage] = useState('');
 
   useImperativeHandle(ref, () => ({
     ...refs.control.current,
@@ -26,7 +27,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   return (
     <FormControl
       className={props.cssContainer}
-      error={invalid}
       id={props.id}
       label={props.label}
       labelId={ids.label}
@@ -35,6 +35,8 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
+      validationMessageId={ids.validationMessage}
     >
       <InputControl
         autoFocus={props.autoFocus}
@@ -50,7 +52,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         onChange={props.onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
-        onInvalid={event => setInvalid(event.detail.validationMessage)}
+        onInvalid={event => setValidationMessage(event.detail.validationMessage)}
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
@@ -58,6 +60,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         required={props.required}
         type={props.type}
         validationMessage={props.validationMessage}
+        validationMessageId={ids.validationMessage}
         value={props.value}
       />
     </FormControl>

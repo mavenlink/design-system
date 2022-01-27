@@ -72,7 +72,7 @@ describe('src/components/control/select', () => {
         }}
         validationMessage="This is an error state."
       />);
-      expect(document.body).toMatchSnapshot();
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
     });
 
     it('sets all class names', () => {

@@ -65,3 +65,44 @@ exports[`<FormControl> has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`<FormControl> validationMessage API can be set 1`] = `
+<body>
+  <div>
+    <div
+      role="presentation"
+    >
+      <div
+        class="label-wrapper"
+      >
+        <div
+          class="invalid-label"
+        >
+          <label
+            for="test-id"
+            id="test-id-label"
+          >
+            Test label
+          </label>
+        </div>
+      </div>
+      <div
+        class="control-container"
+      >
+        <input
+          aria-describedby="test-idHint"
+          id="test-id"
+        />
+        <span
+          aria-hidden="true"
+          aria-live="polite"
+          class="validation-message"
+          id="test-validation-id"
+        >
+          I am an error message
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+`;

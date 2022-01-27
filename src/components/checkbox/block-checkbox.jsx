@@ -84,12 +84,10 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
+      validationMessageId={ids.validation}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessage}
-        validationMessageId={ids.validation}
-      >
+      <Control>
         <div style={{ position: 'relative' }}>
           <input
             aria-describedby={`${ids.tooltip} ${ids.validation}`}
