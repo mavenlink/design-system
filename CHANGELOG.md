@@ -2,7 +2,9 @@
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
 - fix(Select): Fix issues where select text value not clearing when value set to undefined
+- fix(ListOption): Remove line height and add padding. This way items with long text do not appear as two options.
 - fix(Select): Fix issue where searchValue was clobbering value from toggling between a value and being cleared.
+
 
 ## 0.96.0
 

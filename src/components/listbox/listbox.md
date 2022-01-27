@@ -64,7 +64,7 @@ import ListOption from '@mavenlink/design-system/src/components/list-option/list
 
 const container = {
   width: '150px',
-  height: '150px',
+  height: '200px',
 };
 const options = ['Yes', 'No', 'Maybe', "I don't know", 'Can you repeat the question?'];
 const refs = options.map(_ => React.createRef());
