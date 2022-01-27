@@ -10,7 +10,6 @@ import React, {
 import calendarSvg from '../../svgs/calendar.svg';
 import cautionSvg from '../../svgs/caution.svg';
 import Calendar from '../calendar/calendar.jsx';
-import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import Icon from '../icon/icon.jsx';
@@ -200,34 +199,32 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
       >
-        <Control>
-          <div style={{ position: 'relative' }}>
-            <input
-              aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
-              className={classNames.input}
-              defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
-              id={ids.input}
-              key={`${ids.input}-${editing ? 'editing' : 'display'}`}
-              max={props.max}
-              min={props.min}
-              name={props.name}
-              onChange={onInputChange}
-              onClick={onInputClick}
-              onKeyDown={onInputKeyDown}
-              placeholder={props.placeholder}
-              readOnly={props.readOnly}
-              ref={refs.input}
-              required={props.required}
-              type={editing ? 'date' : 'text'}
-            />
-            <ControlIcons
-              label={props.label}
-              onPress={onIconPress}
-              readOnly={props.readOnly}
-              validationMessage={validationMessage}
-            />
-          </div>
-        </Control>
+        <div style={{ position: 'relative' }}>
+          <input
+            aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
+            className={classNames.input}
+            defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
+            id={ids.input}
+            key={`${ids.input}-${editing ? 'editing' : 'display'}`}
+            max={props.max}
+            min={props.min}
+            name={props.name}
+            onChange={onInputChange}
+            onClick={onInputClick}
+            onKeyDown={onInputKeyDown}
+            placeholder={props.placeholder}
+            readOnly={props.readOnly}
+            ref={refs.input}
+            required={props.required}
+            type={editing ? 'date' : 'text'}
+          />
+          <ControlIcons
+            label={props.label}
+            onPress={onIconPress}
+            readOnly={props.readOnly}
+            validationMessage={validationMessage}
+          />
+        </div>
       </FormControl>
       {expanded && (
         <div className={classNames.layout.calendar}>

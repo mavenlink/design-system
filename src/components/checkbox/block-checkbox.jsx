@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './checkbox.css';
@@ -87,33 +86,31 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
       validationMessage={validationMessage}
       validationMessageId={ids.validation}
     >
-      <Control>
-        <div style={{ position: 'relative' }}>
-          <input
-            aria-describedby={`${ids.tooltip} ${ids.validation}`}
-            className={props.className}
-            defaultChecked={props.checked}
-            id={props.id}
-            name={props.name}
-            onBlur={onBlur}
-            onChange={props.onChange}
-            onClick={onClick}
-            onFocus={props.onFocus}
-            onKeyDown={onKeyDown}
-            readOnly={props.readOnly}
-            ref={refs.input}
-            required={props.required}
-            type="checkbox"
+      <div style={{ position: 'relative' }}>
+        <input
+          aria-describedby={`${ids.tooltip} ${ids.validation}`}
+          className={props.className}
+          defaultChecked={props.checked}
+          id={props.id}
+          name={props.name}
+          onBlur={onBlur}
+          onChange={props.onChange}
+          onClick={onClick}
+          onFocus={props.onFocus}
+          onKeyDown={onKeyDown}
+          readOnly={props.readOnly}
+          ref={refs.input}
+          required={props.required}
+          type="checkbox"
+        />
+        {!!validationMessage && (
+          <Icon
+            className={styles['invalid-icon']}
+            icon={cautionSvg}
+            label={validationMessage}
           />
-          {!!validationMessage && (
-            <Icon
-              className={styles['invalid-icon']}
-              icon={cautionSvg}
-              label={validationMessage}
-            />
-          )}
-        </div>
-      </Control>
+        )}
+      </div>
     </FormControl>
   );
 });

@@ -12,7 +12,6 @@ import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import cautionSvg from '../../svgs/caution.svg';
-import Control from '../control/control.jsx';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from '../select/select.css';
@@ -179,72 +178,70 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <Control>
-      <div className={classNames.container} style={{ position: 'relative' }}>
-        <input
-          autoComplete="off"
-          aria-autocomplete="none"
-          aria-controls={ids.listbox}
-          aria-haspopup="listbox"
-          aria-expanded={showOptions}
-          aria-invalid={invalid ? 'true' : undefined}
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={invalid ? classNames.invalidInput : classNames.input}
-          id={ids.input}
-          role="combobox"
-          name={props.name}
-          onBlur={onBlur}
-          onChange={onSearchChange}
-          onClick={onClick}
-          onKeyDown={onKeyDown}
-          onInput={props.onInput}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          style={{ '--numIcon': 3 }}
-          type="text"
-          value={searchValue ?? defaultValue ?? ''}
-        />
-        <div className={styles['icon-container']}>
-          {validationMessage.length > 0 ? (<Icon
-            className={styles['input-icon']}
-            icon={cautionSvg}
-            id={ids.validation}
-            label={validationMessage}
-          />) : undefined}
-          {!props.readOnly && (value || searchValue) ? (
-            <IconButton
-              icon={iconClear}
-              label={'Remove selected choice'}
-              onPress={clear}
-            />
-          ) : undefined}
-          <Icon
-            className={styles['input-icon']}
-            icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-            label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+    <div className={classNames.container} style={{ position: 'relative' }}>
+      <input
+        autoComplete="off"
+        aria-autocomplete="none"
+        aria-controls={ids.listbox}
+        aria-haspopup="listbox"
+        aria-expanded={showOptions}
+        aria-invalid={invalid ? 'true' : undefined}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
+        className={invalid ? classNames.invalidInput : classNames.input}
+        id={ids.input}
+        role="combobox"
+        name={props.name}
+        onBlur={onBlur}
+        onChange={onSearchChange}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        onInput={props.onInput}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        style={{ '--numIcon': 3 }}
+        type="text"
+        value={searchValue ?? defaultValue ?? ''}
+      />
+      <div className={styles['icon-container']}>
+        {validationMessage.length > 0 ? (<Icon
+          className={styles['input-icon']}
+          icon={cautionSvg}
+          id={ids.validation}
+          label={validationMessage}
+        />) : undefined}
+        {!props.readOnly && (value || searchValue) ? (
+          <IconButton
+            icon={iconClear}
+            label={'Remove selected choice'}
+            onPress={clear}
           />
-        </div>
-        { showOptions && (
-          <Listbox
-            className={styles.dropdown}
-            id={`${props.id}-single-choice-listbox`}
-            labelledBy={`${props.id}-label`}
-            onChange={onSelectionChange}
-            ref={refs.listbox}
-            refs={props.listOptionRefs}
-            value={value}
-          >
-            {({ onSelect }) => {
-              const options = props.children({ onSelect });
-              if (React.Children.count(options) === 0) return <NoOptions />;
-              return options;
-            }}
-          </Listbox>
-        )}
+        ) : undefined}
+        <Icon
+          className={styles['input-icon']}
+          icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+          label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+        />
       </div>
-    </Control>
+      { showOptions && (
+        <Listbox
+          className={styles.dropdown}
+          id={`${props.id}-single-choice-listbox`}
+          labelledBy={`${props.id}-label`}
+          onChange={onSelectionChange}
+          ref={refs.listbox}
+          refs={props.listOptionRefs}
+          value={value}
+        >
+          {({ onSelect }) => {
+            const options = props.children({ onSelect });
+            if (React.Children.count(options) === 0) return <NoOptions />;
+            return options;
+          }}
+        </Listbox>
+      )}
+    </div>
   );
 });
 

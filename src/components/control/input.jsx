@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
-import Control from './control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 import useMounted from '../../hooks/use-mounted.js';
@@ -64,37 +63,35 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <Control>
-      <div className={classNames.container} style={{ position: 'relative' }}>
-        <input
-          autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-          aria-describedby={`${ids.validation} ${props.describedBy}`}
-          className={validationMessage ? classNames.invalidInput : classNames.input}
-          defaultValue={props.value}
-          id={props.id}
-          maxLength={props.maxLength}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onInput={props.onInput}
-          onKeyDown={props.onKeyDown}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          type={props.type}
+    <div className={classNames.container} style={{ position: 'relative' }}>
+      <input
+        autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+        aria-describedby={`${ids.validation} ${props.describedBy}`}
+        className={validationMessage ? classNames.invalidInput : classNames.input}
+        defaultValue={props.value}
+        id={props.id}
+        maxLength={props.maxLength}
+        name={props.name}
+        onBlur={onBlur}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onInput={props.onInput}
+        onKeyDown={props.onKeyDown}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        type={props.type}
+      />
+      {!!validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          id={props.validationMessageId ? undefined : ids.validation}
+          label={validationMessage}
         />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            id={props.validationMessageId ? undefined : ids.validation}
-            label={validationMessage}
-          />
-        )}
-      </div>
-    </Control>
+      )}
+    </div>
   );
 });
 
