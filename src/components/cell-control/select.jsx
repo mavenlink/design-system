@@ -30,6 +30,7 @@ const Select = forwardRef(function Select(props, ref) {
         ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
+        validationMessageTooltip
         value={props.value}
         wrapperRef={refs.container}
       >

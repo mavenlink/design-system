@@ -15,6 +15,7 @@ import cautionSvg from '../../svgs/caution.svg';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from '../select/select.css';
+import Tooltip from '../tooltip/tooltip.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
@@ -209,12 +210,19 @@ const Select = forwardRef(function Select(props, ref) {
         value={searchValue ?? defaultValue ?? ''}
       />
       <div className={styles['icon-container']}>
-        {validationMessage.length > 0 ? (<Icon
-          className={styles['input-icon']}
-          icon={cautionSvg}
-          id={ids.validation}
-          label={validationMessage}
-        />) : undefined}
+        {validationMessage.length > 0 ? (<Tooltip
+          disabled={!props.validationMessageTooltip}
+          id=""
+          text={validationMessage}
+          direction="left"
+        >
+          <Icon
+            className={styles['input-icon']}
+            icon={cautionSvg}
+            id={ids.validation}
+            label={validationMessage}
+          />
+        </Tooltip>) : undefined}
         {!props.readOnly && (value || searchValue) ? (
           <IconButton
             icon={iconClear}
@@ -281,6 +289,7 @@ Select.propTypes = {
   required: PropTypes.bool,
   // type: PropTypes.oneOf(['cell', 'field']).isRequired,
   validationMessage: PropTypes.string,
+  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
@@ -296,6 +305,7 @@ Select.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
+  validationMessageTooltip: false,
   value: undefined,
   wrapperRef: undefined,
 };
