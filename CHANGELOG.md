@@ -2,10 +2,11 @@
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
 - feat(select control): implement classNames API
-- feat(select cell): update designs to match new cell designs
+- feat(select cell): update styling to match new cell designs
 - feat(form control): implement validationMessage API
 - chore(control): deprecate Control component, move validationMessage to FormControl
 - chore(all): reference invalid icon as description for interactive elements
+- feat(autocomplete cell): update styling to match new cell designs
 
 ## 0.96.1
 
