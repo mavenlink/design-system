@@ -1,4 +1,4 @@
-A grid cell for text datum.
+A grid cell for autocomplete-able datum.
 
 ```jsx
 import Autocompleter from '@mavenlink/design-system/src/components/cell-control/autocompleter.jsx';
