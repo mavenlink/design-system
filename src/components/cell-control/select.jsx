@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import SelectControl from '../control/select.jsx';
+import styles from './select.css';
 
 const Select = forwardRef(function Select(props, ref) {
   const refs = {
@@ -16,6 +17,11 @@ const Select = forwardRef(function Select(props, ref) {
       ref={refs.container}
     >
       <SelectControl
+        classNames={{
+          container: styles.container,
+          input: styles.input,
+          invalidInput: styles.invalidInput,
+        }}
         id={props.id}
         labelledBy={props.labelledBy}
         listOptionRefs={props.listOptionRefs}
@@ -25,6 +31,7 @@ const Select = forwardRef(function Select(props, ref) {
         ref={ref}
         required={props.required}
         validationMessage={props.validationMessage}
+        validationMessageTooltip
         value={props.value}
         wrapperRef={refs.container}
       >

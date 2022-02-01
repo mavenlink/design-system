@@ -178,10 +178,10 @@ describe('src/components/select/select', () => {
 
     it('does not show errorText on first render until blurred', () => {
       render(<Select {...requiredProps} required>{baseListOptionElements}</Select>);
-      expect(screen.queryByText('Constraints not satisfied')).toBeNull();
+      expect(screen.getByRole('combobox', { name: 'Test label' })).not.toHaveDescription('Constraints not satisfied');
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab({ shift: true });
-      expect(screen.getByText('Constraints not satisfied')).toBeInTheDocument();
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveDescription('Constraints not satisfied');
     });
   });
 

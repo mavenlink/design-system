@@ -5,7 +5,6 @@ import React, {
   useLayoutEffect,
   useRef,
 } from 'react';
-import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import FormControlIcons from '../form-control-icons/form-control-icons.jsx';
 import styles from './percentage.css';
@@ -71,35 +70,34 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessage}
-        validationMessageId={ids.validationMessage}
-      >
-        <div style={{ position: 'relative' }}>
-          <input
-            aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
-            className={getClassName(classNames.input, validationMessage)}
-            defaultValue={props.value}
-            id={props.id}
-            max={100}
-            min={0}
-            name={props.name}
-            onBlur={onBlur}
-            onChange={onChange}
-            placeholder={props.placeholder}
-            readOnly={props.readOnly}
-            ref={refs.input}
-            required={props.required}
-            step={0.01}
-            type="number"
-          />
-          <FormControlIcons validationMessage={validationMessage} className={styles['icons-container']}>
-            <span className={styles['percent-sign']}>%</span>
-          </FormControlIcons>
-        </div>
-      </Control>
+      <div style={{ position: 'relative' }}>
+        <input
+          aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
+          className={getClassName(classNames.input, validationMessage)}
+          defaultValue={props.value}
+          id={props.id}
+          max={100}
+          min={0}
+          name={props.name}
+          onBlur={onBlur}
+          onChange={onChange}
+          placeholder={props.placeholder}
+          readOnly={props.readOnly}
+          ref={refs.input}
+          required={props.required}
+          step={0.01}
+          type="number"
+        />
+        <FormControlIcons
+          className={styles['icons-container']}
+          validationMessage={validationMessage}
+          validationMessageId={ids.validationMessage}
+        >
+          <span className={styles['percent-sign']}>%</span>
+        </FormControlIcons>
+      </div>
     </FormControl>
   );
 });

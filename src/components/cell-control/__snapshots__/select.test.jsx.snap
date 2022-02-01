@@ -21,6 +21,7 @@ exports[`Select cell control className API 1`] = `
             role="gridcell"
           >
             <div
+              class="container"
               style="position: relative;"
             >
               <input
@@ -85,6 +86,7 @@ exports[`Select cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
+              class="container"
               style="position: relative;"
             >
               <input
@@ -134,4 +136,96 @@ Object {
   "name": "test-name",
   "value": undefined,
 }
+`;
+
+exports[`Select cell control validationMessage API shows a tooltip on the invalid icon 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <div
+              class="container"
+              style="position: relative;"
+            >
+              <input
+                aria-autocomplete="none"
+                aria-controls="test-id-single-choice-listbox"
+                aria-describedby="test-id-tooltip test-idHint"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-invalid="true"
+                autocomplete="off"
+                class="invalidInput"
+                id="test-id"
+                name="test-name"
+                role="combobox"
+                style="--numIcon: 3;"
+                type="text"
+                value=""
+              />
+              <div
+                class="icon-container"
+              >
+                <div
+                  class="wrapper"
+                >
+                  <svg
+                    class="input-icon"
+                    height="18"
+                    role="img"
+                    width="22"
+                  >
+                    <title
+                      id="test-idHint"
+                    >
+                      This is an error message.
+                    </title>
+                    <use
+                      xlink:href="#caution.svg"
+                    />
+                  </svg>
+                </div>
+                <svg
+                  class="input-icon"
+                  height="6"
+                  role="img"
+                  width="10"
+                >
+                  <title>
+                    Open choices listbox
+                  </title>
+                  <use
+                    xlink:href="#caret-down.svg"
+                  />
+                </svg>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <span
+    class="tooltip left"
+    id=""
+    style="--triangle-height: 8px; left: -128px; top: 0px;"
+  >
+    This is an error message.
+  </span>
+</body>
 `;

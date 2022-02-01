@@ -27,7 +27,7 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
           style="position: relative;"
         >
           <input
-            aria-describedby="test-input-tooltip test-inputHint"
+            aria-describedby="test-input-tooltip test-input-validation-message"
             class="input"
             id="test-input"
             max="2147483648"
