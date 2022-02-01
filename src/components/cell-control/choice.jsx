@@ -28,7 +28,7 @@ Choice.propTypes = {
   customFieldID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -38,7 +38,6 @@ Choice.propTypes = {
 };
 
 Choice.defaultProps = {
-  name: undefined,
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
