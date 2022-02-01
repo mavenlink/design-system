@@ -18,6 +18,7 @@ const Select = forwardRef(function Select(props, ref) {
     >
       <SelectControl
         classNames={{
+          container: styles.container,
           input: styles.input,
           invalidInput: styles.invalidInput,
         }}

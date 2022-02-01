@@ -19,6 +19,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       <AutocompleterControl
         apiEndpoint={props.apiEndpoint}
         classNames={{
+          container: styles.container,
           input: styles.input,
           invalidInput: styles.invalidInput,
         }}
