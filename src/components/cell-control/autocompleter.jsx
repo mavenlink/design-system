@@ -5,13 +5,20 @@ import AutocompleterControl from '../control/autocompleter.jsx';
 import styles from './select.css';
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
+  const classNames = {
+    container: undefined,
+    innerContainer: styles.container,
+    input: styles.input,
+    invalidInput: styles.invalidInput,
+    ...props.classNames,
+  };
   const refs = {
     container: useRef(),
   };
 
   return (
     <CellControl
-      className={props.className}
+      className={classNames.container}
       labelledBy={props.labelledBy}
       readOnly={props.readOnly}
       ref={refs.container}
@@ -19,7 +26,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       <AutocompleterControl
         apiEndpoint={props.apiEndpoint}
         classNames={{
-          container: styles.container,
+          container: classNames.innerContainer,
           input: styles.input,
           invalidInput: styles.invalidInput,
         }}
@@ -46,8 +53,12 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
-  /** A class name for the table cell container. */
-  className: PropTypes.string,
+  classNames: PropTypes.shape({
+    /** A class name for the table cell container. */
+    container: PropTypes.string,
+    /** A class name for the nested select container. */
+    innerContainer: PropTypes.string,
+  }),
   /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
@@ -69,7 +80,7 @@ Autocompleter.propTypes = {
 
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
-  className: undefined,
+  classNames: {},
   displayValueEvaluator: undefined,
   models: [],
   onChange: () => {},

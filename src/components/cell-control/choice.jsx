@@ -9,6 +9,7 @@ const Choice = forwardRef(function Choice(props, forwardedRef) {
   return (
     <Autocompleter
       apiEndpoint={`/custom_field_choices?for_custom_fields=${props.customFieldID}`}
+      classNames={props.classNames}
       displayValueEvaluator={selectValue => (selectValue ? selectValue.label : '')}
       id={props.id}
       labelledBy={props.labelledBy}
@@ -26,6 +27,10 @@ const Choice = forwardRef(function Choice(props, forwardedRef) {
 
 Choice.propTypes = {
   customFieldID: PropTypes.string.isRequired,
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    innerContainer: PropTypes.string,
+  }),
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -38,6 +43,7 @@ Choice.propTypes = {
 };
 
 Choice.defaultProps = {
+  classNames: {},
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
