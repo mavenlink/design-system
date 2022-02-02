@@ -37,9 +37,19 @@ describe('Autocompleter cell control', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('className API', () => {
-    it('can be set', () => {
-      render(<Autocompleter {...requiredProps} className="unique-class-name" />);
+  describe('classNames API', () => {
+    it('can set container', () => {
+      render(<Autocompleter {...requiredProps} classNames={{ container: 'unique-container' }} />);
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('can set innerContainer', () => {
+      render(<Autocompleter {...requiredProps} classNames={{ innerContainer: 'unique-inner-container' }} />);
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('can be all set', () => {
+      render(<Autocompleter {...requiredProps} classNames={{ container: 'unique-container', innerContainer: 'unique-inner-container' }} />);
       expect(document.body).toMatchSnapshot();
     });
   });

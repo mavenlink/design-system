@@ -1,57 +1,57 @@
-A grid cell for autocomplete-able datum.
+A grid cell for single choice custom field.
 
 ```jsx
-import Autocompleter from '@mavenlink/design-system/src/components/cell-control/autocompleter.jsx';
+import Choice from '@mavenlink/design-system/src/components/cell-control/choice.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
   th: {
-    autocompleter: uuid.v4(),
+    example: uuid.v4(),
   },
 };
 
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Autocompleter</TableHeaderCell>
+    <TableHeaderCell id={ids.th.input}>Single Choice</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
       <TableCell role="rowheader">Default</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Choice
+        customFieldID="0"
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
-        name="autocompleter-1"
+        labelledBy={ids.th.example}
+        name="single-choice"
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Read-only</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Choice
+        customFieldID="0"
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
-        name="autocompleter-2"
+        labelledBy={ids.th.example}
+        name="single-choice"
         readOnly
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Choice
+        customFieldID="0"
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
-        name="autocompleter-3"
+        labelledBy={ids.th.example}
+        name="single-choice"
         required
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Invalid</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Choice
+        customFieldID="0"
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
-        name="autocompleter-4"
+        labelledBy={ids.th.example}
+        name="single-choice"
         validationMessage="This is a validation message."
       />
     </TableRow>
