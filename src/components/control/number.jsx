@@ -81,7 +81,7 @@ const Number = React.forwardRef((props, forwardedRef) => {
   }));
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ height: '100%', position: 'relative' }}>
       <input
         aria-describedby={`${ids.tooltip} ${ids.validationMessage}`}
         className={getClassName(props.className, validationMessage)}
