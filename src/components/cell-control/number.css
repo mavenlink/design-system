@@ -1,0 +1,4 @@
+.input {
+  composes: input from '../number/number.css';
+  border: none;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useValidation from '../../hooks/use-validation.jsx';
 import useMounted from '../../hooks/use-mounted.js';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import Icon from '../icon/icon.jsx';
 import cautionSvg from '../../svgs/caution.svg';
 import styles from '../number/number.css';
@@ -16,7 +17,8 @@ const apiLimits = {
   min: -(2 ** 31),
 };
 
-const Number = React.forwardRef((props, ref) => {
+const Number = React.forwardRef((props, forwardedRef) => {
+  const ref = useForwardedRef(forwardedRef);
   const ids = {
     input: props.id,
     label: `${props.id}-label`,
