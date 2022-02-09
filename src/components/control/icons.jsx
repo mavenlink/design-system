@@ -28,11 +28,13 @@ export default function Icons(props) {
           />
         </Tooltip>
       )}
+      {props.children}
     </div>
   );
 }
 
 Icons.propTypes = {
+  children: PropTypes.node,
   classNames: PropTypes.shape({
     container: PropTypes.string,
     validationIcon: PropTypes.string,
