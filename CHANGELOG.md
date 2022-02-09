@@ -8,6 +8,7 @@
 - chore(all): reference invalid icon as description for interactive elements
 - feat(autocomplete cell): update styling to match new cell designs
 - feat(choice cell): implement custom field single choice field cell component (words)
+- feat(number cell): implement number cell component
 
 ## 0.96.1
 
