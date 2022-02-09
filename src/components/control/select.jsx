@@ -6,16 +6,15 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import Icons from './icons.jsx';
 import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
-import cautionSvg from '../../svgs/caution.svg';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from '../select/select.css';
-import Tooltip from '../tooltip/tooltip.jsx';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMounted from '../../hooks/use-mounted.js';
@@ -209,20 +208,12 @@ const Select = forwardRef(function Select(props, ref) {
         type="text"
         value={searchValue ?? defaultValue ?? ''}
       />
-      <div className={styles['icon-container']}>
-        {validationMessage.length > 0 ? (<Tooltip
-          disabled={!props.validationMessageTooltip}
-          id=""
-          text={validationMessage}
-          direction="left"
-        >
-          <Icon
-            className={styles['input-icon']}
-            icon={cautionSvg}
-            id={ids.validation}
-            label={validationMessage}
-          />
-        </Tooltip>) : undefined}
+      <Icons
+        classNames={undefined}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validation}
+        validationMessageTooltip={props.validationMessageTooltip}
+      >
         {!props.readOnly && (value || searchValue) ? (
           <IconButton
             icon={iconClear}
@@ -235,7 +226,7 @@ const Select = forwardRef(function Select(props, ref) {
           icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
           label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
         />
-      </div>
+      </Icons>
       { showOptions && (
         <Listbox
           className={styles.dropdown}

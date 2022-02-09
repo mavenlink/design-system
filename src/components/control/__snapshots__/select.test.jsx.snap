@@ -29,7 +29,7 @@ exports[`src/components/control/select classNames API sets all class names 1`] =
         value=""
       />
       <div
-        class="icon-container"
+        class="container"
       >
         <svg
           class="input-icon"
@@ -79,7 +79,7 @@ exports[`src/components/control/select classNames API sets container 1`] = `
         value=""
       />
       <div
-        class="icon-container"
+        class="container"
       >
         <svg
           class="input-icon"
@@ -129,7 +129,7 @@ exports[`src/components/control/select classNames API sets valid input 1`] = `
         value=""
       />
       <div
-        class="icon-container"
+        class="container"
       >
         <svg
           class="input-icon"
@@ -179,7 +179,7 @@ exports[`src/components/control/select has defaults 1`] = `
         value=""
       />
       <div
-        class="icon-container"
+        class="container"
       >
         <svg
           class="input-icon"
@@ -237,7 +237,7 @@ exports[`src/components/control/select has defaults 3`] = `
         value=""
       />
       <div
-        class="icon-container"
+        class="container"
       >
         <svg
           class="input-icon"

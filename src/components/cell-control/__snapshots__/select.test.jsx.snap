@@ -40,7 +40,7 @@ exports[`Select cell control className API 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
                   class="input-icon"
@@ -105,7 +105,7 @@ exports[`Select cell control has defaults 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
                   class="input-icon"
@@ -179,13 +179,12 @@ exports[`Select cell control validationMessage API shows a tooltip on the invali
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <div
                   class="wrapper"
                 >
                   <svg
-                    class="input-icon"
                     height="18"
                     role="img"
                     width="22"

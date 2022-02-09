@@ -43,7 +43,7 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
             value=""
           />
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               class="input-icon"
