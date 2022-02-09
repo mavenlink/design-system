@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import useValidation from '../../hooks/use-validation.jsx';
 import useMounted from '../../hooks/use-mounted.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import Icon from '../icon/icon.jsx';
-import cautionSvg from '../../svgs/caution.svg';
+import Icons from './icons.jsx';
 import styles from '../number/number.css';
 
 function getClassName(className, validationMessage) {
@@ -99,14 +98,11 @@ const Number = React.forwardRef((props, forwardedRef) => {
         step={props.step}
         type="number"
       />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          id={ids.validationMessage}
-          label={validationMessage}
-        />
-      )}
+      <Icons
+        classNames={undefined}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validationMessage}
+      />
     </div>
   );
 });
