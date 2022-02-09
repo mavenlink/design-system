@@ -12,6 +12,7 @@
 - fix(select control): open dropdown on caret click
 - fix(select control): open dropdown on caret press
 - fix(select control): open dropdown on arrow down press
+- fix(select control): highlight dropdown options on hover
 
 ## 0.96.1
 
