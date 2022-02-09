@@ -49,9 +49,11 @@ exports[`src/components/select/select has defaults 1`] = `
               class="container"
             >
               <svg
-                class="input-icon"
+                aria-disabled="false"
+                class="button"
                 height="6"
-                role="img"
+                role="button"
+                tabindex="0"
                 width="10"
               >
                 <title>

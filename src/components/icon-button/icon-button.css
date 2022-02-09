@@ -1,4 +1,7 @@
+@import '../../styles/spacing.css';
+
 .button {
   cursor: pointer;
+  padding: var(--spacing-small);
   user-select: none;
 }

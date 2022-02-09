@@ -9,6 +9,8 @@
 - feat(autocomplete cell): update styling to match new cell designs
 - feat(choice cell): implement custom field single choice field cell component (words)
 - feat(number cell): implement number cell component
+- fix(select control): open dropdown on caret click
+- fix(select control): open dropdown on caret press
 
 ## 0.96.1
 

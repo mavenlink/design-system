@@ -43,9 +43,11 @@ exports[`Select cell control className API 1`] = `
                 class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -108,9 +110,11 @@ exports[`Select cell control has defaults 1`] = `
                 class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -200,9 +204,11 @@ exports[`Select cell control validationMessage API shows a tooltip on the invali
                   </svg>
                 </div>
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>

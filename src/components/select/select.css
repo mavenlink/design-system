@@ -17,10 +17,6 @@
   z-index: 10;
 }
 
-.input-icon {
-  pointer-events: none;
-}
-
 .clear-button {
   composes: button from '../icon-button/icon-button.css';
   padding: var(--spacing-small);

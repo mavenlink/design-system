@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Icons from './icons.jsx';
-import Icon from '../icon/icon.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
@@ -221,10 +220,11 @@ const Select = forwardRef(function Select(props, ref) {
             onPress={clear}
           />
         ) : undefined}
-        <Icon
-          className={styles['input-icon']}
+        <IconButton
+          disabled={props.readOnly}
           icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
           label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+          onPress={onClick}
         />
       </Icons>
       { showOptions && (
