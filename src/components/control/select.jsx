@@ -89,6 +89,11 @@ const Select = forwardRef(function Select(props, ref) {
         }
         setShowOptions(false);
         break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setShowOptions(true);
+        refs.listbox.current?.focus();
+        break;
       default:
     }
   }

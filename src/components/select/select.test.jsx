@@ -60,21 +60,18 @@ describe('src/components/select/select', () => {
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });
 
-    xit('focuses on the first choice with tab', () => {
+    it('does not show option when focused, but focuses on the first choice with down arrow', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
-      userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab();
-
-      expect(document.activeElement.innerHTML).toBe('foo');
-    });
-
-    xit('focuses on the second choice with down arrow', async () => {
-      render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
-      userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.tab();
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+      expect(screen.queryByText('bar')).not.toBeInTheDocument();
       userEvent.keyboard('{ArrowDown}');
-
-      expect(document.activeElement.innerHTML).toBe('bar');
+      expect(screen.getByText('foo')).toBeInTheDocument();
+      expect(screen.getByText('bar')).toBeInTheDocument();
+      expect(document.activeElement.innerHTML).not.toBe('foo');
+      userEvent.keyboard('{ArrowDown}');
+      expect(document.activeElement.innerHTML).toBe('foo');
     });
 
     it('focuses the input after selection', () => {

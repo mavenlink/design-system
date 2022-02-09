@@ -11,6 +11,7 @@
 - feat(number cell): implement number cell component
 - fix(select control): open dropdown on caret click
 - fix(select control): open dropdown on caret press
+- fix(select control): open dropdown on arrow down press
 
 ## 0.96.1
 
