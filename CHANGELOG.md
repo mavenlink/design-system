@@ -13,6 +13,7 @@
 - fix(select control): open dropdown on caret press
 - fix(select control): open dropdown on arrow down press
 - fix(select control): highlight dropdown options on hover
+- refactor(date): move calendar widget closer to input to facilitate refactor to make a re-usable date control for field and cell components
 
 ## 0.96.1
 

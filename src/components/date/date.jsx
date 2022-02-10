@@ -76,7 +76,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     input: validationMessage ? styles['invalid-input'] : styles.input,
     ...props.classNames,
     layout: {
-      container: styles.container,
+      container: undefined,
       calendar: styles['calendar-container'],
       ...props.classNames.layout,
     },
@@ -225,13 +225,13 @@ const Date = forwardRef(function Date(props, forwardedRef) {
             validationMessage={validationMessage}
             validationMessageId={ids.validationMessage}
           />
+          {expanded && (
+            <div className={classNames.layout.calendar}>
+              <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
+            </div>
+          )}
         </div>
       </FormControl>
-      {expanded && (
-        <div className={classNames.layout.calendar}>
-          <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
-        </div>
-      )}
     </div>
   );
 });

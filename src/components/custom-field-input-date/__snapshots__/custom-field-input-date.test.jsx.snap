@@ -3,9 +3,7 @@
 exports[`src/components/custom-field-input-date/custom-field-input-date className API sets the input class name 1`] = `
 <body>
   <div>
-    <div
-      class="container"
-    >
+    <div>
       <div
         role="presentation"
       >
@@ -67,9 +65,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
 exports[`src/components/custom-field-input-date/custom-field-input-date has defaults 1`] = `
 <body>
   <div>
-    <div
-      class="container"
-    >
+    <div>
       <div
         role="presentation"
       >
