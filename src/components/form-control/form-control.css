@@ -15,6 +15,7 @@
 }
 
 .control-container {
+  min-height: var(--spacing-x-large);
   margin-bottom: var(--spacing-small);
   margin-top: var(--spacing-small);
   position: relative;

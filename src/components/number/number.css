@@ -1,5 +1,6 @@
 .input {
   composes: input from '../input/input.css';
+  height: 100%;
 }
 
 .invalid-icon {

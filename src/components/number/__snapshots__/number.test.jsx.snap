@@ -24,7 +24,7 @@ exports[`Number has defaults 1`] = `
         class="control-container"
       >
         <div
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="test-component-tooltip test-component-validation-message"
@@ -35,6 +35,9 @@ exports[`Number has defaults 1`] = `
             step="1"
             type="number"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>

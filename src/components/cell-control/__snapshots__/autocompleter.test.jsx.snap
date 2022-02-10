@@ -40,12 +40,14 @@ exports[`Autocompleter cell control classNames API can be all set 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -105,12 +107,14 @@ exports[`Autocompleter cell control classNames API can set container 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -170,12 +174,14 @@ exports[`Autocompleter cell control classNames API can set innerContainer 1`] = 
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -235,12 +241,14 @@ exports[`Autocompleter cell control has defaults 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>

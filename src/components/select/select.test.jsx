@@ -60,21 +60,18 @@ describe('src/components/select/select', () => {
       expect(screen.queryByText('bar')).not.toBeInTheDocument();
     });
 
-    it('focuses on the first choice with tab', () => {
+    it('does not show option when focused, but focuses on the first choice with down arrow', () => {
       render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
-      userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab();
-
-      expect(document.activeElement.innerHTML).toBe('foo');
-    });
-
-    it('focuses on the second choice with down arrow', async () => {
-      render(<Select {...requiredProps}>{baseListOptionElements}</Select>);
-      userEvent.click(screen.getByLabelText('Test label'));
-      userEvent.tab();
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.queryByText('foo')).not.toBeInTheDocument();
+      expect(screen.queryByText('bar')).not.toBeInTheDocument();
       userEvent.keyboard('{ArrowDown}');
-
-      expect(document.activeElement.innerHTML).toBe('bar');
+      expect(screen.getByText('foo')).toBeInTheDocument();
+      expect(screen.getByText('bar')).toBeInTheDocument();
+      expect(document.activeElement.innerHTML).not.toBe('foo');
+      userEvent.keyboard('{ArrowDown}');
+      expect(document.activeElement.innerHTML).toBe('foo');
     });
 
     it('focuses the input after selection', () => {
@@ -353,7 +350,7 @@ describe('src/components/select/select', () => {
       const value = 'bar';
       render(<Select {...requiredProps} value={value}>{baseListOptionElements}</Select>);
       expect(screen.getByLabelText('Test label')).toHaveValue('bar');
-      userEvent.click(screen.getByRole('button'));
+      userEvent.click(screen.getByText('Remove selected choice'));
       expect(screen.getByLabelText('Test label')).toHaveValue('');
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
@@ -373,8 +370,8 @@ describe('src/components/select/select', () => {
       it('does not show the clear icon', () => {
         const value = 'bar';
         render(<Select {...requiredProps} value={value} readOnly>{baseListOptionElements}</Select>);
-        // Only one img, the caret down and the clear icon is not present; implicitly declared by getByRole
-        expect(screen.getByRole('img').children[1]).toHaveAttribute('xlink:href', '#caret-down-disabled.svg');
+        expect(screen.queryByText('Remove selected choice')).not.toBeInTheDocument();
+        expect(screen.getByText('Select is not editable')).toBeInTheDocument();
       });
     });
   });
@@ -424,7 +421,7 @@ describe('src/components/select/select', () => {
       render(<Select {...requiredProps} onChange={onChangeSpy} value="10" />);
 
       expect(onChangeSpy).not.toHaveBeenCalled();
-      userEvent.click(screen.getByRole('button'));
+      userEvent.click(screen.getByText('Remove selected choice'));
       expect(onChangeSpy).toHaveBeenCalled();
     });
   });
@@ -466,6 +463,7 @@ describe('src/components/select/select', () => {
     it('closes the dropdown when tabbing away', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       expect(screen.getByText('foo')).toBeInTheDocument();
+      userEvent.tab();
       userEvent.tab();
       userEvent.tab();
       userEvent.tab();
