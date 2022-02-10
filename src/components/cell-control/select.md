@@ -3,6 +3,7 @@ A grid cell for text datum.
 ```jsx
 import ListOption from '@mavenlink/design-system/src/components/list-option/list-option.jsx';
 import Select from '@mavenlink/design-system/src/components/cell-control/select.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
   th: {
@@ -27,16 +28,14 @@ const options = [
   generateOptions(5),
 ];
 
-<table role="grid">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th id={ids.th.select} role="columnheader" scope="col">Select</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td role="rowheader">Default</td>
+<Table>
+  <TableHeader>
+    <TableHeaderCell>State</TableHeaderCell>
+    <TableHeaderCell id={ids.th.input}>Select</TableHeaderCell>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell role="rowheader">Default</TableCell>
       <Select
         id={uuid.v4()}
         labelledBy={ids.th.select}
@@ -49,9 +48,9 @@ const options = [
           </ListOption>
         ))}
       </Select>
-    </tr>
-    <tr>
-      <td role="rowheader">Read-only</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Read-only</TableCell>
       <Select
         id={uuid.v4()}
         labelledBy={ids.th.select}
@@ -65,9 +64,9 @@ const options = [
           </ListOption>
         ))}
       </Select>
-    </tr>
-    <tr>
-      <td role="rowheader">Required</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Required</TableCell>
       <Select
         id={uuid.v4()}
         labelledBy={ids.th.select}
@@ -81,9 +80,9 @@ const options = [
           </ListOption>
         ))}
       </Select>
-    </tr>
-    <tr>
-      <td role="rowheader">Invalid</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Invalid</TableCell>
       <Select
         id={uuid.v4()}
         labelledBy={ids.th.select}
@@ -97,7 +96,7 @@ const options = [
           </ListOption>
         ))}
       </Select>
-    </tr>
-  </tbody>
-</table>
+    </TableRow>
+  </TableBody>
+</Table>
 ```

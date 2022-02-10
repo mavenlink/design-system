@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocompleter cell control className API can be set 1`] = `
+exports[`Autocompleter cell control classNames API can be all set 1`] = `
 <body>
   <div>
     <table>
@@ -17,10 +17,11 @@ exports[`Autocompleter cell control className API can be set 1`] = `
         <tr>
           <td
             aria-labelledby="labelled-by"
-            class="unique-class-name"
+            class="unique-container"
             role="gridcell"
           >
             <div
+              class="unique-inner-container"
               style="position: relative;"
             >
               <input
@@ -39,12 +40,148 @@ exports[`Autocompleter cell control className API can be set 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
+                  width="10"
+                >
+                  <title>
+                    Open choices listbox
+                  </title>
+                  <use
+                    xlink:href="#caret-down.svg"
+                  />
+                </svg>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Autocompleter cell control classNames API can set container 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="unique-container"
+            role="gridcell"
+          >
+            <div
+              class="container"
+              style="position: relative;"
+            >
+              <input
+                aria-autocomplete="none"
+                aria-controls="test-id-single-choice-listbox"
+                aria-describedby="test-id-tooltip test-idHint"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="input"
+                id="test-id"
+                name="test-name"
+                role="combobox"
+                style="--numIcon: 3;"
+                type="text"
+                value=""
+              />
+              <div
+                class="container"
+              >
+                <svg
+                  aria-disabled="false"
+                  class="button"
+                  height="6"
+                  role="button"
+                  tabindex="0"
+                  width="10"
+                >
+                  <title>
+                    Open choices listbox
+                  </title>
+                  <use
+                    xlink:href="#caret-down.svg"
+                  />
+                </svg>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Autocompleter cell control classNames API can set innerContainer 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <div
+              class="unique-inner-container"
+              style="position: relative;"
+            >
+              <input
+                aria-autocomplete="none"
+                aria-controls="test-id-single-choice-listbox"
+                aria-describedby="test-id-tooltip test-idHint"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="input"
+                id="test-id"
+                name="test-name"
+                role="combobox"
+                style="--numIcon: 3;"
+                type="text"
+                value=""
+              />
+              <div
+                class="container"
+              >
+                <svg
+                  aria-disabled="false"
+                  class="button"
+                  height="6"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>
@@ -85,6 +222,7 @@ exports[`Autocompleter cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
+              class="container"
               style="position: relative;"
             >
               <input
@@ -103,12 +241,14 @@ exports[`Autocompleter cell control has defaults 1`] = `
                 value=""
               />
               <div
-                class="icon-container"
+                class="container"
               >
                 <svg
-                  class="input-icon"
+                  aria-disabled="false"
+                  class="button"
                   height="6"
-                  role="img"
+                  role="button"
+                  tabindex="0"
                   width="10"
                 >
                   <title>

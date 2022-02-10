@@ -2,6 +2,21 @@
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
 
+## 0.97.0
+
+- feat(select control): implement classNames API
+- feat(select cell): update styling to match new cell designs
+- feat(form control): implement validationMessage API
+- chore(control): deprecate Control component, move validationMessage to FormControl
+- chore(all): reference invalid icon as description for interactive elements
+- feat(autocomplete cell): update styling to match new cell designs
+- feat(choice cell): implement custom field single choice field cell component (words)
+- feat(number cell): implement number cell component
+- fix(select control): open dropdown on caret click
+- fix(select control): open dropdown on caret press
+- fix(select control): open dropdown on arrow down press
+- fix(select control): highlight dropdown options on hover
+
 ## 0.96.1
 
 - fix(Select): Fix issues where select text value not clearing when value set to undefined
