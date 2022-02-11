@@ -35,7 +35,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
             value=""
           />
           <div
-            class="icons"
+            class="container"
           >
             <svg
               aria-disabled="false"
@@ -95,7 +95,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
             value=""
           />
           <div
-            class="icons"
+            class="container"
           >
             <svg
               aria-disabled="false"

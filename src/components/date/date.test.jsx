@@ -176,10 +176,7 @@ describe('src/components/date/date.test.jsx', () => {
       render((<Date
         {...requiredProps}
         classNames={{
-          layout: {
-            container: 'unique-container',
-            calendar: 'unique-calendar-container',
-          },
+          container: 'unique-container',
           input: 'unique-input',
         }}
         value="2021-04-20"
