@@ -182,57 +182,56 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   }));
 
   return (
-    <div
+    <FormControl
       className={classNames.layout.container}
-      onBlur={onBlur}
-      ref={refs.container}
+      error={validationMessage}
+      id={ids.input}
+      label={props.label}
+      labelId={ids.label}
+      name={props.name}
+      readOnly={props.readOnly}
+      ref={refs.control}
+      required={props.required}
+      tooltip={props.tooltip}
+      validationMessage={validationMessage}
     >
-      <FormControl
-        error={validationMessage}
-        id={ids.input}
-        label={props.label}
-        labelId={ids.label}
-        name={props.name}
-        readOnly={props.readOnly}
-        ref={refs.control}
-        required={props.required}
-        tooltip={props.tooltip}
-        validationMessage={validationMessage}
+      <div
+        onBlur={onBlur}
+        ref={refs.container}
+        style={{ position: 'relative' }}
       >
-        <div style={{ position: 'relative' }}>
-          <input
-            aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
-            className={classNames.input}
-            defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
-            id={ids.input}
-            key={`${ids.input}-${editing ? 'editing' : 'display'}`}
-            max={props.max}
-            min={props.min}
-            name={props.name}
-            onChange={onInputChange}
-            onClick={onInputClick}
-            onKeyDown={onInputKeyDown}
-            placeholder={props.placeholder}
-            readOnly={props.readOnly}
-            ref={refs.input}
-            required={props.required}
-            type={editing ? 'date' : 'text'}
-          />
-          <ControlIcons
-            label={props.label}
-            onPress={onIconPress}
-            readOnly={props.readOnly}
-            validationMessage={validationMessage}
-            validationMessageId={ids.validationMessage}
-          />
-          {expanded && (
-            <div className={classNames.layout.calendar}>
-              <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
-            </div>
-          )}
-        </div>
-      </FormControl>
-    </div>
+        <input
+          aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
+          className={classNames.input}
+          defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
+          id={ids.input}
+          key={`${ids.input}-${editing ? 'editing' : 'display'}`}
+          max={props.max}
+          min={props.min}
+          name={props.name}
+          onChange={onInputChange}
+          onClick={onInputClick}
+          onKeyDown={onInputKeyDown}
+          placeholder={props.placeholder}
+          readOnly={props.readOnly}
+          ref={refs.input}
+          required={props.required}
+          type={editing ? 'date' : 'text'}
+        />
+        <ControlIcons
+          label={props.label}
+          onPress={onIconPress}
+          readOnly={props.readOnly}
+          validationMessage={validationMessage}
+          validationMessageId={ids.validationMessage}
+        />
+        {expanded && (
+          <div className={classNames.layout.calendar}>
+            <Calendar onDateSelected={onCalendarChange} value={toFullDateFormat(value)} />
+          </div>
+        )}
+      </div>
+    </FormControl>
   );
 });
 
