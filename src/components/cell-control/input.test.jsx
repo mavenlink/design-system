@@ -106,7 +106,7 @@ describe('Input cell control', () => {
     it('is a string', () => {
       render(<Input {...requiredProps} validationMessage="A unique error message." />);
       expect(screen.getByRole('textbox')).toBeInvalid();
-      expect(screen.getByRole('textbox')).toHaveDescription('A unique error message.');
+      expect(screen.getByRole('textbox')).toHaveAccessibleDescription('A unique error message.');
     });
   });
 

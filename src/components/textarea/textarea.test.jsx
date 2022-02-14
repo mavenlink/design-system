@@ -151,7 +151,7 @@ describe('Textarea', () => {
       expect(screen.getByLabelText('the label')).toBeRequired();
       expect(screen.getByLabelText('the label')).toBeInvalid();
       expect(screen.queryByText('Constraints not satisfied')).not.toBeInTheDocument();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
     });
 
     it('can be unset', () => {
@@ -165,11 +165,11 @@ describe('Textarea', () => {
       userEvent.tab();
       expect(document.activeElement).toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
       userEvent.tab();
       expect(document.activeElement).not.toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -177,14 +177,14 @@ describe('Textarea', () => {
     it('can be set', () => {
       render(<Textarea {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('unique error');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('unique error');
       expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
     });
 
     it('can be unset', () => {
       render(<Textarea {...requiredProps} validationMessage="" />);
       expect(screen.getByLabelText('the label')).toBeValid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
     });
   });
 
@@ -220,14 +220,14 @@ describe('Textarea', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Textarea {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText('the label')).toHaveDescription(tooltip);
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Textarea {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
     });
   });
 });
