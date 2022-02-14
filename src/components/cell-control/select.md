@@ -7,7 +7,7 @@ import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } f
 
 const ids = {
   th: {
-    select: uuid.v4(),
+    example: uuid.v4(),
   },
 };
 
@@ -31,14 +31,14 @@ const options = [
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Select</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Select</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
       <TableCell role="rowheader">Default</TableCell>
       <Select
         id={uuid.v4()}
-        labelledBy={ids.th.select}
+        labelledBy={ids.th.example}
         listOptionRefs={options[0].map(option => option.ref)}
         name="select-1"
       >
@@ -53,7 +53,7 @@ const options = [
       <TableCell role="rowheader">Read-only</TableCell>
       <Select
         id={uuid.v4()}
-        labelledBy={ids.th.select}
+        labelledBy={ids.th.example}
         listOptionRefs={options[1].map(option => option.ref)}
         name="select-2"
         readOnly
@@ -69,7 +69,7 @@ const options = [
       <TableCell role="rowheader">Required</TableCell>
       <Select
         id={uuid.v4()}
-        labelledBy={ids.th.select}
+        labelledBy={ids.th.example}
         listOptionRefs={options[2].map(option => option.ref)}
         name="select-3"
         required
@@ -85,7 +85,7 @@ const options = [
       <TableCell role="rowheader">Invalid</TableCell>
       <Select
         id={uuid.v4()}
-        labelledBy={ids.th.select}
+        labelledBy={ids.th.example}
         listOptionRefs={options[3].map(option => option.ref)}
         name="select-4"
         validationMessage="This is a validation message."

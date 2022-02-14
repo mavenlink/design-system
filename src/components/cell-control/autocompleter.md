@@ -6,14 +6,14 @@ import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } f
 
 const ids = {
   th: {
-    autocompleter: uuid.v4(),
+    example: uuid.v4(),
   },
 };
 
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Autocompleter</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Autocompleter</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
@@ -21,7 +21,7 @@ const ids = {
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-1"
       />
     </TableRow>
@@ -30,7 +30,7 @@ const ids = {
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-2"
         readOnly
       />
@@ -40,7 +40,7 @@ const ids = {
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-3"
         required
       />
@@ -50,7 +50,7 @@ const ids = {
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-4"
         validationMessage="This is a validation message."
       />
