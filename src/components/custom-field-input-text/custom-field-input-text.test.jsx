@@ -39,7 +39,7 @@ describe('CustomFieldInputText', () => {
     it('can have no error state', () => {
       render(<CustomFieldInputText {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(screen.queryByRole('[role="img"]')).toBeFalsy();
+      expect(screen.queryByRole('img')).toBeFalsy();
     });
   });
 
