@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
+import FormControl from '../form-control/form-control.jsx';
 import Input from '../input/input.jsx';
-import Number from '../number/number.jsx';
+import Number from '../control/number.jsx';
 import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
 import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
 import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
@@ -11,10 +12,14 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
   const ref = useForwardedRef(forwardedRef);
+  const ids = {
+    label: `${props.id}-label`,
+  };
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
@@ -30,6 +35,10 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
     setIsEditing(true);
     setIsFocused(true);
+  }
+
+  function onInvalid(event) {
+    setValidationMessage(event.detail.validationMessage);
   }
 
   useEffect(() => {
@@ -95,14 +104,33 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
 
   if (isEditing) {
     return (
-      <Number
-        {...sharedProps}
-        onBlur={handleOnBlur}
-        onChange={props.onChange}
-        ref={numberRef}
-        step={currencyMetaData[props.currencyCode].step}
-        value={input}
-      />
+      <FormControl
+        id={props.id}
+        label={props.label}
+        labelId={ids.label}
+        name={props.name}
+        readOnly={props.readOnly}
+        // ref={refs.control}
+        required={props.required}
+        tooltip={props.tooltip}
+        validationMessage={validationMessage}
+      >
+        <Number
+          className={props.className}
+          id={props.id}
+          name={props.name}
+          onBlur={handleOnBlur}
+          onChange={props.onChange}
+          onInvalid={onInvalid}
+          placeholder={props.placeholder}
+          readOnly={props.readOnly}
+          required={props.required}
+          ref={numberRef}
+          step={currencyMetaData[props.currencyCode].step}
+          validationMessage={props.validationMessage}
+          value={input}
+        />
+      </FormControl>
     );
   }
 
