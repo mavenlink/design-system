@@ -28,7 +28,7 @@ exports[`MoneyInput has defaults 1`] = `
           style="position: relative;"
         >
           <input
-            aria-describedby="currency-validation-message currency-tooltip"
+            aria-describedby="currency-validation-message "
             class="input"
             id="currency"
             name="some-field-id"

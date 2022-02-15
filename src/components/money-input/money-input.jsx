@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import FormControl from '../form-control/form-control.jsx';
-import Input from '../input/input.jsx';
+import Input from '../control/input.jsx';
 import Number from '../control/number.jsx';
 import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
 import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
@@ -88,18 +88,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
     },
   }));
 
-  const sharedProps = {
-    className: props.className,
-    id: props.id,
-    label: props.label,
-    name: props.name,
-    placeholder: props.placeholder,
-    readOnly: props.readOnly,
-    required: props.required,
-    tooltip: props.tooltip,
-    validationMessage: props.validationMessage,
-  };
-
   const formattedNumber = formatValue(input, props.currencyCode);
 
   if (isEditing) {
@@ -135,13 +123,33 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   }
 
   return (
-    <Input
-      {...sharedProps}
-      onFocus={handleOnFocus}
-      ref={componentRef}
-      type="text"
-      value={formattedNumber}
-    />
+    <FormControl
+      id={props.id}
+      label={props.label}
+      labelId={ids.label}
+      name={props.name}
+      readOnly={props.readOnly}
+      // ref={refs.control}
+      required={props.required}
+      tooltip={props.tooltip}
+      validationMessage={validationMessage}
+    >
+      <Input
+        classNames={props.className ? {
+          input: props.className,
+        } : undefined}
+        id={props.id}
+        name={props.name}
+        onFocus={handleOnFocus}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        required={props.required}
+        ref={componentRef}
+        type="text"
+        validationMessage={props.validationMessage}
+        value={formattedNumber}
+      />
+    </FormControl>
   );
 });
 

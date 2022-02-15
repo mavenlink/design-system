@@ -8,7 +8,8 @@
 - feat(date cell): implement date cell
 - fix(date control): dynamic height with a min of x-large
 - fix(calendar widget): dynamic height based on table contents
-- refactor(money input): use pre-built controls to facilitate future money control refactor 
+- refactor(money input): use pre-built number control to facilitate future money control refactor
+- refactor(money input): use pre-built input control to facilitate future money control refactor
 
 ## 0.97.0
 
