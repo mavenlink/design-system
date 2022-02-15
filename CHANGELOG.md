@@ -7,6 +7,7 @@
 - refactor(date): use a disabled/enabled button for the calendar widget
 - feat(date cell): implement date cell
 - fix(date control): dynamic height with a min of x-large
+- fix(calendar widget): dynamic height based on table contents
 
 ## 0.97.0
 
