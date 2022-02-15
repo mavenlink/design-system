@@ -24,7 +24,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
         class="control-container"
       >
         <div
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="field-dateHint field-date-tooltip"
@@ -84,7 +84,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
         class="control-container"
       >
         <div
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="field-dateHint field-date-tooltip"

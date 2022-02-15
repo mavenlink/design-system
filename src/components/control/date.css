@@ -5,6 +5,8 @@
   --size-of-icons-container: 37px;
 
   composes: input from '../input/input.css';
+  min-height: var(--spacing-x-large);
+  height: 100%;
   padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
 }
 

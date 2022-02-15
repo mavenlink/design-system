@@ -6,6 +6,7 @@
 - feat(date control): implement date control
 - refactor(date): use a disabled/enabled button for the calendar widget
 - feat(date cell): implement date cell
+- fix(date control): dynamic height with a min of x-large
 
 ## 0.97.0
 

@@ -155,7 +155,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       className={classNames.container}
       onBlur={onBlur}
       ref={refs.container}
-      style={{ position: 'relative' }}
+      style={{ height: '100%', position: 'relative' }}
     >
       <input
         aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
