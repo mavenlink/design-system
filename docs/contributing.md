@@ -11,7 +11,7 @@ Thank you for contributing to the Mavenlink Design System! We want to make contr
 Mavenlink has adopted a Code of Conduct that we expect project participants to adhere to. [Please read the full text](./code_of_conduct.md) so that you can understand what actions will and will not be tolerated.
 
 ## Submitting Changes
-Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
+Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
 
 1. Fork the repo and create your branch from `master`.
 2. Make your changes. Be sure to look at [our component design principles](./principles.md)!
