@@ -56,9 +56,9 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 
@@ -66,7 +66,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(today.calendarDate));
       expect(screen.queryByText(today.calendarDate)).not.toBeInTheDocument();
       expect(screen.getByLabelText('Test label')).toHaveValue(today.displayValue);
@@ -76,7 +76,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.click(document.body);
       expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
@@ -123,7 +123,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date1.calendarDate));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(date2.calendarDate));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
     });

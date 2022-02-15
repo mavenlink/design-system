@@ -46,7 +46,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
               width="11"
             >
               <title>
-                Field Date calendar button
+                calendar button
               </title>
               <use
                 xlink:href="#calendar.svg"
@@ -106,7 +106,7 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
               width="11"
             >
               <title>
-                Field Date calendar button
+                calendar button
               </title>
               <use
                 xlink:href="#calendar.svg"

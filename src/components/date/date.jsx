@@ -85,7 +85,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
           invalidInput: classNames.invalidInput,
         }}
         id={props.id}
-        label={props.label}
+        labelledBy={ids.label}
         max={props.max}
         min={props.min}
         name={props.name}

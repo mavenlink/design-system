@@ -4,6 +4,7 @@
 - refactor(date): remove redundant wrapping divs to make a re-usable date control for field and cell components
 - refactor(date): move calendar widget closer to input to facilitate refactor to make a re-usable date control for field and cell components
 - feat(date control): implement date control
+- refactor(date): use a disabled/enabled button for the calendar widget
 
 ## 0.97.0
 

@@ -10,7 +10,6 @@ import React, {
 import calendarSvg from '../../svgs/calendar.svg';
 import Calendar from '../calendar/calendar.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
-import Icon from '../icon/icon.jsx';
 import Icons from './icons.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './date.css';
@@ -181,18 +180,12 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         validationMessageId={ids.validationMessage}
         validationMessageTooltip={false}
       >
-        {props.readOnly ? (
-          <Icon
-            icon={calendarSvg}
-            label={`${props.label} calendar icon`}
-          />
-        ) : (
-          <IconButton
-            onPress={onIconPress}
-            icon={calendarSvg}
-            label={`${props.label} calendar button`}
-          />
-        )}
+        <IconButton
+          disabled={props.readOnly}
+          onPress={onIconPress}
+          icon={calendarSvg}
+          label="calendar button"
+        />
       </Icons>
       {expanded && (
         <div className={classNames.calendar}>
@@ -212,7 +205,6 @@ Date.propTypes = {
     }),
   }),
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   /** The latest date to accept in full-date format (i.e. yyyy-mm-dd) */
   max: PropTypes.string,
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
