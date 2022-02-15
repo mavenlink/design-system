@@ -24,6 +24,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
       setInput(event.target.value === '' ? undefined : parseFloat(event.target.value));
+      setValidationMessage('');
       setIsEditing(false);
     }
 

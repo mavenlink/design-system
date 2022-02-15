@@ -220,5 +220,18 @@ describe('MoneyInput', () => {
       expect(screen.getByLabelText('currency')).toBeInvalid();
       expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('What do you want from us monster!?');
     });
+
+    it('clears the message on blur', () => {
+      render(<MoneyInput {...requiredProps} />);
+      expect(screen.getByLabelText('currency')).toBeValid();
+      userEvent.type(screen.getByLabelText('currency'), '1.111');
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('currency')).toBeInvalid();
+      expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('Constraints not satisfied');
+      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('currency')).toBeValid();
+      expect(screen.queryByText('Constraints not satisfied')).not.toBeInTheDocument();
+    });
   });
 });
