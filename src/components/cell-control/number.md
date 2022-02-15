@@ -14,7 +14,7 @@ const ids = {
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Number</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Number</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>

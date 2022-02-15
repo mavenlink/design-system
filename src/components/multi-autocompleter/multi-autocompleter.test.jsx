@@ -318,14 +318,14 @@ describe('<MultiAutocompleter>', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<MultiAutocompleter {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription(tooltip);
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<MultiAutocompleter {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription('');
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription('');
     });
   });
 });

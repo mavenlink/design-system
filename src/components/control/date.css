@@ -1,0 +1,26 @@
+@import '../../styles/spacing.css';
+@import '../../styles/colors-v2.css';
+
+.input {
+  --size-of-icons-container: 37px;
+
+  composes: input from '../input/input.css';
+  min-height: var(--spacing-x-large);
+  height: 100%;
+  padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
+}
+
+.input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.invalid-input {
+  composes: input;
+  composes: invalid-input from '../input/input.css';
+}
+
+.calendar-container {
+  position: absolute;
+  background-color: var(--white);
+  z-index: 2147483647;
+}

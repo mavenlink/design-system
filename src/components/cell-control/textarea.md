@@ -6,31 +6,31 @@ import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } f
 
 const ids = {
   th: {
-    input: uuid.v4(),
+    example: uuid.v4(),
   },
 };
 
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Input</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Input</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
       <TableCell role="rowheader">Default</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} placeholder="Type into this cell." />
+      <Textarea labelledBy={ids.th.example} name="input" id={uuid.v4()} placeholder="Type into this cell." />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Read-only</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} readOnly value="This is not editable.\n\nWith mult-line text.\n\nWith alot of text." />
+      <Textarea labelledBy={ids.th.example} name="input" id={uuid.v4()} readOnly value="This is not editable.\n\nWith mult-line text.\n\nWith alot of text." />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} placeholder="This will error after blur." required />
+      <Textarea labelledBy={ids.th.example} name="input" id={uuid.v4()} placeholder="This will error after blur." required />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Invalid</TableCell>
-      <Textarea labelledBy={ids.th.input} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
+      <Textarea labelledBy={ids.th.example} name="input" id={uuid.v4()} validationMessage="This is an error message!" />
     </TableRow>
   </TableBody>
 </Table>

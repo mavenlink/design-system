@@ -1,7 +1,7 @@
-A grid cell for autocomplete-able datum.
+A grid cell for date field.
 
 ```jsx
-import Autocompleter from '@mavenlink/design-system/src/components/cell-control/autocompleter.jsx';
+import Date from '@mavenlink/design-system/src/components/cell-control/date.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
@@ -13,45 +13,37 @@ const ids = {
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.example}>Autocompleter</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Date</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
       <TableCell role="rowheader">Default</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Date
         id={uuid.v4()}
         labelledBy={ids.th.example}
-        name="autocompleter-1"
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Read-only</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Date
         id={uuid.v4()}
         labelledBy={ids.th.example}
-        name="autocompleter-2"
         readOnly
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Required</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Date
         id={uuid.v4()}
         labelledBy={ids.th.example}
-        name="autocompleter-3"
         required
       />
     </TableRow>
     <TableRow>
       <TableCell role="rowheader">Invalid</TableCell>
-      <Autocompleter
-        apiEndpoint='/models'
+      <Date
         id={uuid.v4()}
         labelledBy={ids.th.example}
-        name="autocompleter-4"
         validationMessage="This is a validation message."
       />
     </TableRow>
