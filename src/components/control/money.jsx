@@ -106,6 +106,7 @@ const Money = forwardRef(function Money(props, forwardedRef) {
         ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         validationMessage={props.validationMessage}
+        validationMessageTooltip={props.validationMessageTooltip}
         value={input}
       />
     );
@@ -124,7 +125,6 @@ const Money = forwardRef(function Money(props, forwardedRef) {
       required={props.required}
       ref={componentRef}
       type="text"
-      validationMessage={props.validationMessage}
       value={formattedNumber}
     />
   );
@@ -145,6 +145,7 @@ Money.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
+  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.number,
 };
 
@@ -160,6 +161,7 @@ Money.defaultProps = {
   required: false,
   tooltip: undefined,
   validationMessage: '',
+  validationMessageTooltip: false,
   value: undefined,
 };
 
