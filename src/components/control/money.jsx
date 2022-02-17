@@ -9,9 +9,9 @@ import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Money = forwardRef(function Money(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
-  const [isEditing, setIsEditing] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
+  const [isEditing, setIsEditing] = useState(!!validationMessage);
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
