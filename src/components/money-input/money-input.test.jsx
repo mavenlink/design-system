@@ -206,12 +206,6 @@ describe('MoneyInput', () => {
   describe('tooltip API', () => {
     const tooltip = 'I am an input, short and stout.';
 
-    it('applies a description to the input when the help icon is hovered', () => {
-      render(<MoneyInput {...requiredProps} tooltip={tooltip} />);
-      userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
-    });
-
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<MoneyInput {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
@@ -225,6 +219,19 @@ describe('MoneyInput', () => {
       render(<MoneyInput {...requiredProps} validationMessage={'What do you want from us monster!?'} />);
       expect(screen.getByLabelText('currency')).toBeInvalid();
       expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('What do you want from us monster!?');
+    });
+
+    it('clears the message on blur', () => {
+      render(<MoneyInput {...requiredProps} />);
+      expect(screen.getByLabelText('currency')).toBeValid();
+      userEvent.type(screen.getByLabelText('currency'), '1.111');
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('currency')).toBeInvalid();
+      expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('Constraints not satisfied');
+      userEvent.type(screen.getByLabelText('currency'), '{backspace}');
+      userEvent.click(document.body);
+      expect(screen.getByLabelText('currency')).toBeValid();
+      expect(screen.queryByText('Constraints not satisfied')).not.toBeInTheDocument();
     });
   });
 });

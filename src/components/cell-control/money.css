@@ -1,0 +1,13 @@
+.container {
+  composes: container from './cell-control.css';
+}
+
+.input {
+  composes: input from '../number/number.css';
+  border: none;
+}
+
+.inputInvalid {
+  composes: input from '../number/number.css';
+  border: none;
+}
