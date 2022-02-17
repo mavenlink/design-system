@@ -134,7 +134,7 @@ Money.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   /**
    * The handler is invoked for every native onchange event.
    * The handler will be invoked with the forwarded ref.
