@@ -45,7 +45,7 @@ describe('src/components/autocompleter/autocompleter', () => {
   describe('validationMessage', () => {
     it('sets the input to be invalid', () => {
       render(<Autocompleter {...requiredProps} validationMessage="not valid" />);
-      expect(screen.getByLabelText('Test label')).toHaveDescription('not valid');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('not valid');
       expect(screen.getByLabelText('Test label')).not.toBeValid();
     });
   });
@@ -204,14 +204,14 @@ describe('src/components/autocompleter/autocompleter', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Autocompleter {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Autocompleter {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 });

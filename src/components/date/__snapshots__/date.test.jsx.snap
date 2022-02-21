@@ -5,57 +5,54 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
   <div>
     <div
       class="unique-container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id"
+            id="test-id-label"
           >
-            <label
-              for="test-id"
-              id="test-id-label"
-            >
-              Test label
-            </label>
-          </div>
+            Test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          style="height: 100%; position: relative;"
         >
+          <input
+            aria-describedby="test-idHint test-id-tooltip"
+            class="unique-input"
+            id="test-id"
+            name="test_name"
+            type="text"
+            value="Apr 20, 2021"
+          />
           <div
-            style="position: relative;"
+            class="container"
           >
-            <input
-              aria-describedby="test-idHint test-id-tooltip"
-              class="unique-input"
-              id="test-id"
-              name="test_name"
-              type="text"
-              value="Apr 20, 2021"
-            />
-            <div
-              class="icons"
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
             >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="14"
-                role="button"
-                tabindex="0"
-                width="11"
-              >
-                <title>
-                  Test label calendar button
-                </title>
-                <use
-                  xlink:href="#calendar.svg"
-                />
-              </svg>
-            </div>
+              <title>
+                calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
           </div>
         </div>
       </div>
@@ -69,597 +66,594 @@ exports[`src/components/date/date.test.jsx classNames API sets various class nam
   <div>
     <div
       class="unique-container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id"
+            id="test-id-label"
           >
-            <label
-              for="test-id"
-              id="test-id-label"
-            >
-              Test label
-            </label>
-          </div>
-        </div>
-        <div
-          class="control-container"
-        >
-          <div
-            style="position: relative;"
-          >
-            <input
-              aria-describedby="test-idHint test-id-tooltip"
-              class="unique-input"
-              id="test-id"
-              name="test_name"
-              type="date"
-              value="2021-04-20"
-            />
-            <div
-              class="icons"
-            >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="14"
-                role="button"
-                tabindex="0"
-                width="11"
-              >
-                <title>
-                  Test label calendar button
-                </title>
-                <use
-                  xlink:href="#calendar.svg"
-                />
-              </svg>
-            </div>
-          </div>
+            Test label
+          </label>
         </div>
       </div>
       <div
-        class="unique-calendar-container"
+        class="control-container"
       >
         <div
-          class="container"
+          style="height: 100%; position: relative;"
         >
+          <input
+            aria-describedby="test-idHint test-id-tooltip"
+            class="unique-input"
+            id="test-id"
+            name="test_name"
+            type="date"
+            value="2021-04-20"
+          />
           <div
-            class="header"
+            class="container"
           >
             <svg
               aria-disabled="false"
-              class="change-month-button"
-              height="8"
+              class="button"
+              height="14"
               role="button"
               tabindex="0"
-              width="12"
+              width="11"
             >
               <title>
-                Change calendar to March 2021
+                calendar button
               </title>
               <use
-                xlink:href="#arrow-left.svg"
-              />
-            </svg>
-            <button
-              class="year-button"
-              type="button"
-            >
-              April 2021
-              <svg
-                class="change-year-icon"
-                height="6"
-                role="img"
-                width="10"
-              >
-                <title>
-                  Open year listbox
-                </title>
-                <use
-                  xlink:href="#caret-down.svg"
-                />
-              </svg>
-            </button>
-            <svg
-              aria-disabled="false"
-              class="change-month-button"
-              height="8"
-              role="button"
-              tabindex="0"
-              width="12"
-            >
-              <title>
-                Change calendar to May 2021
-              </title>
-              <use
-                xlink:href="#arrow-right.svg"
+                xlink:href="#calendar.svg"
               />
             </svg>
           </div>
-          <table
-            class="calendar-grid"
-            role="grid"
+          <div
+            class="calendar-container"
           >
-            <thead>
-              <tr>
-                <th
-                  class="weekday"
-                >
-                  S
-                </th>
-                <th
-                  class="weekday"
-                >
-                  M
-                </th>
-                <th
-                  class="weekday"
-                >
-                  T
-                </th>
-                <th
-                  class="weekday"
-                >
-                  W
-                </th>
-                <th
-                  class="weekday"
-                >
-                  T
-                </th>
-                <th
-                  class="weekday"
-                >
-                  F
-                </th>
-                <th
-                  class="weekday"
-                >
-                  S
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  aria-label="March 28"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1616889600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  28
-                </td>
-                <td
-                  aria-label="March 29"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1616976000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  29
-                </td>
-                <td
-                  aria-label="March 30"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1617062400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  30
-                </td>
-                <td
-                  aria-label="March 31"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1617148800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  31
-                </td>
-                <td
-                  aria-label="April 1"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617235200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  1
-                </td>
-                <td
-                  aria-label="April 2"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617321600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  2
-                </td>
-                <td
-                  aria-label="April 3"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617408000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  3
-                </td>
-              </tr>
-              <tr>
-                <td
-                  aria-label="April 4"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617494400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  4
-                </td>
-                <td
-                  aria-label="April 5"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617580800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  5
-                </td>
-                <td
-                  aria-label="April 6"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617667200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  6
-                </td>
-                <td
-                  aria-label="April 7"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617753600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  7
-                </td>
-                <td
-                  aria-label="April 8"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617840000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  8
-                </td>
-                <td
-                  aria-label="April 9"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1617926400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  9
-                </td>
-                <td
-                  aria-label="April 10"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618012800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  10
-                </td>
-              </tr>
-              <tr>
-                <td
-                  aria-label="April 11"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618099200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  11
-                </td>
-                <td
-                  aria-label="April 12"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618185600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  12
-                </td>
-                <td
-                  aria-label="April 13"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618272000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  13
-                </td>
-                <td
-                  aria-label="April 14"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618358400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  14
-                </td>
-                <td
-                  aria-label="April 15"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618444800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  15
-                </td>
-                <td
-                  aria-label="April 16"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618531200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  16
-                </td>
-                <td
-                  aria-label="April 17"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618617600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  17
-                </td>
-              </tr>
-              <tr>
-                <td
-                  aria-label="April 18"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618704000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  18
-                </td>
-                <td
-                  aria-label="April 19"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618790400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  19
-                </td>
-                <td
-                  aria-label="April 20"
-                  aria-selected="true"
-                  class="highlighted-date"
-                  data-epoch="1618876800000"
-                  role="gridcell"
+            <div
+              class="container"
+            >
+              <div
+                class="header"
+              >
+                <svg
+                  aria-disabled="false"
+                  class="change-month-button"
+                  height="8"
+                  role="button"
                   tabindex="0"
+                  width="12"
                 >
-                  20
-                </td>
-                <td
-                  aria-label="April 21"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1618963200000"
-                  role="gridcell"
-                  tabindex="-1"
+                  <title>
+                    Change calendar to March 2021
+                  </title>
+                  <use
+                    xlink:href="#arrow-left.svg"
+                  />
+                </svg>
+                <button
+                  class="year-button"
+                  type="button"
                 >
-                  21
-                </td>
-                <td
-                  aria-label="April 22"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619049600000"
-                  role="gridcell"
-                  tabindex="-1"
+                  April 2021
+                  <svg
+                    class="change-year-icon"
+                    height="6"
+                    role="img"
+                    width="10"
+                  >
+                    <title>
+                      Open year listbox
+                    </title>
+                    <use
+                      xlink:href="#caret-down.svg"
+                    />
+                  </svg>
+                </button>
+                <svg
+                  aria-disabled="false"
+                  class="change-month-button"
+                  height="8"
+                  role="button"
+                  tabindex="0"
+                  width="12"
                 >
-                  22
-                </td>
-                <td
-                  aria-label="April 23"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619136000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  23
-                </td>
-                <td
-                  aria-label="April 24"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619222400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  24
-                </td>
-              </tr>
-              <tr>
-                <td
-                  aria-label="April 25"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619308800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  25
-                </td>
-                <td
-                  aria-label="April 26"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619395200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  26
-                </td>
-                <td
-                  aria-label="April 27"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619481600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  27
-                </td>
-                <td
-                  aria-label="April 28"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619568000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  28
-                </td>
-                <td
-                  aria-label="April 29"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619654400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  29
-                </td>
-                <td
-                  aria-label="April 30"
-                  aria-selected="false"
-                  class="date"
-                  data-epoch="1619740800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  30
-                </td>
-                <td
-                  aria-label="May 1"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1619827200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  1
-                </td>
-              </tr>
-              <tr>
-                <td
-                  aria-label="May 2"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1619913600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  2
-                </td>
-                <td
-                  aria-label="May 3"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620000000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  3
-                </td>
-                <td
-                  aria-label="May 4"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620086400000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  4
-                </td>
-                <td
-                  aria-label="May 5"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620172800000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  5
-                </td>
-                <td
-                  aria-label="May 6"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620259200000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  6
-                </td>
-                <td
-                  aria-label="May 7"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620345600000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  7
-                </td>
-                <td
-                  aria-label="May 8"
-                  aria-selected="false"
-                  class="not-current-date"
-                  data-epoch="1620432000000"
-                  role="gridcell"
-                  tabindex="-1"
-                >
-                  8
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <title>
+                    Change calendar to May 2021
+                  </title>
+                  <use
+                    xlink:href="#arrow-right.svg"
+                  />
+                </svg>
+              </div>
+              <table
+                class="calendar-grid"
+                role="grid"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      class="weekday"
+                    >
+                      S
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      M
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      T
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      W
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      T
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      F
+                    </th>
+                    <th
+                      class="weekday"
+                    >
+                      S
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      aria-label="March 28"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1616889600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      28
+                    </td>
+                    <td
+                      aria-label="March 29"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1616976000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      29
+                    </td>
+                    <td
+                      aria-label="March 30"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1617062400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      30
+                    </td>
+                    <td
+                      aria-label="March 31"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1617148800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      31
+                    </td>
+                    <td
+                      aria-label="April 1"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617235200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      1
+                    </td>
+                    <td
+                      aria-label="April 2"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617321600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      2
+                    </td>
+                    <td
+                      aria-label="April 3"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617408000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      aria-label="April 4"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617494400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      4
+                    </td>
+                    <td
+                      aria-label="April 5"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617580800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      5
+                    </td>
+                    <td
+                      aria-label="April 6"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617667200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      6
+                    </td>
+                    <td
+                      aria-label="April 7"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617753600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      7
+                    </td>
+                    <td
+                      aria-label="April 8"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617840000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      8
+                    </td>
+                    <td
+                      aria-label="April 9"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1617926400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      9
+                    </td>
+                    <td
+                      aria-label="April 10"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618012800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      10
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      aria-label="April 11"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618099200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      11
+                    </td>
+                    <td
+                      aria-label="April 12"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618185600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      12
+                    </td>
+                    <td
+                      aria-label="April 13"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618272000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      13
+                    </td>
+                    <td
+                      aria-label="April 14"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618358400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      14
+                    </td>
+                    <td
+                      aria-label="April 15"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618444800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      15
+                    </td>
+                    <td
+                      aria-label="April 16"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618531200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      16
+                    </td>
+                    <td
+                      aria-label="April 17"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618617600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      17
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      aria-label="April 18"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618704000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      18
+                    </td>
+                    <td
+                      aria-label="April 19"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618790400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      19
+                    </td>
+                    <td
+                      aria-label="April 20"
+                      aria-selected="true"
+                      class="highlighted-date"
+                      data-epoch="1618876800000"
+                      role="gridcell"
+                      tabindex="0"
+                    >
+                      20
+                    </td>
+                    <td
+                      aria-label="April 21"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1618963200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      21
+                    </td>
+                    <td
+                      aria-label="April 22"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619049600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      22
+                    </td>
+                    <td
+                      aria-label="April 23"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619136000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      23
+                    </td>
+                    <td
+                      aria-label="April 24"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619222400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      24
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      aria-label="April 25"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619308800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      25
+                    </td>
+                    <td
+                      aria-label="April 26"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619395200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      26
+                    </td>
+                    <td
+                      aria-label="April 27"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619481600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      27
+                    </td>
+                    <td
+                      aria-label="April 28"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619568000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      28
+                    </td>
+                    <td
+                      aria-label="April 29"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619654400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      29
+                    </td>
+                    <td
+                      aria-label="April 30"
+                      aria-selected="false"
+                      class="date"
+                      data-epoch="1619740800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      30
+                    </td>
+                    <td
+                      aria-label="May 1"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1619827200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      1
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      aria-label="May 2"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1619913600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      2
+                    </td>
+                    <td
+                      aria-label="May 3"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620000000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      3
+                    </td>
+                    <td
+                      aria-label="May 4"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620086400000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      4
+                    </td>
+                    <td
+                      aria-label="May 5"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620172800000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      5
+                    </td>
+                    <td
+                      aria-label="May 6"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620259200000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      6
+                    </td>
+                    <td
+                      aria-label="May 7"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620345600000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      7
+                    </td>
+                    <td
+                      aria-label="May 8"
+                      aria-selected="false"
+                      class="not-current-date"
+                      data-epoch="1620432000000"
+                      role="gridcell"
+                      tabindex="-1"
+                    >
+                      8
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -671,58 +665,54 @@ exports[`src/components/date/date.test.jsx has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id"
+            id="test-id-label"
           >
-            <label
-              for="test-id"
-              id="test-id-label"
-            >
-              Test label
-            </label>
-          </div>
+            Test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          style="height: 100%; position: relative;"
         >
+          <input
+            aria-describedby="test-idHint test-id-tooltip"
+            class="input"
+            id="test-id"
+            name="test_name"
+            type="text"
+            value=""
+          />
           <div
-            style="position: relative;"
+            class="container"
           >
-            <input
-              aria-describedby="test-idHint test-id-tooltip"
-              class="input"
-              id="test-id"
-              name="test_name"
-              type="text"
-              value=""
-            />
-            <div
-              class="icons"
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
             >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="14"
-                role="button"
-                tabindex="0"
-                width="11"
-              >
-                <title>
-                  Test label calendar button
-                </title>
-                <use
-                  xlink:href="#calendar.svg"
-                />
-              </svg>
-            </div>
+              <title>
+                calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
           </div>
         </div>
       </div>

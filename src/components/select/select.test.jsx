@@ -175,10 +175,10 @@ describe('src/components/select/select', () => {
 
     it('does not show errorText on first render until blurred', () => {
       render(<Select {...requiredProps} required>{baseListOptionElements}</Select>);
-      expect(screen.getByRole('combobox', { name: 'Test label' })).not.toHaveDescription('Constraints not satisfied');
+      expect(screen.getByRole('combobox', { name: 'Test label' })).not.toHaveAccessibleDescription('Constraints not satisfied');
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.tab({ shift: true });
-      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByRole('combobox', { name: 'Test label' })).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -432,14 +432,14 @@ describe('src/components/select/select', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Select {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription(tooltip);
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Select {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription('');
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription('');
     });
   });
 

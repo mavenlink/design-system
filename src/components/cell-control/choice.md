@@ -13,7 +13,7 @@ const ids = {
 <Table>
   <TableHeader>
     <TableHeaderCell>State</TableHeaderCell>
-    <TableHeaderCell id={ids.th.input}>Single Choice</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Single Choice</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>

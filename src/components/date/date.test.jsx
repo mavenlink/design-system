@@ -36,11 +36,11 @@ describe('src/components/date/date.test.jsx', () => {
     expect(screen.getByLabelText('Test label')).toBeRequired();
     expect(screen.getByText('(Required)')).toBeInTheDocument();
     expect(screen.getByLabelText('Test label')).toBeInvalid();
-    expect(screen.getByLabelText('Test label')).toHaveDescription('');
+    expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
     userEvent.click(screen.getByLabelText('Test label'));
     userEvent.tab({ shift: true });
     expect(screen.getByLabelText('Test label')).toBeInvalid();
-    expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+    expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Constraints not satisfied');
   });
 
   it('updates the calendar when the user types', async () => {
@@ -56,9 +56,9 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
     });
 
@@ -66,7 +66,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(today.calendarDate));
       expect(screen.queryByText(today.calendarDate)).not.toBeInTheDocument();
       expect(screen.getByLabelText('Test label')).toHaveValue(today.displayValue);
@@ -76,7 +76,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.click(document.body);
       expect(screen.queryByText(today.calendarHeading)).not.toBeInTheDocument();
@@ -123,7 +123,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date1.calendarDate));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
-      userEvent.click(screen.getByTitle('Test label calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(date2.calendarDate));
       expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
     });
@@ -176,10 +176,7 @@ describe('src/components/date/date.test.jsx', () => {
       render((<Date
         {...requiredProps}
         classNames={{
-          layout: {
-            container: 'unique-container',
-            calendar: 'unique-calendar-container',
-          },
+          container: 'unique-container',
           input: 'unique-input',
         }}
         value="2021-04-20"
@@ -227,10 +224,10 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.clear(screen.getByLabelText('Test label'));
       userEvent.type(screen.getByLabelText('Test label'), '2000-01-02');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -242,10 +239,10 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.clear(screen.getByLabelText('Test label'));
       userEvent.type(screen.getByLabelText('Test label'), '1999-12-31');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -317,11 +314,11 @@ describe('src/components/date/date.test.jsx', () => {
       expect(screen.getByLabelText('Test label')).toBeRequired();
       expect(screen.getByText('(Required)')).toBeInTheDocument();
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(document.body);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
 
     it('is false', () => {
@@ -337,14 +334,14 @@ describe('src/components/date/date.test.jsx', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Date {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Date {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 
@@ -353,13 +350,13 @@ describe('src/components/date/date.test.jsx', () => {
       const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('This is a provided error.');
       expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
 
       rerender(<Date {...requiredProps} validationMessage="This is a new provided error." />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('This is a new provided error.');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('This is a new provided error.');
       expect(screen.getByTitle('This is a new provided error.')).toBeInTheDocument();
     });
 
@@ -367,13 +364,13 @@ describe('src/components/date/date.test.jsx', () => {
       const { rerender } = render(<Date {...requiredProps} validationMessage="This is a provided error." />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'date');
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('This is a provided error.');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('This is a provided error.');
       expect(screen.getByTitle('This is a provided error.')).toBeInTheDocument();
 
       rerender(<Date {...requiredProps} validationMessage="" />);
       expect(screen.getByLabelText('Test label')).toHaveAttribute('type', 'text');
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
     });
   });
 
