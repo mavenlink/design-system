@@ -1,6 +1,9 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-- Append new items to make git merging easier.
+- Prepend new items to make git merging easier.
+- refactor(money input): use pre-built number control to facilitate future money control refactor
+- refactor(money input): use pre-built input control to facilitate future money control refactor
+- fix(money input): clear validation message when switching between edit and non-edit modes
 
 ## 0.98.0
 
@@ -11,9 +14,6 @@
 - feat(date cell): implement date cell
 - fix(date control): dynamic height with a min of x-large
 - fix(calendar widget): dynamic height based on table contents
-- refactor(money input): use pre-built number control to facilitate future money control refactor
-- refactor(money input): use pre-built input control to facilitate future money control refactor
-- fix(money input): clear validation message when switching between edit and non-edit modes
 
 ## 0.97.0
 
