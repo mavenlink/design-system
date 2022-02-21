@@ -1,6 +1,9 @@
 ## Unreleased
 - Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 - Append new items to make git merging easier.
+
+## 0.98.0
+
 - refactor(date): remove redundant wrapping divs to make a re-usable date control for field and cell components
 - refactor(date): move calendar widget closer to input to facilitate refactor to make a re-usable date control for field and cell components
 - feat(date control): implement date control
