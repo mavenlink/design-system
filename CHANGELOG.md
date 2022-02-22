@@ -1,6 +1,10 @@
 ## Unreleased
-- Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-- Prepend new items to make git merging easier.
+Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+Prepend new items to make git merging easier.
+
+## 0.99.0
+
+- feat(money cell): implement cell
 - refactor(money input): use pre-built number control to facilitate future money control refactor
 - refactor(money input): use pre-built input control to facilitate future money control refactor
 - fix(money input): clear validation message when switching between edit and non-edit modes
