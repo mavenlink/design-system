@@ -78,7 +78,7 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  /** The `value` props is expected an `id` used to fetch a model on the API. */
+  /** The `value` prop expects an `id` used to fetch a model on the API. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
