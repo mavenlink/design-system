@@ -227,13 +227,17 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       label={props.label}
       labelId={ids.label}
       name={props.name}
-      onKeyDown={onKeyDown}
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage || ''}
     >
-      <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
+      <div
+        role="presentation"
+        className={classNames.formControlChildrenContainer}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      >
         <TagList
           className={classNames.tagList}
           labelledBy={ids.label}
