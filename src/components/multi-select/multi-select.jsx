@@ -221,87 +221,86 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }));
 
   return (
-    <div className={classNames.container} id={props.id}>
-      <FormControl
-        id={ids.textbox}
-        label={props.label}
-        labelId={ids.label}
-        name={props.name}
-        onKeyDown={onKeyDown}
-        ref={refs.control}
-        required={props.required}
-        tooltip={props.tooltip}
-        validationMessage={validationMessage || ''}
-      >
-        <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
-          <TagList
-            className={classNames.tagList}
-            labelledBy={ids.label}
-            refs={valueRefs}
-          >
-            {value.length !== 0 &&
-            props.tagChildren ?
-              props.tagChildren(value, valueRefs, onOptionRemove) :
-              value.map((val, index) => (
-                <Tag
-                  defaultActive={index === 0}
-                  id={`${props.id}-option-${props.optionIDGetter(val)}`}
-                  key={props.optionIDGetter(val)}
-                  onRemove={onOptionRemove}
-                  readOnly={props.readOnly}
-                  ref={valueRefs[index]}
-                >
-                  {props.optionLabelGetter(val)}
-                </Tag>
-              ))
-            }
-            <input
-              aria-autocomplete="list"
-              aria-controls={ids.listbox}
-              aria-describedby={`${ids.emptyMessage} ${ids.tooltip}`}
-              aria-expanded={expanded}
-              aria-haspopup="listbox"
-              autoComplete="off"
-              role="combobox"
-              className={classNames.input}
-              id={ids.textbox}
-              onBlur={onAutocompleteBlur}
-              onChange={onAutocompleteChange}
-              onInput={props.onInput}
-              placeholder={value.length === 0 ? props.placeholder : undefined}
-              readOnly={props.readOnly}
-              required={props.required ? value.length === 0 : false}
-              ref={refs.autocomplete}
-              value={autocompleteValue}
+    <FormControl
+      className={classNames.container}
+      id={ids.textbox}
+      label={props.label}
+      labelId={ids.label}
+      name={props.name}
+      onKeyDown={onKeyDown}
+      ref={refs.control}
+      required={props.required}
+      tooltip={props.tooltip}
+      validationMessage={validationMessage || ''}
+    >
+      <div role="presentation" className={classNames.formControlChildrenContainer} onClick={onClick}>
+        <TagList
+          className={classNames.tagList}
+          labelledBy={ids.label}
+          refs={valueRefs}
+        >
+          {value.length !== 0 &&
+          props.tagChildren ?
+            props.tagChildren(value, valueRefs, onOptionRemove) :
+            value.map((val, index) => (
+              <Tag
+                defaultActive={index === 0}
+                id={`${props.id}-option-${props.optionIDGetter(val)}`}
+                key={props.optionIDGetter(val)}
+                onRemove={onOptionRemove}
+                readOnly={props.readOnly}
+                ref={valueRefs[index]}
+              >
+                {props.optionLabelGetter(val)}
+              </Tag>
+            ))
+          }
+          <input
+            aria-autocomplete="list"
+            aria-controls={ids.listbox}
+            aria-describedby={`${ids.emptyMessage} ${ids.tooltip}`}
+            aria-expanded={expanded}
+            aria-haspopup="listbox"
+            autoComplete="off"
+            role="combobox"
+            className={classNames.input}
+            id={ids.textbox}
+            onBlur={onAutocompleteBlur}
+            onChange={onAutocompleteChange}
+            onInput={props.onInput}
+            placeholder={value.length === 0 ? props.placeholder : undefined}
+            readOnly={props.readOnly}
+            required={props.required ? value.length === 0 : false}
+            ref={refs.autocomplete}
+            value={autocompleteValue}
+          />
+        </TagList>
+        <FormControlIcons
+          className={classNames.iconsContainer}
+          validationMessage={validationMessage}
+          validationMessageId={ids.validation}
+        >
+          {(!props.readOnly && value.length > 0) && (
+            <IconButton
+              icon={iconClear}
+              label={`Remove all selected options on ${props.label}`}
+              onPress={onOptionsClear}
+              className={classNames.iconClear}
             />
-          </TagList>
-          <FormControlIcons
-            className={classNames.iconsContainer}
-            validationMessage={validationMessage}
-            validationMessageId={ids.validation}
-          >
-            {(!props.readOnly && value.length > 0) && (
-              <IconButton
-                icon={iconClear}
-                label={`Remove all selected options on ${props.label}`}
-                onPress={onOptionsClear}
-                className={classNames.iconClear}
-              />
-            )}
-            {props.readOnly ? (
-              <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
-            ) : (
-              <IconButton
-                icon={iconCaretDown}
-                label={`Open ${props.label} options`}
-                onPress={onClick}
-              />
-            )}
-          </FormControlIcons>
-        </div>
-        {dropdownContents()}
-      </FormControl>
-    </div>
+          )}
+          {props.readOnly ? (
+            <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
+          ) : (
+            <IconButton
+              icon={iconCaretDown}
+              label={`Open ${props.label} options`}
+              onPress={onClick}
+            />
+          )}
+        </FormControlIcons>
+      </div>
+      {dropdownContents()}
+    </FormControl>
   );
 });
 

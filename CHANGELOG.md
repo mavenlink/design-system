@@ -1,6 +1,8 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- refactor(multi-select): remove id attribute on container (since it is unused)
+- refactor(multi-select): move container styling inside the form control for easier refactoring to a multi-select control
 - refactor(multi-select): move dropdown inside the form control for easier refactoring to a multi-select control
 - fix(choice control): only fetch active choices to avoid "duplicates" bug
 

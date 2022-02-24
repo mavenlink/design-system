@@ -60,10 +60,10 @@ describe('<MultiSelect>', () => {
   });
 
   describe('id API', () => {
-    it('sets id of container and selected options', async () => {
+    it('sets various ids', async () => {
       render(<MultiSelect {...requiredProps} id="unique-id" value={[requiredProps.options[0]]} />);
 
-      expect(document.querySelector('#unique-id')).toBeInTheDocument();
+      expect(document.body).toMatchSnapshot();
       expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-1');
     });
   });
