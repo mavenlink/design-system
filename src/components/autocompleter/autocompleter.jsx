@@ -78,8 +78,8 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  /** `value` and `models` shape is expected to be an object(s) with an `id` key */
-  value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  /** The `value` prop expects an `id` used to fetch a model on the API. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Autocompleter.defaultProps = {

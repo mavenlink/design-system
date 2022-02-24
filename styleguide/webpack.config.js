@@ -1,6 +1,7 @@
 /* eslint-disable import/no-commonjs */
 
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const webpack = require('webpack');
 
 module.exports = {
   module: {
@@ -44,5 +45,8 @@ module.exports = {
   },
   plugins: [
     new SpriteLoaderPlugin(),
+    new webpack.DefinePlugin({
+      'window.CI': JSON.stringify(process.env.CI ?? false),
+    }),
   ],
 };
