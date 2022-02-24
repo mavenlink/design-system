@@ -195,7 +195,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     }
   }
 
-  useDropdownClose(refs.wrapper, expanded, onDropdownClose);
+  useDropdownClose(refs.control, expanded, onDropdownClose);
 
   useEffect(() => {
     setValidationMessage(props.validationMessage);
@@ -221,7 +221,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }));
 
   return (
-    <div className={classNames.container} id={props.id} ref={refs.wrapper}>
+    <div className={classNames.container} id={props.id}>
       <FormControl
         id={ids.textbox}
         label={props.label}
@@ -299,8 +299,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             )}
           </FormControlIcons>
         </div>
+        {dropdownContents()}
       </FormControl>
-      {dropdownContents()}
     </div>
   );
 });
