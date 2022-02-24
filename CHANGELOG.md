@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- feat(multi-select cell): implement cell
 - feat(multi-select control): implement control
 - refactor(multi-select): move key handler inside the form control for easier refactoring to a multi-select control
 - refactor(multi-select): remove id attribute on container (since it is unused)

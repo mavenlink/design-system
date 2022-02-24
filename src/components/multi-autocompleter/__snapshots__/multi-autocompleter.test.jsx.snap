@@ -58,7 +58,7 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
               width="10"
             >
               <title>
-                Open test label options
+                Open options
               </title>
               <use
                 xlink:href="#caret-down.svg"
@@ -130,7 +130,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
               width="10"
             >
               <title>
-                Open test label options
+                Open options
               </title>
               <use
                 xlink:href="#caret-down.svg"

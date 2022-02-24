@@ -73,7 +73,7 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} label="unique label" value={[requiredProps.options[0]]} />);
 
       expect(screen.getByText('unique label')).toBeInTheDocument();
-      expect(await findRemoveButton('unique label', 'Foo')).toBeInTheDocument();
+      expect(await findRemoveButton('Foo')).toBeInTheDocument();
     });
   });
 
@@ -181,7 +181,7 @@ describe('<MultiSelect>', () => {
       />));
 
       expect(await findAutocompleter('test label')).toHaveAttribute('readOnly', '');
-      expect(queryRemoveButton('test label')).not.toBeInTheDocument();
+      expect(queryRemoveButton()).not.toBeInTheDocument();
       userEvent.click(await findAutocompleter('test label'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
@@ -277,7 +277,7 @@ describe('<MultiSelect>', () => {
 
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      userEvent.click(await findRemoveButton('test label', 'Foo'));
+      userEvent.click(await findRemoveButton('Foo'));
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
     });
   });
@@ -380,7 +380,7 @@ describe('<MultiSelect>', () => {
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
 
-      userEvent.click(await findRemoveButton('test label', 'Foo'));
+      userEvent.click(await findRemoveButton('Foo'));
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
     });
 
@@ -389,7 +389,7 @@ describe('<MultiSelect>', () => {
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
-      userEvent.click(await findRemoveButton('test label', 'Foo'));
+      userEvent.click(await findRemoveButton('Foo'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
 
@@ -398,7 +398,7 @@ describe('<MultiSelect>', () => {
 
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
-      userEvent.click(await findRemoveButton('test label'));
+      userEvent.click(await findRemoveButton());
       expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
       expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
       expect(await findAutocompleter('test label')).toHaveFocus();

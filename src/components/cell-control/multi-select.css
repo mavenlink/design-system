@@ -1,0 +1,19 @@
+.container {
+  composes: container from './cell-control.css';
+  composes: container from '../multi-select/multi-select.css';
+}
+
+.formControlChildrenContainer {
+  composes: form-control-children-container from '../multi-select/multi-select.css';
+  border: none;
+}
+
+.formControlChildrenContainerInvalid {
+  composes: formControlChildrenContainer;
+  composes: form-control-children-container-invalid from '../multi-select/multi-select.css';
+}
+
+.formControlChildrenContainerReadOnly {
+  composes: formControlChildrenContainer;
+  composes: form-control-children-container-readonly from '../multi-select/multi-select.css';
+}

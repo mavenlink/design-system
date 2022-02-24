@@ -47,6 +47,7 @@ module.exports = {
       path.join(__dirname, 'src/components/cell-control/date.jsx'),
       path.join(__dirname, 'src/components/cell-control/input.jsx'),
       path.join(__dirname, 'src/components/cell-control/money.jsx'),
+      path.join(__dirname, 'src/components/cell-control/multi-select.jsx'),
       path.join(__dirname, 'src/components/cell-control/number.jsx'),
       path.join(__dirname, 'src/components/cell-control/select.jsx'),
       path.join(__dirname, 'src/components/cell-control/textarea.jsx'),

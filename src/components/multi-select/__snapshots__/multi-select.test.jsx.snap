@@ -58,7 +58,7 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
               width="10"
             >
               <title>
-                Open test label options
+                Open options
               </title>
               <use
                 xlink:href="#caret-down.svg"
@@ -130,7 +130,7 @@ exports[`<MultiSelect> has defaults 1`] = `
               width="10"
             >
               <title>
-                Open test label options
+                Open options
               </title>
               <use
                 xlink:href="#caret-down.svg"
@@ -250,7 +250,7 @@ exports[`<MultiSelect> id API sets various ids 1`] = `
               width="8"
             >
               <title>
-                Remove all selected options on test label
+                Remove all selected options
               </title>
               <use
                 xlink:href="#clear.svg"
@@ -265,7 +265,7 @@ exports[`<MultiSelect> id API sets various ids 1`] = `
               width="10"
             >
               <title>
-                Open test label options
+                Open options
               </title>
               <use
                 xlink:href="#caret-down.svg"

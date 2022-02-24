@@ -22,16 +22,16 @@ import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from '../multi-select/multi-select.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
+function getFormControlChildrenContainerClassName(readOnly, validationMessage, classNames) {
   if (readOnly) {
-    return styles['form-control-children-container-readonly'];
+    return classNames.formControlChildrenContainerReadOnly;
   }
 
   if (validationMessage) {
-    return styles['form-control-children-container-invalid'];
+    return classNames.formControlChildrenContainerInvalid;
   }
 
-  return styles['form-control-children-container'];
+  return classNames.formControlChildrenContainer;
 }
 
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
@@ -58,7 +58,9 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   };
 
   const classNames = {
-    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
+    formControlChildrenContainer: styles['form-control-children-container'],
+    formControlChildrenContainerInvalid: styles['form-control-children-container-invalid'],
+    formControlChildrenContainerReadOnly: styles['form-control-children-container-readonly'],
     iconClear: styles['icon-clear'],
     iconsContainer: styles['icon-container'],
     input: props.readOnly ? styles['input-readonly'] : styles.input,
@@ -224,7 +226,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     <>
       <div
         role="presentation"
-        className={classNames.formControlChildrenContainer}
+        className={getFormControlChildrenContainerClassName(props.readOnly, validationMessage, classNames)}
         onClick={onClick}
         onKeyDown={onKeyDown}
       >
@@ -277,17 +279,17 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
           {(!props.readOnly && value.length > 0) && (
             <IconButton
               icon={iconClear}
-              label={`Remove all selected options on ${props.label}`}
+              label="Remove all selected options"
               onPress={onOptionsClear}
               className={classNames.iconClear}
             />
           )}
           {props.readOnly ? (
-            <Icon icon={iconCaretDown} label={`Opening ${props.label} options disabled while read only`} />
+            <Icon icon={iconCaretDown} label="Opening options is disabled while read only" />
           ) : (
             <IconButton
               icon={iconCaretDown}
-              label={`Open ${props.label} options`}
+              label="Open options"
               onPress={onClick}
             />
           )}
@@ -301,6 +303,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 MultiSelect.propTypes = {
   classNames: PropTypes.shape({
     formControlChildrenContainer: PropTypes.string,
+    formControlChildrenContainerInvalid: PropTypes.string,
+    formControlChildrenContainerReadOnly: PropTypes.string,
     input: PropTypes.string,
     tagList: PropTypes.string,
   }),
@@ -308,7 +312,6 @@ MultiSelect.propTypes = {
   containerRef: PropTypes.any.isRequired,
   filterOptions: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   onChange: PropTypes.func,
   onInput: PropTypes.func,
