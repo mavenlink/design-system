@@ -8,7 +8,7 @@ const Choice = forwardRef(function Choice(props, forwardedRef) {
 
   return (
     <Autocompleter
-      apiEndpoint={`/custom_field_choices?for_custom_fields=${props.customFieldID}`}
+      apiEndpoint={`/custom_field_choices?for_custom_fields=${props.customFieldID}&active=true`}
       classNames={props.classNames}
       displayValueEvaluator={selectValue => (selectValue ? selectValue.label : '')}
       id={props.id}

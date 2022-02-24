@@ -1,6 +1,17 @@
 ## Unreleased
-- Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
-- Append new items to make git merging easier.
+Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
+Prepend new items to make git merging easier.
+- fix(choice control): only fetch active choices to avoid "duplicates" bug
+
+## 0.99.0
+
+- feat(money cell): implement cell
+- refactor(money input): use pre-built number control to facilitate future money control refactor
+- refactor(money input): use pre-built input control to facilitate future money control refactor
+- fix(money input): clear validation message when switching between edit and non-edit modes
+
+## 0.98.0
+
 - refactor(date): remove redundant wrapping divs to make a re-usable date control for field and cell components
 - refactor(date): move calendar widget closer to input to facilitate refactor to make a re-usable date control for field and cell components
 - feat(date control): implement date control
@@ -8,9 +19,6 @@
 - feat(date cell): implement date cell
 - fix(date control): dynamic height with a min of x-large
 - fix(calendar widget): dynamic height based on table contents
-- refactor(money input): use pre-built number control to facilitate future money control refactor
-- refactor(money input): use pre-built input control to facilitate future money control refactor
-- fix(money input): clear validation message when switching between edit and non-edit modes
 
 ## 0.97.0
 

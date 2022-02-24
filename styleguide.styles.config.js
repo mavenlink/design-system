@@ -42,4 +42,15 @@ module.exports = {
       marginBottom: 'var(--spacing-x-large)',
     },
   },
+  ComponentsList: {
+    item: {
+      marginRight: 'var(--spacing-small)',
+      '@global': {
+        a: {
+          color: 'var(--mds-grey-87) !important',
+          font: 'var(--mds-type-content) !important',
+        },
+      },
+    },
+  },
 };
