@@ -76,8 +76,8 @@ export default function handlers(delay = 0) {
           return false;
         }
 
-        if (onlyParam) {
-          return choice.id === onlyParam && choice.custom_field_id === customFieldID;
+        if (onlyParam !== null) {
+          return choice.custom_field_id === customFieldID && onlyParam.split(',').includes(choice.id);
         }
 
         return choice.custom_field_id === customFieldID;

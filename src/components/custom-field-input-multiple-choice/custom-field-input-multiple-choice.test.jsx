@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import {
   render,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import jestServer from '../../mocks/jest-server.js';
@@ -46,12 +47,13 @@ describe('<CustomFieldInputMultipleChoice>', () => {
     it('properly maps an array of choice IDs to full value objects', async () => {
       const { rerender } = render(<CustomFieldInputMultipleChoice {...requiredProps} value={['0']} />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      const foo = await findSelectedOption('test label', 'Foo');
+      expect(foo).toBeInTheDocument();
       expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
 
       rerender(<CustomFieldInputMultipleChoice {...requiredProps} value={['1']} />);
 
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      await waitForElementToBeRemoved(foo);
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
     });
   });

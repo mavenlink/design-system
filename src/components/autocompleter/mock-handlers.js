@@ -75,8 +75,9 @@ export default function handlers(delay = 0) {
         modelsForData = [{ name: 'filter-stub', id: '9000' }];
       }
 
-      if (request.url.searchParams.get('only')) {
-        modelsForData = models.concat(onlyModels).filter(model => model.id === request.url.searchParams.get('only'));
+      const onlyParam = request.url.searchParams.get('only');
+      if (onlyParam !== null) {
+        modelsForData = models.concat(onlyModels).filter(model => onlyParam.split(',').includes(model.id));
       }
 
       const modelData = {};
