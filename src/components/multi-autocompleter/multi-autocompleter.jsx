@@ -1,71 +1,88 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState } from 'react';
-import useFetch from '@bloodyaugust/use-fetch';
-import MultiSelect from '../multi-select/multi-select.jsx';
-import { API_ROOT } from '../../mocks/mock-constants.js';
-import multiSelectStyles from '../multi-select/multi-select.css';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
+import FormControl from '../form-control/form-control.jsx';
+import MultiAutocompleterControl from '../control/multi-autocompleter.jsx';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
-  const { execute } = useFetch();
-  const [loading, setLoading] = useState(true);
-  const [options, setOptions] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+function spread(ref1, ref2) {
+  const newObject = {};
+
+  Object.keys(ref1.current).reduce((acc, key) => (
+    Object.defineProperty(acc, key, {
+      get() { return ref1.current[key]; },
+      configurable: true,
+      enumerable: true,
+    })
+  ), newObject);
+
+  Object.keys(ref2.current).reduce((acc, key) => (
+    Object.defineProperty(acc, key, {
+      get() { return ref2.current[key]; },
+      configurable: true,
+      enumerable: true,
+    })
+  ), newObject);
+
+  return newObject;
+}
+
+const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forwardedRef) {
+  const ref = useForwardedRef(forwardedRef);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
-  function fetchOptions() {
-    setLoading(true);
-    execute(`${API_ROOT}${props.apiEndpoint}?${props.extraParams !== '' ? `${props.extraParams}&` : ''}${props.searchParam}=${searchValue}`)
-      .then(({ json, mounted }) => {
-        if (mounted) {
-          setOptions(json.results.map(result => json[result.key][result.id]));
-          setLoading(false);
-        }
-      }).catch((error) => {
-        if (error.error && error.error.type !== 'aborted') {
-          setLoading(false);
-          setValidationMessage('Failed to load options');
-        }
-      });
+  const refs = {
+    control: useRef(),
+    multiAutocompleter: useRef(),
+  };
+
+  function onInvalid(event) {
+    setValidationMessage(event.detail.validationMessage);
   }
 
-  function onMultiSelectChange(event) {
-    setSearchValue('');
-    props.onChange(event);
-  }
-
-  function onMultiSelectInput(event) {
-    setSearchValue(event.target.value);
-  }
-
-  useEffect(fetchOptions, [searchValue]);
-
-  useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
+  useImperativeHandle(ref, () => spread(
+    refs.control,
+    refs.multiAutocompleter,
+  ));
 
   return (
-    <MultiSelect
-      classNames={{
-        container: props.className,
-      }}
-      filterOptions={false}
-      id={props.id}
+    <FormControl
+      className={props.className}
+      id={`${props.id}-autocomplete`}
       label={props.label}
+      labelId={`${props.id}-label`}
       name={props.name}
-      onChange={onMultiSelectChange}
-      onInput={onMultiSelectInput}
-      optionIDGetter={props.optionIDGetter}
-      optionLabelGetter={props.optionLabelGetter}
-      options={options}
-      placeholder={props.placeholder}
-      readOnly={props.readOnly}
-      ref={ref}
+      ref={refs.control}
       required={props.required}
-      showLoader={loading}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      value={props.value}
-    />
+    >
+      <MultiAutocompleterControl
+        apiEndpoint={props.apiEndpoint}
+        containerRef={refs.control}
+        extraParams={props.extraParams}
+        filterOptions={false}
+        id={props.id}
+        label={props.label}
+        name={props.name}
+        onChange={props.onChange}
+        onInvalid={onInvalid}
+        optionIDGetter={props.optionIDGetter}
+        optionLabelGetter={props.optionLabelGetter}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.multiAutocompleter}
+        required={props.required}
+        searchParam={props.searchParam}
+        tooltip={props.tooltip}
+        validationMessage={props.validationMessage}
+        value={props.value}
+      />
+    </FormControl>
   );
 });
 
@@ -91,7 +108,7 @@ MultiAutocompleter.propTypes = {
 };
 
 MultiAutocompleter.defaultProps = {
-  className: multiSelectStyles.container,
+  className: undefined,
   extraParams: '',
   onChange: () => {},
   optionIDGetter: option => option.id,
