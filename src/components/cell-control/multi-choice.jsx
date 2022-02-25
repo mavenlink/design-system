@@ -15,7 +15,7 @@ const MultiChoice = forwardRef(function MultiChoice(props, ref) {
 
   useEffect(() => {
     const fetchChoices = async () => {
-      await execute(`${API_ROOT}/custom_field_choices?for_custom_fields=${props.customFieldID}`)
+      await execute(`${API_ROOT}/custom_field_choices?active=true&for_custom_fields=${props.customFieldID}`)
         .then(({ json, mounted }) => {
           if (mounted) {
             setAllChoices(json.results.map(result => json[result.key][result.id]));
