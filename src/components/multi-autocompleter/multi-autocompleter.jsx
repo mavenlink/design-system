@@ -64,7 +64,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
       <MultiAutocompleterControl
         apiEndpoint={props.apiEndpoint}
         containerRef={refs.control}
-        extraParams={props.extraParams}
         filterOptions={false}
         id={props.id}
         label={props.label}
@@ -90,7 +89,6 @@ MultiAutocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string.isRequired,
   className: PropTypes.string,
-  extraParams: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -109,7 +107,6 @@ MultiAutocompleter.propTypes = {
 
 MultiAutocompleter.defaultProps = {
   className: undefined,
-  extraParams: '',
   onChange: () => {},
   optionIDGetter: option => option.id,
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,

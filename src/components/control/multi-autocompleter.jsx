@@ -4,8 +4,12 @@ import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
+function generateUrl(apiEndpoint, params) {
+  return `${API_ROOT}${apiEndpoint}${apiEndpoint.includes('?') ? '&' : '?'}${params}`;
+}
+
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
-  const { execute } = useFetch();
+  const { execute: fetchChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -13,18 +17,17 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   function fetchOptions() {
     setLoading(true);
-    execute(`${API_ROOT}${props.apiEndpoint}?${props.extraParams !== '' ? `${props.extraParams}&` : ''}${props.searchParam}=${searchValue}`)
-      .then(({ json, mounted }) => {
-        if (mounted) {
-          setOptions(json.results.map(result => json[result.key][result.id]));
-          setLoading(false);
-        }
-      }).catch((error) => {
-        if (error.error && error.error.type !== 'aborted') {
-          setLoading(false);
-          setValidationMessage('Failed to load options');
-        }
-      });
+    fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json, mounted }) => {
+      if (mounted) {
+        setOptions(json.results.map(result => json[result.key][result.id]));
+        setLoading(false);
+      }
+    }).catch((error) => {
+      if (error.error && error.error.type !== 'aborted') {
+        setLoading(false);
+        setValidationMessage('Failed to load options');
+      }
+    });
   }
 
   function onMultiSelectChange(event) {
@@ -73,7 +76,6 @@ MultiAutocompleter.propTypes = {
   classNames: PropTypes.shape({}),
   // eslint-disable-next-line react/forbid-prop-types
   containerRef: PropTypes.any.isRequired,
-  extraParams: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   onChange: PropTypes.func,
@@ -92,7 +94,6 @@ MultiAutocompleter.propTypes = {
 
 MultiAutocompleter.defaultProps = {
   classNames: {},
-  extraParams: '',
   name: undefined,
   onChange: () => {},
   onInvalid: () => {},

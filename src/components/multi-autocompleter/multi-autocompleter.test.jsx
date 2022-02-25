@@ -108,61 +108,6 @@ describe('<MultiAutocompleter>', () => {
     });
   });
 
-  describe('extraParams API', () => {
-    it('can insert extra params string into request', async () => {
-      jestServer.resetHandlers();
-      jestServer.use(rest.get(`${API_ROOT}/extra`, (request, response, context) => {
-        if (request.url.searchParams.get('an_extra_param') === '1') {
-          return response(
-            context.status(200),
-            context.json({
-              count: 1,
-              meta: {
-                count: 1,
-                page_count: 1,
-                page_number: 0,
-                page_size: 1,
-              },
-              results: [
-                {
-                  key: 'models',
-                  id: '1',
-                },
-              ],
-              models: {
-                1: {
-                  id: '1',
-                  name: 'Test Option',
-                },
-              },
-            }),
-          );
-        }
-
-        return response(
-          context.status(500),
-          context.json({
-            count: 0,
-            meta: {
-              count: 0,
-              page_count: 1,
-              page_number: 0,
-              page_size: 0,
-            },
-            results: [],
-            models: {},
-          }),
-        );
-      }));
-
-      render(<MultiAutocompleter {...requiredProps} apiEndpoint="/extra" extraParams="an_extra_param=1" />);
-
-      await openOptions('test label');
-
-      expect(await findAvailableOption('test label', 'Test Option')).toBeInTheDocument();
-    });
-  });
-
   describe('validationMessage API', () => {
     it('uses prop and is responsive to prop changes', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} validationMessage="This is an error" />);

@@ -39,9 +39,8 @@ const MultiChoice = forwardRef(function MultiChoice(props, ref) {
 
   return (
     <MultiAutocompleter
-      apiEndpoint="/custom_field_choices"
+      apiEndpoint={`/custom_field_choices?active=true&for_custom_fields=${props.customFieldID}`}
       classNames={props.classNames}
-      extraParams={`active=true&for_custom_fields=${props.customFieldID}`}
       id={props.id}
       labelledBy={props.labelledBy}
       optionIDGetter={option => option.id}
