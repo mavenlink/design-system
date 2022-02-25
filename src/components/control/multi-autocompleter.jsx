@@ -13,7 +13,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 

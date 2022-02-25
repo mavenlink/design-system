@@ -38,7 +38,7 @@ const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMulti
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.errorText}
-      value={props.value.map(id => ({ id }))}
+      value={props.value.map(id => ({ id, label: '' }))}
     />
   );
 });
