@@ -1,0 +1,15 @@
+.container {
+  composes: container from './multi-select.css';
+}
+
+.formControlChildrenContainer {
+  composes: formControlChildrenContainer from './multi-select.css';
+}
+
+.formControlChildrenContainerInvalid {
+  composes: formControlChildrenContainerInvalid from './multi-select.css';
+}
+
+.formControlChildrenContainerReadOnly {
+  composes: formControlChildrenContainerReadOnly from './multi-select.css';
+}
