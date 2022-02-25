@@ -1,5 +1,3 @@
-A grid cell for multi-choice custom field with autocompleter behavior.
-
 ```jsx
 import MultiChoice from '@mavenlink/design-system/src/components/cell-control/multi-choice.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';

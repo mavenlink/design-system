@@ -1,5 +1,3 @@
-A grid cell for multi-select with autocompleter behavior.
-
 ```jsx
 import MultiAutocompleter from '@mavenlink/design-system/src/components/cell-control/multi-autocompleter.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
