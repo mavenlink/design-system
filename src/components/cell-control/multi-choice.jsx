@@ -40,7 +40,7 @@ const MultiChoice = forwardRef(function MultiChoice(props, ref) {
   return (
     <MultiAutocompleter
       apiEndpoint="/custom_field_choices"
-      className={props.className}
+      classNames={props.classNames}
       extraParams={`active=true&for_custom_fields=${props.customFieldID}`}
       id={props.id}
       labelledBy={props.labelledBy}
@@ -57,7 +57,7 @@ const MultiChoice = forwardRef(function MultiChoice(props, ref) {
 });
 
 MultiChoice.propTypes = {
-  className: PropTypes.string,
+  classNames: PropTypes.shape({}),
   customFieldID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
@@ -70,7 +70,7 @@ MultiChoice.propTypes = {
 };
 
 MultiChoice.defaultProps = {
-  className: undefined,
+  classNames: {},
   onChange: () => {},
   placeholder: undefined,
   readOnly: false,
