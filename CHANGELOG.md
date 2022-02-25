@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- feat(multi-select control): dynamic height to fill containing element
 - feat(multi-choice cell): implement cell
 - feat(multi-autocompleter cell): implement cell
 - feat(multi-autocompleter control): implement control
