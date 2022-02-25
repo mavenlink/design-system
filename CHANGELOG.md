@@ -1,6 +1,8 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- fix(multi-choice control): always load provided selected values in case search pagination does not return a result set with the selected values
+- fix(multi-autocompleter control): always load provided selected values in case search pagination does not return a result set with the selected values
 - refactor(multi-autocompleter control): deprecate extraParams API in favor of a simple apiEndpoint API
 - fix(multi-choice cell): only fetch active choices
 - fix(multi-select control): only call onChange API when the value changes (and not on first-time render)

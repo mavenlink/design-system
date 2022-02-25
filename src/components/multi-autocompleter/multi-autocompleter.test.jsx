@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   render,
   screen,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
@@ -225,7 +226,8 @@ describe('<MultiAutocompleter>', () => {
         }]}
       />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      const foo = await findSelectedOption('test label', 'Foo');
+      expect(foo).toBeInTheDocument();
 
       rerender(<MultiAutocompleter
         {...requiredProps}
@@ -235,7 +237,7 @@ describe('<MultiAutocompleter>', () => {
         }]}
       />);
 
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      await waitForElementToBeRemoved(foo);
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
       rerender(<MultiAutocompleter

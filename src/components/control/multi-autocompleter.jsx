@@ -10,8 +10,10 @@ function generateUrl(apiEndpoint, params) {
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute: fetchChoices } = useFetch();
+  const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
+  const [value, setValue] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
@@ -42,6 +44,25 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(fetchOptions, [searchValue]);
 
   useEffect(() => {
+    function fetchPropsValue() {
+      setLoading(true);
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
+        if (mounted) {
+          setValue(json.results.map(result => json[result.key][result.id]));
+          setLoading(false);
+        }
+      }).catch((error) => {
+        if (error.error && error.error.type !== 'aborted') {
+          setLoading(false);
+          setValidationMessage('Failed to load options');
+        }
+      });
+    }
+
+    if (props.value.length) fetchPropsValue();
+  }, [props.value.map(props.optionIDGetter).join(',')]);
+
+  useEffect(() => {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
 
@@ -65,7 +86,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       showLoader={loading}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      value={props.value}
+      value={value}
     />
   );
 });
