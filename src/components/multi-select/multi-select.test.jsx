@@ -99,6 +99,18 @@ describe('<MultiSelect>', () => {
   });
 
   describe('onChange API', () => {
+    it('does not fire the onChange event on first-time render when empty', () => {
+      const onChangeMock = jest.fn();
+      render(<MultiSelect {...requiredProps} onChange={onChangeMock} />);
+      expect(onChangeMock).not.toHaveBeenCalled();
+    });
+
+    it('does not fire the onChange event on first-time render when non-empty', () => {
+      const onChangeMock = jest.fn();
+      render(<MultiSelect {...requiredProps} onChange={onChangeMock} value={[requiredProps.options[0]]} />);
+      expect(onChangeMock).not.toHaveBeenCalled();
+    });
+
     it('fires the onChange event when the value changes', async () => {
       const onChangeMock = jest.fn();
 

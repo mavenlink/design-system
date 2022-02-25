@@ -19,6 +19,7 @@ import NoOptions from '../no-options/no-options.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import styles from '../multi-select/multi-select.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
@@ -208,7 +209,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     setValue(props.value);
   }, [props.value.map(val => JSON.stringify(val)).join(',')]);
 
-  useEffect(() => {
+  useMountedEffect(() => {
     props.onChange({ target: selfRef.current });
   }, [value.length]);
 
