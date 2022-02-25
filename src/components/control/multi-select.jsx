@@ -7,8 +7,7 @@ import React, {
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import FormControlIcons from '../form-control-icons/form-control-icons.jsx';
-import Icon from '../icon/icon.jsx';
+import Icons from './icons.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconClear from '../../svgs/clear.svg';
@@ -272,10 +271,13 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             value={autocompleteValue}
           />
         </TagList>
-        <FormControlIcons
-          className={classNames.iconsContainer}
+        <Icons
+          classNames={{
+            container: classNames.iconsContainer,
+          }}
           validationMessage={validationMessage}
           validationMessageId={ids.validation}
+          validationMessageTooltip
         >
           {(!props.readOnly && value.length > 0) && (
             <IconButton
@@ -285,16 +287,13 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
               className={classNames.iconClear}
             />
           )}
-          {props.readOnly ? (
-            <Icon icon={iconCaretDown} label="Opening options is disabled while read only" />
-          ) : (
-            <IconButton
-              icon={iconCaretDown}
-              label="Open options"
-              onPress={onClick}
-            />
-          )}
-        </FormControlIcons>
+          <IconButton
+            disabled={props.readOnly}
+            icon={iconCaretDown}
+            label="Open options"
+            onPress={onClick}
+          />
+        </Icons>
       </div>
       {dropdownContents()}
     </>
