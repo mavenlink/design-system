@@ -2,6 +2,10 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+## 0.99.2
+
+- fix(choice control): only fetch active choices to avoid "duplicates" bug
+
 ## 0.99.1
 - fix(analytics): only track the hash to group activity across various domains
 - refactor(analytics): remove unnecessary MDS site components in favor of defaults with a little global styling
