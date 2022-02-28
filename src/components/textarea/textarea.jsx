@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
-  useLayoutEffect,
   useRef,
   useImperativeHandle,
 } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
-import useMounted from '../../hooks/use-mounted.js';
+import useMountedLayoutEffect from '../../hooks/use-mounted-layout-effect.js';
 import useValidation from '../../hooks/use-validation.jsx';
 import styles from './textarea.css';
 
@@ -46,7 +45,6 @@ const Textarea = forwardRef(function Textarea({
     input: useRef(),
   };
 
-  const mounted = useMounted();
   const [validationMessageValue, validate] = useValidation(validationMessage, refs.input);
 
   function blurHandler(event) {
@@ -58,9 +56,7 @@ const Textarea = forwardRef(function Textarea({
     onChange(event);
   }
 
-  useLayoutEffect(() => {
-    if (!mounted.current) return;
-
+  useMountedLayoutEffect(() => {
     refs.input.current.value = value || '';
   }, [value]);
 

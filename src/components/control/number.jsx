@@ -1,7 +1,6 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useValidation from '../../hooks/use-validation.jsx';
-import useMounted from '../../hooks/use-mounted.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import Icons from './icons.jsx';
 import styles from '../number/number.css';
@@ -28,7 +27,6 @@ const Number = React.forwardRef((props, forwardedRef) => {
     input: useRef(),
   };
 
-  const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   function onBlur(event) {
@@ -36,9 +34,7 @@ const Number = React.forwardRef((props, forwardedRef) => {
     props.onBlur(event);
   }
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useLayoutEffect(() => {
     // The MDS Number is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.

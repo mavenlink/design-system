@@ -16,7 +16,7 @@ import NoOptions from '../no-options/no-options.jsx';
 import styles from '../select/select.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import useMounted from '../../hooks/use-mounted.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Select = forwardRef(function Select(props, ref) {
@@ -24,7 +24,6 @@ const Select = forwardRef(function Select(props, ref) {
   const [value, setValue] = useState(props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
-  const mounted = useMounted();
   const selfRef = useForwardedRef(ref);
 
   const defaultValue = value ? props.displayValueEvaluator(value) : '';
@@ -140,9 +139,7 @@ const Select = forwardRef(function Select(props, ref) {
     });
   }, [validationMessage]);
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useMountedEffect(() => {
     setValue(props.value);
 
     if (props.value === undefined || props.value === null) {
@@ -150,9 +147,7 @@ const Select = forwardRef(function Select(props, ref) {
     }
   }, [props.value]);
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useMountedEffect(() => {
     if (hasBeenBlurred) {
       validate();
     }
