@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
-import cautionSvg from '../../svgs/caution.svg';
-import Icon from '../icon/icon.jsx';
+import Icons from './icons.jsx';
 import styles from './input.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import useValidation from '../../hooks/use-validation.jsx';
@@ -79,14 +78,11 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         required={props.required}
         type={props.type}
       />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          id={props.validationMessageId ? undefined : ids.validation}
-          label={validationMessage}
-        />
-      )}
+      <Icons
+        validationMessage={validationMessage}
+        validationMessageId={ids.validation}
+        validationMessageTooltip
+      />
     </div>
   );
 });

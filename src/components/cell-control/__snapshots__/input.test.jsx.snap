@@ -32,6 +32,9 @@ exports[`Input cell control className API 1`] = `
                 type="text"
                 value=""
               />
+              <div
+                class="container"
+              />
             </div>
           </td>
         </tr>
@@ -72,6 +75,9 @@ exports[`Input cell control has defaults 1`] = `
                 name="test-name"
                 type="text"
                 value=""
+              />
+              <div
+                class="container"
               />
             </div>
           </td>
@@ -121,6 +127,9 @@ exports[`Input cell control id API is a string 1`] = `
                 name="test-name"
                 type="text"
                 value=""
+              />
+              <div
+                class="container"
               />
             </div>
           </td>
