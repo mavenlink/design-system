@@ -1,0 +1,9 @@
+@import '../../styles/spacing.css';
+
+.input {
+  composes: input from './input.css';
+}
+
+.invalid-input {
+  composes: invalid-input from './input.css';
+}
