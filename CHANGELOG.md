@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- refactor(autocompleter cell): use a stylesheets API
 - refactor(input control): use Icons component for invalid state
 - chore(useMounted): deprecate useMounted hook since it does not work unless the useEffect is "last" in the render cycle
 - fix(multi-select cell): add validation message as a tooltip on the invalid icon

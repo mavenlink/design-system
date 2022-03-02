@@ -88,7 +88,7 @@ exports[`Autocompleter cell control classNames API can set container 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
+              class="innerContainer"
               style="position: relative;"
             >
               <input
@@ -222,7 +222,7 @@ exports[`Autocompleter cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
+              class="innerContainer"
               style="position: relative;"
             >
               <input

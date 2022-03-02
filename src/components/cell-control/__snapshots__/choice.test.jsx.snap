@@ -21,7 +21,7 @@ exports[`Choice cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
+              class="innerContainer"
               style="position: relative;"
             >
               <input
