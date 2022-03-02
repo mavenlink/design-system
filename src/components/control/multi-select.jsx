@@ -19,7 +19,7 @@ import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
-import styles from '../multi-select/multi-select.css';
+import styles from './multi-select.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 function getFormControlChildrenContainerClassName(readOnly, validationMessage, classNames) {
@@ -62,7 +62,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     formControlChildrenContainerInvalid: styles['form-control-children-container-invalid'],
     formControlChildrenContainerReadOnly: styles['form-control-children-container-readonly'],
     iconClear: styles['icon-clear'],
-    iconsContainer: styles['icon-container'],
     input: props.readOnly ? styles['input-readonly'] : styles.input,
     noOptionsContainer: styles['no-options'],
     popupContainer: styles['popup-container'],
@@ -272,9 +271,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
           />
         </TagList>
         <Icons
-          classNames={{
-            container: classNames.iconsContainer,
-          }}
           validationMessage={validationMessage}
           validationMessageId={ids.validation}
           validationMessageTooltip
