@@ -46,7 +46,7 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"
