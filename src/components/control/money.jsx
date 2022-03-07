@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import Input from './input.jsx';
 import Number from './number.jsx';
-import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
-import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
-import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
+import currencyMetaData from '../../utils/currency-meta-data.js';
+import { initialInputValid, subunitToUnit, formatValue } from '../../utils/money-formatter.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Money = forwardRef(function Money(props, forwardedRef) {

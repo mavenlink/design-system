@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useState } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import Money from '../control/money.jsx';
-import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {

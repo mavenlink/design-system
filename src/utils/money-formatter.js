@@ -1,4 +1,4 @@
-import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
+import currencyMetaData from './currency-meta-data.js';
 
 function getLocale() {
   if (navigator && navigator.languages) {
