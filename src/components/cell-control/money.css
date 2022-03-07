@@ -3,11 +3,11 @@
 }
 
 .input {
-  composes: input from '../number/number.css';
+  composes: input from '../control/number.css';
   border: none;
 }
 
 .inputInvalid {
-  composes: input from '../number/number.css';
+  composes: input from '../control/number.css';
   border: none;
 }
