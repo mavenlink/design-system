@@ -14,10 +14,6 @@
   padding: var(--spacing-small);
 }
 
-.icon-container {
-  composes: icons from '../form-control-icons/form-control-icons.css';
-}
-
 .input {
   border: none;
   flex-grow: 1;

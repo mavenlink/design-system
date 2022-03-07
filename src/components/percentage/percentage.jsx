@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from 'react';
 import FormControl from '../form-control/form-control.jsx';
-import FormControlIcons from '../form-control-icons/form-control-icons.jsx';
+import Icons from '../control/icons.jsx';
 import styles from './percentage.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
@@ -90,13 +90,12 @@ const Percentage = forwardRef(function Percentage(props, forwardedRef) {
           step={0.01}
           type="number"
         />
-        <FormControlIcons
-          className={styles['icons-container']}
+        <Icons
           validationMessage={validationMessage}
           validationMessageId={ids.validationMessage}
         >
           <span className={styles['percent-sign']}>%</span>
-        </FormControlIcons>
+        </Icons>
       </div>
     </FormControl>
   );
