@@ -2,10 +2,6 @@
 @import '../../styles/spacing.css';
 @import '../../styles/typography-v2.css';
 
-.container {
-  position: relative;
-}
-
 .dropdown {
   composes: container from '../listbox/listbox.css';
   box-sizing: border-box;
@@ -17,25 +13,21 @@
   z-index: 10;
 }
 
-.clear-button {
-  composes: button from '../icon-button/icon-button.css';
-  padding: var(--spacing-small);
-}
-
-.input-styles {
+.inputStyles {
   border: 1px solid var(--mds-grey-12);
   border-radius: var(--spacing-x-small);
   box-sizing: border-box;
   color: var(--mds-grey-87);
   font: var(--mds-type-content);
-  height: var(--spacing-x-large);
+  height: 100%;
+  min-height: var(--spacing-x-large);
   padding-right: 60px; /* stylelint-disable-line css-modules/css-variables */
   padding-left: var(--spacing-medium);
   width: 100%;
 }
 
 .input {
-  composes: input-styles;
+  composes: inputStyles;
 }
 
 .input:disabled {
@@ -47,6 +39,6 @@
 }
 
 .input-invalid {
-  composes: input-styles;
+  composes: inputStyles;
   border-color: var(--mds-red-100);
 }

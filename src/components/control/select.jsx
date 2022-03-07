@@ -13,7 +13,7 @@ import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
-import styles from '../select/select.css';
+import styles from './select.css';
 import useValidation from '../../hooks/use-validation.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
@@ -44,7 +44,7 @@ const Select = forwardRef(function Select(props, ref) {
   const invalid = validationMessage.length > 0;
 
   const classNames = {
-    container: styles.container,
+    container: undefined,
     input: styles.input,
     invalidInput: styles['input-invalid'],
     ...props.classNames,
@@ -208,7 +208,6 @@ const Select = forwardRef(function Select(props, ref) {
         value={searchValue ?? defaultValue ?? ''}
       />
       <Icons
-        classNames={undefined}
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
         validationMessageTooltip={props.validationMessageTooltip}

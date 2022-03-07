@@ -2,10 +2,6 @@
   composes: container from './cell-control.css';
 }
 
-.innerContainer {
-  composes: container from './select.css';
-}
-
 .input {
   composes: input from './select.css';
 }

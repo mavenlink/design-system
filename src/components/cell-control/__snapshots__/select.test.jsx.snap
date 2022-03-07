@@ -21,7 +21,6 @@ exports[`Select cell control className API 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
               style="position: relative;"
             >
               <input
@@ -88,7 +87,6 @@ exports[`Select cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
               style="position: relative;"
             >
               <input
@@ -163,7 +161,6 @@ exports[`Select cell control validationMessage API shows a tooltip on the invali
             role="gridcell"
           >
             <div
-              class="container"
               style="position: relative;"
             >
               <input

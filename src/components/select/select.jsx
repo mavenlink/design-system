@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import SelectControl from '../control/select.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import styles from './select.css';
 
 const Select = forwardRef(function Select(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
@@ -102,7 +101,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   children: () => {},
-  className: styles.container,
+  className: undefined,
   displayValueEvaluator: value => value,
   errorText: '',
   onChange: () => {},

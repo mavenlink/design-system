@@ -7,7 +7,6 @@ import styles from './autocompleter.css';
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const classNames = {
     container: styles.container,
-    innerContainer: styles.innerContainer,
     input: styles.input,
     invalidInput: styles.invalidInput,
     ...props.classNames,
@@ -26,7 +25,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       <AutocompleterControl
         apiEndpoint={props.apiEndpoint}
         classNames={{
-          container: classNames.innerContainer,
           input: classNames.input,
           invalidInput: classNames.invalidInput,
         }}

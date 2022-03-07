@@ -24,7 +24,6 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         class="control-container"
       >
         <div
-          class="container"
           style="position: relative;"
         >
           <input

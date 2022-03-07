@@ -24,7 +24,6 @@ exports[`src/components/autocompleter/autocompleter has defaults 1`] = `
         class="control-container"
       >
         <div
-          class="container"
           style="position: relative;"
         >
           <input
