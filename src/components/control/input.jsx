@@ -81,7 +81,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
-        validationMessageTooltip
       />
     </div>
   );

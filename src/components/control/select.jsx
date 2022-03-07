@@ -210,7 +210,6 @@ const Select = forwardRef(function Select(props, ref) {
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
-        validationMessageTooltip={props.validationMessageTooltip}
       >
         {!props.readOnly && (value || searchValue) ? (
           <IconButton
@@ -279,7 +278,6 @@ Select.propTypes = {
   required: PropTypes.bool,
   // type: PropTypes.oneOf(['cell', 'field']).isRequired,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
@@ -295,7 +293,6 @@ Select.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
   wrapperRef: undefined,
 };

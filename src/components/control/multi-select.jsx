@@ -273,7 +273,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         <Icons
           validationMessage={validationMessage}
           validationMessageId={ids.validation}
-          validationMessageTooltip
         >
           {(!props.readOnly && value.length > 0) && (
             <IconButton

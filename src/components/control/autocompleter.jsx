@@ -99,7 +99,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
-      validationMessageTooltip={props.validationMessageTooltip}
       value={model}
       wrapperRef={props.wrapperRef}
     >
@@ -139,7 +138,6 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   /** The `value` props is expected an `id` used to fetch a model on the API. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
@@ -158,7 +156,6 @@ Autocompleter.defaultProps = {
   searchParam: 'matching',
   tooltip: undefined,
   validationMessage: undefined,
-  validationMessageTooltip: false,
   value: undefined,
 };
 

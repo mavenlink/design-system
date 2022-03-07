@@ -38,7 +38,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         required={props.required}
         ref={ref}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
       />
     </CellControl>

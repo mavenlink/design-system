@@ -66,7 +66,6 @@ const Textarea = forwardRef(function Textarea(props, ref) {
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.invalidIcon}
-        validationMessageTooltip
       />
     </CellControl>
   );

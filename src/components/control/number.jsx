@@ -98,7 +98,6 @@ const Number = React.forwardRef((props, forwardedRef) => {
         classNames={undefined}
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
-        validationMessageTooltip={props.validationMessageTooltip}
       />
     </div>
   );
@@ -121,7 +120,6 @@ Number.propTypes = {
   required: PropTypes.bool,
   step: PropTypes.number,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.number,
 };
 
@@ -137,7 +135,6 @@ Number.defaultProps = {
   step: 1,
   tooltip: undefined,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
 };
 

@@ -40,7 +40,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
         required={props.required}
         searchParam={props.searchParam}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
         wrapperRef={refs.container}
       />

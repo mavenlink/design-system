@@ -28,7 +28,6 @@ const Money = forwardRef(function Money(props, ref) {
         required={props.required}
         ref={ref}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
       />
     </CellControl>
