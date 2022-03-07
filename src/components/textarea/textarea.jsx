@@ -4,9 +4,8 @@ import React, {
   useRef,
   useImperativeHandle,
 } from 'react';
-import cautionSvg from '../../svgs/caution.svg';
 import FormControl from '../form-control/form-control.jsx';
-import Icon from '../icon/icon.jsx';
+import Icons from '../control/icons.jsx';
 import useMountedLayoutEffect from '../../hooks/use-mounted-layout-effect.js';
 import useValidation from '../../hooks/use-validation.jsx';
 import styles from './textarea.css';
@@ -99,14 +98,10 @@ const Textarea = forwardRef(function Textarea({
           ref={refs.input}
           required={required}
         />
-        {!!validationMessageValue && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            id={ids.validation}
-            label={validationMessageValue}
-          />
-        )}
+        <Icons
+          validationMessage={validationMessageValue}
+          validationMessageId={ids.validation}
+        />
       </div>
     </FormControl>
   );
