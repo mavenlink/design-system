@@ -20,7 +20,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   useEffect(() => {
     if (props.value) {
-      executeValue(apiEndpoint('only', props.value))
+      executeValue(apiEndpoint(props.singleModelParam, props.value))
         .then((respObj) => {
           if (mounted.current) {
             setModel(respObj.json.results.map(result => respObj.json[result.key][result.id])[0]);
@@ -134,6 +134,7 @@ Autocompleter.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   searchParam: PropTypes.string,
+  singleModelParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   validationMessageTooltip: PropTypes.bool,
@@ -153,6 +154,7 @@ Autocompleter.defaultProps = {
   readOnly: false,
   required: false,
   searchParam: 'matching',
+  singleModelParam: 'only',
   tooltip: undefined,
   validationMessage: undefined,
   validationMessageTooltip: false,

@@ -9,7 +9,7 @@ import Autocompleter from './autocompleter.jsx';
 ### Initial value examples
 ```js
 import Autocompleter from './autocompleter.jsx';
-<Autocompleter apiEndpoint='/models' value={11} id={uuid.v4()} name='value-ex' label='Value Example' />
+<Autocompleter apiEndpoint='/models' value={2} id={uuid.v4()} name='value-ex' label='Value Example' />
 ```
 
 ## Ref API Example

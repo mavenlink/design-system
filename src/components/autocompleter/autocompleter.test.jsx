@@ -198,6 +198,15 @@ describe('src/components/autocompleter/autocompleter', () => {
     });
   });
 
+  describe('singleModelParam API', () => {
+    it('uses the singleModelParam prop when props.value changes', async () => {
+      const { rerender } = render(<Autocompleter {...requiredProps} singleModelParam={'matching'} />);
+      rerender(<Autocompleter {...requiredProps} singleModelParam={'matching'} value={'Fizz'} />);
+
+      await waitFor(() => expect(screen.getByLabelText('Test label')).toHaveValue('Fizz'));
+    });
+  });
+
   describe('tooltip API', () => {
     const tooltip = 'I am an input, short and stout.';
 
