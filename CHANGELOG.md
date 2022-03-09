@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- feat(autocompleter control): Add singleModelParam to Autocompleter control, use for single model fetching
 
 ## 0.99.2
 
