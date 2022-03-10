@@ -50,6 +50,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
         ref={refs.input}
         required={props.required}
         searchParam={props.searchParam}
+        singleModelParam={props.singleModelParam}
         validationMessage={props.validationMessage}
         value={props.value}
         wrapperRef={refs.control}
@@ -76,6 +77,7 @@ Autocompleter.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   searchParam: PropTypes.string,
+  singleModelParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** The `value` prop expects an `id` used to fetch a model on the API. */
@@ -93,6 +95,7 @@ Autocompleter.defaultProps = {
   readOnly: false,
   required: false,
   searchParam: 'matching',
+  singleModelParam: 'only',
   tooltip: undefined,
   validationMessage: undefined,
   value: undefined,
