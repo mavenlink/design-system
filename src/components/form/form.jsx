@@ -81,6 +81,20 @@ const Form = React.forwardRef((props, forwardedRef) => {
 
   const disableButtons = !valid || !dirty;
 
+  function renderHideAndSaveAnother() {
+    if (!props.hideSaveAndAddAnother) {
+      return (
+        <Button
+          color="secondary"
+          disabled={disableButtons}
+          onClick={onSaveAndAddAnotherClick}
+        >
+          Save & Add Another
+        </Button>
+      );
+    }
+  }
+
   return (
     <form
       className={props.className}
@@ -100,13 +114,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
         >
           {props.submitText}
         </Button>
-        <Button
-          color="secondary"
-          disabled={disableButtons}
-          onClick={onSaveAndAddAnotherClick}
-        >
-          Save & Add Another
-        </Button>
+        { renderHideAndSaveAnother() }
       </div>
       }
     </form>
@@ -125,6 +133,7 @@ Form.propTypes = {
     PropTypes.shape({ current: PropTypes.any }).isRequired
   )).isRequired,
   submitText: PropTypes.string,
+  hideSaveAndAddAnother: PropTypes.bool,
 };
 
 Form.defaultProps = {
@@ -135,6 +144,7 @@ Form.defaultProps = {
   onChange: () => {},
   onSubmit: () => {},
   readOnly: false,
+  hideSaveAndAddAnother: false,
 };
 
 export default Form;

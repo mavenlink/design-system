@@ -9,6 +9,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
+  const [valueForSelect, setValueForSelect] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
@@ -43,6 +44,17 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
 
+  useEffect(() => {
+    if (options.length && props.value.length) {
+      if (typeof props.value[0] === 'string' || props.value[0] instanceof String) {
+        const models = options.filter((modelData) => { return props.value.includes(modelData.id); });
+        setValueForSelect(models);
+      } else {
+        setValueForSelect(props.value);
+      }
+    }
+  }, [props.value, options]);
+
   return (
     <MultiSelect
       classNames={{
@@ -64,7 +76,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       showLoader={loading}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      value={props.value}
+      value={valueForSelect}
     />
   );
 });
@@ -87,7 +99,10 @@ MultiAutocompleter.propTypes = {
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is an array of objects matching the shape of options */
-  value: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 MultiAutocompleter.defaultProps = {
