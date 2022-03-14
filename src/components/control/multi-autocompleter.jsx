@@ -4,8 +4,10 @@ import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
-function generateUrl(apiEndpoint, params) {
-  return `${API_ROOT}${apiEndpoint}${apiEndpoint.includes('?') ? '&' : '?'}${params}`;
+function generateUrl(apiEndpoint, [key, value]) {
+  const url = new URL(`${API_ROOT}${apiEndpoint}`);
+  url.searchParams.append(key, value);
+  return url.toString();
 }
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
@@ -19,7 +21,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   function fetchOptions() {
     setLoading(true);
-    fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json, mounted }) => {
+    fetchChoices(generateUrl(props.apiEndpoint, [props.searchParam, searchValue])).then(({ json, mounted }) => {
       if (mounted) {
         setOptions(json.results.map(result => json[result.key][result.id]));
         setLoading(false);
@@ -46,7 +48,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, ['only', props.value.map(props.optionIDGetter).join(',')])).then(({ json, mounted }) => {
         if (mounted) {
           setValue(json.results.map(result => json[result.key][result.id]));
           setLoading(false);
