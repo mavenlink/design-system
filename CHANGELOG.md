@@ -18,6 +18,9 @@ Prepend new items to make git merging easier.
 - refactor(multi-select): remove id attribute on container (since it is unused)
 - refactor(multi-select): move container styling inside the form control for easier refactoring to a multi-select control
 - refactor(multi-select): move dropdown inside the form control for easier refactoring to a multi-select control
+
+## 0.99.2
+
 - fix(choice control): only fetch active choices to avoid "duplicates" bug
 
 ## 0.99.1
