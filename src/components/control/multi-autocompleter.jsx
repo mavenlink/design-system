@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
-import { API_ROOT } from '../../mocks/mock-constants.js';
 
 function generateUrl(apiEndpoint, [key, value]) {
-  const url = new URL(`${API_ROOT}${apiEndpoint}`);
+  const url = new URL(`api/v1${apiEndpoint}`, `${window.location.protocol}//${window.location.host}`);
   url.searchParams.append(key, value);
   return url.toString();
 }
