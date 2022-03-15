@@ -13,8 +13,9 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
+  const initialValue = Object.prototype.toString.call(props.value) !== '[object Array]' ? [props.value] : props.value
   const [valueForSelect, setValueForSelect] = useState([]);
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(initialValue);
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
@@ -47,7 +48,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${initialValue.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
         if (mounted) {
           setValue(json.results.map(result => json[result.key][result.id]));
           setLoading(false);
@@ -60,23 +61,25 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       });
     }
 
-    if (props.value.length) fetchPropsValue();
-  }, [props.value.map(props.optionIDGetter).join(',')]);
+    if (initialValue.length) fetchPropsValue();
+  }, [initialValue.map(props.optionIDGetter).join(',')]);
 
   useEffect(() => {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
 
   useEffect(() => {
-    if (options.length && props.value.length) {
-      if (typeof props.value[0] === 'string' || props.value[0] instanceof String) {
-        const models = options.filter((modelData) => { return props.value.includes(modelData.id); });
+    if (options.length && initialValue.length) {
+      if (typeof initialValue[0] === 'string' || initialValue[0] instanceof String) {
+        const models = options.filter((modelData) => { return initialValue.includes(modelData.id); });
         setValueForSelect(models);
       } else {
-        setValueForSelect(props.value);
+        setValueForSelect(initialValue);
       }
     }
   }, [value, options]);
+
+  console.log(valueForSelect)
 
   return (
     <MultiSelect
