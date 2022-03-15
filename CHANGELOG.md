@@ -1,6 +1,9 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+
+## 0.100.0
+
 - fix(multi-select cell): add validation message as a tooltip on the invalid icon
 - fix(multi-autocompleter): do not call onChange when loading selected values on first-time render
 - fix(multi-choice control): always load provided selected values in case search pagination does not return a result set with the selected values
@@ -18,6 +21,9 @@ Prepend new items to make git merging easier.
 - refactor(multi-select): remove id attribute on container (since it is unused)
 - refactor(multi-select): move container styling inside the form control for easier refactoring to a multi-select control
 - refactor(multi-select): move dropdown inside the form control for easier refactoring to a multi-select control
+
+## 0.99.2
+
 - fix(choice control): only fetch active choices to avoid "duplicates" bug
 - fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
