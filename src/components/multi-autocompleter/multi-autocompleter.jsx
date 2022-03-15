@@ -102,7 +102,11 @@ MultiAutocompleter.propTypes = {
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is an array of objects matching the shape of options */
-  value: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]),
 };
 
 MultiAutocompleter.defaultProps = {
