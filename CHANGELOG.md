@@ -19,6 +19,7 @@ Prepend new items to make git merging easier.
 - refactor(multi-select): move container styling inside the form control for easier refactoring to a multi-select control
 - refactor(multi-select): move dropdown inside the form control for easier refactoring to a multi-select control
 - fix(choice control): only fetch active choices to avoid "duplicates" bug
+- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.99.1
 - fix(analytics): only track the hash to group activity across various domains

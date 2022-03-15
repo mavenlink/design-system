@@ -129,11 +129,17 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()));
   }
 
-  function onAutocompleteBlur() {
+  function onAutocompleteBlur({ relatedTarget }) {
     if (!refs.autocomplete.current) return;
 
     refs.autocomplete.current.setCustomValidity('');
     if (!refs.autocomplete.current.validity.valid) {
+      if (visibleOptionsRefs.find((optionRef) => {
+        return optionRef.current && optionRef.current.rootRef.current === relatedTarget;
+      })) {
+        setValidationMessage(props.validationMessage || '');
+        return;
+      }
       setValidationMessage(refs.autocomplete.current.validationMessage);
     } else {
       setValidationMessage(props.validationMessage || '');
