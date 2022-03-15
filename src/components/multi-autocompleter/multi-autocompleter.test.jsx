@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import {
   render,
   screen,
+  waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
@@ -105,61 +106,6 @@ describe('<MultiAutocompleter>', () => {
       userEvent.keyboard('Find');
 
       expect(await findAvailableOption('test label', 'Find-stub')).toBeInTheDocument();
-    });
-  });
-
-  describe('extraParams API', () => {
-    it('can insert extra params string into request', async () => {
-      jestServer.resetHandlers();
-      jestServer.use(rest.get(`${API_ROOT}/extra`, (request, response, context) => {
-        if (request.url.searchParams.get('an_extra_param') === '1') {
-          return response(
-            context.status(200),
-            context.json({
-              count: 1,
-              meta: {
-                count: 1,
-                page_count: 1,
-                page_number: 0,
-                page_size: 1,
-              },
-              results: [
-                {
-                  key: 'models',
-                  id: '1',
-                },
-              ],
-              models: {
-                1: {
-                  id: '1',
-                  name: 'Test Option',
-                },
-              },
-            }),
-          );
-        }
-
-        return response(
-          context.status(500),
-          context.json({
-            count: 0,
-            meta: {
-              count: 0,
-              page_count: 1,
-              page_number: 0,
-              page_size: 0,
-            },
-            results: [],
-            models: {},
-          }),
-        );
-      }));
-
-      render(<MultiAutocompleter {...requiredProps} apiEndpoint="/extra" extraParams="an_extra_param=1" />);
-
-      await openOptions('test label');
-
-      expect(await findAvailableOption('test label', 'Test Option')).toBeInTheDocument();
     });
   });
 
@@ -280,7 +226,8 @@ describe('<MultiAutocompleter>', () => {
         }]}
       />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      const foo = await findSelectedOption('test label', 'Foo');
+      expect(foo).toBeInTheDocument();
 
       rerender(<MultiAutocompleter
         {...requiredProps}
@@ -290,7 +237,7 @@ describe('<MultiAutocompleter>', () => {
         }]}
       />);
 
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      await waitForElementToBeRemoved(foo);
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
 
       rerender(<MultiAutocompleter

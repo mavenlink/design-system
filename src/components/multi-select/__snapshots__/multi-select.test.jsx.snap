@@ -5,69 +5,65 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
   <div>
     <div
       class="unique-container"
-      id="test-id"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id-autocomplete"
+            id="test-id-label"
           >
-            <label
-              for="test-id-autocomplete"
-              id="test-id-label"
-            >
-              test label
-            </label>
-          </div>
+            test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          class="unique-form-control-children-container"
+          role="presentation"
         >
           <div
-            class="unique-form-control-children-container"
-            role="presentation"
+            aria-labelledby="test-id-label"
+            class="unique-tag-list-class"
+            role="grid"
           >
-            <div
-              aria-labelledby="test-id-label"
-              class="unique-tag-list-class"
-              role="grid"
+            <input
+              aria-autocomplete="list"
+              aria-controls="test-id-listbox"
+              aria-describedby="test-id-empty test-id-autocomplete-tooltip"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              class="unique-input-class"
+              id="test-id-autocomplete"
+              role="combobox"
+              value=""
+            />
+          </div>
+          <div
+            class="icon-container"
+          >
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="6"
+              role="button"
+              tabindex="0"
+              width="10"
             >
-              <input
-                aria-autocomplete="list"
-                aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                autocomplete="off"
-                class="unique-input-class"
-                id="test-id-autocomplete"
-                role="combobox"
-                value=""
+              <title>
+                Open options
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
               />
-            </div>
-            <div
-              class="icon-container"
-            >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="6"
-                role="button"
-                tabindex="0"
-                width="10"
-              >
-                <title>
-                  Open test label options
-                </title>
-                <use
-                  xlink:href="#caret-down.svg"
-                />
-              </svg>
-            </div>
+            </svg>
           </div>
         </div>
       </div>
@@ -81,69 +77,65 @@ exports[`<MultiSelect> has defaults 1`] = `
   <div>
     <div
       class="container"
-      id="test-id"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id-autocomplete"
+            id="test-id-label"
           >
-            <label
-              for="test-id-autocomplete"
-              id="test-id-label"
-            >
-              test label
-            </label>
-          </div>
+            test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          class="form-control-children-container"
+          role="presentation"
         >
           <div
-            class="form-control-children-container"
-            role="presentation"
+            aria-labelledby="test-id-label"
+            class="tag-list"
+            role="grid"
           >
-            <div
-              aria-labelledby="test-id-label"
-              class="tag-list"
-              role="grid"
+            <input
+              aria-autocomplete="list"
+              aria-controls="test-id-listbox"
+              aria-describedby="test-id-empty test-id-autocomplete-tooltip"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              class="input"
+              id="test-id-autocomplete"
+              role="combobox"
+              value=""
+            />
+          </div>
+          <div
+            class="icon-container"
+          >
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="6"
+              role="button"
+              tabindex="0"
+              width="10"
             >
-              <input
-                aria-autocomplete="list"
-                aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                autocomplete="off"
-                class="input"
-                id="test-id-autocomplete"
-                role="combobox"
-                value=""
+              <title>
+                Open options
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
               />
-            </div>
-            <div
-              class="icon-container"
-            >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="6"
-                role="button"
-                tabindex="0"
-                width="10"
-              >
-                <title>
-                  Open test label options
-                </title>
-                <use
-                  xlink:href="#caret-down.svg"
-                />
-              </svg>
-            </div>
+            </svg>
           </div>
         </div>
       </div>
@@ -160,4 +152,129 @@ Object {
   "name": "field-id",
   "value": Array [],
 }
+`;
+
+exports[`<MultiSelect> id API sets various ids 1`] = `
+<body>
+  <div>
+    <div
+      class="container"
+      role="presentation"
+    >
+      <div
+        class="label-wrapper"
+      >
+        <div
+          class="label"
+        >
+          <label
+            for="unique-id-autocomplete"
+            id="unique-id-label"
+          >
+            test label
+          </label>
+        </div>
+      </div>
+      <div
+        class="control-container"
+      >
+        <div
+          class="form-control-children-container"
+          role="presentation"
+        >
+          <div
+            aria-labelledby="unique-id-label"
+            class="tag-list"
+            role="grid"
+          >
+            <div
+              class="tag"
+              id="unique-id-option-1"
+              role="row"
+            >
+              <span
+                class="content"
+                id="unique-id-option-1-content"
+                role="gridcell"
+                tabindex="0"
+              >
+                Foo
+              </span>
+              <span
+                class="icon-wrapper"
+                role="gridcell"
+                tabindex="-1"
+              >
+                <svg
+                  aria-disabled="false"
+                  aria-labelledby="unique-id-option-1-button unique-id-option-1-content"
+                  class="icon"
+                  height="8"
+                  role="button"
+                  tabindex="-1"
+                  width="8"
+                >
+                  <title
+                    id="unique-id-option-1-button"
+                  >
+                    Remove
+                  </title>
+                  <use
+                    xlink:href="#clear.svg"
+                  />
+                </svg>
+              </span>
+            </div>
+            <input
+              aria-autocomplete="list"
+              aria-controls="unique-id-listbox"
+              aria-describedby="unique-id-empty unique-id-autocomplete-tooltip"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              class="input"
+              id="unique-id-autocomplete"
+              role="combobox"
+              value=""
+            />
+          </div>
+          <div
+            class="icon-container"
+          >
+            <svg
+              aria-disabled="false"
+              class="icon-clear"
+              height="8"
+              role="button"
+              tabindex="0"
+              width="8"
+            >
+              <title>
+                Remove all selected options
+              </title>
+              <use
+                xlink:href="#clear.svg"
+              />
+            </svg>
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="6"
+              role="button"
+              tabindex="0"
+              width="10"
+            >
+              <title>
+                Open options
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 `;

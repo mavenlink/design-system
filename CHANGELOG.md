@@ -2,6 +2,26 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+## 0.100.0
+
+- fix(multi-select cell): add validation message as a tooltip on the invalid icon
+- fix(multi-autocompleter): do not call onChange when loading selected values on first-time render
+- fix(multi-choice control): always load provided selected values in case search pagination does not return a result set with the selected values
+- fix(multi-autocompleter control): always load provided selected values in case search pagination does not return a result set with the selected values
+- refactor(multi-autocompleter control): deprecate extraParams API in favor of a simple apiEndpoint API
+- fix(multi-choice cell): only fetch active choices
+- fix(multi-select control): only call onChange API when the value changes (and not on first-time render)
+- feat(multi-select control): dynamic height to fill containing element
+- feat(multi-choice cell): implement cell
+- feat(multi-autocompleter cell): implement cell
+- feat(multi-autocompleter control): implement control
+- feat(multi-select cell): implement cell
+- feat(multi-select control): implement control
+- refactor(multi-select): move key handler inside the form control for easier refactoring to a multi-select control
+- refactor(multi-select): remove id attribute on container (since it is unused)
+- refactor(multi-select): move container styling inside the form control for easier refactoring to a multi-select control
+- refactor(multi-select): move dropdown inside the form control for easier refactoring to a multi-select control
+
 ## 0.99.2
 
 - fix(choice control): only fetch active choices to avoid "duplicates" bug

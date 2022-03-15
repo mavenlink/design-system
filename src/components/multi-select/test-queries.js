@@ -15,12 +15,12 @@ export async function findAvailableOption(fieldLabel, optionLabel) {
   return findByRole(listbox, 'option', { name: optionLabel });
 }
 
-export function findRemoveButton(fieldLabel, optionLabel) {
+export function findRemoveButton(optionLabel) {
   if (optionLabel) {
     return screen.findByRole('button', { name: `Remove ${optionLabel}` });
   }
 
-  return screen.findByText(`Remove all selected options on ${fieldLabel}`);
+  return screen.findByText('Remove all selected options');
 }
 
 export async function findSelectedOption(fieldLabel, optionLabel) {
@@ -42,7 +42,7 @@ export function queryRemoveButton(fieldLabel, optionLabel) {
     return screen.queryByRole('button', { name: `Remove ${optionLabel}` });
   }
 
-  return screen.queryByText(`Remove all selected options on ${fieldLabel}`);
+  return screen.queryByText('Remove all selected options');
 }
 
 export async function querySelectedOption(fieldLabel, optionLabel) {
