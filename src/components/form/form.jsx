@@ -93,6 +93,8 @@ const Form = React.forwardRef((props, forwardedRef) => {
         </Button>
       );
     }
+
+    return undefined;
   }
 
   return (
