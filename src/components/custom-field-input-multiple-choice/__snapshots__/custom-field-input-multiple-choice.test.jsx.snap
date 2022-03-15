@@ -4,70 +4,65 @@ exports[`<CustomFieldInputMultipleChoice> has defaults 1`] = `
 <body>
   <div>
     <div
-      class="container"
-      id="test-id"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="test-id-autocomplete"
+            id="test-id-label"
           >
-            <label
-              for="test-id-autocomplete"
-              id="test-id-label"
-            >
-              test label
-            </label>
-          </div>
+            test label
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          class="form-control-children-container"
+          role="presentation"
         >
           <div
-            class="form-control-children-container"
-            role="presentation"
+            aria-labelledby="test-id-label"
+            class="tag-list"
+            role="grid"
           >
-            <div
-              aria-labelledby="test-id-label"
-              class="tag-list"
-              role="grid"
+            <input
+              aria-autocomplete="list"
+              aria-controls="test-id-listbox"
+              aria-describedby="test-id-empty test-id-autocomplete-tooltip"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              class="input"
+              id="test-id-autocomplete"
+              role="combobox"
+              value=""
+            />
+          </div>
+          <div
+            class="icon-container"
+          >
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="6"
+              role="button"
+              tabindex="0"
+              width="10"
             >
-              <input
-                aria-autocomplete="list"
-                aria-controls="test-id-listbox"
-                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                autocomplete="off"
-                class="input"
-                id="test-id-autocomplete"
-                role="combobox"
-                value=""
+              <title>
+                Open options
+              </title>
+              <use
+                xlink:href="#caret-down.svg"
               />
-            </div>
-            <div
-              class="icon-container"
-            >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="6"
-                role="button"
-                tabindex="0"
-                width="10"
-              >
-                <title>
-                  Open test label options
-                </title>
-                <use
-                  xlink:href="#caret-down.svg"
-                />
-              </svg>
-            </div>
+            </svg>
           </div>
         </div>
       </div>

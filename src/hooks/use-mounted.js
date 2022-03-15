@@ -3,6 +3,7 @@ import {
   useRef,
 } from 'react';
 
+// Deprecated. Use `useMountedEffect` instead.
 export default function useMounted() {
   const mounted = useRef(false);
 

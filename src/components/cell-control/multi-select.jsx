@@ -1,117 +1,55 @@
 import React, {
-  useImperativeHandle,
   useRef,
-  useState,
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import FormControl from '../form-control/form-control.jsx';
+import CellControl from '../cell-control/cell-control.jsx';
 import MultiSelectControl from '../control/multi-select.jsx';
 import styles from './multi-select.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-
-function spread(ref1, ref2) {
-  const newObject = {};
-
-  Object.keys(ref1.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref1.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  Object.keys(ref2.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref2.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  return newObject;
-}
-
-function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
-  if (readOnly) {
-    return styles['form-control-children-container-readonly'];
-  }
-
-  if (validationMessage) {
-    return styles['form-control-children-container-invalid'];
-  }
-
-  return styles['form-control-children-container'];
-}
 
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
-  const selfRef = useForwardedRef(ref);
-  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-
-  const ids = {
-    label: `${props.id}-label`,
-    textbox: `${props.id}-autocomplete`,
+  const classNames = {
+    container: styles.container,
+    formControlChildrenContainer: styles.formControlChildrenContainer,
+    formControlChildrenContainerInvalid: styles.formControlChildrenContainerInvalid,
+    formControlChildrenContainerReadOnly: styles.formControlChildrenContainerReadOnly,
+    ...props.classNames,
   };
   const refs = {
     control: useRef(),
-    multiSelect: useRef(),
   };
-  const classNames = {
-    container: styles.container,
-    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
-    input: props.readOnly ? styles['input-readonly'] : styles.input,
-    tagList: styles['tag-list'],
-    ...props.classNames,
-  };
-
-  function onInvalid(event) {
-    setValidationMessage(event.detail.validationMessage);
-  }
-
-  useImperativeHandle(selfRef, () => spread(
-    refs.control,
-    refs.multiSelect,
-  ));
 
   return (
-    <FormControl
+    <CellControl
       className={classNames.container}
-      id={ids.textbox}
-      label={props.label}
-      labelId={ids.label}
-      name={props.name}
+      labelledBy={props.labelledBy}
       ref={refs.control}
-      required={props.required}
-      tooltip={props.tooltip}
-      validationMessage={validationMessage}
     >
       <MultiSelectControl
         classNames={{
           formControlChildrenContainer: classNames.formControlChildrenContainer,
-          input: classNames.input,
-          tagList: classNames.tagList,
+          formControlChildrenContainerInvalid: classNames.formControlChildrenContainerInvalid,
+          formControlChildrenContainerReadOnly: classNames.formControlChildrenContainerReadOnly,
         }}
         containerRef={refs.control}
         filterOptions={props.filterOptions}
         id={props.id}
-        label={props.label}
         listboxChildren={props.listboxChildren}
         onChange={props.onChange}
         onInput={props.onInput}
-        onInvalid={onInvalid}
         options={props.options}
         optionIDGetter={props.optionIDGetter}
         optionLabelGetter={props.optionLabelGetter}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
-        ref={refs.multiSelect}
+        ref={ref}
         required={props.required}
         showLoader={props.showLoader}
         tagChildren={props.tagChildren}
         validationMessage={props.validationMessage}
         value={props.value}
       />
-    </FormControl>
+    </CellControl>
   );
 });
 
@@ -119,14 +57,11 @@ MultiSelect.propTypes = {
   classNames: PropTypes.shape({
     container: PropTypes.string,
     formControlChildrenContainer: PropTypes.string,
-    input: PropTypes.string,
-    tagList: PropTypes.string,
   }),
   filterOptions: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  labelledBy: PropTypes.string.isRequired,
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onInput: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -139,7 +74,6 @@ MultiSelect.propTypes = {
   required: PropTypes.bool,
   showLoader: PropTypes.bool,
   tagChildren: PropTypes.func,
-  tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is expected to be an array of objects that matches the "option" structure */
   value: PropTypes.arrayOf(PropTypes.object),
@@ -158,7 +92,6 @@ MultiSelect.defaultProps = {
   required: false,
   showLoader: false,
   tagChildren: undefined,
-  tooltip: undefined,
   value: [],
   validationMessage: undefined,
 };
