@@ -25,6 +25,7 @@ export default function useValidation(errorText, inputRef) {
     if (!inputRef.current.validity.valid) {
       setValidationMessage(inputRef.current.validationMessage);
     } else {
+      inputRef.current.setCustomValidity(errorText);
       setValidationMessage(errorText);
     }
   };

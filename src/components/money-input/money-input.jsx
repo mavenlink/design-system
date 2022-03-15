@@ -1,119 +1,48 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
-import Input from '../input/input.jsx';
-import Number from '../number/number.jsx';
+import React, { forwardRef, useState } from 'react';
+import FormControl from '../form-control/form-control.jsx';
+import Money from '../control/money.jsx';
 import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
-import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
-import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
-  const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
-  const [isEditing, setIsEditing] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const componentRef = useRef(null);
-  const numberRef = useRef(null);
-  const valueRef = isEditing ? numberRef : componentRef;
+  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const ref = useForwardedRef(forwardedRef);
-
-  function handleOnBlur(event) {
-    if (numberRef.current.validity.valid) {
-      setInput(event.target.value === '' ? undefined : parseFloat(event.target.value));
-      setIsEditing(false);
-    }
-
-    setIsFocused(false);
-  }
-
-  function handleOnFocus() {
-    if (props.readOnly) return;
-
-    setIsEditing(true);
-    setIsFocused(true);
-  }
-
-  useEffect(() => {
-    if (!numberRef.current && !initialInputValid(props.value)) {
-      setIsEditing(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isEditing && isFocused) {
-      numberRef.current.focus();
-    }
-  });
-
-  useEffect(() => {
-    setInput(subunitToUnit(props.value, props.currencyCode));
-  }, [props.value]);
-
-  useImperativeHandle(ref, () => ({
-    get dirty() {
-      return props.value !== this.value;
-    },
-    id: props.id,
-    name: props.name,
-    get value() {
-      let numberValue;
-
-      if (valueRef.current.value === '') {
-        return undefined;
-      }
-
-      if (isEditing) {
-        const value = valueRef.current.value;
-
-        if (isNaN(value)) {
-          return undefined;
-        }
-
-        numberValue = parseFloat(
-          value * (10 ** currencyMetaData[props.currencyCode].maximumFractionDigits),
-        );
-      } else {
-        numberValue = parseInt(valueRef.current.value.replace(/[^0-9-]/g, ''), 10);
-      }
-
-      return numberValue;
-    },
-  }));
-
-  const sharedProps = {
-    className: props.className,
-    id: props.id,
-    label: props.label,
-    name: props.name,
-    placeholder: props.placeholder,
-    readOnly: props.readOnly,
-    required: props.required,
-    tooltip: props.tooltip,
-    validationMessage: props.validationMessage,
+  const ids = {
+    label: `${props.id}-label`,
   };
 
-  const formattedNumber = formatValue(input, props.currencyCode);
-
-  if (isEditing) {
-    return (
-      <Number
-        {...sharedProps}
-        onBlur={handleOnBlur}
-        onChange={props.onChange}
-        ref={numberRef}
-        step={currencyMetaData[props.currencyCode].step}
-        value={input}
-      />
-    );
+  function onInvalid(event) {
+    setValidationMessage(event.detail.validationMessage);
   }
 
   return (
-    <Input
-      {...sharedProps}
-      onFocus={handleOnFocus}
-      ref={componentRef}
-      type="text"
-      value={formattedNumber}
-    />
+    <FormControl
+      id={props.id}
+      label={props.label}
+      labelId={ids.label}
+      name={props.name}
+      readOnly={props.readOnly}
+      // ref={refs.control}
+      required={props.required}
+      tooltip={props.tooltip}
+      validationMessage={validationMessage}
+    >
+      <Money
+        className={props.className}
+        currencyCode={props.currencyCode}
+        id={props.id}
+        name={props.name}
+        onChange={props.onChange}
+        onInvalid={onInvalid}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        required={props.required}
+        ref={ref}
+        validationMessage={props.validationMessage}
+        value={props.value}
+      />
+    </FormControl>
   );
 });
 

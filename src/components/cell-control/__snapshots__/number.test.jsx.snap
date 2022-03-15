@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Number cell control has defaults 1`] = `
+<body>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th
+            id="labelled-by"
+          >
+            Column Header
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            aria-labelledby="labelled-by"
+            class="container"
+            role="gridcell"
+          >
+            <div
+              style="height: 100%; position: relative;"
+            >
+              <input
+                aria-describedby="test-id-tooltip test-id-validation-message"
+                class="input"
+                id="test-id"
+                max="2147483648"
+                min="-2147483648"
+                step="1"
+                type="number"
+                value=""
+              />
+              <div
+                class="container"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+`;
+
+exports[`Number cell control has defaults 2`] = `
+Object {
+  "dirty": false,
+  "focus": [Function],
+  "validity": ValidityState {},
+  "value": undefined,
+}
+`;

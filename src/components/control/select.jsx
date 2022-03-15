@@ -6,13 +6,11 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icon/icon.jsx';
+import Icons from './icons.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
-import cautionSvg from '../../svgs/caution.svg';
-import Control from '../control/control.jsx';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from '../select/select.css';
@@ -47,7 +45,10 @@ const Select = forwardRef(function Select(props, ref) {
   const invalid = validationMessage.length > 0;
 
   const classNames = {
-    input: invalid ? styles['input-invalid'] : styles.input,
+    container: styles.container,
+    input: styles.input,
+    invalidInput: styles['input-invalid'],
+    ...props.classNames,
   };
 
   const ids = {
@@ -87,6 +88,11 @@ const Select = forwardRef(function Select(props, ref) {
           event.nativeEvent.stopImmediatePropagation();
         }
         setShowOptions(false);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setShowOptions(true);
+        refs.listbox.current?.focus();
         break;
       default:
     }
@@ -180,75 +186,70 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <Control
-      labelledBy={ids.label}
-      validationMessage={validationMessage}
-      validationMessageId={ids.validation}
-    >
-      <div style={{ position: 'relative' }}>
-        <input
-          autoComplete="off"
-          aria-autocomplete="none"
-          aria-controls={ids.listbox}
-          aria-haspopup="listbox"
-          aria-expanded={showOptions}
-          aria-invalid={invalid ? 'true' : undefined}
-          aria-describedby={`${ids.tooltip} ${ids.validation}`}
-          className={classNames.input}
-          id={ids.input}
-          role="combobox"
-          name={props.name}
-          onBlur={onBlur}
-          onChange={onSearchChange}
-          onClick={onClick}
-          onKeyDown={onKeyDown}
-          onInput={props.onInput}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          style={{ '--numIcon': 3 }}
-          type="text"
-          value={searchValue ?? defaultValue ?? ''}
-        />
-        <div className={styles['icon-container']}>
-          {validationMessage.length > 0 ? (<Icon
-            className={styles['input-icon']}
-            icon={cautionSvg}
-            label="Invalid custom field"
-          />) : undefined}
-          {!props.readOnly && (value || searchValue) ? (
-            <IconButton
-              icon={iconClear}
-              label={'Remove selected choice'}
-              onPress={clear}
-            />
-          ) : undefined}
-          <Icon
-            className={styles['input-icon']}
-            icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
-            label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+    <div className={classNames.container} style={{ position: 'relative' }}>
+      <input
+        autoComplete="off"
+        aria-autocomplete="none"
+        aria-controls={ids.listbox}
+        aria-haspopup="listbox"
+        aria-expanded={showOptions}
+        aria-invalid={invalid ? 'true' : undefined}
+        aria-describedby={`${ids.tooltip} ${ids.validation}`}
+        className={invalid ? classNames.invalidInput : classNames.input}
+        id={ids.input}
+        role="combobox"
+        name={props.name}
+        onBlur={onBlur}
+        onChange={onSearchChange}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        onInput={props.onInput}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        style={{ '--numIcon': 3 }}
+        type="text"
+        value={searchValue ?? defaultValue ?? ''}
+      />
+      <Icons
+        classNames={undefined}
+        validationMessage={validationMessage}
+        validationMessageId={ids.validation}
+        validationMessageTooltip={props.validationMessageTooltip}
+      >
+        {!props.readOnly && (value || searchValue) ? (
+          <IconButton
+            icon={iconClear}
+            label={'Remove selected choice'}
+            onPress={clear}
           />
-        </div>
-        { showOptions && (
-          <Listbox
-            className={styles.dropdown}
-            id={`${props.id}-single-choice-listbox`}
-            labelledBy={`${props.id}-label`}
-            onChange={onSelectionChange}
-            ref={refs.listbox}
-            refs={props.listOptionRefs}
-            value={value}
-          >
-            {({ onSelect }) => {
-              const options = props.children({ onSelect });
-              if (React.Children.count(options) === 0) return <NoOptions />;
-              return options;
-            }}
-          </Listbox>
-        )}
-      </div>
-    </Control>
+        ) : undefined}
+        <IconButton
+          disabled={props.readOnly}
+          icon={props.readOnly ? iconCaretDownDisabled : iconCaretDown}
+          label={props.readOnly ? 'Select is not editable' : 'Open choices listbox'}
+          onPress={onClick}
+        />
+      </Icons>
+      { showOptions && (
+        <Listbox
+          className={styles.dropdown}
+          id={`${props.id}-single-choice-listbox`}
+          labelledBy={`${props.id}-label`}
+          onChange={onSelectionChange}
+          ref={refs.listbox}
+          refs={props.listOptionRefs}
+          value={value}
+        >
+          {({ onSelect }) => {
+            const options = props.children({ onSelect });
+            if (React.Children.count(options) === 0) return <NoOptions />;
+            return options;
+          }}
+        </Listbox>
+      )}
+    </div>
   );
 });
 
@@ -262,6 +263,11 @@ const ListOptionRefType = PropTypes.shape({
 
 Select.propTypes = {
   children: PropTypes.func,
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    input: PropTypes.string,
+    invalidInput: PropTypes.string,
+  }),
   /** Function is passed `value`, default returns value without modification, should always return a `string`. You *should* set this if your `value` is not of type `string`. Pass in `false` to prevent filtering. */
   displayValueEvaluator: PropTypes.oneOfType([
     PropTypes.func,
@@ -277,13 +283,16 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  // type: PropTypes.oneOf(['cell', 'field']).isRequired,
   validationMessage: PropTypes.string,
+  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
 
 Select.defaultProps = {
   children: () => {},
+  classNames: {},
   displayValueEvaluator: value => value,
   onChange: () => {},
   onInput: () => {},
@@ -292,6 +301,7 @@ Select.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
+  validationMessageTooltip: false,
   value: undefined,
   wrapperRef: undefined,
 };

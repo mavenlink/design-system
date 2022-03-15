@@ -194,7 +194,7 @@ describe('DurationInput', () => {
     it('is invalid on mount but does not have an error message', () => {
       render(<DurationInput {...requiredProps} required={true} />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
     });
 
     it('is invalid after tabbing through', async () => {
@@ -202,11 +202,11 @@ describe('DurationInput', () => {
       userEvent.tab();
       expect(document.activeElement).toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
       userEvent.tab();
       expect(document.activeElement).not.toBe(screen.getByLabelText('the label'));
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -221,14 +221,14 @@ describe('DurationInput', () => {
     it('can be set', () => {
       render(<DurationInput {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByLabelText('the label')).toBeInvalid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('unique error');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('unique error');
       expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
     });
 
     it('can be unset', () => {
       render(<DurationInput {...requiredProps} validationMessage="" />);
       expect(screen.getByLabelText('the label')).toBeValid();
-      expect(screen.getByLabelText('the label')).toHaveDescription('');
+      expect(screen.getByLabelText('the label')).toHaveAccessibleDescription('');
     });
   });
 
@@ -364,14 +364,14 @@ describe('DurationInput', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<DurationInput {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveDescription(tooltip);
+      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<DurationInput {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveDescription('');
+      expect(screen.getByRole('textbox', { name: requiredProps.label })).toHaveAccessibleDescription('');
     });
   });
 });

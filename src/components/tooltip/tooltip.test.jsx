@@ -38,23 +38,23 @@ describe('tooltip', () => {
   describe('hovering behavior', () => {
     it('does not render the tooltip unless the child is hovered', () => {
       render(<Tooltip {...requiredProps} />);
-      expect(screen.getByText('Child')).not.toHaveDescription('Help Text');
+      expect(screen.getByText('Child')).not.toHaveAccessibleDescription('Help Text');
     });
 
     it('applies a description to the children when hovered', () => {
       render(<Tooltip {...requiredProps} />);
       user.hover(screen.getByText('Child'));
-      expect(screen.getByText('Child')).toHaveDescription('Help Text');
+      expect(screen.getByText('Child')).toHaveAccessibleDescription('Help Text');
     });
 
     it('removes the description when the child is no longer hovered', () => {
       render(<Tooltip {...requiredProps} />);
 
       user.hover(screen.getByText('Child'));
-      expect(screen.getByText('Child')).toHaveDescription('Help Text');
+      expect(screen.getByText('Child')).toHaveAccessibleDescription('Help Text');
 
       user.unhover(screen.getByText('Child'));
-      expect(screen.getByText('Child')).not.toHaveDescription('Help Text');
+      expect(screen.getByText('Child')).not.toHaveAccessibleDescription('Help Text');
     });
   });
 
@@ -65,18 +65,18 @@ describe('tooltip', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
       user.tab();
       expect(screen.getByRole('textbox')).toHaveFocus();
-      expect(screen.getByRole('textbox')).toHaveDescription('Help Text');
+      expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Help Text');
     });
 
     it('removes the description when the child is no longer focused', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
       user.tab();
       expect(screen.getByRole('textbox')).toHaveFocus();
-      expect(screen.getByRole('textbox')).toHaveDescription('Help Text');
+      expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Help Text');
 
       user.tab();
       expect(screen.getByRole('textbox')).not.toHaveFocus();
-      expect(screen.getByRole('textbox')).not.toHaveDescription('Help Text');
+      expect(screen.getByRole('textbox')).not.toHaveAccessibleDescription('Help Text');
     });
   });
 
@@ -84,7 +84,7 @@ describe('tooltip', () => {
     it('does not show on hover when disabled', () => {
       render(<Tooltip {...requiredProps} disabled={true} />);
       user.hover(screen.getByText('Child'));
-      expect(screen.getByText('Child')).not.toHaveDescription('Help Texts');
+      expect(screen.getByText('Child')).not.toHaveAccessibleDescription('Help Texts');
     });
 
     it('does not show on focus when disabled', () => {
@@ -95,7 +95,7 @@ describe('tooltip', () => {
       );
 
       user.tab();
-      expect(screen.getByRole('textbox')).not.toHaveDescription('Help Texts');
+      expect(screen.getByRole('textbox')).not.toHaveAccessibleDescription('Help Texts');
     });
   });
 

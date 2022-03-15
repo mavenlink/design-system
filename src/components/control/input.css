@@ -3,7 +3,7 @@
 @import "../../styles/typography-v2.css";
 
 .container {
-  height: var(--spacing-x-large);
+  height: 100%;
 }
 
 .input {
@@ -12,6 +12,7 @@
   box-sizing: border-box;
   font: var(--mds-type-content);
   height: 100%;
+  min-height: var(--spacing-x-large);
   margin: 0;
   padding: 0 var(--spacing-x-large) 0 var(--spacing-medium);
   width: 100%;

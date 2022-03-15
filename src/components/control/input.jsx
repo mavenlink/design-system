@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
-import Control from './control.jsx';
 import Icon from '../icon/icon.jsx';
 import styles from './input.css';
 import useMounted from '../../hooks/use-mounted.js';
@@ -18,7 +17,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
+    validation: props.validationMessageId ?? `${props.id}-validation-message`,
   };
   const refs = {
     input: useRef(),
@@ -64,40 +63,35 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <Control
-      labelledBy={props.labelledBy}
-      validationMessage={validationMessage}
-      validationMessageId={ids.validation}
-    >
-      <div className={classNames.container} style={{ position: 'relative' }}>
-        <input
-          autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-          aria-describedby={`${ids.validation} ${props.describedBy}`}
-          className={validationMessage ? classNames.invalidInput : classNames.input}
-          defaultValue={props.value}
-          id={props.id}
-          maxLength={props.maxLength}
-          name={props.name}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onInput={props.onInput}
-          onKeyDown={props.onKeyDown}
-          placeholder={props.placeholder}
-          readOnly={props.readOnly}
-          ref={refs.input}
-          required={props.required}
-          type={props.type}
+    <div className={classNames.container} style={{ position: 'relative' }}>
+      <input
+        autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+        aria-describedby={`${ids.validation} ${props.describedBy}`}
+        className={validationMessage ? classNames.invalidInput : classNames.input}
+        defaultValue={props.value}
+        id={props.id}
+        maxLength={props.maxLength}
+        name={props.name}
+        onBlur={onBlur}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onInput={props.onInput}
+        onKeyDown={props.onKeyDown}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        type={props.type}
+      />
+      {!!validationMessage && (
+        <Icon
+          className={styles['invalid-icon']}
+          icon={cautionSvg}
+          id={props.validationMessageId ? undefined : ids.validation}
+          label={validationMessage}
         />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            label={validationMessage}
-          />
-        )}
-      </div>
-    </Control>
+      )}
+    </div>
   );
 });
 
@@ -110,7 +104,6 @@ Input.propTypes = {
   }),
   describedBy: PropTypes.string,
   id: PropTypes.string.isRequired,
-  labelledBy: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   name: PropTypes.string,
   onBlur: PropTypes.func,
@@ -128,6 +121,7 @@ Input.propTypes = {
     'text',
   ]),
   validationMessage: PropTypes.string,
+  validationMessageId: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -149,6 +143,7 @@ Input.defaultProps = {
   tooltip: undefined,
   type: 'text',
   validationMessage: '',
+  validationMessageId: undefined,
   value: undefined,
 };
 

@@ -1,0 +1,14 @@
+.container {
+  composes: container from './cell-control.css';
+  height: 100%; /* In order for an element to match its parent's height, the parent needs an explicit height. Set it on the <td> or relevant <div>. */
+}
+
+.input {
+  composes: input from '../control/date.css';
+  border: none;
+}
+
+.invalid-input {
+  composes: invalid-input from '../control/date.css';
+  border: none;
+}

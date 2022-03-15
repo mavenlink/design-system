@@ -73,4 +73,13 @@ describe('Select cell control', () => {
       }));
     });
   });
+
+  describe('validationMessage API', () => {
+    it('shows a tooltip on the invalid icon', () => {
+      render(<Select {...requiredProps} validationMessage="This is an error message." />);
+      expect(screen.getByRole('combobox')).toHaveAccessibleDescription('This is an error message.');
+      user.hover(screen.getByRole('img', { name: 'This is an error message.' }));
+      expect(document.body).toMatchSnapshot();
+    });
+  });
 });

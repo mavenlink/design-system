@@ -57,12 +57,12 @@ describe('CustomFieldInputNumber', () => {
       const { rerender } = render(<CustomFieldInputNumber {...requiredProps} errorText="" />);
       expect(screen.queryByText("Here's some help text!")).not.toBeInTheDocument();
       rerender(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription("Here's some help text!");
     });
 
     it('shows the provided errorText when true', () => {
       render(<CustomFieldInputNumber {...requiredProps} errorText="Here's some help text!" />);
-      expect(screen.getByLabelText('Test label')).toHaveDescription("Here's some help text!");
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription("Here's some help text!");
     });
 
     it('does not show errorText when it does not exist', () => {
@@ -196,7 +196,7 @@ describe('CustomFieldInputNumber', () => {
       const validityText = 'Constraints not satisfied';
       render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription(validityText);
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription(validityText);
     });
   });
 
@@ -235,14 +235,14 @@ describe('CustomFieldInputNumber', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<CustomFieldInputNumber {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<CustomFieldInputNumber {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 });

@@ -25,7 +25,7 @@ exports[`Input cell control className API 1`] = `
               style="position: relative;"
             >
               <input
-                aria-describedby="test-idHint "
+                aria-describedby="test-id-validation-message "
                 class="input"
                 id="test-id"
                 name="test-name"
@@ -66,7 +66,7 @@ exports[`Input cell control has defaults 1`] = `
               style="position: relative;"
             >
               <input
-                aria-describedby="test-idHint "
+                aria-describedby="test-id-validation-message "
                 class="input"
                 id="test-id"
                 name="test-name"
@@ -115,7 +115,7 @@ exports[`Input cell control id API is a string 1`] = `
               style="position: relative;"
             >
               <input
-                aria-describedby="unique-idHint "
+                aria-describedby="unique-id-validation-message "
                 class="input"
                 id="unique-id"
                 name="test-name"

@@ -5,7 +5,7 @@ import CustomFieldInputNumber from '../custom-field-input-number/custom-field-in
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import { initialInputValid, subunitToUnit, formatValue } from '../money-input/money-formatter.js';
+import { initialInputValid, subunitToUnit, formatValue } from '../control/money-formatter.js';
 
 const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));

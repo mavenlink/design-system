@@ -1,9 +1,0 @@
-@import '../../styles/colors-v2.css';
-@import '../../styles/spacing.css';
-@import '../../styles/typography-v2.css';
-
-.validation-message {
-  color: var(--mds-red-text);
-  font: var(--mds-type-content);
-  padding-bottom: var(--spacing-medium);
-}

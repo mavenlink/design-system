@@ -1,61 +1,60 @@
-A grid cell for text datum.
+A grid cell for autocomplete-able datum.
 
 ```jsx
 import Autocompleter from '@mavenlink/design-system/src/components/cell-control/autocompleter.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
 
 const ids = {
   th: {
-    autocompleter: uuid.v4(),
+    example: uuid.v4(),
   },
 };
 
-<table role="grid">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th id={ids.th.select} role="columnheader" scope="col">Autocompleter</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td role="rowheader">Default</td>
+<Table>
+  <TableHeader>
+    <TableHeaderCell>State</TableHeaderCell>
+    <TableHeaderCell id={ids.th.example}>Autocompleter</TableHeaderCell>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell role="rowheader">Default</TableCell>
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-1"
       />
-    </tr>
-    <tr>
-      <td role="rowheader">Read-only</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Read-only</TableCell>
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-2"
         readOnly
       />
-    </tr>
-    <tr>
-      <td role="rowheader">Required</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Required</TableCell>
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-3"
         required
       />
-    </tr>
-    <tr>
-      <td role="rowheader">Invalid</td>
+    </TableRow>
+    <TableRow>
+      <TableCell role="rowheader">Invalid</TableCell>
       <Autocompleter
         apiEndpoint='/models'
         id={uuid.v4()}
-        labelledBy={ids.th.autocompleter}
+        labelledBy={ids.th.example}
         name="autocompleter-4"
         validationMessage="This is a validation message."
       />
-    </tr>
-  </tbody>
-</table>
+    </TableRow>
+  </TableBody>
+</Table>
 ```

@@ -51,4 +51,49 @@ describe('src/components/control/select', () => {
     rerender(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
     expect(screen.getByLabelText('Test label')).toHaveValue('foo');
   });
+
+  describe('classNames API', () => {
+    it('sets container', () => {
+      render(<Select
+        {...requiredProps}
+        classNames={{
+          container: 'unique-container',
+        }}
+      />);
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('sets valid input', () => {
+      render(<Select
+        {...requiredProps}
+        classNames={{
+          input: 'unique-input',
+        }}
+      />);
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('sets invalid input', () => {
+      render(<Select
+        {...requiredProps}
+        classNames={{
+          invalidInput: 'unique-invalid-input',
+        }}
+        validationMessage="This is an error state."
+      />);
+      expect(screen.getByLabelText('Test label')).toBeInvalid();
+    });
+
+    it('sets all class names', () => {
+      render(<Select
+        {...requiredProps}
+        classNames={{
+          container: 'unique-container',
+          input: 'unique-input',
+          invalidInput: 'unique-invalid-input',
+        }}
+      />);
+      expect(document.body).toMatchSnapshot();
+    });
+  });
 });

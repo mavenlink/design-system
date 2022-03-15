@@ -8,7 +8,8 @@ const FormControl = forwardRef(function FormControl(props, ref) {
     container: props.className,
     control: styles['control-container'],
     heading: styles['label-wrapper'],
-    label: props.error ? styles['invalid-label'] : styles.label,
+    label: props.validationMessage ? styles['invalid-label'] : styles.label,
+    validationMessage: styles['validation-message'],
   };
   const ids = {
     input: props.id,
@@ -49,6 +50,15 @@ const FormControl = forwardRef(function FormControl(props, ref) {
       </div>
       <div className={classNames.control}>
         {props.children}
+        {!!props.validationMessage && (
+          <span
+            aria-hidden="true"
+            aria-live="polite"
+            className={classNames.validationMessage}
+          >
+            {props.validationMessage}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -57,7 +67,6 @@ const FormControl = forwardRef(function FormControl(props, ref) {
 FormControl.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), // TODO: Refactor as boolean
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   /** The ID of the label element. */
@@ -67,17 +76,18 @@ FormControl.propTypes = {
   onKeyDown: PropTypes.func,
   required: PropTypes.bool,
   tooltip: PropTypes.string,
+  validationMessage: PropTypes.string,
 };
 
 FormControl.defaultProps = {
   className: undefined,
-  error: '',
   id: undefined,
   labelId: undefined,
   name: undefined,
   onKeyDown: () => {},
   required: false,
   tooltip: undefined,
+  validationMessage: '',
 };
 
 export default FormControl;

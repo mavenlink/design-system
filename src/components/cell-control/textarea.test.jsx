@@ -118,7 +118,7 @@ describe('Textarea cell control', () => {
     it('is set', () => {
       render(<Textarea {...requiredProps} validationMessage="Unique validationMessage" />);
       expect(screen.getByRole('textbox')).toBeInvalid();
-      expect(screen.getByRole('textbox')).toHaveDescription('Unique validationMessage');
+      expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Unique validationMessage');
     });
   });
 

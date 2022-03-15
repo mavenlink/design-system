@@ -17,7 +17,7 @@
 }
 
 .option:hover {
-  background-color: var(--selected-background); /* stylelint-disable-line mds/colors */
+  background-color: var(--selected-background) !important; /* stylelint-disable-line mds/colors */
 }
 
 .selected {

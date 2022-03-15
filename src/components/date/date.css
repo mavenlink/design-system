@@ -1,43 +1,7 @@
-@import '../../styles/spacing.css';
-@import '../../styles/colors-v2.css';
-
-.container {
-  position: relative;
-}
-
 .input {
-  --size-of-icons-container: 37px;
-
-  composes: input from '../input/input.css';
-  padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
-}
-
-.input::-webkit-calendar-picker-indicator {
-  display: none;
+  composes: input from '../control/date.css';
 }
 
 .invalid-input {
-  composes: input;
-  composes: invalid-input from '../input/input.css';
-}
-
-.icons {
-  align-items: center;
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: var(--spacing-small);
-  position: absolute;
-  right: var(--spacing-medium);
-  transform: translateY(-50%);
-  top: 50%;
-}
-
-.invalid-icon {
-  pointer-events: none;
-}
-
-.calendar-container {
-  position: absolute;
-  background-color: var(--white);
-  z-index: 2147483647;
+  composes: invalid-input from '../control/date.css';
 }

@@ -33,13 +33,13 @@ describe('CustomFieldInputText', () => {
     it('can have an error state through a custom validation', () => {
       render(<CustomFieldInputText {...requiredProps} errorText="Custom validation message" />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('Custom validation message');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Custom validation message');
     });
 
     it('can have no error state', () => {
       render(<CustomFieldInputText {...requiredProps} />);
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(screen.queryByRole('[role="img"]')).toBeFalsy();
+      expect(screen.queryByRole('img')).toBeFalsy();
     });
   });
 
@@ -77,15 +77,15 @@ describe('CustomFieldInputText', () => {
     it('initially, it does not show errors for html-invalidity. It shows errors for html-invalidity after tabbing', () => {
       render(<CustomFieldInputText {...requiredProps} required />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '123');
       expect(screen.getByLabelText('Test label')).toBeValid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.type(screen.getByLabelText('Test label'), '{backspace}{backspace}{backspace}');
-      expect(screen.getByLabelText('Test label')).toHaveDescription('');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
       userEvent.tab();
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -95,14 +95,14 @@ describe('CustomFieldInputText', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<CustomFieldInputText {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<CustomFieldInputText {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 });

@@ -90,7 +90,7 @@ describe('Icon', () => {
           <Icon {...requiredProps} describedBy="help-id" />
         </React.Fragment>
       ));
-      expect(screen.getByRole('img', { name: 'Test label' })).toHaveDescription('Help Text');
+      expect(screen.getByRole('img', { name: 'Test label' })).toHaveAccessibleDescription('Help Text');
     });
   });
 });

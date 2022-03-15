@@ -6,7 +6,6 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import cautionSvg from '../../svgs/caution.svg';
-import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import Icon from '../icon/icon.jsx';
 import useMounted from '../../hooks/use-mounted.js';
@@ -88,35 +87,31 @@ const Textarea = forwardRef(function Textarea({
       ref={refs.control}
       required={required}
       tooltip={tooltip}
+      validationMessage={validationMessageValue}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessageValue}
-        validationMessageId={ids.validation}
-      >
-        <div style={{ position: 'relative' }}>
-          <textarea
-            aria-describedby={`${ids.tooltip} ${ids.validation}`}
-            className={getClassName(className, validationMessageValue)}
-            defaultValue={value}
-            id={ids.input}
-            name={name}
-            onBlur={blurHandler}
-            onChange={changeHandler}
-            placeholder={placeholder}
-            readOnly={readOnly}
-            ref={refs.input}
-            required={required}
+      <div style={{ position: 'relative' }}>
+        <textarea
+          aria-describedby={`${ids.tooltip} ${ids.validation}`}
+          className={getClassName(className, validationMessageValue)}
+          defaultValue={value}
+          id={ids.input}
+          name={name}
+          onBlur={blurHandler}
+          onChange={changeHandler}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          ref={refs.input}
+          required={required}
+        />
+        {!!validationMessageValue && (
+          <Icon
+            className={styles['invalid-icon']}
+            icon={cautionSvg}
+            id={ids.validation}
+            label={validationMessageValue}
           />
-          {!!validationMessageValue && (
-            <Icon
-              className={styles['invalid-icon']}
-              icon={cautionSvg}
-              label={validationMessageValue}
-            />
-          )}
-        </div>
-      </Control>
+        )}
+      </div>
     </FormControl>
   );
 });

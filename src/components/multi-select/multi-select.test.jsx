@@ -227,10 +227,10 @@ describe('<MultiSelect>', () => {
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findAutocompleter('test label')).not.toHaveAttribute('required');
       expect(await findAutocompleter('test label')).toBeValid();
-      expect(await findAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      expect(await findAutocompleter('test label')).not.toHaveAccessibleDescription('Constraints not satisfied');
       userEvent.click(await findAutocompleter('test label'));
       userEvent.tab();
-      expect(await findAutocompleter('test label')).not.toHaveDescription('Constraints not satisfied');
+      expect(await findAutocompleter('test label')).not.toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -370,7 +370,7 @@ describe('<MultiSelect>', () => {
     it('informs the user when no option is available', async () => {
       render(<MultiSelect {...requiredProps} options={[]} />);
       await openOptions('test label');
-      expect(await findAutocompleter('test label')).toHaveDescription('No options available.');
+      expect(await findAutocompleter('test label')).toHaveAccessibleDescription('No options available.');
     });
   });
 
@@ -531,14 +531,14 @@ describe('<MultiSelect>', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<MultiSelect {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription(tooltip);
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<MultiSelect {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveDescription('');
+      expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription('');
     });
   });
 });

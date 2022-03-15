@@ -28,7 +28,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
           style="position: relative;"
         >
           <input
-            aria-describedby="test-inputHint test-input-tooltip"
+            aria-describedby="test-input-validation-message test-input-tooltip"
             class="input"
             id="test-input"
             name="field-id"

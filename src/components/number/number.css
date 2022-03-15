@@ -1,5 +1,9 @@
+@import '../../styles/spacing.css';
+
 .input {
   composes: input from '../input/input.css';
+  height: 100%;
+  min-height: var(--spacing-x-large);
 }
 
 .invalid-icon {

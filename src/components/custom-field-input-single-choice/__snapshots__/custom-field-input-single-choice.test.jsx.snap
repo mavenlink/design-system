@@ -24,6 +24,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         class="control-container"
       >
         <div
+          class="container"
           style="position: relative;"
         >
           <input
@@ -42,12 +43,14 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
             value=""
           />
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
-              class="input-icon"
+              aria-disabled="false"
+              class="button"
               height="6"
-              role="img"
+              role="button"
+              tabindex="0"
               width="10"
             >
               <title>

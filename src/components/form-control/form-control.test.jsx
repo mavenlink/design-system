@@ -8,6 +8,7 @@ describe('<FormControl>', () => {
     children: <input aria-describedby="test-idHint" id="test-id" />,
     id: 'test-id',
     label: 'Test label',
+    validationMessageId: 'test-validation-id',
   };
 
   it('has defaults', () => {
@@ -34,9 +35,9 @@ describe('<FormControl>', () => {
     });
   });
 
-  describe('error API', () => {
+  describe('validationMessage API', () => {
     it('can be set', () => {
-      render(<FormControl {...requiredProps} error="I am an error message">{requiredProps.children}</FormControl>);
+      render(<FormControl {...requiredProps} validationMessage="I am an error message">{requiredProps.children}</FormControl>);
       expect(document.body).toMatchSnapshot();
     });
   });

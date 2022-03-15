@@ -13,7 +13,6 @@
   padding-left: var(--spacing-medium);
   padding-right: var(--spacing-medium);
   width: calc((var(--spacing-x-large) * 7) + calc(var(--spacing-medium) * 2));
-  height: 293px;
 }
 
 .header {

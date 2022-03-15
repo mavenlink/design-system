@@ -24,10 +24,10 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
         class="control-container"
       >
         <div
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
-            aria-describedby="test-input-tooltip test-inputHint"
+            aria-describedby="test-input-tooltip test-input-validation-message"
             class="input"
             id="test-input"
             max="2147483648"
@@ -36,6 +36,9 @@ exports[`CustomFieldInputNumber has defaults 1`] = `
             step="1"
             type="number"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>

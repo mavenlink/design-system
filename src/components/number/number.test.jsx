@@ -138,7 +138,7 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
       userEvent.click(screen.getByLabelText('Test Component'));
       userEvent.tab();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('Constraints not satisfied');
     });
 
     it('can be unset', () => {
@@ -147,13 +147,13 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toBeValid();
       userEvent.click(screen.getByLabelText('Test Component'));
       userEvent.tab();
-      expect(screen.getByLabelText('Test Component')).not.toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).not.toHaveAccessibleDescription('Constraints not satisfied');
     });
 
     it('is invalid on mount but does not have an error message', () => {
       render(<Number {...requiredProps} required />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('');
     });
 
     it('is invalid after tabbing through', async () => {
@@ -161,11 +161,11 @@ describe('Number', () => {
       userEvent.tab();
       expect(document.activeElement).toBe(screen.getByLabelText('Test Component'));
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('');
       userEvent.tab();
       expect(document.activeElement).not.toBe(screen.getByLabelText('Test Component'));
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -175,14 +175,14 @@ describe('Number', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Number {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<Number {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 
@@ -209,7 +209,7 @@ describe('Number', () => {
     it('indicates if it is invalid on mount', () => {
       render(<Number {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('Constraints not satisfied');
     });
   });
 
@@ -217,14 +217,14 @@ describe('Number', () => {
     it('can be set', () => {
       render(<Number {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('unique error');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('unique error');
       expect(screen.getByRole('img', { name: 'unique error' })).toBeInTheDocument();
     });
 
     it('can be unset', () => {
       render(<Number {...requiredProps} validationMessage="" />);
       expect(screen.getByLabelText('Test Component')).toBeValid();
-      expect(screen.getByLabelText('Test Component')).toHaveDescription('');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('');
     });
   });
 

@@ -81,6 +81,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   return (
     <Select
+      classNames={props.classNames}
       displayValueEvaluator={props.displayValueEvaluator}
       id={props.id}
       labelledBy={props.labelledBy}
@@ -95,6 +96,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
+      validationMessageTooltip={props.validationMessageTooltip}
       value={model}
       wrapperRef={props.wrapperRef}
     >
@@ -116,6 +118,11 @@ function displayName(modelInfo) {
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
+  classNames: PropTypes.shape({
+    container: PropTypes.string,
+    input: PropTypes.string,
+    invalidInput: PropTypes.string,
+  }),
   /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
@@ -129,6 +136,7 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
+  validationMessageTooltip: PropTypes.bool,
   /** The `value` props is expected an `id` used to fetch a model on the API. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
@@ -136,7 +144,7 @@ Autocompleter.propTypes = {
 
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
-  className: undefined,
+  classNames: {},
   displayValueEvaluator: displayName,
   label: undefined,
   onChange: () => {},
@@ -147,6 +155,7 @@ Autocompleter.defaultProps = {
   searchParam: 'matching',
   tooltip: undefined,
   validationMessage: undefined,
+  validationMessageTooltip: false,
   value: undefined,
 };
 

@@ -110,7 +110,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" errorText="Bad Date!" />);
       expect(screen.getByLabelText('Field Date')).not.toBeValid();
       expect(screen.getByTitle('Bad Date!')).toBeInTheDocument();
-      expect(screen.getByLabelText('Field Date')).toHaveDescription('Bad Date!');
+      expect(screen.getByLabelText('Field Date')).toHaveAccessibleDescription('Bad Date!');
     });
   });
 
@@ -205,7 +205,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('opens to the correct date on click and closes when clicking away', () => {
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.getByText('July 2016')).toBeInTheDocument();
       userEvent.click(document.body);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
@@ -225,7 +225,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('changes the date to the date selected', () => {
       const { getByLabelText } = render(<CustomFieldInputDate {...requiredProps} value="2016-09-13" />);
       expect(getByLabelText('Field Date')).toHaveValue('Sep 13, 2016');
-      userEvent.click(screen.getByTitle('Field Date calendar button'));
+      userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText('September 14'));
       expect(getByLabelText('Field Date')).toHaveValue('Sep 14, 2016');
     });
@@ -233,7 +233,7 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('does not open', () => {
       render(<CustomFieldInputDate {...requiredProps} value="2016-07-18" readOnly />);
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
-      userEvent.click(screen.getByTitle('Field Date calendar icon'));
+      userEvent.click(screen.getByTitle('calendar button'));
       expect(screen.queryByText('July 2016')).not.toBeInTheDocument();
     });
   });
@@ -274,14 +274,14 @@ describe('src/components/custom-field-input-date/custom-field-input-date', () =>
     it('applies a description to the input when the help icon is hovered', () => {
       render(<CustomFieldInputDate {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<CustomFieldInputDate {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 });

@@ -15,7 +15,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   };
 
   const ref = useForwardedRef(forwardedRef);
-  const [invalid, setInvalid] = useState('');
+  const [validationMessage, setValidationMessage] = useState('');
 
   useImperativeHandle(ref, () => ({
     ...refs.control.current,
@@ -26,7 +26,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   return (
     <FormControl
       className={props.cssContainer}
-      error={invalid}
       id={props.id}
       label={props.label}
       labelId={ids.label}
@@ -35,6 +34,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
     >
       <InputControl
         autoFocus={props.autoFocus}
@@ -50,7 +50,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         onChange={props.onChange}
         onFocus={props.onFocus}
         onInput={props.onInput}
-        onInvalid={event => setInvalid(event.detail.validationMessage)}
+        onInvalid={event => setValidationMessage(event.detail.validationMessage)}
         onKeyDown={props.onKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}

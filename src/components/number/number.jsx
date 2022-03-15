@@ -1,82 +1,55 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import Control from '../control/control.jsx';
 import FormControl from '../form-control/form-control.jsx';
-import useValidation from '../../hooks/use-validation.jsx';
-import useMounted from '../../hooks/use-mounted.js';
-import Icon from '../icon/icon.jsx';
-import cautionSvg from '../../svgs/caution.svg';
-import styles from './number.css';
+import NumberControl from '../control/number.jsx';
 
-function getClassName(className, validationMessage) {
-  if (className) return className;
-  return validationMessage ? styles['invalid-input'] : styles.input;
+// Create new object based of two other objects.
+// Ensures getter functions are not evaluated until runtime.
+function spread(obj1, obj2) {
+  const newObject = {};
+
+  Object.keys(obj1).reduce((acc, key) => (
+    Object.defineProperty(acc, key, {
+      get() { return obj1[key]; },
+      configurable: true,
+      enumerable: true,
+    })
+  ), newObject);
+
+  Object.keys(obj2).reduce((acc, key) => (
+    Object.defineProperty(acc, key, {
+      get() { return obj2[key]; },
+      configurable: true,
+      enumerable: true,
+    })
+  ), newObject);
+
+  return newObject;
 }
-
-const apiLimits = {
-  max: 2 ** 31,
-  min: -(2 ** 31),
-};
 
 const Number = React.forwardRef((props, ref) => {
   const ids = {
-    input: props.id,
     label: `${props.id}-label`,
-    tooltip: `${props.id}-tooltip`,
-    validation: `${props.id}Hint`,
   };
   const refs = {
     control: useRef(),
     input: useRef(),
   };
 
-  const mounted = useMounted();
-  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
+  const [validationMessage, setValidationMessage] = useState('');
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
-    // The MDS Number is using an uncontrolled `<input>`.
-    // In order to set a new provided value prop, we
-    // set the internal state of the `<input>`.
-    if (props.value === undefined) {
-      refs.input.current.value = null;
-    } else {
-      refs.input.current.value = props.value;
-    }
-  }, [props.value]);
-
-  function onBlur(event) {
-    validate();
-    props.onBlur(event);
+  function onInvalid(event) {
+    setValidationMessage(event.detail.validationMessage);
   }
 
-  useImperativeHandle(ref, () => ({
-    ...refs.control.current,
-    get dirty() {
-      return props.value !== this.value;
-    },
-    focus() {
-      refs.input.current.focus();
-    },
-    get value() {
-      if (refs.input.current.value) {
-        return props.step < 1
-          ? parseFloat(refs.input.current.value)
-          : parseInt(refs.input.current.value, 10);
-      }
-
-      return undefined;
-    },
-    get validity() {
-      return refs.input.current.validity;
-    },
-  }));
+  useImperativeHandle(ref, () => spread(
+    refs.control.current,
+    refs.input.current,
+  ));
 
   return (
     <FormControl
-      error={validationMessage}
-      id={ids.input}
+      id={props.id}
       label={props.label}
       labelId={ids.label}
       name={props.name}
@@ -84,39 +57,23 @@ const Number = React.forwardRef((props, ref) => {
       ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
+      validationMessage={validationMessage}
     >
-      <Control
-        labelledBy={ids.label}
-        validationMessage={validationMessage}
-        validationMessageId={ids.validation}
-      >
-        <div style={{ position: 'relative' }}>
-          <input
-            aria-describedby={`${ids.tooltip} ${ids.validation}`}
-            className={getClassName(props.className, validationMessage)}
-            defaultValue={props.value}
-            id={ids.input}
-            max={apiLimits.max}
-            min={apiLimits.min}
-            name={props.name}
-            onBlur={onBlur}
-            onChange={props.onChange}
-            placeholder={props.placeholder}
-            ref={refs.input}
-            readOnly={props.readOnly}
-            required={props.required}
-            step={props.step}
-            type="number"
-          />
-          {!!validationMessage && (
-            <Icon
-              className={styles['invalid-icon']}
-              icon={cautionSvg}
-              label={validationMessage}
-            />
-          )}
-        </div>
-      </Control>
+      <NumberControl
+        className={props.className}
+        id={props.id}
+        name={props.name}
+        onBlur={props.onBlur}
+        onChange={props.onChange}
+        onInvalid={onInvalid}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly}
+        ref={refs.input}
+        required={props.required}
+        step={props.step}
+        validationMessage={props.validationMessage}
+        value={props.value}
+      />
     </FormControl>
   );
 });

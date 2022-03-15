@@ -17,7 +17,6 @@ const Input = forwardRef(function Input(props, ref) {
           invalidInput: styles.invalidInput,
         }}
         id={props.id}
-        labelledBy={props.labelledBy}
         name={props.name}
         onChange={props.onChange}
         readOnly={props.readOnly}

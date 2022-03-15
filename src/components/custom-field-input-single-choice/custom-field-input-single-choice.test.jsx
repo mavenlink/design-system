@@ -209,14 +209,14 @@ describe('src/components/custom-field-input-single-choice/custom-field-input-sin
     it('applies a description to the input when the help icon is hovered', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} tooltip={tooltip} />);
       user.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(tooltip);
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(tooltip);
     });
 
     it('removes the description to the input when the help icon is unhovered', () => {
       render(<CustomFieldInputSingleChoice {...requiredProps} tooltip={tooltip} />);
       user.hover(screen.getByRole('img', { name: 'More information' }));
       user.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 });

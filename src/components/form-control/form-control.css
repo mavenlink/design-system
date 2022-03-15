@@ -15,6 +15,7 @@
 }
 
 .control-container {
+  min-height: var(--spacing-x-large);
   margin-bottom: var(--spacing-small);
   margin-top: var(--spacing-small);
   position: relative;
@@ -24,4 +25,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.validation-message {
+  color: var(--mds-red-text);
+  font: var(--mds-type-content);
+  padding-bottom: var(--spacing-medium);
 }

@@ -4,58 +4,54 @@ exports[`src/components/custom-field-input-date/custom-field-input-date classNam
 <body>
   <div>
     <div
-      class="container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="field-date"
+            id="field-date-label"
           >
-            <label
-              for="field-date"
-              id="field-date-label"
-            >
-              Field Date
-            </label>
-          </div>
+            Field Date
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          style="height: 100%; position: relative;"
         >
+          <input
+            aria-describedby="field-dateHint field-date-tooltip"
+            class="unique-input"
+            id="field-date"
+            name="field-name"
+            type="text"
+            value=""
+          />
           <div
-            style="position: relative;"
+            class="container"
           >
-            <input
-              aria-describedby="field-dateHint field-date-tooltip"
-              class="unique-input"
-              id="field-date"
-              name="field-name"
-              type="text"
-              value=""
-            />
-            <div
-              class="icons"
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
             >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="14"
-                role="button"
-                tabindex="0"
-                width="11"
-              >
-                <title>
-                  Field Date calendar button
-                </title>
-                <use
-                  xlink:href="#calendar.svg"
-                />
-              </svg>
-            </div>
+              <title>
+                calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
           </div>
         </div>
       </div>
@@ -68,58 +64,54 @@ exports[`src/components/custom-field-input-date/custom-field-input-date has defa
 <body>
   <div>
     <div
-      class="container"
+      role="presentation"
     >
       <div
-        role="presentation"
+        class="label-wrapper"
       >
         <div
-          class="label-wrapper"
+          class="label"
         >
-          <div
-            class="label"
+          <label
+            for="field-date"
+            id="field-date-label"
           >
-            <label
-              for="field-date"
-              id="field-date-label"
-            >
-              Field Date
-            </label>
-          </div>
+            Field Date
+          </label>
         </div>
+      </div>
+      <div
+        class="control-container"
+      >
         <div
-          class="control-container"
+          style="height: 100%; position: relative;"
         >
+          <input
+            aria-describedby="field-dateHint field-date-tooltip"
+            class="input"
+            id="field-date"
+            name="field-name"
+            type="text"
+            value=""
+          />
           <div
-            style="position: relative;"
+            class="container"
           >
-            <input
-              aria-describedby="field-dateHint field-date-tooltip"
-              class="input"
-              id="field-date"
-              name="field-name"
-              type="text"
-              value=""
-            />
-            <div
-              class="icons"
+            <svg
+              aria-disabled="false"
+              class="button"
+              height="14"
+              role="button"
+              tabindex="0"
+              width="11"
             >
-              <svg
-                aria-disabled="false"
-                class="button"
-                height="14"
-                role="button"
-                tabindex="0"
-                width="11"
-              >
-                <title>
-                  Field Date calendar button
-                </title>
-                <use
-                  xlink:href="#calendar.svg"
-                />
-              </svg>
-            </div>
+              <title>
+                calendar button
+              </title>
+              <use
+                xlink:href="#calendar.svg"
+              />
+            </svg>
           </div>
         </div>
       </div>

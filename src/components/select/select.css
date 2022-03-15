@@ -17,30 +17,9 @@
   z-index: 10;
 }
 
-.input-icon {
-  pointer-events: none;
-}
-
 .clear-button {
   composes: button from '../icon-button/icon-button.css';
   padding: var(--spacing-small);
-}
-
-.icon-container {
-  align-items: center;
-  display: inline-flex;
-  position: absolute;
-  right: var(--spacing-medium);
-  transform: translateY(-50%);
-  top: 50%;
-}
-
-.icon-container > * {
-  margin-right: var(--spacing-small);
-}
-
-.icon-container > *:last-child {
-  margin-right: 0;
 }
 
 .input-styles {

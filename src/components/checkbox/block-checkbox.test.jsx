@@ -225,7 +225,7 @@ describe('Checkbox', () => {
     it('applies a description to the input when the help icon is hovered', () => {
       render(<Checkbox {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription(
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription(
         tooltip,
       );
     });
@@ -234,7 +234,7 @@ describe('Checkbox', () => {
       render(<Checkbox {...requiredProps} tooltip={tooltip} />);
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
-      expect(screen.getByLabelText(requiredProps.label)).toHaveDescription('');
+      expect(screen.getByLabelText(requiredProps.label)).toHaveAccessibleDescription('');
     });
   });
 
@@ -259,7 +259,7 @@ describe('Checkbox', () => {
     it('is invalid on mount but does not have an error message', () => {
       render(<Checkbox {...requiredProps} required />);
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+      expect(screen.getByRole('checkbox', { name })).toHaveAccessibleDescription('');
     });
 
     it('shows validation message after tabbing through', () => {
@@ -269,11 +269,11 @@ describe('Checkbox', () => {
         screen.getByRole('checkbox', { name }),
       );
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+      expect(screen.getByRole('checkbox', { name })).toHaveAccessibleDescription('');
 
       userEvent.tab();
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription(
+      expect(screen.getByRole('checkbox', { name })).toHaveAccessibleDescription(
         'Constraints not satisfied',
       );
     });
@@ -283,7 +283,7 @@ describe('Checkbox', () => {
     it('can be set', () => {
       render(<Checkbox {...requiredProps} validationMessage="unique error" />);
       expect(screen.getByRole('checkbox', { name })).toBeInvalid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription(
+      expect(screen.getByRole('checkbox', { name })).toHaveAccessibleDescription(
         'unique error',
       );
       expect(
@@ -294,7 +294,7 @@ describe('Checkbox', () => {
     it('can be unset', () => {
       render(<Checkbox {...requiredProps} validationMessage="" />);
       expect(screen.getByRole('checkbox', { name })).toBeValid();
-      expect(screen.getByRole('checkbox', { name })).toHaveDescription('');
+      expect(screen.getByRole('checkbox', { name })).toHaveAccessibleDescription('');
     });
   });
 });
