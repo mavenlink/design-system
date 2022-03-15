@@ -79,8 +79,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     }
   }, [value, options]);
 
-  console.log(valueForSelect)
-
   return (
     <MultiSelect
       classNames={props.classNames}
