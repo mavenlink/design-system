@@ -13,9 +13,14 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
-  const initialValue = Object.prototype.toString.call(props.value) !== '[object Array]' ? [props.value] : props.value
+
+  function arrayWrap(v) {
+    return Object.prototype.toString.call(v) !== '[object Array]' ? [v] : v;
+  }
+
+  const [value, setValue] = useState(arrayWrap(props.value));
   const [valueForSelect, setValueForSelect] = useState([]);
-  const [value, setValue] = useState(initialValue);
+
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
@@ -46,11 +51,17 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(fetchOptions, [searchValue]);
 
   useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
+  useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${initialValue.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
+
+      const listOfIds = value.map((d) => { return d?.id || d; }).join(',');
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${listOfIds}`)).then(({ json, mounted }) => {
         if (mounted) {
-          setValue(json.results.map(result => json[result.key][result.id]));
+          setValueForSelect(json.results.map(result => json[result.key][result.id]));
           setLoading(false);
         }
       }).catch((error) => {
@@ -61,23 +72,23 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       });
     }
 
-    if (initialValue.length) fetchPropsValue();
-  }, [initialValue.map(props.optionIDGetter).join(',')]);
-
-  useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
-
-  useEffect(() => {
-    if (options.length && initialValue.length) {
-      if (typeof initialValue[0] === 'string' || initialValue[0] instanceof String) {
-        const models = options.filter((modelData) => { return initialValue.includes(modelData.id); });
-        setValueForSelect(models);
-      } else {
-        setValueForSelect(initialValue);
-      }
+    if (value.length) {
+      fetchPropsValue();
+    } else {
+      setValueForSelect([]);
     }
-  }, [value, options]);
+  }, [value.map((d) => { return d?.id || d; }).join(','), options]);
+
+  function safePropsValue(v) {
+    if (Object.prototype.toString.call(props.value) !== '[object Array]') {
+      return v;
+    }
+    return v.map((d) => { return d?.id || d; }).join(',');
+  }
+
+  useEffect(() => {
+    setValue(arrayWrap(props.value));
+  }, [safePropsValue(props.value)]);
 
   return (
     <MultiSelect
