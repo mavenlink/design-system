@@ -20,7 +20,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
 
   function fetchOptions() {
     setLoading(true);
-    fetchChoices(generateUrl(props.apiEndpoint, [props.searchParam, searchValue])).then(({ json }) => {
+    fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json }) => {
       if (mounted.current) {
         setOptions(json.results.map(result => json[result.key][result.id]));
       }
@@ -49,7 +49,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, ['only', props.value.map(props.optionIDGetter).join(',')])).then(({ json }) => {
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json }) => {
         if (mounted.current) {
           setValue(json.results.map(result => json[result.key][result.id]));
         }
