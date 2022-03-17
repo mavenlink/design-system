@@ -191,6 +191,12 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     setExpanded(true);
   }
 
+  function onCaretIconClick() {
+    if (props.readOnly) return;
+
+    setExpanded(true);
+  }
+
   function onKeyDown(event) {
     switch (event.key) {
       case 'Escape':
@@ -297,7 +303,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             disabled={props.readOnly}
             icon={iconCaretDown}
             label="Open options"
-            onPress={onClick}
+            onPress={onCaretIconClick}
           />
         </Icons>
       </div>
