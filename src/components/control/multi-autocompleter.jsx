@@ -4,10 +4,8 @@ import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
-function generateUrl(apiEndpoint, [key, value]) {
-  const url = new URL(`${API_ROOT}${apiEndpoint}`);
-  url.searchParams.append(key, value);
-  return url.toString();
+function generateUrl(apiEndpoint, params) {
+  return `${API_ROOT}${apiEndpoint}${apiEndpoint.includes('?') ? '&' : '?'}${params}`;
 }
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
