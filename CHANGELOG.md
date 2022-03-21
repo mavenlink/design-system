@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.100.0
 
