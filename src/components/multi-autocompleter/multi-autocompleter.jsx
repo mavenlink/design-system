@@ -28,12 +28,11 @@ function spread(ref1, ref2) {
     })
   ), newObject);
 
-const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
-  const { execute } = useFetch();
-  const [loading, setLoading] = useState(true);
-  const [options, setOptions] = useState([]);
-  const [valueForSelect, setValueForSelect] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  return newObject;
+}
+
+const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forwardedRef) {
+  const ref = useForwardedRef(forwardedRef);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   const refs = {
@@ -49,17 +48,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     refs.control,
     refs.multiAutocompleter,
   ));
-
-  useEffect(() => {
-    if (options.length && props.value.length) {
-      if (typeof props.value[0] === 'string' || props.value[0] instanceof String) {
-        const models = options.filter((modelData) => { return props.value.includes(modelData.id); });
-        setValueForSelect(models);
-      } else {
-        setValueForSelect(props.value);
-      }
-    }
-  }, [props.value, options]);
 
   return (
     <FormControl
