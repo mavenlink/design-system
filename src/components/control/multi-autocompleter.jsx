@@ -58,7 +58,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     function fetchPropsValue() {
       setLoading(true);
 
-      const listOfIds = value.map((d) => { return d?.id || d; }).join(',');
+      const listOfIds = value.map(props.optionIDGetter).join(',');
       fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${listOfIds}`)).then(({ json, mounted }) => {
         if (mounted) {
           setValueForSelect(json.results.map(result => json[result.key][result.id]));
@@ -146,7 +146,7 @@ MultiAutocompleter.defaultProps = {
   name: undefined,
   onChange: () => {},
   onInvalid: () => {},
-  optionIDGetter: option => option.id,
+  optionIDGetter: (option) => { return option?.id || option; },
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,
   readOnly: false,

@@ -224,9 +224,11 @@ describe('<MultiSelect>', () => {
       userEvent.click(await findAutocompleter('test label'));
       userEvent.tab();
       expect(await findAutocompleter('test label')).toBeInvalid();
+      expect(screen.getByText('Constraints not satisfied', { selector: 'span' })).toBeInTheDocument();
       userEvent.click(await findAutocompleter('test label'));
       userEvent.click(await findAvailableOption('test label', 'Foo'));
       expect(await findAutocompleter('test label')).toBeValid();
+      expect(screen.queryByText('Constraints not satisfied', { selector: 'span' })).not.toBeInTheDocument();
     });
 
     it('can be set to `false`', async () => {
