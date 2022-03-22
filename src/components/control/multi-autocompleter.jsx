@@ -30,7 +30,6 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json }) => {
       if (mounted.current) {
         setOptions(json.results.map(result => json[result.key][result.id]));
-        setLoading(false);
       }
     }).catch((error) => {
       if (mounted.current && error.error && error.error.type !== 'aborted') {
