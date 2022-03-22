@@ -3,6 +3,10 @@ Major/Minor/Patch: This is an example changelog item, usually can be the commit 
 Prepend new items to make git merging easier.
 - fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
+## 0.100.1
+
+- refactor(multi-aucompleter): revert URL generation from browser API to static string
+
 ## 0.100.0
 
 - fix(multi-select cell): add validation message as a tooltip on the invalid icon
