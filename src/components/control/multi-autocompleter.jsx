@@ -61,8 +61,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     function fetchPropsValue() {
       setLoading(true);
 
-      const listOfIds = value.map((d) => { return d?.id || d; }).join(',');
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${listOfIds}`)).then(({ json }) => {
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${listOfIdsString(value)}`)).then(({ json }) => {
         if (mounted.current) {
           setValueForSelect(json.results.map(result => json[result.key][result.id]));
         }
@@ -82,13 +81,17 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     } else {
       setValueForSelect([]);
     }
-  }, [value.map((d) => { return d?.id || d; }).join(','), options]);
+  }, [listOfIdsString(value), options]);
 
   function safePropsValue(v) {
     if (Object.prototype.toString.call(v) !== '[object Array]') {
       return v;
     }
-    return v.map((d) => { return d?.id || d; }).join(',');
+    return listOfIdsString(v);
+  }
+
+  function listOfIdsString(v) {
+    return v.map(props.optionIDGetter).join(',');
   }
 
   useEffect(() => {
