@@ -22,13 +22,6 @@ export default function Tooltip({
   const tooltipRef = useRef();
   const { position, visible, show, hide } = useTooltipPositioning({ tooltipRef, triangleHeight, direction });
 
-  useLayoutEffect(() => {
-    if (disabled || document.querySelector('[aria-describedby]', id)) return;
-
-    throw new Error('<Tooltip> was used without an element on the DOM being described by it. ' +
-      'Please add `aria-describedby` to the element this tooltip is being used to describe.');
-  }, []);
-
   // keep the div so enabling/disabling doesn't affect the dom tree or styles
   if (disabled) return <div className={styles.wrapper}>{children}</div>;
 

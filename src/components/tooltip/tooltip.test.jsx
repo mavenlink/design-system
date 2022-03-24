@@ -18,23 +18,6 @@ describe('tooltip', () => {
     expect(document.body).toMatchSnapshot();
   });
 
-  it('errors if the tooltip is not describing any elements', () => {
-    const originalConsoleError = window.console.error;
-    window.console.error = jest.fn();
-
-    expect(() => {
-      render(
-        <Tooltip {...requiredProps}>
-          <input />
-        </Tooltip>,
-      );
-    }).toThrowError('<Tooltip> was used without an element on the DOM being described by it. ' +
-      'Please add `aria-describedby` to the element this tooltip is being used to describe.');
-
-    expect(window.console.error).toHaveBeenCalled();
-    window.console.error = originalConsoleError;
-  });
-
   describe('hovering behavior', () => {
     it('does not render the tooltip unless the child is hovered', () => {
       render(<Tooltip {...requiredProps} />);
