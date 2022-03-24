@@ -112,7 +112,7 @@ MultiAutocompleter.propTypes = {
 MultiAutocompleter.defaultProps = {
   className: undefined,
   onChange: () => {},
-  optionIDGetter: option => option.id,
+  optionIDGetter: (option) => { return option?.id || option; },
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,
   readOnly: false,
