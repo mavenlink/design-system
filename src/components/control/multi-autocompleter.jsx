@@ -84,7 +84,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   }, [listOfIdsString(value), options]);
 
   function safePropsValue(v) {
-    if (Object.prototype.toString.call(v) !== '[object Array]') {
+    if (!Array.isArray(v)) {
       return v;
     }
     return listOfIdsString(v);
