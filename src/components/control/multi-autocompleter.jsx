@@ -16,7 +16,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const mounted = useRef(false);
 
   function arrayWrap(v) {
-    return Object.prototype.toString.call(v) !== '[object Array]' ? [v] : v;
+    return Array.isArray(v) ? v : [v];
   }
 
   const [value, setValue] = useState(arrayWrap(props.value));
