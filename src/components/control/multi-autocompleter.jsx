@@ -15,11 +15,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const [options, setOptions] = useState([]);
   const mounted = useRef(false);
 
-  function arrayWrap(v) {
-    return Array.isArray(v) ? v : [v];
-  }
-
-  const [value, setValue] = useState(arrayWrap(props.value));
+  const [value, setValue] = useState(props.value);
   const [valueForSelect, setValueForSelect] = useState(value.map(v => (typeof v === 'string' ? { id: v, label: '' } : v)));
 
   const [searchValue, setSearchValue] = useState('');
@@ -83,20 +79,13 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     }
   }, [listOfIdsString(value)]);
 
-  function safePropsValue(v) {
-    if (!Array.isArray(v)) {
-      return v;
-    }
-    return listOfIdsString(v);
-  }
-
   function listOfIdsString(v) {
     return v.map(props.optionIDGetter).join(',');
   }
 
   useEffect(() => {
-    setValue(arrayWrap(props.value));
-  }, [safePropsValue(props.value)]);
+    setValue(props.value);
+  }, [listOfIdsString(props.value)]);
 
   useEffect(() => {
     mounted.current = true;
