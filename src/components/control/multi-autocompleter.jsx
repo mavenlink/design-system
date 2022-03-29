@@ -81,7 +81,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     } else {
       setValueForSelect([]);
     }
-  }, [listOfIdsString(value), options]);
+  }, [listOfIdsString(value)]);
 
   function safePropsValue(v) {
     if (!Array.isArray(v)) {
