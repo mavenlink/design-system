@@ -142,7 +142,6 @@ MultiAutocompleter.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.arrayOf(PropTypes.string),
-    PropTypes.string,
   ]),
 };
 
