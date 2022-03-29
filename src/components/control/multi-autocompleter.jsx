@@ -20,7 +20,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   }
 
   const [value, setValue] = useState(arrayWrap(props.value));
-  const [valueForSelect, setValueForSelect] = useState(value.map(v => typeof v === 'string' ? { id: v, label: '' } : v));
+  const [valueForSelect, setValueForSelect] = useState(value.map(v => (typeof v === 'string' ? { id: v, label: '' } : v)));
 
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
