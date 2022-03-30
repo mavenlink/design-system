@@ -2,30 +2,7 @@ import React, { useImperativeHandle, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import NumberControl from '../control/number.jsx';
-
-// Create new object based of two other objects.
-// Ensures getter functions are not evaluated until runtime.
-function spread(obj1, obj2) {
-  const newObject = {};
-
-  Object.keys(obj1).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return obj1[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  Object.keys(obj2).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return obj2[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  return newObject;
-}
+import combineRefs from '../../utils/combine-refs.js';
 
 const Number = React.forwardRef((props, ref) => {
   const ids = {
@@ -42,9 +19,9 @@ const Number = React.forwardRef((props, ref) => {
     setValidationMessage(event.detail.validationMessage);
   }
 
-  useImperativeHandle(ref, () => spread(
-    refs.control.current,
-    refs.input.current,
+  useImperativeHandle(ref, () => combineRefs(
+    refs.control,
+    refs.input,
   ));
 
   return (

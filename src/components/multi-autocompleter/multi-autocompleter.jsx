@@ -7,29 +7,8 @@ import React, {
 } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import MultiAutocompleterControl from '../control/multi-autocompleter.jsx';
+import combineRefs from '../../utils/combine-refs.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-
-function spread(ref1, ref2) {
-  const newObject = {};
-
-  Object.keys(ref1.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref1.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  Object.keys(ref2.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref2.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  return newObject;
-}
 
 const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
@@ -44,7 +23,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
     setValidationMessage(event.detail.validationMessage);
   }
 
-  useImperativeHandle(ref, () => spread(
+  useImperativeHandle(ref, () => combineRefs(
     refs.control,
     refs.multiAutocompleter,
   ));
