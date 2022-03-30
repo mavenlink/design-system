@@ -32,18 +32,6 @@ function spread(ref1, ref2) {
   return newObject;
 }
 
-function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
-  if (readOnly) {
-    return styles['form-control-children-container-readonly'];
-  }
-
-  if (validationMessage) {
-    return styles['form-control-children-container-invalid'];
-  }
-
-  return styles['form-control-children-container'];
-}
-
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const selfRef = useForwardedRef(ref);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
