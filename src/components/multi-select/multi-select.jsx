@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import MultiSelectControl from '../control/multi-select.jsx';
 import styles from './multi-select.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 function spread(ref1, ref2) {
   const newObject = {};
@@ -33,7 +32,6 @@ function spread(ref1, ref2) {
 }
 
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
-  const selfRef = useForwardedRef(ref);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   const ids = {
@@ -53,7 +51,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     setValidationMessage(event.detail.validationMessage);
   }
 
-  useImperativeHandle(selfRef, () => spread(
+  useImperativeHandle(ref, () => spread(
     refs.control,
     refs.multiSelect,
   ));
