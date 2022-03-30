@@ -56,11 +56,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     control: useRef(),
     multiSelect: useRef(),
   };
-  const classNames = {
+  const { container: containerClassName, ...controlClassNames } = {
     container: styles.container,
-    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
-    input: props.readOnly ? styles['input-readonly'] : styles.input,
-    tagList: styles['tag-list'],
     ...props.classNames,
   };
 
@@ -75,7 +72,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   return (
     <FormControl
-      className={classNames.container}
+      className={containerClassName}
       id={ids.textbox}
       label={props.label}
       labelId={ids.label}
@@ -86,11 +83,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       validationMessage={validationMessage}
     >
       <MultiSelectControl
-        classNames={{
-          formControlChildrenContainer: classNames.formControlChildrenContainer,
-          input: classNames.input,
-          tagList: classNames.tagList,
-        }}
+        classNames={controlClassNames}
         containerRef={refs.control}
         filterOptions={props.filterOptions}
         id={props.id}
