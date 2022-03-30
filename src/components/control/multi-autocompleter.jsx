@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState, useRef } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
@@ -16,18 +16,21 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const [value, setValue] = useState(props.value);
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
+  const mounted = useRef(false);
 
   function fetchOptions() {
     setLoading(true);
-    fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json, mounted }) => {
-      if (mounted) {
+    fetchChoices(generateUrl(props.apiEndpoint, `${props.searchParam}=${searchValue}`)).then(({ json }) => {
+      if (mounted.current) {
         setOptions(json.results.map(result => json[result.key][result.id]));
-        setLoading(false);
       }
     }).catch((error) => {
-      if (error.error && error.error.type !== 'aborted') {
-        setLoading(false);
+      if (mounted.current && error.error && error.error.type !== 'aborted') {
         setValidationMessage('Failed to load options');
+      }
+    }).finally(() => {
+      if (mounted.current) {
+        setLoading(false);
       }
     });
   }
@@ -46,15 +49,17 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json, mounted }) => {
-        if (mounted) {
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json }) => {
+        if (mounted.current) {
           setValue(json.results.map(result => json[result.key][result.id]));
-          setLoading(false);
         }
       }).catch((error) => {
-        if (error.error && error.error.type !== 'aborted') {
-          setLoading(false);
+        if (mounted.current && error.error && error.error.type !== 'aborted') {
           setValidationMessage('Failed to load options');
+        }
+      }).finally(() => {
+        if (mounted.current) {
+          setLoading(false);
         }
       });
     }
@@ -65,6 +70,14 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(() => {
     setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
+
+  useEffect(() => {
+    mounted.current = true;
+
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   return (
     <MultiSelect

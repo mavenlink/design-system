@@ -128,11 +128,17 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()));
   }
 
-  function onAutocompleteBlur() {
+  function onAutocompleteBlur({ relatedTarget }) {
     if (!refs.autocomplete.current) return;
 
     refs.autocomplete.current.setCustomValidity('');
     if (!refs.autocomplete.current.validity.valid) {
+      if (visibleOptionsRefs.find((optionRef) => {
+        return optionRef.current && optionRef.current.rootRef.current === relatedTarget;
+      })) {
+        setValidationMessage(props.validationMessage || '');
+        return;
+      }
       setValidationMessage(refs.autocomplete.current.validationMessage);
     } else {
       setValidationMessage(props.validationMessage || '');
@@ -179,6 +185,12 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   function onClick(event) {
     if (event.defaultPrevented) return;
+    if (props.readOnly) return;
+
+    setExpanded(true);
+  }
+
+  function onCaretIconClick() {
     if (props.readOnly) return;
 
     setExpanded(true);
@@ -286,7 +298,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             disabled={props.readOnly}
             icon={iconCaretDown}
             label="Open options"
-            onPress={onClick}
+            onPress={onCaretIconClick}
           />
         </Icons>
       </div>
