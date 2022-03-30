@@ -5,13 +5,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import MultiAutocompleter from '../multi-autocompleter/multi-autocompleter.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const CustomFieldInputMultipleChoice = forwardRef(function CustomFieldInputMultipleChoice(props, ref) {
   const multiAutocompleterRef = useRef();
-  const selfRef = useForwardedRef(ref);
 
-  useImperativeHandle(selfRef, () => ({
+  useImperativeHandle(ref, () => ({
     id: multiAutocompleterRef.current.id,
     name: multiAutocompleterRef.current.name,
     get dirty() {

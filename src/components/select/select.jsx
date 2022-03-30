@@ -7,10 +7,8 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import SelectControl from '../control/select.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Select = forwardRef(function Select(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
+const Select = forwardRef(function Select(props, ref) {
   const [validationMessage, setValidationMessage] = useState('');
 
   const classNames = {

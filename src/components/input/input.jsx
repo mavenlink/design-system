@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import InputControl from '../control/input.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Input = forwardRef(function Input(props, forwardedRef) {
+const Input = forwardRef(function Input(props, ref) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
@@ -14,7 +13,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     input: useRef(),
   };
 
-  const ref = useForwardedRef(forwardedRef);
   const [validationMessage, setValidationMessage] = useState('');
 
   useImperativeHandle(ref, () => ({

@@ -5,9 +5,8 @@ import Number from './number.jsx';
 import currencyCodeType from '../../utils/currency-code-type.js';
 import currencyMetaData from '../../utils/currency-meta-data.js';
 import { initialInputValid, subunitToUnit, formatValue } from '../../utils/money-formatter.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Money = forwardRef(function Money(props, forwardedRef) {
+const Money = forwardRef(function Money(props, ref) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isFocused, setIsFocused] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
@@ -15,7 +14,6 @@ const Money = forwardRef(function Money(props, forwardedRef) {
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
-  const ref = useForwardedRef(forwardedRef);
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {

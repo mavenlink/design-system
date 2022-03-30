@@ -11,13 +11,11 @@ import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
   const sectionRef = useRef();
-  const selfRef = useForwardedRef(ref);
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
 
   function onBlur(event) {
@@ -40,7 +38,7 @@ const Popover = forwardRef(function Popover(props, ref) {
     }
   }, [open]);
 
-  useImperativeHandle(selfRef, () => ({
+  useImperativeHandle(ref, () => ({
     get open() {
       return open;
     },

@@ -9,10 +9,8 @@ import DateControl from '../control/date.jsx';
 import FormControl from '../form-control/form-control.jsx';
 import combineRefs from '../../utils/combine-refs.js';
 import styles from './date.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Date = forwardRef(function Date(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
+const Date = forwardRef(function Date(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   function onInvalid(event) {

@@ -5,11 +5,8 @@ import React, {
 import CellControl from './cell-control.jsx';
 import DateControl from '../control/date.jsx';
 import styles from './date.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Date = forwardRef(function Date(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
-
+const Date = forwardRef(function Date(props, ref) {
   const classNames = {
     container: undefined,
     input: styles.input,

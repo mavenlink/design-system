@@ -8,10 +8,8 @@ import React, {
 import FormControl from '../form-control/form-control.jsx';
 import MultiAutocompleterControl from '../control/multi-autocompleter.jsx';
 import combineRefs from '../../utils/combine-refs.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
+const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   const refs = {

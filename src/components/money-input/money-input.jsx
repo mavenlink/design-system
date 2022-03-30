@@ -3,11 +3,9 @@ import React, { forwardRef, useState } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import Money from '../control/money.jsx';
 import currencyCodeType from '../../utils/currency-code-type.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
+const MoneyInput = forwardRef(function MoneyInput(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const ref = useForwardedRef(forwardedRef);
   const ids = {
     label: `${props.id}-label`,
   };
