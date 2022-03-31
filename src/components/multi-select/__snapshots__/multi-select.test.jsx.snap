@@ -47,7 +47,7 @@ exports[`<MultiSelect> classNames API uses class name overrides provided 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"
@@ -119,7 +119,7 @@ exports[`<MultiSelect> has defaults 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"
@@ -239,7 +239,7 @@ exports[`<MultiSelect> id API sets various ids 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"

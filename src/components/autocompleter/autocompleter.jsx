@@ -2,10 +2,8 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import AutocompleteControl from '../control/autocompleter.jsx';
 import FormControl from '../form-control/form-control.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Autocompleter = forwardRef(function Autocompleter(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
+const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const [validationMessage, setValidationMessage] = useState('');
 
   const ids = {

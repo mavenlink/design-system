@@ -8,9 +8,8 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
-import Icon from '../icon/icon.jsx';
+import Icons from '../control/icons.jsx';
 import styles from './checkbox.css';
-import cautionSvg from '../../svgs/caution.svg';
 
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
@@ -102,14 +101,10 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
           required={props.required}
           type="checkbox"
         />
-        {!!validationMessage && (
-          <Icon
-            className={styles['invalid-icon']}
-            icon={cautionSvg}
-            id={ids.validation}
-            label={validationMessage}
-          />
-        )}
+        <Icons
+          validationMessage={validationMessage}
+          validationMessageId={ids.validation}
+        />
       </div>
     </FormControl>
   );

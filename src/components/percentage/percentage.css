@@ -2,11 +2,6 @@
 @import "../../styles/spacing.css";
 @import "../../styles/typography-v2.css";
 
-.icons-container {
-  composes: icons from "../form-control-icons/form-control-icons.css";
-  pointer-events: none;
-}
-
 .input {
   composes: input from "../input/input.css";
   padding: 0 calc(var(--spacing-x-large) + var(--spacing-large)) 0 var(--spacing-medium);

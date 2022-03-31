@@ -4,16 +4,16 @@
 }
 
 .formControlChildrenContainer {
-  composes: form-control-children-container from '../multi-select/multi-select.css';
+  composes: form-control-children-container from '../control/multi-select.css';
   border: none;
 }
 
 .formControlChildrenContainerInvalid {
   composes: formControlChildrenContainer;
-  composes: form-control-children-container-invalid from '../multi-select/multi-select.css';
+  composes: form-control-children-container-invalid from '../control/multi-select.css';
 }
 
 .formControlChildrenContainerReadOnly {
   composes: formControlChildrenContainer;
-  composes: form-control-children-container-readonly from '../multi-select/multi-select.css';
+  composes: form-control-children-container-readonly from '../control/multi-select.css';
 }

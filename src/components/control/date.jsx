@@ -178,7 +178,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
-        validationMessageTooltip={props.validationMessageTooltip}
       >
         <IconButton
           disabled={props.readOnly}
@@ -216,7 +215,6 @@ Date.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   /** A date in full-date format (i.e. yyyy-mm-dd) */
   value: PropTypes.string,
 };
@@ -233,7 +231,6 @@ Date.defaultProps = {
   required: false,
   tooltip: undefined,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
 };
 

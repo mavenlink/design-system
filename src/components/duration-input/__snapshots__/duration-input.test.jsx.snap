@@ -35,6 +35,9 @@ exports[`DurationInput cssContainer API sets input container className 1`] = `
             type="text"
             value=""
           />
+          <div
+            class="container"
+          />
         </div>
       </div>
     </div>
@@ -75,6 +78,9 @@ exports[`DurationInput has defaults 1`] = `
             id="foo"
             type="text"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>

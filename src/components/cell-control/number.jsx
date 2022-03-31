@@ -26,7 +26,6 @@ const Number = React.forwardRef((props, ref) => {
         required={props.required}
         step={props.step}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
       />
     </CellControl>

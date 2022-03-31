@@ -21,15 +21,6 @@
   background-color: var(--mds-grey-3);
 }
 
-.invalid-icon {
-  box-sizing: border-box;
-  pointer-events: none;
-  position: absolute;
-  right: 6px;
-  top: 45%;
-  transform: translateY(-50%);
-}
-
 .invalid-textarea {
   composes: textarea;
   border-color: var(--mds-red-100);

@@ -1,0 +1,82 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+@import "../../styles/typography-v2.css";
+
+.container {
+  height: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.icon-clear {
+  cursor: pointer;
+  padding: var(--spacing-small);
+}
+
+.input {
+  composes: input from './input.css';
+  border: none;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: var(--spacing-x-large);
+  width: 0;
+}
+
+.input-readonly {
+  composes: input;
+  background-color: transparent;
+}
+
+.form-control-children-container {
+  align-items: center;
+  border: 1px solid var(--mds-grey-12);
+  border-radius: 3px;
+  box-sizing: border-box;
+  font: var(--mds-type-content);
+  height: 100%;
+  min-height: var(--spacing-x-large);
+  margin: 0;
+  padding: 0 calc(var(--spacing-x-large) + var(--spacing-x-large)) 0 var(--spacing-medium);
+  position: relative;
+  width: 100%;
+}
+
+.form-control-children-container-invalid {
+  composes: form-control-children-container;
+  border: 1px solid var(--mds-red-100);
+}
+
+.form-control-children-container-readonly {
+  composes: form-control-children-container;
+  background-color: var(--mds-grey-3);
+}
+
+.popup-container {
+  composes: container from '../listbox/listbox.css';
+  background-color: var(--white);
+  box-sizing: border-box;
+  max-height: 160px;
+  overflow-y: scroll;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.no-options {
+  composes: popup-container;
+  composes: no-options from '../no-options/no-options.css';
+  color: var(--mds-grey-54);
+  display: flex;
+  justify-content: center;
+  overflow-y: unset;
+}
+
+.tag-list {
+  composes: tag-list from '../tag-list/tag-list.css';
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  min-height: var(--spacing-x-large);
+}

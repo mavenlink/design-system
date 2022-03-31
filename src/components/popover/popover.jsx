@@ -10,16 +10,13 @@ import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
-import useMounted from '../../hooks/use-mounted.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
 
 const Popover = forwardRef(function Popover(props, ref) {
   const [open, setOpen] = useState(false);
   const closeIconRef = useRef();
   const sectionRef = useRef();
-  const selfRef = useForwardedRef(ref);
   const { flush } = useFlush({ ref: sectionRef, initialDirection: props.flush, autoflush: props.autoflush, open });
-  const mounted = useMounted();
 
   function onBlur(event) {
     // Target is set to `null` when losing focus to a non-interactive element (e.g. text)
@@ -30,16 +27,18 @@ const Popover = forwardRef(function Popover(props, ref) {
   }
 
   useLayoutEffect(() => {
-    if (!mounted.current) return;
-
     if (open) {
       closeIconRef.current.focus({ preventScroll: true });
-    } else {
+    }
+  }, [open]);
+
+  useMountedEffect(() => {
+    if (!open) {
       props.onClose();
     }
   }, [open]);
 
-  useImperativeHandle(selfRef, () => ({
+  useImperativeHandle(ref, () => ({
     get open() {
       return open;
     },

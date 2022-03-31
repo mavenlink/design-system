@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import cautionSvg from '../../svgs/caution.svg';
 import CellControl from './cell-control.jsx';
-import Icon from '../icon/icon.jsx';
-import Tooltip from '../tooltip/tooltip.jsx';
+import Icons from '../control/icons.jsx';
 import styles from './textarea.css';
 import useValidation from '../../hooks/use-validation.jsx';
 
@@ -65,25 +63,10 @@ const Textarea = forwardRef(function Textarea(props, ref) {
         required={props.required}
         style={{ height }}
       />
-      <div
-        className={styles.iconsContainer}
-        style={{
-          display: validationMessage ? 'block' : 'none',
-        }}
-      >
-        {validationMessage && <Tooltip
-          id={ids.invalidTooltip}
-          text={validationMessage}
-          direction="left"
-        >
-          <Icon
-            className={styles.invalidIcon}
-            icon={cautionSvg}
-            id={ids.invalidIcon}
-            label={validationMessage}
-          />
-        </Tooltip>}
-      </div>
+      <Icons
+        validationMessage={validationMessage}
+        validationMessageId={ids.invalidIcon}
+      />
     </CellControl>
   );
 });

@@ -3,7 +3,6 @@ A grid cell for money.
 ```jsx
 import Money from '@mavenlink/design-system/src/components/cell-control/money.jsx';
 import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
-import styles from './examples.css';
 
 const ids = {
   th: {

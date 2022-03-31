@@ -1,6 +1,14 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- refactor(combine refs): hoist common method for combining refs as a utility method
+- fix(multi-select control): control has same height as other controls
+- fix(multi-select control): the placeholder text has the same styling as the input control placeholder text
+- refactor(autocompleter cell): use a stylesheets API
+- refactor(input control): use Icons component for invalid state
+- chore(useMounted): deprecate useMounted hook since it does not work unless the useEffect is "last" in the render cycle
+
+## 0.100.3
 - fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.100.1

@@ -35,6 +35,9 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
             type="text"
             value=""
           />
+          <div
+            class="container"
+          />
         </div>
       </div>
     </div>

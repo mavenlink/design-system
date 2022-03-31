@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useRef } from 'react';
 import CellControl from './cell-control.jsx';
 import AutocompleterControl from '../control/autocompleter.jsx';
-import styles from './select.css';
+import styles from './autocompleter.css';
 
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const classNames = {
-    container: undefined,
-    innerContainer: styles.container,
+    container: styles.container,
     input: styles.input,
     invalidInput: styles.invalidInput,
     ...props.classNames,
@@ -26,9 +25,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       <AutocompleterControl
         apiEndpoint={props.apiEndpoint}
         classNames={{
-          container: classNames.innerContainer,
-          input: styles.input,
-          invalidInput: styles.invalidInput,
+          input: classNames.input,
+          invalidInput: classNames.invalidInput,
         }}
         displayValueEvaluator={props.displayValueEvaluator}
         id={props.id}
@@ -42,7 +40,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
         required={props.required}
         searchParam={props.searchParam}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
         wrapperRef={refs.container}
       />

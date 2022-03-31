@@ -26,8 +26,7 @@ exports[`Textarea cell control className API sets all class names 1`] = `
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>
@@ -63,8 +62,7 @@ exports[`Textarea cell control className API sets container class name 1`] = `
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>
@@ -100,8 +98,7 @@ exports[`Textarea cell control className API sets textarea class name 1`] = `
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>
@@ -137,8 +134,7 @@ exports[`Textarea cell control has defaults 1`] = `
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>
@@ -180,8 +176,7 @@ exports[`Textarea cell control id API sets the ID on the textarea 1`] = `
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>
@@ -217,8 +212,7 @@ exports[`Textarea cell control labelledBy API references the column header 1`] =
               placeholder=""
             />
             <div
-              class="iconsContainer"
-              style="display: none;"
+              class="container"
             />
           </td>
         </tr>

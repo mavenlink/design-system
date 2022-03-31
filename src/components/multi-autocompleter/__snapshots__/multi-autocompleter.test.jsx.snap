@@ -47,7 +47,7 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"
@@ -118,7 +118,7 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
             />
           </div>
           <div
-            class="icon-container"
+            class="container"
           >
             <svg
               aria-disabled="false"
