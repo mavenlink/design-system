@@ -58,7 +58,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <div className={classNames.container} style={{ position: 'relative' }}>
+    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         aria-describedby={`${ids.validation} ${props.describedBy}`}

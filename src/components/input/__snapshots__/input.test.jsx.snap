@@ -26,7 +26,7 @@ exports[`Input cssContainer API sets input container className 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="foo-validation-message foo-tooltip"
@@ -70,7 +70,7 @@ exports[`Input has defaults 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="foo-validation-message foo-tooltip"
