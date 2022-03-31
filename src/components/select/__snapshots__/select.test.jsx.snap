@@ -25,7 +25,7 @@ exports[`src/components/select/select has defaults 1`] = `
           class="control-container"
         >
           <div
-            style="position: relative;"
+            style="height: 100%; position: relative;"
           >
             <input
               aria-autocomplete="none"

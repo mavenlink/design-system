@@ -21,7 +21,7 @@ exports[`Autocompleter cell control classNames API can be all set 1`] = `
             role="gridcell"
           >
             <div
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"
@@ -87,7 +87,7 @@ exports[`Autocompleter cell control classNames API can set container 1`] = `
             role="gridcell"
           >
             <div
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"
@@ -153,7 +153,7 @@ exports[`Autocompleter cell control classNames API can set innerContainer 1`] = 
             role="gridcell"
           >
             <div
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"
@@ -219,7 +219,7 @@ exports[`Autocompleter cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"

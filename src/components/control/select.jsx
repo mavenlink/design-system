@@ -181,7 +181,7 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <div className={classNames.container} style={{ position: 'relative' }}>
+    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
       <input
         autoComplete="off"
         aria-autocomplete="none"
