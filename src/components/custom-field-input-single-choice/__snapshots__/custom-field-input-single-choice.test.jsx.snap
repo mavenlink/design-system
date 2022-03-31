@@ -24,7 +24,7 @@ exports[`src/components/custom-field-input-single-choice/custom-field-input-sing
         class="control-container"
       >
         <div
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="none"
