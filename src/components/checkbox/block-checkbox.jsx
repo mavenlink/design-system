@@ -1,10 +1,8 @@
 import React, {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
-  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
