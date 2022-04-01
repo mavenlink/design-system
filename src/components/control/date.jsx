@@ -14,7 +14,7 @@ import Icons from './icons.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './date.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 function toDateStringFormat(date) {
   return date ? date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }) : '';

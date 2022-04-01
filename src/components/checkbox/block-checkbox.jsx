@@ -9,7 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icons from '../control/icons.jsx';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 import styles from './checkbox.css';
 
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {

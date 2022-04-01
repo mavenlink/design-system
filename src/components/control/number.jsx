@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import Icons from './icons.jsx';
 import styles from './number.css';

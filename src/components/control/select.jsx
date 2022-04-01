@@ -14,7 +14,7 @@ import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from './select.css';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';

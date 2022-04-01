@@ -8,7 +8,7 @@ import React, {
 import FormControl from '../form-control/form-control.jsx';
 import Icons from '../control/icons.jsx';
 import styles from './percentage.css';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 function getClassName(className, validationMessage) {
   if (className) return className;

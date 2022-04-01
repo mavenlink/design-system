@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import useValidation from './use-validation.jsx';
+import useValidation from './use-validation.js';
 
 describe('useValidation', () => {
   function TestComponent(props) {

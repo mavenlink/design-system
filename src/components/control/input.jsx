@@ -3,7 +3,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, use
 import Icons from './icons.jsx';
 import styles from './input.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 const Input = forwardRef(function Input(props, forwardedRef) {
   const classNames = {
