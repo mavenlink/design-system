@@ -9,12 +9,12 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import Icons from '../control/icons.jsx';
+import useValidation from '../../hooks/use-validation.jsx';
 import styles from './checkbox.css';
 
 const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
-  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   // TODO: Automate with object proxy. Always props.id + key.
   const ids = {
@@ -27,18 +27,11 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
     control: useRef(),
     input: useRef(),
   };
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   useLayoutEffect(() => {
     refs.input.current.checked = props.checked;
   }, [props.checked]);
-
-  useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
-
-  useLayoutEffect(() => {
-    refs.input.current.setCustomValidity(validationMessage);
-  }, [validationMessage]);
 
   useImperativeHandle(ref, () => ({
     ...refs.control.current,
@@ -57,8 +50,7 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   }));
 
   function onBlur(event) {
-    refs.input.current.setCustomValidity('');
-    setValidationMessage(refs.input.current.validationMessage);
+    validate();
     props.onBlur(event);
   }
 
@@ -73,7 +65,6 @@ const Checkbox = forwardRef(function Checkbox(props, forwardedRef) {
   return (
     <FormControl
       className={props.cssContainer}
-      error={validationMessage}
       id={props.id}
       label={props.label}
       labelId={ids.label}

@@ -8,9 +8,10 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../icon/icon.jsx';
-import styles from './checkbox.css';
-import cautionSvg from '../../svgs/caution.svg';
 import HelpIcon from '../help-icon/help-icon.jsx';
+import cautionSvg from '../../svgs/caution.svg';
+import useValidation from '../../hooks/use-validation.jsx';
+import styles from './checkbox.css';
 
 const Checkbox = forwardRef(function Checkbox(
   {
@@ -33,9 +34,6 @@ const Checkbox = forwardRef(function Checkbox(
 ) {
   const fallbackRef = useRef();
   const ref = forwardedRef || fallbackRef;
-  const [validationMessage, setValidationMessage] = useState(
-    validationMessageProp,
-  );
 
   const ids = {
     input: id,
@@ -47,18 +45,14 @@ const Checkbox = forwardRef(function Checkbox(
     control: useRef(),
     input: useRef(),
   };
+  const [validationMessage, validate] = useValidation(
+    validationMessageProp,
+    refs.input,
+  );
 
   useLayoutEffect(() => {
     refs.input.current.checked = checked;
   }, [checked]);
-
-  useEffect(() => {
-    setValidationMessage(validationMessageProp);
-  }, [validationMessageProp]);
-
-  useLayoutEffect(() => {
-    refs.input.current.setCustomValidity(validationMessage);
-  }, [validationMessage]);
 
   useImperativeHandle(ref, () => ({
     name,
@@ -78,8 +72,7 @@ const Checkbox = forwardRef(function Checkbox(
   }));
 
   function handleBlur(event) {
-    refs.input.current.setCustomValidity('');
-    setValidationMessage(refs.input.current.validationMessage);
+    validate();
     onBlur(event);
   }
 
