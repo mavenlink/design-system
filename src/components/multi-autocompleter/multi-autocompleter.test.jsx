@@ -257,6 +257,20 @@ describe('<MultiAutocompleter>', () => {
       expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
       expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
     });
+
+    it('accepts an array of ids', async () => {
+      const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
+
+      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+
+      rerender(<MultiAutocompleter
+        {...requiredProps}
+        value={['55']}
+      />);
+
+      const foo = await findSelectedOption('test label', 'Foo');
+      expect(foo).toBeInTheDocument();
+    });
   });
 
   describe('tooltip API', () => {

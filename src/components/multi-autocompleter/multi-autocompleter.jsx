@@ -102,13 +102,16 @@ MultiAutocompleter.propTypes = {
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is an array of objects matching the shape of options */
-  value: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 MultiAutocompleter.defaultProps = {
   className: undefined,
   onChange: () => {},
-  optionIDGetter: option => option.id,
+  optionIDGetter: (option) => { return option?.id || option; },
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,
   readOnly: false,
