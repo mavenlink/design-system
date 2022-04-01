@@ -1,6 +1,9 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- refactor(Checkbox): implement `useValidation` hook instead of manual state management
+- refactor(Date): implement `useValidation` hook instead of manual state management
+- refactor(useValidation): rewrite hook with straight-forward effects
 - refactor(combine refs): hoist common method for combining refs as a utility method
 - fix(multi-select control): control has same height as other controls
 - fix(multi-select control): the placeholder text has the same styling as the input control placeholder text
