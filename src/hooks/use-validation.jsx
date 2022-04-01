@@ -1,32 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+import useMountedLayoutEffect from './use-mounted-layout-effect.js';
 
-export default function useValidation(errorText, inputRef) {
-  const [validationMessage, setValidationMessage] = useState('');
+// Custom hook for managing the validation message on a control.
+export default function useValidation(serverValidationMessage, inputRef) {
+  const [validationMessage, setValidationMessage] = useState(serverValidationMessage);
 
-  useEffect(() => {
-    if (!inputRef.current) return;
+  // On mount:
+  // Only set server validation message on the DOM node.
+  // The state should have been properly initialized.
+  useLayoutEffect(() => {
+    inputRef.current.setCustomValidity(serverValidationMessage);
+  }, []);
 
-    inputRef.current.setCustomValidity(errorText);
-    setValidationMessage(errorText);
-  }, [errorText]);
+  // Given a new server validation message:
+  // Set the server validation message (if any)
+  // and sync state to either server or client validation message.
+  useMountedLayoutEffect(() => {
+    inputRef.current.setCustomValidity(serverValidationMessage);
+    setValidationMessage(inputRef.current.validationMessage);
+  }, [serverValidationMessage]);
 
-  useEffect(() => {
-    if (!inputRef.current) return;
-
-    if (inputRef.current.value && !inputRef.current.validity.valid) {
-      setValidationMessage(inputRef.current.validationMessage);
-    }
-  });
-
+  // On blur (design spec):
+  // Set the client validation message.
   const validate = () => {
     if (!inputRef.current) return;
 
     inputRef.current.setCustomValidity('');
-    if (!inputRef.current.validity.valid) {
-      setValidationMessage(inputRef.current.validationMessage);
+    if (inputRef.current.validity.valid) {
+      inputRef.current.setCustomValidity(serverValidationMessage);
+      setValidationMessage(serverValidationMessage);
     } else {
-      inputRef.current.setCustomValidity(errorText);
-      setValidationMessage(errorText);
+      setValidationMessage(inputRef.current.validationMessage);
     }
   };
 

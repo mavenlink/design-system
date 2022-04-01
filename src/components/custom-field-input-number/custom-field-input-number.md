@@ -28,6 +28,6 @@ Otherwise, it is an invalid number and the component is in an invalid state.
 <CustomFieldInputNumber
   id={uuid.v4()}
   label="Example 3"
-  value={-1.01}
+  errorText="Something went wrong in the backend."
 />
 ```
