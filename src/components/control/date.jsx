@@ -124,7 +124,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   }, [editing]);
 
   useLayoutEffect(() => {
-    refs.input.current.setCustomValidity(validationMessage);
     setEditing(!!validationMessage);
     props.onInvalid({
       target: ref.current,
