@@ -13,10 +13,13 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
+  const mounted = useRef(false);
+
   const [value, setValue] = useState(props.value);
+  const [valueForSelect, setValueForSelect] = useState(value.map(v => (typeof v === 'string' ? { id: v, label: '' } : v)));
+
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const mounted = useRef(false);
 
   function fetchOptions() {
     setLoading(true);
@@ -47,11 +50,16 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   useEffect(fetchOptions, [searchValue]);
 
   useEffect(() => {
+    setValidationMessage(props.validationMessage);
+  }, [props.validationMessage]);
+
+  useEffect(() => {
     function fetchPropsValue() {
       setLoading(true);
-      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${props.value.map(props.optionIDGetter).join(',')}`)).then(({ json }) => {
+
+      fetchSelectedChoices(generateUrl(props.apiEndpoint, `only=${listOfIdsString(value)}`)).then(({ json }) => {
         if (mounted.current) {
-          setValue(json.results.map(result => json[result.key][result.id]));
+          setValueForSelect(json.results.map(result => json[result.key][result.id]));
         }
       }).catch((error) => {
         if (mounted.current && error.error && error.error.type !== 'aborted') {
@@ -64,12 +72,20 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       });
     }
 
-    if (props.value.length) fetchPropsValue();
-  }, [props.value.map(props.optionIDGetter).join(',')]);
+    if (value.length) {
+      fetchPropsValue();
+    } else {
+      setValueForSelect([]);
+    }
+  }, [listOfIdsString(value)]);
+
+  function listOfIdsString(v) {
+    return v.map(props.optionIDGetter).join(',');
+  }
 
   useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
+    setValue(props.value);
+  }, [listOfIdsString(props.value)]);
 
   useEffect(() => {
     mounted.current = true;
@@ -99,7 +115,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       showLoader={loading}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
-      value={value}
+      value={valueForSelect}
     />
   );
 });
@@ -123,7 +139,10 @@ MultiAutocompleter.propTypes = {
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
   /** value is an array of objects matching the shape of options */
-  value: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 MultiAutocompleter.defaultProps = {
@@ -131,7 +150,7 @@ MultiAutocompleter.defaultProps = {
   name: undefined,
   onChange: () => {},
   onInvalid: () => {},
-  optionIDGetter: option => option.id,
+  optionIDGetter: (option) => { return option?.id || option; },
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,
   readOnly: false,

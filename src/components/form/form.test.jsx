@@ -269,6 +269,18 @@ describe('<Form />', () => {
     });
   });
 
+  describe('Save & Add Another button', () => {
+    it('is shown by default', () => {
+      render(<Form {...requiredProps} />);
+      expect(screen.getByText('Save & Add Another')).toBeInTheDocument();
+    });
+
+    it('can be hidden when hideSaveAndAddAnother is true', () => {
+      render(<Form {...requiredProps} hideSaveAndAddAnother />);
+      expect(screen.queryByText('Save & Add Another')).not.toBeInTheDocument();
+    });
+  });
+
   describe('save button', () => {
     it('is enables/disables on changes', () => {
       const refs = [
