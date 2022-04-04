@@ -55,6 +55,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const refs = {
     autocomplete: useRef(),
     container: props.containerRef,
+    root: useRef(),
   };
 
   const classNames = {
@@ -128,19 +129,15 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()));
   }
 
-  function onAutocompleteBlur({ relatedTarget }) {
+  function onBlur(event) {
     if (!refs.autocomplete.current) return;
+    if (refs.root.current.contains(event.relatedTarget)) return;
 
     refs.autocomplete.current.setCustomValidity('');
     if (refs.autocomplete.current.validity.valid) {
+      refs.autocomplete.current.setCustomValidity(props.validationMessage);
       setValidationMessage(props.validationMessage || '');
     } else {
-      if (visibleOptionsRefs.find((optionRef) => {
-        return optionRef.current && optionRef.current.rootRef.current === relatedTarget;
-      })) {
-        setValidationMessage(props.validationMessage || '');
-        return;
-      }
       setValidationMessage(refs.autocomplete.current.validationMessage);
     }
   }
@@ -234,7 +231,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }));
 
   return (
-    <>
+    <div
+      onBlur={onBlur}
+      ref={refs.root}
+      style={{ height: '100%' }}
+    >
       <div
         role="presentation"
         className={getFormControlChildrenContainerClassName(props.readOnly, validationMessage, classNames)}
@@ -272,7 +273,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             role="combobox"
             className={classNames.input}
             id={ids.textbox}
-            onBlur={onAutocompleteBlur}
             onChange={onAutocompleteChange}
             onInput={props.onInput}
             placeholder={value.length === 0 ? props.placeholder : undefined}
@@ -303,7 +303,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         </Icons>
       </div>
       {dropdownContents()}
-    </>
+    </div>
   );
 });
 
