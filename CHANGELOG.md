@@ -11,10 +11,12 @@ Prepend new items to make git merging easier.
 - refactor(input control): use Icons component for invalid state
 - chore(useMounted): deprecate useMounted hook since it does not work unless the useEffect is "last" in the render cycle
 
-## 0.100.3
-- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
+## 0.100.4
 - feat(multi-autocompleter): allow setting value with types array of ids
 - feat(form): allow prop to hide: 'Save & Add Another' button
+
+## 0.100.3
+- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.100.1
 
