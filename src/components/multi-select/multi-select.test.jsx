@@ -222,12 +222,14 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toBeInvalid();
       await openOptions('test label');
       userEvent.click(await findAutocompleter('test label'));
-      userEvent.tab();
+      userEvent.click(document.body);
       expect(await findAutocompleter('test label')).toBeInvalid();
       expect(screen.getByText('Constraints not satisfied', { selector: 'span' })).toBeInTheDocument();
       userEvent.click(await findAutocompleter('test label'));
       userEvent.click(await findAvailableOption('test label', 'Foo'));
       expect(await findAutocompleter('test label')).toBeValid();
+      expect(screen.getByText('Constraints not satisfied', { selector: 'span' })).toBeInTheDocument();
+      userEvent.click(document.body);
       expect(screen.queryByText('Constraints not satisfied', { selector: 'span' })).not.toBeInTheDocument();
     });
 
@@ -243,7 +245,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toBeValid();
       expect(await findAutocompleter('test label')).not.toHaveAccessibleDescription('Constraints not satisfied');
       userEvent.click(await findAutocompleter('test label'));
-      userEvent.tab();
+      userEvent.click(document.body);
       expect(await findAutocompleter('test label')).not.toHaveAccessibleDescription('Constraints not satisfied');
     });
   });

@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- refactor(MultiSelect): implement `useValidation` hook instead of manual state management
 - refactor(Checkbox): implement `useValidation` hook instead of manual state management
 - refactor(Date): implement `useValidation` hook instead of manual state management
 - refactor(useValidation): rewrite hook with straight-forward effects
