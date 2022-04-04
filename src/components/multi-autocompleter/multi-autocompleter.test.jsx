@@ -271,20 +271,6 @@ describe('<MultiAutocompleter>', () => {
       const foo = await findSelectedOption('test label', 'Foo');
       expect(foo).toBeInTheDocument();
     });
-
-    it('accepts a single id', async () => {
-      const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
-
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-
-      rerender(<MultiAutocompleter
-        {...requiredProps}
-        value={'55'}
-      />);
-
-      const foo = await findSelectedOption('test label', 'Foo');
-      expect(foo).toBeInTheDocument();
-    });
   });
 
   describe('tooltip API', () => {

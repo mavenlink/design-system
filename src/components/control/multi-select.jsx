@@ -18,9 +18,10 @@ import NoOptions from '../no-options/no-options.jsx';
 import TagList from '../tag-list/tag-list.jsx';
 import Tag from '../tag/tag.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import useMountedEffect from '../../hooks/use-mounted-effect.js';
-import styles from './multi-select.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
+import useValidation from '../../hooks/use-validation.js';
+import styles from './multi-select.css';
 
 function getFormControlChildrenContainerClassName(readOnly, validationMessage, classNames) {
   if (readOnly) {
@@ -38,7 +39,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const [expanded, setExpanded] = useState(false);
   const selfRef = useForwardedRef(ref);
-  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(props.value || []);
   const valueRefs = value.map(() => createRef());
   const visibleOptions = getVisibleOptions();
@@ -55,8 +55,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   const refs = {
     autocomplete: useRef(),
     container: props.containerRef,
+    root: useRef(),
   };
-
   const classNames = {
     formControlChildrenContainer: styles['form-control-children-container'],
     formControlChildrenContainerInvalid: styles['form-control-children-container-invalid'],
@@ -68,6 +68,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     tagList: styles['tag-list'],
     ...props.classNames,
   };
+
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.autocomplete);
 
   const dropdownContents = () => {
     if (!expanded) {
@@ -128,21 +130,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       .filter(option => props.optionLabelGetter(option).toLowerCase().includes(autocompleteValue.toLowerCase()));
   }
 
-  function onAutocompleteBlur({ relatedTarget }) {
+  function onBlur(event) {
     if (!refs.autocomplete.current) return;
-
-    refs.autocomplete.current.setCustomValidity('');
-    if (!refs.autocomplete.current.validity.valid) {
-      if (visibleOptionsRefs.find((optionRef) => {
-        return optionRef.current && optionRef.current.rootRef.current === relatedTarget;
-      })) {
-        setValidationMessage(props.validationMessage || '');
-        return;
-      }
-      setValidationMessage(refs.autocomplete.current.validationMessage);
-    } else {
-      setValidationMessage(props.validationMessage || '');
-    }
+    if (refs.root.current.contains(event.relatedTarget)) return;
+    validate();
+    // onDropdownClose();
   }
 
   function onAutocompleteChange(event) {
@@ -208,10 +200,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   useDropdownClose(refs.container, expanded, onDropdownClose);
 
   useEffect(() => {
-    setValidationMessage(props.validationMessage);
-  }, [props.validationMessage]);
-
-  useEffect(() => {
     props.onInvalid({ detail: { validationMessage } });
   }, [validationMessage]);
 
@@ -234,7 +222,11 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   }));
 
   return (
-    <>
+    <div
+      onBlur={onBlur}
+      ref={refs.root}
+      style={{ height: '100%' }}
+    >
       <div
         role="presentation"
         className={getFormControlChildrenContainerClassName(props.readOnly, validationMessage, classNames)}
@@ -272,7 +264,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
             role="combobox"
             className={classNames.input}
             id={ids.textbox}
-            onBlur={onAutocompleteBlur}
             onChange={onAutocompleteChange}
             onInput={props.onInput}
             placeholder={value.length === 0 ? props.placeholder : undefined}
@@ -303,7 +294,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         </Icons>
       </div>
       {dropdownContents()}
-    </>
+    </div>
   );
 });
 
@@ -353,7 +344,7 @@ MultiSelect.defaultProps = {
   showLoader: false,
   tagChildren: undefined,
   value: [],
-  validationMessage: undefined,
+  validationMessage: '',
 };
 
 export default MultiSelect;

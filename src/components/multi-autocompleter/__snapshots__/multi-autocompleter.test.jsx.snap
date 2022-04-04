@@ -25,45 +25,49 @@ exports[`<MultiAutocompleter> className API uses class name provided 1`] = `
         class="control-container"
       >
         <div
-          class="form-control-children-container"
-          role="presentation"
+          style="height: 100%;"
         >
           <div
-            aria-labelledby="test-id-label"
-            class="tag-list"
-            role="grid"
+            class="form-control-children-container"
+            role="presentation"
           >
-            <input
-              aria-autocomplete="list"
-              aria-controls="test-id-listbox"
-              aria-describedby="test-id-empty test-id-autocomplete-tooltip"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              autocomplete="off"
-              class="input"
-              id="test-id-autocomplete"
-              role="combobox"
-              value=""
-            />
-          </div>
-          <div
-            class="container"
-          >
-            <svg
-              aria-disabled="false"
-              class="button"
-              height="6"
-              role="button"
-              tabindex="0"
-              width="10"
+            <div
+              aria-labelledby="test-id-label"
+              class="tag-list"
+              role="grid"
             >
-              <title>
-                Open options
-              </title>
-              <use
-                xlink:href="#caret-down.svg"
+              <input
+                aria-autocomplete="list"
+                aria-controls="test-id-listbox"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="input"
+                id="test-id-autocomplete"
+                role="combobox"
+                value=""
               />
-            </svg>
+            </div>
+            <div
+              class="container"
+            >
+              <svg
+                aria-disabled="false"
+                class="button"
+                height="6"
+                role="button"
+                tabindex="0"
+                width="10"
+              >
+                <title>
+                  Open options
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -96,45 +100,49 @@ exports[`<MultiAutocompleter> has defaults 1`] = `
         class="control-container"
       >
         <div
-          class="form-control-children-container"
-          role="presentation"
+          style="height: 100%;"
         >
           <div
-            aria-labelledby="test-id-label"
-            class="tag-list"
-            role="grid"
+            class="form-control-children-container"
+            role="presentation"
           >
-            <input
-              aria-autocomplete="list"
-              aria-controls="test-id-listbox"
-              aria-describedby="test-id-empty test-id-autocomplete-tooltip"
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              autocomplete="off"
-              class="input"
-              id="test-id-autocomplete"
-              role="combobox"
-              value=""
-            />
-          </div>
-          <div
-            class="container"
-          >
-            <svg
-              aria-disabled="false"
-              class="button"
-              height="6"
-              role="button"
-              tabindex="0"
-              width="10"
+            <div
+              aria-labelledby="test-id-label"
+              class="tag-list"
+              role="grid"
             >
-              <title>
-                Open options
-              </title>
-              <use
-                xlink:href="#caret-down.svg"
+              <input
+                aria-autocomplete="list"
+                aria-controls="test-id-listbox"
+                aria-describedby="test-id-empty test-id-autocomplete-tooltip"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="input"
+                id="test-id-autocomplete"
+                role="combobox"
+                value=""
               />
-            </svg>
+            </div>
+            <div
+              class="container"
+            >
+              <svg
+                aria-disabled="false"
+                class="button"
+                height="6"
+                role="button"
+                tabindex="0"
+                width="10"
+              >
+                <title>
+                  Open options
+                </title>
+                <use
+                  xlink:href="#caret-down.svg"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

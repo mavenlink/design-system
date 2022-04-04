@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import CellControl from './cell-control.jsx';
 import Icons from '../control/icons.jsx';
 import styles from './textarea.css';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 const Textarea = forwardRef(function Textarea(props, ref) {
   const ids = {

@@ -3,7 +3,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, use
 import Icons from './icons.jsx';
 import styles from './input.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 const Input = forwardRef(function Input(props, forwardedRef) {
   const classNames = {
@@ -58,7 +58,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <div className={classNames.container} style={{ position: 'relative' }}>
+    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         aria-describedby={`${ids.validation} ${props.describedBy}`}
