@@ -132,7 +132,9 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     if (!refs.autocomplete.current) return;
 
     refs.autocomplete.current.setCustomValidity('');
-    if (!refs.autocomplete.current.validity.valid) {
+    if (refs.autocomplete.current.validity.valid) {
+      setValidationMessage(props.validationMessage || '');
+    } else {
       if (visibleOptionsRefs.find((optionRef) => {
         return optionRef.current && optionRef.current.rootRef.current === relatedTarget;
       })) {
@@ -140,8 +142,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         return;
       }
       setValidationMessage(refs.autocomplete.current.validationMessage);
-    } else {
-      setValidationMessage(props.validationMessage || '');
     }
   }
 
