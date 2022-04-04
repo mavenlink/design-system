@@ -2,10 +2,12 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
-## 0.100.3
-- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
+## 0.100.4
 - feat(multi-autocompleter): allow setting value with types array of ids
 - feat(form): allow prop to hide: 'Save & Add Another' button
+
+## 0.100.3
+- fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.100.1
 
