@@ -353,7 +353,7 @@ MultiSelect.defaultProps = {
   showLoader: false,
   tagChildren: undefined,
   value: [],
-  validationMessage: undefined,
+  validationMessage: '',
 };
 
 export default MultiSelect;
