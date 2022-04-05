@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import CellControl from './cell-control.jsx';
 import MoneyControl from '../control/money.jsx';
-import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
 import styles from './money.css';
 
 const Money = forwardRef(function Money(props, ref) {
@@ -28,7 +28,6 @@ const Money = forwardRef(function Money(props, ref) {
         required={props.required}
         ref={ref}
         validationMessage={props.validationMessage}
-        validationMessageTooltip
         value={props.value}
       />
     </CellControl>

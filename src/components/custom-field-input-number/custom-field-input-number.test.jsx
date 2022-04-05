@@ -192,11 +192,10 @@ describe('CustomFieldInputNumber', () => {
       expect(screen.getByLabelText('Test label')).toBeValid();
     });
 
-    it('is invalid on a decimal number', () => {
-      const validityText = 'Constraints not satisfied';
+    it('is invalid on a decimal number (but without validation message)', () => {
       render(<CustomFieldInputNumber {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test label')).toBeInvalid();
-      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription(validityText);
+      expect(screen.getByLabelText('Test label')).toHaveAccessibleDescription('');
     });
   });
 

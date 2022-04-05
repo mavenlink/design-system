@@ -25,7 +25,7 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="currency-validation-message currency-tooltip"
@@ -34,6 +34,9 @@ exports[`CustomFieldInputCurrency has defaults 1`] = `
             name="some-field-id"
             type="text"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>

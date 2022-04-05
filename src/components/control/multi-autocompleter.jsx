@@ -15,12 +15,8 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   const [options, setOptions] = useState([]);
   const mounted = useRef(false);
 
-  function arrayWrap(v) {
-    return Object.prototype.toString.call(v) !== '[object Array]' ? [v] : v;
-  }
-
-  const [value, setValue] = useState(arrayWrap(props.value));
-  const [valueForSelect, setValueForSelect] = useState(value);
+  const [value, setValue] = useState(props.value);
+  const [valueForSelect, setValueForSelect] = useState(value.map(v => (typeof v === 'string' ? { id: v, label: '' } : v)));
 
   const [searchValue, setSearchValue] = useState('');
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
@@ -81,22 +77,15 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     } else {
       setValueForSelect([]);
     }
-  }, [listOfIdsString(value), options]);
-
-  function safePropsValue(v) {
-    if (Object.prototype.toString.call(v) !== '[object Array]') {
-      return v;
-    }
-    return listOfIdsString(v);
-  }
+  }, [listOfIdsString(value)]);
 
   function listOfIdsString(v) {
     return v.map(props.optionIDGetter).join(',');
   }
 
   useEffect(() => {
-    setValue(arrayWrap(props.value));
-  }, [safePropsValue(props.value)]);
+    setValue(props.value);
+  }, [listOfIdsString(props.value)]);
 
   useEffect(() => {
     mounted.current = true;
@@ -153,7 +142,6 @@ MultiAutocompleter.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.arrayOf(PropTypes.string),
-    PropTypes.string,
   ]),
 };
 

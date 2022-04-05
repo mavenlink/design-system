@@ -4,7 +4,7 @@
 .input {
   --size-of-icons-container: 37px;
 
-  composes: input from '../input/input.css';
+  composes: input from './input.css';
   min-height: var(--spacing-x-large);
   height: 100%;
   padding-right: calc(var(--size-of-icons-container) + var(--spacing-medium));
@@ -16,7 +16,7 @@
 
 .invalid-input {
   composes: input;
-  composes: invalid-input from '../input/input.css';
+  composes: invalid-input from './input.css';
 }
 
 .calendar-container {

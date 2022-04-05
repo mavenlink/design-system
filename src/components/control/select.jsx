@@ -13,10 +13,10 @@ import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
-import styles from '../select/select.css';
-import useValidation from '../../hooks/use-validation.jsx';
+import styles from './select.css';
+import useValidation from '../../hooks/use-validation.js';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
-import useMounted from '../../hooks/use-mounted.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
 const Select = forwardRef(function Select(props, ref) {
@@ -24,7 +24,6 @@ const Select = forwardRef(function Select(props, ref) {
   const [value, setValue] = useState(props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
-  const mounted = useMounted();
   const selfRef = useForwardedRef(ref);
 
   const defaultValue = value ? props.displayValueEvaluator(value) : '';
@@ -45,7 +44,7 @@ const Select = forwardRef(function Select(props, ref) {
   const invalid = validationMessage.length > 0;
 
   const classNames = {
-    container: styles.container,
+    container: undefined,
     input: styles.input,
     invalidInput: styles['input-invalid'],
     ...props.classNames,
@@ -140,9 +139,7 @@ const Select = forwardRef(function Select(props, ref) {
     });
   }, [validationMessage]);
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useMountedEffect(() => {
     setValue(props.value);
 
     if (props.value === undefined || props.value === null) {
@@ -150,9 +147,7 @@ const Select = forwardRef(function Select(props, ref) {
     }
   }, [props.value]);
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useMountedEffect(() => {
     if (hasBeenBlurred) {
       validate();
     }
@@ -186,7 +181,7 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <div className={classNames.container} style={{ position: 'relative' }}>
+    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
       <input
         autoComplete="off"
         aria-autocomplete="none"
@@ -213,10 +208,8 @@ const Select = forwardRef(function Select(props, ref) {
         value={searchValue ?? defaultValue ?? ''}
       />
       <Icons
-        classNames={undefined}
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
-        validationMessageTooltip={props.validationMessageTooltip}
       >
         {!props.readOnly && (value || searchValue) ? (
           <IconButton
@@ -285,7 +278,6 @@ Select.propTypes = {
   required: PropTypes.bool,
   // type: PropTypes.oneOf(['cell', 'field']).isRequired,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
 };
@@ -301,7 +293,6 @@ Select.defaultProps = {
   readOnly: false,
   required: false,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
   wrapperRef: undefined,
 };

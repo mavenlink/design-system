@@ -32,6 +32,9 @@ exports[`Checkbox has defaults 1`] = `
             id="fart"
             type="checkbox"
           />
+          <div
+            class="container"
+          />
         </div>
       </div>
     </div>

@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
-import currencyCodeType from './currency-code-type.js';
-import currencyMetaData from './currency-meta-data.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
+import currencyMetaData from '../../utils/currency-meta-data.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import { initialInputValid, subunitToUnit, formatValue } from '../control/money-formatter.js';
+import { initialInputValid, subunitToUnit, formatValue } from '../../utils/money-formatter.js';
 
 const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(props, forwardedRef) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));

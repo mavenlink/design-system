@@ -22,7 +22,7 @@ exports[`Input cell control className API 1`] = `
           >
             <div
               class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-describedby="test-id-validation-message "
@@ -31,6 +31,9 @@ exports[`Input cell control className API 1`] = `
                 name="test-name"
                 type="text"
                 value=""
+              />
+              <div
+                class="container"
               />
             </div>
           </td>
@@ -63,7 +66,7 @@ exports[`Input cell control has defaults 1`] = `
           >
             <div
               class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-describedby="test-id-validation-message "
@@ -72,6 +75,9 @@ exports[`Input cell control has defaults 1`] = `
                 name="test-name"
                 type="text"
                 value=""
+              />
+              <div
+                class="container"
               />
             </div>
           </td>
@@ -112,7 +118,7 @@ exports[`Input cell control id API is a string 1`] = `
           >
             <div
               class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-describedby="unique-id-validation-message "
@@ -121,6 +127,9 @@ exports[`Input cell control id API is a string 1`] = `
                 name="test-name"
                 type="text"
                 value=""
+              />
+              <div
+                class="container"
               />
             </div>
           </td>

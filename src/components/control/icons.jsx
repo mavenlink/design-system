@@ -16,7 +16,6 @@ export default function Icons(props) {
     <div className={classNames.container}>
       {!!props.validationMessage && (
         <Tooltip
-          disabled={!props.validationMessageTooltip}
           id=""
           text={props.validationMessage}
           direction="left"
@@ -42,8 +41,6 @@ Icons.propTypes = {
   validationMessage: PropTypes.string,
   /* The ID of the validation icon to describe the invalid control. */
   validationMessageId: PropTypes.string.isRequired,
-  /* Whether to show a tooltip on the valication icon with the validation message. Necessary for cell controls. */
-  validationMessageTooltip: PropTypes.bool.isRequired,
 };
 
 Icons.defaultProps = {

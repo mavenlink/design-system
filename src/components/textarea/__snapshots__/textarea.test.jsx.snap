@@ -31,6 +31,9 @@ exports[`Textarea has defaults 1`] = `
             class="textarea"
             id="foo"
           />
+          <div
+            class="container"
+          />
         </div>
       </div>
     </div>

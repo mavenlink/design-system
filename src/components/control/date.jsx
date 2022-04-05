@@ -14,6 +14,7 @@ import Icons from './icons.jsx';
 import useDropdownClose from '../../hooks/use-dropdown-close.js';
 import styles from './date.css';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import useValidation from '../../hooks/use-validation.js';
 
 function toDateStringFormat(date) {
   return date ? date.toLocaleDateString(undefined, { month: 'short', year: 'numeric', day: 'numeric' }) : '';
@@ -35,9 +36,8 @@ function fromFullDateFormat(string) {
 const Date = forwardRef(function Date(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
-  const [editing, setEditing] = useState(!!props.validationMessage);
+  const [editing, setEditing] = useState(true);
   const [expanded, setExpanded] = useState(false);
-  const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
   const classNames = {
     container: undefined,
@@ -56,14 +56,12 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     container: useRef(),
     input: useRef(),
   };
+  const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
 
-    // Given the validation spec, any provided validation messages are cleared on blur.
-    // If the native node is still invalid then re-render with the native validation messages.
-    refs.input.current.setCustomValidity('');
-    setValidationMessage(refs.input.current.validationMessage);
+    validate();
     setActive(false);
     if (!refs.input.current.validationMessage) setEditing(false);
   }
@@ -111,7 +109,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
   useEffect(() => {
     setEditing(!!props.validationMessage);
-    setValidationMessage(props.validationMessage);
   }, [props.validationMessage]);
 
   useEffect(() => {
@@ -127,7 +124,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   }, [editing]);
 
   useLayoutEffect(() => {
-    refs.input.current.setCustomValidity(validationMessage);
+    setEditing(!!validationMessage);
     props.onInvalid({
       target: ref.current,
       detail: {
@@ -178,7 +175,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
-        validationMessageTooltip={props.validationMessageTooltip}
       >
         <IconButton
           disabled={props.readOnly}
@@ -216,7 +212,6 @@ Date.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   /** A date in full-date format (i.e. yyyy-mm-dd) */
   value: PropTypes.string,
 };
@@ -233,7 +228,6 @@ Date.defaultProps = {
   required: false,
   tooltip: undefined,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
 };
 

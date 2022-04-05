@@ -25,7 +25,7 @@ exports[`CustomFieldInputText has defaults 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="test-input-validation-message test-input-tooltip"
@@ -34,6 +34,9 @@ exports[`CustomFieldInputText has defaults 1`] = `
             name="field-id"
             type="text"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>
