@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
+import Input from '../input/input.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
@@ -111,9 +111,9 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
   }
 
   return (
-    <CustomFieldInputText
+    <Input
       {...sharedProps}
-      errorText={props.errorText}
+      validationMessage={props.errorText}
       onFocus={handleOnFocus}
       ref={componentRef}
       type="text"

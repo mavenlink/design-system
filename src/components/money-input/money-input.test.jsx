@@ -1,7 +1,6 @@
 import React, { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import MoneyInput from './money-input.jsx';
 
 describe('MoneyInput', () => {
@@ -35,19 +34,6 @@ describe('MoneyInput', () => {
     expect(screen.getByLabelText('currency')).toHaveValue('IQD 10.111');
     userEvent.click(screen.getByLabelText('currency'));
     expect(screen.getByLabelText('currency')).toHaveValue(10.111);
-  });
-
-  describe('prop-forward API', () => {
-    it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
-      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus', 'type',
-        'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'errorText', 'maxLength'];
-      const currencyProps = Object.keys(MoneyInput.propTypes);
-      const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
-
-      inputTextProps.forEach((key) => {
-        expect(currencyProps).toContain(key);
-      });
-    });
   });
 
   describe('dirty ref API', () => {

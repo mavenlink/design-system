@@ -67,7 +67,6 @@ module.exports = {
       path.join(__dirname, 'src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx'),
       path.join(__dirname, 'src/components/custom-field-input-number/custom-field-input-number.jsx'),
       path.join(__dirname, 'src/components/custom-field-input-single-choice/custom-field-input-single-choice.jsx'),
-      path.join(__dirname, 'src/components/custom-field-input-text/custom-field-input-text.jsx'),
       path.join(__dirname, 'src/components/date/date.jsx'),
       path.join(__dirname, 'src/components/input/input.jsx'),
       path.join(__dirname, 'src/components/duration-input/duration-input.jsx'),

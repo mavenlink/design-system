@@ -40,7 +40,6 @@ const refs = [
 
 ```jsx
 import Form from '@mavenlink/design-system/src/components/form/form.jsx';
-import Text from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
 import Number from '@mavenlink/design-system/src/components/custom-field-input-number/custom-field-input-number.jsx';
 import Currency from '@mavenlink/design-system/src/components/custom-field-input-currency/custom-field-input-currency.jsx';
 import Date from '@mavenlink/design-system/src/components/custom-field-input-date/custom-field-input-date.jsx';
@@ -67,13 +66,6 @@ function onSubmit(event) {
 <Form refs={refs} onSubmit={onSubmit}>
   {({ onChange }) => (
     <React.Fragment>
-      <Text
-        defaultValue="Example for a persisted value"
-        id={uuid.v4()}
-        label="Custom Field Text"
-        name="text-name"
-        ref={refs[0]}
-      />
       <Number
         id={uuid.v4()}
         label="Custom Field Number"

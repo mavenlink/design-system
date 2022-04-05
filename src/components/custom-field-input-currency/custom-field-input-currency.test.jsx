@@ -5,7 +5,6 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CustomFieldInputText from '../custom-field-input-text/custom-field-input-text.jsx';
 import CustomFieldInputCurrency from './custom-field-input-currency.jsx';
 
 describe('CustomFieldInputCurrency', () => {
@@ -37,17 +36,6 @@ describe('CustomFieldInputCurrency', () => {
   });
 
   describe('prop-forward API', () => {
-    it('forwards all props accepted by CustomFieldInputText on Object keys', () => {
-      const excludedNumberProps = ['inputRef', 'max', 'min', 'onKeyUp', 'onKeyDown', 'step', 'onBlur', 'onFocus', 'type',
-        'readOnly', 'icon', 'onChange', 'onClick', 'ariaProps', 'defaultValue', 'errorText', 'maxLength'];
-      const currencyProps = Object.keys(CustomFieldInputCurrency.propTypes);
-      const inputTextProps = Object.keys(CustomFieldInputText.propTypes).filter(p => !excludedNumberProps.includes(p));
-
-      inputTextProps.forEach((key) => {
-        expect(currencyProps).toContain(key);
-      });
-    });
-
     it('presents contextual error state', () => {
       const errorText = 'What do you want from us monster!?';
       render(<CustomFieldInputCurrency {...requiredProps} value={350} errorText={errorText} />);
