@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
-import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
+import Number from '../number/number.jsx';
 import Input from '../input/input.jsx';
 import currencyCodeType from './currency-code-type.js';
 import currencyMetaData from './currency-meta-data.js';
@@ -99,7 +99,7 @@ const CustomFieldInputCurrency = forwardRef(function CustomFieldInputCurrency(pr
 
   if (isEditing) {
     return (
-      <CustomFieldInputNumber
+      <Number
         {...sharedProps}
         onBlur={handleOnBlur}
         onChange={onChange}
