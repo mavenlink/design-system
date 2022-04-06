@@ -64,7 +64,6 @@ module.exports = {
       path.join(__dirname, 'src/components/checkbox/checkbox.jsx'),
       path.join(__dirname, 'src/components/custom-field-input-currency/custom-field-input-currency.jsx'),
       path.join(__dirname, 'src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx'),
-      path.join(__dirname, 'src/components/custom-field-input-number/custom-field-input-number.jsx'),
       path.join(__dirname, 'src/components/custom-field-input-single-choice/custom-field-input-single-choice.jsx'),
       path.join(__dirname, 'src/components/date/date.jsx'),
       path.join(__dirname, 'src/components/input/input.jsx'),
