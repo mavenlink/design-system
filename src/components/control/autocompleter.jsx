@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
-import useMounted from '../../hooks/use-mounted.js';
 import Select from './select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
@@ -9,7 +8,7 @@ import { API_ROOT } from '../../mocks/mock-constants.js';
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeModels } = useFetch();
   const { execute: executeValue } = useFetch();
-  const mounted = useMounted();
+  const mounted = useRef(false);
   const [models, setModels] = useState([]);
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
@@ -69,6 +68,10 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   const listOptionRefs = models.map(() => React.createRef());
 
+  useEffect(() => {
+    mounted.current = true;
+  }, []);
+
   useImperativeHandle(ref, () => ({
     ...selectRef.current,
     get dirty() {
@@ -96,7 +99,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
-      validationMessageTooltip={props.validationMessageTooltip}
       value={model}
       wrapperRef={props.wrapperRef}
     >
@@ -136,7 +138,6 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   /** The `value` props is expected an `id` used to fetch a model on the API. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
@@ -155,7 +156,6 @@ Autocompleter.defaultProps = {
   searchParam: 'matching',
   tooltip: undefined,
   validationMessage: undefined,
-  validationMessageTooltip: false,
   value: undefined,
 };
 

@@ -3,6 +3,6 @@
 }
 
 .input {
-  composes: input from '../number/number.css';
+  composes: input from '../control/number.css';
   border: none;
 }

@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import Autocompleter from './autocompleter.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-const Choice = forwardRef(function Choice(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
-
+const Choice = forwardRef(function Choice(props, ref) {
   return (
     <Autocompleter
       apiEndpoint={`/custom_field_choices?for_custom_fields=${props.customFieldID}&active=true`}

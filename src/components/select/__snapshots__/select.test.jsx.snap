@@ -3,9 +3,7 @@
 exports[`src/components/select/select has defaults 1`] = `
 <body>
   <div>
-    <div
-      class="container"
-    >
+    <div>
       <div
         role="presentation"
       >
@@ -27,8 +25,7 @@ exports[`src/components/select/select has defaults 1`] = `
           class="control-container"
         >
           <div
-            class="container"
-            style="position: relative;"
+            style="height: 100%; position: relative;"
           >
             <input
               aria-autocomplete="none"

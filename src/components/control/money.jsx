@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useState, useRef, useEffect } from 'react';
 import Input from './input.jsx';
 import Number from './number.jsx';
-import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
-import currencyMetaData from '../custom-field-input-currency/currency-meta-data.js';
-import { initialInputValid, subunitToUnit, formatValue } from './money-formatter.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
+import currencyMetaData from '../../utils/currency-meta-data.js';
+import { initialInputValid, subunitToUnit, formatValue } from '../../utils/money-formatter.js';
 
-const Money = forwardRef(function Money(props, forwardedRef) {
+const Money = forwardRef(function Money(props, ref) {
   const [input, setInput] = useState(subunitToUnit(props.value, props.currencyCode));
   const [isFocused, setIsFocused] = useState(false);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
@@ -15,7 +14,6 @@ const Money = forwardRef(function Money(props, forwardedRef) {
   const componentRef = useRef(null);
   const numberRef = useRef(null);
   const valueRef = isEditing ? numberRef : componentRef;
-  const ref = useForwardedRef(forwardedRef);
 
   function handleOnBlur(event) {
     if (numberRef.current.validity.valid) {
@@ -106,7 +104,6 @@ const Money = forwardRef(function Money(props, forwardedRef) {
         ref={numberRef}
         step={currencyMetaData[props.currencyCode].step}
         validationMessage={props.validationMessage}
-        validationMessageTooltip={props.validationMessageTooltip}
         value={input}
       />
     );
@@ -145,7 +142,6 @@ Money.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.number,
 };
 
@@ -161,7 +157,6 @@ Money.defaultProps = {
   required: false,
   tooltip: undefined,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
 };
 

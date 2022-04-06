@@ -7,36 +7,10 @@ import React, {
 } from 'react';
 import DateControl from '../control/date.jsx';
 import FormControl from '../form-control/form-control.jsx';
+import combineRefs from '../../utils/combine-refs.js';
 import styles from './date.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
-// Create new object based of two refs.
-// Same keys but does not evaluate getter functions and always uses the latest ref.current.
-// Given key collisions, prefers the second object as the actual value.
-function spread(ref1, ref2) {
-  const newObject = {};
-
-  Object.keys(ref1.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref1.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  Object.keys(ref2.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref2.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  return newObject;
-}
-
-const Date = forwardRef(function Date(props, forwardedRef) {
-  const ref = useForwardedRef(forwardedRef);
+const Date = forwardRef(function Date(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   function onInvalid(event) {
@@ -61,7 +35,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     input: useRef(),
   };
 
-  useImperativeHandle(ref, () => spread(
+  useImperativeHandle(ref, () => combineRefs(
     refs.control,
     refs.input,
   ));

@@ -205,10 +205,10 @@ describe('Number', () => {
       expect(ref.current.value).toBe(101012);
     });
 
-    it('indicates if it is invalid on mount', () => {
+    it('it is invalid on mount (but without an validation message)', () => {
       render(<Number {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('');
     });
   });
 

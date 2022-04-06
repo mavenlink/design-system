@@ -1,10 +1,9 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import useValidation from '../../hooks/use-validation.jsx';
-import useMounted from '../../hooks/use-mounted.js';
+import useValidation from '../../hooks/use-validation.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import Icons from './icons.jsx';
-import styles from '../number/number.css';
+import styles from './number.css';
 
 function getClassName(className, validationMessage) {
   if (className) return className;
@@ -28,7 +27,6 @@ const Number = React.forwardRef((props, forwardedRef) => {
     input: useRef(),
   };
 
-  const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   function onBlur(event) {
@@ -36,9 +34,7 @@ const Number = React.forwardRef((props, forwardedRef) => {
     props.onBlur(event);
   }
 
-  useEffect(() => {
-    if (!mounted.current) return;
-
+  useLayoutEffect(() => {
     // The MDS Number is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
@@ -102,7 +98,6 @@ const Number = React.forwardRef((props, forwardedRef) => {
         classNames={undefined}
         validationMessage={validationMessage}
         validationMessageId={ids.validationMessage}
-        validationMessageTooltip={props.validationMessageTooltip}
       />
     </div>
   );
@@ -125,7 +120,6 @@ Number.propTypes = {
   required: PropTypes.bool,
   step: PropTypes.number,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   value: PropTypes.number,
 };
 
@@ -141,7 +135,6 @@ Number.defaultProps = {
   step: 1,
   tooltip: undefined,
   validationMessage: '',
-  validationMessageTooltip: false,
   value: undefined,
 };
 

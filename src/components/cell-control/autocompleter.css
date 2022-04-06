@@ -1,0 +1,11 @@
+.container {
+  composes: container from './cell-control.css';
+}
+
+.input {
+  composes: input from './select.css';
+}
+
+.invalidInput {
+  composes: invalidInput from './select.css';
+}
