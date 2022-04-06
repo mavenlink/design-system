@@ -40,7 +40,6 @@ const refs = [
 
 ```jsx
 import Form from '@mavenlink/design-system/src/components/form/form.jsx';
-import Currency from '@mavenlink/design-system/src/components/custom-field-input-currency/custom-field-input-currency.jsx';
 import SingleChoice from '@mavenlink/design-system/src/components/custom-field-input-single-choice/custom-field-input-single-choice.jsx';
 import MultiChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
 
@@ -64,14 +63,6 @@ function onSubmit(event) {
 <Form refs={refs} onSubmit={onSubmit}>
   {({ onChange }) => (
     <React.Fragment>
-      <Currency
-        currencyCode="USD"
-        id={uuid.v4()}
-        label="Custom Field Currency"
-        name="currency-name"
-        ref={refs[2]}
-        value={350}
-      />
       <SingleChoice
         choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }]}
         customFieldID="0"
