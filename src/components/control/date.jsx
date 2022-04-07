@@ -36,7 +36,7 @@ function fromFullDateFormat(string) {
 const Date = forwardRef(function Date(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
   const classNames = {
