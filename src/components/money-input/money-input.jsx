@@ -8,6 +8,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
   const ids = {
     label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
   };
 
   function onInvalid(event) {
@@ -21,7 +22,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, ref) {
       labelId={ids.label}
       name={props.name}
       readOnly={props.readOnly}
-      // ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
@@ -29,6 +29,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, ref) {
       <Money
         className={props.className}
         currencyCode={props.currencyCode}
+        describedBy={ids.tooltip}
         id={props.id}
         name={props.name}
         onChange={props.onChange}
