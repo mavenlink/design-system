@@ -134,7 +134,6 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     if (!refs.autocomplete.current) return;
     if (refs.root.current.contains(event.relatedTarget)) return;
     validate();
-    // onDropdownClose();
   }
 
   function onAutocompleteChange(event) {

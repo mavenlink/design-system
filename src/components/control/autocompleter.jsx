@@ -8,7 +8,6 @@ import { API_ROOT } from '../../mocks/mock-constants.js';
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeModels } = useFetch();
   const { execute: executeValue } = useFetch();
-  const mounted = useRef(false);
   const [models, setModels] = useState([]);
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
@@ -20,9 +19,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   useEffect(() => {
     if (props.value) {
       executeValue(apiEndpoint('only', props.value))
-        .then((respObj) => {
-          if (mounted.current) {
-            setModel(respObj.json.results.map(result => respObj.json[result.key][result.id])[0]);
+        .then(({ json, mounted }) => {
+          if (mounted) {
+            setModel(json.results.map(result => json[result.key][result.id])[0]);
           }
         })
         .catch((error) => {
@@ -39,9 +38,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     if (!props.apiEndpoint) { return; }
 
     executeModels(apiEndpoint(props.searchParam, searchString))
-      .then((respObj) => {
-        if (mounted.current) {
-          setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
+      .then(({ json, mounted }) => {
+        if (mounted) {
+          setModels(json.results.map(result => json[result.key][result.id]));
         }
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
@@ -67,10 +66,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   }
 
   const listOptionRefs = models.map(() => React.createRef());
-
-  useEffect(() => {
-    mounted.current = true;
-  }, []);
 
   useImperativeHandle(ref, () => ({
     ...selectRef.current,
