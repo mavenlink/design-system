@@ -90,7 +90,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
   }, [listOfIdsString(value)]);
 
   function listOfIdsString(v) {
-    return v.map(props.optionIDGetter).join(',');
+    return v.map(x => (typeof x === 'string' ? x : props.optionIDGetter(x))).join(',');
   }
 
   useEffect(() => {
