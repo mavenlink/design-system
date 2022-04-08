@@ -48,9 +48,9 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
     });
   }
 
-  function onMultiSelectChange(event) {
+  function onMultiSelectChange() {
     setSearchValue('');
-    props.onChange(event);
+    props.onChange({ target: forwardedRef.current });
   }
 
   function onMultiSelectInput(event) {

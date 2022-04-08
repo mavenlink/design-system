@@ -90,10 +90,17 @@ describe('<MultiAutocompleter>', () => {
       const onChangeMock = jest.fn();
 
       render(<MultiAutocompleter {...requiredProps} onChange={onChangeMock} />);
+      expect(onChangeMock).not.toHaveBeenCalled();
 
       await openOptions('test label');
       userEvent.click(await await findAvailableOption('test label', 'Foo'));
-      expect(onChangeMock).toHaveBeenCalled();
+      expect(onChangeMock).toHaveBeenCalledWith({
+        target: {
+          dirty: true,
+          id: 'test-id',
+          value: ['55'],
+        },
+      });
     });
   });
 
