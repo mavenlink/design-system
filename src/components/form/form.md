@@ -36,46 +36,6 @@ const refs = [
 </Form>
 ```
 
-### Example with custom fields
-
-```jsx
-import Form from '@mavenlink/design-system/src/components/form/form.jsx';
-import MultiChoice from '@mavenlink/design-system/src/components/custom-field-input-multiple-choice/custom-field-input-multiple-choice.jsx';
-
-const refs = [
-  React.createRef(),
-  React.createRef(),
-  React.createRef(),
-  React.createRef(),
-  React.createRef(),
-  React.createRef(),
-];
-
-function onSubmit(event) {
-  const message = Object.keys(event.data).reduce((acc, fieldName) => {
-    return `${acc}${fieldName}=${event.data[fieldName].value}; `;
-  }, '');
-
-  window.alert(message);
-}
-
-<Form refs={refs} onSubmit={onSubmit}>
-  {({ onChange }) => (
-    <React.Fragment>
-      <MultiChoice
-        choices={[{ id: 1, label: 'Choice 1' }, { id: 2, label: 'Choice 2' }, { id: 3, label: 'Choice 3' }]}
-        customFieldID="0"
-        id={uuid.v4()}
-        label="Custom Field Multiple Choice"
-        name="multiple-choice-name"
-        onChange={onChange}
-        ref={refs[5]}
-      />
-    </React.Fragment>
-  )}
-</Form>
-```
-
 ### Example with autoSave
 
 The `autoSave` prop determines the frequency of calling `onSubmit`.
