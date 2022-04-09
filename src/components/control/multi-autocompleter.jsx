@@ -1,19 +1,29 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useState, useRef } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState, useRef } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
+import combineRefs from '../../utils/combine-refs.js';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
 function generateUrl(apiEndpoint, params) {
   return `${API_ROOT}${apiEndpoint}${apiEndpoint.includes('?') ? '&' : '?'}${params}`;
 }
 
-const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
+const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forwardedRef) {
   const { execute: fetchChoices } = useFetch();
   const { execute: fetchSelectedChoices } = useFetch();
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
   const mounted = useRef(false);
+
+  const refs = {
+    select: useRef(),
+  };
+  const ref = useRef({
+    get value() {
+      return refs.select.current.value ? refs.select.current.value.map(props.optionIDGetter) : undefined;
+    },
+  });
 
   const [value, setValue] = useState(props.value);
   const [valueForSelect, setValueForSelect] = useState(value.map(v => (typeof v === 'string' ? { id: v, label: '' } : v)));
@@ -38,9 +48,9 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
     });
   }
 
-  function onMultiSelectChange(event) {
+  function onMultiSelectChange() {
     setSearchValue('');
-    props.onChange(event);
+    props.onChange({ target: forwardedRef.current });
   }
 
   function onMultiSelectInput(event) {
@@ -80,7 +90,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
   }, [listOfIdsString(value)]);
 
   function listOfIdsString(v) {
-    return v.map(props.optionIDGetter).join(',');
+    return v.map(x => (typeof x === 'string' ? x : props.optionIDGetter(x))).join(',');
   }
 
   useEffect(() => {
@@ -94,6 +104,8 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       mounted.current = false;
     };
   }, []);
+
+  useImperativeHandle(forwardedRef, () => combineRefs(refs.select, ref));
 
   return (
     <MultiSelect
@@ -110,7 +122,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
       options={options}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
-      ref={ref}
+      ref={refs.select}
       required={props.required}
       showLoader={loading}
       tooltip={props.tooltip}

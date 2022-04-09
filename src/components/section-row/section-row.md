@@ -2,18 +2,18 @@
 
 ```js
 import Section from '@mavenlink/design-system/src/components/section/section.jsx';
-import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 
 <Section
   title="Project Details"
   description="These fields allow control of custom project fields."
 >
   <SectionRow>
-    <CustomFieldInputText
+    <Input
       id={uuid.v4()}
       label="Project Sub Name"
     />
-    <CustomFieldInputText
+    <Input
       id={uuid.v4()}
       label="Project Direct Report"
     />

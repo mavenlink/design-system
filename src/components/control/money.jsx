@@ -114,6 +114,7 @@ const Money = forwardRef(function Money(props, ref) {
       classNames={props.className ? {
         input: props.className,
       } : undefined}
+      describedBy={props.describedBy}
       id={props.id}
       name={props.name}
       onFocus={handleOnFocus}
@@ -130,6 +131,7 @@ const Money = forwardRef(function Money(props, ref) {
 Money.propTypes = {
   className: PropTypes.string,
   currencyCode: currencyCodeType,
+  describedBy: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   /**
@@ -148,6 +150,7 @@ Money.propTypes = {
 Money.defaultProps = {
   className: undefined,
   currencyCode: 'USD',
+  describedBy: '',
   errorText: undefined,
   name: undefined,
   onChange: () => {},
