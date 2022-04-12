@@ -90,10 +90,17 @@ describe('<MultiAutocompleter>', () => {
       const onChangeMock = jest.fn();
 
       render(<MultiAutocompleter {...requiredProps} onChange={onChangeMock} />);
+      expect(onChangeMock).not.toHaveBeenCalled();
 
       await openOptions('test label');
       userEvent.click(await await findAvailableOption('test label', 'Foo'));
-      expect(onChangeMock).toHaveBeenCalled();
+      expect(onChangeMock).toHaveBeenCalledWith({
+        target: {
+          dirty: true,
+          id: 'test-id',
+          value: ['55'],
+        },
+      });
     });
   });
 
@@ -212,7 +219,7 @@ describe('<MultiAutocompleter>', () => {
     });
   });
 
-  describe('value behavior', () => {
+  describe('value API', () => {
     it('is responsive to prop changes', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
 
@@ -270,6 +277,12 @@ describe('<MultiAutocompleter>', () => {
 
       const foo = await findSelectedOption('test label', 'Foo');
       expect(foo).toBeInTheDocument();
+    });
+
+    it('has a ref', () => {
+      const ref = createRef();
+      render(<MultiAutocompleter {...requiredProps} ref={ref} value={['55']} />);
+      expect(ref.current.value).toEqual(['55']);
     });
   });
 

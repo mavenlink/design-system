@@ -12,27 +12,27 @@ For rows that should contain more than one full-length component, a `SectionRow`
 `Section`s can contain child elements, like any other element:
 
 ```js
-import CustomFieldInputText from '@mavenlink/design-system/src/components/custom-field-input-text/custom-field-input-text.jsx';
+import Input from '@mavenlink/design-system/src/components/input/input.jsx';
 import SectionRow from '@mavenlink/design-system/src/components/section-row/section-row.jsx';
 
 <Section
   title="Project Details"
   description="These fields allow control of custom project fields."
 >
-  <CustomFieldInputText
+  <Input
     id={uuid.v4()}
     label="Project Sub Name"
   />
-  <CustomFieldInputText
+  <Input
     id={uuid.v4()}
     label="Project Direct Report"
   />
   <SectionRow>
-    <CustomFieldInputText
+    <Input
       id={uuid.v4()}
       label="Project Sub Report 1"
     />
-    <CustomFieldInputText
+    <Input
       id={uuid.v4()}
       label="Project Sub Report 2"
     />

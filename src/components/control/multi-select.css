@@ -37,7 +37,7 @@
   height: 100%;
   min-height: var(--spacing-x-large);
   margin: 0;
-  padding: 0 calc(var(--spacing-x-large) + var(--spacing-x-large)) 0 var(--spacing-medium);
+  padding: 0 calc(2 * var(--spacing-x-large) + var(--spacing-medium)) 0 var(--spacing-medium);
   position: relative;
   width: 100%;
 }

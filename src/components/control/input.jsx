@@ -14,7 +14,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   };
   const ids = {
     label: `${props.id}-label`,
-    tooltip: `${props.id}-tooltip`,
     validation: props.validationMessageId ?? `${props.id}-validation-message`,
   };
   const refs = {
@@ -131,7 +130,6 @@ Input.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
-  tooltip: undefined,
   type: 'text',
   validationMessage: '',
   validationMessageId: undefined,
