@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useState, useRef } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
 import MultiSelect from '../control/multi-select.jsx';
+import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import combineRefs from '../../utils/combine-refs.js';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 
@@ -16,10 +17,11 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
   const [options, setOptions] = useState([]);
   const mounted = useRef(false);
 
+  const ref = useForwardedRef(forwardedRef);
   const refs = {
     select: useRef(),
   };
-  const ref = useRef({
+  const overrides = useRef({
     get value() {
       return refs.select.current.value ? refs.select.current.value.map(props.optionIDGetter) : undefined;
     },
@@ -50,7 +52,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
 
   function onMultiSelectChange() {
     setSearchValue('');
-    props.onChange({ target: forwardedRef.current });
+    props.onChange({ target: ref.current });
   }
 
   function onMultiSelectInput(event) {
@@ -105,7 +107,7 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, forward
     };
   }, []);
 
-  useImperativeHandle(forwardedRef, () => combineRefs(refs.select, ref));
+  useImperativeHandle(ref, () => combineRefs(refs.select, overrides));
 
   return (
     <MultiSelect
