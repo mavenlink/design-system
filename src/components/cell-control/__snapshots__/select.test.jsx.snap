@@ -21,8 +21,7 @@ exports[`Select cell control className API 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"
@@ -88,8 +87,7 @@ exports[`Select cell control has defaults 1`] = `
             role="gridcell"
           >
             <div
-              class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"
@@ -163,8 +161,7 @@ exports[`Select cell control validationMessage API shows a tooltip on the invali
             role="gridcell"
           >
             <div
-              class="container"
-              style="position: relative;"
+              style="height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="none"

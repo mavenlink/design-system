@@ -1,68 +1,59 @@
-import { renderHook, act } from '@testing-library/react-hooks';
-import useValidation from './use-validation.jsx';
+import React, { useRef } from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import useValidation from './use-validation.js';
 
 describe('useValidation', () => {
-  const mockRef = (validationMessage = '', validitySpread = {}) => ({
-    current: {
-      validity: {
-        valid: validationMessage === '',
-        ...validitySpread,
-      },
-      validationMessage,
-      setCustomValidity: jest.fn(),
-    },
+  function TestComponent(props) {
+    const inputRef = useRef();
+    const [validationMessage, validate] = useValidation(props.validationMessage, inputRef);
+
+    return (
+      <>
+        <input
+          aria-describedby="validation-message-id"
+          aria-label="Test input"
+          onBlur={() => validate()}
+          onChange={() => {}}
+          ref={inputRef}
+          required={props.required}
+          value={props.value}
+        />
+        <span id="validation-message-id">
+          {validationMessage}
+        </span>
+      </>
+    );
+  }
+
+  it('sets a server validation message', () => {
+    const { rerender } = render(<TestComponent validationMessage="Test error" value="test value" />);
+    expect(screen.getByLabelText('Test input')).toBeInvalid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('Test error');
+
+    rerender(<TestComponent validationMessage="New test error" value="test value" />);
+    expect(screen.getByLabelText('Test input')).toBeInvalid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('New test error');
   });
 
-  describe('inputRef validation', () => {
-    it('does not set a validation message on initial render when invalid', () => {
-      const mockInputRef = mockRef('Welcome to Zombocom');
-      const { result } = renderHook(() => useValidation('', mockInputRef));
-      expect(result.current[0]).toBe('');
-    });
+  it('clears a server validation message', () => {
+    const { rerender } = render(<TestComponent validationMessage="Test error" value="test value" />);
+    expect(screen.getByLabelText('Test input')).toBeInvalid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('Test error');
+
+    rerender(<TestComponent validationMessage="" value="test value" />);
+    expect(screen.getByLabelText('Test input')).toBeValid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('');
   });
 
-  describe('errorText', () => {
-    it('provides the error text', () => {
-      const { result } = renderHook(() => useValidation('yo', mockRef()));
-      expect(result.current[0]).toBe('yo');
-    });
+  it('shows a new client validation message after losing focus', () => {
+    render(<TestComponent required />);
+    expect(screen.getByLabelText('Test input')).toBeInvalid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('');
 
-    it('sets the custom validity to the error text', () => {
-      const ref = mockRef();
-      renderHook(() => useValidation('yo', ref));
-      expect(ref.current.setCustomValidity.mock.calls.length > 0).toBe(true);
-    });
-
-    it('does not set the custom validity when there is no error text', () => {
-      const ref = mockRef();
-      renderHook(() => useValidation('', ref));
-      expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
-    });
-
-    it('unsets custom validity when the error text is removed', () => {
-      const ref = mockRef('this is an error', { customError: true });
-      renderHook(() => useValidation('', ref));
-      expect(ref.current.setCustomValidity.mock.calls[0][0]).toBe('');
-    });
-  });
-
-  describe('validate', () => {
-    it('sets the validation message only after validate is called', () => {
-      const mockedRef = mockRef();
-
-      mockedRef.current.validity.valid = false;
-      mockedRef.current.validationMessage = 'no good';
-
-      const { result } = renderHook(() => useValidation('', mockedRef));
-      const validate = result.current[1];
-
-      expect(result.current[0]).toEqual('');
-
-      act(() => {
-        validate();
-      });
-
-      expect(result.current[0]).toEqual('no good');
-    });
+    userEvent.click(screen.getByLabelText('Test input'));
+    userEvent.tab();
+    expect(screen.getByLabelText('Test input')).toBeInvalid();
+    expect(screen.getByLabelText('Test input')).toHaveAccessibleDescription('Constraints not satisfied');
   });
 });

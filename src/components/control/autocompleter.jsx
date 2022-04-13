@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useFetch from '@bloodyaugust/use-fetch';
-import useMounted from '../../hooks/use-mounted.js';
 import Select from './select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import { API_ROOT } from '../../mocks/mock-constants.js';
@@ -9,7 +8,6 @@ import { API_ROOT } from '../../mocks/mock-constants.js';
 const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeModels } = useFetch();
   const { execute: executeValue } = useFetch();
-  const mounted = useMounted();
   const [models, setModels] = useState([]);
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
@@ -21,9 +19,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   useEffect(() => {
     if (props.value) {
       executeValue(apiEndpoint('only', props.value))
-        .then((respObj) => {
-          if (mounted.current) {
-            setModel(respObj.json.results.map(result => respObj.json[result.key][result.id])[0]);
+        .then(({ json, mounted }) => {
+          if (mounted) {
+            setModel(json.results.map(result => json[result.key][result.id])[0]);
           }
         })
         .catch((error) => {
@@ -40,9 +38,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     if (!props.apiEndpoint) { return; }
 
     executeModels(apiEndpoint(props.searchParam, searchString))
-      .then((respObj) => {
-        if (mounted.current) {
-          setModels(respObj.json.results.map(result => respObj.json[result.key][result.id]));
+      .then(({ json, mounted }) => {
+        if (mounted) {
+          setModels(json.results.map(result => json[result.key][result.id]));
         }
       }).catch((error) => {
         if (error.error && error.error.type !== 'aborted') {
@@ -96,7 +94,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
-      validationMessageTooltip={props.validationMessageTooltip}
       value={model}
       wrapperRef={props.wrapperRef}
     >
@@ -136,7 +133,6 @@ Autocompleter.propTypes = {
   searchParam: PropTypes.string,
   tooltip: PropTypes.string,
   validationMessage: PropTypes.string,
-  validationMessageTooltip: PropTypes.bool,
   /** The `value` props is expected an `id` used to fetch a model on the API. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   wrapperRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
@@ -155,7 +151,6 @@ Autocompleter.defaultProps = {
   searchParam: 'matching',
   tooltip: undefined,
   validationMessage: undefined,
-  validationMessageTooltip: false,
   value: undefined,
 };
 

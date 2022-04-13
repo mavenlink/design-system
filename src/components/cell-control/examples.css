@@ -1,6 +1,0 @@
-@import '../../styles/spacing.css';
-
-.numberCell {
-  composes: container from './number.css';
-  height: var(--spacing-x-large);
-}

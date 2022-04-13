@@ -38,7 +38,7 @@ exports[`Percentage has defaults 1`] = `
             value=""
           />
           <div
-            class="icons-container"
+            class="container"
           >
             <span
               class="percent-sign"

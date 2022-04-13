@@ -26,15 +26,6 @@
   background-color: var(--mds-grey-opaque-3);
 }
 
-.invalid-icon {
-  box-sizing: border-box;
-  pointer-events: none;
-  position: absolute;
-  right: calc(var(--spacing-x-large) / 2);
-  top: 50%;
-  transform: translate(50%, -50%);
-}
-
 /*
   An input only looks invalid after user interaction.
   The first time render will _look_ valid while it is internally invalid for a11y purposes.

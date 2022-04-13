@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import Input from '../input/input.jsx';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 import { formatTime, timeToMinutes } from './duration-formatter.js';
 
-const DurationInput = forwardRef(function DurationInput(props, forwardedRef) {
+const DurationInput = forwardRef(function DurationInput(props, ref) {
   const ids = {
     label: `${props.id}-label`,
     tooltip: `${props.id}-tooltip`,
   };
 
   const inputRef = useRef();
-  const ref = useForwardedRef(forwardedRef);
   const [formattedValue, setFormattedValue] = useState(formatTime(props.value));
 
   useImperativeHandle(ref, () => ({

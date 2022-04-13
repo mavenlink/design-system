@@ -10,7 +10,7 @@
   composes: input from '../control/input.css';
   border: none;
   height: 100%;
-  min-height: unset !important;
+  min-height: var(--spacing-x-large) !important;
   overflow: hidden;
   padding-top: var(--spacing-medium);
   padding-bottom: var(--spacing-medium);
@@ -21,8 +21,4 @@
 .textarea:focus {
   position: absolute;
   z-index: 1;
-}
-
-.iconsContainer {
-  composes: icons from '../form-control-icons/form-control-icons.css';
 }

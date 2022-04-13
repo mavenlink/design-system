@@ -11,7 +11,7 @@ exports[`src/components/control/select classNames API sets all class names 1`] =
     </label>
     <div
       class="unique-container"
-      style="position: relative;"
+      style="height: 100%; position: relative;"
     >
       <input
         aria-autocomplete="none"
@@ -63,7 +63,7 @@ exports[`src/components/control/select classNames API sets container 1`] = `
     </label>
     <div
       class="unique-container"
-      style="position: relative;"
+      style="height: 100%; position: relative;"
     >
       <input
         aria-autocomplete="none"
@@ -114,8 +114,7 @@ exports[`src/components/control/select classNames API sets valid input 1`] = `
       Test label
     </label>
     <div
-      class="container"
-      style="position: relative;"
+      style="height: 100%; position: relative;"
     >
       <input
         aria-autocomplete="none"
@@ -166,8 +165,7 @@ exports[`src/components/control/select has defaults 1`] = `
       Test label
     </label>
     <div
-      class="container"
-      style="position: relative;"
+      style="height: 100%; position: relative;"
     >
       <input
         aria-autocomplete="none"
@@ -226,8 +224,7 @@ exports[`src/components/control/select has defaults 3`] = `
       Test label
     </label>
     <div
-      class="container"
-      style="position: relative;"
+      style="height: 100%; position: relative;"
     >
       <input
         aria-autocomplete="none"

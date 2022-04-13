@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import cautionSvg from '../../svgs/caution.svg';
-import Icon from '../icon/icon.jsx';
+import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
+import Icons from './icons.jsx';
 import styles from './input.css';
-import useMounted from '../../hooks/use-mounted.js';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-import useValidation from '../../hooks/use-validation.jsx';
+import useValidation from '../../hooks/use-validation.js';
 
 const Input = forwardRef(function Input(props, forwardedRef) {
   const classNames = {
@@ -16,7 +14,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   };
   const ids = {
     label: `${props.id}-label`,
-    tooltip: `${props.id}-tooltip`,
     validation: props.validationMessageId ?? `${props.id}-validation-message`,
   };
   const refs = {
@@ -24,7 +21,6 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   };
 
   const ref = useForwardedRef(forwardedRef);
-  const mounted = useMounted();
   const [validationMessage, validate] = useValidation(props.validationMessage, refs.input);
 
   function onBlur(event) {
@@ -32,9 +28,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
     props.onBlur(event);
   }
 
-  useEffect(() => { // TODO: Convert to useLayoutEffect
-    if (!mounted.current) return;
-
+  useLayoutEffect(() => {
     // The MDS Input is using an uncontrolled `<input>`.
     // In order to set a new provided value prop, we
     // set the internal state of the `<input>`.
@@ -63,7 +57,7 @@ const Input = forwardRef(function Input(props, forwardedRef) {
   }));
 
   return (
-    <div className={classNames.container} style={{ position: 'relative' }}>
+    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
       <input
         autoFocus={props.autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         aria-describedby={`${ids.validation} ${props.describedBy}`}
@@ -83,14 +77,10 @@ const Input = forwardRef(function Input(props, forwardedRef) {
         required={props.required}
         type={props.type}
       />
-      {!!validationMessage && (
-        <Icon
-          className={styles['invalid-icon']}
-          icon={cautionSvg}
-          id={props.validationMessageId ? undefined : ids.validation}
-          label={validationMessage}
-        />
-      )}
+      <Icons
+        validationMessage={validationMessage}
+        validationMessageId={ids.validation}
+      />
     </div>
   );
 });
@@ -140,7 +130,6 @@ Input.defaultProps = {
   placeholder: undefined,
   readOnly: undefined,
   required: undefined,
-  tooltip: undefined,
   type: 'text',
   validationMessage: '',
   validationMessageId: undefined,

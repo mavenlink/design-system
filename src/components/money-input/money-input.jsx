@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import React, { forwardRef, useState } from 'react';
 import FormControl from '../form-control/form-control.jsx';
 import Money from '../control/money.jsx';
-import currencyCodeType from '../custom-field-input-currency/currency-code-type.js';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
+import currencyCodeType from '../../utils/currency-code-type.js';
 
-const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
+const MoneyInput = forwardRef(function MoneyInput(props, ref) {
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
-  const ref = useForwardedRef(forwardedRef);
   const ids = {
     label: `${props.id}-label`,
+    tooltip: `${props.id}-tooltip`,
   };
 
   function onInvalid(event) {
@@ -23,7 +22,6 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
       labelId={ids.label}
       name={props.name}
       readOnly={props.readOnly}
-      // ref={refs.control}
       required={props.required}
       tooltip={props.tooltip}
       validationMessage={validationMessage}
@@ -31,6 +29,7 @@ const MoneyInput = forwardRef(function MoneyInput(props, forwardedRef) {
       <Money
         className={props.className}
         currencyCode={props.currencyCode}
+        describedBy={ids.tooltip}
         id={props.id}
         name={props.name}
         onChange={props.onChange}

@@ -2,7 +2,6 @@ import React, { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
-import CustomFieldInputNumber from '../custom-field-input-number/custom-field-input-number.jsx';
 
 describe('Number', () => {
   const requiredProps = {
@@ -48,7 +47,7 @@ describe('Number', () => {
 
     it('is not dirty on render', () => {
       const ref = createRef();
-      render(<CustomFieldInputNumber {...requiredProps} ref={ref} />);
+      render(<Number {...requiredProps} ref={ref} />);
       expect(ref.current.dirty).toEqual(false);
     });
 
@@ -206,10 +205,10 @@ describe('Number', () => {
       expect(ref.current.value).toBe(101012);
     });
 
-    it('indicates if it is invalid on mount', () => {
+    it('it is invalid on mount (but without an validation message)', () => {
       render(<Number {...requiredProps} value={1.01} />);
       expect(screen.getByLabelText('Test Component')).toBeInvalid();
-      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('Constraints not satisfied');
+      expect(screen.getByLabelText('Test Component')).toHaveAccessibleDescription('');
     });
   });
 

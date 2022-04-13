@@ -26,7 +26,7 @@ exports[`DurationInput cssContainer API sets input container className 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="foo-validation-message foo-tooltip"
@@ -34,6 +34,9 @@ exports[`DurationInput cssContainer API sets input container className 1`] = `
             id="foo"
             type="text"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>
@@ -67,7 +70,7 @@ exports[`DurationInput has defaults 1`] = `
       >
         <div
           class="container"
-          style="position: relative;"
+          style="height: 100%; position: relative;"
         >
           <input
             aria-describedby="foo-validation-message foo-tooltip"
@@ -75,6 +78,9 @@ exports[`DurationInput has defaults 1`] = `
             id="foo"
             type="text"
             value=""
+          />
+          <div
+            class="container"
           />
         </div>
       </div>

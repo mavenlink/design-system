@@ -2,11 +2,27 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+## 0.101.0
+
+- feat(custom fields): deprecate custom field specific components
+- refactor(MultiSelect): implement `useValidation` hook instead of manual state management
+- refactor(Checkbox): implement `useValidation` hook instead of manual state management
+- refactor(Date): implement `useValidation` hook instead of manual state management
+- refactor(useValidation): rewrite hook with straight-forward effects
+- refactor(combine refs): hoist common method for combining refs as a utility method
+- fix(multi-select control): control has same height as other controls
+- fix(multi-select control): the placeholder text has the same styling as the input control placeholder text
+- refactor(autocompleter cell): use a stylesheets API
+- refactor(input control): use Icons component for invalid state
+- chore(useMounted): deprecate useMounted hook since it does not work unless the useEffect is "last" in the render cycle
+
 ## 0.100.4
+
 - feat(multi-autocompleter): allow setting value with types array of ids
 - feat(form): allow prop to hide: 'Save & Add Another' button
 
 ## 0.100.3
+
 - fix(multi-select): don't set invalid when blurring to click an option from the dropdown
 
 ## 0.100.1

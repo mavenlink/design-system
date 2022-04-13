@@ -7,45 +7,10 @@ import React, {
 import PropTypes from 'prop-types';
 import FormControl from '../form-control/form-control.jsx';
 import MultiSelectControl from '../control/multi-select.jsx';
+import combineRefs from '../../utils/combine-refs.js';
 import styles from './multi-select.css';
-import useForwardedRef from '../../hooks/use-forwarded-ref.js';
-
-function spread(ref1, ref2) {
-  const newObject = {};
-
-  Object.keys(ref1.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref1.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  Object.keys(ref2.current).reduce((acc, key) => (
-    Object.defineProperty(acc, key, {
-      get() { return ref2.current[key]; },
-      configurable: true,
-      enumerable: true,
-    })
-  ), newObject);
-
-  return newObject;
-}
-
-function getFormControlChildrenContainerClassName(readOnly, validationMessage) {
-  if (readOnly) {
-    return styles['form-control-children-container-readonly'];
-  }
-
-  if (validationMessage) {
-    return styles['form-control-children-container-invalid'];
-  }
-
-  return styles['form-control-children-container'];
-}
 
 const MultiSelect = forwardRef(function MultiSelect(props, ref) {
-  const selfRef = useForwardedRef(ref);
   const [validationMessage, setValidationMessage] = useState(props.validationMessage);
 
   const ids = {
@@ -56,11 +21,8 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     control: useRef(),
     multiSelect: useRef(),
   };
-  const classNames = {
+  const { container: containerClassName, ...controlClassNames } = {
     container: styles.container,
-    formControlChildrenContainer: getFormControlChildrenContainerClassName(props.readOnly, validationMessage),
-    input: props.readOnly ? styles['input-readonly'] : styles.input,
-    tagList: styles['tag-list'],
     ...props.classNames,
   };
 
@@ -68,14 +30,14 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
     setValidationMessage(event.detail.validationMessage);
   }
 
-  useImperativeHandle(selfRef, () => spread(
+  useImperativeHandle(ref, () => combineRefs(
     refs.control,
     refs.multiSelect,
   ));
 
   return (
     <FormControl
-      className={classNames.container}
+      className={containerClassName}
       id={ids.textbox}
       label={props.label}
       labelId={ids.label}
@@ -86,11 +48,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       validationMessage={validationMessage}
     >
       <MultiSelectControl
-        classNames={{
-          formControlChildrenContainer: classNames.formControlChildrenContainer,
-          input: classNames.input,
-          tagList: classNames.tagList,
-        }}
+        classNames={controlClassNames}
         containerRef={refs.control}
         filterOptions={props.filterOptions}
         id={props.id}

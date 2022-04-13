@@ -1,17 +1,11 @@
 @import '../../styles/spacing.css';
 
-.container {
-  composes: container from '../select/select.css';
-  height: var(--spacing-x-large);
-}
-
 .input {
-  composes: input from '../select/select.css';
+  composes: input from '../control/select.css';
   border: none;
-  height: 100%;
 }
 
 .invalidInput {
-  composes: input-invalid from '../select/select.css';
+  composes: input-invalid from '../control/select.css';
   border: none;
 }
