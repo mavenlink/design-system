@@ -56,7 +56,6 @@ module.exports = {
     name: 'Form Controls',
     components: [
       path.join(__dirname, 'src/components/form/form.jsx'),
-      path.join(__dirname, 'src/components/form-control/form-control.jsx'), // Is this private? Should it be undocumented as implementation details?
       path.join(__dirname, 'src/components/autocompleter/autocompleter.jsx'),
       path.join(__dirname, 'src/components/checkbox/checkbox.jsx'),
       path.join(__dirname, 'src/components/date/date.jsx'),
