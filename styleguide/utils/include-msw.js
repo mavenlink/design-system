@@ -9,6 +9,6 @@ setupWorker(
   ...autocompleterHandlers(1000),
 ).start({
   serviceWorker: {
-    url: `${window.location.pathname}mockServiceWorker.js`,
+    url: `${window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/') + 1)}mockServiceWorker.js`,
   },
 });
