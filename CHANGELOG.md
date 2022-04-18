@@ -1,6 +1,7 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- fix(MultiSelect): clicking within the component focuses the autocomplete input
 
 ## 0.101.0
 
