@@ -176,6 +176,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
 
   function onClick(event) {
     if (event.defaultPrevented) return;
+    if (event.target !== refs.autocomplete.current) refs.autocomplete.current.focus();
     if (props.readOnly) return;
 
     setExpanded(true);
