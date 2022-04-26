@@ -59,6 +59,7 @@ const Select = forwardRef(function Select(props, ref) {
   };
 
   const clear = () => {
+    props.onChange({ target: { ...selfRef.current, value: undefined } });
     setValue(undefined);
     setSearchValue(undefined);
     refs.input.current.focus();
