@@ -5,6 +5,7 @@ import {
 } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import Select from './select.jsx';
+import ListOption from '../list-option/list-option.jsx';
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
   _render(ui, {
@@ -50,6 +51,24 @@ describe('src/components/control/select', () => {
     expect(screen.getByLabelText('Test label')).toHaveValue('');
     rerender(<Select {...requiredProps} value={{ id: 8, label: 'foo' }} displayValueEvaluator={o => o.label} />);
     expect(screen.getByLabelText('Test label')).toHaveValue('foo');
+  });
+
+  it('calls props.onChange after clear (regression test)', async () => {
+    const onChangeSpy = jest.fn();
+    const listOptions = [{ id: 0, label: 'foo' }];
+    const listOptionRefs = listOptions.map(() => React.createRef());
+    const listOptionElements = ({ onSelect }) => listOptions.map((option, index) => {
+      return (<ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+        {option.label}
+      </ListOption>);
+    });
+    render(<Select {...requiredProps} listOptionRefs={listOptionRefs} displayValueEvaluator={o => o.label} onChange={onChangeSpy}>
+      { listOptionElements }
+    </Select>);
+    user.click(screen.getByTitle('Open choices listbox'));
+    user.click(await screen.findByText('foo'));
+    user.click(screen.getByTitle('Remove selected choice'));
+    expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({ target: { dirty: true, name: 'field-id', value: undefined } }));
   });
 
   describe('classNames API', () => {
