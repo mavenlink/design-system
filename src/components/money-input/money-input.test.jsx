@@ -201,10 +201,20 @@ describe('MoneyInput', () => {
   });
 
   describe('validationMessage API', () => {
-    it('shows the message', () => {
+    it('shows the message on mount', () => {
       render(<MoneyInput {...requiredProps} validationMessage={'What do you want from us monster!?'} />);
       expect(screen.getByLabelText('currency')).toBeInvalid();
       expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('What do you want from us monster!?');
+    });
+
+    it('shows the message on update', () => {
+      const { rerender } = render(<MoneyInput {...requiredProps} validationMessage="" />);
+      rerender(<MoneyInput {...requiredProps} validationMessage="What do you want from us monster!?" />);
+      expect(screen.getByLabelText('currency')).toBeInvalid();
+      expect(screen.getByLabelText('currency')).toHaveAccessibleDescription('What do you want from us monster!?');
+      expect(screen.getByText((content, element) => {
+        return element.tagName.toLowerCase() === 'span' && content.startsWith('What do you want from us monster!?');
+      })).toBeInTheDocument();
     });
 
     it('clears the message on blur', () => {
