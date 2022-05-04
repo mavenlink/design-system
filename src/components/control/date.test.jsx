@@ -41,5 +41,32 @@ describe('<Date />', () => {
       user.click(screen.getByLabelText('click away button'));
       expect(onDeactivate).toHaveBeenCalledWith(undefined);
     });
+
+    it('deactivate when user tabs out of the Input', () => {
+      const onDeactivate = jest.fn();
+      render(<>
+        <button aria-label='pre input label' />
+        <Date id="test-id" labelledBy="label-id" onDeactivate={onDeactivate} />
+        <button aria-label='click away button' />
+      </>);
+
+      // User has Focused on Element Before Date Input
+      user.click(screen.getByRole('button', { name: 'pre input label' }));
+
+      // User Tabs to the Date Input
+      user.tab();
+      expect(onDeactivate).not.toHaveBeenCalled();
+      expect(screen.getByRole('textbox')).toHaveFocus();
+
+      // User Tabs to the Calendar Button (Still Part of the Date Input)
+      user.tab();
+      expect(onDeactivate).not.toHaveBeenCalled();
+      expect(screen.getByRole('button', { name: 'calendar button' })).toHaveFocus();
+
+      // User Tabs to button outside of calendar input
+      user.tab();
+      expect(screen.getByRole('button', { name: 'click away button' })).toHaveFocus();
+      expect(onDeactivate).toHaveBeenCalledWith(undefined);
+    });
   });
 });
