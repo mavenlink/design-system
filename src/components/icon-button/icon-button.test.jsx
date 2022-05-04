@@ -144,4 +144,19 @@ describe('<IconButton />', () => {
       }));
     });
   });
+
+  describe('onBlur API', () => {
+    it('bubbles up the blur event', () => {
+      const onBlurSpy = jest.fn(event => event.persist());
+      render(<>
+        <IconButton {...requiredProps} onBlur={onBlurSpy} role="button" />
+        <input data-testid="element-to-blur-to" />
+        </>);
+      user.click(screen.getByRole('button'));
+      screen.queryByTestId("element-to-blur-to").focus();
+      expect(onBlurSpy).toBeCalledWith(expect.objectContaining({
+        target: expect.anything(),
+      }));
+    });
+  });
 });
