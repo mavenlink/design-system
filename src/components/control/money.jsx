@@ -118,11 +118,13 @@ const Money = forwardRef(function Money(props, ref) {
       id={props.id}
       name={props.name}
       onFocus={handleOnFocus}
+      onInvalid={onInvalid}
       placeholder={props.placeholder}
       readOnly={props.readOnly}
       required={props.required}
       ref={componentRef}
       type="text"
+      validationMessage={props.validationMessage}
       value={formattedNumber}
     />
   );
