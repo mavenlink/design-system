@@ -2,6 +2,8 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+- fix(autocompleter): refetch data on api endpoint url changes
+
 ## 0.101.3
  
 - fix(Money): ensure server validation messages appear after submitting a form

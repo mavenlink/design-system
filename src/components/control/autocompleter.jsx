@@ -14,7 +14,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   useEffect(() => {
     fetchModels();
-  }, []);
+  }, [props.apiEndpoint]);
 
   useEffect(() => {
     if (props.value) {
