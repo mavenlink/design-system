@@ -27,6 +27,24 @@ describe('<Date />', () => {
       user.click(screen.getByRole('textbox'));
       expect(onActivate).toHaveBeenCalledWith(new window.Date('2022-01-01T00:00:00'));
     });
+
+    it('toggles the date to active when user tabs into Date Control', () => {
+      const onActivate = jest.fn();
+      render(<>
+        <button aria-label='pre input label' />
+        <label id="test-id-label">Date</label>
+        <Date id="test-id" onActivate={onActivate} />
+      </>);
+
+      // User has Focused on Element Before Date Input
+      user.click(screen.getByRole('button', { name: 'pre input label' }));
+
+      //
+      // User Tabs to the Date Input
+      user.tab();
+      expect(screen.getByLabelText('Date')).toHaveFocus();
+      expect(onActivate).toHaveBeenCalledWith(undefined);
+    });
   });
 
   describe('onDeactivate API', () => {

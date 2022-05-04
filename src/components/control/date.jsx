@@ -79,6 +79,12 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     setValue(fromFullDateFormat(refs.input.current.value));
   }
 
+  function onFocusIntoDateControl() {
+    if (props.readOnly) return;
+    setActive(true);
+    setEditing(true);
+  }
+
   function onInputClick(event) {
     if (props.readOnly) return;
     event.preventDefault();
@@ -173,6 +179,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       style={{ height: '100%', position: 'relative' }}
     >
       <input
+        aria-labelledby={ids.label}
         aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
         className={validationMessage ? classNames.invalidInput : classNames.input}
         defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
@@ -183,6 +190,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         name={props.name}
         onChange={onInputChange}
         onClick={onInputClick}
+        onFocus={onFocusIntoDateControl}
         onKeyDown={onInputKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
