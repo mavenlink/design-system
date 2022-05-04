@@ -159,4 +159,17 @@ describe('<IconButton />', () => {
       }));
     });
   });
+
+
+  describe('onFocus API', () => {
+    it('bubbles up the blur event', () => {
+      const onFocusSpy = jest.fn(event => event.persist());
+      render(<IconButton {...requiredProps} onFocus={onFocusSpy} role="button"/>);
+
+      user.click(screen.getByRole('button'));
+      expect(onFocusSpy).toBeCalledWith(expect.objectContaining({
+        target: expect.anything(),
+      }));
+    });
+  });
 });
