@@ -11,7 +11,7 @@ describe('<Date />', () => {
     it('toggles date to active when user clicks on date control', () => {
       const onActivate = jest.fn();
       render(<>
-        <Date id="test-id" labelledBy="label-id" onActivate={onActivate} />
+        <Date id="test-id" onActivate={onActivate} />
       </>);
 
       user.click(screen.getByRole('textbox'));
@@ -21,7 +21,7 @@ describe('<Date />', () => {
     it('toggles date and sends value at time when user clicks on date control', () => {
       const onActivate = jest.fn();
       render(<>
-        <Date id="test-id" labelledBy="label-id" value='2022-01-01' onActivate={onActivate} />
+        <Date id="test-id" value='2022-01-01' onActivate={onActivate} />
       </>);
 
       user.click(screen.getByRole('textbox'));
@@ -33,7 +33,7 @@ describe('<Date />', () => {
     it('toggles date to active when user clicks on date control', () => {
       const onDeactivate = jest.fn();
       render(<>
-        <Date id="test-id" labelledBy="label-id" onDeactivate={onDeactivate} />
+        <Date id="test-id" onDeactivate={onDeactivate} />
         <button aria-label='click away button' />
       </>);
 
@@ -46,7 +46,7 @@ describe('<Date />', () => {
       const onDeactivate = jest.fn();
       render(<>
         <button aria-label='pre input label' />
-        <Date id="test-id" labelledBy="label-id" onDeactivate={onDeactivate} />
+        <Date id="test-id" onDeactivate={onDeactivate} />
         <button aria-label='click away button' />
       </>);
 
