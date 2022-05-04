@@ -29,7 +29,7 @@ describe('src/components/autocompleter/autocompleter', () => {
   });
 
   describe('apiEndpoint API', () => {
-    it('fetches', async () => {
+    it('fetches dropdown options', async () => {
       const { rerender } = render(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=55'} />);
       userEvent.click(screen.getByLabelText('Test label'));
       const foo = await screen.findByText('Foo');
@@ -39,6 +39,16 @@ describe('src/components/autocompleter/autocompleter', () => {
       const option9 = await screen.findByText('Option 9');
       expect(option9).toBeInTheDocument();
       expect(foo).not.toBeInTheDocument();
+    });
+
+    it('fetches selected options', async () => {
+      const { rerender } = render(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=55'} value="55" />);
+      const input = await screen.findByDisplayValue('Foo');
+
+      rerender(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=9'} value="55" />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      await screen.findByText('Option 9');
+      expect(input).toHaveValue('');
     });
   });
 
