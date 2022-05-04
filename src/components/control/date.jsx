@@ -132,6 +132,9 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     if (!previousActive && active) {
       props.onActivate(value);
     }
+    if (previousActive && !active) {
+      props.onDeactivate(value);
+    }
   });
 
   useLayoutEffect(() => {
@@ -223,6 +226,7 @@ Date.propTypes = {
   name: PropTypes.string,
   onActivate: PropTypes.func,
   onChange: PropTypes.func,
+  onDeactivate: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -239,6 +243,7 @@ Date.defaultProps = {
   name: undefined,
   onActivate: () => {},
   onChange: undefined,
+  onDeactivate: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,
