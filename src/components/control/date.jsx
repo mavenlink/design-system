@@ -179,7 +179,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       style={{ height: '100%', position: 'relative' }}
     >
       <input
-        aria-labelledby={ids.label}
         aria-describedby={`${ids.validationMessage} ${ids.tooltip}`}
         className={validationMessage ? classNames.invalidInput : classNames.input}
         defaultValue={editing ? toFullDateFormat(value) : toDateStringFormat(value)}
