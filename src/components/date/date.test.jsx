@@ -89,6 +89,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
+      userEvent.tab();
       userEvent.type(screen.getByLabelText('Test label'), '');
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.keyboard('{Escape}');
