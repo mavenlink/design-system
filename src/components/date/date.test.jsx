@@ -69,7 +69,8 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(today.calendarDate));
       expect(screen.queryByText(today.calendarDate)).not.toBeInTheDocument();
-      expect(screen.getByLabelText('Test label')).toHaveValue(today.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.getByLabelText('Test label')).toHaveValue(today.editableValue);
     });
 
     it('closes on blur', () => {
