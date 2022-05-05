@@ -2,6 +2,11 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+- feat(Date): Implement a onDeactivate and onActive callbacks, so developers can listen
+when the user begins and ends interaction/focus on date cell
+- feat(Date): Improve accessibility with user tabs and focus
+- feat(IconButton): Give developers access to `onFocus` and `onBlur`
+
 ## 0.101.3
  
 - fix(Money): ensure server validation messages appear after submitting a form
