@@ -72,7 +72,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
     validate();
     setActive(false);
-    if (!refs.input.current.validationMessage) setEditing(false);
+    if (!props.validationMessage) setEditing(false);
   }
 
   function onInputChange() {
@@ -205,6 +205,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         <IconButton
           disabled={props.readOnly}
           onPress={onIconPress}
+          onFocus={onFocusIntoDateControl}
           icon={calendarSvg}
           label="calendar button"
         />

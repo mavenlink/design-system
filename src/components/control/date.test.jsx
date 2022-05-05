@@ -2,6 +2,7 @@ import React  from 'react';
 import {
   render,
   screen,
+  waitFor,
 } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import Date from './date';
@@ -44,6 +45,24 @@ describe('<Date />', () => {
       user.tab();
       expect(screen.getByLabelText('Date')).toHaveFocus();
       expect(onActivate).toHaveBeenCalledWith(undefined);
+    });
+
+    it('activates the date cell when user tabs out of the Input', () => {
+      const onActivate = jest.fn();
+      render(<>
+        <button aria-label='pre input button' />
+        <label id="test-id-label">Date</label>
+        <Date id="test-id" onActivate={onActivate} />
+        <button aria-label='post input button' />
+      </>);
+
+      // User has Focused on Element Before Date Input
+      user.click(screen.getByRole('button', { name: 'post input button' }));
+
+      // User Tabs to the Date Input
+      user.tab({ shift: true });
+      expect(screen.getByLabelText('Date')).toHaveFocus();
+      expect(onActivate).toHaveBeenCalled();
     });
   });
 
