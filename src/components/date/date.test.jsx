@@ -47,6 +47,7 @@ describe('src/components/date/date.test.jsx', () => {
     const date = getLocaleDate(new window.Date('1999-01-01'));
 
     render(<Date {...requiredProps} />);
+    userEvent.tab();
     userEvent.type(screen.getByLabelText('Test label'), '1999-01-01');
     expect(await screen.findByText(date.calendarHeading)).toBeInTheDocument();
   });
