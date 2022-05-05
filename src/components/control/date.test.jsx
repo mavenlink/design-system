@@ -1,10 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import {
   render,
   screen,
 } from '@testing-library/react';
 import user from '@testing-library/user-event';
-import Date from './date';
+import Date from './date.jsx';
 
 describe('<Date />', () => {
   describe('onActivate API', () => {
@@ -21,7 +21,7 @@ describe('<Date />', () => {
     it('toggles date and sends value at time when user clicks on date control', () => {
       const onActivate = jest.fn();
       render(<>
-        <Date id="test-id" value='2022-01-01' onActivate={onActivate} />
+        <Date id="test-id" value="2022-01-01" onActivate={onActivate} />
       </>);
 
       user.click(screen.getByRole('textbox'));
@@ -31,7 +31,7 @@ describe('<Date />', () => {
     it('toggles the date to active when user tabs into Date Control', () => {
       const onActivate = jest.fn();
       render(<>
-        <button aria-label='pre input button' />
+        <button aria-label="pre input button" />
         <label id="test-id-label">Date</label>
         <Date id="test-id" onActivate={onActivate} />
       </>);
@@ -49,10 +49,10 @@ describe('<Date />', () => {
     it('activates the date cell when user tabs out of the Input', () => {
       const onActivate = jest.fn();
       render(<>
-        <button aria-label='pre input button' />
+        <button aria-label="pre input button" />
         <label id="test-id-label">Date</label>
         <Date id="test-id" onActivate={onActivate} />
-        <button aria-label='post input button' />
+        <button aria-label="post input button" />
       </>);
 
       // User has Focused on Element Before Date Input
@@ -70,7 +70,7 @@ describe('<Date />', () => {
       const onDeactivate = jest.fn();
       render(<>
         <Date id="test-id" onDeactivate={onDeactivate} />
-        <button aria-label='click away button' />
+        <button aria-label="click away button" />
       </>);
 
       user.click(screen.getByRole('textbox'));
@@ -81,10 +81,10 @@ describe('<Date />', () => {
     it('deactivate when user tabs out of the Input', () => {
       const onDeactivate = jest.fn();
       render(<>
-        <button aria-label='pre input button' />
+        <button aria-label="pre input button" />
         <label id="test-id-label">Date</label>
         <Date id="test-id" onDeactivate={onDeactivate} />
-        <button aria-label='click away button' />
+        <button aria-label="click away button" />
       </>);
 
       // User has Focused on Element Before Date Input
