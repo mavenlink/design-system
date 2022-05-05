@@ -151,20 +151,19 @@ describe('<IconButton />', () => {
       render(<>
         <IconButton {...requiredProps} onBlur={onBlurSpy} role="button" />
         <input data-testid="element-to-blur-to" />
-        </>);
+      </>);
       user.click(screen.getByRole('button'));
-      screen.queryByTestId("element-to-blur-to").focus();
+      screen.queryByTestId('element-to-blur-to').focus();
       expect(onBlurSpy).toBeCalledWith(expect.objectContaining({
         target: expect.anything(),
       }));
     });
   });
 
-
   describe('onFocus API', () => {
     it('bubbles up the blur event', () => {
       const onFocusSpy = jest.fn(event => event.persist());
-      render(<IconButton {...requiredProps} onFocus={onFocusSpy} role="button"/>);
+      render(<IconButton {...requiredProps} onFocus={onFocusSpy} role="button" />);
 
       user.click(screen.getByRole('button'));
       expect(onFocusSpy).toBeCalledWith(expect.objectContaining({
