@@ -125,10 +125,10 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} value="2020-01-03" />);
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date1.calendarDate));
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.editableValue);
       userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(date2.calendarDate));
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.editableValue);
     });
   });
 
