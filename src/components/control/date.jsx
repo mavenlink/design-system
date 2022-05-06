@@ -175,6 +175,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     <div
       className={classNames.container}
       onBlur={onBlur}
+      onFocus={onFocusIntoDateControl}
       ref={refs.container}
       style={{ height: '100%', position: 'relative' }}
     >
@@ -190,7 +191,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         onClick={e => !props.readOnly && e.preventDefault()}
         onChange={onInputChange}
         onMouseDown={onInputClick}
-        onFocus={onFocusIntoDateControl}
         onKeyDown={onInputKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
@@ -205,7 +205,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         <IconButton
           disabled={props.readOnly}
           onPress={onIconPress}
-          onFocus={onFocusIntoDateControl}
           icon={calendarSvg}
           label="calendar button"
         />
