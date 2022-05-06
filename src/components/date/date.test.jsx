@@ -268,7 +268,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date.calendarDate));
 
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date.editableValue);
       expect(onChangeSpy.mock.calls.length).toBe(1); // Do not call while inactive
       expect(onChangeSpy).toBeCalledWith(expect.objectContaining({
         target: expect.objectContaining({
