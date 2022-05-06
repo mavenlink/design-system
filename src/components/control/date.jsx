@@ -187,6 +187,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         max={props.max}
         min={props.min}
         name={props.name}
+        onClick={e => !props.readOnly && e.preventDefault()}
         onChange={onInputChange}
         onMouseDown={onInputClick}
         onFocus={onFocusIntoDateControl}
