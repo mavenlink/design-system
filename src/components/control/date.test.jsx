@@ -28,7 +28,7 @@ describe('<Date />', () => {
       expect(onActivate).toHaveBeenCalledWith(new window.Date('2022-01-01T00:00:00'));
     });
 
-    it('activates the date cell when user tabs out of the Input', () => {
+    it('activates the date cell when user tabs back into the Input', () => {
       const onActivate = jest.fn();
       render(<>
         <button aria-label="pre input button" />
@@ -47,7 +47,7 @@ describe('<Date />', () => {
   });
 
   describe('onDeactivate API', () => {
-    it('toggles date to active when user clicks on date control', () => {
+    it('toggles active when user clicks away from the date control', () => {
       const onDeactivate = jest.fn();
       render(<>
         <Date id="test-id" onDeactivate={onDeactivate} />
