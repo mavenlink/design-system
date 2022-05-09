@@ -25,6 +25,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
           }
         })
         .catch((error) => {
+          if (error.error instanceof ProgressEvent) return;
           if (error.error && error.error.type !== 'aborted') {
             throw error;
           }
@@ -43,6 +44,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
           setModels(json.results.map(result => json[result.key][result.id]));
         }
       }).catch((error) => {
+        if (error.error instanceof ProgressEvent) return;
         if (error.error && error.error.type !== 'aborted') {
           throw error;
         }
