@@ -61,6 +61,8 @@ const Number = React.forwardRef((props, forwardedRef) => {
     focus() {
       refs.input.current.focus();
     },
+    id: props.id,
+    name: props.name,
     get value() {
       if (refs.input.current.value) {
         return props.step < 1
@@ -86,7 +88,7 @@ const Number = React.forwardRef((props, forwardedRef) => {
         min={apiLimits.min}
         name={props.name}
         onBlur={onBlur}
-        onChange={props.onChange}
+        onChange={() => { props.onChange({ target: ref.current }); }}
         placeholder={props.placeholder}
         ref={refs.input}
         readOnly={props.readOnly}

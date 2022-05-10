@@ -142,6 +142,8 @@ const Date = forwardRef(function Date(props, forwardedRef) {
       const providedValue = props.value;
       return providedValue !== this.value;
     },
+    id: props.id,
+    name: props.name,
     get value() {
       return toFullDateFormat(value);
     },
