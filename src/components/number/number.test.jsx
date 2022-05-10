@@ -7,6 +7,7 @@ describe('Number', () => {
   const requiredProps = {
     id: 'test-component',
     label: 'Test Component',
+    name: 'test-name',
   };
 
   it('has defaults', () => {

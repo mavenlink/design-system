@@ -32,6 +32,7 @@ exports[`Number has defaults 1`] = `
             id="test-component"
             max="2147483648"
             min="-2147483648"
+            name="test-name"
             step="1"
             type="number"
             value=""
@@ -52,7 +53,7 @@ Object {
   "dirty": false,
   "focus": [Function],
   "id": "test-component",
-  "name": undefined,
+  "name": "test-name",
   "validity": ValidityState {},
   "value": undefined,
 }
