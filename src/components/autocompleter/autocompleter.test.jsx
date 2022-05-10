@@ -28,6 +28,30 @@ describe('src/components/autocompleter/autocompleter', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('apiEndpoint API', () => {
+    it('fetches dropdown options', async () => {
+      const { rerender } = render(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=55'} />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      const foo = await screen.findByText('Foo');
+      expect(foo).toBeInTheDocument();
+
+      rerender(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=9'} />);
+      const option9 = await screen.findByText('Option 9');
+      expect(option9).toBeInTheDocument();
+      expect(foo).not.toBeInTheDocument();
+    });
+
+    it('fetches selected options', async () => {
+      const { rerender } = render(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=55'} value="55" />);
+      const input = await screen.findByDisplayValue('Foo');
+
+      rerender(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=9'} value="55" />);
+      userEvent.click(screen.getByLabelText('Test label'));
+      await screen.findByText('Option 9');
+      expect(input).toHaveValue('');
+    });
+  });
+
   describe('className API', () => {
     it('prioritizes className prop', () => {
       const { container } = render(<Autocompleter {...requiredProps} className="prioritize-me" />);

@@ -14,17 +14,18 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   useEffect(() => {
     fetchModels();
-  }, []);
+  }, [props.apiEndpoint]);
 
   useEffect(() => {
     if (props.value) {
       executeValue(apiEndpoint('only', props.value))
         .then(({ json, mounted }) => {
           if (mounted) {
-            setModel(json.results.map(result => json[result.key][result.id])[0]);
+            setModel(json.results.map(result => json[result.key][props.value])[0]);
           }
         })
         .catch((error) => {
+          if (error.error instanceof ProgressEvent) return;
           if (error.error && error.error.type !== 'aborted') {
             throw error;
           }
@@ -32,7 +33,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     } else {
       setModel(undefined);
     }
-  }, [props.value]);
+  }, [props.apiEndpoint, props.value]);
 
   function fetchModels(searchString) {
     if (!props.apiEndpoint) { return; }
@@ -43,6 +44,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
           setModels(json.results.map(result => json[result.key][result.id]));
         }
       }).catch((error) => {
+        if (error.error instanceof ProgressEvent) return;
         if (error.error && error.error.type !== 'aborted') {
           throw error;
         }
