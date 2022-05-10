@@ -13,7 +13,7 @@
     "lint:styles": "stylelint '**/*.css'",
     "start": "styleguidist server",
     "start:debug": "node --inspect-brk $(yarn bin)/styleguidist server",
-    "test": "jest --detect-leaks",
+    "test": "jest",
     "test:debug": "node --inspect-brk $(yarn bin)/jest --runInBand --no-cache --watch"
   },
   "repository": {
@@ -70,7 +70,6 @@
     "url-loader": "^1.1.2",
     "uuid": "^8.3.2",
     "wait-on": "^3.2.0",
-    "weak-napi": "^2.0.2",
     "webpack": "^4.28.3"
   },
   "dependencies": {
