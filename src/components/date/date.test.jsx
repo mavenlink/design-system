@@ -47,6 +47,7 @@ describe('src/components/date/date.test.jsx', () => {
     const date = getLocaleDate(new window.Date('1999-01-01'));
 
     render(<Date {...requiredProps} />);
+    userEvent.tab();
     userEvent.type(screen.getByLabelText('Test label'), '1999-01-01');
     expect(await screen.findByText(date.calendarHeading)).toBeInTheDocument();
   });
@@ -69,7 +70,8 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(today.calendarDate));
       expect(screen.queryByText(today.calendarDate)).not.toBeInTheDocument();
-      expect(screen.getByLabelText('Test label')).toHaveValue(today.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.getByLabelText('Test label')).toHaveValue(today.editableValue);
     });
 
     it('closes on blur', () => {
@@ -87,6 +89,7 @@ describe('src/components/date/date.test.jsx', () => {
       const today = getLocaleDate(new window.Date());
 
       render(<Date {...requiredProps} />);
+      userEvent.tab();
       userEvent.type(screen.getByLabelText('Test label'), '');
       expect(screen.getByText(today.calendarHeading)).toBeInTheDocument();
       userEvent.keyboard('{Escape}');
@@ -122,10 +125,10 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} value="2020-01-03" />);
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date1.calendarDate));
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date1.editableValue);
       userEvent.click(screen.getByTitle('calendar button'));
       userEvent.click(screen.getByLabelText(date2.calendarDate));
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.editableValue);
     });
   });
 
@@ -147,7 +150,7 @@ describe('src/components/date/date.test.jsx', () => {
       render(<Date {...requiredProps} />);
       userEvent.type(screen.getByLabelText('Test label'), date1.editableValue);
       userEvent.click(screen.getByLabelText(date2.calendarDate));
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date2.editableValue);
       expect(document.activeElement).toBe(screen.getByLabelText('Test label'));
     });
 
@@ -265,7 +268,7 @@ describe('src/components/date/date.test.jsx', () => {
       userEvent.click(screen.getByLabelText('Test label'));
       userEvent.click(screen.getByLabelText(date.calendarDate));
 
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date.displayValue);
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('value', date.editableValue);
       expect(onChangeSpy.mock.calls.length).toBe(1); // Do not call while inactive
       expect(onChangeSpy).toBeCalledWith(expect.objectContaining({
         target: expect.objectContaining({

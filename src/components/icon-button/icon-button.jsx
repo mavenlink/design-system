@@ -30,6 +30,8 @@ const IconButton = forwardRef(function IconButton(props, ref) {
       aria-labelledby={props.labelledBy}
       className={props.className}
       height={height}
+      onBlur={props.onBlur}
+      onFocus={props.onFocus}
       onClick={onClick}
       onKeyDown={onKeyDown}
       ref={ref}
@@ -55,6 +57,8 @@ IconButton.propTypes = {
   label: PropTypes.string.isRequired,
   labelledBy: PropTypes.string,
   onPress: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 IconButton.defaultProps = {
@@ -63,6 +67,8 @@ IconButton.defaultProps = {
   disabled: false,
   id: undefined,
   labelledBy: undefined,
+  onBlur: () => {},
+  onFocus: () => {},
 };
 
 export default IconButton;
