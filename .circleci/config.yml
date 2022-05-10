@@ -40,7 +40,7 @@ commands:
 jobs:
   build_and_test:
     docker:
-      - image: cypress/base:14.15.0
+      - image: cypress/base:14.16.0
     working_directory: ~/repo
     steps:
       - checkout
