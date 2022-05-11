@@ -21,7 +21,8 @@ const Number = React.forwardRef((props, ref) => {
         id={props.id}
         onChange={props.onChange}
         placeholder={props.placeholder}
-        onFocus={() => props.onEnterCell()}
+        onFocus={event => props.onEnterCell(event.target.value)}
+        onBlur={event => props.onExitCell(event.target.value)}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
@@ -47,6 +48,7 @@ Number.propTypes = {
    */
   onChange: PropTypes.func,
   onEnterCell: PropTypes.func,
+  onExitCell: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -59,6 +61,7 @@ Number.defaultProps = {
   classNames: {},
   onChange: () => {},
   onEnterCell: () => {},
+  onExitCell: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
