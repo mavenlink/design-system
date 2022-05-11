@@ -88,9 +88,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   function onInputClick(event) {
     if (props.readOnly) return;
     event.preventDefault();
-    if (!active) {
-      refs.input.current.focus();
-    }
+    if (!active) refs.input.current.focus();
     setExpanded(true);
   }
 
