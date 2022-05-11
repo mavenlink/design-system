@@ -79,8 +79,9 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     setValue(fromFullDateFormat(refs.input.current.value));
   }
 
-  function onFocusIntoDateControl() {
+  function onFocusIntoDateControl(event) {
     if (props.readOnly) return;
+    if (!active) props.onFocus(event);
     setActive(true);
     setEditing(true);
   }

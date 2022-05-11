@@ -7,42 +7,18 @@ import user from '@testing-library/user-event';
 import Date from './date.jsx';
 
 describe('<Date />', () => {
-  describe('onActivate API', () => {
+  describe('onFocus API', () => {
     it('toggles date to active when user clicks on date control', () => {
-      const onActivate = jest.fn();
+      const onFocus = jest.fn(event => event.persist());
       render(<>
-        <Date id="test-id" onActivate={onActivate} />
+        <Date id="test-id" onFocus={onFocus} />
       </>);
 
-      user.click(screen.getByRole('textbox'));
-      expect(onActivate).toHaveBeenCalledWith(undefined);
-    });
-
-    it('toggles date and sends value at time when user clicks on date control', () => {
-      const onActivate = jest.fn();
-      render(<>
-        <Date id="test-id" value="2022-01-01" onActivate={onActivate} />
-      </>);
-
-      user.click(screen.getByRole('textbox'));
-      expect(onActivate).toHaveBeenCalledWith(new window.Date('2022-01-01T00:00:00'));
-    });
-
-    it('activates the date cell when user tabs back into the Input', () => {
-      const onActivate = jest.fn();
-      render(<>
-        <button aria-label="pre input button" />
-        <Date id="test-id" value="2022-01-01" onActivate={onActivate} />
-        <button aria-label="post input button" />
-      </>);
-
-      // User has Focused on Element Before Date Input
-      user.click(screen.getByRole('button', { name: 'post input button' }));
-
-      // User Tabs to the Date Input
-      user.tab({ shift: true });
-      expect(screen.getByDisplayValue('2022-01-01')).toHaveFocus();
-      expect(onActivate).toHaveBeenCalled();
+      const input = screen.getByRole('textbox');
+      user.click(input);
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        target: input,
+      }));
     });
   });
 
