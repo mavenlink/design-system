@@ -72,6 +72,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
     validate();
     setActive(false);
+    props.onBlur(event);
     if (!props.validationMessage) setEditing(false);
   }
 
