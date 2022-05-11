@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
-import { render as _render } from '@testing-library/react';
+import { render as _render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
@@ -34,5 +35,14 @@ describe('Number cell control', () => {
     expect(document.body).toMatchSnapshot();
     expect(document.body).toBe(document.activeElement);
     expect(ref.current).toMatchSnapshot();
+  });
+
+  it('alerts when user enters the cell', () => {
+    const onEnterCell = jest.fn();
+    render(<Number onChange={() => {}} value={1} {...requiredProps} onEnterCell={onEnterCell} />);
+
+    userEvent.click(within(screen.queryByLabelText('Column Header')).getByDisplayValue('1'));
+
+    expect(onEnterCell).toHaveBeenCalledWith();
   });
 });

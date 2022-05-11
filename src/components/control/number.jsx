@@ -89,6 +89,7 @@ const Number = React.forwardRef((props, forwardedRef) => {
         name={props.name}
         onBlur={onBlur}
         onChange={() => { props.onChange({ target: ref.current }); }}
+        onFocus={props.onFocus}
         placeholder={props.placeholder}
         ref={refs.input}
         readOnly={props.readOnly}
@@ -116,6 +117,7 @@ Number.propTypes = {
    * an empty string when the input is invalid.
    */
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -130,6 +132,7 @@ Number.defaultProps = {
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,

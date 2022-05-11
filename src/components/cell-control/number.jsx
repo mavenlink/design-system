@@ -21,6 +21,7 @@ const Number = React.forwardRef((props, ref) => {
         id={props.id}
         onChange={props.onChange}
         placeholder={props.placeholder}
+        onFocus={() => props.onEnterCell()}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
@@ -45,6 +46,7 @@ Number.propTypes = {
    * an empty string when the input is invalid.
    */
   onChange: PropTypes.func,
+  onEnterCell: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -56,6 +58,7 @@ Number.propTypes = {
 Number.defaultProps = {
   classNames: {},
   onChange: () => {},
+  onEnterCell: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
