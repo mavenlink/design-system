@@ -88,8 +88,9 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   function onInputClick(event) {
     if (props.readOnly) return;
     event.preventDefault();
-    setActive(true);
-    setEditing(true);
+    if (!active) {
+      refs.input.current.focus();
+    }
     setExpanded(true);
   }
 
@@ -237,6 +238,7 @@ Date.propTypes = {
   onActivate: PropTypes.func,
   onChange: PropTypes.func,
   onDeactivate: PropTypes.func,
+  onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -254,6 +256,7 @@ Date.defaultProps = {
   onActivate: () => {},
   onChange: undefined,
   onDeactivate: () => {},
+  onFocus: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,
