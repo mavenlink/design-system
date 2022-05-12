@@ -29,7 +29,9 @@ const Date = forwardRef(function Date(props, ref) {
         labelledBy={props.labelledBy}
         max={props.max}
         min={props.min}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
@@ -55,7 +57,9 @@ Date.propTypes = {
   max: PropTypes.string,
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -68,7 +72,9 @@ Date.defaultProps = {
   classNames: {},
   max: undefined,
   min: undefined,
+  onBlur: () => {},
   onChange: undefined,
+  onFocus: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
