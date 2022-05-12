@@ -114,7 +114,9 @@ describe('src/components/control/select', () => {
       user.click(screen.getByRole('combobox'));
       user.click(await screen.findByText('foo'));
       user.tab(); // Tabs to SVG `X` Button
+      expect(onBlur).not.toHaveBeenCalled();
       user.tab(); // Tabs to SVG `V` Button
+      expect(onBlur).not.toHaveBeenCalled();
       user.tab(); // Tabs to Body
 
       expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
