@@ -1,6 +1,6 @@
 {
   "name": "@mavenlink/design-system",
-  "version": "0.101.3",
+  "version": "0.101.5",
   "description": "Mavenlink React Components",
   "main": "src/index.js",
   "scripts": {
@@ -50,7 +50,7 @@
     "eslint-plugin-cypress": "^2.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27",
-    "msw": "^0.26.0",
+    "msw": "^0.39.2",
     "postcss-loader": "^4.0.4",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",

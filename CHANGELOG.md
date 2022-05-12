@@ -4,6 +4,18 @@ Prepend new items to make git merging easier.
 -fix(Number): add id and name into ref. Ensure onChange value on ref is a number
 -fix(Date): add id and name into ref
 
+## 0.101.5
+
+- feat(Date): Implement a onDeactivate and onActive callbacks, so developers can listen
+when the user begins and ends interaction/focus on date cell
+- feat(Date): Improve accessibility with user tabs and focus
+- feat(IconButton): Give developers access to `onFocus` and `onBlur`
+
+## 0.101.4
+
+- fix(autocompleter): refetch data on api endpoint url changes
+
+
 ## 0.101.3
  
 - fix(Money): ensure server validation messages appear after submitting a form

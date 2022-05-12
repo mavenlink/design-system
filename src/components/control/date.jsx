@@ -33,9 +33,18 @@ function fromFullDateFormat(string) {
   return date;
 }
 
+function usePrevious(value) {
+  const ref = useRef();
+  React.useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 const Date = forwardRef(function Date(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
+  const previousActive = usePrevious(active);
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
@@ -63,11 +72,17 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
     validate();
     setActive(false);
-    if (!refs.input.current.validationMessage) setEditing(false);
+    if (!props.validationMessage) setEditing(false);
   }
 
   function onInputChange() {
     setValue(fromFullDateFormat(refs.input.current.value));
+  }
+
+  function onFocusIntoDateControl() {
+    if (props.readOnly) return;
+    setActive(true);
+    setEditing(true);
   }
 
   function onInputClick(event) {
@@ -119,6 +134,15 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     if (active && props.onChange) props.onChange({ target: ref.current });
   }, [value]);
 
+  useEffect(() => {
+    if (!previousActive && active) {
+      props.onActivate(value);
+    }
+    if (previousActive && !active) {
+      props.onDeactivate(value);
+    }
+  });
+
   useLayoutEffect(() => {
     if (active) refs.input.current.focus();
   }, [editing]);
@@ -153,6 +177,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     <div
       className={classNames.container}
       onBlur={onBlur}
+      onFocus={onFocusIntoDateControl}
       ref={refs.container}
       style={{ height: '100%', position: 'relative' }}
     >
@@ -165,8 +190,9 @@ const Date = forwardRef(function Date(props, forwardedRef) {
         max={props.max}
         min={props.min}
         name={props.name}
+        onClick={e => !props.readOnly && e.preventDefault()}
         onChange={onInputChange}
-        onClick={onInputClick}
+        onMouseDown={onInputClick}
         onKeyDown={onInputKeyDown}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
@@ -208,7 +234,9 @@ Date.propTypes = {
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
   name: PropTypes.string,
+  onActivate: PropTypes.func,
   onChange: PropTypes.func,
+  onDeactivate: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -223,7 +251,9 @@ Date.defaultProps = {
   max: undefined,
   min: undefined,
   name: undefined,
+  onActivate: () => {},
   onChange: undefined,
+  onDeactivate: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,
