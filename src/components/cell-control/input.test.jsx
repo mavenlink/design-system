@@ -78,6 +78,35 @@ describe('Input cell control', () => {
     });
   });
 
+  describe('onFocus API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onFocus = jest.fn(event => event.persist());
+
+      render(<Input {...requiredProps} onFocus={onFocus} />);
+
+      user.click(screen.getByRole('textbox'));
+
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'focus',
+      }));
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('calls onChange when a new value is selected', () => {
+      const onBlur = jest.fn(event => event.persist());
+
+      render(<Input {...requiredProps} onBlur={onBlur} />);
+
+      user.click(screen.getByRole('textbox'));
+      user.tab();
+
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
+    });
+  });
+
   describe('readOnly API', () => {
     it('is true', () => {
       render(<Input {...requiredProps} readOnly={true} />);
