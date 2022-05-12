@@ -22,7 +22,9 @@ const Money = forwardRef(function Money(props, ref) {
         className={classNames.input}
         currencyCode={props.currencyCode}
         id={props.id}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         required={props.required}
@@ -47,7 +49,9 @@ Money.propTypes = {
    * The handler is invoked for every native onchange event.
    * The handler will be invoked with the forwarded ref.
    */
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -59,7 +63,9 @@ Money.defaultProps = {
   classNames: {},
   currencyCode: 'USD',
   errorText: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,
