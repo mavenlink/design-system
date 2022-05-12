@@ -579,6 +579,11 @@ describe('<MultiSelect>', () => {
       const multiSelect = screen.getByRole('combobox');
 
       userEvent.click(multiSelect);
+      userEvent.tab(); // The Clear `X` button
+      expect(onBlur).not.toHaveBeenCalled();
+      userEvent.tab(); // The Open Selection `V` button
+      expect(onBlur).not.toHaveBeenCalled();
+      userEvent.tab(); // Document Body
       expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
         type: 'blur',
       }));
