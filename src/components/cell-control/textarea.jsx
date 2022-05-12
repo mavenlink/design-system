@@ -23,9 +23,10 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     ...props.classNames,
   };
 
-  function onBlur() {
+  function onBlur(event) {
     validate();
     setHeight(undefined);
+    props.onBlur(event);
   }
 
   function onChange(event) {
@@ -33,8 +34,9 @@ const Textarea = forwardRef(function Textarea(props, ref) {
     props.onChange(event);
   }
 
-  function onFocus() {
+  function onFocus(event) {
     setHeight(refs.textarea.current.scrollHeight);
+    props.onFocus(event);
   }
 
   useImperativeHandle(ref, () => {
@@ -79,7 +81,9 @@ Textarea.propTypes = {
   /* The ID of the header cell. */
   labelledBy: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -91,7 +95,9 @@ Textarea.defaultProps = {
   classNames: {},
   readOnly: false,
   required: false,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   placeholder: '',
   validationMessage: '',
   value: '',

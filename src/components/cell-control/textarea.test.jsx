@@ -130,4 +130,31 @@ describe('Textarea cell control', () => {
       expect(ref.current.value).toBe('Unique value');
     });
   });
+
+  describe('onFocus API', () => {
+    it('calls onFocus', () => {
+      const onFocus = jest.fn(event => event.persist());
+      render(<Textarea {...requiredProps} onFocus={onFocus} />);
+      const textbox = screen.getByRole('textbox');
+      user.click(textbox);
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'focus',
+        target: textbox,
+      }));
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('calls onBlur', () => {
+      const onBlur = jest.fn(event => event.persist());
+      render(<Textarea {...requiredProps} onBlur={onBlur} />);
+      const textbox = screen.getByRole('textbox');
+      user.click(textbox);
+      user.tab();
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+        target: textbox,
+      }));
+    });
+  });
 });
