@@ -38,21 +38,21 @@ describe('Number cell control', () => {
   });
 
   it('alerts when user focuses into the cell', () => {
-    const onEnterCell = jest.fn();
-    render(<Number onChange={() => {}} value={1} {...requiredProps} onEnterCell={onEnterCell} />);
+    const onFocus = jest.fn(event => event.persist());
+    render(<Number onChange={() => {}} value={1} {...requiredProps} onFocus={onFocus} />);
 
     userEvent.click(within(screen.queryByLabelText('Column Header')).getByDisplayValue('1'));
 
-    expect(onEnterCell).toHaveBeenCalledWith('1');
+    expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({ type: 'focus' }));
   });
 
   it('alerts when user moves focus out of the cell', () => {
-    const onExitCell = jest.fn();
-    render(<Number onChange={() => {}} value={1} {...requiredProps} onExitCell={onExitCell} />);
+    const onBlur = jest.fn(event => event.persist());
+    render(<Number onChange={() => {}} value={1} {...requiredProps} onBlur={onBlur} />);
 
     userEvent.click(within(screen.queryByLabelText('Column Header')).getByDisplayValue('1'));
     userEvent.tab();
 
-    expect(onExitCell).toHaveBeenCalledWith('1');
+    expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({ type: 'blur' }));
   });
 });
