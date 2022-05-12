@@ -41,8 +41,6 @@ const options = [
         labelledBy={ids.th.example}
         listOptionRefs={options[0].map(option => option.ref)}
         name="select-1"
-        onFocus={e => console.log('focus', e)}
-        onBlur={e => console.log('blur', e)}
       >
         {({ onSelect }) => options[0].map((option, index) => (
           <ListOption key={option.id} onSelect={onSelect} ref={option.ref} value={option.label}>
