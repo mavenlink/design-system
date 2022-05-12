@@ -25,7 +25,9 @@ const Select = forwardRef(function Select(props, ref) {
         labelledBy={props.labelledBy}
         listOptionRefs={props.listOptionRefs}
         name={props.name}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         readOnly={props.readOnly}
         ref={ref}
         required={props.required}
@@ -50,7 +52,9 @@ Select.propTypes = {
   listOptionRefs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
   /** See documentation on `FormControl#name` */
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   /** Disable changes to the input control. */
   readOnly: PropTypes.bool,
   /** Require a value on the input control. */
@@ -64,7 +68,9 @@ Select.propTypes = {
 Select.defaultProps = {
   children: () => {},
   className: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   readOnly: false,
   required: false,
   validationMessage: '',

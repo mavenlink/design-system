@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, {func} from 'prop-types';
 import Icons from './icons.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
@@ -71,6 +71,12 @@ const Select = forwardRef(function Select(props, ref) {
     }
 
     setBeenBlurred(true);
+  }
+
+  function onFocus(event) {
+    if (props.readOnly) return;
+    if (showOptions) return;
+    props.onFocus(event);
   }
 
   function onClick() {
@@ -182,7 +188,11 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
+    <div
+      className={classNames.container}
+      style={{ height: '100%', position: 'relative' }}
+      onFocus={onFocus}
+    >
       <input
         autoComplete="off"
         aria-autocomplete="none"
@@ -271,7 +281,9 @@ Select.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInput: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
@@ -287,7 +299,9 @@ Select.defaultProps = {
   children: () => {},
   classNames: {},
   displayValueEvaluator: value => value,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInput: () => {},
   onInvalid: () => {},
   placeholder: undefined,
