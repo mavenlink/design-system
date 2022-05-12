@@ -259,7 +259,7 @@ describe('src/components/date/date.test.jsx', () => {
   });
 
   describe('onChange API', () => {
-    it('is a function', () => {
+    it('is a function that is called with the value, id, and name', () => {
       const date = getLocaleDate(new window.Date());
       const onChangeSpy = jest.fn();
       const ref = createRef();
@@ -273,6 +273,8 @@ describe('src/components/date/date.test.jsx', () => {
       expect(onChangeSpy).toBeCalledWith(expect.objectContaining({
         target: expect.objectContaining({
           value: date.editableValue,
+          name: requiredProps.name,
+          id: requiredProps.id,
         }),
       }));
     });

@@ -7,6 +7,7 @@ describe('Number', () => {
   const requiredProps = {
     id: 'test-component',
     label: 'Test Component',
+    name: 'test-name',
   };
 
   it('has defaults', () => {
@@ -115,11 +116,18 @@ describe('Number', () => {
   });
 
   describe('onChange API', () => {
-    it('can set an onChange event', () => {
+    it('can set an onChange event, that is called with value as a number, name, and id', () => {
       const onChange = jest.fn();
       render(<Number {...requiredProps} onChange={onChange} />);
       userEvent.type(screen.getByLabelText('Test Component'), '1');
       expect(onChange.mock.calls.length).toEqual(1);
+      expect(onChange).toBeCalledWith(expect.objectContaining({
+        target: expect.objectContaining({
+          value: 1,
+          name: requiredProps.name,
+          id: requiredProps.id,
+        }),
+      }));
     });
   });
 

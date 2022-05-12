@@ -49,6 +49,8 @@ exports[`Number cell control has defaults 2`] = `
 Object {
   "dirty": false,
   "focus": [Function],
+  "id": "test-id",
+  "name": undefined,
   "validity": ValidityState {},
   "value": undefined,
 }
