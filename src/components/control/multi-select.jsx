@@ -133,7 +133,13 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   function onBlur(event) {
     if (!refs.autocomplete.current) return;
     if (refs.root.current.contains(event.relatedTarget)) return;
+    props.onBlur(event);
     validate();
+  }
+
+  function onFocus(event) {
+    if (refs.root.current.contains(event.relatedTarget)) return;
+    props.onFocus(event);
   }
 
   function onAutocompleteChange(event) {
@@ -224,6 +230,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
   return (
     <div
       onBlur={onBlur}
+      onFocus={onFocus}
       ref={refs.root}
       style={{ height: '100%' }}
     >
@@ -311,7 +318,9 @@ MultiSelect.propTypes = {
   filterOptions: PropTypes.bool,
   id: PropTypes.string.isRequired,
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInput: PropTypes.func,
   onInvalid: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -333,7 +342,9 @@ MultiSelect.defaultProps = {
   classNames: {},
   filterOptions: true,
   listboxChildren: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInput: () => {},
   onInvalid: () => {},
   optionIDGetter: option => option.value,
