@@ -33,18 +33,9 @@ function fromFullDateFormat(string) {
   return date;
 }
 
-function usePrevious(value) {
-  const ref = useRef();
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 const Date = forwardRef(function Date(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
-  const previousActive = usePrevious(active);
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
@@ -134,15 +125,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   useEffect(() => {
     if (active && props.onChange) props.onChange({ target: ref.current });
   }, [value]);
-
-  useEffect(() => {
-    if (!previousActive && active) {
-      props.onActivate(value);
-    }
-    if (previousActive && !active) {
-      props.onDeactivate(value);
-    }
-  });
 
   useLayoutEffect(() => {
     if (active) refs.input.current.focus();
@@ -235,9 +217,8 @@ Date.propTypes = {
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
   name: PropTypes.string,
-  onActivate: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onDeactivate: PropTypes.func,
   onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
@@ -253,9 +234,8 @@ Date.defaultProps = {
   max: undefined,
   min: undefined,
   name: undefined,
-  onActivate: () => {},
+  onBlur: () => {},
   onChange: undefined,
-  onDeactivate: () => {},
   onFocus: () => {},
   onInvalid: () => {},
   placeholder: undefined,

@@ -5,7 +5,7 @@ import Date from './date.jsx';
 
 describe('<Date />', () => {
   describe('onFocus API', () => {
-    it('toggles date to active when user clicks on date control', () => {
+    it('calls onFocus ctive when user clicks on date control', () => {
       const onFocus = jest.fn(event => event.persist());
       render(<>
         <Date id="test-id" onFocus={onFocus} />
@@ -34,7 +34,7 @@ describe('<Date />', () => {
       }));
     });
 
-    it('deactivate when user tabs out of the Input', () => {
+    it('blur when user tabs out of the Input', () => {
       const onBlur = jest.fn(event => event.persist());
       render(<>
         <button aria-label="pre input button" />
