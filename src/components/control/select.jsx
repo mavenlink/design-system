@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import PropTypes, {func} from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 import Icons from './icons.jsx';
 import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
@@ -36,6 +36,7 @@ const Select = forwardRef(function Select(props, ref) {
   useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
   const refs = {
+    container: useRef(),
     listbox: useRef(),
     input: useRef(),
   };
@@ -65,7 +66,7 @@ const Select = forwardRef(function Select(props, ref) {
     refs.input.current.focus();
   };
 
-  function onBlur(event) {
+  function onBlurInput(event) {
     if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
       validate();
     }
@@ -73,7 +74,14 @@ const Select = forwardRef(function Select(props, ref) {
     setBeenBlurred(true);
   }
 
+  function onBlur(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
+    if (props.readOnly) return;
+    props.onBlur(event);
+  }
+
   function onFocus(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
     if (props.readOnly) return;
     if (showOptions) return;
     props.onFocus(event);
@@ -189,9 +197,11 @@ const Select = forwardRef(function Select(props, ref) {
 
   return (
     <div
+      ref={refs.container}
       className={classNames.container}
       style={{ height: '100%', position: 'relative' }}
       onFocus={onFocus}
+      onBlur={onBlur}
     >
       <input
         autoComplete="off"
@@ -205,7 +215,7 @@ const Select = forwardRef(function Select(props, ref) {
         id={ids.input}
         role="combobox"
         name={props.name}
-        onBlur={onBlur}
+        onBlur={onBlurInput}
         onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}

@@ -97,6 +97,32 @@ describe('src/components/control/select', () => {
     });
   });
 
+  describe('onBlur API', () => {
+    it('focuses on the Select', async () => {
+      const onBlur = jest.fn(event => event.persist());
+      const listOptions = [{ id: 0, label: 'foo' }];
+      const listOptionRefs = listOptions.map(() => React.createRef());
+      const listOptionElements = ({ onSelect }) => listOptions.map((option, index) => {
+        return (<ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+          {option.label}
+        </ListOption>);
+      });
+      render(<Select {...requiredProps} listOptionRefs={listOptionRefs} displayValueEvaluator={o => o.label} onBlur={onBlur}>
+        { listOptionElements }
+      </Select>);
+
+      user.click(screen.getByRole('combobox'));
+      user.click(await screen.findByText('foo'));
+      user.tab(); // Tabs to SVG `X` Button
+      user.tab(); // Tabs to SVG `V` Button
+      user.tab(); // Tabs to Body
+
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
+    });
+  });
+
   describe('classNames API', () => {
     it('sets container', () => {
       render(<Select
