@@ -45,7 +45,9 @@ const MultiAutocompleter = forwardRef(function MultiAutocompleter(props, ref) {
         id={props.id}
         label={props.label}
         name={props.name}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         onInvalid={onInvalid}
         optionIDGetter={props.optionIDGetter}
         optionLabelGetter={props.optionLabelGetter}
@@ -69,7 +71,9 @@ MultiAutocompleter.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   optionIDGetter: PropTypes.func,
   optionLabelGetter: PropTypes.func,
   placeholder: PropTypes.string,
@@ -87,7 +91,9 @@ MultiAutocompleter.propTypes = {
 
 MultiAutocompleter.defaultProps = {
   className: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   optionIDGetter: (option) => { return option?.id || option; },
   optionLabelGetter: option => option.title || option.name || option.full_name || option.currency || option.label,
   placeholder: undefined,

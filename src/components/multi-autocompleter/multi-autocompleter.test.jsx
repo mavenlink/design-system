@@ -18,6 +18,7 @@ import {
 import jestServer from '../../mocks/jest-server.js';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
+import Date from "../control/date";
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {
@@ -300,6 +301,33 @@ describe('<MultiAutocompleter>', () => {
       userEvent.hover(screen.getByRole('img', { name: 'More information' }));
       userEvent.unhover(screen.getByRole('img', { name: 'More information' }));
       expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription('');
+    });
+  });
+
+  describe('onFocus API', () => {
+    it('triggers callback when tooltip is focused', () => {
+      const onFocus = jest.fn(event => event.persist());
+      render(<MultiAutocompleter {...requiredProps} onFocus={onFocus} />);
+
+      userEvent.click(screen.queryByRole('combobox'));
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'focus',
+      }));
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('triggers callback when tooltip is focused', () => {
+      const onBlur = jest.fn(event => event.persist());
+      render(<MultiAutocompleter {...requiredProps} onBlur={onBlur} />);
+
+      userEvent.click(screen.queryByRole('combobox'));
+      userEvent.tab(); // Clear Button `X`
+      userEvent.tab(); // Expend Button `V`
+      userEvent.tab(); // Document Body
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
     });
   });
 });
