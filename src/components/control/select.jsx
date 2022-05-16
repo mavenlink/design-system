@@ -36,6 +36,7 @@ const Select = forwardRef(function Select(props, ref) {
   useDropdownClose(wrapperRef, showOptions, handleDropdownClose);
 
   const refs = {
+    container: useRef(),
     listbox: useRef(),
     input: useRef(),
   };
@@ -65,12 +66,25 @@ const Select = forwardRef(function Select(props, ref) {
     refs.input.current.focus();
   };
 
-  function onBlur(event) {
+  function onBlurInput(event) {
     if (!(refs.listbox.current && refs.listbox.current.contains(event.relatedTarget))) {
       validate();
     }
 
     setBeenBlurred(true);
+  }
+
+  function onBlur(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
+    if (props.readOnly) return;
+    props.onBlur(event);
+  }
+
+  function onFocus(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
+    if (props.readOnly) return;
+    if (showOptions) return;
+    props.onFocus(event);
   }
 
   function onClick() {
@@ -182,7 +196,13 @@ const Select = forwardRef(function Select(props, ref) {
   }, [value, showOptions]);
 
   return (
-    <div className={classNames.container} style={{ height: '100%', position: 'relative' }}>
+    <div
+      ref={refs.container}
+      className={classNames.container}
+      style={{ height: '100%', position: 'relative' }}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
       <input
         autoComplete="off"
         aria-autocomplete="none"
@@ -195,7 +215,7 @@ const Select = forwardRef(function Select(props, ref) {
         id={ids.input}
         role="combobox"
         name={props.name}
-        onBlur={onBlur}
+        onBlur={onBlurInput}
         onChange={onSearchChange}
         onClick={onClick}
         onKeyDown={onKeyDown}
@@ -271,7 +291,9 @@ Select.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInput: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
@@ -287,7 +309,9 @@ Select.defaultProps = {
   children: () => {},
   classNames: {},
   displayValueEvaluator: value => value,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInput: () => {},
   onInvalid: () => {},
   placeholder: undefined,

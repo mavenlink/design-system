@@ -19,7 +19,9 @@ const Number = React.forwardRef((props, ref) => {
       <NumberControl
         className={classNames.input}
         id={props.id}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={ref}
@@ -44,7 +46,9 @@ Number.propTypes = {
    * **Beware:** According to the HTML spec, the `event.target.value` is
    * an empty string when the input is invalid.
    */
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -55,7 +59,9 @@ Number.propTypes = {
 
 Number.defaultProps = {
   classNames: {},
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,

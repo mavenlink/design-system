@@ -6,6 +6,14 @@ Prepend new items to make git merging easier.
 
 -fix(Number): add id and name into ref. Ensure onChange value on ref is a number
 -fix(Date): add id and name into ref
+- feat(Date): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(Autocompleter): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(Input): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(Money): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(MultiAutocompleter): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(MultiSelect): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(Number): Add ability to pass `onFocus` and `onBlur` into cell control
+- feat(Select): Add ability to pass `onFocus` and `onBlur` into cell control
 
 ## 0.101.5
 

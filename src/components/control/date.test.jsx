@@ -1,69 +1,44 @@
 import React from 'react';
-import {
-  render,
-  screen,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import user from '@testing-library/user-event';
 import Date from './date.jsx';
 
 describe('<Date />', () => {
-  describe('onActivate API', () => {
-    it('toggles date to active when user clicks on date control', () => {
-      const onActivate = jest.fn();
+  describe('onFocus API', () => {
+    it('calls onFocus when user clicks on date control', () => {
+      const onFocus = jest.fn(event => event.persist());
       render(<>
-        <Date id="test-id" onActivate={onActivate} />
+        <Date id="test-id" onFocus={onFocus} />
       </>);
 
-      user.click(screen.getByRole('textbox'));
-      expect(onActivate).toHaveBeenCalledWith(undefined);
-    });
-
-    it('toggles date and sends value at time when user clicks on date control', () => {
-      const onActivate = jest.fn();
-      render(<>
-        <Date id="test-id" value="2022-01-01" onActivate={onActivate} />
-      </>);
-
-      user.click(screen.getByRole('textbox'));
-      expect(onActivate).toHaveBeenCalledWith(new window.Date('2022-01-01T00:00:00'));
-    });
-
-    it('activates the date cell when user tabs back into the Input', () => {
-      const onActivate = jest.fn();
-      render(<>
-        <button aria-label="pre input button" />
-        <Date id="test-id" value="2022-01-01" onActivate={onActivate} />
-        <button aria-label="post input button" />
-      </>);
-
-      // User has Focused on Element Before Date Input
-      user.click(screen.getByRole('button', { name: 'post input button' }));
-
-      // User Tabs to the Date Input
-      user.tab({ shift: true });
-      expect(screen.getByDisplayValue('2022-01-01')).toHaveFocus();
-      expect(onActivate).toHaveBeenCalled();
+      const input = screen.getByRole('textbox');
+      user.click(input);
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        target: input,
+      }));
     });
   });
 
-  describe('onDeactivate API', () => {
+  describe('onBlur API', () => {
     it('toggles active when user clicks away from the date control', () => {
-      const onDeactivate = jest.fn();
+      const onBlur = jest.fn(event => event.persist());
       render(<>
-        <Date id="test-id" onDeactivate={onDeactivate} />
+        <Date id="test-id" onBlur={onBlur} />
         <button aria-label="click away button" />
       </>);
 
       user.click(screen.getByRole('textbox'));
       user.click(screen.getByLabelText('click away button'));
-      expect(onDeactivate).toHaveBeenCalledWith(undefined);
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
     });
 
-    it('deactivate when user tabs out of the Input', () => {
-      const onDeactivate = jest.fn();
+    it('blur when user tabs out of the Input', () => {
+      const onBlur = jest.fn(event => event.persist());
       render(<>
         <button aria-label="pre input button" />
-        <Date id="test-id" value="2022-01-01" onDeactivate={onDeactivate} />
+        <Date id="test-id" value="2022-01-01" onBlur={onBlur} />
         <button aria-label="click away button" />
       </>);
 
@@ -72,18 +47,20 @@ describe('<Date />', () => {
 
       // User Tabs to the Date Input
       user.tab();
-      expect(onDeactivate).not.toHaveBeenCalled();
+      expect(onBlur).not.toHaveBeenCalled();
       expect(screen.getByDisplayValue('2022-01-01')).toHaveFocus();
 
       // User Tabs to the Calendar Button (Still Part of the Date Input)
       user.tab();
-      expect(onDeactivate).not.toHaveBeenCalled();
+      expect(onBlur).not.toHaveBeenCalled();
       expect(screen.getByRole('button', { name: 'calendar button' })).toHaveFocus();
 
       // User Tabs to button outside of calendar input
       user.tab();
       expect(screen.getByRole('button', { name: 'click away button' })).toHaveFocus();
-      expect(onDeactivate).toHaveBeenCalledWith(new window.Date('2022-01-01'));
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
     });
   });
 });

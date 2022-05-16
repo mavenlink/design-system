@@ -87,7 +87,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       labelledBy={props.labelledBy}
       listOptionRefs={listOptionRefs}
       name={props.name}
+      onBlur={props.onBlur}
       onChange={props.onChange}
+      onFocus={props.onFocus}
       onInput={onInput}
       onInvalid={props.onInvalid}
       placeholder={props.placeholder}
@@ -127,7 +129,9 @@ Autocompleter.propTypes = {
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -145,7 +149,9 @@ Autocompleter.defaultProps = {
   classNames: {},
   displayValueEvaluator: displayName,
   label: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,

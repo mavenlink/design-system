@@ -71,6 +71,60 @@ describe('src/components/control/select', () => {
     expect(onChangeSpy).toHaveBeenCalledWith(expect.objectContaining({ target: { dirty: true, name: 'field-id', value: undefined } }));
   });
 
+  describe('onFocus API', () => {
+    it('focuses on the Select', async () => {
+      const onFocus = jest.fn(event => event.persist());
+      const listOptions = [{ id: 0, label: 'foo' }];
+      const listOptionRefs = listOptions.map(() => React.createRef());
+      const listOptionElements = ({ onSelect }) => listOptions.map((option, index) => {
+        return (<ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+          {option.label}
+        </ListOption>);
+      });
+      render(<Select {...requiredProps} listOptionRefs={listOptionRefs} displayValueEvaluator={o => o.label} onFocus={onFocus}>
+        { listOptionElements }
+      </Select>);
+
+      const focusTarget = screen.getByRole('combobox');
+
+      user.click(screen.getByRole('combobox'));
+      user.click(await screen.findByText('foo'));
+
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'focus',
+        target: focusTarget,
+      }));
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('focuses on the Select', async () => {
+      const onBlur = jest.fn(event => event.persist());
+      const listOptions = [{ id: 0, label: 'foo' }];
+      const listOptionRefs = listOptions.map(() => React.createRef());
+      const listOptionElements = ({ onSelect }) => listOptions.map((option, index) => {
+        return (<ListOption key={option.id} onSelect={onSelect} ref={listOptionRefs[index]} value={option}>
+          {option.label}
+        </ListOption>);
+      });
+      render(<Select {...requiredProps} listOptionRefs={listOptionRefs} displayValueEvaluator={o => o.label} onBlur={onBlur}>
+        { listOptionElements }
+      </Select>);
+
+      user.click(screen.getByRole('combobox'));
+      user.click(await screen.findByText('foo'));
+      user.tab(); // Tabs to SVG `X` Button
+      expect(onBlur).not.toHaveBeenCalled();
+      user.tab(); // Tabs to SVG `V` Button
+      expect(onBlur).not.toHaveBeenCalled();
+      user.tab(); // Tabs to Body
+
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
+    });
+  });
+
   describe('classNames API', () => {
     it('sets container', () => {
       render(<Select

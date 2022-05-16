@@ -33,7 +33,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
         labelledBy={props.labelledBy}
         models={props.models}
         name={props.name}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         placeholder={props.placeholder}
         readOnly={props.readOnly}
         ref={ref}
@@ -65,7 +67,9 @@ Autocompleter.propTypes = {
     id: PropTypes.string.required,
   })),
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
@@ -80,7 +84,9 @@ Autocompleter.defaultProps = {
   classNames: {},
   displayValueEvaluator: undefined,
   models: [],
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,

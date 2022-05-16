@@ -557,4 +557,36 @@ describe('<MultiSelect>', () => {
       expect(screen.getByRole('combobox', { name: requiredProps.label })).toHaveAccessibleDescription('');
     });
   });
+
+  describe('onFocus API', () => {
+    it('forwards the native onFocus event', () => {
+      const onFocus = jest.fn(event => event.persist());
+      render(<MultiSelect {...requiredProps} onFocus={onFocus} />);
+      const multiSelect = screen.getByRole('combobox');
+
+      userEvent.click(multiSelect);
+      expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'focus',
+        target: multiSelect,
+      }));
+    });
+  });
+
+  describe('onBlur API', () => {
+    it('forwards the native onBlur event', () => {
+      const onBlur = jest.fn(event => event.persist());
+      render(<MultiSelect {...requiredProps} onBlur={onBlur} />);
+      const multiSelect = screen.getByRole('combobox');
+
+      userEvent.click(multiSelect);
+      userEvent.tab(); // The Clear `X` button
+      expect(onBlur).not.toHaveBeenCalled();
+      userEvent.tab(); // The Open Selection `V` button
+      expect(onBlur).not.toHaveBeenCalled();
+      userEvent.tab(); // Document Body
+      expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'blur',
+      }));
+    });
+  });
 });

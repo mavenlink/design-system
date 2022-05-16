@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
-import { render as _render } from '@testing-library/react';
+import { render as _render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Number from './number.jsx';
 
 const render = (ui, options = { labelledBy: 'labelled-by' }) => (
@@ -34,5 +35,24 @@ describe('Number cell control', () => {
     expect(document.body).toMatchSnapshot();
     expect(document.body).toBe(document.activeElement);
     expect(ref.current).toMatchSnapshot();
+  });
+
+  it('alerts when user focuses into the cell', () => {
+    const onFocus = jest.fn(event => event.persist());
+    render(<Number onChange={() => {}} value={1} {...requiredProps} onFocus={onFocus} />);
+
+    userEvent.click(within(screen.queryByLabelText('Column Header')).getByDisplayValue('1'));
+
+    expect(onFocus).toHaveBeenCalledWith(expect.objectContaining({ type: 'focus' }));
+  });
+
+  it('alerts when user moves focus out of the cell', () => {
+    const onBlur = jest.fn(event => event.persist());
+    render(<Number onChange={() => {}} value={1} {...requiredProps} onBlur={onBlur} />);
+
+    userEvent.click(within(screen.queryByLabelText('Column Header')).getByDisplayValue('1'));
+    userEvent.tab();
+
+    expect(onBlur).toHaveBeenCalledWith(expect.objectContaining({ type: 'blur' }));
   });
 });

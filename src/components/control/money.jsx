@@ -22,12 +22,13 @@ const Money = forwardRef(function Money(props, ref) {
       setIsEditing(false);
     }
 
+    props.onBlur(event);
     setIsFocused(false);
   }
 
-  function handleOnFocus() {
+  function handleOnFocus(event) {
     if (props.readOnly) return;
-
+    props.onFocus(event);
     setIsEditing(true);
     setIsFocused(true);
   }
@@ -140,7 +141,9 @@ Money.propTypes = {
    * The handler is invoked for every native onchange event.
    * The handler will be invoked with the forwarded ref.
    */
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -155,8 +158,10 @@ Money.defaultProps = {
   describedBy: '',
   errorText: undefined,
   name: undefined,
+  onBlur: () => {},
   onChange: () => {},
   onInvalid: () => {},
+  onFocus: () => {},
   placeholder: undefined,
   readOnly: false,
   required: false,

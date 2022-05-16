@@ -33,18 +33,9 @@ function fromFullDateFormat(string) {
   return date;
 }
 
-function usePrevious(value) {
-  const ref = useRef();
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 const Date = forwardRef(function Date(props, forwardedRef) {
   const ref = useForwardedRef(forwardedRef);
   const [active, setActive] = useState(false);
-  const previousActive = usePrevious(active);
   const [editing, setEditing] = useState(!!props.validationMessage);
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(fromFullDateFormat(props.value));
@@ -72,6 +63,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
 
     validate();
     setActive(false);
+    props.onBlur(event);
     if (!props.validationMessage) setEditing(false);
   }
 
@@ -79,8 +71,9 @@ const Date = forwardRef(function Date(props, forwardedRef) {
     setValue(fromFullDateFormat(refs.input.current.value));
   }
 
-  function onFocusIntoDateControl() {
+  function onFocusIntoDateControl(event) {
     if (props.readOnly) return;
+    if (!active) props.onFocus(event);
     setActive(true);
     setEditing(true);
   }
@@ -88,8 +81,7 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   function onInputClick(event) {
     if (props.readOnly) return;
     event.preventDefault();
-    setActive(true);
-    setEditing(true);
+    if (!active) refs.input.current.focus();
     setExpanded(true);
   }
 
@@ -133,15 +125,6 @@ const Date = forwardRef(function Date(props, forwardedRef) {
   useEffect(() => {
     if (active && props.onChange) props.onChange({ target: ref.current });
   }, [value]);
-
-  useEffect(() => {
-    if (!previousActive && active) {
-      props.onActivate(value);
-    }
-    if (previousActive && !active) {
-      props.onDeactivate(value);
-    }
-  });
 
   useLayoutEffect(() => {
     if (active) refs.input.current.focus();
@@ -234,9 +217,9 @@ Date.propTypes = {
   /** The earliest date to accept in full-date format (i.e. yyyy-mm-dd) */
   min: PropTypes.string,
   name: PropTypes.string,
-  onActivate: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onDeactivate: PropTypes.func,
+  onFocus: PropTypes.func,
   onInvalid: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -251,9 +234,9 @@ Date.defaultProps = {
   max: undefined,
   min: undefined,
   name: undefined,
-  onActivate: () => {},
+  onBlur: () => {},
   onChange: undefined,
-  onDeactivate: () => {},
+  onFocus: () => {},
   onInvalid: () => {},
   placeholder: undefined,
   readOnly: false,

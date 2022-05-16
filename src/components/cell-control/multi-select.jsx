@@ -35,7 +35,9 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         filterOptions={props.filterOptions}
         id={props.id}
         listboxChildren={props.listboxChildren}
+        onBlur={props.onBlur}
         onChange={props.onChange}
+        onFocus={props.onFocus}
         onInput={props.onInput}
         options={props.options}
         optionIDGetter={props.optionIDGetter}
@@ -62,7 +64,9 @@ MultiSelect.propTypes = {
   id: PropTypes.string.isRequired,
   labelledBy: PropTypes.string.isRequired,
   listboxChildren: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onInput: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   /** the default getters reflect a native `select` element with `option` element children:
@@ -83,7 +87,9 @@ MultiSelect.defaultProps = {
   classNames: {},
   filterOptions: true,
   listboxChildren: undefined,
+  onBlur: () => {},
   onChange: () => {},
+  onFocus: () => {},
   onInput: () => {},
   optionIDGetter: option => option.value,
   optionLabelGetter: option => option.label,
