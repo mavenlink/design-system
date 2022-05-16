@@ -5,7 +5,7 @@ import Date from './date.jsx';
 
 describe('<Date />', () => {
   describe('onFocus API', () => {
-    it('calls onFocus ctive when user clicks on date control', () => {
+    it('calls onFocus when user clicks on date control', () => {
       const onFocus = jest.fn(event => event.persist());
       render(<>
         <Date id="test-id" onFocus={onFocus} />
