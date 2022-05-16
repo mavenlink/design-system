@@ -18,7 +18,6 @@ import {
 import jestServer from '../../mocks/jest-server.js';
 import { API_ROOT } from '../../mocks/mock-constants.js';
 import mockHandlers from '../autocompleter/mock-handlers.js';
-import Date from "../control/date";
 
 describe('<MultiAutocompleter>', () => {
   const requiredProps = {
