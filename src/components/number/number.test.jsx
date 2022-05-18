@@ -253,4 +253,38 @@ describe('Number', () => {
       expect(screen.getByLabelText('Test Component')).toHaveClass('test-class');
     });
   });
+
+  describe('min API', () => {
+    it('defaults to lowest value in unsigned 32 bit integer', () => {
+      render(<Number {...requiredProps} value={-(2 ** 31) - 1} />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+    });
+
+    it('can be overriden by the use', () => {
+      render(<Number {...requiredProps} value={-1} min={0} />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+    });
+
+    it('does not invalidate values equal to or above the value', () => {
+      render(<Number {...requiredProps} value={0} min={0} />);
+      expect(screen.getByLabelText('Test Component')).not.toBeInvalid();
+    });
+  });
+
+  describe('max API', () => {
+    it('defaults to highest value in unsigned 32 bit integer', () => {
+      render(<Number {...requiredProps} value={(2 ** 31) + 1} />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+    });
+
+    it('defaults to lowest value in unsigned 32 bit integer', () => {
+      render(<Number {...requiredProps} value={1} max={0} />);
+      expect(screen.getByLabelText('Test Component')).toBeInvalid();
+    });
+
+    it('does not invalidate values equal to or above the value', () => {
+      render(<Number {...requiredProps} value={0} max={0} />);
+      expect(screen.getByLabelText('Test Component')).not.toBeInvalid();
+    });
+  });
 });

@@ -19,6 +19,8 @@ const Number = React.forwardRef((props, ref) => {
       <NumberControl
         className={classNames.input}
         id={props.id}
+        max={props.max}
+        min={props.min}
         onBlur={props.onBlur}
         onChange={props.onChange}
         onFocus={props.onFocus}
@@ -40,6 +42,8 @@ Number.propTypes = {
     input: PropTypes.string,
   }),
   id: PropTypes.string.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
   labelledBy: PropTypes.string.isRequired,
   /**
    * The handler is invoked for every native onchange event.
@@ -59,6 +63,8 @@ Number.propTypes = {
 
 Number.defaultProps = {
   classNames: {},
+  min: undefined,
+  max: undefined,
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

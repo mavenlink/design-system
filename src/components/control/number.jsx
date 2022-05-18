@@ -84,8 +84,8 @@ const Number = React.forwardRef((props, forwardedRef) => {
         className={getClassName(props.className, validationMessage)}
         defaultValue={props.value}
         id={ids.input}
-        max={apiLimits.max}
-        min={apiLimits.min}
+        max={props.max}
+        min={props.min}
         name={props.name}
         onBlur={onBlur}
         onChange={() => { props.onChange({ target: ref.current }); }}
@@ -109,6 +109,8 @@ const Number = React.forwardRef((props, forwardedRef) => {
 Number.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
   name: PropTypes.string,
   onBlur: PropTypes.func,
   /**
@@ -129,6 +131,8 @@ Number.propTypes = {
 
 Number.defaultProps = {
   className: undefined,
+  min: apiLimits.min,
+  max: apiLimits.max,
   name: undefined,
   onBlur: () => {},
   onChange: () => {},
