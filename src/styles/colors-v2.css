@@ -4,12 +4,22 @@
   --black: #000;
 
   /* Brand colors */
+  --mds-brand-dark: #1974e2;
   --mds-brand-text: #004595;
   --mds-brand-100: #448fea;
   --mds-brand-54: #448fea8a;
   --mds-brand-38: #448fea61;
   --mds-brand-12: #448fea1f;
   --mds-brand-8: #448fea14;
+  --mds-brand-3: #448fea08;
+
+  /* Nav Blue */
+  --mds-nav-blue-100: #0c1432;
+  --mds-nav-blue-54: #0c14328a;
+  --mds-nav-blue-38: #0c143261;
+  --mds-nav-blue-12: #0c14321f;
+  --mds-nav-blue-8: #0c143214;
+  --mds-nav-blue-3: #0c143208;
 
   /* Grey transparent */
   --mds-grey-87: #000000de;
@@ -26,6 +36,25 @@
   --mds-grey-opaque-12: #e0e0e0;
   --mds-grey-opaque-8: #ebebeb;
   --mds-grey-opaque-3: #f7f7f7;
+
+  /* Kantata Branding colors */
+  --mds-kantata-blaze: #ef7314;
+  --mds-kantata-sunshine: #ffcb00;
+  --mds-kantata-meteorite: #4a3f72;
+  --mds-kantata-carbon: #2e2d2c;
+  --mds-kantata-bronze: #ae8d58;
+  --mds-kantata-graphite: #333130;
+  --mds-kantata-grape: #26294c;
+  --mds-kantata-royale: #5454e8;
+  --mds-kantata-marine: #4a9cce;
+  --mds-kantata-salmon: #fb806b;
+  --mds-kantata-tangerine: #f7b657;
+  --mds-kantata-sand: #eae0d4;
+  --mds-kantata-slate: #224959;
+  --mds-kantata-rust: #6b2826;
+  --mds-kantata-gold: #cc7a00;
+  --mds-kantata-mint: #29cc9a;
+  --mds-kantata-hot-pink: #d20d59;
 
   /* Red colors */
   --mds-red-text: #b5200f;
@@ -75,10 +104,12 @@
   --mds-indigo-54: #5356c88a;
   --mds-indigo-38: #5356c861;
   --mds-indigo-12: #5356c81f;
+  --mds-indigo-opaque-8: #f1f1fb;
 
   /* Violet colors */
   --mds-violet-100: #b72982;
   --mds-violet-54: #b729828a;
   --mds-violet-38: #b7298261;
   --mds-violet-12: #b729821f;
+  --mds-violet-opaque-8: #f9eef9;
 }
