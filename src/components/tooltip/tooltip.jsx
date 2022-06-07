@@ -89,6 +89,6 @@ Tooltip.defaultProps = {
   className: undefined,
   direction: 'top',
   disabled: false,
-  tabIndex: "0",
+  tabIndex: '0',
   variant: 'default',
 };
