@@ -184,6 +184,7 @@ exports[`Select cell control validationMessage API shows a tooltip on the invali
               >
                 <div
                   class="wrapper"
+                  tabindex="0"
                 >
                   <svg
                     height="18"

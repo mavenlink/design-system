@@ -55,6 +55,7 @@ exports[`tooltip has defaults 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <div
         aria-describedby="my-component-tooltip"
@@ -72,6 +73,7 @@ exports[`tooltip has defaults 2`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <div
         aria-describedby="my-component-tooltip"
