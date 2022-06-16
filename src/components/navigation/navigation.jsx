@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './navigation.css';
 
 export default function Navigation() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <nav className={styles.container}>
-      <button className={styles.button}>
+      <button className={styles.button} onClick={() => setExpanded(state => !state)}>
         <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M0.589844 11.34L5.16984 6.75L0.589844 2.16L1.99984 0.75L7.99984 6.75L1.99984 12.75L0.589844 11.34Z"
@@ -32,7 +34,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Dashboard</span>
+        {expanded ? <span className={styles['link-text']}>Dashboard</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +43,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Dashboard</span>
+        {expanded ? <span className={styles['link-text']}>Dashboard</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +52,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Projects</span>
+        {expanded ? <span className={styles['link-text']}>Projects</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +61,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Space</span>
+        {expanded ? <span className={styles['link-text']}>Space</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +70,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Templates</span>
+        {expanded ? <span className={styles['link-text']}>Templates</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +79,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Tasks</span>
+        {expanded ? <span className={styles['link-text']}>Tasks</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +88,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Time & Expense</span>
+        {expanded ? <span className={styles['link-text']}>Time & Expense</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +97,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Billing</span>
+        {expanded ? <span className={styles['link-text']}>Billing</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +106,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Insights</span>
+        {expanded ? <span className={styles['link-text']}>Insights</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +115,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Planning</span>
+        {expanded ? <span className={styles['link-text']}>Planning</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +124,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Analytics</span>
+        {expanded ? <span className={styles['link-text']}>Analytics</span> : null}
       </a>
       <a className={styles.link} href="/test">
         <svg className={styles.svg} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,7 +133,7 @@ export default function Navigation() {
             fill="#9E9E9E"
           />
         </svg>
-        <span className={styles['link-text']}>Settings</span>
+        {expanded ? <span className={styles['link-text']}>Settings</span> : null}
       </a>
     </nav>
   );
