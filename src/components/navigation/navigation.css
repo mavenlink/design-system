@@ -1,10 +1,12 @@
 @import '../../styles/colors-v2.css';
 @import '../../styles/spacing.css';
+@import '../../styles/typography-v2.css';
 
 .container {
   background-color: var(--black);
   display: inline-flex;
   flex-direction: column;
+  gap: var(--spacing-medium);
 }
 
 .button {
@@ -14,10 +16,26 @@
   width: var(--spacing-x-large);
 }
 
-.link {
+.logo {
   align-items: center;
   display: flex;
-  height: var(--spacing-x-large);
   justify-content: center;
-  width: var(--spacing-x-large);
+}
+
+.link {
+  color: var(--mds-grey-opaque-38);
+  display: grid;
+  grid-template-columns: var(--spacing-x-large) 1fr;
+  height: var(--spacing-x-large);
+  text-decoration: none;
+}
+
+.svg {
+  place-self: center;
+}
+
+.link-text {
+  align-self: center;
+  font: var(--mds-type-content);
+  padding-right: var(--spacing-medium);
 }
