@@ -47,12 +47,14 @@ describe('tooltip', () => {
     it('applies a description to the children when focused', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
       user.tab();
+      user.tab();
       expect(screen.getByRole('textbox')).toHaveFocus();
       expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Help Text');
     });
 
     it('removes the description when the child is no longer focused', () => {
       render(<Tooltip {...requiredProps}>{children}</Tooltip>);
+      user.tab();
       user.tab();
       expect(screen.getByRole('textbox')).toHaveFocus();
       expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Help Text');

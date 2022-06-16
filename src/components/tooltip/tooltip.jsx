@@ -13,6 +13,7 @@ export default function Tooltip({
   direction,
   disabled,
   id,
+  tabIndex,
   text,
   variant,
 }) {
@@ -43,6 +44,7 @@ export default function Tooltip({
   return (
     <div
       className={styles.wrapper}
+      tabIndex={tabIndex}
       onBlur={hide}
       onFocus={show}
       onMouseEnter={show}
@@ -76,6 +78,7 @@ Tooltip.propTypes = {
   disabled: PropTypes.bool,
   /** The id that the tooltip should be given. The element that this tooltip is describing <strong>MUST</strong> have <code>aria-describedby={id}</code>. */
   id: PropTypes.string.isRequired,
+  tabIndex: PropTypes.string.isRequired,
   /** The text and/or graphic inside of the tooltip. Tooltip text should be concise and kept to 1-2 short sentences. */
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   /** Show the default dark background tooltip or the light background tooltip */
@@ -86,5 +89,6 @@ Tooltip.defaultProps = {
   className: undefined,
   direction: 'top',
   disabled: false,
+  tabIndex: '0',
   variant: 'default',
 };
