@@ -1,0 +1,23 @@
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
+
+.container {
+  background-color: var(--black);
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  height: var(--spacing-x-large);
+  width: var(--spacing-x-large);
+}
+
+.link {
+  align-items: center;
+  display: flex;
+  height: var(--spacing-x-large);
+  justify-content: center;
+  width: var(--spacing-x-large);
+}

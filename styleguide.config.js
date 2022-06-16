@@ -74,6 +74,7 @@ module.exports = {
     components: [
       path.join(__dirname, 'src/components/button/button.jsx'),
       path.join(__dirname, 'src/components/calendar/calendar.jsx'),
+      path.join(__dirname, 'src/components/navigation/navigation.jsx'),
       path.join(__dirname, 'src/components/help-icon/help-icon.jsx'),
       path.join(__dirname, 'src/components/icon-button/icon-button.jsx'), // Should this be part of a Button interface?
       path.join(__dirname, 'src/components/list-option/list-option.jsx'),
