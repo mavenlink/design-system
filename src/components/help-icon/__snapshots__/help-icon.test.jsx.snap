@@ -36,6 +36,7 @@ exports[`HelpIcon direction api allows bottom 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
@@ -71,6 +72,7 @@ exports[`HelpIcon direction api allows left 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
@@ -106,6 +108,7 @@ exports[`HelpIcon direction api allows right 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
@@ -141,6 +144,7 @@ exports[`HelpIcon direction api allows top 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
@@ -176,6 +180,7 @@ exports[`HelpIcon has defaults 1`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
@@ -204,6 +209,7 @@ exports[`HelpIcon has defaults 2`] = `
   <div>
     <div
       class="wrapper"
+      tabindex="0"
     >
       <svg
         height="18"
