@@ -11,6 +11,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const [models, setModels] = useState([]);
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
+  const loadingRef = useRef();
 
   useEffect(() => {
     fetchModels();
@@ -18,8 +19,10 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   useEffect(() => {
     if (props.value) {
+      loadingRef.current = true;
       executeValue(apiEndpoint('only', props.value))
         .then(({ json, mounted }) => {
+          loadingRef.current = false;
           if (mounted) {
             setModel(json.results.map(result => json[result.key][props.value])[0]);
           }
@@ -81,6 +84,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   return (
     <Select
+      key={`${props.id}-${loadingRef.current}`}
       classNames={props.classNames}
       displayValueEvaluator={props.displayValueEvaluator}
       id={props.id}
