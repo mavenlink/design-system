@@ -2,6 +2,10 @@
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
 
+## 0.104.1
+
+- fix(Date): value API does not offset by timezone
+
 ## 0.101.7
 
 - feat(Date): Add ability to pass `onFocus` and `onBlur` into cell control

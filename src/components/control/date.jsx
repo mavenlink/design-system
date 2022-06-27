@@ -21,7 +21,9 @@ function toDateStringFormat(date) {
 }
 
 function toFullDateFormat(date) {
-  return date ? date.toISOString().slice(0, 10) : undefined;
+  // Note: This returns the localized date without any timezone offset (backend is timezone agnostic).
+  // Note: This uses Sweden as locale because it is one of the countries that uses ISO 8601 format.
+  return date ? date.toLocaleDateString('sv') : undefined;
 }
 
 function fromFullDateFormat(string) {
