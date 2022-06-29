@@ -44,6 +44,19 @@ describe('Popover', () => {
     expect(screen.getByRole('dialog', { name: 'Another title' })).toBeInTheDocument();
   });
 
+  it('has a className api', () => {
+    render(<PopoverWithToggle title="Testing" className="unique-stuff" />);
+    userEvent.click(screen.getByText('Open Popover'));
+    expect(screen.getByRole('dialog')).toHaveClass('unique-stuff');
+  });
+
+  it('hides the title and close button when hideHeading is true', () => {
+    render(<PopoverWithToggle title="Testing" hideHeading />);
+    userEvent.click(screen.getByText('Open Popover'));
+    expect(screen.queryByText('Testing')).not.toBeInTheDocument();
+    expect(screen.queryByText('Close popover')).not.toBeInTheDocument();
+  });
+
   it('renders children', () => {
     render(<PopoverWithToggle title="Another title"><span>More text</span></PopoverWithToggle>);
 

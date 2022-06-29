@@ -28,7 +28,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 
   useLayoutEffect(() => {
     if (open) {
-      closeIconRef.current.focus({ preventScroll: true });
+      closeIconRef.current?.focus({ preventScroll: true });
     }
   }, [open]);
 
@@ -53,25 +53,29 @@ const Popover = forwardRef(function Popover(props, ref) {
 
   return (
     <section
-      aria-labelledby="popover-heading"
-      className={styles.container}
+      aria-labelledby={props.hideHeading ? undefined : 'popover-heading'}
+      className={props.className || styles.container}
       onBlur={onBlur}
       ref={sectionRef}
       role="dialog"
       style={flush}
       tabIndex={-1}
     >
-      <div className={styles['heading-container']} id="popover-heading">
-        <h1 className={styles.heading}>{props.title}</h1>
-        <IconButton
-          active={true}
-          className={styles['close-button']}
-          icon={iconClear}
-          label="Close popover"
-          onPress={() => { setOpen(false); }}
-          ref={closeIconRef}
-        />
-      </div>
+      {
+        props.hideHeading ? undefined : (
+          <div className={styles['heading-container']} id="popover-heading">
+            <h1 className={styles.heading}>{props.title}</h1>
+            <IconButton
+              active={true}
+              className={styles['close-button']}
+              icon={iconClear}
+              label="Close popover"
+              onPress={() => { setOpen(false); }}
+              ref={closeIconRef}
+            />
+          </div>
+        )
+      }
       {props.children}
     </section>
   );
@@ -79,20 +83,25 @@ const Popover = forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   autoflush: PropTypes.bool,
+  className: PropTypes.string,
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
   onClose: PropTypes.func,
+  hideHeading: PropTypes.bool,
   /** Handles either a FocusEvent or MouseEvent. This is an additional predicate for configuring the closing behavior. */
   shouldClose: PropTypes.func,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 Popover.defaultProps = {
   autoflush: false,
+  className: undefined,
   children: undefined,
+  hideHeading: false,
   flush: 'left',
   shouldClose: () => true,
   onClose: () => {},
+  title: undefined,
 };
 
 export default Popover;
