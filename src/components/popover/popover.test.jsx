@@ -50,6 +50,12 @@ describe('Popover', () => {
     expect(screen.getByRole('dialog')).toHaveClass('unique-stuff');
   });
 
+  it('has a aria-label when ariaLabel prop is set', () => {
+    render(<PopoverWithToggle title="Testing" ariaLabel="This popover is for things" hideHeading />);
+    userEvent.click(screen.getByText('Open Popover'));
+    expect(screen.getByLabelText('This popover is for things')).toBeInTheDocument();
+  });
+
   it('hides the title and close button when hideHeading is true', () => {
     render(<PopoverWithToggle title="Testing" hideHeading />);
     userEvent.click(screen.getByText('Open Popover'));

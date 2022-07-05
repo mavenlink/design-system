@@ -54,7 +54,8 @@ const Popover = forwardRef(function Popover(props, ref) {
   return (
     <section
       aria-labelledby={props.hideHeading ? undefined : 'popover-heading'}
-      className={props.className || styles.container}
+      aria-label={props.ariaLabel}
+      className={props.className}
       onBlur={onBlur}
       ref={sectionRef}
       role="dialog"
@@ -83,6 +84,7 @@ const Popover = forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   autoflush: PropTypes.bool,
+  ariaLabel: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
   flush: PropTypes.oneOf(['left', 'right']),
@@ -95,7 +97,9 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
   autoflush: false,
-  className: undefined,
+  /** Use ariaLabel especially when setting hideHeading, this way a screen reader can detect the purpose of the popover */
+  ariaLabel: undefined,
+  className: styles.container,
   children: undefined,
   hideHeading: false,
   flush: 'left',
