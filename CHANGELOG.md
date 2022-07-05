@@ -1,6 +1,9 @@
 ## Unreleased
 Major/Minor/Patch: This is an example changelog item, usually can be the commit message.
 Prepend new items to make git merging easier.
+- feat(Popover): implement ariaLabel api
+- feat(Popover): implement className api
+- feat(Popover): implement hideHeading api
 
 ## 0.104.1
 
@@ -16,7 +19,6 @@ Prepend new items to make git merging easier.
 - feat(MultiSelect): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Number): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Select): Add ability to pass `onFocus` and `onBlur` into cell control
-
 
 ## 0.101.6
 

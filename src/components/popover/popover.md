@@ -61,3 +61,34 @@ function onPopoverOpenButtonClick() {
   )}
 </RefExample>
 ```
+
+Example with no heading that looks more like 'fly-out menu'
+```js
+import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
+
+const popoverRef = React.createRef();
+const containerRef = React.createRef();
+
+function onBlur(event) {
+  if (shouldClose(event)) popoverRef.current.open = false;
+}
+
+function onButtonClicked(event) {
+  popoverRef.current.open = true;
+}
+
+function shouldClose(event) {
+  return !containerRef.current.contains(event.relatedTarget);
+}
+
+<div onBlur={onBlur} ref={containerRef} tabIndex={-1} style={{position: 'relative'}}>
+  <button onClick={onButtonClicked}>Fly Out menu example</button>
+  <Popover ref={popoverRef} shouldClose={shouldClose} hideHeading style={{position: 'absolute'}}>
+  <ul>
+    <li>option 1</li>
+    <li>option 2</li>
+    <li>option 3</li>
+  </ul>
+  </Popover>
+</div>
+```
