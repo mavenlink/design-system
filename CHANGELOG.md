@@ -5,10 +5,12 @@ Prepend new items to make git merging easier.
 - feat(Popover): implement className api
 - feat(Popover): implement hideHeading api
 
-## 0.101.6
+## 0.104.1
 
-- fix(Number): add id and name into ref. Ensure onChange value on ref is a number
-- fix(Date): add id and name into ref
+- fix(Date): value API does not offset by timezone
+
+## 0.101.7
+
 - feat(Date): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Autocompleter): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Input): Add ability to pass `onFocus` and `onBlur` into cell control
@@ -17,6 +19,11 @@ Prepend new items to make git merging easier.
 - feat(MultiSelect): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Number): Add ability to pass `onFocus` and `onBlur` into cell control
 - feat(Select): Add ability to pass `onFocus` and `onBlur` into cell control
+
+## 0.101.6
+
+-fix(Number): add id and name into ref. Ensure onChange value on ref is a number
+-fix(Date): add id and name into ref
 
 ## 0.101.5
 
