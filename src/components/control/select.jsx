@@ -315,7 +315,6 @@ Select.propTypes = {
     PropTypes.bool,
   ]),
   id: PropTypes.string.isRequired,
-  inputHeight: PropTypes.number,
   labelledBy: PropTypes.string.isRequired,
   listOptionRefs: PropTypes.arrayOf(ListOptionRefType).isRequired,
   name: PropTypes.string.isRequired,

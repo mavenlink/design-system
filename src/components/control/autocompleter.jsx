@@ -9,6 +9,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeModels } = useFetch();
   const { execute: executeValue } = useFetch();
   const [models, setModels] = useState([]);
+  const [searchModels, setSearchModels] = useState([]);
+  const [isSearching, setIsSearching] = useState(false)
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
 
@@ -41,7 +43,12 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     executeModels(apiEndpoint(props.searchParam, searchString))
       .then(({ json, mounted }) => {
         if (mounted) {
-          setModels(json.results.map(result => json[result.key][result.id]));
+          const jsonResults = json.results.map(result => json[result.key][result.id])
+          if (searchString) {
+            setSearchModels(jsonResults);
+          } else {
+            setModels(jsonResults);
+          }
         }
       }).catch((error) => {
         if (error.error instanceof ProgressEvent) return;
@@ -65,9 +72,8 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
 
   function onInput(event) {
     fetchModels(event.target.value);
+    setIsSearching(true);
   }
-
-  const listOptionRefs = models.map(() => React.createRef());
 
   useImperativeHandle(ref, () => ({
     ...selectRef.current,
@@ -79,6 +85,14 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     },
   }));
 
+  const renderModels = isSearching ? searchModels : models;
+  const listOptionRefs = models.map(() => React.createRef());
+
+  function wrappedOnChange(event) {
+    setIsSearching(false);
+    return props.onChange(event);
+  }
+
   return (
     <Select
       classNames={props.classNames}
@@ -88,7 +102,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       listOptionRefs={listOptionRefs}
       name={props.name}
       onBlur={props.onBlur}
-      onChange={props.onChange}
+      onChange={wrappedOnChange}
       onFocus={props.onFocus}
       onInput={onInput}
       onInvalid={props.onInvalid}
@@ -103,7 +117,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       wrapperRef={props.wrapperRef}
     >
       {({ onSelect }) => (
-        models.map((modelInfo, index) => (
+        renderModels.map((modelInfo, index) => (
           <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
             { props.children ? props.children(modelInfo) : props.displayValueEvaluator(modelInfo) }
           </ListOption>
