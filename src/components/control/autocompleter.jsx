@@ -79,16 +79,6 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     },
   }));
 
-  // function renderSelectItems(onSelect) {
-  //   return () => {
-  //     return models.map((modelInfo, index) => (
-  //       <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
-  //         { props.children ? props.children({ modelInfo }) : props.displayValueEvaluator(modelInfo) }
-  //       </ListOption>
-  //     ));
-  //   };
-  // }
-
   return (
     <Select
       classNames={props.classNames}
@@ -106,6 +96,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       readOnly={props.readOnly}
       ref={selectRef}
       required={props.required}
+      specialChildrenRender={!!props.children}
       tooltip={props.tooltip}
       validationMessage={props.validationMessage}
       value={model}
@@ -114,7 +105,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       {({ onSelect }) => (
         models.map((modelInfo, index) => (
           <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
-            { props.children({ modelInfo }) ?? props.displayValueEvaluator(modelInfo) }
+            { props.children ? props.children(modelInfo) : props.displayValueEvaluator(modelInfo) }
           </ListOption>
         ))
       )}
@@ -157,7 +148,7 @@ Autocompleter.propTypes = {
 
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
-  children: () => {},
+  children: undefined,
   classNames: {},
   displayValueEvaluator: displayName,
   label: undefined,

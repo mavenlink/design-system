@@ -37,7 +37,7 @@ describe('src/components/autocompleter/autocompleter', () => {
       };
       const modelComponent = (props) => {
         return (
-          <h1>children: {props.modelInfo.name}</h1>
+          <h1>children: {props.name}</h1>
         );
       };
 

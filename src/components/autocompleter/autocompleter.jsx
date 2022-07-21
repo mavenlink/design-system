@@ -86,7 +86,7 @@ Autocompleter.propTypes = {
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
   className: undefined,
-  children: () => {},
+  children: undefined,
   displayValueEvaluator: undefined,
   label: undefined,
   models: [],
