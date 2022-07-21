@@ -28,6 +28,34 @@ describe('src/components/autocompleter/autocompleter', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
+  describe('rending children', () => {
+    it('can render listOption children', async () => {
+      const ref = createRef();
+      let changeValue = '';
+      const onChange = (event) => {
+        changeValue = event.target.value;
+      };
+      const modelComponent = (props) => {
+        return (
+          <h1>children: {props.modelInfo.name}</h1>
+        );
+      };
+
+      render(
+        <Autocompleter {...requiredProps} onChange={onChange} ref={ref}>
+          { modelComponent }
+        </Autocompleter>,
+      );
+
+      userEvent.click(screen.getByLabelText('Test label'));
+      userEvent.click(await screen.findByText('children: Foo'));
+
+      expect(changeValue).toEqual({ id: '55', name: 'Foo' });
+      expect(screen.getByLabelText('Test label')).toHaveValue('Foo');
+      expect(ref.current.value).toEqual('55');
+    });
+  });
+
   describe('apiEndpoint API', () => {
     it('fetches dropdown options', async () => {
       const { rerender } = render(<Autocompleter {...requiredProps} apiEndpoint={'/models?only=55'} />);

@@ -195,6 +195,8 @@ const Select = forwardRef(function Select(props, ref) {
       .forEach(_ref => _ref.current.setSelected(JSON.stringify(value) === JSON.stringify(_ref.current.value)));
   }, [value, showOptions]);
 
+  const currentValue = searchValue ?? defaultValue ?? '';
+
   return (
     <div
       ref={refs.container}
@@ -226,7 +228,7 @@ const Select = forwardRef(function Select(props, ref) {
         required={props.required}
         style={{ '--numIcon': 3 }}
         type="text"
-        value={searchValue ?? defaultValue ?? ''}
+        value={currentValue}
       />
       <Icons
         validationMessage={validationMessage}

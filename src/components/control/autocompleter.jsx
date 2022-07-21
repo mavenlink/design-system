@@ -79,6 +79,16 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     },
   }));
 
+  // function renderSelectItems(onSelect) {
+  //   return () => {
+  //     return models.map((modelInfo, index) => (
+  //       <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
+  //         { props.children ? props.children({ modelInfo }) : props.displayValueEvaluator(modelInfo) }
+  //       </ListOption>
+  //     ));
+  //   };
+  // }
+
   return (
     <Select
       classNames={props.classNames}
@@ -104,7 +114,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
       {({ onSelect }) => (
         models.map((modelInfo, index) => (
           <ListOption key={modelInfo.id} onSelect={onSelect} ref={listOptionRefs[index]} value={modelInfo}>
-            {props.displayValueEvaluator(modelInfo)}
+            { props.children({ modelInfo }) ?? props.displayValueEvaluator(modelInfo) }
           </ListOption>
         ))
       )}
@@ -119,6 +129,7 @@ function displayName(modelInfo) {
 Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
+  children: PropTypes.func,
   classNames: PropTypes.shape({
     container: PropTypes.string,
     input: PropTypes.string,
@@ -146,6 +157,7 @@ Autocompleter.propTypes = {
 
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
+  children: () => {},
   classNames: {},
   displayValueEvaluator: displayName,
   label: undefined,
