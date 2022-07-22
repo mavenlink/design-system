@@ -10,7 +10,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
   const { execute: executeValue } = useFetch();
   const [models, setModels] = useState([]);
   const [searchModels, setSearchModels] = useState([]);
-  const [isSearching, setIsSearching] = useState(false)
+  const [isSearching, setIsSearching] = useState(false);
   const [model, setModel] = useState({ id: props.value });
   const selectRef = useRef();
 
@@ -43,7 +43,7 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
     executeModels(apiEndpoint(props.searchParam, searchString))
       .then(({ json, mounted }) => {
         if (mounted) {
-          const jsonResults = json.results.map(result => json[result.key][result.id])
+          const jsonResults = json.results.map(result => json[result.key][result.id]);
           if (searchString) {
             setSearchModels(jsonResults);
           } else {
