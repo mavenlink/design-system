@@ -1,7 +1,7 @@
 import React, {
   forwardRef,
   useEffect,
-  useImperativeHandle,
+  useImperativeHandle, useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -196,7 +196,7 @@ const Select = forwardRef(function Select(props, ref) {
       .forEach(_ref => _ref.current.setSelected(JSON.stringify(value) === JSON.stringify(_ref.current.value)));
   }, [value, showOptions]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (hasBeenCleared) {
       refs.input.current.focus();
     }
