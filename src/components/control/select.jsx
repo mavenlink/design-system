@@ -338,7 +338,6 @@ Select.defaultProps = {
   children: () => {},
   classNames: {},
   displayValueEvaluator: value => value,
-  inputHeight: undefined,
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},
