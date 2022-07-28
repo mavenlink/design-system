@@ -25,7 +25,13 @@ describe('useDropdownClose', () => {
     useDropdownClose(ref, opened, onClose);
 
     return (
-      <div onFocus={onFocus} ref={ref} tabIndex="0">{opened ? 'opened' : 'closed'}</div>
+      <div
+        onFocus={onFocus}
+        ref={ref}
+        tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
+      >
+        {opened ? 'opened' : 'closed'}
+      </div>
     );
   }
 

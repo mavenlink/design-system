@@ -12,7 +12,7 @@ export function findAutocompleter(fieldLabel) {
 
 export async function findAvailableOption(fieldLabel, optionLabel) {
   const listbox = await screen.findByRole('listbox', { name: fieldLabel });
-  return findByRole(listbox, 'option', { name: optionLabel });
+  return findByRole(listbox, 'option', { name: optionLabel }); // eslint-disable-line testing-library/prefer-screen-queries
 }
 
 export function findRemoveButton(optionLabel) {
@@ -25,7 +25,7 @@ export function findRemoveButton(optionLabel) {
 
 export async function findSelectedOption(fieldLabel, optionLabel) {
   const taglist = await screen.findByRole('grid', { name: fieldLabel });
-  return findByRole(taglist, 'gridcell', { name: optionLabel });
+  return findByRole(taglist, 'gridcell', { name: optionLabel }); // eslint-disable-line testing-library/prefer-screen-queries
 }
 
 export async function openOptions(fieldName) {
@@ -34,7 +34,7 @@ export async function openOptions(fieldName) {
 
 export async function queryAvailableOption(fieldLabel, optionLabel) {
   const listbox = await screen.findByRole('listbox', { name: fieldLabel });
-  return queryByRole(listbox, 'option', { name: optionLabel });
+  return queryByRole(listbox, 'option', { name: optionLabel }); // eslint-disable-line testing-library/prefer-screen-queries
 }
 
 export function queryRemoveButton(fieldLabel, optionLabel) {
@@ -47,12 +47,12 @@ export function queryRemoveButton(fieldLabel, optionLabel) {
 
 export async function querySelectedOption(fieldLabel, optionLabel) {
   const taglist = await screen.findByRole('grid', { name: fieldLabel });
-  return queryByRole(taglist, 'gridcell', { name: optionLabel });
+  return queryByRole(taglist, 'gridcell', { name: optionLabel }); // eslint-disable-line testing-library/prefer-screen-queries
 }
 
 export async function waitForLoadingComplete(fieldLabel) {
   const listbox = await screen.findByRole('listbox', { name: fieldLabel });
-  const loader = await queryByRole(listbox, 'progressbar');
+  const loader = queryByRole(listbox, 'progressbar'); // eslint-disable-line testing-library/prefer-screen-queries
 
   if (!loader) {
     return Promise.resolve();

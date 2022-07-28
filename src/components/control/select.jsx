@@ -1,16 +1,16 @@
 import React, {
   forwardRef,
   useEffect,
-  useImperativeHandle, useLayoutEffect,
+  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import Icons from './icons.jsx';
-import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconCaretDownDisabled from '../../svgs/caret-down-disabled.svg';
+import Icons from './icons.jsx';
+import IconButton from '../icon-button/icon-button.jsx';
 import Listbox from '../listbox/listbox.jsx';
 import NoOptions from '../no-options/no-options.jsx';
 import styles from './select.css';

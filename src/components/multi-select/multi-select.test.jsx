@@ -83,7 +83,13 @@ describe('<MultiSelect>', () => {
         return (
           <div>
             {options.map((option, index) => (
-              <span key={option.value} ref={refs[index]} onClick={() => { onSelect({ target: refs[index] }); }}>Override {option.label}</span>
+              <span // eslint-disable-line jsx-a11y/no-static-element-interactions
+                key={option.value}
+                ref={refs[index]}
+                onClick={() => { onSelect({ target: refs[index] }); }}
+              >
+                  Override {option.label}
+              </span>
             ))}
           </div>
         );
