@@ -62,6 +62,7 @@ const listOptionRefs = listOptions.map(() => React.createRef());
       placeholder="This is a single choice field"
       ref={ref}
       listOptionRefs={listOptionRefs}
+      displayComponent={(model) => { return (<h1>{model}</h1>) }}
     >
       {({ onSelect }) => listOptions.map((optionName, index) => (
         <ListOption key={optionName} onSelect={onSelect} ref={listOptionRefs[index]} value={optionName}>

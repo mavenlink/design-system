@@ -51,7 +51,9 @@ const Autocompleter = forwardRef(function Autocompleter(props, ref) {
         validationMessage={props.validationMessage}
         value={props.value}
         wrapperRef={refs.control}
-      />
+      >
+        { props.children }
+      </AutocompleteControl>
     </FormControl>
   );
 });
@@ -60,6 +62,7 @@ Autocompleter.propTypes = {
   /** `apiEndpoint` should be the route of the api's endpoint (excluding the base api), eg. `/workspaces`. */
   apiEndpoint: PropTypes.string,
   className: PropTypes.string,
+  children: PropTypes.func,
   /** displayValueEvaluator is handled if the key following: `title`, `name`, `full_name`, `currency`; Otherwise, pass in something like `displayValueEvaluator: (model) -> { model.rate_card_name }` */
   displayValueEvaluator: PropTypes.func,
   id: PropTypes.string.isRequired,
@@ -83,6 +86,7 @@ Autocompleter.propTypes = {
 Autocompleter.defaultProps = {
   apiEndpoint: undefined,
   className: undefined,
+  children: undefined,
   displayValueEvaluator: undefined,
   label: undefined,
   models: [],

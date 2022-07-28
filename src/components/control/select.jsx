@@ -1,7 +1,7 @@
 import React, {
   forwardRef,
   useEffect,
-  useImperativeHandle,
+  useImperativeHandle, useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -23,6 +23,7 @@ const Select = forwardRef(function Select(props, ref) {
   const [showOptions, setShowOptions] = useState(false);
   const [value, setValue] = useState(props.value);
   const [hasBeenBlurred, setBeenBlurred] = useState(false);
+  const [hasBeenCleared, setBeenCleared] = useState(false);
   const [searchValue, setSearchValue] = useState(undefined);
   const selfRef = useForwardedRef(ref);
 
@@ -63,7 +64,7 @@ const Select = forwardRef(function Select(props, ref) {
     props.onChange({ target: { ...selfRef.current, value: undefined } });
     setValue(undefined);
     setSearchValue(undefined);
-    refs.input.current.focus();
+    setBeenCleared(true);
   };
 
   function onBlurInput(event) {
@@ -195,6 +196,30 @@ const Select = forwardRef(function Select(props, ref) {
       .forEach(_ref => _ref.current.setSelected(JSON.stringify(value) === JSON.stringify(_ref.current.value)));
   }, [value, showOptions]);
 
+  useLayoutEffect(() => {
+    if (hasBeenCleared) {
+      refs.input.current.focus();
+    }
+
+    setBeenCleared(false);
+  }, [hasBeenCleared]);
+
+  const currentValue = searchValue ?? defaultValue ?? '';
+  const shouldRenderSpecialChild = props.specialChildrenRender && defaultValue;
+
+  function renderSpecialChild() {
+    if (shouldRenderSpecialChild) {
+      const child = props.children(() => {}).find((c) => { return c.key === value.id; });
+      return (
+        <div className={styles['special-child-container']}>
+          { child?.props?.children }
+        </div>
+      );
+    }
+
+    return undefined;
+  }
+
   return (
     <div
       ref={refs.container}
@@ -226,8 +251,10 @@ const Select = forwardRef(function Select(props, ref) {
         required={props.required}
         style={{ '--numIcon': 3 }}
         type="text"
-        value={searchValue ?? defaultValue ?? ''}
+        value={currentValue}
+        hidden={shouldRenderSpecialChild}
       />
+      { renderSpecialChild() }
       <Icons
         validationMessage={validationMessage}
         validationMessageId={ids.validation}
@@ -300,6 +327,8 @@ Select.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   // type: PropTypes.oneOf(['cell', 'field']).isRequired,
+  /** Boolean used to declare if the input text should be a hidden and a child react component should be rendered on top of the input */
+  specialChildrenRender: PropTypes.bool,
   validationMessage: PropTypes.string,
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   wrapperRef: PropTypes.shape({ current: PropTypes.any }), // eslint-disable-line react/forbid-prop-types
@@ -317,6 +346,7 @@ Select.defaultProps = {
   placeholder: undefined,
   readOnly: false,
   required: false,
+  specialChildrenRender: false,
   validationMessage: '',
   value: undefined,
   wrapperRef: undefined,
