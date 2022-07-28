@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.special-child-container {
+  composes: inputStyles;
+}
+
 .input {
   composes: inputStyles;
 }
