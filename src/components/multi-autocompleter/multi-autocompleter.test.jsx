@@ -27,9 +27,7 @@ describe('<MultiAutocompleter>', () => {
     name: 'field-id',
   };
 
-  beforeEach(() => {
-    jestServer.use(...mockHandlers());
-  });
+  jestServer.setup(mockHandlers());
 
   it('has defaults', () => {
     const ref = createRef();
