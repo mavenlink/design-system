@@ -8,9 +8,7 @@ module.exports = {
     'prefer-arrow-callback': ['error', {
       allowNamedFunctions: true,
     }],
-    'import/extensions': ['error', 'always', {
-      ignorePackages: true,
-    }],
+    'import/extensions': 'off',
     'no-mixed-operators': ['error', {
       allowSamePrecedence: true,
     }],

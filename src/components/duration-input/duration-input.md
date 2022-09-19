@@ -25,8 +25,8 @@ Duration input is an html input that formats the users input into a consistent o
 
 ## Ref API Example
 ```jsx
-import DurationInput from '@mavenlink/design-system/src/components/duration-input/duration-input.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import DurationInput from '../../components/duration-input/duration-input.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

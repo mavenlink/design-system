@@ -4,7 +4,7 @@ See [design specifications.](https://www.notion.so/MultiSelect-9da6ee3245d946699
 
 ## Basic Usage
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
 
 <MultiSelect
   id="example-1"
@@ -17,7 +17,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
 
 ## Required
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
 
 <MultiSelect
   id="example-2"
@@ -30,7 +30,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
 
 ## Readonly
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
 
 <MultiSelect
   id="example-3"
@@ -44,7 +44,7 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
 
 ## Loader
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
 
 <MultiSelect
   id="example-4"
@@ -60,8 +60,8 @@ import MultiSelect from '@mavenlink/design-system/src/components/multi-select/mu
 With the `listboxChildren` and `tagChildren` props, you can provide your own function for rendering both the dropdown options and the selected values. While the `Listbox` has very few requirements for its children, `TagList` has a few more necessary from the `ref` API of its children. Either use `Tag` compositionally as we do here, or implement the same `ref` API in your own component.
 
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
-import Tag from '@mavenlink/design-system/src/components/tag/tag.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
+import Tag from '../../components/tag/tag.jsx';
 
 const ListboxChild = React.forwardRef((props, ref) => {
   return (
@@ -119,8 +119,8 @@ const tagChildren = (selectedOptions, refs, onOptionRemove) => {
 ## Ref API Example
 
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/multi-select/multi-select.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import MultiSelect from '../../components/multi-select/multi-select.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

@@ -1,8 +1,8 @@
 A grid cell for number.
 
 ```jsx
-import Number from '@mavenlink/design-system/src/components/cell-control/number.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import Number from '../../components/cell-control/number.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

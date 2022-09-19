@@ -6,8 +6,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import styles from './tag.css';
 import clear from '../../svgs/clear.svg';
+import styles from './tag.css';
 import IconButton from '../icon-button/icon-button.jsx';
 import useForwardedRef from '../../hooks/use-forwarded-ref.js';
 
