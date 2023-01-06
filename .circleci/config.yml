@@ -67,7 +67,7 @@ jobs:
           git config user.name "CI Deployment"
       - add_ssh_keys:
           fingerprints:
-            - "79:26:19:57:4e:1a:59:64:ec:bb:b7:76:e2:5f:7c:ad"
+            - "da:d6:fb:92:52:d4:eb:69:4b:15:96:df:f8:39:0e:c9"
       - run:
           name: Compile and deploy Github pages
           command: |
