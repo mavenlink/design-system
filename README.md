@@ -85,6 +85,36 @@ We periodically update and upgrade styles. We have also created linters to help 
     ```
  - Run stylelint to see failures
 
+## Build Test and Deploy
+
+For building/test/deploying, be on a computer with node ~= v14
+
+### linting
+
+```
+yarn install
+yarn lint
+yarn test --runInBand
+```
+### testing
+
+```
+yarn start &
+yarn run wait-on http://localhost:6060 && yarn cypress run
+```
+
+### deploying
+
+```
+yarn build
+git checkout gh-pages
+git pull
+mv -v build/* $BRANCH_OR_DIR
+git add .
+git diff-index --quiet HEAD || git commit -m 'Update Github pages for $BRANCH_OR_DIR'
+git push origin gh-pages
+```
+
 ## Documentation
 
 - [Code of conduct](./docs/code_of_conduct.md)
@@ -92,3 +122,4 @@ We periodically update and upgrade styles. We have also created linters to help 
 - [Component Design Principles](./docs/principles.md)
 - [Making a New Release](./docs/releases.md)
 - [Testing Philosophy](./docs/testing.md)
+
