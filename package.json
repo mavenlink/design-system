@@ -54,7 +54,7 @@
     "msw": "^0.39.2",
     "postcss-loader": "^4.0.4",
     "postcss-preset-env": "^6.7.0",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-ga": "^2.5.6",
     "react-styleguidist": "^11.1.7",
