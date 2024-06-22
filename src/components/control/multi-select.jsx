@@ -7,10 +7,10 @@ import React, {
   forwardRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import Icons from './icons.jsx';
-import IconButton from '../icon-button/icon-button.jsx';
 import iconCaretDown from '../../svgs/caret-down.svg';
 import iconClear from '../../svgs/clear.svg';
+import Icons from './icons.jsx';
+import IconButton from '../icon-button/icon-button.jsx';
 import Listbox from '../listbox/listbox.jsx';
 import ListOption from '../list-option/list-option.jsx';
 import Loader from '../loader/loader.jsx';
@@ -76,7 +76,7 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
       return undefined;
     }
 
-    if (props.showLoader) {
+    if (props.showLoader) { // eslint-disable-line react/prop-types
       return (
         <Listbox
           className={classNames.popupContainer}
@@ -100,16 +100,16 @@ const MultiSelect = forwardRef(function MultiSelect(props, ref) {
         labelledBy={ids.label}
         refs={visibleOptionsRefs}
       >
-        {() => (props.listboxChildren
+        {() => (props.listboxChildren // eslint-disable-line react/prop-types
           ? props.listboxChildren(visibleOptions, visibleOptionsRefs, onOptionSelect)
           : visibleOptions.map((option, index) => (
             <ListOption
-              key={`${props.id}-${props.optionIDGetter(option)}`}
+              key={`${props.id}-${props.optionIDGetter(option)}`} // eslint-disable-line react/prop-types
               onSelect={onOptionSelect}
               ref={visibleOptionsRefs[index]}
               value={props.optionIDGetter(option)}
             >
-              {props.optionLabelGetter(option)}
+              {props.optionLabelGetter(option) /* eslint-disable-line react/prop-types */ }
             </ListOption>
           ))
         )}

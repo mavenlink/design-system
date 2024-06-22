@@ -80,8 +80,8 @@ presented to it, responding with a specific message for the context of that spec
 
 ## Ref API Example
 ```jsx
-import MoneyInput from '@mavenlink/design-system/src/components/money-input/money-input.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import MoneyInput from '../../components/money-input/money-input.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

@@ -8,7 +8,7 @@ use the `shouldClose` callback to avoid closing the dialog;
 and/or use the `onClose` callback to return focus to correct element.
 
 ```js
-import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
+import Popover from '../../components/popover/popover.jsx';
 
 const containerRef = React.createRef();
 const popoverRef = React.createRef();
@@ -36,9 +36,9 @@ function shouldClose(event) {
 Interactive components should be in the user focus flow, usually by making sure they have a `tabIndex={0}`.
 
 ```js
-import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
-import SectionRow from '@mavenlink/design-system/src/components/section-row/section-row.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import Popover from '../../components/popover/popover.jsx';
+import SectionRow from '../../components/section-row/section-row.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 
@@ -64,7 +64,7 @@ function onPopoverOpenButtonClick() {
 
 Example with no heading that looks more like 'fly-out menu'
 ```js
-import Popover from '@mavenlink/design-system/src/components/popover/popover.jsx';
+import Popover from '../../components/popover/popover.jsx';
 
 const popoverRef = React.createRef();
 const containerRef = React.createRef();

@@ -101,7 +101,10 @@ describe('src/components/date/date.test.jsx', () => {
       const onKeyDownSpy = jest.fn(event => event.persist());
 
       render((
-        <div onClick={onClickSpy} onKeyDown={onKeyDownSpy}>
+        <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+          onClick={onClickSpy}
+          onKeyDown={onKeyDownSpy}
+        >
           <Date {...requiredProps} />
         </div>
       ));

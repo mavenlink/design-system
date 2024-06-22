@@ -82,7 +82,7 @@ Tooltip with graphic
 ```jsx
 import Tooltip from './tooltip.jsx';
 import Icon from '../icon/icon.jsx';
-import arrowLeft from '@mavenlink/design-system/src/svgs/arrow-left.svg';
+import arrowLeft from '../../svgs/arrow-left.svg';
 
 <Tooltip
   text={

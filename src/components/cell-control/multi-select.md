@@ -1,6 +1,6 @@
 ```jsx
-import MultiSelect from '@mavenlink/design-system/src/components/cell-control/multi-select.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import MultiSelect from '../../components/cell-control/multi-select.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

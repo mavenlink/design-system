@@ -5,9 +5,9 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import cautionSvg from '../../svgs/caution.svg';
 import Icon from '../icon/icon.jsx';
 import HelpIcon from '../help-icon/help-icon.jsx';
-import cautionSvg from '../../svgs/caution.svg';
 import useValidation from '../../hooks/use-validation.js';
 import styles from './checkbox.css';
 
