@@ -40,8 +40,8 @@ This component's accessibility was built using the [WAI ARIA Examples](https://w
 ```
 
 ```js
-import Icon from '@mavenlink/design-system/src/components/icon/icon.jsx';
-import iconTick from '@mavenlink/design-system/src/svgs/tick.svg';
+import Icon from '../../components/icon/icon.jsx';
+import iconTick from '../../svgs/tick.svg';
 
 <Tag id={uuid.v4()} readOnly>
   <span style={{display: 'inline-flex', alignItems: 'center'}}>

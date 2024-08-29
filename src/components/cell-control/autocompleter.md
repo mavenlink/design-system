@@ -1,8 +1,8 @@
 A grid cell for autocomplete-able datum.
 
 ```jsx
-import Autocompleter from '@mavenlink/design-system/src/components/cell-control/autocompleter.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import Autocompleter from '../../components/cell-control/autocompleter.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

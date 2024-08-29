@@ -5,7 +5,7 @@ For examples on how to fetch data from the server, see the Autocompleter documen
 
 Default usage:
 ```js
-import Select from '@mavenlink/design-system/src/components/select/select.jsx';
+import Select from '../../components/select/select.jsx';
 
 <Select
   id={uuid.v4()}
@@ -18,7 +18,7 @@ import Select from '@mavenlink/design-system/src/components/select/select.jsx';
 
 Default usage with complex value objects:
 ```js
-import Select from '@mavenlink/design-system/src/components/select/select.jsx';
+import Select from '../../components/select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
 
 const listOptions = [{id: 0, label: 'foo'}];
@@ -44,9 +44,9 @@ const listOptionRefs = listOptions.map(() => React.createRef());
 ## Ref API Example
 
 ```jsx
-import Select from '@mavenlink/design-system/src/components/select/select.jsx';
+import Select from '../../components/select/select.jsx';
 import ListOption from '../list-option/list-option.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 const listOptions = ['test', 'this', 'select', 'foo', 'bar', 'baz', 'This is a much longer test value that is super long because sometimes people like to put long values in there, you know? It can make sense sometimes. Maybe this is not the best way to convey longform data, but who I am I to say? Power to the people and all that.', '1', '2', '3', '4', '5', '6', '7'];

@@ -1,9 +1,9 @@
 A grid cell for text datum. 
 
 ```jsx
-import ListOption from '@mavenlink/design-system/src/components/list-option/list-option.jsx';
-import Select from '@mavenlink/design-system/src/components/cell-control/select.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import ListOption from '../../components/list-option/list-option.jsx';
+import Select from '../../components/cell-control/select.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

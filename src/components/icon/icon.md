@@ -15,7 +15,7 @@ For an interactive icon component, @see [`<IconButton>`](#/Components/IconButton
 ## Example
 
 ```js
-import arrowLeft from '@mavenlink/design-system/src/svgs/arrow-left.svg';
+import arrowLeft from '../../svgs/arrow-left.svg';
 
 <Icon icon={arrowLeft} label="Left arrow" />
 ```

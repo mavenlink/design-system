@@ -1,8 +1,8 @@
 A grid cell for date field.
 
 ```jsx
-import Date from '@mavenlink/design-system/src/components/cell-control/date.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import Date from '../../components/cell-control/date.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

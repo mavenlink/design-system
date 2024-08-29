@@ -64,7 +64,7 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} id="unique-id" value={[requiredProps.options[0]]} />);
 
       expect(document.body).toMatchSnapshot();
-      expect((await findSelectedOption('test label', 'Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-1');
+      expect((await findSelectedOption('Foo')).parentElement).toHaveAttribute('id', 'unique-id-option-1');
     });
   });
 
@@ -83,7 +83,13 @@ describe('<MultiSelect>', () => {
         return (
           <div>
             {options.map((option, index) => (
-              <span key={option.value} ref={refs[index]} onClick={() => { onSelect({ target: refs[index] }); }}>Override {option.label}</span>
+              <span // eslint-disable-line jsx-a11y/no-static-element-interactions
+                key={option.value}
+                ref={refs[index]}
+                onClick={() => { onSelect({ target: refs[index] }); }}
+              >
+                  Override {option.label}
+              </span>
             ))}
           </div>
         );
@@ -94,7 +100,7 @@ describe('<MultiSelect>', () => {
       await openOptions('test label');
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('Override Foo'));
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
     });
   });
 
@@ -117,7 +123,7 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} onChange={onChangeMock} />);
 
       await openOptions('test label');
-      userEvent.click(await await findAvailableOption('test label', 'Foo'));
+      userEvent.click(await await findAvailableOption('Foo'));
       expect(onChangeMock).toHaveBeenCalled();
     });
   });
@@ -138,8 +144,8 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} />);
 
       await openOptions('test label');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
     });
   });
 
@@ -163,17 +169,17 @@ describe('<MultiSelect>', () => {
 
       await openOptions('test label');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
 
       userEvent.type(document.activeElement, 'F');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('Bar')).not.toBeInTheDocument();
 
-      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      userEvent.click(await findAvailableOption('Foo'));
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
     });
   });
 
@@ -205,7 +211,7 @@ describe('<MultiSelect>', () => {
         value={[requiredProps.options[0]]}
       />));
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
       expect(await findAutocompleter('test label')).not.toHaveAttribute('readOnly', '');
       expect(screen.getByRole('button', { name: 'Remove Foo' })).toBeInTheDocument();
     });
@@ -226,7 +232,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toBeInvalid();
       expect(screen.getByText('Constraints not satisfied', { selector: 'span' })).toBeInTheDocument();
       userEvent.click(await findAutocompleter('test label'));
-      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      userEvent.click(await findAvailableOption('Foo'));
       expect(await findAutocompleter('test label')).toBeValid();
       expect(screen.getByText('Constraints not satisfied', { selector: 'span' })).toBeInTheDocument();
       userEvent.click(document.body);
@@ -240,7 +246,7 @@ describe('<MultiSelect>', () => {
         value={[requiredProps.options[0]]}
       />));
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
       expect(await findAutocompleter('test label')).not.toHaveAttribute('required');
       expect(await findAutocompleter('test label')).toBeValid();
       expect(await findAutocompleter('test label')).not.toHaveAccessibleDescription('Constraints not satisfied');
@@ -292,9 +298,9 @@ describe('<MultiSelect>', () => {
       render(<MultiSelect {...requiredProps} tagChildren={tagChildren} value={[requiredProps.options[0]]} />);
 
       expect(screen.getByText('Override Foo')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
       userEvent.click(await findRemoveButton('Foo'));
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
     });
   });
 
@@ -312,20 +318,20 @@ describe('<MultiSelect>', () => {
     it('sets the value for the input and is responsive to changes', async () => {
       const { rerender } = render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
+      expect(await querySelectedOption('Bar')).not.toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={[requiredProps.options[1]]} />);
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
+      expect(await findSelectedOption('Bar')).toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={[]} />);
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Bar')).not.toBeInTheDocument();
 
       rerender(<MultiSelect {...requiredProps} value={undefined} />);
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Bar')).not.toBeInTheDocument();
     });
   });
 
@@ -339,30 +345,30 @@ describe('<MultiSelect>', () => {
     it('filters visible options on autocompleter value when props.filterOptions is true', async () => {
       render(<MultiSelect {...requiredProps} />);
       await openOptions('test label');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
       userEvent.type(document.activeElement, 'F');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('Bar')).not.toBeInTheDocument();
     });
 
     it('does not filter options on autocompleter value when props.filterOptions is false', async () => {
       render(<MultiSelect {...requiredProps} filterOptions={false} />);
       await openOptions('test label');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
       userEvent.type(document.activeElement, 'F');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await queryAvailableOption('test label', 'Bar')).toBeInTheDocument();
-      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('Bar')).toBeInTheDocument();
+      userEvent.click(await findAvailableOption('Foo'));
       await openOptions('test label');
-      expect(await queryAvailableOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await queryAvailableOption('Foo')).not.toBeInTheDocument();
     });
 
     it('clears the autocompleter on selection', async () => {
       render(<MultiSelect {...requiredProps} />);
       userEvent.type(await findAutocompleter('test label'), 'F');
-      userEvent.click(await findAvailableOption('test label', 'Foo'));
+      userEvent.click(await findAvailableOption('Foo'));
       expect(await findAutocompleter('test label')).toHaveValue('');
     });
 
@@ -372,7 +378,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toHaveFocus();
       expect(await findAutocompleter('test label')).toHaveAttribute('aria-expanded', 'false');
       await userEvent.type(await findAutocompleter('test label'), 'Fo', { skipClick: true });
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
     });
 
     it('closes on escape key', async () => {
@@ -394,16 +400,16 @@ describe('<MultiSelect>', () => {
     it('removes the option value when pressing the remove button', async () => {
       render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
 
       userEvent.click(await findRemoveButton('Foo'));
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
     });
 
     it('does not expand the popup', async () => {
       render(<MultiSelect {...requiredProps} value={[requiredProps.options[0]]} />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
       userEvent.click(await findRemoveButton('Foo'));
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
@@ -412,11 +418,11 @@ describe('<MultiSelect>', () => {
     it('removes all options when pressing the clear button and focuses the input', async () => {
       render(<MultiSelect {...requiredProps} value={[requiredProps.options[0], requiredProps.options[1]]} />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Bar')).toBeInTheDocument();
       userEvent.click(await findRemoveButton());
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
-      expect(await querySelectedOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Bar')).not.toBeInTheDocument();
       expect(await findAutocompleter('test label')).toHaveFocus();
     });
   });
@@ -454,7 +460,7 @@ describe('<MultiSelect>', () => {
 
       await openOptions('test label');
       userEvent.click(await findAutocompleter('test label'));
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
       await waitFor(() => {
         if (screen.queryByText('Foo')) throw new Error('Expected popup to be closed.');
@@ -472,7 +478,7 @@ describe('<MultiSelect>', () => {
 
       await openOptions('test label');
       userEvent.click(await findAutocompleter('test label'));
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
 
       userEvent.tab();
       userEvent.tab();
@@ -496,7 +502,7 @@ describe('<MultiSelect>', () => {
       expect(await findAutocompleter('test label')).toHaveValue('');
       await userEvent.type(await findAutocompleter('test label'), 'F');
       expect(await findAutocompleter('test label')).toHaveValue('F');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
       userEvent.click(screen.getByText('CLOSE'));
 
       await waitFor(async () => expect(await findAutocompleter('test label')).toHaveValue(''));
@@ -525,7 +531,7 @@ describe('<MultiSelect>', () => {
       expect(ref.current.value).toContain(requiredProps.options[0]);
 
       await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'Bar'));
+      userEvent.click(await findAvailableOption('Bar'));
       expect(ref.current.value).toContain(requiredProps.options[1]);
     });
 
@@ -536,7 +542,7 @@ describe('<MultiSelect>', () => {
       expect(ref.current.dirty).toBeFalsy();
 
       await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'Bar'));
+      userEvent.click(await findAvailableOption('Bar'));
       expect(ref.current.dirty).toBeTruthy();
     });
   });

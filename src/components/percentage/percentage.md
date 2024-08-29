@@ -19,8 +19,8 @@ The `Percentage` component allows for representing a percentage in the range of 
 ## Ref API Example
 
 ```jsx
-import Percentage from '@mavenlink/design-system/src/components/percentage/percentage.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import Percentage from '../../components/percentage/percentage.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

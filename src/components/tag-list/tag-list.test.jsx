@@ -1,6 +1,5 @@
 import React, { createRef } from 'react';
-import { waitFor } from '@testing-library/dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TagList from './tag-list.jsx';
 import Tag from '../tag/tag.jsx';

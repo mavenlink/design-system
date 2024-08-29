@@ -1,8 +1,8 @@
 A grid cell for text datum. 
 
 ```jsx
-import Input from '@mavenlink/design-system/src/components/cell-control/input.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import Input from '../../components/cell-control/input.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

@@ -27,9 +27,7 @@ describe('<MultiAutocompleter>', () => {
     name: 'field-id',
   };
 
-  beforeEach(() => {
-    jestServer.use(...mockHandlers());
-  });
+  jestServer.setup(mockHandlers());
 
   it('has defaults', () => {
     const ref = createRef();
@@ -73,7 +71,7 @@ describe('<MultiAutocompleter>', () => {
 
       await openOptions('test label');
 
-      expect(await findAvailableOption('test label', 'Test Option')).toBeInTheDocument();
+      expect(await findAvailableOption('Test Option')).toBeInTheDocument();
     });
   });
 
@@ -93,7 +91,7 @@ describe('<MultiAutocompleter>', () => {
       expect(onChangeMock).not.toHaveBeenCalled();
 
       await openOptions('test label');
-      userEvent.click(await await findAvailableOption('test label', 'Foo'));
+      userEvent.click(await await findAvailableOption('Foo'));
       expect(onChangeMock).toHaveBeenCalledWith({
         target: {
           dirty: true,
@@ -112,7 +110,7 @@ describe('<MultiAutocompleter>', () => {
 
       userEvent.keyboard('Find');
 
-      expect(await findAvailableOption('test label', 'Find-stub')).toBeInTheDocument();
+      expect(await findAvailableOption('Find-stub')).toBeInTheDocument();
     });
   });
 
@@ -137,31 +135,31 @@ describe('<MultiAutocompleter>', () => {
       render(<MultiAutocompleter {...requiredProps} />);
 
       await openOptions('test label');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Option 6')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Option 7')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'USD')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Option 9')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Option 6')).toBeInTheDocument();
+      expect(await findAvailableOption('Option 7')).toBeInTheDocument();
+      expect(await findAvailableOption('USD')).toBeInTheDocument();
+      expect(await findAvailableOption('Option 9')).toBeInTheDocument();
 
-      userEvent.click(await findAvailableOption('test label', 'Foo'));
-
-      await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'Option 6'));
+      userEvent.click(await findAvailableOption('Foo'));
 
       await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'Option 7'));
+      userEvent.click(await findAvailableOption('Option 6'));
 
       await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'USD'));
+      userEvent.click(await findAvailableOption('Option 7'));
 
       await openOptions('test label');
-      userEvent.click(await findAvailableOption('test label', 'Option 9'));
+      userEvent.click(await findAvailableOption('USD'));
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Option 6')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Option 7')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'USD')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Option 9')).toBeInTheDocument();
+      await openOptions('test label');
+      userEvent.click(await findAvailableOption('Option 9'));
+
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Option 6')).toBeInTheDocument();
+      expect(await findSelectedOption('Option 7')).toBeInTheDocument();
+      expect(await findSelectedOption('USD')).toBeInTheDocument();
+      expect(await findSelectedOption('Option 9')).toBeInTheDocument();
     });
   });
 
@@ -177,7 +175,7 @@ describe('<MultiAutocompleter>', () => {
       expect(await screen.findByRole('progressbar')).toBeInTheDocument();
 
       await waitForLoadingComplete('test label');
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
     });
 
     it('shows an error when option loading fails', async () => {
@@ -191,13 +189,13 @@ describe('<MultiAutocompleter>', () => {
 
       await openOptions('test label');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
 
       userEvent.type(document.activeElement, 'Fo');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await queryAvailableOption('test label', 'Bar')).not.toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await queryAvailableOption('Bar')).not.toBeInTheDocument();
     });
 
     it('resets the search value when an option is selected', async () => {
@@ -205,17 +203,17 @@ describe('<MultiAutocompleter>', () => {
 
       await openOptions('test label');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findAvailableOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Bar')).toBeInTheDocument();
 
       userEvent.type(document.activeElement, 'Bar');
 
-      expect(await queryAvailableOption('test label', 'Foo')).not.toBeInTheDocument();
-      userEvent.click(await findAvailableOption('test label', 'Bar'));
+      expect(await queryAvailableOption('Foo')).not.toBeInTheDocument();
+      userEvent.click(await findAvailableOption('Bar'));
 
       await openOptions('test label');
 
-      expect(await findAvailableOption('test label', 'Foo')).toBeInTheDocument();
+      expect(await findAvailableOption('Foo')).toBeInTheDocument();
     });
   });
 
@@ -223,7 +221,7 @@ describe('<MultiAutocompleter>', () => {
     it('is responsive to prop changes', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
 
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
 
       rerender(<MultiAutocompleter
         {...requiredProps}
@@ -233,7 +231,7 @@ describe('<MultiAutocompleter>', () => {
         }]}
       />);
 
-      const foo = await findSelectedOption('test label', 'Foo');
+      const foo = await findSelectedOption('Foo');
       expect(foo).toBeInTheDocument();
 
       rerender(<MultiAutocompleter
@@ -245,7 +243,7 @@ describe('<MultiAutocompleter>', () => {
       />);
 
       await waitForElementToBeRemoved(foo);
-      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findSelectedOption('Bar')).toBeInTheDocument();
 
       rerender(<MultiAutocompleter
         {...requiredProps}
@@ -261,21 +259,21 @@ describe('<MultiAutocompleter>', () => {
         ]}
       />);
 
-      expect(await findSelectedOption('test label', 'Foo')).toBeInTheDocument();
-      expect(await findSelectedOption('test label', 'Bar')).toBeInTheDocument();
+      expect(await findSelectedOption('Foo')).toBeInTheDocument();
+      expect(await findSelectedOption('Bar')).toBeInTheDocument();
     });
 
     it('accepts an array of ids', async () => {
       const { rerender } = render(<MultiAutocompleter {...requiredProps} value={[]} />);
 
-      expect(await querySelectedOption('test label', 'Foo')).not.toBeInTheDocument();
+      expect(await querySelectedOption('Foo')).not.toBeInTheDocument();
 
       rerender(<MultiAutocompleter
         {...requiredProps}
         value={['55']}
       />);
 
-      const foo = await findSelectedOption('test label', 'Foo');
+      const foo = await findSelectedOption('Foo');
       expect(foo).toBeInTheDocument();
     });
 

@@ -54,21 +54,21 @@ describe('src/components/listbox/listbox', () => {
     it('only has the one option in the page tab sequence', () => {
       expect(document.body).toHaveFocus();
 
-      act(() => userEvent.tab());
+      userEvent.tab();
       expect(screen.getByText('Hello')).toHaveFocus();
 
-      act(() => userEvent.tab());
+      userEvent.tab();
       expect(screen.getByText('Hello')).not.toHaveFocus();
       expect(screen.getByText('Hey')).not.toHaveFocus();
 
-      act(() => userEvent.tab({ shift: true }));
+      userEvent.tab({ shift: true });
       expect(screen.getByText('Hello')).toHaveFocus();
     });
 
     it('moves focus with arrows keys', () => {
       expect(document.body).toHaveFocus();
 
-      act(() => userEvent.tab());
+      userEvent.tab();
       expect(screen.getByText('Hello')).toHaveFocus();
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
@@ -87,7 +87,7 @@ describe('src/components/listbox/listbox', () => {
     it('moves focus with Home and End keys', () => {
       expect(document.body).toHaveFocus();
 
-      act(() => userEvent.tab());
+      userEvent.tab();
       expect(screen.getByText('Hello')).toHaveFocus();
 
       fireEvent.keyDown(document.activeElement, { key: 'End' });
