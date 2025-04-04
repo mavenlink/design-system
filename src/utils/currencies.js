@@ -1,5 +1,5 @@
 /* Downloaded XML file from https://www.currency-iso.org/en/home/tables/table-a1.html and converted to javascript */
-export default {
+const currencies = {
   ISO_4217: {
     Published: '2018-08-29',
     CcyTbl: {
@@ -1976,3 +1976,4 @@ export default {
     },
   },
 };
+export default currencies;

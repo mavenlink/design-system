@@ -5,7 +5,7 @@ For design and accessibility functionality, see [Form Controls > Checkbox docume
 Basic usage.
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <React.Fragment>
   <Checkbox
@@ -33,7 +33,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 Required example. The validation message only shows when the checkbox is dirty.
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox
   id={uuid.v4()}
@@ -46,7 +46,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 With a custom validation message. Messages are cleared on blur.
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox
   id={uuid.v4()}
@@ -59,7 +59,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 Inline
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox id={uuid.v4()} label="Inline Checkbox" name="example" inline />;
 ```
@@ -67,7 +67,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 Inline Required example. The validation message only shows when the checkbox is dirty.
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox
   id={uuid.v4()}
@@ -81,7 +81,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 Inline with validation message
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox
   id={uuid.v4()}
@@ -95,7 +95,7 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 Inline with tooltip
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
 
 <Checkbox
   id={uuid.v4()}
@@ -109,8 +109,8 @@ import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.
 ## Ref API Example
 
 ```jsx
-import Checkbox from '@mavenlink/design-system/src/components/checkbox/checkbox.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import Checkbox from '../../components/checkbox/checkbox.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 

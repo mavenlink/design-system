@@ -1,5 +1,5 @@
-@import '../../../src/styles/colors-v2.css';
-@import '../../../src/styles/spacing.css';
+@import '../../styles/colors-v2.css';
+@import '../../styles/spacing.css';
 
 .button {
   composes: button from './icon-button.css';

@@ -141,7 +141,7 @@ module.exports = stylelint.createPlugin(
               }
 
               const importString =
-                "@import '@mavenlink/design-system/src/styles/spacing.css';";
+                "@import '../../styles/spacing.css';";
               if (!root.toString().includes(importString) && shouldImport) {
                 root.prepend(importString);
               }

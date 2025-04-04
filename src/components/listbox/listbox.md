@@ -26,10 +26,10 @@ Otherwise, the user does not know the context of the list.
 ### Examples
 
 ```js
-import FormControl from '@mavenlink/design-system/src/components/form-control/form-control.jsx';
-import Listbox from '@mavenlink/design-system/src/components/listbox/listbox.jsx';
-import ListOption from '@mavenlink/design-system/src/components/list-option/list-option.jsx';
-import RefExample from '@mavenlink/design-system/src/components/__site__/ref-example/ref-example.jsx';
+import FormControl from '../../components/form-control/form-control.jsx';
+import Listbox from '../../components/listbox/listbox.jsx';
+import ListOption from '../../components/list-option/list-option.jsx';
+import RefExample from '../../components/__site__/ref-example/ref-example.jsx';
 
 const ref = React.createRef();
 const refs = [React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()];
@@ -58,9 +58,9 @@ const refs = [React.createRef(), React.createRef(), React.createRef(), React.cre
 If the list needs to be a certain size or style, place the listbox into its own containing `div` and style that `div`:
 
 ```js
-import FormControl from '@mavenlink/design-system/src/components/form-control/form-control.jsx';
-import Listbox from '@mavenlink/design-system/src/components/listbox/listbox.jsx';
-import ListOption from '@mavenlink/design-system/src/components/list-option/list-option.jsx';
+import FormControl from '../../components/form-control/form-control.jsx';
+import Listbox from '../../components/listbox/listbox.jsx';
+import ListOption from '../../components/list-option/list-option.jsx';
 
 const container = {
   width: '150px',

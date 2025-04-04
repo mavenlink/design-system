@@ -20,7 +20,7 @@ It is recommended to apply some padding to the icon as a means of increasing the
 ## Basic example
 
 ```jsx
-import caretDown from '@mavenlink/design-system/src/svgs/caret-down.svg';
+import caretDown from '../../svgs/caret-down.svg';
 import styles from './icon-button.md.css';
 
 <IconButton
@@ -43,7 +43,7 @@ the input has a label of "the input";
 thus, the computed label is actually "clear the input".
 
 ```jsx
-import clear from '@mavenlink/design-system/src/svgs/clear.svg';
+import clear from '../../svgs/clear.svg';
 import styles from './icon-button.md.css';
 
 <div className={styles['adv-example']}>

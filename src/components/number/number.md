@@ -37,7 +37,7 @@ We want to provide an accessible, fully integrated input component that captures
 ## Ref API Example
 
 ```js
-import Number from '@mavenlink/design-system/src/components/number/number.jsx';
+import Number from '../../components/number/number.jsx';
 
 function TestComponent() {
   const ref = React.useRef();

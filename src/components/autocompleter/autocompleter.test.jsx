@@ -10,9 +10,7 @@ import Autocompleter from './autocompleter.jsx';
 import mockHandlers from './mock-handlers.js';
 
 describe('src/components/autocompleter/autocompleter', () => {
-  beforeEach(() => {
-    jestServer.use(...mockHandlers());
-  });
+  jestServer.setup(mockHandlers());
 
   const requiredProps = {
     id: 'test-id',

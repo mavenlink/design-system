@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import helpSvg from '../../svgs/help.svg';
 import Tooltip from '../tooltip/tooltip.jsx';
 import Icon from '../icon/icon.jsx';
-import helpSvg from '../../svgs/help.svg';
 
 export default function HelpIcon({ classNames, direction, id, label, text }) {
   return (

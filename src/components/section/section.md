@@ -12,8 +12,8 @@ For rows that should contain more than one full-length component, a `SectionRow`
 `Section`s can contain child elements, like any other element:
 
 ```js
-import Input from '@mavenlink/design-system/src/components/input/input.jsx';
-import SectionRow from '@mavenlink/design-system/src/components/section-row/section-row.jsx';
+import Input from '../../components/input/input.jsx';
+import SectionRow from '../../components/section-row/section-row.jsx';
 
 <Section
   title="Project Details"
@@ -43,7 +43,7 @@ import SectionRow from '@mavenlink/design-system/src/components/section-row/sect
 `Section`s can be siblings with proper spacing, and with things like form submission containers:
 
 ```js
-import Button from '@mavenlink/design-system/src/components/button/button.jsx';
+import Button from '../../components/button/button.jsx';
 
 <React.Fragment>
   <Section

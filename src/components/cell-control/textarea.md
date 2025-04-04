@@ -1,8 +1,8 @@
 A grid cell for large text datum.
 
 ```jsx
-import Textarea from '@mavenlink/design-system/src/components/cell-control/textarea.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import Textarea from '../../components/cell-control/textarea.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {

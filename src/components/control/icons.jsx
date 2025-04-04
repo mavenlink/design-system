@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cautionSvg from '../../svgs/caution.svg';
 import Icon from '../icon/icon.jsx';
 import Tooltip from '../tooltip/tooltip.jsx';
-import cautionSvg from '../../svgs/caution.svg';
 import styles from './icons.css';
 
 export default function Icons(props) {

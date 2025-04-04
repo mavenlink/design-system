@@ -19,7 +19,7 @@ The form component allows a parent component to listen to value changes with a `
 ### Example with native inputs
 
 ```jsx
-import Form from '@mavenlink/design-system/src/components/form/form.jsx';
+import Form from '../../components/form/form.jsx';
 
 const refs = [
   React.createRef(),
@@ -49,7 +49,7 @@ If the parent component is create a new `props.onSubmit` callback on every rende
 In this case, the parent component _must_ memoize its own `onSubmit` callback against its appropriate dependencies.
 
 ```jsx
-import Form from '@mavenlink/design-system/src/components/form/form.jsx';
+import Form from '../../components/form/form.jsx';
 
 const refs = [
   React.createRef(),

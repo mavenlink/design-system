@@ -36,8 +36,8 @@ This ensures screen readers can know:
 ### Example
 
 ```js
-import FormControl from '@mavenlink/design-system/src/components/form-control/form-control.jsx';
-import Tag from '@mavenlink/design-system/src/components/tag/tag.jsx';
+import FormControl from '../../components/form-control/form-control.jsx';
+import Tag from '../../components/tag/tag.jsx';
 
 const data = [
   'Molotov Solution',
@@ -69,8 +69,8 @@ const tagListId = 'basic-example';
 ### Wrapping example
 
 ```js
-import FormControl from '@mavenlink/design-system/src/components/form-control/form-control.jsx';
-import Tag from '@mavenlink/design-system/src/components/tag/tag.jsx';
+import FormControl from '../../components/form-control/form-control.jsx';
+import Tag from '../../components/tag/tag.jsx';
 
 const data = [
   'command (abstract role)',

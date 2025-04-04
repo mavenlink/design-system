@@ -6,8 +6,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import IconButton from '../icon-button/icon-button.jsx';
 import iconClear from '../../svgs/clear.svg';
+import IconButton from '../icon-button/icon-button.jsx';
 import styles from './popover.css';
 import useFlush from '../../hooks/use-flush.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';

@@ -1,6 +1,6 @@
 ```jsx
-import MultiAutocompleter from '@mavenlink/design-system/src/components/cell-control/multi-autocompleter.jsx';
-import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '@mavenlink/design-system/src/components/table';
+import MultiAutocompleter from '../../components/cell-control/multi-autocompleter.jsx';
+import { Table, TableHeader, TableHeaderCell, TableBody, TableRow, TableCell } from '../../components/table';
 
 const ids = {
   th: {
